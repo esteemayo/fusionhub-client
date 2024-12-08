@@ -8,13 +8,13 @@ const Navbar = () => {
       <div className='navbar__container'>
         <div className='navbar__container--logo'>Logo</div>
         <ul className='navbar__container--links'>
-          <li>
+          <li className='navbar__container--links-item'>
             <Link to='/'>Home</Link>
           </li>
-          <li>
+          <li className='navbar__container--links-item'>
             <Link to='posts'>Posts</Link>
           </li>
-          <li>
+          <li className='navbar__container--links-item'>
             <Link to='account'>Account</Link>
           </li>
         </ul>

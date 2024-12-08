@@ -18,5 +18,13 @@
       text-rendering: optimizeLegibility;
       cursor: pointer;
     }
+
+    &--links {
+      list-style: none;
+
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
   }
 }
