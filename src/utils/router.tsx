@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '../components/layouts/MainLayout';
 import {
+  Account,
   Home,
   Login,
   NotFound,
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: 'posts/:slug',
         element: <ProductDetails />,
+      },
+      {
+        path: 'account',
+        element: <Account />,
       },
       {
         path: 'login',
