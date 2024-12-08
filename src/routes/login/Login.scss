@@ -48,13 +48,24 @@
     &__input {
       display: inline-block;
       outline: 0;
+      font-size: 1.45rem;
       width: 100%;
       height: 5rem;
       padding: 1.6rem;
       background-color: transparent;
       color: $clr-white;
       border: 2px solid $clr-secondary-blue;
-      border-radius: 3px;
+      border-radius: 0.5rem;
+      transition: all 300ms;
+
+      &:focus {
+        background-color: $clr-secondary-blue;
+      }
+
+      &::placeholder {
+        font-size: 1.35rem;
+        color: $clr-white;
+      }
     }
 
     &__forgot {
