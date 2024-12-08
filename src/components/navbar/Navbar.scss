@@ -73,14 +73,17 @@
         }
 
         .login__btn {
-          width: max-content;
+          width: fit-content;
           padding: 0.8rem 1.6rem;
           background-color: $clr-gray-dark-1;
           color: $clr-white;
           transition: all 300ms;
 
           &:hover {
+            background-image: none;
+            background-clip: unset;
             background-color: $clr-gray-dark-2;
+            color: inherit;
           }
         }
       }
