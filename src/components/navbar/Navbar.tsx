@@ -22,6 +22,11 @@ const Navbar = () => {
               Login
             </Link>
           </li>
+          <li className='navbar__container--links-item'>
+            <Link to='register' className='register__btn'>
+              Register
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
