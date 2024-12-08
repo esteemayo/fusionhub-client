@@ -25,7 +25,8 @@
         $clr-pink-dark-1,
         $clr-pink-dark-2,
         $clr-pink-light,
-        orange
+        $clr-orange-dark,
+        $clr-orange-light
       );
       -webkit-background-clip: text;
       background-clip: text;
@@ -64,7 +65,8 @@
               $clr-pink-dark-1,
               $clr-pink-dark-2,
               $clr-pink-light,
-              orange
+              $clr-orange-dark,
+              $clr-orange-light
             );
             -webkit-background-clip: text;
             background-clip: text;
