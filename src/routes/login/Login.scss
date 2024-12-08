@@ -47,10 +47,14 @@
 
     &__input {
       display: inline-block;
-      border: 0;
       outline: 0;
       width: 100%;
-      height: 4.5rem;
+      height: 5rem;
+      padding: 1.6rem;
+      background-color: transparent;
+      color: $clr-white;
+      border: 2px solid $clr-secondary-blue;
+      border-radius: 3px;
     }
 
     &__forgot {
