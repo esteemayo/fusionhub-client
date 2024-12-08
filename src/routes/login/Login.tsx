@@ -1,7 +1,11 @@
 import './Login.scss';
 
 const Login = () => {
-  return <section className='login'>Login</section>;
+  return (
+    <div className='login'>
+      <div className='login__container'>Login</div>
+    </div>
+  );
 };
 
 export default Login;
