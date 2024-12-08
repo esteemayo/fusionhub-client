@@ -1,7 +1,11 @@
 import './NotFound.scss';
 
 const NotFound = () => {
-  return <section className='notFound'>NotFound</section>;
+  return (
+    <div className='notFound'>
+      <div className='notFound__container'>NotFound</div>
+    </div>
+  );
 };
 
 export default NotFound;
