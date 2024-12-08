@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = () => {
+  const user = true;
+
   return (
     <nav className='navbar'>
       <div className='navbar__container'>
@@ -19,16 +21,20 @@ const Navbar = () => {
           <li className='navbar__container--links-item'>
             <Link to='account'>Account</Link>
           </li>
-          <li className='navbar__container--links-item'>
-            <Link to='login' className='login__btn'>
-              Login
-            </Link>
-          </li>
-          <li className='navbar__container--links-item'>
-            <Link to='register' className='register__btn'>
-              Register
-            </Link>
-          </li>
+          {!user && (
+            <>
+              <li className='navbar__container--links-item'>
+                <Link to='login' className='login__btn'>
+                  Login
+                </Link>
+              </li>
+              <li className='navbar__container--links-item'>
+                <Link to='register' className='register__btn'>
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
