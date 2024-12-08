@@ -44,14 +44,16 @@
             border: 0;
             outline: 0;
             text-transform: uppercase;
-            width: max-content;
             font-size: inherit;
-            padding: 0.8rem 1.6rem;
-            background-color: $clr-gray-dark-1;
-            color: $clr-white;
             border-radius: 10rem;
-            cursor: pointer;
           }
+        }
+
+        .login__btn {
+          width: max-content;
+          padding: 0.8rem 1.6rem;
+          background-color: $clr-gray-dark-1;
+          color: $clr-white;
         }
       }
     }
