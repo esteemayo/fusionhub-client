@@ -17,6 +17,9 @@ const Navbar = () => {
           <li className='navbar__container--links-item'>
             <Link to='account'>Account</Link>
           </li>
+          <li className='navbar__container--links-item'>
+            <button type='button'>Login</button>
+          </li>
         </ul>
       </div>
     </nav>

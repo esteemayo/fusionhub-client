@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .navbar {
   display: flex;
   justify-content: center;
@@ -29,8 +31,25 @@
       gap: 2rem;
 
       &-item {
-        text-transform: capitalize;
-        font-size: 100%;
+        text-transform: uppercase;
+        font-size: 1rem;
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          border: 0;
+          outline: 0;
+          text-transform: uppercase;
+          width: max-content;
+          font-size: inherit;
+          padding: 0.8rem 1.6rem;
+          background-color: $clr-gray-dark-1;
+          color: $clr-white;
+          border-radius: 10rem;
+          cursor: pointer;
+        }
       }
     }
   }
