@@ -1,14 +1,11 @@
-import Navbar from './components/navbar/Navbar';
+import { RouterProvider } from 'react-router-dom';
+
+import { router } from './utils/router';
 
 import './global.scss';
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <h1>Blog Client</h1>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
