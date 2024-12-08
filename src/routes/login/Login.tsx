@@ -25,7 +25,7 @@ const Login = () => {
                 id='identifier'
                 type='text'
                 name='identifier'
-                placeholder='Email/username'
+                placeholder='Email or Username'
                 className='form__input'
               />
             </div>
