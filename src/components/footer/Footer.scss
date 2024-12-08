@@ -1,2 +1,8 @@
 .footer {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 144rem;
+  }
 }
