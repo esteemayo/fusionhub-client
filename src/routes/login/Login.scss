@@ -50,7 +50,7 @@
       width: 10rem;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
-      font-weight: 500;
+      font-weight: 700;
       font-size: 1.4rem;
     }
 
@@ -88,8 +88,23 @@
   }
 
   .auth {
+    margin-top: 3rem;
+
     &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      font-size: 1.2rem;
+      color: $clr-gray-light;
+
       &--link {
+        &:link,
+        &:visited {
+          font-weight: 700;
+          color: $clr-white;
+        }
       }
     }
   }
