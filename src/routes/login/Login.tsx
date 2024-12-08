@@ -53,10 +53,12 @@ const Login = () => {
             </div>
           </form>
 
-          <div className=''>
-            <span>
+          <div className='auth'>
+            <span className='auth__text'>
               Don't have an account?{' '}
-              <Link to='/register'>Sign up for free</Link>
+              <Link to='/register' className='auth__text--link'>
+                Sign up for free
+              </Link>
             </span>
           </div>
         </div>

@@ -12,4 +12,42 @@
     align-items: center;
     justify-content: center;
   }
+
+  &__wrapper {
+    padding: 3rem;
+    border: 1px solid $clr-secondary-blue;
+  }
+
+  &__heading {
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    font-size: 3rem;
+  }
+
+  &__text {
+  }
+
+  .form {
+    &__group {
+    }
+
+    &__label {
+    }
+
+    &__input {
+    }
+
+    &__forgot {
+    }
+
+    &__buttons {
+    }
+  }
+
+  .auth {
+    &__text {
+      &--link {
+      }
+    }
+  }
 }
