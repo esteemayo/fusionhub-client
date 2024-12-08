@@ -7,6 +7,7 @@
   &__container {
     width: 144rem;
     min-height: 80vh;
+    padding: 10rem 0;
 
     display: flex;
     align-items: center;
@@ -14,8 +15,10 @@
   }
 
   &__wrapper {
+    width: 40rem;
     padding: 3rem;
-    border: 1px solid $clr-secondary-blue;
+    border: 2px solid $clr-secondary-blue;
+    border-radius: 0.5rem;
   }
 
   &__heading {
