@@ -51,7 +51,7 @@ const Login = () => {
               <button type='submit' className='btn login'>
                 Login
               </button>
-              <button type='button' className='btn'>
+              <button type='button' className='btn google'>
                 Sign in with Google
               </button>
             </div>

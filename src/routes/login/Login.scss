@@ -106,13 +106,18 @@
         padding: 1.6rem;
         font-weight: 700;
         font-size: 1.4rem;
+        color: $clr-white;
         border-radius: 0.5rem;
         cursor: pointer;
 
         &.login {
           background-color: $clr-pink-dark-1;
-          color: $clr-white;
-          border: 1px solid transparent;
+          border: 2px solid transparent;
+        }
+
+        &.google {
+          background-color: transparent;
+          border: 2px solid $clr-secondary-blue;
         }
       }
     }
