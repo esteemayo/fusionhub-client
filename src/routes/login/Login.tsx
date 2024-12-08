@@ -48,8 +48,12 @@ const Login = () => {
             </div>
 
             <div className='form__buttons'>
-              <button type='submit'>Login</button>
-              <button type='button'>Sign in with Google</button>
+              <button type='submit' className='btn'>
+                Login
+              </button>
+              <button type='button' className='btn'>
+                Sign in with Google
+              </button>
             </div>
           </form>
 
