@@ -1,7 +1,11 @@
 import './Home.scss';
 
 const Home = () => {
-  return <section className='home'>Home</section>;
+  return (
+    <div className='home'>
+      <div className='home__container'>Home</div>
+    </div>
+  );
 };
 
 export default Home;

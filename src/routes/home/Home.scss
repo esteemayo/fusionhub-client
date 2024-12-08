@@ -1,2 +1,10 @@
+@import '../../styles/variables.scss';
+
 .home {
+  display: flex;
+  justify-content: center;
+
+  &home__container {
+    width: 144rem;
+  }
 }
