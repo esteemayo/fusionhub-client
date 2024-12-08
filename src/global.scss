@@ -38,7 +38,7 @@ body {
 
 a {
   &:link,
-  &:active {
+  &:visited {
     text-decoration: none;
     color: inherit;
     outline: none;
