@@ -21,7 +21,7 @@
       font-weight: 700;
       font-size: 2rem;
       background-image: linear-gradient(
-        to right,
+        to right bottom,
         $clr-pink-dark-1,
         $clr-pink-dark-2,
         $clr-pink-light,
@@ -61,7 +61,7 @@
 
           &:hover {
             background-image: linear-gradient(
-              to right,
+              to right bottom,
               $clr-pink-dark-1,
               $clr-pink-dark-2,
               $clr-pink-light,
