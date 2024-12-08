@@ -3,8 +3,11 @@
 .footer {
   display: flex;
   justify-content: center;
+  background-color: $clr-black;
+  color: inherit;
 
   &__container {
     width: 144rem;
+    padding: 12rem 0;
   }
 }
