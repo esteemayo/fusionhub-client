@@ -36,7 +36,8 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
   font-size: var(--default-font-size);
-  color: $clr-black;
+  background-color: $clr-primary-blue;
+  color: $clr-white;
   line-height: 1.6;
   cursor: default;
 }
