@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+
+.productDetails {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 144rem;
+  }
+}
