@@ -92,6 +92,16 @@
             color: inherit;
           }
         }
+
+        .register__btn {
+          background-color: $clr-pink-dark-1;
+
+          &:hover {
+            background-image: none;
+            background-clip: unset;
+            color: inherit;
+          }
+        }
       }
     }
   }
