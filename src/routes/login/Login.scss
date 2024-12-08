@@ -22,9 +22,11 @@
     text-rendering: optimizeLegibility;
     font-weight: 500;
     font-size: 3rem;
+    line-height: 2.5em;
   }
 
   &__text {
+    font-size: 1.35rem;
   }
 
   .form {
