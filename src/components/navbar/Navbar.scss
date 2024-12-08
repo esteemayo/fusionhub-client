@@ -11,5 +11,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    &--logo {
+      display: inline-block;
+      text-transform: uppercase;
+      text-rendering: optimizeLegibility;
+      cursor: pointer;
+    }
   }
 }
