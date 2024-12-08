@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   height: 8.8rem;
-  background-color: #000;
-  color: #fff;
+  background-color: $clr-black;
+  color: $clr-white;
 
   &__container {
     width: 144rem;
