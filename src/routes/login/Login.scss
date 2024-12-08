@@ -78,6 +78,16 @@
     }
 
     &__forgot {
+      display: inline-block;
+
+      a {
+        &:link,
+        &:visited {
+          font-weight: 700;
+          font-size: 1.2rem;
+          color: inherit;
+        }
+      }
     }
 
     &__buttons {
