@@ -16,6 +16,8 @@
       display: inline-block;
       text-transform: uppercase;
       text-rendering: optimizeLegibility;
+      font-weight: 700;
+      font-size: 2rem;
       cursor: pointer;
     }
 
@@ -25,6 +27,11 @@
       display: flex;
       align-items: center;
       gap: 2rem;
+
+      &-item {
+        text-transform: capitalize;
+        font-size: 100%;
+      }
     }
   }
 }
