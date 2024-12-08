@@ -43,6 +43,11 @@
     }
 
     &__label {
+      display: inline-block;
+      width: 10rem;
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-size: 1.4rem;
     }
 
     &__input {
