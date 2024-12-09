@@ -44,3 +44,9 @@ export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
 }
+
+export interface AuthLinkProps {
+  url: string;
+  label: string;
+  urlLabel: string;
+}
