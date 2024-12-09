@@ -1,4 +1,5 @@
 import Input from '../../components/input/Input';
+import Button from '../../components/button/Button';
 
 import './ForgotPassword.scss';
 
@@ -12,13 +13,20 @@ const ForgotPassword = () => {
       <div className='forgotPassword__container'>
         <div className='forgotPassword__wrapper'>
           <h1 className='forgotPassword__heading'>Forgot password</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='form'>
             <Input
               name='email'
               type='email'
               label='Email address'
               placeholder='Email address'
             />
+            <div className='form__button'>
+              <Button
+                type='submit'
+                label='Reset your password'
+                className='primary'
+              />
+            </div>
           </form>
         </div>
       </div>
