@@ -52,6 +52,7 @@ const Login = () => {
                 Login
               </button>
               <button type='button' className='btn google'>
+                <img src='/google.png' width={25} height={25} alt='logo' />
                 Sign in with Google
               </button>
             </div>
