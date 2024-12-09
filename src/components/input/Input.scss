@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    display: inline-block;
+    width: 10rem;
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+    font-weight: 700;
+    font-size: 1.4rem;
+  }
+
+  &__control {
+    display: inline-block;
+    outline: 0;
+    font-size: 1.45rem;
+    width: 100%;
+    height: 5rem;
+    padding: 1.6rem;
+    background-color: transparent;
+    color: $clr-white;
+    border: 2px solid $clr-secondary-blue;
+    border-radius: 0.5rem;
+    transition: all 300ms ease-in-out;
+
+    &:focus {
+      background-color: $clr-secondary-blue;
+    }
+
+    &::placeholder {
+      font-size: 1.25rem;
+      color: $clr-white;
+    }
+  }
+}
