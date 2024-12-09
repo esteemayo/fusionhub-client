@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
+import AuthLink from '../../components/authLink/AuthLink';
 
 import './Login.scss';
 
@@ -41,14 +42,11 @@ const Login = () => {
             </div>
           </form>
 
-          <div className='auth'>
-            <span className='auth__text'>
-              Don't have an account?{' '}
-              <Link to='/register' className='auth__text--link'>
-                Sign up for free
-              </Link>
-            </span>
-          </div>
+          <AuthLink
+            url='register'
+            label={`Don't have an account?`}
+            urlLabel='Sign up for free'
+          />
         </div>
       </div>
     </div>
