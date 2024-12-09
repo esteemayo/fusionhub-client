@@ -2,9 +2,9 @@ import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
 
 import AuthLink from '../../components/authLink/AuthLink';
+import AuthButton from '../../components/authButton/AuthButton';
 
 import './Register.scss';
-import AuthButton from '../../components/authButton/AuthButton';
 
 const Register = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,7 +17,6 @@ const Register = () => {
         <div className='register__wrapper'>
           <h1 className='register__heading'>Welcome</h1>
           <p className='register__text'>Welcome! Please enter your details.</p>
-
           <form className='form' onSubmit={handleSubmit}>
             <Input name='name' label='Name' placeholder='Name' />
             <Input name='username' label='Username' placeholder='Username' />
@@ -45,7 +44,6 @@ const Register = () => {
 
             <AuthButton label='Register' />
           </form>
-
           <AuthLink
             url='login'
             label={`Already have an account?`}
