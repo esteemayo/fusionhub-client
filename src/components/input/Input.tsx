@@ -1,21 +1,30 @@
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
+import { InputProps } from '../../types';
+
 import './Input.scss';
 
-const Input = ({ error }: { error: boolean }) => {
+const Input = ({
+  id,
+  name,
+  type = 'text',
+  label,
+  error,
+  ...rest
+}: InputProps) => {
   return (
     <div className='input'>
-      <label htmlFor='identifier' className='input__label'>
-        Email/username
+      <label htmlFor={id} className='input__label'>
+        {label}
       </label>
       <input
-        id='identifier'
-        type='text'
-        name='identifier'
-        placeholder='Email or Username'
+        {...rest}
+        id={id}
+        type={type}
+        name={name}
         className='input__control'
       />
-      {error && <ErrorMessage message='Email/Username is required' />}
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };
