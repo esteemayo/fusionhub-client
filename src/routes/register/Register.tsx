@@ -2,7 +2,7 @@ import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
 
 import AuthLink from '../../components/authLink/AuthLink';
-import AuthButton from '../../components/authButton/AuthButton';
+import AuthButton from '../../components/formButton/FormButton';
 
 import './Register.scss';
 

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import AuthLink from '../../components/authLink/AuthLink';
 import Input from '../../components/input/Input';
-import AuthButton from '../../components/authButton/AuthButton';
+import AuthButton from '../../components/formButton/FormButton';
 
 import './Login.scss';
 

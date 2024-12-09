@@ -1,15 +1,15 @@
 import Button from '../button/Button';
 import GoogleButton from '../GoogleButton';
 
-import './AuthButton.scss';
+import './FormButton.scss';
 
-const AuthButton = ({ label }: { label: string }) => {
+const FormButton = ({ label }: { label: string }) => {
   return (
-    <div className='authButton'>
+    <div className='formButton'>
       <Button type='submit' label={label} className='primary' />
       <GoogleButton />
     </div>
   );
 };
 
-export default AuthButton;
+export default FormButton;
