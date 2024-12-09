@@ -4,6 +4,8 @@ import Button from '../../components/button/Button';
 import Input from '../../components/input/Input';
 import AuthLink from '../../components/authLink/AuthLink';
 
+import GoogleButton from '../../components/GoogleButton';
+
 import './Login.scss';
 
 const Login = () => {
@@ -34,11 +36,7 @@ const Login = () => {
 
             <div className='form__buttons'>
               <Button type='submit' label='Login' className='primary' />
-              <Button
-                img='/google.png'
-                label='Sign in with Google'
-                className='outline'
-              />
+              <GoogleButton />
             </div>
           </form>
 
