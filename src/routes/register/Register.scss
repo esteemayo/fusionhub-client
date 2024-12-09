@@ -31,4 +31,15 @@
   &__text {
     font-size: 1.35rem;
   }
+
+  .form {
+    margin-top: 3rem;
+
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+  }
 }
