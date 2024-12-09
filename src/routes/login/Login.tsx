@@ -5,6 +5,8 @@ import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 import './Login.scss';
 
 const Login = () => {
+  const error = false;
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -30,7 +32,7 @@ const Login = () => {
                 placeholder='Email or Username'
                 className='form__input'
               />
-              <ErrorMessage message='Email/Username is required' />
+              {error && <ErrorMessage message='Email/Username is required' />}
             </div>
 
             <div className='form__group'>
@@ -44,7 +46,7 @@ const Login = () => {
                 placeholder='Password'
                 className='form__input'
               />
-              <ErrorMessage message='Password is required' />
+              {error && <ErrorMessage message='Password is required' />}
             </div>
 
             <div className='form__forgot'>
