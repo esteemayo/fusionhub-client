@@ -1,6 +1,9 @@
 @import '../../styles/variables.scss';
 
 .register {
+  display: flex;
+  justify-content: center;
+
   &__container {
     width: 144rem;
     min-height: 80vh;
