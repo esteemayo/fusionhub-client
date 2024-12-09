@@ -1,11 +1,10 @@
-import Button from '../../components/button/Button';
 import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
 
-import GoogleButton from '../../components/GoogleButton';
 import AuthLink from '../../components/authLink/AuthLink';
 
 import './Register.scss';
+import AuthButton from '../../components/AuthButton';
 
 const Register = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,10 +43,7 @@ const Register = () => {
             <Textarea name='bio' label='Biography' placeholder='Biography' />
             <Input type='file' label='Image' />
 
-            <div className='form__buttons'>
-              <Button type='submit' label='Register' className='primary' />
-              <GoogleButton />
-            </div>
+            <AuthButton label='Register' />
           </form>
 
           <AuthLink
