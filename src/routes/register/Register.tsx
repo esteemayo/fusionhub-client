@@ -4,7 +4,7 @@ import Textarea from '../../components/textarea/Textarea';
 import AuthLink from '../../components/authLink/AuthLink';
 
 import './Register.scss';
-import AuthButton from '../../components/AuthButton';
+import AuthButton from '../../components/authButton/AuthButton';
 
 const Register = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

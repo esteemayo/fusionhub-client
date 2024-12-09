@@ -1,5 +1,5 @@
-import Button from './button/Button';
-import GoogleButton from './GoogleButton';
+import Button from '../button/Button';
+import GoogleButton from '../GoogleButton';
 
 const AuthButton = ({ label }: { label: string }) => {
   return (
