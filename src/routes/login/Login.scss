@@ -135,6 +135,11 @@
             object-fit: cover;
           }
         }
+
+        &:disabled {
+          opacity: 0.75;
+          cursor: default;
+        }
       }
     }
   }
