@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import AuthLink from '../../components/authLink/AuthLink';
 import Input from '../../components/input/Input';
-import AuthButton from '../../components/formButton/FormButton';
+import FormButton from '../../components/formButton/FormButton';
 
 import './Login.scss';
 
@@ -19,7 +19,6 @@ const Login = () => {
           <p className='login__text'>
             Welcome back! Please enter your details.
           </p>
-
           <form className='form' onSubmit={handleSubmit}>
             <Input
               name='identifier'
@@ -32,14 +31,11 @@ const Login = () => {
               label='Password'
               placeholder='Password'
             />
-
             <div className='form__forgot'>
               <Link to='/forgot-password'>Forgot password</Link>
             </div>
-
-            <AuthButton label='Login' />
+            <FormButton label='Login' />
           </form>
-
           <AuthLink
             url='register'
             label={`Don't have an account?`}

@@ -2,7 +2,7 @@ import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
 
 import AuthLink from '../../components/authLink/AuthLink';
-import AuthButton from '../../components/formButton/FormButton';
+import FormButton from '../../components/formButton/FormButton';
 
 import './Register.scss';
 
@@ -41,8 +41,7 @@ const Register = () => {
             <Input type='tel' name='phone' label='Phone' placeholder='Phone' />
             <Textarea name='bio' label='Biography' placeholder='Biography' />
             <Input type='file' label='Image' />
-
-            <AuthButton label='Register' />
+            <FormButton label='Register' />
           </form>
           <AuthLink
             url='login'
