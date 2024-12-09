@@ -1,4 +1,12 @@
 .textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+
   &__label {
   }
 
