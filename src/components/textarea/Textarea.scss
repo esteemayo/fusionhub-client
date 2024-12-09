@@ -31,5 +31,14 @@
     border-radius: 0.5rem;
     resize: none;
     transition: all 300ms ease-in-out;
+
+    &:focus {
+      background-color: $clr-secondary-blue;
+    }
+
+    &::placeholder {
+      font-size: 1.25rem;
+      color: $clr-white;
+    }
   }
 }

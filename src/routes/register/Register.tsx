@@ -41,7 +41,7 @@ const Register = () => {
               placeholder='Confirm password'
             />
             <Input type='tel' name='phone' label='Phone' placeholder='Phone' />
-            <Textarea name='bio' label='Bio' placeholder='Bio' />
+            <Textarea name='bio' label='Biography' placeholder='Biography' />
             <Input type='file' label='Image' />
 
             <div className='form__buttons'>
