@@ -1,8 +1,9 @@
 import Button from '../../components/button/Button';
 import Input from '../../components/input/Input';
-import AuthLink from '../../components/authLink/AuthLink';
+import Textarea from '../../components/textarea/Textarea';
 
 import GoogleButton from '../../components/GoogleButton';
+import AuthLink from '../../components/authLink/AuthLink';
 
 import './Register.scss';
 
@@ -40,6 +41,7 @@ const Register = () => {
               placeholder='Confirm password'
             />
             <Input type='tel' name='phone' label='Phone' placeholder='Phone' />
+            <Textarea name='bio' label='Bio' placeholder='Bio' />
             <Input type='file' label='Image' />
 
             <div className='form__buttons'>
