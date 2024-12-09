@@ -65,7 +65,7 @@
       color: $clr-white;
       border: 2px solid $clr-secondary-blue;
       border-radius: 0.5rem;
-      transition: all 300ms;
+      transition: all 300ms ease-in-out;
 
       &:focus {
         background-color: $clr-secondary-blue;
@@ -86,7 +86,7 @@
           font-weight: 700;
           font-size: 1.2rem;
           color: inherit;
-          transition: all 300ms;
+          transition: all 300ms ease-in-out;
         }
 
         &:hover {
@@ -161,7 +161,7 @@
         &:visited {
           font-weight: 700;
           color: $clr-white;
-          transition: all 300ms;
+          transition: all 300ms ease-in-out;
         }
 
         &:hover {
