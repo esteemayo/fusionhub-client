@@ -33,3 +33,13 @@ export interface InputProps
   required?: boolean;
   onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
 }
+
+type ButtonType = 'button' | 'reset' | 'submit';
+
+export interface ButtonProps {
+  label: string;
+  type: ButtonType;
+  className: 'primary' | 'outline';
+  disabled?: boolean;
+  loading?: boolean;
+}
