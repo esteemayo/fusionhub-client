@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
-import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 import './Login.scss';
 
 const Login = () => {
-  const error = false;
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -22,33 +20,12 @@ const Login = () => {
           </p>
 
           <form className='form' onSubmit={handleSubmit}>
-            <div className='form__group'>
-              <label htmlFor='identifier' className='form__label'>
-                Email/username
-              </label>
-              <input
-                id='identifier'
-                type='text'
-                name='identifier'
-                placeholder='Email or Username'
-                className='form__input'
-              />
-              {error && <ErrorMessage message='Email/Username is required' />}
-            </div>
-
-            <div className='form__group'>
-              <label htmlFor='password' className='form__label'>
-                Password
-              </label>
-              <input
-                id='password'
-                type='password'
-                name='password'
-                placeholder='Password'
-                className='form__input'
-              />
-              {error && <ErrorMessage message='Password is required' />}
-            </div>
+            <Input
+              name='identifier'
+              label='Email/username'
+              placeholder='Email or Username'
+            />
+            <Input name='password' label='Password' placeholder='Password' />
 
             <div className='form__forgot'>
               <Link to='/forgot-password'>Forgot password</Link>
