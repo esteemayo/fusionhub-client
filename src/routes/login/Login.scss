@@ -35,48 +35,6 @@
   .form {
     margin-top: 3rem;
 
-    &__group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-
-      &:not(:last-of-type) {
-        margin-bottom: 2rem;
-      }
-    }
-
-    &__label {
-      display: inline-block;
-      width: 10rem;
-      text-transform: capitalize;
-      text-rendering: optimizeLegibility;
-      font-weight: 700;
-      font-size: 1.4rem;
-    }
-
-    &__input {
-      display: inline-block;
-      outline: 0;
-      font-size: 1.45rem;
-      width: 100%;
-      height: 5rem;
-      padding: 1.6rem;
-      background-color: transparent;
-      color: $clr-white;
-      border: 2px solid $clr-secondary-blue;
-      border-radius: 0.5rem;
-      transition: all 300ms ease-in-out;
-
-      &:focus {
-        background-color: $clr-secondary-blue;
-      }
-
-      &::placeholder {
-        font-size: 1.25rem;
-        color: $clr-white;
-      }
-    }
-
     &__forgot {
       display: inline-block;
 
@@ -102,45 +60,6 @@
       flex-direction: column;
       gap: 1.5rem;
       margin-top: 2rem;
-
-      .btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-
-        outline: 0;
-        width: 100%;
-        height: 5rem;
-        padding: 1.6rem;
-        font-weight: 700;
-        font-size: 1.4rem;
-        color: $clr-white;
-        border-radius: 0.5rem;
-        cursor: pointer;
-
-        &.login {
-          background-color: $clr-pink-dark-1;
-          border: 2px solid transparent;
-        }
-
-        &.google {
-          background-color: transparent;
-          border: 2px solid $clr-secondary-blue;
-
-          img {
-            display: inline-block;
-            width: 2.5rem;
-            height: 2.5rem;
-            object-fit: cover;
-          }
-        }
-
-        &:disabled {
-          opacity: 0.75;
-          cursor: default;
-        }
-      }
     }
   }
 

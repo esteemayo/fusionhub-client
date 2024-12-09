@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 0.8rem;
 
-  &:not(:last-of-child) {
+  &:not(:last-of-type) {
     margin-bottom: 2rem;
   }
 
