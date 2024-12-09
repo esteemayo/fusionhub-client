@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import ErrorMessage from '../../components/errorMessage/ErrorMessage';
+
 import './Login.scss';
 
 const Login = () => {
@@ -28,6 +30,7 @@ const Login = () => {
                 placeholder='Email or Username'
                 className='form__input'
               />
+              <ErrorMessage message='Email/Username is required' />
             </div>
 
             <div className='form__group'>
@@ -41,6 +44,7 @@ const Login = () => {
                 placeholder='Password'
                 className='form__input'
               />
+              <ErrorMessage message='Password is required' />
             </div>
 
             <div className='form__forgot'>
