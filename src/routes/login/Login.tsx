@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import Button from '../../components/button/Button';
 import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 import './Login.scss';
@@ -54,13 +55,12 @@ const Login = () => {
             </div>
 
             <div className='form__buttons'>
-              <button type='submit' className='btn login'>
-                Login
-              </button>
-              <button type='button' className='btn google'>
-                <img src='/google.png' width={25} height={25} alt='logo' />
-                Sign in with Google
-              </button>
+              <Button type='submit' label='Login' className='primary' />
+              <Button
+                img='/google.png'
+                label='Sign in with Google'
+                className='outline'
+              />
             </div>
           </form>
 
