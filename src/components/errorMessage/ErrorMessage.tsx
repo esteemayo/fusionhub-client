@@ -1,7 +1,7 @@
 import './ErrorMessage.scss';
 
-const ErrorMessage = () => {
-  return <div>ErrorMessage</div>;
+const ErrorMessage = ({ message }: { message?: string }) => {
+  return <span>{message}</span>;
 };
 
 export default ErrorMessage;
