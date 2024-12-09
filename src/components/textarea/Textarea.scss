@@ -8,6 +8,12 @@
   }
 
   &__label {
+    display: inline-block;
+    width: 12rem;
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+    font-weight: 700;
+    font-size: 1.4rem;
   }
 
   &__control {
