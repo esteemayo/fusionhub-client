@@ -28,7 +28,12 @@ const Login = () => {
               label='Email/username'
               placeholder='Email or Username'
             />
-            <Input name='password' label='Password' placeholder='Password' />
+            <Input
+              type='password'
+              name='password'
+              label='Password'
+              placeholder='Password'
+            />
 
             <div className='form__forgot'>
               <Link to='/forgot-password'>Forgot password</Link>

@@ -18,8 +18,8 @@ const ForgotPassword = () => {
           </p>
           <form onSubmit={handleSubmit} className='forgotPassword__form'>
             <Input
-              name='email'
               type='email'
+              name='email'
               label='Email address'
               placeholder='Email address'
             />
