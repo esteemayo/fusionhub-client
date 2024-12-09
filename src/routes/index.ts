@@ -5,5 +5,15 @@ import Login from './login/Login';
 import Register from './register/Register';
 import Posts from './posts/Posts';
 import ProductDetails from './productDetails/ProductDetails';
+import ForgotPassword from './forgotPassword/ForgotPassword';
 
-export { Account, Home, Login, NotFound, Posts, ProductDetails, Register };
+export {
+  Account,
+  ForgotPassword,
+  Home,
+  Login,
+  NotFound,
+  Posts,
+  ProductDetails,
+  Register,
+};

@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../components/layouts/MainLayout';
 import {
   Account,
+  ForgotPassword,
   Home,
   Login,
   NotFound,
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPassword />,
       },
       {
         path: '*',
