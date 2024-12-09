@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import Button from '../../components/button/Button';
-import Input from '../../components/input/Input';
 import AuthLink from '../../components/authLink/AuthLink';
-
-import GoogleButton from '../../components/GoogleButton';
+import Input from '../../components/input/Input';
+import AuthButton from '../../components/authButton/AuthButton';
 
 import './Login.scss';
 
@@ -39,10 +37,7 @@ const Login = () => {
               <Link to='/forgot-password'>Forgot password</Link>
             </div>
 
-            <div className='form__buttons'>
-              <Button type='submit' label='Login' className='primary' />
-              <GoogleButton />
-            </div>
+            <AuthButton label='Login' />
           </form>
 
           <AuthLink
