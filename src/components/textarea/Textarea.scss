@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .textarea {
   display: flex;
   flex-direction: column;
@@ -17,5 +19,17 @@
   }
 
   &__control {
+    display: inline-block;
+    outline: 0;
+    font-size: 1.45rem;
+    width: 100%;
+    height: 11.2rem;
+    padding: 1.6rem;
+    background-color: transparent;
+    color: $clr-white;
+    border: 2px solid $clr-secondary-blue;
+    border-radius: 0.5rem;
+    resize: none;
+    transition: all 300ms ease-in-out;
   }
 }
