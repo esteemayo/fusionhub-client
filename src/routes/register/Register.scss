@@ -32,7 +32,12 @@
     font-size: 1.35rem;
   }
 
-  .form {
+  &__form {
     margin-top: 3rem;
+
+    &--box {
+      max-height: 40rem;
+      overflow-y: scroll;
+    }
   }
 }

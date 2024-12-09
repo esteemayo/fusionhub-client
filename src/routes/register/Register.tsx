@@ -17,30 +17,37 @@ const Register = () => {
         <div className='register__wrapper'>
           <h1 className='register__heading'>Welcome</h1>
           <p className='register__text'>Welcome! Please enter your details.</p>
-          <form className='form' onSubmit={handleSubmit}>
-            <Input name='name' label='Name' placeholder='Name' />
-            <Input name='username' label='Username' placeholder='Username' />
-            <Input
-              type='email'
-              name='email'
-              label='Email address'
-              placeholder='Email address'
-            />
-            <Input
-              type='password'
-              name='password'
-              label='Password'
-              placeholder='Password'
-            />
-            <Input
-              type='password'
-              name='passwordConfirm'
-              label='Confirm password'
-              placeholder='Confirm password'
-            />
-            <Input type='tel' name='phone' label='Phone' placeholder='Phone' />
-            <Textarea name='bio' label='Biography' placeholder='Biography' />
-            <Input type='file' label='Image' />
+          <form className='register__form' onSubmit={handleSubmit}>
+            <div className='register__form--box'>
+              <Input name='name' label='Name' placeholder='Name' />
+              <Input name='username' label='Username' placeholder='Username' />
+              <Input
+                type='email'
+                name='email'
+                label='Email address'
+                placeholder='Email address'
+              />
+              <Input
+                type='password'
+                name='password'
+                label='Password'
+                placeholder='Password'
+              />
+              <Input
+                type='password'
+                name='passwordConfirm'
+                label='Confirm password'
+                placeholder='Confirm password'
+              />
+              <Input
+                type='tel'
+                name='phone'
+                label='Phone'
+                placeholder='Phone'
+              />
+              <Textarea name='bio' label='Biography' placeholder='Biography' />
+              <Input type='file' label='Image' />
+            </div>
             <FormButton label='Register' />
           </form>
           <AuthLink
