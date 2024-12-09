@@ -38,6 +38,7 @@ type ButtonType = 'button' | 'reset' | 'submit';
 
 export interface ButtonProps {
   label: string;
+  img?: string;
   type: ButtonType;
   className: 'primary' | 'outline';
   disabled?: boolean;

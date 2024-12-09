@@ -1,9 +1,18 @@
+import { ButtonProps } from '../../types';
+
 import './Button.scss';
 
-const Button = () => {
+const Button = ({
+  img,
+  label,
+  type = 'button',
+  className,
+  disabled,
+}: ButtonProps) => {
   return (
-    <button type='submit' className='btn primary'>
-      Login
+    <button type={type} disabled={!!disabled} className={`btn ${className}`}>
+      {img && <img src={img} width={25} height={25} alt='logo' />}
+      {label}
     </button>
   );
 };
