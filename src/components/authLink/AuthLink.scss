@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.authLink {
+  margin-top: 3rem;
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    font-size: 1.2rem;
+    color: $clr-gray-light;
+
+    &--link {
+      &:link,
+      &:visited {
+        font-weight: 700;
+        color: $clr-white;
+        transition: all 300ms ease-in-out;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.5rem;
+        text-decoration-color: $clr-pink-dark-1;
+      }
+    }
+  }
+}
