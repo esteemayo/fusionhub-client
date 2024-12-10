@@ -13,7 +13,7 @@ export interface EmptyStateProps {
   center?: boolean;
   imgSrc?: string;
   alt: string;
-  label: string;
+  label?: string;
   showReset?: boolean;
   showReload?: boolean;
 }
