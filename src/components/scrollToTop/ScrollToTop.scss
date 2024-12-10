@@ -6,12 +6,23 @@
   right: 2rem;
 
   &__btn {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: 0;
     outline: 0;
-    width: 4rem;
-    height: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
     background-color: $clr-pink-dark-1;
     color: $clr-white;
+    border-radius: 50%;
+    cursor: pointer;
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: currentColor;
+    }
   }
 }
