@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
 import { FaXTwitter } from 'react-icons/fa6';
-import { BiLogoTiktok } from 'react-icons/bi';
-import { TiSocialFacebook } from 'react-icons/ti';
+import { FaFacebookF } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
 import { FaThreads } from 'react-icons/fa6';
-import { TfiInstagram } from 'react-icons/tfi';
 import { FaYoutube } from 'react-icons/fa6';
+import { BiLogoTiktok } from 'react-icons/bi';
 
 import './Footer.scss';
 
@@ -41,7 +41,7 @@ const Footer = () => {
             <ul className='footer__socialMenu--list'>
               <li className='footer__socialMenu--list-item'>
                 <Link to='/'>
-                  <TiSocialFacebook />
+                  <FaFacebookF />
                 </Link>
               </li>
               <li className='footer__socialMenu--list-item'>
@@ -61,7 +61,7 @@ const Footer = () => {
               </li>
               <li className='footer__socialMenu--list-item'>
                 <Link to='/'>
-                  <TfiInstagram />
+                  <FaInstagram />
                 </Link>
               </li>
               <li className='footer__socialMenu--list-item'>
