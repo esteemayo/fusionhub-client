@@ -3,7 +3,7 @@ import './ScrollToTop.scss';
 const ScrollToTop = () => {
   return (
     <div className='scroll'>
-      <button type='button'>
+      <button type='button' className='scroll__btn'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'
