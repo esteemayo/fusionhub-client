@@ -54,6 +54,11 @@
       list-style: none;
 
       &-item {
+        width: 3.2rem;
+        height: 3.2rem;
+        background-color: $clr-gray-dark-3;
+        color: $clr-black;
+
         a {
           &:link,
           &:visited {
