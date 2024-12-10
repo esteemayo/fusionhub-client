@@ -22,8 +22,8 @@ const Navbar = () => {
             <Link to='account' className='avatarBox'>
               <img
                 src='/avatar.png'
-                width={40}
-                height={40}
+                width={32.5}
+                height={32.5}
                 alt='avatar'
                 className='avatar'
               />
