@@ -16,6 +16,7 @@
   &__wrapper {
     display: flex;
     align-items: center;
+    padding: 2rem;
   }
 
   &__menu {
@@ -85,6 +86,17 @@
           }
         }
       }
+    }
+  }
+
+  .footer__legal {
+    margin: auto;
+    padding: 2rem;
+
+    &--text {
+      font-size: 1.2rem;
+      color: $clr-gray-light-1;
+      line-height: 1.4;
     }
   }
 }
