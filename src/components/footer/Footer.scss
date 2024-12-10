@@ -58,10 +58,14 @@
         height: 3.2rem;
         background-color: $clr-gray-dark-3;
         color: $clr-black;
+        border-radius: 50%;
 
         a {
           &:link,
           &:visited {
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
