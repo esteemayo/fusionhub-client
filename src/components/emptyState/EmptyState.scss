@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 144rem;
+    min-height: 80vh;
+    padding: 10rem 0;
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
