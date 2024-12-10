@@ -66,6 +66,11 @@
       opacity: 0;
       z-index: -1;
     }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: default;
+    }
   }
 
   &__btn-reset {
