@@ -12,7 +12,7 @@ const Login = () => {
   };
 
   return (
-    <div className='login'>
+    <section className='login'>
       <div className='login__container'>
         <div className='login__wrapper'>
           <h1 className='login__heading'>Welcome back</h1>
@@ -43,7 +43,7 @@ const Login = () => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
