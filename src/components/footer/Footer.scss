@@ -10,6 +10,37 @@
   &__container {
     width: 144rem;
     height: 100%;
-    padding: 6rem 0;
+    padding: 2rem 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__menu {
+    flex: 3;
+
+    &--item {
+      a {
+        &:link,
+        &:visited {
+        }
+      }
+    }
+  }
+
+  &__socialMenu {
+    flex: 1;
+
+    &--list {
+      &-item {
+        a {
+          &:link,
+          &:visited {
+          }
+        }
+      }
+    }
   }
 }
