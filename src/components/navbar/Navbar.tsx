@@ -18,17 +18,19 @@ const Navbar = () => {
           <li className='navbar__container--links-item'>
             <Link to='posts'>Posts</Link>
           </li>
-          <li className='navbar__container--links-item'>
-            <Link to='account' className='avatarBox'>
-              <img
-                src='/avatar.png'
-                width={32.5}
-                height={32.5}
-                alt='avatar'
-                className='avatar'
-              />
-            </Link>
-          </li>
+          {user && (
+            <li className='navbar__container--links-item'>
+              <Link to='account' className='avatarBox'>
+                <img
+                  src='/avatar.png'
+                  width={32.5}
+                  height={32.5}
+                  alt='avatar'
+                  className='avatar'
+                />
+              </Link>
+            </li>
+          )}
           {!user && (
             <>
               <li className='navbar__container--links-item'>
