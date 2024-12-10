@@ -28,6 +28,10 @@
     object-fit: contain;
 
     .show {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
     }
 
     .hide {
