@@ -89,7 +89,7 @@
     }
   }
 
-  .footer__legal {
+  &__legal {
     margin: auto;
     padding: 2rem;
 
@@ -97,6 +97,15 @@
       font-size: 1.2rem;
       color: $clr-gray-light-1;
       line-height: 1.4;
+    }
+  }
+
+  &__copyright {
+    padding: 2rem;
+
+    &--text {
+      font-size: 1.2rem;
+      color: $clr-gray-light-1;
     }
   }
 }
