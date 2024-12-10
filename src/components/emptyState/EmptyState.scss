@@ -20,4 +20,28 @@
     align-items: center;
     justify-content: center;
   }
+
+  &__img {
+    .show {
+    }
+
+    .hide {
+    }
+  }
+
+  &__btn-reset {
+    .show {
+    }
+
+    .hide {
+    }
+  }
+
+  &__btn-reload {
+    .show {
+    }
+
+    .hide {
+    }
+  }
 }
