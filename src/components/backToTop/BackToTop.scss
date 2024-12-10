@@ -4,8 +4,8 @@
 .scroll {
   position: fixed;
   right: 3rem;
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 4rem;
+  height: 4rem;
   animation: moveInTop 0.5s ease-in-out 1s backwards;
 
   &.show {
@@ -39,8 +39,8 @@
     cursor: pointer;
 
     svg {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       fill: currentColor;
     }
   }
