@@ -75,6 +75,15 @@
             background-clip: text;
             color: transparent;
           }
+
+          &.avatarBox {
+            &:link,
+            &:visited {
+              width: 5rem;
+              height: 5rem;
+              background-color: $clr-gray-dark-1;
+            }
+          }
         }
 
         .login__btn,

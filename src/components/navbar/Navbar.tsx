@@ -19,7 +19,15 @@ const Navbar = () => {
             <Link to='posts'>Posts</Link>
           </li>
           <li className='navbar__container--links-item'>
-            <Link to='account'>Account</Link>
+            <Link to='account' className='avatarBox'>
+              <img
+                src='/avatar.png'
+                width={40}
+                height={40}
+                alt='avatar'
+                className='avatar'
+              />
+            </Link>
           </li>
           {!user && (
             <>
