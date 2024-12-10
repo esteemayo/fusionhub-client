@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 
-import ScrollToTop from '../scrollToTop/ScrollToTop';
+import BackToTop from '../backToTop/BackToTop';
 
 const MainLayout = () => {
   return (
@@ -11,7 +11,7 @@ const MainLayout = () => {
       <Navbar />
       <Outlet />
       <Footer />
-      <ScrollToTop />
+      <BackToTop />
     </main>
   );
 };

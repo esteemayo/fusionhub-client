@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import './ScrollToTop.scss';
+import './BackToTop.scss';
 
-const ScrollToTop = () => {
+const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   window.onscroll = () => {
@@ -44,4 +44,4 @@ const ScrollToTop = () => {
   );
 };
 
-export default ScrollToTop;
+export default BackToTop;
