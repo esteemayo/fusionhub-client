@@ -3,11 +3,13 @@
 .footer {
   display: flex;
   justify-content: center;
+  height: 26.3rem;
   background-color: $clr-black;
   color: inherit;
 
   &__container {
     width: 144rem;
+    height: 100%;
     padding: 12rem 0;
   }
 }
