@@ -19,7 +19,7 @@ const Login = () => {
           <p className='login__text'>
             Welcome back! Please enter your details.
           </p>
-          <form className='form' onSubmit={handleSubmit}>
+          <form className='login__form' onSubmit={handleSubmit}>
             <Input
               name='identifier'
               label='Email/username'
@@ -31,7 +31,7 @@ const Login = () => {
               label='Password'
               placeholder='Password'
             />
-            <div className='form__forgot'>
+            <div className='login__form--forgot'>
               <Link to='/forgot-password'>Forgot password</Link>
             </div>
             <FormButton label='Login' />

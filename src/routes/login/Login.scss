@@ -32,10 +32,10 @@
     font-size: 1.35rem;
   }
 
-  .form {
+  &__form {
     margin-top: 3rem;
 
-    &__forgot {
+    &--forgot {
       display: inline-block;
 
       a {
