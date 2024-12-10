@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import {TiSocialFacebook} from 'react-icons/ti'
-import {BiLogoTiktok} from 'react-icons/bi'
-import { TfiInstagram } from "react-icons/tfi";
-import { FaThreads } from "react-icons/fa6"
-import { FaXTwitter } from "react-icons/fa6"
-import { FaYoutube } from "react-icons/fa6"
+
+import { FaXTwitter } from 'react-icons/fa6';
+import { BiLogoTiktok } from 'react-icons/bi';
+import { TiSocialFacebook } from 'react-icons/ti';
+import { FaThreads } from 'react-icons/fa6';
+import { TfiInstagram } from 'react-icons/tfi';
+import { FaYoutube } from 'react-icons/fa6';
 
 import './Footer.scss';
 
@@ -38,25 +39,35 @@ const Footer = () => {
           </ul>
           <article className='footer__socialMenu'>
             <ul className='footer__socialMenu--list'>
-              <li>
+              <li className='footer__socialMenu--list-item'>
                 <Link to='/'>
-                <TiSocialFacebook />
+                  <TiSocialFacebook />
                 </Link>
               </li>
-              <li>
-                <Link to='/'><BiLogoTiktok/></Link>
+              <li className='footer__socialMenu--list-item'>
+                <Link to='/'>
+                  <BiLogoTiktok />
+                </Link>
               </li>
-              <li>
-                <Link to='/'><FaThreads /></Link>
+              <li className='footer__socialMenu--list-item'>
+                <Link to='/'>
+                  <FaThreads />
+                </Link>
               </li>
-              <li>
-                <Link to='/'><FaXTwitter /></Link>
+              <li className='footer__socialMenu--list-item'>
+                <Link to='/'>
+                  <FaXTwitter />
+                </Link>
               </li>
-              <li>
-                <Link to='/'><TfiInstagram /></Link>
+              <li className='footer__socialMenu--list-item'>
+                <Link to='/'>
+                  <TfiInstagram />
+                </Link>
               </li>
-              <li>
-                <Link to='/'><FaYoutube /></Link>
+              <li className='footer__socialMenu--list-item'>
+                <Link to='/'>
+                  <FaYoutube />
+                </Link>
               </li>
             </ul>
           </article>
