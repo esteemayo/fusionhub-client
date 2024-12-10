@@ -93,7 +93,7 @@ const Footer = () => {
         <div className='footer__copyright'>
           <p className='footer__copyright--text'>
             &copy; {year} •&nbsp;All rights reserved •&nbsp;Designed & Developed
-            by Emmanuel Adebayo&trade;
+            by <b>Emmanuel Adebayo&trade;</b>
           </p>
         </div>
       </div>
