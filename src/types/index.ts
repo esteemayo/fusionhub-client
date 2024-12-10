@@ -6,6 +6,17 @@ export interface HeadingProps {
   center?: boolean;
 }
 
+export interface EmptyStateProps {
+  url?: string;
+  title: string;
+  subtitle: string;
+  center?: boolean;
+  imgSrc: string;
+  alt: string;
+  showReset?: boolean;
+  showReload?: boolean;
+}
+
 type InputType =
   | 'text'
   | 'password'
