@@ -20,12 +20,19 @@
 
   &__menu {
     flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+
     list-style: none;
 
     &--item {
       a {
         &:link,
         &:visited {
+          font-size: 100%;
+          color: $clr-gray-light-1;
         }
       }
     }
