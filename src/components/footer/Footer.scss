@@ -33,6 +33,11 @@
         &:visited {
           font-size: 100%;
           color: $clr-gray-light-1;
+          transition: all 300ms ease-in-out;
+        }
+
+        &:hover {
+          color: $clr-white;
         }
       }
     }
