@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaXTwitter } from 'react-icons/fa6';
-import { FaFacebookF } from 'react-icons/fa';
-import { FaInstagram } from 'react-icons/fa';
 import { FaThreads } from 'react-icons/fa6';
+import { FaFacebookF } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa6';
 import { BiLogoTiktok } from 'react-icons/bi';
+import { FaInstagram } from 'react-icons/fa';
 
 import './Footer.scss';
 
