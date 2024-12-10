@@ -69,12 +69,19 @@
         a {
           &:link,
           &:visited {
-            width: 100%;
-            height: 100%;
-            font-size: 1.65rem;
             display: flex;
             align-items: center;
             justify-content: center;
+
+            width: 100%;
+            height: 100%;
+            font-size: 1.65rem;
+            color: currentColor;
+            transition: all 300ms ease-in-out;
+          }
+
+          &:hover {
+            color: $clr-white;
           }
         }
       }
