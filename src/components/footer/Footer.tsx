@@ -81,7 +81,7 @@ const Footer = () => {
         <div className='footer__legal'>
           <p className='footer__legal--text'>
             This website (www.blog.com) is copyright protected by the laws of
-            Nigeria and the rest of the African Countries represented on this
+            Nigeria and the rest of the World Countries represented on this
             website and by International Treaties. No part of this website
             (www.blog.com) may be saved or stored, reproduced, used or
             transmitted in any form or by any electronic or mechanical means,
