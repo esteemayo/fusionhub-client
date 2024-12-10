@@ -11,7 +11,7 @@ export interface EmptyStateProps {
   title: string;
   subtitle: string;
   center?: boolean;
-  imgSrc: string;
+  imgSrc?: string;
   alt: string;
   label: string;
   showReset?: boolean;
