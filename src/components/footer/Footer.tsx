@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FaXTwitter } from 'react-icons/fa6';
@@ -10,6 +11,11 @@ import { BiLogoTiktok } from 'react-icons/bi';
 import './Footer.scss';
 
 const Footer = () => {
+  const year = useMemo(() => {
+    const date = new Date();
+    return date.getFullYear();
+  }, []);
+
   return (
     <footer className='footer'>
       <div className='footer__container'>
@@ -82,6 +88,12 @@ const Footer = () => {
             including, but not limited to storage thereof by e-mail or any other
             means, and the use thereof on any other website and/or any other
             media form, without the written and express permission of Blog.
+          </p>
+        </div>
+        <div className='footer__copyright'>
+          <p className='footer__copyright--text'>
+            &copy; {year} •&nbsp;All rights reserved •&nbsp;Designed & Developed
+            by Emmanuel Adebayo&trade;
           </p>
         </div>
       </div>
