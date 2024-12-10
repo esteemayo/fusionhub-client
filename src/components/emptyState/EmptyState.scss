@@ -74,11 +74,10 @@
   }
 
   &__btn-reset {
-    .show {
-    }
-
-    .hide {
-    }
+    text-transform: capitalize;
+    height: 4rem;
+    padding: 1.6rem;
+    border-radius: 0.5rem;
   }
 
   &__btn-reload {
