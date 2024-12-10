@@ -47,6 +47,10 @@
     flex: 1;
 
     &--list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
       list-style: none;
 
       &-item {
