@@ -1,5 +1,11 @@
 import React from 'react';
 
+export interface HeadingProps {
+  title: string;
+  subtitle: string;
+  center?: boolean;
+}
+
 type InputType =
   | 'text'
   | 'password'
