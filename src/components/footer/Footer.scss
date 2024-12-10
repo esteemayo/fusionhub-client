@@ -20,6 +20,7 @@
 
   &__menu {
     flex: 3;
+    list-style: none;
 
     &--item {
       a {
@@ -34,6 +35,8 @@
     flex: 1;
 
     &--list {
+      list-style: none;
+
       &-item {
         a {
           &:link,
