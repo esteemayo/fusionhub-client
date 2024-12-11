@@ -56,16 +56,18 @@ const EmptyState = ({
             className={imgClasses}
           />
           <Heading title={title} subtitle={subtitle} center={center} />
-          <button
-            type='button'
-            className={btnResetClasses}
-            onClick={handleClick}
-          >
-            {label}
-          </button>
-          <button type='button' className={btnReloadClasses}>
-            Reload page
-          </button>
+          <div className='emptyState__buttons'>
+            <button
+              type='button'
+              className={btnResetClasses}
+              onClick={handleClick}
+            >
+              {label}
+            </button>
+            <button type='button' className={btnReloadClasses}>
+              Reload page
+            </button>
+          </div>
         </div>
       </div>
     </div>
