@@ -28,6 +28,11 @@ const EmptyState = ({
     return;
   };
 
+  const handleReload = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    window.location.assign(window.location.pathname);
+  };
+
   const imgClasses = useMemo(() => {
     return imgSrc ? 'emptyState__img show' : 'emptyState__img hide';
   }, [imgSrc]);
@@ -64,7 +69,11 @@ const EmptyState = ({
             >
               {label}
             </button>
-            <button type='button' className={btnReloadClasses}>
+            <button
+              type='button'
+              className={btnReloadClasses}
+              onClick={handleReload}
+            >
               Reload page
             </button>
           </div>
