@@ -16,11 +16,11 @@ const Navbar = () => {
             <Link to='/'>Home</Link>
           </li>
           <li className='navbar__container--links-item'>
-            <Link to='posts'>Posts</Link>
+            <Link to='/posts'>Posts</Link>
           </li>
           {user && (
             <li className='navbar__container--links-item'>
-              <Link to='account' className='avatarBox'>
+              <Link to='/account' className='avatarBox'>
                 <img
                   src='avatar.png'
                   width={32.5}
@@ -33,7 +33,7 @@ const Navbar = () => {
           )}
           {!user && (
             <li className='navbar__container--links-item'>
-              <Link to='login' className='login__btn'>
+              <Link to='/login' className='login__btn'>
                 Login
               </Link>
             </li>
