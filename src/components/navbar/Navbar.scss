@@ -100,31 +100,17 @@
           }
         }
 
-        .login__btn,
-        .register__btn {
+        .login__btn {
           width: fit-content;
           padding: 0.8rem 1.6rem;
-          color: $clr-white;
-        }
-
-        .login__btn {
           background-color: $clr-gray-dark-1;
+          color: $clr-white;
           transition: all 300ms;
 
           &:hover {
             background-image: none;
             background-clip: unset;
             background-color: $clr-gray-dark-2;
-            color: inherit;
-          }
-        }
-
-        .register__btn {
-          background-color: $clr-pink-dark-1;
-
-          &:hover {
-            background-image: none;
-            background-clip: unset;
             color: inherit;
           }
         }
