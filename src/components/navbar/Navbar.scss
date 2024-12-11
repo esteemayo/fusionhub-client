@@ -62,64 +62,68 @@
   }
 
   &__links {
-    list-style: none;
+    display: none;
 
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    @media screen and (min-width: 30.0625em) {
+      list-style: none;
 
-    &--item {
-      text-transform: uppercase;
-      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
 
-      a {
-        &:link,
-        &:visited {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+      &--item {
+        text-transform: uppercase;
+        font-size: 1rem;
 
-          border: 0;
-          outline: 0;
-          text-transform: uppercase;
-          font-size: inherit;
-          border-radius: 10rem;
-        }
-
-        &:hover {
-          background-image: linear-gradient(
-            to right,
-            $clr-pink-dark-1,
-            $clr-pink-dark-2,
-            $clr-pink-light,
-            $clr-orange-dark,
-            $clr-orange-light
-          );
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-
-        &.avatarBox {
+        a {
           &:link,
           &:visited {
-            width: 5rem;
-            height: 5rem;
-            background-color: $clr-gray-dark-1;
-            transition: all 300ms ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 0;
+            outline: 0;
+            text-transform: uppercase;
+            font-size: inherit;
+            border-radius: 10rem;
           }
 
           &:hover {
-            background-image: none;
-            background-clip: unset;
-            background-color: $clr-gray-dark-2;
+            background-image: linear-gradient(
+              to right,
+              $clr-pink-dark-1,
+              $clr-pink-dark-2,
+              $clr-pink-light,
+              $clr-orange-dark,
+              $clr-orange-light
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
           }
 
-          .avatar {
-            width: 3.25rem;
-            height: 3.25rem;
-            display: inline-block;
-            object-fit: cover;
+          &.avatarBox {
+            &:link,
+            &:visited {
+              width: 5rem;
+              height: 5rem;
+              background-color: $clr-gray-dark-1;
+              transition: all 300ms ease-in-out;
+            }
+
+            &:hover {
+              background-image: none;
+              background-clip: unset;
+              background-color: $clr-gray-dark-2;
+            }
+
+            .avatar {
+              width: 3.25rem;
+              height: 3.25rem;
+              display: inline-block;
+              object-fit: cover;
+            }
           }
         }
       }
