@@ -32,13 +32,15 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { hasError } = this.state;
 
     if (hasError) {
-      <EmptyState
-        alt='error'
-        imgSrc='towing'
-        title='Uh oh!'
-        subtitle='It looks like something went wrong on our end. Please try again.'
-        showReload
-      />;
+      return (
+        <EmptyState
+          alt='error'
+          imgSrc='towing'
+          title='Uh oh!'
+          subtitle='It looks like something went wrong on our end. Please try again.'
+          showReload
+        />
+      );
     }
 
     return children;
