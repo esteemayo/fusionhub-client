@@ -48,51 +48,51 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-  }
 
-  &__btn--reset,
-  &__btn--reload {
-    border: 0;
-    outline: 0;
-    text-align: center;
-    font-weight: 400;
-    font-size: 1.3rem;
-    background-color: $clr-pink-dark-1;
-    color: $clr-white;
-    cursor: pointer;
+    &--reset,
+    &--reload {
+      border: 0;
+      outline: 0;
+      text-align: center;
+      font-weight: 400;
+      font-size: 1.3rem;
+      background-color: $clr-pink-dark-1;
+      color: $clr-white;
+      cursor: pointer;
 
-    .show {
-      display: inline-block;
-      visibility: visible;
-      opacity: 1;
-      z-index: 1000;
+      .show {
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+      }
+
+      .hide {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: default;
+      }
     }
 
-    .hide {
-      display: none;
-      visibility: hidden;
-      opacity: 0;
-      z-index: -1;
+    &--reset {
+      text-transform: capitalize;
+      width: 15rem;
+      height: 4rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
     }
 
-    &:disabled {
-      opacity: 0.7;
-      cursor: default;
+    &--reload {
+      width: 20rem;
+      height: 5.6rem;
+      padding: 1.6rem;
+      border-radius: 10rem;
     }
-  }
-
-  &__btn--reset {
-    text-transform: capitalize;
-    width: 15rem;
-    height: 4rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }
-
-  &__btn--reload {
-    width: 20rem;
-    height: 5.6rem;
-    padding: 1.6rem;
-    border-radius: 10rem;
   }
 }
