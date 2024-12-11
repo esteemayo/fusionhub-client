@@ -5,10 +5,10 @@ import './NotFound.scss';
 const NotFound = () => {
   return (
     <EmptyState
+      alt='404'
       imgSrc='under-construction.svg'
       title='Page not found!'
       subtitle='Please! Try again later.'
-      alt='404'
       showReset
     />
   );
