@@ -34,7 +34,7 @@ const EmptyState = ({
   };
 
   const imgClasses = useMemo(() => {
-    return imgSrc ? 'emptyState__img show' : 'emptyState__img hide';
+    return imgSrc ? 'emptyState__box--img show' : 'emptyState__box--img hide';
   }, [imgSrc]);
 
   const btnResetClasses = useMemo(() => {
@@ -53,14 +53,16 @@ const EmptyState = ({
     <div className='emptyState'>
       <div className='emptyState__container'>
         <div className='emptyState__wrapper'>
-          <img
-            src={imgSrc}
-            width={300}
-            height={230}
-            alt={alt}
-            className={imgClasses}
-          />
-          <Heading title={title} subtitle={subtitle} center={center} />
+          <div className='emptyState__box'>
+            <img
+              src={imgSrc}
+              width={300}
+              height={230}
+              alt={alt}
+              className={imgClasses}
+            />
+            <Heading title={title} subtitle={subtitle} center={center} />
+          </div>
           <div className='emptyState__btn'>
             <button
               type='button'
