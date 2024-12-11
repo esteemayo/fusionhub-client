@@ -38,6 +38,17 @@
     }
   }
 
+  &__toggle {
+    display: flex;
+
+    span {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+  }
+
   &__links {
     list-style: none;
 
