@@ -40,12 +40,20 @@
 
   &__toggle {
     display: flex;
+    align-items: center;
+    gap: 1rem;
 
     span {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
       font-weight: 700;
       font-size: 1.4rem;
+      color: inherit;
+    }
+
+    svg {
+      width: 2.5rem;
+      fill: currentColor;
     }
   }
 
