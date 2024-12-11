@@ -13,106 +13,106 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
 
-    &--logo {
-      display: inline-block;
+  &__logo {
+    display: inline-block;
 
-      a:link,
-      a:visited {
-        text-transform: uppercase;
-        text-rendering: optimizeLegibility;
-        font-weight: 700;
-        font-size: 2rem;
-        background-image: linear-gradient(
-          to right,
-          $clr-pink-dark-1,
-          $clr-pink-dark-2,
-          $clr-pink-light,
-          $clr-orange-dark,
-          $clr-orange-light
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
+    a:link,
+    a:visited {
+      text-transform: uppercase;
+      text-rendering: optimizeLegibility;
+      font-weight: 700;
+      font-size: 2rem;
+      background-image: linear-gradient(
+        to right,
+        $clr-pink-dark-1,
+        $clr-pink-dark-2,
+        $clr-pink-light,
+        $clr-orange-dark,
+        $clr-orange-light
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
+  }
 
-    &--links {
-      list-style: none;
+  &__links {
+    list-style: none;
 
-      display: flex;
-      align-items: center;
-      gap: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
-      &-item {
-        text-transform: uppercase;
-        font-size: 1rem;
+    &--item {
+      text-transform: uppercase;
+      font-size: 1rem;
 
-        a {
-          &:link,
-          &:visited {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+      a {
+        &:link,
+        &:visited {
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-            border: 0;
-            outline: 0;
-            text-transform: uppercase;
-            font-size: inherit;
-            border-radius: 10rem;
-          }
-
-          &:hover {
-            background-image: linear-gradient(
-              to right,
-              $clr-pink-dark-1,
-              $clr-pink-dark-2,
-              $clr-pink-light,
-              $clr-orange-dark,
-              $clr-orange-light
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-          }
-
-          &.avatarBox {
-            &:link,
-            &:visited {
-              width: 5rem;
-              height: 5rem;
-              background-color: $clr-gray-dark-1;
-              transition: all 300ms ease-in-out;
-            }
-
-            &:hover {
-              background-image: none;
-              background-clip: unset;
-              background-color: $clr-gray-dark-2;
-            }
-
-            .avatar {
-              width: 3.25rem;
-              height: 3.25rem;
-              display: inline-block;
-              object-fit: cover;
-            }
-          }
+          border: 0;
+          outline: 0;
+          text-transform: uppercase;
+          font-size: inherit;
+          border-radius: 10rem;
         }
 
-        .login__btn {
-          width: fit-content;
-          padding: 0.8rem 1.6rem;
-          background-color: $clr-gray-dark-1;
-          color: $clr-white;
-          transition: all 300ms;
+        &:hover {
+          background-image: linear-gradient(
+            to right,
+            $clr-pink-dark-1,
+            $clr-pink-dark-2,
+            $clr-pink-light,
+            $clr-orange-dark,
+            $clr-orange-light
+          );
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+
+        &.avatarBox {
+          &:link,
+          &:visited {
+            width: 5rem;
+            height: 5rem;
+            background-color: $clr-gray-dark-1;
+            transition: all 300ms ease-in-out;
+          }
 
           &:hover {
             background-image: none;
             background-clip: unset;
             background-color: $clr-gray-dark-2;
-            color: inherit;
           }
+
+          .avatar {
+            width: 3.25rem;
+            height: 3.25rem;
+            display: inline-block;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .login__btn {
+        width: fit-content;
+        padding: 0.8rem 1.6rem;
+        background-color: $clr-gray-dark-1;
+        color: $clr-white;
+        transition: all 300ms;
+
+        &:hover {
+          background-image: none;
+          background-clip: unset;
+          background-color: $clr-gray-dark-2;
+          color: inherit;
         }
       }
     }

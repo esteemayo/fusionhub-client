@@ -8,18 +8,18 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='navbar__container'>
-        <div className='navbar__container--logo'>
+        <div className='navbar__logo'>
           <Link to='/'>Logo</Link>
         </div>
-        <ul className='navbar__container--links'>
-          <li className='navbar__container--links-item'>
+        <ul className='navbar__links'>
+          <li className='navbar__links--item'>
             <Link to='/'>Home</Link>
           </li>
-          <li className='navbar__container--links-item'>
+          <li className='navbar__links--item'>
             <Link to='/posts'>Posts</Link>
           </li>
           {user && (
-            <li className='navbar__container--links-item'>
+            <li className='navbar__links--item'>
               <Link to='/account' className='avatarBox'>
                 <img
                   src='avatar.png'
@@ -32,7 +32,7 @@ const Navbar = () => {
             </li>
           )}
           {!user && (
-            <li className='navbar__container--links-item'>
+            <li className='navbar__links--item'>
               <Link to='/login' className='login__btn'>
                 Login
               </Link>
