@@ -40,6 +40,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
         showReload
       />;
     }
+
     return children;
   }
 }
