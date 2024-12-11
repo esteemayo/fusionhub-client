@@ -51,7 +51,7 @@ const EmptyState = ({
           <img
             src={imgSrc}
             width={300}
-            height={250}
+            height={230}
             alt={alt}
             className={imgClasses}
           />
