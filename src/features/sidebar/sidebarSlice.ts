@@ -18,9 +18,12 @@ const sidebarSlice = createSlice({
     onClose: (state) => {
       state.isOpen = false;
     },
+    onToggle: (state) => {
+      state.isOpen = !state.isOpen;
+    },
   },
 });
 
-export const { onClose, onOpen } = sidebarSlice.actions;
+export const { onClose, onOpen, onToggle } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;
