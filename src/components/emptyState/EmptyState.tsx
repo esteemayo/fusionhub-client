@@ -56,7 +56,7 @@ const EmptyState = ({
             className={imgClasses}
           />
           <Heading title={title} subtitle={subtitle} center={center} />
-          <div className='emptyState__buttons'>
+          <div className='emptyState__btn'>
             <button
               type='button'
               className={btnResetClasses}
