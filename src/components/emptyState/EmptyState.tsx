@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Heading from '../heading/Heading';
 import { EmptyStateProps } from '../../types';
-import Heading from '../../components/heading/Heading';
 
 import './EmptyState.scss';
 
@@ -19,7 +19,7 @@ const EmptyState = ({
 }: EmptyStateProps) => {
   const navigate = useNavigate();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     const redirectUrl = url ? `/${url}` : '/';
@@ -65,7 +65,7 @@ const EmptyState = ({
             <button
               type='button'
               className={btnResetClasses}
-              onClick={handleClick}
+              onClick={handleReset}
             >
               {label}
             </button>
