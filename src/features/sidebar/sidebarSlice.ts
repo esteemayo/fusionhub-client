@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface SidebarState {
+  isOpen: boolean;
+}
+
+const initialState: SidebarState = {
   isOpen: false,
 };
 
