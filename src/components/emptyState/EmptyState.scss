@@ -27,14 +27,14 @@
     height: 25rem;
     object-fit: contain;
 
-    .show {
+    &.show {
       display: block;
       visibility: visible;
       opacity: 1;
       z-index: 1000;
     }
 
-    .hide {
+    *.hide {
       display: none;
       visibility: hidden;
       opacity: 0;
@@ -60,14 +60,14 @@
       color: $clr-white;
       cursor: pointer;
 
-      .show {
+      &.show {
         display: inline-block;
         visibility: visible;
         opacity: 1;
         z-index: 1000;
       }
 
-      .hide {
+      &.hide {
         display: none;
         visibility: hidden;
         opacity: 0;
