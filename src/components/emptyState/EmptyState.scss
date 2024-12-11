@@ -81,10 +81,9 @@
   }
 
   &__btn-reload {
-    .show {
-    }
-
-    .hide {
-    }
+    width: 15rem;
+    height: 5.6rem;
+    padding: 1.6rem;
+    border-radius: 10rem;
   }
 }
