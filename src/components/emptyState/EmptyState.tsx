@@ -34,14 +34,14 @@ const EmptyState = ({
 
   const btnResetClasses = useMemo(() => {
     return showReset
-      ? 'emptyState__btn-reset show'
-      : 'emptyState__btn-reset hide';
+      ? 'emptyState__btn--reset show'
+      : 'emptyState__btn--reset hide';
   }, [showReset]);
 
   const btnReloadClasses = useMemo(() => {
     return showReload
-      ? 'emptyState__btn-reload show'
-      : 'emptyState__btn-reload hide';
+      ? 'emptyState__btn--reload show'
+      : 'emptyState__btn--reload hide';
   }, [showReload]);
 
   return (

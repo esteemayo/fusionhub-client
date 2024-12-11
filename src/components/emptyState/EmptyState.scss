@@ -50,8 +50,8 @@
     gap: 1rem;
   }
 
-  &__btn-reset,
-  &__btn-reload {
+  &__btn--reset,
+  &__btn--reload {
     border: 0;
     outline: 0;
     text-align: center;
@@ -81,7 +81,7 @@
     }
   }
 
-  &__btn-reset {
+  &__btn--reset {
     text-transform: capitalize;
     width: 15rem;
     height: 4rem;
@@ -89,7 +89,7 @@
     border-radius: 0.5rem;
   }
 
-  &__btn-reload {
+  &__btn--reload {
     width: 20rem;
     height: 5.6rem;
     padding: 1.6rem;
