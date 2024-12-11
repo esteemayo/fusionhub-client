@@ -32,18 +32,11 @@ const Navbar = () => {
             </li>
           )}
           {!user && (
-            <>
-              <li className='navbar__container--links-item'>
-                <Link to='login' className='login__btn'>
-                  Login
-                </Link>
-              </li>
-              <li className='navbar__container--links-item'>
-                <Link to='register' className='register__btn'>
-                  Register
-                </Link>
-              </li>
-            </>
+            <li className='navbar__container--links-item'>
+              <Link to='login' className='login__btn'>
+                Login
+              </Link>
+            </li>
           )}
         </ul>
       </div>
