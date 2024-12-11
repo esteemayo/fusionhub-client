@@ -46,6 +46,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      cursor: pointer;
 
       span {
         text-transform: capitalize;
@@ -66,11 +67,11 @@
     display: none;
 
     @media screen and (min-width: 30.0625em) {
-      list-style: none;
-
       display: flex;
       align-items: center;
       gap: 2rem;
+
+      list-style: none;
 
       &--item {
         text-transform: uppercase;
