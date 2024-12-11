@@ -39,21 +39,25 @@
   }
 
   &__toggle {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    display: none;
 
-    span {
-      text-transform: capitalize;
-      text-rendering: optimizeLegibility;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: inherit;
-    }
+    @media screen and (max-width: 30em) {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
 
-    svg {
-      width: 2.5rem;
-      fill: currentColor;
+      span {
+        text-transform: capitalize;
+        text-rendering: optimizeLegibility;
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: inherit;
+      }
+
+      svg {
+        width: 2.5rem;
+        fill: currentColor;
+      }
     }
   }
 
