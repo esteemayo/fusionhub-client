@@ -4,10 +4,12 @@
   position: absolute;
   top: 7rem;
   right: 0;
-  width: 15rem;
+  width: 20rem;
   padding: 2rem;
   background-color: $clr-secondary-blue;
   color: inherit;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 
   &__container {
   }
