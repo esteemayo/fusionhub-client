@@ -1,4 +1,15 @@
+@import '../../styles/variables.scss';
+
 .sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $clr-secondary-blue;
+  color: $clr-white;
+  z-index: 4000;
+
   &__container {
   }
 }
