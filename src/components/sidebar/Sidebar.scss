@@ -87,6 +87,11 @@
     list-style: none;
 
     &--item {
+      padding: 1.5rem 0;
+      background-color: #273547;
+      color: inherit;
+      margin-bottom: 1rem;
+
       a {
         &:link,
         &:visited {
