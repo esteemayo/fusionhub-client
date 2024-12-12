@@ -19,6 +19,10 @@
   &__list {
     list-style: none;
 
+    &:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+
     &--item {
       display: flex;
       align-items: center;
