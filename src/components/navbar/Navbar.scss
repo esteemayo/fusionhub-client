@@ -151,9 +151,12 @@
   }
 
   &__account {
+    width: 5rem;
+    height: 5rem;
+
     &--avatar {
-      width: 5rem;
-      height: 5rem;
+      width: 100%;
+      height: 100%;
       display: inline-block;
       object-fit: cover;
       background-color: $clr-gray-dark-1;
