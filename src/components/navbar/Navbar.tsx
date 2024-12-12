@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 
+import { useAppDispatch } from '../../hooks/hooks';
+import { onToggle } from '../../features/sidebar/sidebarSlice';
+
 import './Navbar.scss';
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
   const user = true;
+
+  const handleToggle = () => {
+    dispatch(onToggle());
+  };
 
   return (
     <nav className='navbar'>
@@ -11,7 +19,7 @@ const Navbar = () => {
         <div className='navbar__logo'>
           <Link to='/'>Logo</Link>
         </div>
-        <div className='navbar__toggle'>
+        <div className='navbar__toggle' onClick={handleToggle}>
           <span>Menu</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
