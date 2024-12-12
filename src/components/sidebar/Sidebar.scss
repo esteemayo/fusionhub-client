@@ -27,6 +27,7 @@
   &__container {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
   &__wrapper {
@@ -94,6 +95,13 @@
     }
   }
 
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
   &__menu {
     padding: 4rem 2rem;
     list-style: none;
@@ -119,5 +127,10 @@
         }
       }
     }
+  }
+
+  &__accounts {
+    display: flex;
+    flex-direction: column;
   }
 }
