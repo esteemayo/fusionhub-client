@@ -87,14 +87,19 @@
     list-style: none;
 
     &--item {
-      padding: 1.5rem 0;
+      padding: 1.5rem 1rem;
       background-color: #273547;
+      font-size: 1.3rem;
       color: inherit;
       margin-bottom: 1rem;
 
       a {
         &:link,
         &:visited {
+          display: block;
+          text-transform: uppercase;
+          font-size: inherit;
+          color: inherit;
         }
       }
     }
