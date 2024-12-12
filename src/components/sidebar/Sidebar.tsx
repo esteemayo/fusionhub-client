@@ -44,14 +44,14 @@ const Sidebar = () => {
             </svg>
           </button>
         </div>
-        <ul className='sidebar__links'>
-          <li className='sidebar__links--item'>
+        <ul className='sidebar__menu'>
+          <li className='sidebar__menu--item'>
             <Link to='/'>Home</Link>
           </li>
-          <li className='sidebar__links--item'>
+          <li className='sidebar__menu--item'>
             <Link to='/posts'>Posts</Link>
           </li>
-          <li className='sidebar__links--item'>
+          <li className='sidebar__menu--item'>
             <Link to='/account' className='avatarBox'>
               <img
                 src='avatar.png'
@@ -62,7 +62,7 @@ const Sidebar = () => {
               />
             </Link>
           </li>
-          <li className='sidebar__links--item'>
+          <li className='sidebar__menu--item'>
             <Link to='/login' className='login__btn'>
               Login
             </Link>
