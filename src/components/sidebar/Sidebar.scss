@@ -81,4 +81,17 @@
       fill: currentColor;
     }
   }
+
+  &__menu {
+    padding: 4rem 2rem;
+    list-style: none;
+
+    &--item {
+      a {
+        &:link,
+        &:visited {
+        }
+      }
+    }
+  }
 }
