@@ -68,7 +68,9 @@ const Sidebar = () => {
                   />
                   <span className='sidebar__account--name'>John doe</span>
                 </Link>
-                <button type='button'>Logout</button>
+                <button type='button' className='sidebar__logoutBtn'>
+                  Logout
+                </button>
               </div>
             )}
             {!user && (

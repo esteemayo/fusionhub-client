@@ -164,6 +164,12 @@
     }
   }
 
+  &__logoutBtn {
+    display: inline-block;
+    border: 0;
+    outline: 0;
+  }
+
   &__login {
     width: 100%;
     padding: 1.5rem 1rem;
