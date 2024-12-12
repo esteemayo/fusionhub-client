@@ -20,4 +20,18 @@
 
   &__container {
   }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+  }
+
+  &____closeBtn {
+    svg {
+    }
+  }
 }
