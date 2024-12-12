@@ -50,8 +50,16 @@
     }
   }
 
-  &____closeBtn {
+  &__closeBtn {
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: currentColor;
+
     svg {
+      width: 2.5rem;
+      fill: currentColor;
     }
   }
 }
