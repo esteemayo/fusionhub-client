@@ -146,4 +146,18 @@
       }
     }
   }
+
+  &__accounts {
+  }
+
+  &__account {
+    &--avatar {
+      width: 5rem;
+      height: 5rem;
+      display: inline-block;
+      object-fit: cover;
+      background-color: $clr-gray-dark-1;
+      border-radius: 50%;
+    }
+  }
 }
