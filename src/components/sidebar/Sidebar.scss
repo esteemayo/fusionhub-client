@@ -157,4 +157,12 @@
       font-size: 1.3rem;
     }
   }
+
+  &__login {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    background-color: #273547;
+    color: $clr-white;
+    border-radius: 2px;
+  }
 }
