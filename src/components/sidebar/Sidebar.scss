@@ -132,6 +132,16 @@
   &__accounts {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     padding: 0 2rem 4rem;
+  }
+
+  &__account {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    &--avatarBox {
+    }
   }
 }
