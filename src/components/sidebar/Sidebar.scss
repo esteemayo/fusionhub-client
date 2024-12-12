@@ -36,25 +36,33 @@
   }
 
   &__logo {
-    display: inline-block;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
 
-    a:link,
-    a:visited {
-      text-transform: uppercase;
-      text-rendering: optimizeLegibility;
-      font-weight: 700;
-      font-size: 2rem;
-      background-image: linear-gradient(
-        to right,
-        $clr-pink-dark-1,
-        $clr-pink-dark-2,
-        $clr-pink-light,
-        $clr-orange-dark,
-        $clr-orange-light
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    @media screen and (max-width: 26.875em) {
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+
+      a:link,
+      a:visited {
+        text-transform: uppercase;
+        text-rendering: optimizeLegibility;
+        font-weight: 700;
+        font-size: 2rem;
+        background-image: linear-gradient(
+          to right,
+          $clr-pink-dark-1,
+          $clr-pink-dark-2,
+          $clr-pink-light,
+          $clr-orange-dark,
+          $clr-orange-light
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
     }
   }
 
