@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import UserMenu from '../userMenu/UserMenu';
+
 import { useAppDispatch } from '../../hooks/hooks';
 import { onToggle } from '../../features/sidebar/sidebarSlice';
 
@@ -52,6 +54,7 @@ const Navbar = () => {
                   className='navbar__account--avatar'
                 />
               </div>
+              <UserMenu />
             </div>
           )}
           {!user && (
