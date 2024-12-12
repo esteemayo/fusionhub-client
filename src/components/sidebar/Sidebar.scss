@@ -19,12 +19,17 @@
   }
 
   &__container {
+    display: flex;
+    flex-direction: column;
   }
 
   &__wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    height: 8.8rem;
+    background-color: $clr-black;
   }
 
   &__logo {
