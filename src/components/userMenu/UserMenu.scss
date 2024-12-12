@@ -35,14 +35,12 @@
 
   &__wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.5rem;
 
     .username {
       display: inline-block;
-      text-transform: uppercase;
+      text-transform: capitalize;
       text-rendering: optimizeLegibility;
       font-size: 1.25rem;
       white-space: wrap;
@@ -52,7 +50,7 @@
       display: inline-block;
       border: 0;
       outline: 0;
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-weight: 500;
       font-size: 1.25rem;
     }
