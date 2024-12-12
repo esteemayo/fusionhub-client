@@ -44,30 +44,33 @@ const Sidebar = () => {
             </svg>
           </button>
         </div>
-        <ul className='sidebar__menu'>
-          <li className='sidebar__menu--item'>
-            <Link to='/'>Home</Link>
-          </li>
-          <li className='sidebar__menu--item'>
-            <Link to='/posts'>Posts</Link>
-          </li>
-          <li className='sidebar__menu--item'>
-            <Link to='/account' className='avatarBox'>
-              <img
-                src='avatar.png'
-                width={32.5}
-                height={32.5}
-                alt='avatar'
-                className='avatar'
-              />
-            </Link>
-          </li>
-          <li className='sidebar__menu--item'>
-            <Link to='/login' className='login__btn'>
+        <div className='sidebar__box'>
+          <ul className='sidebar__menu'>
+            <li className='sidebar__menu--item'>
+              <Link to='/'>Home</Link>
+            </li>
+            <li className='sidebar__menu--item'>
+              <Link to='/posts'>Posts</Link>
+            </li>
+          </ul>
+          <div className='sidebar__accounts'>
+            <div className='sidebar__account'>
+              <Link to='/account' className='avatarBox'>
+                <img
+                  src='avatar.png'
+                  width={32.5}
+                  height={32.5}
+                  alt='avatar'
+                  className='avatar'
+                />
+                <span>John doe</span>
+              </Link>
+            </div>
+            <Link to='/login' className='sidebar__login'>
               Login
             </Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </aside>
   );
