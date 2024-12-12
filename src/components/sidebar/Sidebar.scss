@@ -136,6 +136,12 @@
     padding: 0 2rem 4rem;
   }
 
+  &__accounts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__account {
     display: flex;
     align-items: center;
