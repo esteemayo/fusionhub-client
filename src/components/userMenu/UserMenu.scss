@@ -1,4 +1,14 @@
 @import '../../styles/variables.scss';
 
 .userMenu {
+  position: absolute;
+  top: 7rem;
+  right: 0;
+  width: 15rem;
+  padding: 2rem;
+  background-color: $clr-secondary-blue;
+  color: inherit;
+
+  &__container {
+  }
 }
