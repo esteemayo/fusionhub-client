@@ -26,10 +26,10 @@
     &--item {
       display: flex;
       align-items: center;
-      text-transform: uppercase;
+      text-transform: capitalize;
       text-rendering: optimizeLegibility;
       font-weight: 500;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       padding: 0.8rem;
       background-color: #273547;
       color: inherit;
