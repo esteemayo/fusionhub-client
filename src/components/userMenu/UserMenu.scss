@@ -41,6 +41,11 @@
     gap: 1rem;
 
     .username {
+      display: inline-block;
+      text-transform: uppercase;
+      text-rendering: optimizeLegibility;
+      font-size: 1.25rem;
+      white-space: wrap;
     }
 
     .logoutBtn {
