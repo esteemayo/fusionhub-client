@@ -54,18 +54,16 @@ const Sidebar = () => {
             </li>
           </ul>
           <div className='sidebar__accounts'>
-            <div className='sidebar__account'>
-              <Link to='/account' className='avatarBox'>
-                <img
-                  src='avatar.png'
-                  width={32.5}
-                  height={32.5}
-                  alt='avatar'
-                  className='avatar'
-                />
-                <span>John doe</span>
-              </Link>
-            </div>
+            <Link to='/account' className='sidebar__account'>
+              <img
+                src='avatar.png'
+                width={32.5}
+                height={32.5}
+                alt='avatar'
+                className='sidebar__account--avatarBox'
+              />
+              <span>John doe</span>
+            </Link>
             <Link to='/login' className='sidebar__login'>
               Login
             </Link>
