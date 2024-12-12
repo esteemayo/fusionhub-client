@@ -168,9 +168,15 @@
     display: inline-block;
     border: 0;
     outline: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3rem;
     width: 10rem;
     height: 4rem;
+    background-color: #273547;
+    color: $clr-white;
     border-radius: 0.5rem;
+    cursor: pointer;
   }
 
   &__login {
