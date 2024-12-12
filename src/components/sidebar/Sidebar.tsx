@@ -10,6 +10,8 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
 
+  const user = true;
+
   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onClose());
@@ -54,19 +56,23 @@ const Sidebar = () => {
             </li>
           </ul>
           <div className='sidebar__accounts'>
-            <Link to='/account' className='sidebar__account'>
-              <img
-                src='avatar.png'
-                width={32.5}
-                height={32.5}
-                alt='avatar'
-                className='sidebar__account--avatar'
-              />
-              <span className='sidebar__account--name'>John doe</span>
-            </Link>
-            <Link to='/login' className='sidebar__login'>
-              Login
-            </Link>
+            {user && (
+              <Link to='/account' className='sidebar__account'>
+                <img
+                  src='avatar.png'
+                  width={32.5}
+                  height={32.5}
+                  alt='avatar'
+                  className='sidebar__account--avatar'
+                />
+                <span className='sidebar__account--name'>John doe</span>
+              </Link>
+            )}
+            {!user && (
+              <Link to='/login' className='sidebar__login'>
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>
