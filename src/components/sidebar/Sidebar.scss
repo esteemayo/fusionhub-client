@@ -148,5 +148,12 @@
       object-fit: cover;
       border-radius: 50%;
     }
+
+    &--name {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      word-wrap: break-word;
+      font-size: 1.3rem;
+    }
   }
 }

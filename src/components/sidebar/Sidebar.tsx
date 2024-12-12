@@ -62,7 +62,7 @@ const Sidebar = () => {
                 alt='avatar'
                 className='sidebar__account--avatar'
               />
-              <span>John doe</span>
+              <span className='sidebar__account--name'>John doe</span>
             </Link>
             <Link to='/login' className='sidebar__login'>
               Login
