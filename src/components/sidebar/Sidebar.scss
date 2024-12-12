@@ -59,7 +59,10 @@
   }
 
   &__closeBtn {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
     border: 0;
     outline: 0;
     background-color: transparent;

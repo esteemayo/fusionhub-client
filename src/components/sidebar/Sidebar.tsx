@@ -27,6 +27,7 @@ const Sidebar = () => {
             <Link to='/'>Logo</Link>
           </div>
           <button className='sidebar__closeBtn' onClick={handleClose}>
+            <span>Menu</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
