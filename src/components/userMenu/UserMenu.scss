@@ -42,7 +42,7 @@
       display: inline-block;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       white-space: wrap;
     }
 
@@ -52,7 +52,10 @@
       outline: 0;
       text-transform: capitalize;
       font-weight: 500;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
+      background-color: transparent;
+      color: currentColor;
+      cursor: pointer;
     }
   }
 }
