@@ -44,6 +44,30 @@ const Sidebar = () => {
             </svg>
           </button>
         </div>
+        <ul className='sidebar__links'>
+          <li className='sidebar__links--item'>
+            <Link to='/'>Home</Link>
+          </li>
+          <li className='sidebar__links--item'>
+            <Link to='/posts'>Posts</Link>
+          </li>
+          <li className='sidebar__links--item'>
+            <Link to='/account' className='avatarBox'>
+              <img
+                src='avatar.png'
+                width={32.5}
+                height={32.5}
+                alt='avatar'
+                className='avatar'
+              />
+            </Link>
+          </li>
+          <li className='sidebar__links--item'>
+            <Link to='/login' className='login__btn'>
+              Login
+            </Link>
+          </li>
+        </ul>
       </div>
     </aside>
   );
