@@ -55,18 +55,21 @@ const Sidebar = () => {
               <Link to='/posts'>Posts</Link>
             </li>
           </ul>
-          <div className='sidebar__accounts'>
+          <div className='sidebar__accountWrap'>
             {user && (
-              <Link to='/account' className='sidebar__account'>
-                <img
-                  src='avatar.png'
-                  width={32.5}
-                  height={32.5}
-                  alt='avatar'
-                  className='sidebar__account--avatar'
-                />
-                <span className='sidebar__account--name'>John doe</span>
-              </Link>
+              <div className='sidebar__accounts'>
+                <Link to='/account' className='sidebar__account'>
+                  <img
+                    src='avatar.png'
+                    width={32.5}
+                    height={32.5}
+                    alt='avatar'
+                    className='sidebar__account--avatar'
+                  />
+                  <span className='sidebar__account--name'>John doe</span>
+                </Link>
+                <button type='button'>Logout</button>
+              </div>
             )}
             {!user && (
               <Link to='/login' className='sidebar__login'>
