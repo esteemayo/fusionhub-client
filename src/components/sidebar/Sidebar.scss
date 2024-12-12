@@ -10,6 +10,14 @@
   color: $clr-white;
   z-index: 4000;
 
+  &.show {
+    right: 0;
+  }
+
+  &.hide {
+    right: -100%;
+  }
+
   &__container {
   }
 }
