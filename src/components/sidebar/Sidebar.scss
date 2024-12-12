@@ -28,6 +28,26 @@
   }
 
   &__logo {
+    display: inline-block;
+
+    a:link,
+    a:visited {
+      text-transform: uppercase;
+      text-rendering: optimizeLegibility;
+      font-weight: 700;
+      font-size: 2rem;
+      background-image: linear-gradient(
+        to right,
+        $clr-pink-dark-1,
+        $clr-pink-dark-2,
+        $clr-pink-light,
+        $clr-orange-dark,
+        $clr-orange-light
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
   }
 
   &____closeBtn {
