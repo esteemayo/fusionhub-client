@@ -177,6 +177,11 @@
     color: $clr-white;
     border-radius: 0.5rem;
     cursor: pointer;
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
   }
 
   &__login {
