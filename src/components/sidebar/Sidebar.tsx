@@ -1,12 +1,19 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../hooks/hooks';
+import { onClose } from '../../features/sidebar/sidebarSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import './Sidebar.scss';
 
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
+
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    dispatch(onClose());
+  };
 
   const sidebarClasses = useMemo(() => {
     return isOpen ? 'sidebar show' : 'sidebar hide';
@@ -19,7 +26,7 @@ const Sidebar = () => {
           <div className='sidebar__logo'>
             <Link to='/'>Logo</Link>
           </div>
-          <button className='sidebar__closeBtn'>
+          <button className='sidebar__closeBtn' onClick={handleClose}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
