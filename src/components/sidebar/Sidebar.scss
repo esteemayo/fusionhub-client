@@ -159,8 +159,8 @@
     &--name {
       text-transform: uppercase;
       text-rendering: optimizeLegibility;
-      word-wrap: break-word;
       font-size: 1.3rem;
+      white-space: wrap;
     }
   }
 
