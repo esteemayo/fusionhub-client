@@ -141,7 +141,12 @@
     align-items: center;
     gap: 2rem;
 
-    &--avatarBox {
+    &--avatar {
+      width: 5rem;
+      height: 5rem;
+      display: inline-block;
+      object-fit: cover;
+      border-radius: 50%;
     }
   }
 }

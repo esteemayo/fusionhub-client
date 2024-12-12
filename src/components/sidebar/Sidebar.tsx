@@ -60,7 +60,7 @@ const Sidebar = () => {
                 width={32.5}
                 height={32.5}
                 alt='avatar'
-                className='sidebar__account--avatarBox'
+                className='sidebar__account--avatar'
               />
               <span>John doe</span>
             </Link>
