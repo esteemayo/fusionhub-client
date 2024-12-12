@@ -142,15 +142,16 @@
     gap: 2rem;
 
     &--avatar {
-      width: 5rem;
-      height: 5rem;
+      width: 6rem;
+      height: 6rem;
       display: inline-block;
       object-fit: cover;
+      background-color: $clr-gray-dark-1;
       border-radius: 50%;
     }
 
     &--name {
-      text-transform: capitalize;
+      text-transform: uppercase;
       text-rendering: optimizeLegibility;
       word-wrap: break-word;
       font-size: 1.3rem;
