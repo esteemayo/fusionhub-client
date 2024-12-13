@@ -12,10 +12,12 @@
 
   &.show {
     right: 0;
+    transition: all 300ms ease-in;
   }
 
   &.hide {
     right: -100rem;
+    transition: all 300ms ease-out;
   }
 
   &__container {
