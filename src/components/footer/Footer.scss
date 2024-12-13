@@ -12,6 +12,14 @@
     width: 144rem;
     height: 100%;
     padding: 6rem 0;
+
+    @media screen and (min-width: 112.5em) {
+      width: 134rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 150rem;
+    }
   }
 
   &__wrapper {
