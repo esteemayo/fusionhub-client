@@ -47,8 +47,10 @@
       display: inline-block;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
+      font-weight: 500;
       font-size: 1.3rem;
       white-space: wrap;
+      color: $clr-gray-light-1;
     }
 
     .logoutBtn {
