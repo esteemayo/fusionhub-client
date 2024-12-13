@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 
 import UserMenu from '../userMenu/UserMenu';
 
@@ -10,6 +11,12 @@ import './Navbar.scss';
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const user = true;
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleOpenMenu = () => {
+    setIsMenuOpen(true);
+  };
 
   const handleToggle = () => {
     dispatch(onToggle());
