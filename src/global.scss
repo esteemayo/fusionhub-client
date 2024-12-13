@@ -19,6 +19,7 @@ html {
   font-size: 62.5%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  overflow-x: hidden;
 
   @media screen and (max-width: 75em) {
     font-size: 56.25%;
@@ -40,6 +41,7 @@ body {
   color: $clr-white;
   line-height: 1.6;
   scroll-behavior: smooth;
+  overflow-x: clip;
   cursor: default;
 }
 
