@@ -80,7 +80,7 @@ export interface AuthLinkProps {
   urlLabel: string;
 }
 
-export type MenuLinks = {
+export type MenuItemType = {
   id: number;
   url: string;
   label: string;

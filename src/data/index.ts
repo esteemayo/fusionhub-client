@@ -1,6 +1,6 @@
-import { MenuLinks } from '../types';
+import { MenuItemType } from '../types';
 
-export const menuItems: MenuLinks = [
+export const menuItems: MenuItemType = [
   {
     id: 1,
     url: '/',
