@@ -7,6 +7,10 @@
   background-color: $clr-black;
   color: $clr-white;
 
+  @media screen and (min-width: 106.25em) {
+    height: 9rem;
+  }
+
   &__container {
     width: 144rem;
 
