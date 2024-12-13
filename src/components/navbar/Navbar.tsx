@@ -14,12 +14,14 @@ const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleOpenMenu = () => {
-    setIsMenuOpen(true);
-  };
-
   const handleToggle = () => {
     dispatch(onToggle());
+  };
+
+  const handleToggleMenu = () => {
+    setIsMenuOpen((value) => {
+      return !value;
+    });
   };
 
   return (
@@ -51,8 +53,8 @@ const Navbar = () => {
             <Link to='/posts'>Posts</Link>
           </li>
           {user && (
-            <div className='navbar__accounts' onMouseOver={handleOpenMenu}>
-              <div className='navbar__account'>
+            <div className='navbar__accounts'>
+              <div className='navbar__account' onMouseOver={handleToggleMenu}>
                 <img
                   src='avatar.png'
                   width={32.5}
