@@ -80,6 +80,10 @@
         text-transform: uppercase;
         font-size: 1.3rem;
 
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.4rem;
+        }
+
         a {
           &:link,
           &:visited {
@@ -157,6 +161,11 @@
   &__account {
     width: 5rem;
     height: 5rem;
+
+    @media screen and (min-width: 106.25em) {
+      width: 6rem;
+      height: 6rem;
+    }
 
     &--avatar {
       width: 100%;
