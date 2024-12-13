@@ -79,3 +79,9 @@ export interface AuthLinkProps {
   label: string;
   urlLabel: string;
 }
+
+export type MenuLinks = {
+  id: number;
+  url: string;
+  label: string;
+}[];
