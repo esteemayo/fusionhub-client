@@ -6,6 +6,8 @@ import UserMenu from '../userMenu/UserMenu';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onToggle } from '../../features/sidebar/sidebarSlice';
 
+import { menuItems } from '../../data';
+
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -46,12 +48,14 @@ const Navbar = () => {
           </svg>
         </div>
         <ul className='navbar__links'>
-          <li className='navbar__links--item'>
-            <Link to='/'>Home</Link>
-          </li>
-          <li className='navbar__links--item'>
-            <Link to='/posts'>Posts</Link>
-          </li>
+          {menuItems.map((menu) => {
+            const { id, url, label } = menu;
+            return (
+              <li key={id} className='navbar__links--item'>
+                <Link to={url}>{label}</Link>
+              </li>
+            );
+          })}
           {user && (
             <div className='navbar__accounts'>
               <div className='navbar__account'>
