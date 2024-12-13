@@ -51,6 +51,14 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 2.2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.5rem;
+      }
     }
   }
 
