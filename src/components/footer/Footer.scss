@@ -25,7 +25,7 @@
   &__wrapper {
     display: flex;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 0;
   }
 
   &__menu {
@@ -99,7 +99,7 @@
   }
 
   &__legal {
-    padding: 2rem;
+    padding: 2rem 0;
 
     &--text {
       font-size: 1.2rem;
@@ -109,7 +109,7 @@
   }
 
   &__copyright {
-    padding: 2rem;
+    padding: 2rem 0;
 
     &--text {
       font-size: 1.2rem;
