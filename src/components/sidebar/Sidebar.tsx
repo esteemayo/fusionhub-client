@@ -1,5 +1,5 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { useMemo, useState } from 'react';
 
 import { onClose } from '../../features/sidebar/sidebarSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -10,17 +10,11 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const user = true;
 
   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onClose());
-  };
-
-  const handleOpenMenu = () => {
-    setIsMenuOpen(true);
   };
 
   const sidebarClasses = useMemo(() => {
