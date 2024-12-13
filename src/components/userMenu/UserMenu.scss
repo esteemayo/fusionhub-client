@@ -3,13 +3,20 @@
 .userMenu {
   position: absolute;
   top: 7rem;
-  right: 0;
   width: 20rem;
   padding: 2rem;
   background-color: $clr-secondary-blue;
   color: inherit;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+
+  &.show {
+    right: 0;
+  }
+
+  &.hide {
+    right: -100rem;
+  }
 
   &__container {
     display: flex;
