@@ -51,7 +51,7 @@ const Navbar = () => {
             <Link to='/posts'>Posts</Link>
           </li>
           {user && (
-            <div className='navbar__accounts'>
+            <div className='navbar__accounts' onMouseOver={handleOpenMenu}>
               <div className='navbar__account'>
                 <img
                   src='avatar.png'

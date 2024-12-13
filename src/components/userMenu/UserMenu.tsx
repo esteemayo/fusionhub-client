@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './UserMenu.scss';
 
-const UserMenu = () => {
+const UserMenu = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <aside className='userMenu'>
       <div className='userMenu__container'>
