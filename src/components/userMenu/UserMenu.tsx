@@ -1,10 +1,15 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import './UserMenu.scss';
 
 const UserMenu = ({ isOpen }: { isOpen: boolean }) => {
+  const menuClasses = useMemo(() => {
+    return isOpen ? 'userMenu show' : 'userMenu hide';
+  }, [isOpen]);
+
   return (
-    <aside className='userMenu'>
+    <aside className={menuClasses}>
       <div className='userMenu__container'>
         <ul className='userMenu__list'>
           <li className='userMenu__list--item'>
