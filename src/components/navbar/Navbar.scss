@@ -96,6 +96,10 @@
           font-size: 1.4rem;
         }
 
+        @media screen and (min-width: 125em) {
+          font-size: 1.5rem;
+        }
+
         a {
           &:link,
           &:visited {
@@ -154,6 +158,11 @@
     @media screen and (min-width: 106.25em) {
       width: 6rem;
       height: 6rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 7rem;
+      height: 7rem;
     }
 
     &--avatar {
