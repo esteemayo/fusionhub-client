@@ -1,5 +1,5 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMemo, useState } from 'react';
 
 import UserMenu from '../userMenu/UserMenu';
 
