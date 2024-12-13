@@ -41,14 +41,16 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+
+    font-weight: 500;
+    font-size: 1.3rem;
     margin-top: 1rem;
 
     .username {
       display: inline-block;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
-      font-weight: 500;
-      font-size: 1.3rem;
+
       white-space: wrap;
       color: $clr-gray-light-1;
     }
@@ -58,8 +60,6 @@
       border: 0;
       outline: 0;
       text-transform: capitalize;
-      font-weight: 500;
-      font-size: 1.3rem;
       background-color: transparent;
       color: $clr-pink-dark-1;
       cursor: pointer;
