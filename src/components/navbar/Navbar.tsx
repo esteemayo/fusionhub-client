@@ -61,7 +61,7 @@ const Navbar = () => {
                   className='navbar__account--avatar'
                 />
               </div>
-              <UserMenu />
+              <UserMenu isOpen={isMenuOpen} />
             </div>
           )}
           {!user && (
