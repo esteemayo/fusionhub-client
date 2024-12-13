@@ -54,13 +54,14 @@ const Navbar = () => {
           </li>
           {user && (
             <div className='navbar__accounts'>
-              <div className='navbar__account' onMouseOver={handleToggleMenu}>
+              <div className='navbar__account'>
                 <img
                   src='avatar.png'
                   width={32.5}
                   height={32.5}
                   alt='avatar'
                   className='navbar__account--avatar'
+                  onMouseOver={handleToggleMenu}
                 />
               </div>
               <UserMenu isOpen={isMenuOpen} />
