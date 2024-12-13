@@ -118,6 +118,10 @@
       font-size: 1.2rem;
       color: $clr-gray-light-1;
       line-height: 1.4;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.4rem;
+      }
     }
   }
 
@@ -127,6 +131,10 @@
     &--text {
       font-size: 1.2rem;
       color: $clr-gray-light-1;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.4rem;
+      }
     }
   }
 }
