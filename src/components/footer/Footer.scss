@@ -167,6 +167,10 @@
 
     list-style: none;
 
+    @media screen and (max-width: 17.5em) {
+      justify-content: flex-start;
+    }
+
     &--item {
       a {
         &:link,
@@ -210,6 +214,10 @@
 
           @media screen and (max-width: 20em) {
             display: inline;
+          }
+
+          @media screen and (max-width: 17.5em) {
+            display: block;
           }
 
           @media screen and (min-width: 106.25em) {
