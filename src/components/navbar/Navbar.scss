@@ -75,6 +75,10 @@
       width: 90rem;
     }
 
+    @include md {
+      width: 87rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
