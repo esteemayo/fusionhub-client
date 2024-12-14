@@ -89,6 +89,10 @@
           font-size: 1.5rem;
           color: inherit;
 
+          @media screen and (max-width: 56.25em) {
+            font-size: var(--default-font-size);
+          }
+
           @media screen and (min-width: 106.25em) {
             font-size: var(--default-font-size);
           }
