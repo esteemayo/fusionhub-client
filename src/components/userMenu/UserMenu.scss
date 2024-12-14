@@ -63,6 +63,10 @@
       color: currentColor;
       border-radius: 2px;
 
+      @media screen and (max-width: 56.25em) {
+        padding: 0.6rem 0.9rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         padding: 0.8rem 1rem;
       }
