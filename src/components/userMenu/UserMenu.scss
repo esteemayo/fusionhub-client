@@ -10,6 +10,9 @@
   color: inherit;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
 
   &__container {
     display: flex;
