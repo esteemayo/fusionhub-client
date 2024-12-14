@@ -183,6 +183,15 @@
             font-size: 1.7rem;
           }
 
+          @include sm {
+            display: block;
+            width: 25rem;
+          }
+
+          @media screen and (max-width: 28.125em) {
+            width: 23rem;
+          }
+
           @media screen and (min-width: 106.25em) {
             font-size: 1.7rem;
           }
