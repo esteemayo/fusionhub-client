@@ -51,6 +51,10 @@
       width: 110rem;
     }
 
+    @include lg {
+      width: 100rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
