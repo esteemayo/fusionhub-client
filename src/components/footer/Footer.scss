@@ -204,6 +204,14 @@
             width: 18rem;
           }
 
+          @media screen and (max-width: 21.5em) {
+            width: 17rem;
+          }
+
+          @media screen and (max-width: 20em) {
+            display: inline;
+          }
+
           @media screen and (min-width: 106.25em) {
             font-size: 1.7rem;
           }
