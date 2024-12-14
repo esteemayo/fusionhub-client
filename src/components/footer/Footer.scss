@@ -171,6 +171,10 @@
       justify-content: flex-start;
     }
 
+    @media screen and (min-width: 106.25em) {
+      gap: 3rem;
+    }
+
     &--item {
       a {
         &:link,
