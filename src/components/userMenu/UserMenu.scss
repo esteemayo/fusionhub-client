@@ -24,6 +24,13 @@
     padding: 2.1rem;
   }
 
+  @media screen and (max-width: 51.25em) {
+    top: 6.5rem;
+    min-width: 22rem;
+    width: 22rem;
+    padding: 2.2rem;
+  }
+
   @media screen and (min-width: 106.25em) {
     top: 6rem;
     min-width: 23rem;
