@@ -89,6 +89,10 @@
       width: 55rem;
     }
 
+    @include sm {
+      width: 53rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
