@@ -55,6 +55,10 @@
           font-weight: 500;
           font-size: 1.5rem;
           color: inherit;
+
+          @media screen and (min-width: 106.25em) {
+            font-size: var(--default-font-size);
+          }
         }
       }
     }
@@ -68,6 +72,10 @@
     font-weight: 500;
     font-size: 1.3rem;
     margin-top: 1rem;
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.4rem;
+    }
 
     .username {
       display: inline-block;
