@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import UserMenu from '../userMenu/UserMenu';
@@ -14,16 +13,8 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const user = true;
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const handleToggle = () => {
     dispatch(onToggle());
-  };
-
-  const handleToggleMenu = () => {
-    setIsMenuOpen((value) => {
-      return !value;
-    });
   };
 
   return (
@@ -65,10 +56,9 @@ const Navbar = () => {
                   height={32.5}
                   alt='avatar'
                   className='navbar__account--avatar'
-                  onMouseOver={handleToggleMenu}
                 />
               </div>
-              <UserMenu isOpen={isMenuOpen} />
+              <UserMenu />
             </div>
           )}
           {!user && (
