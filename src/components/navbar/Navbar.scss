@@ -8,6 +8,10 @@
   background-color: $clr-black;
   color: $clr-white;
 
+  @media screen and (max-width: 56.25em) {
+    height: 9rem;
+  }
+
   @media screen and (min-width: 106.25em) {
     height: 9rem;
   }
