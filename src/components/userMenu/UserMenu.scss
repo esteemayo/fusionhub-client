@@ -17,6 +17,13 @@
   transition: all 0.5s ease-out;
   transition-duration: 700ms;
 
+  @media screen and (max-width: 56.25em) {
+    top: 6rem;
+    min-width: 21rem;
+    width: 21rem;
+    padding: 2.1rem;
+  }
+
   @media screen and (min-width: 106.25em) {
     top: 6rem;
     min-width: 23rem;
