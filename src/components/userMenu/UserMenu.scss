@@ -111,6 +111,10 @@
       font-size: 1.5rem;
     }
 
+    @media screen and (min-width: 125em) {
+      font-size: 1.8rem;
+    }
+
     .username {
       display: inline-block;
       text-transform: capitalize;
@@ -125,6 +129,7 @@
       border: 0;
       outline: 0;
       text-transform: capitalize;
+      font-weight: inherit;
       font-size: inherit;
       background-color: transparent;
       color: $clr-pink-dark-1;
