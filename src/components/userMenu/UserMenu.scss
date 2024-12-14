@@ -74,6 +74,10 @@
         padding: 0.6rem 0.9rem;
       }
 
+      @media screen and (max-width: 51.25em) {
+        padding: 0.7rem 1rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         padding: 0.8rem 1rem;
       }
