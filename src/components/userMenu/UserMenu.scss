@@ -21,6 +21,13 @@
     top: 6rem;
     min-width: 22rem;
     width: 22rem;
+    padding: 2.2rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    top: 7rem;
+    min-width: 23rem;
+    width: 23rem;
     padding: 2.4rem;
   }
 
