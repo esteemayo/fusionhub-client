@@ -152,6 +152,10 @@
       @media screen and (min-width: 112.5em) {
         font-size: 1.45rem;
       }
+
+      @media screen and (min-width: 125em) {
+        font-size: var(--default-font-size);
+      }
     }
   }
 
@@ -168,6 +172,10 @@
 
       @media screen and (min-width: 112.5em) {
         font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: var(--default-font-size);
       }
     }
   }
