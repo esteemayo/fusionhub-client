@@ -29,6 +29,10 @@
       width: 110rem;
     }
 
+    @include xl {
+      width: 118rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
