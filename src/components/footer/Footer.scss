@@ -48,6 +48,10 @@
           @media screen and (min-width: 106.25em) {
             font-size: 1.7rem;
           }
+
+          @media screen and (min-width: 112.5em) {
+            font-size: 1.75rem;
+          }
         }
 
         &:hover {
@@ -127,6 +131,10 @@
       @media screen and (min-width: 106.25em) {
         font-size: 1.4rem;
       }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.45rem;
+      }
     }
   }
 
@@ -139,6 +147,10 @@
 
       @media screen and (min-width: 106.25em) {
         font-size: 1.4rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.45rem;
       }
     }
   }
