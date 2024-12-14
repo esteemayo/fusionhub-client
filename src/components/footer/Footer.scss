@@ -127,6 +127,11 @@
             @media screen and (min-width: 125em) {
               font-size: 2rem;
             }
+
+            svg {
+              font-size: inherit;
+              color: inherit;
+            }
           }
 
           &:hover {
