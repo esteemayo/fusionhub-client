@@ -13,6 +13,10 @@
     height: 100%;
     padding: 6rem 0;
 
+    @media screen and (max-width: 93.75em) {
+      width: 134rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
