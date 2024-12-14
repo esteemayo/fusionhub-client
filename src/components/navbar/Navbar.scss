@@ -304,6 +304,11 @@
     width: 5rem;
     height: 5rem;
 
+    @media screen and (max-width: 56.25em) {
+      width: 6rem;
+      height: 6rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       width: 6rem;
       height: 6rem;
