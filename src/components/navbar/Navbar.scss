@@ -12,6 +12,10 @@
     height: 9rem;
   }
 
+  @media screen and (max-width: 51.25em) {
+    height: 9.5rem;
+  }
+
   @media screen and (min-width: 106.25em) {
     height: 9rem;
   }
