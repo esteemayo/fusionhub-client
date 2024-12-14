@@ -17,6 +17,13 @@
   transition: all 0.5s ease-out;
   transition-duration: 700ms;
 
+  @media screen and (min-width: 106.25em) {
+    top: 6rem;
+    min-width: 22rem;
+    width: 22rem;
+    padding: 2.4rem;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
