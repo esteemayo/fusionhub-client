@@ -53,6 +53,10 @@
         padding: 0.8rem 1rem;
       }
 
+      @media screen and (min-width: 112.5em) {
+        padding: 1rem 1.2rem;
+      }
+
       a {
         &:link,
         &:visited {
