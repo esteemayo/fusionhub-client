@@ -42,6 +42,10 @@
       color: currentColor;
       border-radius: 2px;
 
+      @media screen and (min-width: 106.25em) {
+        padding: 0.8rem 1rem;
+      }
+
       a {
         &:link,
         &:visited {
