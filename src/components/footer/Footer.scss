@@ -179,6 +179,10 @@
       gap: 3.5rem;
     }
 
+    @media screen and (min-width: 125em) {
+      gap: 4rem;
+    }
+
     &--item {
       a {
         &:link,
