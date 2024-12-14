@@ -118,6 +118,10 @@
     font-size: 1.3rem;
     margin-top: 1rem;
 
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.4rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       font-size: 1.4rem;
     }
