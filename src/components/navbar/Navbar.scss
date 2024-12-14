@@ -27,6 +27,10 @@
     align-items: center;
     justify-content: space-between;
 
+    @media screen and (max-width: 93.75em) {
+      width: 134rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
