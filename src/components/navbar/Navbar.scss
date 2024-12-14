@@ -233,6 +233,10 @@
         gap: 3rem;
       }
 
+      @media screen and (max-width: 51.25em) {
+        gap: 4rem;
+      }
+
       &--item {
         text-transform: uppercase;
         font-size: 1.3rem;
