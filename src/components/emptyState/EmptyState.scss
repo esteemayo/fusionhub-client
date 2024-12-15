@@ -253,6 +253,16 @@
       padding: 1.6rem;
       border-radius: 10rem;
 
+      @media screen and (max-width: 56.25em) {
+        width: 20.5rem;
+        height: 5.8rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 21rem;
+        height: 6rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         height: 6rem;
       }
