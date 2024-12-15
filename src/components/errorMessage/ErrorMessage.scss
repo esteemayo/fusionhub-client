@@ -11,6 +11,10 @@
     width: 1.6rem;
     fill: currentColor;
 
+    @media screen and (max-width: 56.25em) {
+      width: 1.8rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       width: 1.8rem;
     }
