@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .input {
   display: flex;
@@ -16,6 +17,10 @@
     text-rendering: optimizeLegibility;
     font-weight: 700;
     font-size: 1.4rem;
+
+    @media screen and (min-width: 106.25em) {
+      font-size: var(--default-font-size);
+    }
   }
 
   &__control {
@@ -32,6 +37,10 @@
     border-radius: 0.5rem;
     transition: all 300ms ease-in-out;
 
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.65rem;
+    }
+
     &:focus {
       background-color: $clr-secondary-blue;
     }
@@ -39,6 +48,10 @@
     &::placeholder {
       font-size: 1.25rem;
       color: $clr-white;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.45rem;
+      }
     }
   }
 }
