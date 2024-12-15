@@ -14,6 +14,7 @@ export interface EmptyStateProps {
   imgSrc?: string;
   alt?: string;
   label?: string;
+  formatImg?: boolean;
   showReset?: boolean;
   showReload?: boolean;
 }
