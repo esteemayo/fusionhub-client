@@ -21,6 +21,10 @@
     border: 2px solid $clr-secondary-blue;
     border-radius: 0.5rem;
 
+    @media screen and (max-width: 56.25em) {
+      width: 46rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       width: 47rem;
     }
@@ -39,6 +43,10 @@
     font-weight: 500;
     font-size: 3rem;
     line-height: 2.5em;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 3.1rem;
+    }
 
     @media screen and (min-width: 106.25em) {
       font-size: 3.2rem;
