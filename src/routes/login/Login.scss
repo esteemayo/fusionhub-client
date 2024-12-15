@@ -25,6 +25,14 @@
     @media screen and (max-width: 25em) {
       width: 43rem;
     }
+
+    @media screen and (max-width: 24.375em) {
+      width: 42rem;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      width: 40rem;
+    }
   }
 
   &__wrapper {
@@ -43,6 +51,10 @@
 
     @media screen and (max-width: 25em) {
       padding: 2rem;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      padding: 1.65rem;
     }
 
     @media screen and (min-width: 106.25em) {
