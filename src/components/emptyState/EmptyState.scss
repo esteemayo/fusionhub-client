@@ -32,6 +32,11 @@
       height: 23rem;
       object-fit: contain;
 
+      @media screen and (max-width: 56.25em) {
+        width: 31rem;
+        height: 24rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 31rem;
         height: 24rem;
