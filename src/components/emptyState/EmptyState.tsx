@@ -14,6 +14,7 @@ const EmptyState = ({
   imgSrc,
   alt,
   label = 'Return home',
+  formatImg,
   showReset,
   showReload,
 }: EmptyStateProps) => {
@@ -32,6 +33,10 @@ const EmptyState = ({
     e.stopPropagation();
     window.location.assign(window.location.pathname);
   };
+
+  const imgBoxClasses = useMemo(() => {
+    return formatImg ? 'emptyState__box space' : 'emptyState__box';
+  }, [formatImg]);
 
   const imgClasses = useMemo(() => {
     return imgSrc ? 'emptyState__box--img show' : 'emptyState__box--img hide';
@@ -53,7 +58,7 @@ const EmptyState = ({
     <div className='emptyState'>
       <div className='emptyState__container'>
         <div className='emptyState__wrapper'>
-          <div className='emptyState__box'>
+          <div className={imgBoxClasses}>
             <img
               src={imgSrc}
               width={300}
