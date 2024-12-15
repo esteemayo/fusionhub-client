@@ -25,6 +25,10 @@
       width: 46rem;
     }
 
+    @media screen and (max-width: 51.25em) {
+      width: 47rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       width: 47rem;
     }
@@ -46,6 +50,10 @@
 
     @media screen and (max-width: 56.25em) {
       font-size: 3.1rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 3.2rem;
     }
 
     @media screen and (min-width: 106.25em) {
