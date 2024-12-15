@@ -10,6 +10,14 @@
     min-height: 80vh;
     padding: 10rem 0;
 
+    @media screen and (max-width: 26.875em) {
+      width: 47rem;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 45rem;
+    }
+
     display: flex;
     align-items: center;
     justify-content: center;
