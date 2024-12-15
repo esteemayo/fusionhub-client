@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .authLink {
   margin-top: 3rem;
@@ -11,6 +12,10 @@
 
     font-size: 1.2rem;
     color: $clr-gray-light-1;
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.4rem;
+    }
 
     &--link {
       &:link,
