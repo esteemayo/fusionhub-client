@@ -82,6 +82,10 @@
     flex-direction: column;
     align-items: center;
 
+    &.space {
+      gap: 2rem;
+    }
+
     &--img {
       display: inline-block;
       width: 30rem;
