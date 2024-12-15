@@ -81,6 +81,10 @@
       color: $clr-white;
       cursor: pointer;
 
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.4rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         font-size: 1.5rem;
       }
@@ -119,6 +123,11 @@
       height: 4rem;
       padding: 1rem;
       border-radius: 0.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 15.5rem;
+        height: 4.2rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         height: 4.5rem;
