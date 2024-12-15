@@ -18,6 +18,10 @@
     @media screen and (min-width: 112.5em) {
       width: 2rem;
     }
+
+    @media screen and (min-width: 125em) {
+      width: 2.3rem;
+    }
   }
 
   span {
@@ -32,6 +36,10 @@
 
     @media screen and (min-width: 112.5em) {
       font-size: 1.2rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.5rem;
     }
   }
 }
