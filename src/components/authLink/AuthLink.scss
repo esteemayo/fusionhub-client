@@ -13,6 +13,10 @@
     font-size: 1.2rem;
     color: $clr-gray-light-1;
 
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.3rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       font-size: 1.4rem;
     }
