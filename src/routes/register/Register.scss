@@ -91,6 +91,18 @@
     @media screen and (max-width: 18.75em) {
       padding: 1rem;
     }
+
+    @media screen and (min-width: 106.25em) {
+      width: 47rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 50rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 55rem;
+    }
   }
 
   &__heading {
