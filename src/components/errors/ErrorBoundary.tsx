@@ -38,6 +38,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           imgSrc='towing.svg'
           title='Uh oh!'
           subtitle='It looks like something went wrong on our end. Please try again.'
+          formatImg
           showReload
         />
       );
