@@ -37,6 +37,11 @@
         height: 24rem;
       }
 
+      @media screen and (min-width: 112.5em) {
+        width: 32rem;
+        height: 25rem;
+      }
+
       &.show {
         display: block;
         visibility: visible;
@@ -75,6 +80,10 @@
         font-size: 1.5rem;
       }
 
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.7rem;
+      }
+
       &.show {
         display: inline-block;
         visibility: visible;
@@ -104,6 +113,11 @@
 
       @media screen and (min-width: 106.25em) {
         height: 4.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 17rem;
+        height: 5rem;
       }
     }
 
