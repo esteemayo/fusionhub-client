@@ -19,7 +19,7 @@ const ResetPassword = () => {
               type='password'
               name='password'
               label='Password'
-              placeholder='password'
+              placeholder='Password'
             />
             <Input
               type='password'
