@@ -64,7 +64,7 @@ const Sidebar = () => {
               <div className='sidebar__accounts'>
                 <Link to='/account' className='sidebar__account'>
                   <img
-                    src='avatar.png'
+                    src='/avatar.png'
                     width={70}
                     height={70}
                     alt='avatar'

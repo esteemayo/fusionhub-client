@@ -51,7 +51,7 @@ const Navbar = () => {
             <div className='navbar__accounts'>
               <div className='navbar__account'>
                 <img
-                  src='avatar.png'
+                  src='/avatar.png'
                   width={32.5}
                   height={32.5}
                   alt='avatar'
