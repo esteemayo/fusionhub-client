@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .btn {
   display: flex;
@@ -16,6 +17,11 @@
   border-radius: 0.5rem;
   cursor: pointer;
 
+  @media screen and (min-width: 106.25em) {
+    height: 5.8rem;
+    font-size: var(--default-font-size);
+  }
+
   &.primary {
     background-color: $clr-pink-dark-1;
     border: 2px solid transparent;
@@ -30,6 +36,11 @@
       width: 2.5rem;
       height: 2.5rem;
       object-fit: cover;
+
+      @media screen and (min-width: 106.25em) {
+        width: 2.7rem;
+        height: 2.7rem;
+      }
     }
   }
 
