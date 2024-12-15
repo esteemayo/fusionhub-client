@@ -59,6 +59,18 @@
     padding: 3rem;
     border: 2px solid $clr-secondary-blue;
     border-radius: 0.5rem;
+
+    @media screen and (max-width: 56.25em) {
+      width: 46rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 47rem;
+    }
+
+    @media screen and (max-width: 25em) {
+      padding: 2rem;
+    }
   }
 
   &__heading {
