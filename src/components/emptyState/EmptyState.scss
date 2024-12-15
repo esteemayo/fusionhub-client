@@ -260,7 +260,17 @@
 
       @media screen and (max-width: 51.25em) {
         width: 21rem;
-        height: 6rem;
+        height: 6.1rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 20rem;
+        height: 5.9rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 19rem;
+        height: 5.6rem;
       }
 
       @media screen and (min-width: 106.25em) {
