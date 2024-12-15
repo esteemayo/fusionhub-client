@@ -119,6 +119,10 @@
       font-size: 3.2rem;
     }
 
+    @media screen and (max-width: 18.75em) {
+      line-height: 1.8em;
+    }
+
     @media screen and (max-width: 17.5em) {
       font-size: 3.1rem;
     }
