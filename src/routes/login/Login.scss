@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .login {
   display: flex;
@@ -19,6 +20,10 @@
     padding: 3rem;
     border: 2px solid $clr-secondary-blue;
     border-radius: 0.5rem;
+
+    @media screen and (min-width: 106.25em) {
+      width: 47rem;
+    }
   }
 
   &__heading {
