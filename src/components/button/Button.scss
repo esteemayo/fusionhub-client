@@ -22,6 +22,11 @@
     font-size: var(--default-font-size);
   }
 
+  @media screen and (min-width: 112.5em) {
+    height: 6rem;
+    font-size: 1.8rem;
+  }
+
   &.primary {
     background-color: $clr-pink-dark-1;
     border: 2px solid transparent;
@@ -40,6 +45,11 @@
       @media screen and (min-width: 106.25em) {
         width: 2.7rem;
         height: 2.7rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 3rem;
+        height: 3rem;
       }
     }
   }
