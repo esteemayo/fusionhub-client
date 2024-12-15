@@ -171,6 +171,18 @@
       max-height: 25rem;
       overflow-y: scroll;
 
+      @media screen and (min-width: 106.25em) {
+        max-height: 26rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        max-height: 28rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        max-height: 30rem;
+      }
+
       &::-webkit-scrollbar {
         width: 0.5rem;
       }
