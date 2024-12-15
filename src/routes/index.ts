@@ -6,7 +6,7 @@ import ResetPassword from './resetPassword/ResetPassword';
 import Posts from './posts/Posts';
 import ForgotPassword from './forgotPassword/ForgotPassword';
 import Account from './account/Account';
-import ProductDetails from './productDetails/ProductDetails';
+import PostDetails from './postDetails/PostDetails';
 
 export {
   Account,
@@ -15,7 +15,7 @@ export {
   Login,
   NotFound,
   Posts,
-  ProductDetails,
+  PostDetails,
   Register,
   ResetPassword,
 };

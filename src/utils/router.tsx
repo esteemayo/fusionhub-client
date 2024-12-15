@@ -8,7 +8,7 @@ import {
   Login,
   NotFound,
   Posts,
-  ProductDetails,
+  PostDetails,
   Register,
   ResetPassword,
 } from '../routes';
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'posts/:slug',
-        element: <ProductDetails />,
+        element: <PostDetails />,
       },
       {
         path: 'account',
