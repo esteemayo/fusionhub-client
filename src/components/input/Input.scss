@@ -21,6 +21,10 @@
     @media screen and (min-width: 106.25em) {
       font-size: var(--default-font-size);
     }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.8rem;
+    }
   }
 
   &__control {
@@ -42,6 +46,11 @@
       height: 5.8rem;
     }
 
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.85rem;
+      height: 6rem;
+    }
+
     &:focus {
       background-color: $clr-secondary-blue;
     }
@@ -52,6 +61,10 @@
 
       @media screen and (min-width: 106.25em) {
         font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.65rem;
       }
     }
   }
