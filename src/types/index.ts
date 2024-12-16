@@ -75,6 +75,17 @@ export interface ButtonProps {
   loading?: boolean;
 }
 
+export interface CommentCardProps {
+  id: string;
+  desc: string;
+  user: {
+    name: string;
+    img: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AuthLinkProps {
   url: string;
   label: string;
