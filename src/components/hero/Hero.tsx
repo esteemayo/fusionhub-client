@@ -1,12 +1,18 @@
+import { Link } from 'react-router-dom';
+
 import './Hero.scss';
 
 const Hero = () => {
   return (
     <header className='hero'>
       <div className='hero__breadCrumbs'>
-        <span>Home</span>
+        <Link to='/' className='hero__breadCrumbs--link'>
+          Home
+        </Link>
         {'|'}
-        <span>Post details</span>
+        <Link to='#' className='hero__breadCrumbs--link'>
+          Post details
+        </Link>
       </div>
       <h1 className='hero__heading'>Go boating and experience</h1>
     </header>
