@@ -3,12 +3,14 @@ import './RelatedTags.scss';
 const RelatedTags = () => {
   return (
     <section className='relatedTags'>
-      <span className='relatedTags__item'>Travel</span>
-      <span className='relatedTags__item'>Lifestyle</span>
-      <span className='relatedTags__item'>Photo</span>
-      <span className='relatedTags__item'>Adventures</span>
-      <span className='relatedTags__item'>Musician</span>
-      <span className='relatedTags__item'>Food</span>
+      <div className='relatedTags__container'>
+        <span className='relatedTags__container--item'>Travel</span>
+        <span className='relatedTags__container--item'>Lifestyle</span>
+        <span className='relatedTags__container--item'>Photo</span>
+        <span className='relatedTags__container--item'>Adventures</span>
+        <span className='relatedTags__container--item'>Musician</span>
+        <span className='relatedTags__container--item'>Food</span>
+      </div>
     </section>
   );
 };

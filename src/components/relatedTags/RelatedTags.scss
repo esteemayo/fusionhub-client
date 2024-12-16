@@ -1,0 +1,25 @@
+@import '../../styles//variables.scss';
+
+.relatedTags {
+  background-color: $clr-secondary-blue;
+  padding: 3rem;
+  margin-top: 1rem;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+
+    &--item {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 500;
+      font-size: 1.25rem;
+      padding: 0.6rem;
+      color: $clr-gray-light-1;
+      border: 1px solid currentColor;
+      border-radius: 0.5rem;
+    }
+  }
+}
