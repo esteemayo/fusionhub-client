@@ -1,9 +1,9 @@
 @import '../../styles/variables.scss';
 
 .comments {
-  background-color: $clr-secondary-blue;
-  padding: 3rem;
-
   &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 }
