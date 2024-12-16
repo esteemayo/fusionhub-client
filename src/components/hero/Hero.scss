@@ -24,11 +24,13 @@
         text-transform: uppercase;
         text-rendering: optimizeLegibility;
         font-weight: 500;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
       }
     }
   }
 
   &__heading {
+    display: inline-block;
+    text-rendering: optimizeLegibility;
   }
 }
