@@ -18,12 +18,14 @@
     align-items: center;
     gap: 1rem;
 
-    span {
-      text-transform: uppercase;
-      text-rendering: optimizeLegibility;
-      font-weight: 500;
-      font-size: 1.4rem;
-      color: inherit;
+    &--link {
+      &:link,
+      &:visited {
+        text-transform: uppercase;
+        text-rendering: optimizeLegibility;
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
     }
   }
 
