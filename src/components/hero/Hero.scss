@@ -25,6 +25,13 @@
         text-rendering: optimizeLegibility;
         font-weight: 500;
         font-size: 1.3rem;
+        transition: all 300ms ease-in-out;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.5rem;
+        text-decoration-color: $clr-pink-dark-1;
       }
     }
   }
