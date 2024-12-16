@@ -30,13 +30,7 @@
   &__actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  &__likes,
-  &__bookmark {
-    display: flex;
-    align-items: center;
+    gap: 1.5rem;
 
     svg {
       width: 1.65rem;
