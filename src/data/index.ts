@@ -1,4 +1,4 @@
-import { MenuItemType } from '../types';
+import { CommentType, MenuItemType } from '../types';
 
 export const menuItems: MenuItemType = [
   {
@@ -23,7 +23,7 @@ export const menuItems: MenuItemType = [
   },
 ];
 
-export const comments = [
+export const comments: CommentType = [
   {
     id: '1',
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus soluta architecto aspernatur repudiandae provident odio voluptatibus quia! Beatae aspernatur alias repellat dicta, eum voluptas commodi voluptate reiciendis reprehenderit laboriosam.',
