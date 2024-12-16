@@ -50,6 +50,9 @@
       display: inline-block;
       border: 0;
       outline: 0;
+      background-color: transparent;
+      color: $clr-gray-light-1;
+      cursor: pointer;
 
       svg {
         width: 1.65rem;
