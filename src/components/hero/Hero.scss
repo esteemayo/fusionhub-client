@@ -44,8 +44,10 @@
 
   &__heading {
     display: inline-block;
+    text-align: center;
     text-rendering: optimizeLegibility;
     font-weight: 600;
+    width: 80%;
     line-height: 1.4;
   }
 }

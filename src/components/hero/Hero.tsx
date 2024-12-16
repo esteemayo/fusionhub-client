@@ -14,7 +14,10 @@ const Hero = () => {
           Post details
         </Link>
       </div>
-      <h1 className='hero__heading'>Go boating and experience</h1>
+      <h1 className='hero__heading'>
+        Effective communication is at the heart of every successful
+        professional.
+      </h1>
     </header>
   );
 };
