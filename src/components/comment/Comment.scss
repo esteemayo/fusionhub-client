@@ -37,12 +37,31 @@
     align-items: center;
     justify-content: space-between;
 
+    color: $clr-gray-light-1;
+    margin-bottom: 1rem;
+
+    &--time,
+    &--reply {
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: inherit;
+    }
+
     &--time {
+      text-rendering: optimizeLegibility;
     }
 
     &--reply {
       display: flex;
       align-items: center;
+      gap: 1rem;
+
+      border: 0;
+      outline: 0;
+      text-transform: capitalize;
+      background-color: transparent;
+      color: currentColor;
+      cursor: pointer;
 
       svg {
         width: 1.5rem;
@@ -50,6 +69,9 @@
       }
 
       span {
+        font-weight: inherit;
+        font-size: inherit;
+        color: inherit;
       }
     }
   }
