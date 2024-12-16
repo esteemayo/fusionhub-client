@@ -8,8 +8,8 @@ const Comment = () => {
         <div className='comment__user'>
           <img
             src='/user.jpeg'
-            width={70}
-            height={70}
+            width={80}
+            height={80}
             alt='avatar'
             className='comment__user--img'
           />
