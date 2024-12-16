@@ -3,6 +3,7 @@ import './RelatedTags.scss';
 const RelatedTags = () => {
   return (
     <section className='relatedTags'>
+      <h3 className='relatedTags__heading'>Related tags</h3>
       <div className='relatedTags__container'>
         <span className='relatedTags__container--item'>Travel</span>
         <span className='relatedTags__container--item'>Lifestyle</span>
