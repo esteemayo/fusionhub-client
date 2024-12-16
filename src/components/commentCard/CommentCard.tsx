@@ -1,3 +1,5 @@
+import {format} from 'timeago.js'
+
 import { CommentCardProps } from '../../types';
 
 import './CommentCard.scss';
@@ -19,7 +21,7 @@ const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
       <div className='commentCard__details'>
         <div className='commentCard__dateBox'>
           <time dateTime={createdAt} className='commentCard__dateBox--time'>
-            {createdAt}
+            {format(createdAt)}
           </time>
           <button type='button' className='commentCard__dateBox--reply'>
             <svg
