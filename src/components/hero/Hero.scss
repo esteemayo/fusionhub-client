@@ -1,4 +1,10 @@
 @import '../../styles/variables.scss';
 
 .hero {
+  width: 100%;
+  height: 40vw;
+  background-image: url('/hero-1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: $clr-secondary-blue;
 }
