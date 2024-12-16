@@ -86,3 +86,14 @@ export type MenuItemType = {
   url: string;
   label: string;
 }[];
+
+export type CommentType = {
+  id: string;
+  desc: string;
+  user: {
+    name: string;
+    img: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}[];
