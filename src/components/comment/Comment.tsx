@@ -8,8 +8,8 @@ const Comment = () => {
         <div className='comment__user'>
           <img
             src='/user.jpeg'
-            width={50}
-            height={50}
+            width={70}
+            height={70}
             alt='avatar'
             className='comment__user--img'
           />
@@ -23,7 +23,20 @@ const Comment = () => {
               {new Date().toDateString()}
             </time>
             <button type='button' className='comment__dateBox--reply'>
-              logo
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M7.49 12 3.74 8.248m0 0 3.75-3.75m-3.75 3.75h16.5V19.5'
+                />
+              </svg>
               <span>Reply</span>
             </button>
           </div>
