@@ -1,5 +1,6 @@
-import Hero from '../../components/hero/Hero';
 import PostDetail from '../../components/postDetail/PostDetail';
+import Hero from '../../components/hero/Hero';
+import RelatedTags from '../../components/relatedTags/RelatedTags';
 
 import './PostDetails.scss';
 
@@ -10,6 +11,7 @@ const PostDetails = () => {
       <div className='postDetails__container'>
         <div className='postDetails__container--left'>
           <PostDetail />
+          <RelatedTags />
         </div>
         <div className='postDetails__container--right'>PostDetails Right</div>
       </div>
