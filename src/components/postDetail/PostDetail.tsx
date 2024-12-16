@@ -1,3 +1,5 @@
+import millify from 'millify';
+
 import './PostDetail.scss';
 
 const PostDetail = () => {
@@ -60,7 +62,7 @@ const PostDetail = () => {
                   d='M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'
                 />
               </svg>
-              <span>10000 views</span>
+              <span>{millify(10000)} views</span>
             </div>
           </div>
           <div className='postDetail__actions'>

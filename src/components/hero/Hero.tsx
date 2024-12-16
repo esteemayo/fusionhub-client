@@ -9,7 +9,7 @@ const Hero = () => {
         <Link to='/' className='hero__breadCrumbs--link'>
           Home
         </Link>
-        {'|'}
+        |
         <Link to='#' className='hero__breadCrumbs--link'>
           Post details
         </Link>
