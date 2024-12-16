@@ -24,8 +24,16 @@
     gap: 1rem;
 
     svg {
-      width: 1.65rem;
-      height: 1.65rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    span,
+    time {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 500;
+      font-size: 1.3rem;
     }
   }
 
