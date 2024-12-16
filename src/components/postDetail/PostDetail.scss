@@ -46,9 +46,15 @@
     align-items: center;
     gap: 1.5rem;
 
-    svg {
-      width: 1.65rem;
-      height: 1.65rem;
+    button {
+      display: inline-block;
+      border: 0;
+      outline: 0;
+
+      svg {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
     }
   }
 }
