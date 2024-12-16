@@ -5,7 +5,7 @@ const CommentCard = () => {
     <article className='commentCard'>
       <div className='commentCard__user'>
         <img
-          src='/user.jpeg'
+          src='/user-1.jpeg'
           width={80}
           height={80}
           alt='avatar'
