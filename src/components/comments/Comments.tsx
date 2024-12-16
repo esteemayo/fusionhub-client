@@ -3,7 +3,8 @@ import './Comments.scss';
 const Comments = () => {
   return (
     <section className='comments'>
-      <div className='comments__container'>Comments</div>
+      <h3 className='comments__heading'>Comments</h3>
+      <div className='comments__container'></div>
     </section>
   );
 };
