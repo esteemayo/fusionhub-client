@@ -4,9 +4,14 @@
   background-color: $clr-secondary-blue;
   padding: 3rem;
 
-  &__container {
+  &__heading {
+    font-weight: 600;
+    font-size: 1.65rem;
+    color: inherit;
+    line-height: 1.3;
+    margin-bottom: 2rem;
   }
 
-  &__heading {
+  &__container {
   }
 }
