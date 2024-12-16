@@ -1,0 +1,85 @@
+@import '../../styles//variables.scss';
+
+.commentCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #273547;
+  }
+
+  &__user {
+    &--img {
+      width: 8rem;
+      height: 8rem;
+      display: inline-block;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+    }
+  }
+
+  &__details {
+    &--username {
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      color: currentColor;
+      color: $clr-white;
+    }
+
+    &--desc {
+      font-size: 1.3rem;
+      line-height: 1.4;
+      color: $clr-gray-light-1;
+    }
+  }
+
+  &__dateBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #dddcdc;
+    margin-bottom: 1rem;
+
+    &--time,
+    &--reply {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: inherit;
+    }
+
+    &--time {
+      text-rendering: optimizeLegibility;
+    }
+
+    &--reply {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      border: 0;
+      outline: 0;
+      text-transform: capitalize;
+      background-color: transparent;
+      color: currentColor;
+      cursor: pointer;
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: currentColor;
+        stroke-width: 2px;
+      }
+
+      span {
+        font-weight: inherit;
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+  }
+}
