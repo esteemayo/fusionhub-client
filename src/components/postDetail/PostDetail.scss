@@ -48,7 +48,10 @@
     gap: 1.5rem;
 
     button {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
       border: 0;
       outline: 0;
       background-color: transparent;
@@ -60,6 +63,13 @@
         height: 1.85rem;
         color: currentColor;
         stroke-width: 2px;
+      }
+
+      span {
+        font-weight: 600;
+        font-size: 1.1rem;
+        font-variant: tabular-nums;
+        color: currentColor;
       }
     }
   }
