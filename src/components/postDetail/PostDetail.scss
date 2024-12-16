@@ -1,4 +1,37 @@
 @import '../../styles/variables.scss';
 
 .postDetail {
+  &__container {
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+
+  &__username,
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    svg {
+      width: 1.65rem;
+      height: 1.65rem;
+    }
+  }
+
+  &__actions {
+  }
+
+  &__likes {
+  }
+
+  &__bookmark {
+  }
 }
