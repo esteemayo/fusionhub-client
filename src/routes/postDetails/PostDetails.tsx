@@ -6,6 +6,7 @@ import Categories from '../../components/categories/Categories';
 import Feeds from '../../components/feeds/Feeds';
 import RelatedTags from '../../components/relatedTags/RelatedTags';
 import Follow from '../../components/follow/Follow';
+import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
 
 import Search from './search/Search';
 
@@ -28,6 +29,9 @@ const PostDetails = () => {
           <Feeds />
           <Tags />
         </div>
+      </div>
+      <div className='postDetails__wrapper'>
+        <RelatedPosts />
       </div>
     </div>
   );
