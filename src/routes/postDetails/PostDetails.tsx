@@ -1,7 +1,8 @@
-import PostDetail from '../../components/postDetail/PostDetail';
-import Hero from '../../components/hero/Hero';
-import RelatedTags from '../../components/relatedTags/RelatedTags';
 import Comments from '../../components/comments/Comments';
+import Hero from '../../components/hero/Hero';
+import PostDetail from '../../components/postDetail/PostDetail';
+import Follow from '../../components/follow/Follow';
+import RelatedTags from '../../components/relatedTags/RelatedTags';
 
 import Search from './search/Search';
 
@@ -19,6 +20,7 @@ const PostDetails = () => {
         </div>
         <div className='postDetails__container--right'>
           <Search />
+          <Follow />
         </div>
       </div>
     </div>
