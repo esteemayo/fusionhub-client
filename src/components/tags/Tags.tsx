@@ -1,3 +1,5 @@
+import { tagItems } from '../../data';
+
 import './Tags.scss';
 
 const Tags = () => {
@@ -6,18 +8,14 @@ const Tags = () => {
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
         <div className='tags__wrapper'>
-          <span className='tags__wrapper--item'>Travel</span>
-          <span className='tags__wrapper--item'>Lifestyle</span>
-          <span className='tags__wrapper--item'>Photo</span>
-          <span className='tags__wrapper--item'>Adventures</span>
-          <span className='tags__wrapper--item'>Musician</span>
-          <span className='tags__wrapper--item'>Food</span>
-          <span className='tags__wrapper--item'>Travel</span>
-          <span className='tags__wrapper--item'>Lifestyle</span>
-          <span className='tags__wrapper--item'>Photo</span>
-          <span className='tags__wrapper--item'>Adventures</span>
-          <span className='tags__wrapper--item'>Musician</span>
-          <span className='tags__wrapper--item'>Food</span>
+          {tagItems.map((tag) => {
+            const { id, label } = tag;
+            return (
+              <span key={id} className='tags__wrapper--item'>
+                {label}
+              </span>
+            );
+          })}
         </div>
       </div>
     </aside>
