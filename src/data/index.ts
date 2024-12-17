@@ -1,4 +1,9 @@
-import { CommentType, FeedItemTypes, MenuItemType } from '../types';
+import {
+  CommentType,
+  FeedItemTypes,
+  MenuItemType,
+  RelatedTagType,
+} from '../types';
 
 export const menuItems: MenuItemType = [
   {
@@ -20,6 +25,33 @@ export const menuItems: MenuItemType = [
     id: 4,
     url: '/contact',
     label: 'Contact',
+  },
+];
+
+export const relatedTags: RelatedTagType = [
+  {
+    id: 1,
+    label: 'Travel',
+  },
+  {
+    id: 2,
+    label: 'Lifestyle',
+  },
+  {
+    id: 3,
+    label: 'Photo',
+  },
+  {
+    id: 4,
+    label: 'Adventures',
+  },
+  {
+    id: 5,
+    label: 'Musician',
+  },
+  {
+    id: 6,
+    label: 'Food',
   },
 ];
 
