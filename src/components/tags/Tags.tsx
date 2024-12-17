@@ -1,3 +1,5 @@
+import TagItem from '../tagItem/TagItem';
+
 import { tagItems } from '../../data';
 
 import './Tags.scss';
@@ -10,11 +12,7 @@ const Tags = () => {
         <div className='tags__wrapper'>
           {tagItems.map((tag) => {
             const { id, label } = tag;
-            return (
-              <span key={id} className='tags__wrapper--item'>
-                {label}
-              </span>
-            );
+            return <TagItem key={id} label={label} />;
           })}
         </div>
       </div>
