@@ -60,31 +60,36 @@ export const feedItems: FeedItemTypes = [
   {
     id: '1',
     img: '/post-1.jpg',
-    title: 'Alonso Kelina Falao Asiano Pero',
+    title: 'Alonso kelina falao asiano pero',
+    slug: 'alonso-kelina-falao-asiano-pero',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
     id: '2',
     img: '/post-2.jpeg',
     title: 'It is a long established fact that a reader',
+    slug: 'it-is-a-long-established-fact-that-a-reader',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
     id: '3',
     img: '/post-3.jpeg',
     title: 'Many desktop publish packages and web',
+    slug: 'many-desktop-publish-packages-and-web',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
     id: '4',
     img: '/post-4.webp',
     title: 'Various versions have evolved over the years',
+    slug: 'various-versions-have-evolved-over-the-years',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
     id: '5',
     img: '/post-5.jpeg',
     title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
+    slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
 ];

@@ -86,6 +86,14 @@ export interface CommentCardProps {
   updatedAt: string;
 }
 
+export interface FeedProps {
+  id: string;
+  img: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+}
+
 export interface AuthLinkProps {
   url: string;
   label: string;
@@ -113,5 +121,6 @@ export type FeedItemTypes = {
   id: string;
   img: string;
   title: string;
+  slug: string;
   createdAt: string;
 }[];
