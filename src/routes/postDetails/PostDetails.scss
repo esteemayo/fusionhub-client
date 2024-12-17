@@ -11,6 +11,7 @@
 
     display: flex;
     align-items: flex-start;
+    gap: 2rem;
 
     &--left {
       flex: 2.5;
@@ -21,7 +22,6 @@
 
     &--right {
       flex: 1;
-      background-color: orangered;
     }
   }
 }
