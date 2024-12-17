@@ -3,6 +3,7 @@ import {
   FeedItemTypes,
   MenuItemType,
   RelatedTagType,
+  TagItemType,
 } from '../types';
 
 export const menuItems: MenuItemType = [
@@ -123,5 +124,56 @@ export const feedItems: FeedItemTypes = [
     title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
     slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+];
+
+export const tagItems: TagItemType = [
+  {
+    id: 1,
+    label: 'Travel',
+  },
+  {
+    id: 2,
+    label: 'Lifestyle',
+  },
+  {
+    id: 3,
+    label: 'Photo',
+  },
+  {
+    id: 4,
+    label: 'Adventures',
+  },
+  {
+    id: 5,
+    label: 'Musician',
+  },
+  {
+    id: 6,
+    label: 'Food',
+  },
+  {
+    id: 7,
+    label: 'Travel',
+  },
+  {
+    id: 8,
+    label: 'Lifestyle',
+  },
+  {
+    id: 9,
+    label: 'Photo',
+  },
+  {
+    id: 10,
+    label: 'Adventures',
+  },
+  {
+    id: 11,
+    label: 'Musician',
+  },
+  {
+    id: 12,
+    label: 'Food',
   },
 ];
