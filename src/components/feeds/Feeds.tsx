@@ -10,6 +10,8 @@ const Feeds = () => {
             <img
               src='/post-1.jpg'
               alt='image'
+              width={80}
+              height={80}
               className='feeds__card-wrapper--img'
             />
           </div>
@@ -41,6 +43,8 @@ const Feeds = () => {
             <img
               src='/post-2.jpeg'
               alt='image'
+              width={80}
+              height={80}
               className='feeds__card-wrapper--img'
             />
           </div>
@@ -72,6 +76,8 @@ const Feeds = () => {
             <img
               src='/post-3.jpeg'
               alt='image'
+              width={80}
+              height={80}
               className='feeds__card-wrapper--img'
             />
           </div>
@@ -103,6 +109,8 @@ const Feeds = () => {
             <img
               src='//post-4.webp'
               alt='image'
+              width={80}
+              height={80}
               className='feeds__card-wrapper--img'
             />
           </div>
@@ -134,6 +142,8 @@ const Feeds = () => {
             <img
               src='/post-5.jpeg'
               alt='image'
+              width={80}
+              height={80}
               className='feeds__card-wrapper--img'
             />
           </div>

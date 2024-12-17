@@ -1,4 +1,30 @@
 @import '../../styles/variables.scss';
 
 .feeds {
+  &__container {
+    &-heading {
+    }
+  }
+
+  &__card {
+    &-wrapper {
+      &--img {
+      }
+    }
+
+    &-box {
+      &--title {
+      }
+
+      &--date {
+        svg {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        span {
+        }
+      }
+    }
+  }
 }

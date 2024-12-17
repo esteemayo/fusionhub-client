@@ -1,9 +1,10 @@
 import Comments from '../../components/comments/Comments';
 import Hero from '../../components/hero/Hero';
 import PostDetail from '../../components/postDetail/PostDetail';
+import Feeds from '../../components/feeds/Feeds';
+import Categories from '../../components/categories/Categories';
 import Follow from '../../components/follow/Follow';
 import RelatedTags from '../../components/relatedTags/RelatedTags';
-import Categories from '../../components/categories/Categories';
 
 import Search from './search/Search';
 
@@ -23,6 +24,7 @@ const PostDetails = () => {
           <Search />
           <Follow />
           <Categories />
+          <Feeds />
         </div>
       </div>
     </div>
