@@ -9,6 +9,9 @@ const RelatedPosts = () => {
         <h5 className='relatedPosts__container--heading'>Related posts</h5>
         <div className='relatedPosts__wrapper'>
           <RelatedPost />
+          <RelatedPost />
+          <RelatedPost />
+          <RelatedPost />
         </div>
       </div>
     </section>
