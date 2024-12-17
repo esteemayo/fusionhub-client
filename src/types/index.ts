@@ -106,6 +106,13 @@ export type MenuItemType = {
   label: string;
 }[];
 
+type TagType = {
+  id: number;
+  label: string;
+};
+
+export type RelatedTagType = TagType[];
+
 export type CommentType = {
   id: string;
   desc: string;
