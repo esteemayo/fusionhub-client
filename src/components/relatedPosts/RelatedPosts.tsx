@@ -1,3 +1,5 @@
+import RelatedPost from '../relatedPost/RelatedPost';
+
 import './RelatedPosts.scss';
 
 const RelatedPosts = () => {
@@ -5,7 +7,9 @@ const RelatedPosts = () => {
     <section className='relatedPosts'>
       <div className='relatedPosts__container'>
         <h5 className='relatedPosts__container--heading'>Related posts</h5>
-        <div className='relatedPosts__wrapper'>Post</div>
+        <div className='relatedPosts__wrapper'>
+          <RelatedPost />
+        </div>
       </div>
     </section>
   );
