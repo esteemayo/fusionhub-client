@@ -6,8 +6,8 @@
   align-items: center;
 
   &__container {
-    width: 115rem;
-    margin: 10rem 0;
+    width: 114rem;
+    padding: 8rem 0 5rem;
 
     display: flex;
     align-items: flex-start;
@@ -31,5 +31,7 @@
   }
 
   &__wrapper {
+    width: 144rem;
+    padding: 5rem 0 8rem;
   }
 }
