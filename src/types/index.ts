@@ -131,3 +131,5 @@ export type FeedItemTypes = {
   slug: string;
   createdAt: string;
 }[];
+
+export type TagItemType = TagType[];
