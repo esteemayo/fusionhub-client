@@ -55,3 +55,36 @@ export const comments: CommentType = [
     updatedAt: '2024-12-16T17:23:56.085+00:00',
   },
 ];
+
+export const feedItems = [
+  {
+    id: '1',
+    img: '/post-1.jpg',
+    title: 'Alonso Kelina Falao Asiano Pero',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '2',
+    img: '/post-2.jpeg',
+    title: 'It is a long established fact that a reader',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '3',
+    img: '/post-3.jpeg',
+    title: 'Many desktop publish packages and web',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '4',
+    img: '/post-4.webp',
+    title: 'Various versions have evolved over the years',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '5',
+    img: '/post-5.jpeg',
+    title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+];
