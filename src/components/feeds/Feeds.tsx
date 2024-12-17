@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './Feeds.scss';
 
 const Feeds = () => {
@@ -17,7 +19,7 @@ const Feeds = () => {
           </div>
           <div className='feeds__card-box'>
             <h3 className='feeds__card-box--title'>
-              Alonso Kelina Falao Asiano Pero
+              <Link to='/posts/test'>Alonso Kelina Falao Asiano Pero</Link>
             </h3>
             <time dateTime='' className='feeds__card-box--date'>
               <svg
@@ -50,7 +52,9 @@ const Feeds = () => {
           </div>
           <div className='feeds__card-box'>
             <h3 className='feeds__card-box--title'>
-              It is a long established fact that a reader
+              <Link to='/posts/test'>
+                It is a long established fact that a reader
+              </Link>
             </h3>
             <time dateTime='' className='feeds__card-box--date'>
               <svg
@@ -83,7 +87,9 @@ const Feeds = () => {
           </div>
           <div className='feeds__card-box'>
             <h3 className='feeds__card-box--title'>
-              Many desktop publish packages and web
+              <Link to='/posts/test'>
+                Many desktop publish packages and web
+              </Link>
             </h3>
             <time dateTime='' className='feeds__card-box--date'>
               <svg
@@ -116,7 +122,9 @@ const Feeds = () => {
           </div>
           <div className='feeds__card-box'>
             <h3 className='feeds__card-box--title'>
-              Various versions have evolved over the years
+              <Link to='/posts/test'>
+                Various versions have evolved over the years
+              </Link>
             </h3>
             <time dateTime='' className='feeds__card-box--date'>
               <svg
@@ -149,7 +157,9 @@ const Feeds = () => {
           </div>
           <div className='feeds__card-box'>
             <h3 className='feeds__card-box--title'>
-              Photo booth anim 8-bit PBSC 3 wolf moon.
+              <Link to='/posts/test'>
+                Photo booth anim 8-bit PBSC 3 wolf moon.
+              </Link>
             </h3>
             <time dateTime='' className='feeds__card-box--date'>
               <svg
