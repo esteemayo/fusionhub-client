@@ -108,3 +108,10 @@ export type CommentType = {
   createdAt: string;
   updatedAt: string;
 }[];
+
+export type FeedItemTypes = {
+  id: string;
+  img: string;
+  title: string;
+  createdAt: string;
+}[];

@@ -1,4 +1,4 @@
-import { CommentType, MenuItemType } from '../types';
+import { CommentType, FeedItemTypes, MenuItemType } from '../types';
 
 export const menuItems: MenuItemType = [
   {
@@ -56,7 +56,7 @@ export const comments: CommentType = [
   },
 ];
 
-export const feedItems = [
+export const feedItems: FeedItemTypes = [
   {
     id: '1',
     img: '/post-1.jpg',
