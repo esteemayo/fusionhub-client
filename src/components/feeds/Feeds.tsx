@@ -107,7 +107,7 @@ const Feeds = () => {
         <article className='feeds__card'>
           <div className='feeds__card-wrapper'>
             <img
-              src='//post-4.webp'
+              src='/post-4.webp'
               alt='image'
               width={80}
               height={80}
