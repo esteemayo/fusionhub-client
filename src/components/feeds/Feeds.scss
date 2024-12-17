@@ -43,10 +43,20 @@
       gap: 0.5rem;
 
       &--title {
+        text-overflow: ellipsis;
+        text-rendering: optimizeLegibility;
+        white-space: nowrap;
+        width: 20rem;
         font-weight: 600;
         font-size: 1.25rem;
         color: #dddcdc;
         line-height: 1.2;
+        overflow: hidden;
+        transition: all 300ms ease-in-out;
+
+        &:hover {
+          color: $clr-pink-dark-1;
+        }
 
         a {
           &:link,
