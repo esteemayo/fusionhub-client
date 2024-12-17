@@ -1,0 +1,74 @@
+@import '../../styles/variables.scss';
+
+.feed {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  &__wrapper {
+    &--img {
+      width: 5rem;
+      height: 5rem;
+      display: inline-block;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 3px;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &--title {
+      text-overflow: ellipsis;
+      text-rendering: optimizeLegibility;
+      white-space: nowrap;
+      width: 20rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: $clr-gray-light-3;
+      line-height: 1.2;
+      overflow: hidden;
+      transition: all 300ms ease-in-out;
+
+      &:hover {
+        color: $clr-pink-dark-1;
+      }
+
+      a {
+        &:link,
+        &:visited {
+          font-weight: inherit;
+          font-size: inherit;
+          color: inherit;
+          transition: all 300ms ease-in-out;
+        }
+
+        &:hover {
+          color: $clr-pink-dark-1;
+        }
+      }
+    }
+
+    &--date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: $clr-gray-light-1;
+
+      svg {
+        width: 1.3rem;
+        height: 1.3rem;
+        color: currentColor;
+        stroke-width: 3px;
+      }
+
+      span {
+        font-size: 1.1rem;
+        color: currentColor;
+      }
+    }
+  }
+}
