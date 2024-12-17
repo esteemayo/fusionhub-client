@@ -3,6 +3,8 @@ import Hero from '../../components/hero/Hero';
 import RelatedTags from '../../components/relatedTags/RelatedTags';
 import Comments from '../../components/comments/Comments';
 
+import Search from './search/Search';
+
 import './PostDetails.scss';
 
 const PostDetails = () => {
@@ -15,7 +17,9 @@ const PostDetails = () => {
           <RelatedTags />
           <Comments />
         </div>
-        <div className='postDetails__container--right'>PostDetails Right</div>
+        <div className='postDetails__container--right'>
+          <Search />
+        </div>
       </div>
     </div>
   );
