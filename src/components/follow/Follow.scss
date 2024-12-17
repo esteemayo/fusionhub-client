@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.follow {
+  &__container {
+    &--heading {
+    }
+
+    &--list {
+      &-item {
+        a {
+          &:link,
+          &:visited {
+          }
+        }
+      }
+    }
+  }
+}
