@@ -1,3 +1,5 @@
+import TagItem from '../tagItem/TagItem';
+
 import { relatedTags } from '../../data';
 
 import './RelatedTags.scss';
@@ -9,11 +11,7 @@ const RelatedTags = () => {
       <div className='relatedTags__container'>
         {relatedTags.map((tag) => {
           const { id, label } = tag;
-          return (
-            <span key={id} className='relatedTags__container--item'>
-              {label}
-            </span>
-          );
+          return <TagItem key={id} label={label} />;
         })}
       </div>
     </section>
