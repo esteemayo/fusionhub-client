@@ -3,6 +3,7 @@ import Hero from '../../components/hero/Hero';
 import PostDetail from '../../components/postDetail/PostDetail';
 import Follow from '../../components/follow/Follow';
 import RelatedTags from '../../components/relatedTags/RelatedTags';
+import Categories from '../../components/categories/Categories';
 
 import Search from './search/Search';
 
@@ -21,6 +22,7 @@ const PostDetails = () => {
         <div className='postDetails__container--right'>
           <Search />
           <Follow />
+          <Categories />
         </div>
       </div>
     </div>
