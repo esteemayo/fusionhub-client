@@ -47,9 +47,26 @@
       }
 
       button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 0;
+        outline: 0;
+        width: 5rem;
+        height: 4.5rem;
+        padding: 1.2rem;
+        background-color: $clr-pink-dark-1;
+        color: $clr-white;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        cursor: pointer;
+
         svg {
           width: 2rem;
           height: 2rem;
+          color: currentColor;
+          stroke-width: 2px;
         }
       }
     }
