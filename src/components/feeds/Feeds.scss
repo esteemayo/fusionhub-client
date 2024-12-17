@@ -45,6 +45,19 @@
       &--title {
         font-size: 1.25rem;
         line-height: 1.3;
+
+        a {
+          &:link,
+          &:visited {
+            font-size: inherit;
+            color: inherit;
+            transition: all 300ms ease-in-out;
+          }
+
+          &:hover {
+            color: $clr-pink-dark-1;
+          }
+        }
       }
 
       &--date {
