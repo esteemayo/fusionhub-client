@@ -1,0 +1,12 @@
+@import '../../styles//variables.scss';
+
+.tagItem {
+  text-transform: capitalize;
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding: 3px 1rem;
+  color: $clr-gray-light-1;
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+}
