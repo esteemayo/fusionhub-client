@@ -5,5 +5,21 @@
   background-color: $clr-secondary-blue;
 
   &__container {
+    &--img {
+    }
+
+    &--footer {
+      a {
+        &:link,
+        &:visited {
+        }
+      }
+
+      span {
+      }
+
+      time {
+      }
+    }
   }
 }
