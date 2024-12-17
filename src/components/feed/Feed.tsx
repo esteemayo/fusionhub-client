@@ -13,8 +13,8 @@ const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
           <img
             src={img}
             alt='image'
-            width={80}
-            height={80}
+            width={50}
+            height={50}
             className='feed__wrapper--img'
           />
         )}
