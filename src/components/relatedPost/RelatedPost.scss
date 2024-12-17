@@ -1,6 +1,9 @@
 @import '../../styles/variables.scss';
 
 .relatedPost {
+  width: 25rem;
+  background-color: $clr-secondary-blue;
+
   &__container {
   }
 }

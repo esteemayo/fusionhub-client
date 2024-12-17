@@ -1,7 +1,12 @@
 @import '../../styles/variables.scss';
 
 .relatedPosts {
+  background-color: yellowgreen;
+
   &__container {
+    display: flex;
+    flex-direction: column;
+
     &--heading {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
@@ -14,5 +19,9 @@
   }
 
   &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 }
