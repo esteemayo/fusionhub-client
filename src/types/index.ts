@@ -109,6 +109,7 @@ export interface TopPostProps {
   slug: string;
   category: string[];
   createdAt: string;
+  index: number;
 }
 
 export interface AuthLinkProps {
