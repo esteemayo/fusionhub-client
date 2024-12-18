@@ -2,7 +2,23 @@
 
 .filter {
   &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+
+    background-color: $clr-secondary-blue;
+    padding: 3rem;
+    border-radius: 3px;
+
     &--heading {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 600;
+      font-size: 1.65rem;
+      color: inherit;
+      line-height: 1.3;
     }
   }
 }
