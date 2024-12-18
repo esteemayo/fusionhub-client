@@ -168,3 +168,10 @@ export type TopPostType = {
   category: string[];
   createdAt: string;
 }[];
+
+export type FilterType = {
+  id: string;
+  name: string;
+  value: string;
+  label: string;
+}[];
