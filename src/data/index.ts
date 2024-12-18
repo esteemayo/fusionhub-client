@@ -2,6 +2,7 @@ import {
   CommentType,
   FeedItemTypes,
   MenuItemType,
+  RelatedPostType,
   RelatedTagType,
   TagItemType,
 } from '../types';
@@ -178,7 +179,7 @@ export const tagItems: TagItemType = [
   },
 ];
 
-export const relatedPosts = [
+export const relatedPosts: RelatedPostType = [
   {
     id: '1',
     img: '/post-1.jpg',

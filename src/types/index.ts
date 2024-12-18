@@ -133,3 +133,12 @@ export type FeedItemTypes = {
 }[];
 
 export type TagItemType = TagType[];
+
+export type RelatedPostType = {
+  id: string;
+  img: string;
+  title: string;
+  slug: string;
+  category: string;
+  createdAt: string;
+}[];
