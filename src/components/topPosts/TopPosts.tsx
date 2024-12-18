@@ -7,13 +7,11 @@ const TopPosts = () => {
     <aside className='topPosts'>
       <div className='topPosts__container'>
         <h2 className='topPosts__container--heading'>Top posts</h2>
-        <div className='topPosts__wrapper'>
-          <TopPost />
-          <TopPost />
-          <TopPost />
-          <TopPost />
-          <TopPost />
-        </div>
+        <TopPost />
+        <TopPost />
+        <TopPost />
+        <TopPost />
+        <TopPost />
       </div>
     </aside>
   );
