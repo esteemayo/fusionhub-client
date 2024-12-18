@@ -5,7 +5,7 @@ import { TopPostProps } from '../../types';
 
 import './TopPost.scss';
 
-const TopPost = ({ slug, title, category, createdAt }: TopPostProps) => {
+const TopPost = ({ index, slug, title, category, createdAt }: TopPostProps) => {
   const categoryLabel = useMemo(() => {
     return category.join(', ');
   }, [category]);
@@ -13,7 +13,7 @@ const TopPost = ({ slug, title, category, createdAt }: TopPostProps) => {
   return (
     <article className='topPost'>
       <div className='topPost__container'>
-        <span className='topPost__container--number'>1</span>
+        <span className='topPost__container--number'>{index + 1}</span>
         <div className='topPost__wrapper'>
           <span className='topPost__wrapper--title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
