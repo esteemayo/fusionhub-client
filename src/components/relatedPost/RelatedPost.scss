@@ -22,9 +22,10 @@
     &--footer {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 1rem;
 
-      min-height: 13rem;
+      min-height: 12rem;
       padding: 1.5rem;
 
       a {
