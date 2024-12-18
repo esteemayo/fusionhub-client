@@ -44,9 +44,11 @@
       }
 
       span {
-        &:first-child {
-          text-transform: capitalize;
-        }
+        text-transform: capitalize;
+      }
+
+      time {
+        text-transform: uppercase;
       }
     }
   }
