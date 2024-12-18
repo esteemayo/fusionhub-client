@@ -103,6 +103,14 @@ export interface RelatedPostProps {
   createdAt: string;
 }
 
+export interface TopPostProps {
+  id: string;
+  title: string;
+  slug: string;
+  category: string[];
+  createdAt: string;
+}
+
 export interface AuthLinkProps {
   url: string;
   label: string;
