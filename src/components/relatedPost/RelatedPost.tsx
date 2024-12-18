@@ -13,7 +13,7 @@ const RelatedPost = () => {
           alt='image'
           className='relatedPost__container--img'
         />
-        <div className='relatedpost__container--footer'>
+        <div className='relatedPost__container--footer'>
           <Link to='#'>
             What chelsea fans absolutely loved about Pedro Neto's performance
           </Link>
