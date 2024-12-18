@@ -201,7 +201,7 @@ export const relatedPosts: RelatedPostType = [
     img: '/post-3.jpeg',
     title: 'Many desktop publish packages and web',
     slug: 'many-desktop-publish-packages-and-web',
-    category: 'lifestyle',
+    category: 'nature',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
