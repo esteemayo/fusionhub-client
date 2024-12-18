@@ -2,6 +2,9 @@
 
 .filterItem {
   &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   &__group {
@@ -10,11 +13,13 @@
     gap: 1rem;
 
     &--label {
+      display: inline-block;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
       font-weight: 600;
       font-size: 1.4rem;
       color: $clr-gray-light-3;
+      cursor: pointer;
     }
 
     &--control {
