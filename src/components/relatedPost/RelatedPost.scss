@@ -24,6 +24,7 @@
       a {
         &:link,
         &:visited {
+          text-rendering: optimizeLegibility;
           font-weight: 700;
           font-size: 1.5rem;
           line-height: 1.12;
