@@ -1,5 +1,6 @@
-import { topPosts } from '../../data';
 import TopPost from '../topPost/TopPost';
+
+import { topPosts } from '../../data';
 
 import './TopPosts.scss';
 
