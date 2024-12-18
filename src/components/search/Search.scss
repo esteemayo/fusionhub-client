@@ -1,13 +1,14 @@
 @import '../../styles/variables.scss';
 
-.search {
+.searchForm {
   &__container {
     &--input {
-      svg {
-        width: 2rem;
-        height: 2rem;
-        stroke-width: 2px;
-      }
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      stroke-width: 2px;
     }
   }
 }

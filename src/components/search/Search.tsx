@@ -6,13 +6,14 @@ const Search = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className='searchForm'>
+      <div className='searchForm__container'>
         <input
           type='search'
           name='search'
           id='search'
           placeholder='Search...'
+          className='searchForm__container--input'
         />
         <svg
           xmlns='http://www.w3.org/2000/svg'
