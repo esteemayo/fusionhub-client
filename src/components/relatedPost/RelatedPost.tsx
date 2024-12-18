@@ -9,7 +9,7 @@ const RelatedPost = () => {
         <img
           src='/post-1.jpg'
           width={250}
-          height={135}
+          height={150}
           alt='image'
           className='relatedPost__container--img'
         />
