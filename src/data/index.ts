@@ -155,27 +155,27 @@ export const tagItems: TagItemType = [
   },
   {
     id: 7,
-    label: 'Travel',
+    label: 'Culture',
   },
   {
     id: 8,
-    label: 'Lifestyle',
+    label: 'Creativity',
   },
   {
     id: 9,
-    label: 'Photo',
+    label: 'Humor',
   },
   {
     id: 10,
-    label: 'Adventures',
+    label: 'Music',
   },
   {
     id: 11,
-    label: 'Musician',
+    label: 'Art',
   },
   {
     id: 12,
-    label: 'Food',
+    label: 'Nature',
   },
 ];
 
