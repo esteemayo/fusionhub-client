@@ -9,7 +9,7 @@ const Search = () => {
     <form onSubmit={handleSubmit} className='searchForm'>
       <div className='searchForm__container'>
         <input
-          type='search'
+          type='text'
           name='search'
           id='search'
           placeholder='Search...'
