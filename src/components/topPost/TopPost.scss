@@ -2,9 +2,15 @@
 
 .topPost {
   &__container {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+
     &--number {
     }
+  }
 
+  &__wrapper {
     &--title {
     }
 
