@@ -185,7 +185,7 @@ export const relatedPosts: RelatedPostType = [
     img: '/post-1.jpg',
     title: 'Alonso kelina falao asiano pero',
     slug: 'alonso-kelina-falao-asiano-pero',
-    category: 'lifestyle',
+    category: 'photo',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -206,6 +206,14 @@ export const relatedPosts: RelatedPostType = [
   },
   {
     id: '4',
+    img: '/post-4.webp',
+    title: 'Various versions have evolved over the years',
+    slug: 'various-versions-have-evolved-over-the-years',
+    category: 'adventures',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '5',
     img: '/post-5.jpeg',
     title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
     slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
