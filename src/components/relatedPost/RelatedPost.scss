@@ -3,6 +3,8 @@
 .relatedPost {
   width: 25rem;
   background-color: $clr-secondary-blue;
+  border-radius: 0.5rem;
+  overflow: hidden;
 
   &__container {
     &--img {
