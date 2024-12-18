@@ -5,6 +5,7 @@ import {
   RelatedPostType,
   RelatedTagType,
   TagItemType,
+  TopPostType,
 } from '../types';
 
 export const menuItems: MenuItemType = [
@@ -222,7 +223,7 @@ export const relatedPosts: RelatedPostType = [
   },
 ];
 
-export const topPosts = [
+export const topPosts: TopPostType = [
   {
     id: '1',
     title: 'Omnis velit exercitationem soluta nam nemo!',
