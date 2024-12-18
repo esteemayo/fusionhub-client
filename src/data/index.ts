@@ -193,7 +193,7 @@ export const relatedPosts: RelatedPostType = [
     img: '/post-2.jpeg',
     title: 'It is a long established fact that a reader',
     slug: 'it-is-a-long-established-fact-that-a-reader',
-    category: 'lifestyle',
+    category: 'adventures',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -209,7 +209,7 @@ export const relatedPosts: RelatedPostType = [
     img: '/post-4.webp',
     title: 'Various versions have evolved over the years',
     slug: 'various-versions-have-evolved-over-the-years',
-    category: 'adventures',
+    category: 'travel',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
