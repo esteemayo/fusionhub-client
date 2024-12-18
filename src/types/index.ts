@@ -94,6 +94,15 @@ export interface FeedProps {
   createdAt: string;
 }
 
+export interface RelatedPostProps {
+  id: string;
+  img: string;
+  title: string;
+  slug: string;
+  category: string;
+  createdAt: string;
+}
+
 export interface AuthLinkProps {
   url: string;
   label: string;
