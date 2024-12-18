@@ -1,6 +1,7 @@
 import TopPosts from '../../components/topPosts/TopPosts';
-import Search from '../../components/search/Search';
+import Filter from '../../components/filter/Filter';
 import Categories from '../../components/categories/Categories';
+import Search from '../../components/search/Search';
 
 import './Posts.scss';
 
@@ -10,6 +11,7 @@ const Posts = () => {
       <div className='posts__container'>
         <div className='posts__container--left'>
           <Search />
+          <Filter />
           <Categories />
           <TopPosts />
         </div>
