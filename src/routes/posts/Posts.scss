@@ -7,5 +7,21 @@
   &__container {
     width: 144rem;
     min-height: 100vh;
+    padding: 10rem 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+
+    &--left {
+      flex: 1;
+      background-color: orange;
+    }
+
+    &--right {
+      flex: 3;
+      background-color: orangered;
+    }
   }
 }
