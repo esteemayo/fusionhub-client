@@ -39,10 +39,15 @@
       border-bottom: 1px solid $clr-tertiary-blue;
     }
 
-    &--label,
+    &--label {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: $clr-gray-light-3;
+    }
+
     &--total {
       font-weight: 500;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: $clr-gray-light-1;
     }
   }
