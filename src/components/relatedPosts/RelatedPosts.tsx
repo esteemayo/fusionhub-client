@@ -10,7 +10,7 @@ const RelatedPosts = () => {
       <div className='relatedPosts__container'>
         <h5 className='relatedPosts__container--heading'>Related posts</h5>
         <div className='relatedPosts__wrapper'>
-          {relatedPosts.map((post) => {
+          {relatedPosts.slice(0, 4).map((post) => {
             return <RelatedPost key={post.id} {...post} />;
           })}
         </div>
