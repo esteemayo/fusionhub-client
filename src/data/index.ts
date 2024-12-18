@@ -177,3 +177,38 @@ export const tagItems: TagItemType = [
     label: 'Food',
   },
 ];
+
+export const relatedPosts = [
+  {
+    id: '1',
+    img: '/post-1.jpg',
+    title: 'Alonso kelina falao asiano pero',
+    slug: 'alonso-kelina-falao-asiano-pero',
+    category: 'lifestyle',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '2',
+    img: '/post-2.jpeg',
+    title: 'It is a long established fact that a reader',
+    slug: 'it-is-a-long-established-fact-that-a-reader',
+    category: 'lifestyle',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '3',
+    img: '/post-3.jpeg',
+    title: 'Many desktop publish packages and web',
+    slug: 'many-desktop-publish-packages-and-web',
+    category: 'lifestyle',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '4',
+    img: '/post-5.jpeg',
+    title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
+    slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
+    category: 'lifestyle',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+];
