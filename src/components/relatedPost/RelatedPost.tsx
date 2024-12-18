@@ -17,8 +17,10 @@ const RelatedPost = () => {
           <Link to='#'>
             What chelsea fans absolutely loved about Pedro Neto's performance
           </Link>
-          <span>The chelsea chronicle</span>
-          <time dateTime=''>43 mins ago</time>
+          <div className='relatedPost__container--footer-category'>
+            <span>The chelsea chronicle</span>
+            <time dateTime=''>43 mins ago</time>
+          </div>
         </div>
       </div>
     </article>
