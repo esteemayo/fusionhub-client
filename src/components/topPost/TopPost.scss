@@ -10,6 +10,7 @@
       font-weight: 700;
       font-size: 3rem;
       font-variant: tabular-nums;
+      color: $clr-gray-light-3;
       line-height: 1;
     }
   }
@@ -33,14 +34,15 @@
     &--category {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 2px;
 
       span {
+        color: $clr-gray-light-1;
+
         &:first-child,
         &:last-child {
           font-weight: 400;
           font-size: 1.2rem;
-          color: $clr-gray-light-1;
         }
 
         &:first-child {
