@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.search {
+  &__container {
+    &--input {
+      svg {
+        width: 2rem;
+        height: 2rem;
+        stroke-width: 2px;
+      }
+    }
+  }
+}
