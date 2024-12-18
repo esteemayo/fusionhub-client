@@ -112,7 +112,7 @@
 
     &--item {
       padding: 1.5rem 1rem;
-      background-color: #273547;
+      background-color: $clr-tertiary-blue;
       font-size: 1.3rem;
       color: inherit;
       border-radius: 2px;
@@ -156,7 +156,7 @@
       height: 7rem;
       display: inline-block;
       object-fit: cover;
-      background-color: #273547;
+      background-color: $clr-tertiary-blue;
       border-radius: 50%;
     }
 
@@ -177,7 +177,7 @@
     font-size: 1.3rem;
     width: 10rem;
     height: 4rem;
-    background-color: #273547;
+    background-color: $clr-tertiary-blue;
     color: $clr-white;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -191,7 +191,7 @@
   &__login {
     width: 100%;
     padding: 1.5rem 1rem;
-    background-color: #273547;
+    background-color: $clr-tertiary-blue;
     color: $clr-white;
     border-radius: 2px;
   }
