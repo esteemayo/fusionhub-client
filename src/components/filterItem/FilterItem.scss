@@ -10,6 +10,11 @@
     gap: 1rem;
 
     &--label {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: $clr-gray-light-3;
     }
 
     &--control {
