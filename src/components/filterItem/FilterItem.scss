@@ -18,6 +18,17 @@
     }
 
     &--control {
+      appearance: none;
+      width: 1.6rem;
+      height: 1.6rem;
+      background-color: $clr-tertiary-blue;
+      border: 1.5px solid $clr-primary-blue;
+      border-radius: 2px;
+      cursor: pointer;
+
+      &:checked {
+        background-color: $clr-primary-blue;
+      }
     }
   }
 }
