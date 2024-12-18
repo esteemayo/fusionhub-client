@@ -21,7 +21,7 @@ const TopPost = ({ index, slug, title, category, createdAt }: TopPostProps) => {
           <div className='topPost__wrapper--category'>
             <span>{categoryLabel}</span>
             <span>-</span>
-            <span>DEC 18, 2024</span>
+            <time dateTime={createdAt}>DEC 18, 2024</time>
           </div>
         </div>
       </div>
