@@ -9,6 +9,7 @@ const TopPost = ({ slug, title, category, createdAt }: TopPostProps) => {
   const categoryLabel = useMemo(() => {
     return category.join(', ');
   }, [category]);
+
   return (
     <article className='topPost'>
       <div className='topPost__container'>
