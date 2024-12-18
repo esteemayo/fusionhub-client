@@ -21,7 +21,7 @@ const Navbar = () => {
     <nav className='navbar'>
       <div className='navbar__container'>
         <div className='navbar__logo'>
-          <Link to='/'>Logo</Link>
+          <Link to='/'>Fusion hub</Link>
         </div>
         <div className='navbar__toggle' onClick={handleToggle}>
           <span>Menu</span>

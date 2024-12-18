@@ -28,7 +28,7 @@ const Sidebar = () => {
       <div className='sidebar__container'>
         <div className='sidebar__wrapper'>
           <div className='sidebar__logo'>
-            <Link to='/'>Logo</Link>
+            <Link to='/'>Fusion hub</Link>
           </div>
           <button className='sidebar__closeBtn' onClick={handleClose}>
             <span>Menu</span>
