@@ -16,13 +16,19 @@
       a {
         &:link,
         &:visited {
+          font-weight: 700;
+          font-size: 1.5rem;
+          line-height: 1.12;
         }
       }
 
       span {
+        font-size: 1.4rem;
       }
 
       time {
+        font-size: 1.3rem;
+        color: $clr-gray-light-1;
       }
     }
   }
