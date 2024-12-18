@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { TopPostProps } from '../../types';
+import { formatDate } from '../../utils/formatDate';
 
 import './TopPost.scss';
 
@@ -21,7 +22,7 @@ const TopPost = ({ index, slug, title, category, createdAt }: TopPostProps) => {
           <div className='topPost__wrapper--category'>
             <span>{categoryLabel}</span>
             <span>-</span>
-            <time dateTime={createdAt}>DEC 18, 2024</time>
+            <time dateTime={createdAt}>{formatDate(createdAt)}</time>
           </div>
         </div>
       </div>
