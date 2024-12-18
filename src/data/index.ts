@@ -221,3 +221,41 @@ export const relatedPosts: RelatedPostType = [
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
 ];
+
+export const topPosts = [
+  {
+    id: '1',
+    title: 'Omnis velit exercitationem soluta nam nemo!',
+    slug: 'omnis-velit-exercitationem-soluta-nam-nemo!',
+    category: ['Food', 'Travel'],
+    createdAt: '2024-12-18T18:01:25.085+00:00',
+  },
+  {
+    id: '2',
+    title: 'Reiciendis dicta expedita numquam esse praesentium',
+    slug: 'reiciendis-dicta-expedita-numquam-esse-praesentium',
+    category: ['Music', 'Humor'],
+    createdAt: '2024-12-18T18:01:25.085+00:00',
+  },
+  {
+    id: '3',
+    title: 'Perferendis esse sapiente molestiae inventore.',
+    slug: 'perferendis-esse-sapiente-molestiae-inventore.',
+    category: ['Creativity', 'Adventures'],
+    createdAt: '2024-12-18T18:01:25.085+00:00',
+  },
+  {
+    id: '4',
+    title: 'Dolorum temporibus voluptatibus libero illo molestiae',
+    slug: 'dolorum-temporibus-voluptatibus-libero-illo-molestiae',
+    category: ['Culture', 'Art'],
+    createdAt: '2024-12-18T18:01:25.085+00:00',
+  },
+  {
+    id: '5',
+    title: 'Beatae veritatis pariatur provident omnis',
+    slug: 'beatae-veritatis-pariatur-provident-omnis',
+    category: ['Nature', 'Photo'],
+    createdAt: '2024-12-18T18:01:25.085+00:00',
+  },
+];
