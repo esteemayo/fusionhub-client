@@ -151,3 +151,11 @@ export type RelatedPostType = {
   category: string;
   createdAt: string;
 }[];
+
+export type TopPostType = {
+  id: string;
+  title: string;
+  slug: string;
+  category: string[];
+  createdAt: string;
+}[];
