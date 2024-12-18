@@ -1,3 +1,4 @@
+import TopPosts from '../../components/topPosts/TopPosts';
 import Search from '../../components/search/Search';
 import Categories from '../../components/categories/Categories';
 
@@ -10,6 +11,7 @@ const Posts = () => {
         <div className='posts__container--left'>
           <Search />
           <Categories />
+          <TopPosts />
         </div>
         <div className='posts__container--right'>Posts Right</div>
       </div>
