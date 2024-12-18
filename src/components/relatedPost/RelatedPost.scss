@@ -12,6 +12,11 @@
       height: 15rem;
       display: block;
       object-fit: cover;
+      transition: all 300ms ease-in-out;
+
+      &:hover {
+        filter: blur(1px) grayscale(1);
+      }
     }
 
     &--footer {
