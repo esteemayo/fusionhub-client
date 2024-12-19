@@ -88,7 +88,7 @@ export const postItems: PostItemType = [
     title: '5 Tips to improve your writing skills',
     slug: '5-tips-to-improve-your-writing-skills',
     desc: 'Dignissimos quo voluptatem recusandae repudiandae minima consectetur itaque fugit deserunt officia temporibus? Esse, aperiam sapiente reprehenderit libero dignissimos qui vel eum doloremque...',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '8',
@@ -96,7 +96,7 @@ export const postItems: PostItemType = [
     title: '20 Best books to read this summer',
     slug: '20-best-books-to-read-this-summer',
     desc: 'Cum omnis provident molestias dolor quasi impedit nisi id ipsa dolore explicabo minus esse facilis laboriosam sint ab repudiandae expedita, saepe accusantium.',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '9',
@@ -104,7 +104,7 @@ export const postItems: PostItemType = [
     title: '7 Habits of hightly successful people',
     slug: '7-habits-of-hightly-successful-people',
     desc: 'Exercitationem repellat voluptates reprehenderit illo expedita esse quia voluptatum voluptate dolore, perferendis, amet eveniet quo nemo soluta laudantium. Illo eveniet iure debitis!',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '10',
@@ -112,7 +112,7 @@ export const postItems: PostItemType = [
     title: '15 Ways to reduce stress and anxiety',
     slug: '15-ways-to-reduce-stress-and-anxiety',
     desc: 'Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '11',
@@ -120,7 +120,7 @@ export const postItems: PostItemType = [
     title: 'How to start a blog and make money online',
     slug: 'how-to-start-a-blog-and-make-money-online',
     desc: 'Numquam recusandae ullam explicabo fugiat vitae ea sed quas, consequatur, ad necessitatibus amet doloremque ratione omnis ipsa! Nisi, optio! Rem, odio eveniet!',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '12',
@@ -128,7 +128,7 @@ export const postItems: PostItemType = [
     title: 'What is the future of Artificial Intelligence',
     slug: 'what-is-the-future-of-artificial-intelligence',
     desc: 'Quo error odit quasi optio quia, sit aliquid voluptas asperiores provident cupiditate doloribus dolorum ipsum libero cumque enim praesentium quaerat, perspiciatis temporibus.',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
 ];
 
