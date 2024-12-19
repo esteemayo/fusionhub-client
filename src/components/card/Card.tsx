@@ -1,33 +1,34 @@
+import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
+
+import { CardProps } from '../../types';
 
 import './Card.scss';
 
-const Card = () => {
+const Card = ({ img, desc, slug, title, createdAt }: CardProps) => {
   return (
     <article className='card'>
       <div className='card__overlay'>&nbsp;</div>
-      <img
-        src='/post-1.jpg'
-        alt='post'
-        width={300}
-        height={300}
-        className='card__img'
-      />
+      {img && (
+        <img
+          src={img}
+          alt='post'
+          width={300}
+          height={300}
+          className='card__img'
+        />
+      )}
       <div className='card__footer'>
         <div className='card__footer--container'>
           <h3 className='card__footer--container-title'>
-            <Link to={`/posts/slug`}>
-              It is a long established fact that a reader
-            </Link>
+            <Link to={`/posts/${slug}`}>{title}</Link>
           </h3>
-          <p className='card__footer--container-desc'>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit...
-          </p>
+          <p className='card__footer--container-desc'>{desc}</p>
         </div>
         <div className='card__footer--wrapper'>
           <span className='card__footer--wrapper-category'>Adventures</span>
           <time dateTime='' className='card__footer--wrapper-time'>
-            2 days ago
+            {format(createdAt)}
           </time>
         </div>
       </div>
