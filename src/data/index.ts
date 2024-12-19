@@ -95,27 +95,27 @@ export const comments: CommentType = [
 export const categoryItems: CategoryType = [
   {
     id: '1',
-    name: 'Lifestyle',
+    name: 'lifestyle',
     total: 5,
   },
   {
     id: '2',
-    name: 'Travel',
+    name: 'travel',
     total: 34,
   },
   {
     id: '3',
-    name: 'Fashion',
+    name: 'fashion',
     total: 9,
   },
   {
     id: '4',
-    name: 'Music',
+    name: 'music',
     total: 46,
   },
   {
     id: '5',
-    name: 'Branding',
+    name: 'branding',
     total: 16,
   },
 ];
