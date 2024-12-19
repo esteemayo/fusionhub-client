@@ -3,8 +3,11 @@
 .card {
   width: 35rem;
   background-color: $clr-secondary-blue;
+  border-radius: 0.5rem;
+  overflow: hidden;
 
   &__img {
+    width: 100%;
   }
 
   &__footer {
