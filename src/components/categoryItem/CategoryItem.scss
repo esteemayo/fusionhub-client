@@ -20,6 +20,19 @@
     font-weight: 700;
     font-size: 1.4rem;
     color: $clr-gray-light-3;
+
+    &--link {
+      &:link,
+      &:visited {
+        font-weight: inherit;
+        font-size: inherit;
+        transition: all 300ms ease-in-out;
+      }
+
+      &:hover {
+        color: $clr-pink-dark-1;
+      }
+    }
   }
 
   &__total {

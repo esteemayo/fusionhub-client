@@ -18,7 +18,12 @@ const CategoryItem = ({ name, total }: CategoryItemProps) => {
   return (
     <article className='categoryItem'>
       <span className='categoryItem__label'>
-        <Link to={`/posts?category=${name}`}>{name}</Link>
+        <Link
+          to={`/posts?category=${name}`}
+          className='categoryItem__label--link'
+        >
+          {name}
+        </Link>
       </span>
       <span className='categoryItem__total'>({formattedTotal})</span>
     </article>
