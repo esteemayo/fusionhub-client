@@ -1,19 +1,21 @@
+import { FilterItemProps } from '../../types';
+
 import './FilterItem.scss';
 
-const FilterItem = () => {
+const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
   return (
     <div className='filterItem'>
       <div className='filterItem__container'>
         <div className='filterItem__group'>
           <input
             type='radio'
-            name='sort'
-            id='newest'
-            value='newest'
+            name={name}
+            id={id}
+            value={value}
             className='filterItem__group--control'
           />
-          <label htmlFor='newest' className='filterItem__group--label'>
-            Newest
+          <label htmlFor={id} className='filterItem__group--label'>
+            {label}
           </label>
         </div>
       </div>
