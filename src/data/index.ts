@@ -37,8 +37,8 @@ export const postItems: PostItemType = [
   {
     id: '1',
     img: '/post-1.jpg',
-    title: 'Alonso kelina falao asiano pero',
-    slug: 'alonso-kelina-falao-asiano-pero',
+    title: 'The ultimate guide to SEO optimization',
+    slug: 'the-ultimate-guide-to-seo-optimization',
     desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
@@ -224,8 +224,8 @@ export const feedItems: FeedItemTypes = [
   {
     id: '1',
     img: '/post-1.jpg',
-    title: 'Alonso kelina falao asiano pero',
-    slug: 'alonso-kelina-falao-asiano-pero',
+    title: 'The ultimate guide to SEO optimization',
+    slug: 'the-ultimate-guide-to-seo-optimization',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -313,8 +313,8 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '1',
     img: '/post-1.jpg',
-    title: 'Alonso kelina falao asiano pero',
-    slug: 'alonso-kelina-falao-asiano-pero',
+    title: 'The ultimate guide to SEO optimization',
+    slug: 'the-ultimate-guide-to-seo-optimization',
     category: 'photo',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
