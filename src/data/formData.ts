@@ -1,4 +1,6 @@
-export const filters = [
+import { FilterType } from '../types';
+
+export const filters: FilterType = [
   {
     id: 'newest',
     name: 'sort',
