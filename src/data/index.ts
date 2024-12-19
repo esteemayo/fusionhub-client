@@ -39,6 +39,7 @@ export const postItems: PostItemType = [
     img: '/post-1.jpg',
     title: 'Alonso kelina falao asiano pero',
     slug: 'alonso-kelina-falao-asiano-pero',
+    desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -46,6 +47,7 @@ export const postItems: PostItemType = [
     img: '/post-2.jpeg',
     title: 'It is a long established fact that a reader',
     slug: 'it-is-a-long-established-fact-that-a-reader',
+    desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -53,6 +55,7 @@ export const postItems: PostItemType = [
     img: '/post-3.jpeg',
     title: 'Many desktop publish packages and web',
     slug: 'many-desktop-publish-packages-and-web',
+    desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius cupiditate culpa nesciunt dignissimos beatae tempora consequatur deserunt at iste provident alias voluptatum itaque in nemo nisi ipsum, repellendus dolorum magnam!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -60,6 +63,7 @@ export const postItems: PostItemType = [
     img: '/post-4.webp',
     title: 'Various versions have evolved over the years',
     slug: 'various-versions-have-evolved-over-the-years',
+    desc: 'Nihil molestias quas ducimus libero! Dolorum quis sequi assumenda qui autem commodi debitis dicta, esse in vel repudiandae, odit delectus corporis excepturi...',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -67,6 +71,7 @@ export const postItems: PostItemType = [
     img: '/post-5.jpeg',
     title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
     slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
+    desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque animi dolores aut cupiditate sit sequi et veritatis, repellat inventore, nesciunt modi rerum ab deserunt maxime enim odit tempora officiis recusandae!!!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -74,6 +79,7 @@ export const postItems: PostItemType = [
     img: '/post-6.jpeg',
     title: '10 Ways to boost your productivity',
     slug: '10-ways-to-boost-your-productivity',
+    desc: 'Corrupti, id minus odio cumque voluptas dicta, reiciendis ab laudantium exercitationem, minima cum ea. Quo aliquam placeat quibusdam tempore, minima labore cum.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -81,6 +87,7 @@ export const postItems: PostItemType = [
     img: '/post-7.jpeg',
     title: '5 Tips to improve your writing skills',
     slug: '5-tips-to-improve-your-writing-skills',
+    desc: 'Dignissimos quo voluptatem recusandae repudiandae minima consectetur itaque fugit deserunt officia temporibus? Esse, aperiam sapiente reprehenderit libero dignissimos qui vel eum doloremque...',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -88,6 +95,7 @@ export const postItems: PostItemType = [
     img: '/post-8.jpeg',
     title: '20 Best books to read this summer',
     slug: '20-best-books-to-read-this-summer',
+    desc: 'Cum omnis provident molestias dolor quasi impedit nisi id ipsa dolore explicabo minus esse facilis laboriosam sint ab repudiandae expedita, saepe accusantium.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -95,6 +103,7 @@ export const postItems: PostItemType = [
     img: '/post-9.webp',
     title: '7 Habits of hightly successful people',
     slug: '7-habits-of-hightly-successful-people',
+    desc: 'Exercitationem repellat voluptates reprehenderit illo expedita esse quia voluptatum voluptate dolore, perferendis, amet eveniet quo nemo soluta laudantium. Illo eveniet iure debitis!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -102,6 +111,7 @@ export const postItems: PostItemType = [
     img: '/post-10.webp',
     title: '15 Ways to reduce stress and anxiety',
     slug: '15-ways-to-reduce-stress-and-anxiety',
+    desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -109,6 +119,7 @@ export const postItems: PostItemType = [
     img: '/post-11.jpeg',
     title: 'How to start a blog and make money online',
     slug: 'how-to-start-a-blog-and-make-money-online',
+    desc: 'Numquam recusandae ullam explicabo fugiat vitae ea sed quas, consequatur, ad necessitatibus amet doloremque ratione omnis ipsa! Nisi, optio! Rem, odio eveniet!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -116,6 +127,7 @@ export const postItems: PostItemType = [
     img: '/post-12.jpeg',
     title: 'What is the future of Artificial Intelligence',
     slug: 'what-is-the-future-of-artificial-intelligence',
+    desc: 'Quo error odit quasi optio quia, sit aliquid voluptas asperiores provident cupiditate doloribus dolorum ipsum libero cumque enim praesentium quaerat, perspiciatis temporibus.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
 ];
