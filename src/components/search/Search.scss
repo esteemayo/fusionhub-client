@@ -22,6 +22,8 @@
       padding: 1.6rem;
       background-color: transparent;
       color: currentColor;
+      position: inherit;
+      z-index: 20;
 
       &::placeholder {
         font-size: 1.2rem;
@@ -33,6 +35,8 @@
       width: 2rem;
       height: 2rem;
       stroke-width: 2px;
+      position: inherit;
+      z-index: 10;
 
       position: absolute;
       top: 1.1rem;
