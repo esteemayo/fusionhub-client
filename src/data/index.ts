@@ -93,7 +93,7 @@ export const postItems: PostItemType = [
   {
     id: '8',
     img: '/post-8.jpeg',
-    title: '20 Best books to read this summer',
+    title: '20 Best Books to Read This Summer',
     slug: '20-best-books-to-read-this-summer',
     desc: 'Cum omnis provident molestias dolor quasi impedit nisi id ipsa dolore explicabo minus esse facilis laboriosam sint ab repudiandae expedita, saepe accusantium.',
     createdAt: '2024-12-19T19:34:43.085+00:00',
@@ -329,7 +329,7 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '2',
     img: '/post-8.jpeg',
-    title: '20 Best books to read this summer',
+    title: '20 Best Books to Read This Summer',
     slug: '20-best-books-to-read-this-summer',
     category: 'adventures',
     createdAt: '2024-12-19T19:34:43.085+00:00',
