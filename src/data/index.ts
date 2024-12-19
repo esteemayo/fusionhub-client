@@ -3,6 +3,7 @@ import {
   CommentType,
   FeedItemTypes,
   MenuItemType,
+  PostItemType,
   RelatedPostType,
   RelatedTagType,
   TagItemType,
@@ -32,7 +33,7 @@ export const menuItems: MenuItemType = [
   },
 ];
 
-export const postItems = [
+export const postItems: PostItemType = [
   {
     id: '1',
     img: '/post-1.jpg',

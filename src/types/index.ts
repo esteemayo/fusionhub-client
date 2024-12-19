@@ -142,6 +142,15 @@ type TagType = {
   label: string;
 };
 
+export type PostItemType = {
+  id: string;
+  img: string;
+  title: string;
+  slug: string;
+  desc: string;
+  createdAt: string;
+}[];
+
 export type RelatedTagType = TagType[];
 
 export type CommentType = {
