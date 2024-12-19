@@ -113,8 +113,8 @@ export const postItems = [
   {
     id: '12',
     img: '/post-5.jpeg',
-    title: '',
-    slug: '',
+    title: 'What is the future of Artificial Intelligence',
+    slug: 'what-is-the-future-of-artificial-intelligence',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
 ];
