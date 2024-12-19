@@ -32,6 +32,11 @@
         color: inherit;
         line-height: 1.12;
         overflow: hidden;
+        transition: all 300ms ease-in-out;
+
+        &:hover {
+          color: $clr-pink-dark-1;
+        }
 
         a {
           &:link,
@@ -43,6 +48,7 @@
       }
 
       &-desc {
+        line-height: 1.12;
       }
     }
 
