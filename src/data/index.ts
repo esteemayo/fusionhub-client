@@ -55,7 +55,7 @@ export const postItems: PostItemType = [
     img: '/post-3.jpeg',
     title: 'Many desktop publish packages and web',
     slug: 'many-desktop-publish-packages-and-web',
-    desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius cupiditate culpa nesciunt dignissimos beatae tempora consequatur deserunt at iste provident alias voluptatum itaque in nemo nisi ipsum, repellendus dolorum magnam!',
+    desc: 'Eius cupiditate culpa nesciunt dignissimos beatae tempora consequatur deserunt at iste provident alias voluptatum itaque in nemo nisi ipsum, repellendus dolorum magnam!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -71,7 +71,7 @@ export const postItems: PostItemType = [
     img: '/post-5.jpeg',
     title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
     slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
-    desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque animi dolores aut cupiditate sit sequi et veritatis, repellat inventore, nesciunt modi rerum ab deserunt maxime enim odit tempora officiis recusandae!!!',
+    desc: 'Doloremque animi dolores aut cupiditate sit sequi et veritatis, repellat inventore, nesciunt modi rerum ab deserunt maxime enim odit tempora officiis recusandae!!!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
