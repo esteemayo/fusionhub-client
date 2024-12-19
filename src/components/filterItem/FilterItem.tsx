@@ -4,7 +4,7 @@ import './FilterItem.scss';
 
 const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
   return (
-    <div className='filterItem'>
+    <article className='filterItem'>
       <div className='filterItem__container'>
         <div className='filterItem__group'>
           <input
@@ -19,7 +19,7 @@ const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
           </label>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 
