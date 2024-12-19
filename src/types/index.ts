@@ -131,6 +131,15 @@ export interface CategoryItemProps {
   total: number;
 }
 
+export interface CardProps {
+  id: string;
+  img: string;
+  title: string;
+  slug: string;
+  desc: string;
+  createdAt: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
