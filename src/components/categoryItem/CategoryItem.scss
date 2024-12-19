@@ -17,6 +17,8 @@
   }
 
   &__label {
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
     font-weight: 700;
     font-size: 1.4rem;
     color: $clr-gray-light-3;
