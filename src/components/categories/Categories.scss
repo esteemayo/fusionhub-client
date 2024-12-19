@@ -22,33 +22,4 @@
       margin-bottom: 1.5rem;
     }
   }
-
-  &__list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    font-weight: 500;
-    font-size: 1.25rem;
-    padding: 1rem 0.5rem;
-    color: $clr-gray-light-1;
-    line-height: 1.2;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid $clr-tertiary-blue;
-    }
-
-    &--label {
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: $clr-gray-light-3;
-    }
-
-    &--total {
-      font-weight: 500;
-      font-size: 1.2rem;
-      color: $clr-gray-light-1;
-    }
-  }
 }
