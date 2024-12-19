@@ -118,6 +118,13 @@ export interface AuthLinkProps {
   urlLabel: string;
 }
 
+export interface FilterItemProps {
+  id: string;
+  name: string;
+  value: string;
+  label: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
