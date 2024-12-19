@@ -14,7 +14,14 @@
   }
 
   &__footer {
+    min-height: 15rem;
+    padding: 2rem;
+
     &--container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
       &-title {
         a {
           &:link,
