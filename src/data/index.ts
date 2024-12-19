@@ -85,7 +85,7 @@ export const postItems: PostItemType = [
   {
     id: '7',
     img: '/post-7.jpeg',
-    title: '5 Tips to improve your writing skills',
+    title: '5 Tips To Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     desc: 'Dignissimos quo voluptatem recusandae repudiandae minima consectetur itaque fugit deserunt officia temporibus? Esse, aperiam sapiente reprehenderit libero dignissimos qui vel eum doloremque...',
     createdAt: '2024-12-19T19:34:43.085+00:00',
@@ -313,7 +313,7 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '1',
     img: '/post-7.jpeg',
-    title: '5 Tips to improve your writing skills',
+    title: '5 Tips To Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     category: 'photo',
     createdAt: '2024-12-19T19:34:43.085+00:00',
