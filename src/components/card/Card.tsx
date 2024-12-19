@@ -16,7 +16,7 @@ const Card = () => {
         <div className='card__footer--container'>
           <h3 className='card__footer--container-title'>
             <Link to={`/posts/slug`}>
-              It is a long established fact that a reader and
+              It is a long established fact that a reader
             </Link>
           </h3>
           <p className='card__footer--container-desc'>
