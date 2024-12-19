@@ -1,6 +1,7 @@
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 
+import { excerpts } from '../../utils';
 import { CardProps } from '../../types';
 
 import './Card.scss';
@@ -23,7 +24,7 @@ const Card = ({ img, desc, slug, title, createdAt }: CardProps) => {
           <h3 className='card__footer--container-title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
           </h3>
-          <p className='card__footer--container-desc'>{desc}</p>
+          <p className='card__footer--container-desc'>{excerpts(desc, 60)}</p>
         </div>
         <div className='card__footer--wrapper'>
           <span className='card__footer--wrapper-category'>Adventures</span>
