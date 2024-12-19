@@ -69,8 +69,8 @@ export const postItems: PostItemType = [
   {
     id: '5',
     img: '/post-5.jpeg',
-    title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
-    slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
+    title: 'Can You Learn to Code in Just a Few Weeks',
+    slug: 'can-you-learn-to-code-in-just-a-few-weeks',
     desc: 'Doloremque animi dolores aut cupiditate sit sequi et veritatis, repellat inventore, nesciunt modi rerum ab deserunt maxime enim odit tempora officiis recusandae!!!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
@@ -252,8 +252,8 @@ export const feedItems: FeedItemTypes = [
   {
     id: '5',
     img: '/post-5.jpeg',
-    title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
-    slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
+    title: 'Can You Learn to Code in Just a Few Weeks',
+    slug: 'can-you-learn-to-code-in-just-a-few-weeks',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
 ];
@@ -345,8 +345,8 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '5',
     img: '/post-5.jpeg',
-    title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
-    slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
+    title: 'Can You Learn to Code in Just a Few Weeks',
+    slug: 'can-you-learn-to-code-in-just-a-few-weeks',
     category: 'lifestyle',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
