@@ -14,7 +14,7 @@ const Card = ({ img, desc, slug, title, createdAt }: CardProps) => {
           src={img}
           alt='post'
           width={300}
-          height={300}
+          height={250}
           className='card__img'
         />
       )}
