@@ -53,8 +53,8 @@ export const postItems: PostItemType = [
   {
     id: '3',
     img: '/post-3.jpeg',
-    title: 'Many desktop publish packages and web',
-    slug: 'many-desktop-publish-packages-and-web',
+    title: 'How to Write a Bestselling Novel',
+    slug: 'how-to-Write-a-bestselling-novel',
     desc: 'Eius cupiditate culpa nesciunt dignissimos beatae tempora consequatur deserunt at iste provident alias voluptatum itaque in nemo nisi ipsum, repellendus dolorum magnam!',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
@@ -238,8 +238,8 @@ export const feedItems: FeedItemTypes = [
   {
     id: '3',
     img: '/post-3.jpeg',
-    title: 'Many desktop publish packages and web',
-    slug: 'many-desktop-publish-packages-and-web',
+    title: 'How to Write a Bestselling Novel',
+    slug: 'how-to-Write-a-bestselling-novel',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -329,8 +329,8 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '3',
     img: '/post-3.jpeg',
-    title: 'Many desktop publish packages and web',
-    slug: 'many-desktop-publish-packages-and-web',
+    title: 'How to Write a Bestselling Novel',
+    slug: 'how-to-Write-a-bestselling-novel',
     category: 'nature',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
