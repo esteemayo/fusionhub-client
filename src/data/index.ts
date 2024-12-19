@@ -223,38 +223,38 @@ export const categoryItems: CategoryType = [
 export const feedItems: FeedItemTypes = [
   {
     id: '1',
-    img: '/post-1.jpg',
+    img: '/post-12.jpeg',
     title: 'My journey to becoming a successful entrepreneur',
     slug: 'my-journey-to-becoming-a-successful-entrepreneur',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '2',
-    img: '/post-2.jpeg',
+    img: '/post-11.jpeg',
     title: 'How i overcame the fear of public speaking',
     slug: 'how-i-overcame-the-fear-of-public-speaking',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '3',
-    img: '/post-3.jpeg',
+    img: '/post-10.webp',
     title: 'The 10 most ridiculous excuses for not exercising',
     slug: 'the-10-most-ridiculous-excuses-for-not-exercising',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '4',
-    img: '/post-4.webp',
+    img: '/post-9.webp',
     title: 'My experience with online dating and what i learned',
     slug: 'my-experience-with-online-dating-and-what-i-learned',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '5',
-    img: '/post-5.jpeg',
+    img: '/post-8.jpeg',
     title: 'What are the benefits of meditation and mindfulness?',
     slug: 'what-are-the-benefits-of-meditation-and-mindfulness?',
-    createdAt: '2024-12-17T16:03:59.085+00:00',
+    createdAt: '2024-12-19T19:34:43.085+00:00',
   },
 ];
 
