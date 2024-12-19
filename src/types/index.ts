@@ -125,6 +125,12 @@ export interface FilterItemProps {
   label: string;
 }
 
+export interface CategoryItemProps {
+  id: string;
+  name: string;
+  total: number;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
