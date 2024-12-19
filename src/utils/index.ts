@@ -1,6 +1,6 @@
 export const excerpts = (str: string, count: number) => {
   if (typeof str === 'string' && str.length > count) {
-    str = str.split(' ').splice(0, count).join(' ').concat('...');
+    str = str.substring(0, count).concat('...');
   }
 
   return str;
