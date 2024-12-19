@@ -111,7 +111,7 @@ export const postItems: PostItemType = [
     img: '/post-10.webp',
     title: '15 Ways to reduce stress and anxiety',
     slug: '15-ways-to-reduce-stress-and-anxiety',
-    desc: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
+    desc: 'Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
