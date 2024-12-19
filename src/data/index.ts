@@ -91,6 +91,34 @@ export const comments: CommentType = [
   },
 ];
 
+export const categoryItems = [
+  {
+    id: '1',
+    name: 'Lifestyle',
+    total: 5,
+  },
+  {
+    id: '2',
+    name: 'Travel',
+    total: 34,
+  },
+  {
+    id: '3',
+    name: 'Fashion',
+    total: 9,
+  },
+  {
+    id: '4',
+    name: 'Music',
+    total: 46,
+  },
+  {
+    id: '5',
+    name: 'Branding',
+    total: 16,
+  },
+];
+
 export const feedItems: FeedItemTypes = [
   {
     id: '1',
