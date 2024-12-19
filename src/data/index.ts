@@ -1,4 +1,5 @@
 import {
+  CategoryType,
   CommentType,
   FeedItemTypes,
   MenuItemType,
@@ -91,7 +92,7 @@ export const comments: CommentType = [
   },
 ];
 
-export const categoryItems = [
+export const categoryItems: CategoryType = [
   {
     id: '1',
     name: 'Lifestyle',

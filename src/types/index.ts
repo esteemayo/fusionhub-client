@@ -149,6 +149,12 @@ export type CommentType = {
   updatedAt: string;
 }[];
 
+export type CategoryType = {
+  id: string;
+  name: string;
+  total: number;
+}[];
+
 export type FeedItemTypes = {
   id: string;
   img: string;
