@@ -2,5 +2,14 @@
 
 .postItems {
   flex: 4;
-  background-color: orangered;
+
+  &__container {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
 }

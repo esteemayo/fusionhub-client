@@ -1,6 +1,32 @@
 @import '../../styles/variables.scss';
 
 .card {
+  width: 35rem;
+  background-color: $clr-secondary-blue;
+
   &__img {
+  }
+
+  &__footer {
+    &--container {
+      &-title {
+        a {
+          &:link,
+          &:visited {
+          }
+        }
+      }
+
+      &-desc {
+      }
+    }
+
+    &--wrapper {
+      &-category {
+      }
+
+      &-time {
+      }
+    }
   }
 }
