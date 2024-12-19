@@ -32,6 +32,93 @@ export const menuItems: MenuItemType = [
   },
 ];
 
+export const postItems = [
+  {
+    id: '1',
+    img: '/post-1.jpg',
+    title: 'Alonso kelina falao asiano pero',
+    slug: 'alonso-kelina-falao-asiano-pero',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '2',
+    img: '/post-2.jpeg',
+    title: 'It is a long established fact that a reader',
+    slug: 'it-is-a-long-established-fact-that-a-reader',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '3',
+    img: '/post-3.jpeg',
+    title: 'Many desktop publish packages and web',
+    slug: 'many-desktop-publish-packages-and-web',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '4',
+    img: '/post-4.webp',
+    title: 'Various versions have evolved over the years',
+    slug: 'various-versions-have-evolved-over-the-years',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '5',
+    img: '/post-5.jpeg',
+    title: 'Photo booth anim 8-bit PBSC 3 wolf moon.',
+    slug: 'photo-booth-anim-8-bit-PBSC-3-wolf-moon.',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '6',
+    img: '/post-1.jpg',
+    title: '10 Ways to boost your productivity',
+    slug: '10-ways-to-boost-your-productivity',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '7',
+    img: '/post-2.jpeg',
+    title: '5 Tips to improve your writing skills',
+    slug: '5-tips-to-improve-your-writing-skills',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '8',
+    img: '/post-3.jpeg',
+    title: '20 Best books to read this summer',
+    slug: '20-best-books-to-read-this-summer',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '9',
+    img: '/post-4.webp',
+    title: '7 Habits of hightly successful people',
+    slug: '7-habits-of-hightly-successful-people',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '10',
+    img: '/post-5.jpeg',
+    title: '15 Ways to reduce stress and anxiety',
+    slug: '15-ways-to-reduce-stress-and-anxiety',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '11',
+    img: '/post-5.jpeg',
+    title: 'How to start a blog and make money online',
+    slug: 'how-to-start-a-blog-and-make-money-online',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+  {
+    id: '12',
+    img: '/post-5.jpeg',
+    title: '',
+    slug: '',
+    createdAt: '2024-12-17T16:03:59.085+00:00',
+  },
+];
+
 export const relatedTags: RelatedTagType = [
   {
     id: 1,
