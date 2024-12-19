@@ -4,6 +4,7 @@
 .input {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.8rem;
 
   &:not(:last-of-type) {
@@ -12,18 +13,18 @@
 
   &__label {
     display: inline-block;
-    width: 13rem;
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
     font-weight: 700;
     font-size: 1.4rem;
+    color: inherit;
+    cursor: pointer;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.5rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      width: 15rem;
       font-size: var(--default-font-size);
     }
 
@@ -36,12 +37,10 @@
     }
 
     @media screen and (min-width: 112.5em) {
-      width: 17rem;
       font-size: 1.8rem;
     }
 
     @media screen and (min-width: 125em) {
-      width: 18rem;
       font-size: 2.1rem;
     }
   }
