@@ -61,8 +61,8 @@ export const postItems: PostItemType = [
   {
     id: '4',
     img: '/post-4.webp',
-    title: 'Various versions have evolved over the years',
-    slug: 'various-versions-have-evolved-over-the-years',
+    title: 'How can you improve your public speaking skills',
+    slug: 'how-can-you-improve-your-public-speaking-skills',
     desc: 'Nihil molestias quas ducimus libero! Dolorum quis sequi assumenda qui autem commodi debitis dicta, esse in vel repudiandae, odit delectus corporis excepturi...',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
@@ -245,8 +245,8 @@ export const feedItems: FeedItemTypes = [
   {
     id: '4',
     img: '/post-4.webp',
-    title: 'Various versions have evolved over the years',
-    slug: 'various-versions-have-evolved-over-the-years',
+    title: 'How can you improve your public speaking skills',
+    slug: 'how-can-you-improve-your-public-speaking-skills',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -337,8 +337,8 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '4',
     img: '/post-4.webp',
-    title: 'Various versions have evolved over the years',
-    slug: 'various-versions-have-evolved-over-the-years',
+    title: 'How can you improve your public speaking skills',
+    slug: 'how-can-you-improve-your-public-speaking-skills',
     category: 'travel',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
