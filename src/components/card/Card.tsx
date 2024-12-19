@@ -5,6 +5,7 @@ import './Card.scss';
 const Card = () => {
   return (
     <article className='card'>
+      <div className='card__overlay'>&nbsp;</div>
       <img
         src='/post-1.jpg'
         alt='post'
