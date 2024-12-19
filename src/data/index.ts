@@ -45,8 +45,8 @@ export const postItems: PostItemType = [
   {
     id: '2',
     img: '/post-2.jpeg',
-    title: 'It is a long established fact that a reader',
-    slug: 'it-is-a-long-established-fact-that-a-reader',
+    title: 'How to create a social media marketing strategy',
+    slug: 'how-to-create-a-social-media-marketing-strategy',
     desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
@@ -231,8 +231,8 @@ export const feedItems: FeedItemTypes = [
   {
     id: '2',
     img: '/post-2.jpeg',
-    title: 'It is a long established fact that a reader',
-    slug: 'it-is-a-long-established-fact-that-a-reader',
+    title: 'How to create a social media marketing strategy',
+    slug: 'how-to-create-a-social-media-marketing-strategy',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -321,8 +321,8 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '2',
     img: '/post-2.jpeg',
-    title: 'It is a long established fact that a reader',
-    slug: 'it-is-a-long-established-fact-that-a-reader',
+    title: 'How to create a social media marketing strategy',
+    slug: 'how-to-create-a-social-media-marketing-strategy',
     category: 'adventures',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
