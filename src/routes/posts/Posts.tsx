@@ -1,7 +1,8 @@
 import TopPosts from '../../components/topPosts/TopPosts';
 import Filter from '../../components/filter/Filter';
-import Categories from '../../components/categories/Categories';
+import PostItems from '../../components/postItems/PostItems';
 import Search from '../../components/search/Search';
+import Categories from '../../components/categories/Categories';
 
 import './Posts.scss';
 
@@ -15,7 +16,7 @@ const Posts = () => {
           <Categories />
           <TopPosts />
         </div>
-        <div className='posts__container--right'>Posts Right</div>
+        <PostItems />
       </div>
     </div>
   );
