@@ -117,7 +117,7 @@ export const postItems: PostItemType = [
   {
     id: '11',
     img: '/post-11.jpeg',
-    title: 'How to start a blog and make money online',
+    title: 'How to Start a Blog and Make Money Online',
     slug: 'how-to-start-a-blog-and-make-money-online',
     desc: 'Numquam recusandae ullam explicabo fugiat vitae ea sed quas, consequatur, ad necessitatibus amet doloremque ratione omnis ipsa! Nisi, optio! Rem, odio eveniet!',
     createdAt: '2024-12-19T19:34:43.085+00:00',
@@ -125,7 +125,7 @@ export const postItems: PostItemType = [
   {
     id: '12',
     img: '/post-12.jpeg',
-    title: 'What is the future of Artificial Intelligence',
+    title: 'What is the Future of Artificial Intelligence',
     slug: 'what-is-the-future-of-artificial-intelligence',
     desc: 'Quo error odit quasi optio quia, sit aliquid voluptas asperiores provident cupiditate doloribus dolorum ipsum libero cumque enim praesentium quaerat, perspiciatis temporibus.',
     createdAt: '2024-12-19T19:34:43.085+00:00',
