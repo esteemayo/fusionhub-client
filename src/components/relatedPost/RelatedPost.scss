@@ -7,6 +7,17 @@
   overflow: hidden;
 
   &__container {
+    position: relative;
+
+    &--overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 15rem;
+      background-color: $overlay;
+    }
+
     &--img {
       width: 25rem;
       height: 15rem;
