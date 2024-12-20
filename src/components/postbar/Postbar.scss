@@ -43,9 +43,15 @@
     gap: 1rem;
 
     &--item {
+      font-weight: 600;
+      font-size: 1.4rem;
+
       &-link {
         &:link,
         &:visited {
+          text-transform: capitalize;
+          font-weight: inherit;
+          font-size: inherit;
         }
       }
     }
