@@ -224,7 +224,7 @@ export const feedItems: FeedItemTypes = [
   {
     id: '1',
     img: '/post-12.jpeg',
-    title: 'My journey to becoming a successful entrepreneur',
+    title: 'My Journey to Becoming a Successful Entrepreneur',
     slug: 'my-journey-to-becoming-a-successful-entrepreneur',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
@@ -238,7 +238,7 @@ export const feedItems: FeedItemTypes = [
   {
     id: '3',
     img: '/post-10.webp',
-    title: 'The 10 Most Ridiculous Fxcuses for Not Exercising',
+    title: 'The 10 Most Ridiculous Excuses for Not Exercising',
     slug: 'the-10-most-ridiculous-excuses-for-not-exercising',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
@@ -355,7 +355,7 @@ export const relatedPosts: RelatedPostType = [
 export const topPosts: TopPostType = [
   {
     id: '1',
-    title: 'My journey to becoming a successful entrepreneur',
+    title: 'My Journey to Becoming a Successful Entrepreneur',
     slug: 'my-journey-to-becoming-a-successful-entrepreneur',
     category: ['Food', 'Travel'],
     createdAt: '2024-12-18T18:01:25.085+00:00',
@@ -369,7 +369,7 @@ export const topPosts: TopPostType = [
   },
   {
     id: '3',
-    title: 'The 10 Most Ridiculous Fxcuses for Not Exercising',
+    title: 'The 10 Most Ridiculous Excuses for Not Exercising',
     slug: 'the-10-most-ridiculous-excuses-for-not-exercising',
     category: ['Art', 'Adventures'],
     createdAt: '2024-12-18T18:01:25.085+00:00',
