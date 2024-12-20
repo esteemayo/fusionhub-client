@@ -6,7 +6,7 @@ import { CardProps } from '../../types';
 
 import './Card.scss';
 
-const Card = ({ img, desc, slug, title, createdAt }: CardProps) => {
+const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
   return (
     <article className='card'>
       <div className='card__overlay'>&nbsp;</div>
@@ -27,7 +27,7 @@ const Card = ({ img, desc, slug, title, createdAt }: CardProps) => {
           <p className='card__footer--container-desc'>{excerpts(desc, 60)}</p>
         </div>
         <div className='card__footer--wrapper'>
-          <span className='card__footer--wrapper-category'>Adventures</span>
+          <span className='card__footer--wrapper-category'>{category}</span>
           <time dateTime='' className='card__footer--wrapper-time'>
             {format(createdAt)}
           </time>

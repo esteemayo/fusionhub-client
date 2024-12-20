@@ -82,7 +82,6 @@ export interface CommentCardProps {
     name: string;
     img: string;
   };
-  category: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -138,6 +137,7 @@ export interface CardProps {
   title: string;
   slug: string;
   desc: string;
+  category: string;
   createdAt: string;
 }
 
