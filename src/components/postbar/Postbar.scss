@@ -55,6 +55,30 @@
       width: 95rem;
     }
 
+    @media screen and (max-width: 51.25em) {
+      width: 90rem;
+    }
+
+    @include md {
+      width: 87rem;
+    }
+
+    @media screen and (max-width: 43.75em) {
+      width: 80rem;
+    }
+
+    @media screen and (max-width: 41.875em) {
+      width: 75rem;
+    }
+
+    @media screen and (max-width: 38.75em) {
+      width: 72rem;
+    }
+
+    @media screen and (max-width: 37.5em) {
+      width: 67rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 134rem;
     }
