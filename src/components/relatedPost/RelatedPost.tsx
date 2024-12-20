@@ -15,6 +15,7 @@ const RelatedPost = ({
   return (
     <article className='relatedPost'>
       <div className='relatedPost__container'>
+        <div className='relatedPost__container--overlay'>&nbsp;</div>
         {img && (
           <img
             src={img}
