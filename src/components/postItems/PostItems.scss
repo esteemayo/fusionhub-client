@@ -17,5 +17,9 @@
       gap: 4rem;
       row-gap: 5rem;
     }
+
+    @media screen and (min-width: 125em) {
+      gap: 4rem;
+    }
   }
 }
