@@ -15,8 +15,8 @@ const Hero = () => {
         </Link>
       </div>
       <h1 className='hero__heading'>
-        Effective communication is at the heart of every successful
-        professional.
+        Effective Communication Is At The Heart of Every Successful
+        Professional.
       </h1>
     </header>
   );

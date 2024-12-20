@@ -153,8 +153,8 @@ const PostDetail = () => {
       </div>
       <div className='postDetail__box'>
         <h2 className='postDetail__heading'>
-          Effective communication is at the heart of every successful
-          professional.
+          Effective Communication Is At The Heart of Every Successful
+          Professional.
         </h2>
         <p className='postDetail__desc'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ex modi
