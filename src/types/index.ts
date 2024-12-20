@@ -82,6 +82,7 @@ export interface CommentCardProps {
     name: string;
     img: string;
   };
+  category: string;
   createdAt: string;
   updatedAt: string;
 }
