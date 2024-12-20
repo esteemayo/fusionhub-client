@@ -40,6 +40,10 @@
     min-height: 15rem;
     padding: 2rem;
 
+    @media screen and (min-width: 125em) {
+      padding: 3rem 2rem;
+    }
+
     &--container {
       display: flex;
       flex-direction: column;
