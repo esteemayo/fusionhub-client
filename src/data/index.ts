@@ -231,8 +231,8 @@ export const feedItems: FeedItemTypes = [
   {
     id: '2',
     img: '/post-11.jpeg',
-    title: 'How i overcame the fear of public speaking',
-    slug: 'how-i-overcame-the-fear-of-public-speaking',
+    title: 'How I Overcame My Fear of Public Speaking',
+    slug: 'how-i-overcame-my-fear-of-public-speaking',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
@@ -362,8 +362,8 @@ export const topPosts: TopPostType = [
   },
   {
     id: '2',
-    title: 'How i overcame the fear of public speaking',
-    slug: 'how-i-overcame-the-fear-of-public-speaking',
+    title: 'How I Overcame My Fear of Public Speaking',
+    slug: 'how-i-overcame-my-fear-of-public-speaking',
     category: ['Creativity', 'Humor'],
     createdAt: '2024-12-18T18:01:25.085+00:00',
   },
