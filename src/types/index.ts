@@ -157,6 +157,7 @@ export type PostItemType = {
   title: string;
   slug: string;
   desc: string;
+  category: string;
   createdAt: string;
 }[];
 
