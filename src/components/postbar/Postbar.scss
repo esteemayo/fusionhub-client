@@ -169,6 +169,14 @@
         font-size: 2.1rem;
       }
 
+      @media screen and (max-width: 51.25em) {
+        font-size: 2.2rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: 2.15rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         font-size: 2.1rem;
       }
@@ -202,6 +210,20 @@
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.55rem;
+      }
+
+      @include sm {
+        &:last-child {
+          display: none;
+        }
       }
 
       @media screen and (min-width: 106.25em) {
