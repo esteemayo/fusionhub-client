@@ -1,9 +1,17 @@
 @import '../../styles/variables.scss';
 
 .postbar {
+  width: 100%;
+  padding: 3rem;
+  background-color: $clr-secondary-blue;
+  border-radius: 3px;
   margin-bottom: 5rem;
 
   &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     &--heading {
     }
 

@@ -10,8 +10,10 @@ const Posts = () => {
       <div className='posts__container'>
         <Postbar />
         <div className='posts__wrapper'>
-          <PostClient />
-          <PostItems />
+          <div className='posts__box'>
+            <PostClient />
+            <PostItems />
+          </div>
         </div>
       </div>
     </div>

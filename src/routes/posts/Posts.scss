@@ -1,17 +1,18 @@
 @import '../../styles/variables.scss';
 
 .posts {
-  display: flex;
-  justify-content: center;
-
   &__container {
-    width: 144rem;
     min-height: 100vh;
-    padding: 10rem 0;
   }
 
   &__wrapper {
-    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__box {
+    width: 144rem;
+    padding: 5rem 0 10rem;
 
     display: flex;
     align-items: flex-start;
