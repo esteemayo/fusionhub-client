@@ -77,7 +77,7 @@ export const postItems: PostItemType = [
   {
     id: '6',
     img: '/post-6.jpeg',
-    title: '10 Ways to boost your productivity',
+    title: '10 Ways to Boost Your Productivity',
     slug: '10-ways-to-boost-your-productivity',
     desc: 'Corrupti, id minus odio cumque voluptas dicta, reiciendis ab laudantium exercitationem, minima cum ea. Quo aliquam placeat quibusdam tempore, minima labore cum.',
     createdAt: '2024-12-17T16:03:59.085+00:00',
@@ -101,7 +101,7 @@ export const postItems: PostItemType = [
   {
     id: '9',
     img: '/post-9.webp',
-    title: '7 Habits of hightly successful people',
+    title: '7 Habits of Highly Successful People',
     slug: '7-habits-of-hightly-successful-people',
     desc: 'Exercitationem repellat voluptates reprehenderit illo expedita esse quia voluptatum voluptate dolore, perferendis, amet eveniet quo nemo soluta laudantium. Illo eveniet iure debitis!',
     createdAt: '2024-12-19T19:34:43.085+00:00',
