@@ -26,6 +26,7 @@
 
     @include xxl {
       width: 124rem;
+      gap: 2rem;
     }
 
     @media screen and (max-width: 81.25em) {
