@@ -31,6 +31,10 @@
       row-gap: 2.5rem;
     }
 
+    @include lg {
+      gap: 6rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       gap: 4rem;
       row-gap: 5rem;
