@@ -15,6 +15,18 @@ const Postbar = () => {
                   Home
                 </Link>
               </li>
+              |
+              <li className='postbar__lists--item'>
+                <Link to='/posts' className='postbar__lists--item-link'>
+                  Posts
+                </Link>
+              </li>
+              |
+              <li className='postbar__lists--item'>
+                <Link to='#leftSidebar' className='postbar__lists--item-link'>
+                  Left sidebar
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
