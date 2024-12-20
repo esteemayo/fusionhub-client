@@ -94,6 +94,10 @@
         overflow: hidden;
         transition: all 300ms ease-in-out;
 
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.75rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           font-size: 1.7rem;
         }
@@ -126,6 +130,10 @@
         color: currentColor;
         word-break: break-all;
         line-height: 1.12;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: var(--default-font-size);
+        }
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.55rem;
