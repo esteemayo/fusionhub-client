@@ -13,6 +13,15 @@
     justify-content: space-between;
     gap: 8rem;
 
+    @media screen and (max-width: 93.75em) {
+      gap: 5rem;
+    }
+
+    @include xxl {
+      gap: 1rem;
+      row-gap: 2rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       gap: 4rem;
       row-gap: 5rem;
