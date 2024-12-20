@@ -28,7 +28,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
         </div>
         <div className='card__footer--wrapper'>
           <span className='card__footer--wrapper-category'>{category}</span>
-          <time dateTime='' className='card__footer--wrapper-time'>
+          <time dateTime={createdAt} className='card__footer--wrapper-time'>
             {format(createdAt)}
           </time>
         </div>
