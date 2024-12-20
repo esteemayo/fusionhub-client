@@ -37,7 +37,7 @@ export const postItems: PostItemType = [
   {
     id: '1',
     img: '/post-1.jpg',
-    title: 'The ultimate guide to SEO optimization',
+    title: 'The Ultimate Guide to SEO Optimization',
     slug: 'the-ultimate-guide-to-seo-optimization',
     desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
     createdAt: '2024-12-17T16:03:59.085+00:00',
@@ -45,7 +45,7 @@ export const postItems: PostItemType = [
   {
     id: '2',
     img: '/post-2.jpeg',
-    title: 'How to create a social media marketing strategy',
+    title: 'How to Create a Social Media Marketing Strategy',
     slug: 'how-to-create-a-social-media-marketing-strategy',
     desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
     createdAt: '2024-12-17T16:03:59.085+00:00',
