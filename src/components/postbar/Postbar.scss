@@ -1,0 +1,21 @@
+@import '../../styles/variables.scss';
+
+.postbar {
+  &__container {
+    &--heading {
+    }
+
+    &--breadcrumbs {
+    }
+  }
+
+  &__lists {
+    &--item {
+      &-link {
+        &:link,
+        &:visited {
+        }
+      }
+    }
+  }
+}
