@@ -8,6 +8,10 @@
   overflow: hidden;
   position: relative;
 
+  @media screen and (max-width: 81.25em) {
+    width: 27rem;
+  }
+
   @media screen and (min-width: 125em) {
     width: 35rem;
   }
