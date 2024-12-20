@@ -21,6 +21,11 @@
     justify-content: space-between;
 
     &--heading {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 700;
+      font-size: 2rem;
+      color: inherit;
     }
 
     &--breadcrumbs {
