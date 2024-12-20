@@ -56,6 +56,11 @@
     min-height: 15rem;
     padding: 2rem;
 
+    @media screen and (max-width: 76.25em) {
+      min-height: 14rem;
+      padding: 1.5rem;
+    }
+
     @media screen and (min-width: 125em) {
       padding: 3rem 2rem;
     }
