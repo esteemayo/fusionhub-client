@@ -12,7 +12,7 @@ const Search = () => {
           type='text'
           name='search'
           id='search'
-          placeholder='Search...'
+          placeholder='Search posts...'
           className='searchForm__container--input'
         />
         <svg

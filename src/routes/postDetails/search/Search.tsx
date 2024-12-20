@@ -14,7 +14,7 @@ const Search = () => {
             type='search'
             name='search'
             id='search'
-            placeholder='search your keyword...'
+            placeholder='Search posts...'
           />
           <button type='submit'>
             <svg
