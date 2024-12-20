@@ -19,6 +19,10 @@
     width: 100%;
     height: 25rem;
     background-color: $overlay;
+
+    @media screen and (min-width: 125em) {
+      height: 30rem;
+    }
   }
 
   &__img {
@@ -26,6 +30,10 @@
     height: 25rem;
     display: block;
     object-fit: cover;
+
+    @media screen and (min-width: 125em) {
+      height: 30rem;
+    }
   }
 
   &__footer {
