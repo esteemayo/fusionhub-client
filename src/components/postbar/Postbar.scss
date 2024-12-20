@@ -1,16 +1,23 @@
 @import '../../styles/variables.scss';
 
 .postbar {
-  width: 100%;
-  padding: 3rem;
+  display: flex;
+  justify-content: center;
   background-color: $clr-secondary-blue;
-  border-radius: 3px;
-  margin-bottom: 5rem;
 
   &__container {
+    width: 144rem;
+    background-color: orange;
+  }
+
+  &__wrapper {
+    padding: 3rem;
+    border-radius: 3px;
+    margin-bottom: 5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: orangered;
 
     &--heading {
     }
