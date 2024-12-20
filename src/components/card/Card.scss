@@ -49,6 +49,10 @@
           font-size: 1.7rem;
         }
 
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.8rem;
+        }
+
         &:hover {
           color: $clr-pink-light;
         }
@@ -69,8 +73,13 @@
         color: currentColor;
         word-break: break-all;
         line-height: 1.12;
+
         @media screen and (min-width: 106.25em) {
           font-size: 1.55rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.65rem;
         }
       }
     }
@@ -95,6 +104,10 @@
         @media screen and (min-width: 106.25em) {
           font-size: 1.45rem;
         }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.55rem;
+        }
       }
 
       &-time {
@@ -103,6 +116,10 @@
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.35rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.45rem;
         }
       }
     }

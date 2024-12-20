@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .postItems {
   flex: 5;
@@ -11,5 +12,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 8rem;
+
+    @media screen and (min-width: 112.5em) {
+      gap: 4rem;
+      row-gap: 5rem;
+    }
   }
 }
