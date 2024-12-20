@@ -40,6 +40,7 @@ export const postItems: PostItemType = [
     title: 'The Ultimate Guide to SEO Optimization',
     slug: 'the-ultimate-guide-to-seo-optimization',
     desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
+    category: 'technology',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -48,6 +49,7 @@ export const postItems: PostItemType = [
     title: 'How to Create a Social Media Marketing Strategy',
     slug: 'how-to-create-a-social-media-marketing-strategy',
     desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
+    category: 'technology',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -56,6 +58,7 @@ export const postItems: PostItemType = [
     title: 'How to Write a Bestselling Novel',
     slug: 'how-to-Write-a-bestselling-novel',
     desc: 'Eius cupiditate culpa nesciunt dignissimos beatae tempora consequatur deserunt at iste provident alias voluptatum itaque in nemo nisi ipsum, repellendus dolorum magnam!',
+    category: 'branding',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -64,6 +67,7 @@ export const postItems: PostItemType = [
     title: 'How Can You Improve Your Public Speaking Skills',
     slug: 'how-can-you-improve-your-public-speaking-skills',
     desc: 'Nihil molestias quas ducimus libero! Dolorum quis sequi assumenda qui autem commodi debitis dicta, esse in vel repudiandae, odit delectus corporis excepturi...',
+    category: 'lifestyle',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -72,6 +76,7 @@ export const postItems: PostItemType = [
     title: 'Can You Learn to Code in Just a Few Weeks',
     slug: 'can-you-learn-to-code-in-just-a-few-weeks',
     desc: 'Doloremque animi dolores aut cupiditate sit sequi et veritatis, repellat inventore, nesciunt modi rerum ab deserunt maxime enim odit tempora officiis recusandae!!!',
+    category: 'technology',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -80,6 +85,7 @@ export const postItems: PostItemType = [
     title: '10 Ways to Boost Your Productivity',
     slug: '10-ways-to-boost-your-productivity',
     desc: 'Corrupti, id minus odio cumque voluptas dicta, reiciendis ab laudantium exercitationem, minima cum ea. Quo aliquam placeat quibusdam tempore, minima labore cum.',
+    category: 'lifestyle',
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
@@ -88,6 +94,7 @@ export const postItems: PostItemType = [
     title: '5 Tips To Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     desc: 'Dignissimos quo voluptatem recusandae repudiandae minima consectetur itaque fugit deserunt officia temporibus? Esse, aperiam sapiente reprehenderit libero dignissimos qui vel eum doloremque...',
+    category: 'branding',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
@@ -96,6 +103,7 @@ export const postItems: PostItemType = [
     title: '20 Best Books to Read This Summer',
     slug: '20-best-books-to-read-this-summer',
     desc: 'Cum omnis provident molestias dolor quasi impedit nisi id ipsa dolore explicabo minus esse facilis laboriosam sint ab repudiandae expedita, saepe accusantium.',
+    category: 'travel',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
@@ -104,6 +112,7 @@ export const postItems: PostItemType = [
     title: '7 Habits of Highly Successful People',
     slug: '7-habits-of-hightly-successful-people',
     desc: 'Exercitationem repellat voluptates reprehenderit illo expedita esse quia voluptatum voluptate dolore, perferendis, amet eveniet quo nemo soluta laudantium. Illo eveniet iure debitis!',
+    category: 'lifestyle',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
@@ -112,6 +121,7 @@ export const postItems: PostItemType = [
     title: '15 Ways to reduce stress and anxiety',
     slug: '15-ways-to-reduce-stress-and-anxiety',
     desc: 'Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
+    category: 'music',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
@@ -120,6 +130,7 @@ export const postItems: PostItemType = [
     title: 'How to Start a Blog and Make Money Online',
     slug: 'how-to-start-a-blog-and-make-money-online',
     desc: 'Numquam recusandae ullam explicabo fugiat vitae ea sed quas, consequatur, ad necessitatibus amet doloremque ratione omnis ipsa! Nisi, optio! Rem, odio eveniet!',
+    category: 'lifestyle',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
@@ -128,6 +139,7 @@ export const postItems: PostItemType = [
     title: 'What is the Future of Artificial Intelligence',
     slug: 'what-is-the-future-of-artificial-intelligence',
     desc: 'Quo error odit quasi optio quia, sit aliquid voluptas asperiores provident cupiditate doloribus dolorum ipsum libero cumque enim praesentium quaerat, perspiciatis temporibus.',
+    category: 'technology',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
 ];
