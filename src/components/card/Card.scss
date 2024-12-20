@@ -24,6 +24,10 @@
     height: 25rem;
     background-color: $overlay;
 
+    @media screen and (max-width: 81.25em) {
+      height: 23rem;
+    }
+
     @media screen and (min-width: 125em) {
       height: 30rem;
     }
@@ -34,6 +38,10 @@
     height: 25rem;
     display: block;
     object-fit: cover;
+
+    @media screen and (max-width: 81.25em) {
+      height: 23rem;
+    }
 
     @media screen and (min-width: 125em) {
       height: 30rem;
