@@ -32,6 +32,10 @@
     width: 28rem;
   }
 
+  @include md {
+    width: 27rem;
+  }
+
   @media screen and (min-width: 125em) {
     width: 35rem;
   }
@@ -48,6 +52,10 @@
       height: 23rem;
     }
 
+    @include md {
+      height: 20rem;
+    }
+
     @media screen and (min-width: 125em) {
       height: 30rem;
     }
@@ -61,6 +69,10 @@
 
     @media screen and (max-width: 81.25em) {
       height: 23rem;
+    }
+
+    @include md {
+      height: 20rem;
     }
 
     @media screen and (min-width: 125em) {

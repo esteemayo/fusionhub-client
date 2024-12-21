@@ -43,6 +43,9 @@
     @media screen and (max-width: 51.25em) {
       row-gap: 4rem;
     }
+    @include md {
+      row-gap: 3rem;
+    }
 
     @media screen and (min-width: 112.5em) {
       gap: 4rem;
