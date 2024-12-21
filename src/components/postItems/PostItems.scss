@@ -72,6 +72,10 @@
       gap: 3rem;
     }
 
+    @include sm {
+      row-gap: 3.5rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       gap: 4rem;
       row-gap: 5rem;
