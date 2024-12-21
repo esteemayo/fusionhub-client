@@ -48,6 +48,10 @@
     width: 33rem;
   }
 
+  @media screen and (max-width: 37.5em) {
+    width: 31rem;
+  }
+
   @media screen and (min-width: 125em) {
     width: 35rem;
   }
