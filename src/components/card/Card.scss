@@ -80,6 +80,10 @@
     width: 20rem;
   }
 
+  @media screen and (max-width: 23.75em) {
+    width: 19rem;
+  }
+
   @media screen and (min-width: 125em) {
     width: 35rem;
   }
