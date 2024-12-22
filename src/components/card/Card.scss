@@ -292,6 +292,10 @@
           font-size: 1.65rem;
         }
 
+        @media screen and (max-width: 21.5em) {
+          font-size: var(--default-font-size);
+        }
+
         @media screen and (min-width: 106.25em) {
           font-size: 1.7rem;
         }
