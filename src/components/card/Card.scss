@@ -120,6 +120,10 @@
       height: 18rem;
     }
 
+    @media screen and (max-width: 26.25em) {
+      height: 16rem;
+    }
+
     @media screen and (min-width: 125em) {
       height: 30rem;
     }
@@ -161,6 +165,10 @@
 
     @media screen and (max-width: 28.125em) {
       height: 18rem;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      height: 16rem;
     }
 
     @media screen and (min-width: 125em) {
