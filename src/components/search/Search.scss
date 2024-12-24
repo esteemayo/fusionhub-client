@@ -16,6 +16,10 @@
       height: 4.2rem;
     }
 
+    @media screen and (min-width: 112.5em) {
+      height: 4.5rem;
+    }
+
     &--input {
       display: inline-block;
       border: 0;
@@ -58,6 +62,13 @@
       @media screen and (min-width: 106.25em) {
         width: 2.2rem;
         height: 2.2rem;
+        top: 1.15rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.5rem;
+        height: 2.5rem;
+        top: 1.05rem;
       }
     }
   }
