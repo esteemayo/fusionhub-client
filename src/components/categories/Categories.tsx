@@ -6,14 +6,14 @@ import './Categories.scss';
 
 const Categories = () => {
   return (
-    <aside className='categories'>
+    <section className='categories'>
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
         {categoryItems.map((category) => {
           return <CategoryItem key={category.id} {...category} />;
         })}
       </div>
-    </aside>
+    </section>
   );
 };
 
