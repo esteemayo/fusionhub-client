@@ -3,6 +3,7 @@ import { PostMenuButtonProps } from '../../types';
 const PostMenuButton = ({ isOpen, onClick }: PostMenuButtonProps) => {
   return (
     <button type='button' className='postMenuButton' onClick={onClick}>
+      <span>Menu</span>
       {isOpen ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'
