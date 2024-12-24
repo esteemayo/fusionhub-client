@@ -11,6 +11,10 @@
   background-color: transparent;
   color: $clr-white;
 
+  position: absolute;
+  top: 12rem;
+  left: 4.5rem;
+
   span {
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
