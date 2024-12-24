@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .filter {
   &__container {
@@ -19,6 +20,14 @@
       font-size: 1.65rem;
       color: inherit;
       line-height: 1.3;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.85rem;
+      }
     }
   }
 }
