@@ -20,6 +20,10 @@
       height: 4.2rem;
     }
 
+    @include md {
+      height: 4.5rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       height: 4.2rem;
     }
@@ -111,6 +115,10 @@
         width: 2.2rem;
         height: 2.2rem;
         top: 1.18rem;
+      }
+
+      @include md {
+        top: 1.2rem;
       }
 
       @media screen and (min-width: 106.25em) {
