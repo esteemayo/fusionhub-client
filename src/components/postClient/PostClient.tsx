@@ -13,12 +13,12 @@ const PostClient = ({ isOpen }: { isOpen: boolean }) => {
   }, [isOpen]);
 
   return (
-    <div className={postClientClasses}>
+    <aside className={postClientClasses}>
       <Search />
       <Filter />
       <Categories />
       <TopPosts />
-    </div>
+    </aside>
   );
 };
 
