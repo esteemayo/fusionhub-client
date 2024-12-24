@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .filterItem {
   &__container {
@@ -20,6 +21,18 @@
       font-size: 1.4rem;
       color: $clr-gray-light-3;
       cursor: pointer;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.7rem;
+      }
     }
 
     &--control {
