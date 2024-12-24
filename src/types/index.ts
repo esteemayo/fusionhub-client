@@ -141,6 +141,11 @@ export interface CardProps {
   createdAt: string;
 }
 
+export interface PostMenuButtonProps {
+  isOpen: boolean;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
