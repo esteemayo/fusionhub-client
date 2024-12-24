@@ -13,11 +13,12 @@
 
   @include md {
     position: absolute;
-    top: 5rem;
+    top: 9.5rem;
     padding: 3rem;
     width: 40rem;
     background-color: $clr-black;
-    border-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     z-index: 2000;
     transition: all 300ms ease-in-out;
   }
