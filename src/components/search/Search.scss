@@ -38,12 +38,20 @@
         font-size: var(--default-font-size);
       }
 
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.8rem;
+      }
+
       &::placeholder {
         font-size: 1.2rem;
         color: $clr-white;
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
         }
       }
     }
