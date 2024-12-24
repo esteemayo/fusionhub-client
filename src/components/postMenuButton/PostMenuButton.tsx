@@ -1,5 +1,7 @@
 import { PostMenuButtonProps } from '../../types';
 
+import './PostMenuButton.scss';
+
 const PostMenuButton = ({ isOpen, onClick }: PostMenuButtonProps) => {
   return (
     <button type='button' className='postMenuButton' onClick={onClick}>
