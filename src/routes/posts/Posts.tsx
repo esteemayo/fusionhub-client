@@ -23,7 +23,7 @@ const Posts = () => {
         <Postbar />
         <div className='posts__wrapper'>
           <div className='posts__box'>
-            <PostClient />
+            <PostClient isOpen={isOpen} />
             <PostItems />
           </div>
         </div>
