@@ -39,8 +39,8 @@
     gap: 3rem;
 
     @include md {
-      padding: 3rem;
       width: 40rem;
+      padding: 3rem;
       background-color: $clr-black;
     }
 
