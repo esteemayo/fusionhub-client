@@ -14,10 +14,12 @@ const PostClient = ({ isOpen }: { isOpen: boolean }) => {
 
   return (
     <aside className={postClientClasses}>
-      <Search />
-      <Filter />
-      <Categories />
-      <TopPosts />
+      <div className='postClient__container'>
+        <Search />
+        <Filter />
+        <Categories />
+        <TopPosts />
+      </div>
     </aside>
   );
 };
