@@ -22,6 +22,10 @@
       color: $clr-gray-light-3;
       cursor: pointer;
 
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.5rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         font-size: 1.5rem;
       }
@@ -43,6 +47,11 @@
       border: 1.5px solid $clr-gray-light-3;
       border-radius: 2px;
       cursor: pointer;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.7rem;
+        height: 1.7rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 1.7rem;
