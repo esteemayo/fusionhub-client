@@ -87,6 +87,14 @@
     left: 2.7rem;
   }
 
+  @media screen and (max-width: 18.125em) {
+    left: 2rem;
+  }
+
+  @media screen and (max-width: 17.5em) {
+    left: 2.5rem;
+  }
+
   span {
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
