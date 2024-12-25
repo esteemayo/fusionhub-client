@@ -15,6 +15,10 @@
   top: 12rem;
   left: 4.5rem;
 
+  @media screen and (max-width: 43.75em) {
+    left: 3.8rem;
+  }
+
   span {
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
