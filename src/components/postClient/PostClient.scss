@@ -11,6 +11,10 @@
     flex: 2.25;
   }
 
+  @media screen and (max-width: 22.5em) {
+    gap: 2rem;
+  }
+
   @include md {
     position: absolute;
     top: 9.5rem;
@@ -24,6 +28,10 @@
 
     @media screen and (max-width: 26.875em) {
       width: 100%;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      padding: 2rem;
     }
   }
 
