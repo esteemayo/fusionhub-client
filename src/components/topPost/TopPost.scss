@@ -77,6 +77,18 @@
       align-items: center;
       gap: 2px;
 
+      @media screen and (max-width: 56.25em) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+
+        span {
+          &:nth-child(2) {
+            display: none;
+          }
+        }
+      }
+
       span,
       time {
         color: $clr-gray-light-1;
