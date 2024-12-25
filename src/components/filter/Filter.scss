@@ -17,6 +17,10 @@
       padding: 2rem;
     }
 
+    @include md {
+      padding: 3rem;
+    }
+
     &--heading {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
