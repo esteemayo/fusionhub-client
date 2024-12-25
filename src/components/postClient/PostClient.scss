@@ -16,14 +16,6 @@
     border-bottom-right-radius: 0.5rem;
     z-index: 2000;
     transition: all 300ms ease-in-out;
-
-    @media screen and (max-width: 26.875em) {
-      width: 100%;
-    }
-
-    @media screen and (max-width: 22.5em) {
-      padding: 2rem;
-    }
   }
 
   &.show {
@@ -52,8 +44,13 @@
       background-color: $clr-black;
     }
 
+    @media screen and (max-width: 26.875em) {
+      width: 100%;
+    }
+
     @media screen and (max-width: 22.5em) {
       gap: 2rem;
+      padding: 2rem;
     }
   }
 }
