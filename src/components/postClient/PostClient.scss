@@ -21,11 +21,15 @@
     border-bottom-right-radius: 0.5rem;
     z-index: 2000;
     transition: all 300ms ease-in-out;
+
+    @media screen and (max-width: 26.875em) {
+      width: 100%;
+    }
   }
 
   &.show {
     @include md {
-      left: -4.5rem;
+      left: 0;
     }
   }
 
