@@ -21,6 +21,10 @@
       padding: 3rem;
     }
 
+    @media screen and (max-width: 22.5em) {
+      padding: 2rem;
+    }
+
     &--heading {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
