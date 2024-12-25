@@ -55,6 +55,14 @@
     left: 3.65rem;
   }
 
+  @include sm {
+    left: 3.5rem;
+  }
+
+  @media screen and (max-width: 25.75em) {
+    left: 3.2rem;
+  }
+
   span {
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
