@@ -90,6 +90,18 @@
         }
       }
 
+      @include md {
+        flex-direction: row;
+        align-items: center;
+        gap: 3px;
+
+        span {
+          &:nth-child(2) {
+            display: inline-block;
+          }
+        }
+      }
+
       span,
       time {
         color: $clr-gray-light-1;
