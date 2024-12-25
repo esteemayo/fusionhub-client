@@ -44,6 +44,21 @@
       border-radius: 2px;
       cursor: pointer;
 
+      @media screen and (min-width: 106.25em) {
+        width: 1.7rem;
+        height: 1.7rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
       &:checked {
         background-color: $clr-gray-light-3;
       }
