@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .categoryItem {
   display: flex;
@@ -29,6 +30,10 @@
 
     @media screen and (max-width: 51.25em) {
       font-size: var(--default-font-size);
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.4rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -68,6 +73,10 @@
 
     @media screen and (max-width: 51.25em) {
       font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.2rem;
     }
 
     @media screen and (min-width: 106.25em) {
