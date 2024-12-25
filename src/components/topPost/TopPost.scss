@@ -62,6 +62,26 @@
         color: $clr-gray-light-1;
         font-weight: 500;
         font-size: 1.2rem;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.5rem;
+        }
       }
 
       span {
