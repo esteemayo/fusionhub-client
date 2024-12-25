@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .topPost {
   &__container {
@@ -12,6 +13,26 @@
       font-variant: tabular-nums;
       color: $clr-gray-light-3;
       line-height: 1;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 3.1rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 3.2rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 3.1rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 3.2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 3.3rem;
+      }
     }
   }
 
