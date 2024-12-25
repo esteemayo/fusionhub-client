@@ -13,6 +13,10 @@
     padding: 3rem;
     border-radius: 3px;
 
+    @media screen and (max-width: 51.25em) {
+      padding: 2rem;
+    }
+
     &--heading {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
