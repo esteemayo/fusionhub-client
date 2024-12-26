@@ -74,6 +74,21 @@
         border-radius: 50%;
         transition: all 300ms ease-in-out;
 
+        @media screen and (min-width: 106.25em) {
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 3.7rem;
+          height: 3.7rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 4rem;
+          height: 4rem;
+        }
+
         &:hover {
           background-color: $clr-pink-light;
         }
