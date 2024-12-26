@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .hero {
   width: 100%;
@@ -17,6 +18,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (min-width: 125em) {
+    height: 43vw;
+  }
 
   &__breadCrumbs {
     display: flex;
