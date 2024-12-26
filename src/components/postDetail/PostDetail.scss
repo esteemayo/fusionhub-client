@@ -124,6 +124,18 @@
     font-size: 1.4rem;
     color: $clr-gray-light-1;
 
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.7rem;
+    }
+
     &:not(:last-child) {
       margin-bottom: 2rem;
     }
