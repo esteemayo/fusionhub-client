@@ -1,4 +1,5 @@
-@import '../../styles//variables.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .tagItem {
   text-transform: capitalize;
@@ -9,4 +10,16 @@
   color: $clr-gray-light-1;
   border: 1px solid currentColor;
   border-radius: 0.5rem;
+
+  @media screen and (min-width: 106.25em) {
+    font-size: 1.35rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    font-size: 1.45rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    font-size: 1.55rem;
+  }
 }
