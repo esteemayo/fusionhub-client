@@ -40,21 +40,21 @@
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
 
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.4rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          font-size: var(--default-font-size);
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: 1.85rem;
-        }
-
         &::placeholder {
           font-size: 1.2rem;
           color: $clr-white;
+
+          @media screen and (min-width: 106.25em) {
+            font-size: 1.4rem;
+          }
+
+          @media screen and (min-width: 112.5em) {
+            font-size: var(--default-font-size);
+          }
+
+          @media screen and (min-width: 125em) {
+            font-size: 1.85rem;
+          }
         }
       }
 
