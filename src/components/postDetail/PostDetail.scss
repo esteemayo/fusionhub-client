@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .postDetail {
   &__container {
@@ -76,6 +77,18 @@
         font-size: 1.1rem;
         font-variant: tabular-nums;
         color: currentColor;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.1rem;
+        }
       }
     }
   }
