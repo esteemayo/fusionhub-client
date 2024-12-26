@@ -159,6 +159,11 @@
             height: 2.2rem;
           }
 
+          @media screen and (max-width: 17.5em) {
+            width: 2.15rem;
+            height: 2.15rem;
+          }
+
           @media screen and (min-width: 106.25em) {
             width: 2.2rem;
             height: 2.2rem;
