@@ -41,6 +41,22 @@
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
 
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.55rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          font-size: 1.5rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           font-size: var(--default-font-size);
         }
