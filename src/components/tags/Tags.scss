@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .tags {
   &__container {
@@ -11,6 +12,18 @@
     background-color: $clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
+
+    @media screen and (max-width: 81.25em) {
+      padding: 2rem;
+    }
+
+    @include md {
+      padding: 3rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      padding: 2rem;
+    }
 
     &--heading {
       text-transform: capitalize;
