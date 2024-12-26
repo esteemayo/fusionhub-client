@@ -74,6 +74,15 @@
         border-radius: 50%;
         transition: all 300ms ease-in-out;
 
+        @media screen and (max-width: 56.25em) {
+          width: 4rem;
+          height: 4rem;
+        }
+        @media screen and (max-width: 51.25em) {
+          width: 4.5rem;
+          height: 4.5rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 3.5rem;
           height: 3.5rem;
