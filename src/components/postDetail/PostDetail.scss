@@ -33,6 +33,21 @@
       height: 1.3rem;
       color: currentColor;
       stroke-width: 3px;
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2rem;
+        height: 2rem;
+      }
     }
 
     span,
