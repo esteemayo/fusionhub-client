@@ -125,6 +125,21 @@
         color: currentColor;
         stroke-width: 2px;
 
+        @media screen and (max-width: 56.25em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.95rem;
+          height: 2.95rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 2.9rem;
+          height: 2.9rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 2.25rem;
           height: 2.25rem;
