@@ -198,6 +198,11 @@
           width: 1.75rem;
           height: 1.75rem;
         }
+
+        @media screen and (min-width: 125em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
       }
 
       span {
