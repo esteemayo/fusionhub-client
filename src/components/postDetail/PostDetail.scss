@@ -124,6 +124,21 @@
         height: 1.85rem;
         color: currentColor;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.7rem;
+          height: 2.7rem;
+        }
       }
 
       span {
