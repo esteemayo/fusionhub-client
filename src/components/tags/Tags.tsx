@@ -6,7 +6,7 @@ import './Tags.scss';
 
 const Tags = () => {
   return (
-    <aside className='tags'>
+    <section className='tags'>
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
         <div className='tags__wrapper'>
@@ -16,7 +16,7 @@ const Tags = () => {
           })}
         </div>
       </div>
-    </aside>
+    </section>
   );
 };
 
