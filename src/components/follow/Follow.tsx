@@ -11,7 +11,7 @@ import './Follow.scss';
 
 const Follow = () => {
   return (
-    <aside className='follow'>
+    <section className='follow'>
       <div className='follow__container'>
         <h2 className='follow__container--heading'>Follow us</h2>
         <ul className='follow__container--list'>
@@ -47,7 +47,7 @@ const Follow = () => {
           </li>
         </ul>
       </div>
-    </aside>
+    </section>
   );
 };
 

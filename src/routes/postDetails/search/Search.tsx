@@ -6,7 +6,7 @@ const Search = () => {
   };
 
   return (
-    <aside className='search'>
+    <section className='search'>
       <div className='search__container'>
         <h2 className='search__container--heading'>Search</h2>
         <form className='search__container--form' onSubmit={handleSubmit}>
@@ -34,7 +34,7 @@ const Search = () => {
           </button>
         </form>
       </div>
-    </aside>
+    </section>
   );
 };
 
