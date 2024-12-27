@@ -85,9 +85,13 @@
   }
 
   &__details {
+    &--username,
+    &--desc {
+      font-size: 1.3rem;
+    }
+
     &--username {
       font-weight: 700;
-      font-size: 1.3rem;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
       color: currentColor;
@@ -95,7 +99,6 @@
     }
 
     &--desc {
-      font-size: 1.3rem;
       line-height: 1.4;
       color: $clr-gray-light-1;
     }
