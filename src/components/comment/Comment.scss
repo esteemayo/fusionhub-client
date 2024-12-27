@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .comment {
   background-color: $clr-secondary-blue;
@@ -11,6 +12,18 @@
     color: inherit;
     line-height: 1.3;
     margin-bottom: 3rem;
+
+    @media screen and (min-width: 106.25em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.85rem;
+    }
   }
 
   &__card {
