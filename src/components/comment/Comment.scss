@@ -188,6 +188,16 @@
         height: 1.25rem;
         color: currentColor;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.45rem;
+          height: 1.45rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
       }
 
       span {
