@@ -31,6 +31,10 @@
     height: 47vw;
   }
 
+  @media screen and (max-width: 59.375em) {
+    height: 50vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
