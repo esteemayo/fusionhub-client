@@ -19,6 +19,10 @@
   align-items: center;
   justify-content: center;
 
+  @include xxl {
+    height: 43vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
