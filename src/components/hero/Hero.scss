@@ -92,6 +92,15 @@
     width: 60%;
     line-height: 1.2;
 
+    @media screen and (max-width: 56.25em) {
+      font-size: 3.3rem;
+      line-height: 1.1;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 3.4rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       font-size: 3.3rem;
     }
