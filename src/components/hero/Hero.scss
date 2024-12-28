@@ -27,6 +27,10 @@
     height: 45vw;
   }
 
+  @include lg {
+    height: 47vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
