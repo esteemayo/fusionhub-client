@@ -43,6 +43,14 @@
     height: 55vw;
   }
 
+  @include md {
+    height: 57vw;
+  }
+
+  @media screen and (max-width: 43.75em) {
+    height: 60vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
