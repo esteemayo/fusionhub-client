@@ -63,6 +63,10 @@
     height: 67vw;
   }
 
+  @media screen and (max-width: 31.25em) {
+    height: 70vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
@@ -71,6 +75,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    @media screen and (max-width: 34.375em) {
+      margin-bottom: 1rem;
+    }
 
     &--link {
       &:link,
