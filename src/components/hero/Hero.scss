@@ -67,6 +67,10 @@
     height: 70vw;
   }
 
+  @include sm {
+    height: 73vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
