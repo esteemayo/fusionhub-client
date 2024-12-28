@@ -59,6 +59,10 @@
     height: 65vw;
   }
 
+  @media screen and (max-width: 34.375em) {
+    height: 67vw;
+  }
+
   @media screen and (min-width: 125em) {
     height: 43vw;
   }
@@ -133,6 +137,11 @@
 
     @media screen and (max-width: 37.5em) {
       font-size: 2.8rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: 2.6rem;
+      line-height: 1;
     }
 
     @media screen and (min-width: 106.25em) {
