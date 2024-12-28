@@ -57,7 +57,7 @@
       &:visited {
         text-transform: uppercase;
         text-rendering: optimizeLegibility;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 1.3rem;
         transition: all 300ms ease-in-out;
 
@@ -107,6 +107,7 @@
 
     @media screen and (max-width: 51.25em) {
       font-size: 3.4rem;
+      width: 70%;
     }
 
     @media screen and (min-width: 106.25em) {
