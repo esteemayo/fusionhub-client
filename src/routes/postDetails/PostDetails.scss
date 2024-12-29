@@ -95,6 +95,26 @@
       width: 40rem;
     }
 
+    @media screen and (max-width: 22.5em) {
+      width: 38rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 36rem;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 34rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 32rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 30rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 120rem;
     }
