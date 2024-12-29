@@ -1,14 +1,14 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .postClient {
   flex: 1.5;
 
-  @include lg {
+  @include bp.lg {
     flex: 2.25;
   }
 
-  @include md {
+  @include bp.md {
     position: absolute;
     top: 9.5rem;
 
@@ -19,16 +19,16 @@
   }
 
   &.show {
-    @include md {
+    @include bp.md {
       left: 0;
       bottom: 0;
       right: 0;
-      background-color: $overlay;
+      background-color: vars.$overlay;
     }
   }
 
   &.hide {
-    @include md {
+    @include bp.md {
       left: -100rem;
     }
   }
@@ -38,10 +38,10 @@
     flex-direction: column;
     gap: 3rem;
 
-    @include md {
+    @include bp.md {
       width: 40rem;
       padding: 3rem;
-      background-color: $clr-black;
+      background-color: vars.$clr-black;
     }
 
     @media screen and (max-width: 26.875em) {
