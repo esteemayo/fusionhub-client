@@ -1,25 +1,25 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .hero {
   width: 100%;
   height: 40vw;
   background-image: linear-gradient(
       to right bottom,
-      $clr-gray-dark-1,
-      $clr-gray-dark-2
+      vars.$clr-gray-dark-1,
+      vars.$clr-gray-dark-2
     ),
     url('/hero-1.jpg');
   background-size: cover;
   background-position: center;
-  background-color: $clr-secondary-blue;
+  background-color: vars.$clr-secondary-blue;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  @include xxl {
+  @include bp.xxl {
     height: 43vw;
   }
 
@@ -27,7 +27,7 @@
     height: 45vw;
   }
 
-  @include lg {
+  @include bp.lg {
     height: 47vw;
   }
 
@@ -43,7 +43,7 @@
     height: 55vw;
   }
 
-  @include md {
+  @include bp.md {
     height: 57vw;
   }
 
@@ -67,7 +67,7 @@
     height: 70vw;
   }
 
-  @include sm {
+  @include bp.sm {
     height: 73vw;
   }
 
@@ -161,7 +161,7 @@
       &:hover {
         text-decoration: underline;
         text-underline-offset: 0.5rem;
-        text-decoration-color: $clr-pink-dark-1;
+        text-decoration-color: vars.$clr-pink-dark-1;
         text-decoration-thickness: 2px;
       }
     }
@@ -200,7 +200,7 @@
       line-height: 1;
     }
 
-    @include sm {
+    @include bp.sm {
       width: 85%;
       font-size: 2.4rem;
     }
