@@ -108,6 +108,10 @@
     align-items: center;
     gap: 2rem;
 
+    @media screen and (max-width: 28.125em) {
+      display: none;
+    }
+
     button {
       display: flex;
       align-items: center;
