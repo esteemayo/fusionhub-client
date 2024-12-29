@@ -1,12 +1,12 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .navbar {
   display: flex;
   justify-content: center;
   height: 8.8rem;
-  background-color: $clr-black;
-  color: $clr-white;
+  background-color: vars.$clr-black;
+  color: vars.$clr-white;
 
   @media screen and (max-width: 56.25em) {
     height: 9rem;
@@ -39,7 +39,7 @@
       width: 134rem;
     }
 
-    @include xxl {
+    @include bp.xxl {
       width: 124rem;
     }
 
@@ -51,7 +51,7 @@
       width: 110rem;
     }
 
-    @include xl {
+    @include bp.xl {
       width: 118rem;
     }
 
@@ -59,7 +59,7 @@
       width: 110rem;
     }
 
-    @include lg {
+    @include bp.lg {
       width: 100rem;
     }
 
@@ -75,7 +75,7 @@
       width: 98rem;
     }
 
-    @media screen and (max-width: 59.375em) {
+    @media screen and (max-width: 53.75em) {
       width: 95rem;
     }
 
@@ -83,7 +83,7 @@
       width: 90rem;
     }
 
-    @include md {
+    @include bp.md {
       width: 87rem;
     }
 
@@ -111,7 +111,7 @@
       width: 55rem;
     }
 
-    @include sm {
+    @include bp.sm {
       width: 53rem;
     }
 
@@ -179,11 +179,11 @@
       font-size: 2rem;
       background-image: linear-gradient(
         to right,
-        $clr-pink-dark-1,
-        $clr-pink-dark-2,
-        $clr-pink-light,
-        $clr-orange-dark,
-        $clr-orange-light
+        vars.$clr-pink-dark-1,
+        vars.$clr-pink-dark-2,
+        vars.$clr-pink-light,
+        vars.$clr-orange-dark,
+        vars.$clr-orange-light
       );
       -webkit-background-clip: text;
       background-clip: text;
@@ -286,11 +286,11 @@
           &:hover {
             background-image: linear-gradient(
               to right,
-              $clr-pink-dark-1,
-              $clr-pink-dark-2,
-              $clr-pink-light,
-              $clr-orange-dark,
-              $clr-orange-light
+              vars.$clr-pink-dark-1,
+              vars.$clr-pink-dark-2,
+              vars.$clr-pink-light,
+              vars.$clr-orange-dark,
+              vars.$clr-orange-light
             );
             -webkit-background-clip: text;
             background-clip: text;
@@ -302,14 +302,14 @@
       .login__btn {
         width: fit-content;
         padding: 0.8rem 1.6rem;
-        background-color: $clr-gray-dark-1;
-        color: $clr-white;
+        background-color: vars.$clr-gray-dark-1;
+        color: vars.$clr-white;
         transition: all 300ms;
 
         &:hover {
           background-image: none;
           background-clip: unset;
-          background-color: $clr-gray-dark-2;
+          background-color: vars.$clr-gray-dark-2;
           color: inherit;
         }
       }
@@ -363,7 +363,7 @@
       height: 100%;
       display: inline-block;
       object-fit: cover;
-      background-color: $clr-gray-dark-1;
+      background-color: vars.$clr-gray-dark-1;
       border-radius: 50%;
       cursor: pointer;
     }
