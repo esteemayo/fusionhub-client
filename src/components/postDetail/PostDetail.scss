@@ -265,31 +265,31 @@
   }
 
   &__desc {
-    font-size: 1.4rem;
+    font-size: 1.65rem;
     color: vars.$clr-gray-light-1;
 
     @media screen and (max-width: 56.25em) {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      font-size: var(--default-font-size);
+      font-size: 1.85rem;
     }
 
     @media screen and (max-width: 18.75em) {
-      font-size: 1.4rem;
+      font-size: 1.65rem;
     }
 
     @media screen and (min-width: 106.25em) {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
 
     @media screen and (min-width: 112.5em) {
-      font-size: var(--default-font-size);
+      font-size: 1.85rem;
     }
 
     @media screen and (min-width: 125em) {
-      font-size: 1.7rem;
+      font-size: 2rem;
     }
 
     &:not(:last-child) {
