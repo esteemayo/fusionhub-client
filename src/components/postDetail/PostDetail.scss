@@ -33,29 +33,29 @@
     color: vars.$clr-gray-light-1;
 
     svg {
-      width: 1.3rem;
-      height: 1.3rem;
+      width: 1.5rem;
+      height: 1.5rem;
       color: currentColor;
       stroke-width: 3px;
 
       @media screen and (max-width: 56.25em) {
-        width: 1.4rem;
-        height: 1.4rem;
+        width: 1.6rem;
+        height: 1.6rem;
       }
 
       @media screen and (max-width: 51.25em) {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.7rem;
+        height: 1.7rem;
       }
 
       @media screen and (max-width: 17.5em) {
-        width: 1.45rem;
-        height: 1.45rem;
+        width: 1.65rem;
+        height: 1.65rem;
       }
 
       @media screen and (min-width: 106.25em) {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.6rem;
+        height: 1.6rem;
       }
 
       @media screen and (min-width: 112.5em) {
