@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .feed {
   display: flex;
@@ -42,7 +42,7 @@
       width: 20rem;
       font-weight: 700;
       font-size: 1.4rem;
-      color: $clr-gray-light-3;
+      color: vars.$clr-gray-light-3;
       line-height: 1.2;
 
       @media screen and (max-width: 56.25em) {
@@ -78,7 +78,7 @@
         }
 
         &:hover {
-          color: $clr-pink-light;
+          color: vars.$clr-pink-light;
         }
       }
     }
@@ -87,7 +87,7 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      color: $clr-gray-light-1;
+      color: vars.$clr-gray-light-1;
 
       svg {
         width: 1.3rem;
