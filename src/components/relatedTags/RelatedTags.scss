@@ -1,9 +1,14 @@
-@import '../../styles//variables.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .relatedTags {
-  background-color: $clr-secondary-blue;
+  background-color: vars.$clr-secondary-blue;
   padding: 3rem;
   border-radius: 3px;
+
+  @media screen and (max-width: 25em) {
+    padding: 2rem;
+  }
 
   &__heading {
     font-weight: 600;
