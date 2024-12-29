@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .postDetails {
   display: flex;
@@ -13,6 +13,10 @@
     display: flex;
     align-items: flex-start;
     gap: 2rem;
+
+    @include bp.xxl {
+      width: 110rem;
+    }
 
     @media screen and (min-width: 112.5em) {
       width: 120rem;
