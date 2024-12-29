@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .tagItem {
   text-transform: capitalize;
@@ -7,7 +7,7 @@
   font-weight: 500;
   font-size: 1.25rem;
   padding: 3px 1rem;
-  color: $clr-gray-light-1;
+  color: vars.$clr-gray-light-1;
   border: 1px solid currentColor;
   border-radius: 0.5rem;
 
