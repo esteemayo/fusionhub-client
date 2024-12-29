@@ -147,13 +147,18 @@
         }
 
         @media screen and (max-width: 51.25em) {
-          width: 2.95rem;
-          height: 2.95rem;
+          width: 2.35rem;
+          height: 2.35rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          width: 2.3rem;
+          height: 2.3rem;
         }
 
         @media screen and (max-width: 17.5em) {
-          width: 2.9rem;
-          height: 2.9rem;
+          width: 2.2rem;
+          height: 2.2rem;
         }
 
         @media screen and (min-width: 106.25em) {
