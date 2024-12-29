@@ -35,7 +35,7 @@
     svg {
       width: 1.5rem;
       height: 1.5rem;
-      color: currentColor;
+      color: vars.$clr-gray-light-3;
       stroke-width: 3px;
 
       @media screen and (max-width: 56.25em) {
@@ -130,7 +130,7 @@
       svg {
         width: 1.85rem;
         height: 1.85rem;
-        color: currentColor;
+        color: vars.$clr-gray-light-3;
         stroke-width: 2px;
 
         @media screen and (max-width: 56.25em) {
