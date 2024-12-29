@@ -35,6 +35,90 @@
     }
   }
 
+  &__wrap {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    &--username,
+    &--date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: vars.$clr-gray-light-1;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: vars.$clr-gray-light-3;
+        stroke-width: 3px;
+
+        @media screen and (max-width: 56.25em) {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 1.7rem;
+          height: 1.7rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.8rem;
+          height: 1.8rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      span,
+      time {
+        text-transform: capitalize;
+        text-rendering: optimizeLegibility;
+        font-weight: 500;
+        font-size: 1.3rem;
+        color: inherit;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.25rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.7rem;
+        }
+      }
+    }
+  }
+
   &__username,
   &__date,
   &__view {
