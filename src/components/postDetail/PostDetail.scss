@@ -1,9 +1,9 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .postDetail {
   &__container {
-    background-color: $clr-secondary-blue;
+    background-color: vars.$clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
   }
@@ -26,7 +26,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: $clr-gray-light-1;
+    color: vars.$clr-gray-light-1;
 
     svg {
       width: 1.3rem;
@@ -116,7 +116,7 @@
       border: 0;
       outline: 0;
       background-color: transparent;
-      color: $clr-gray-light-1;
+      color: vars.$clr-gray-light-1;
       cursor: pointer;
 
       svg {
@@ -190,7 +190,7 @@
   }
 
   &__box {
-    background-color: $clr-secondary-blue;
+    background-color: vars.$clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
     margin-top: 1rem;
@@ -238,7 +238,7 @@
 
   &__desc {
     font-size: 1.4rem;
-    color: $clr-gray-light-1;
+    color: vars.$clr-gray-light-1;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.5rem;
