@@ -1,5 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/responsive.scss';
+@use '../../../styles/responsive.scss' as bp;
+@use '../../../styles/variables.scss' as vars;
 
 .search {
   &__container {
@@ -9,9 +9,21 @@
     justify-content: center;
     gap: 2rem;
 
-    background-color: $clr-secondary-blue;
+    background-color: vars.$clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
+
+    @media screen and (max-width: 81.25em) {
+      padding: 2rem;
+    }
+
+    @include bp.md {
+      padding: 3rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      padding: 2rem;
+    }
 
     &--heading {
       text-transform: capitalize;
@@ -36,8 +48,8 @@
         width: 100%;
         height: 4.5rem;
         padding: 1.6rem;
-        background-color: $clr-tertiary-blue;
-        color: $clr-white;
+        background-color: vars.$clr-tertiary-blue;
+        color: vars.$clr-white;
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
 
@@ -51,7 +63,7 @@
           font-size: var(--default-font-size);
         }
 
-        @include md {
+        @include bp.md {
           height: 5rem;
         }
 
@@ -80,7 +92,7 @@
 
         &::placeholder {
           font-size: 1.2rem;
-          color: $clr-white;
+          color: vars.$clr-white;
 
           @media screen and (max-width: 56.25em) {
             font-size: 1.3rem;
@@ -122,8 +134,8 @@
         width: 5rem;
         height: 4.5rem;
         padding: 1.2rem;
-        background-color: $clr-pink-dark-1;
-        color: $clr-white;
+        background-color: vars.$clr-pink-dark-1;
+        color: vars.$clr-white;
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px;
         cursor: pointer;
