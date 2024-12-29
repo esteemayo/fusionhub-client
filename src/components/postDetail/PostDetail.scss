@@ -74,15 +74,15 @@
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       color: inherit;
 
       @media screen and (max-width: 56.25em) {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
 
       @media screen and (max-width: 51.25em) {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
       }
 
       @media screen and (max-width: 18.75em) {
@@ -90,15 +90,15 @@
       }
 
       @media screen and (min-width: 106.25em) {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
 
       @media screen and (min-width: 112.5em) {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
       }
     }
   }
