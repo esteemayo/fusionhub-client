@@ -6,6 +6,10 @@
     background-color: vars.$clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
+
+    @media screen and (max-width: 25em) {
+      padding: 2rem;
+    }
   }
 
   &__wrapper {
@@ -198,6 +202,10 @@
     padding: 3rem;
     border-radius: 3px;
     margin-top: 1rem;
+
+    @media screen and (max-width: 25em) {
+      padding: 2rem;
+    }
 
     @media screen and (min-width: 112.5em) {
       margin-top: 1.5rem;
