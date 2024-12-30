@@ -17,6 +17,10 @@
       width: 100%;
       height: 15rem;
       background-color: vars.$overlay;
+
+      @media screen and (min-width: 125em) {
+        height: 18rem;
+      }
     }
 
     &--img {
@@ -25,6 +29,10 @@
       display: block;
       object-fit: cover;
       transition: all 300ms ease-in-out;
+
+      @media screen and (min-width: 125em) {
+        height: 18rem;
+      }
 
       &:hover {
         filter: blur(1px) grayscale(1);
@@ -39,6 +47,10 @@
 
       min-height: 12rem;
       padding: 1.5rem;
+
+      @media screen and (min-width: 125em) {
+        min-height: 15rem;
+      }
 
       a {
         &:link,
@@ -115,6 +127,18 @@
         time {
           font-size: 1.3rem;
           color: vars.$clr-gray-light-1;
+
+          @media screen and (min-width: 106.25em) {
+            font-size: 1.4rem;
+          }
+
+          @media screen and (min-width: 112.5em) {
+            font-size: 1.5rem;
+          }
+
+          @media screen and (min-width: 125em) {
+            font-size: 1.65rem;
+          }
         }
       }
     }
