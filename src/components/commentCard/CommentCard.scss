@@ -152,6 +152,21 @@
         height: 1.45rem;
         color: currentColor;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.55rem;
+          height: 1.55rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
       }
 
       span {
