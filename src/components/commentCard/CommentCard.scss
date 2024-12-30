@@ -12,6 +12,10 @@
     gap: 2rem;
   }
 
+  @media screen and (max-width: 26.875em) {
+    gap: 0;
+  }
+
   &:not(:last-child) {
     border-bottom: 1px solid vars.$clr-tertiary-blue;
   }
