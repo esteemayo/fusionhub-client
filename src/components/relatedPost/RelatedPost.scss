@@ -11,6 +11,10 @@
     width: 23rem;
   }
 
+  @media screen and (max-width: 76.25em) {
+    width: 21rem;
+  }
+
   @media screen and (min-width: 112.5em) {
     width: 26rem;
   }
@@ -30,6 +34,10 @@
       height: 15rem;
       background-color: vars.$overlay;
 
+      @media screen and (max-width: 76.25em) {
+        height: 13rem;
+      }
+
       @media screen and (min-width: 112.5em) {
         height: 16rem;
       }
@@ -48,6 +56,11 @@
 
       @media screen and (max-width: 81.25em) {
         width: 23rem;
+      }
+
+      @media screen and (max-width: 76.25em) {
+        width: 21rem;
+        height: 13rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -73,6 +86,10 @@
 
       min-height: 12rem;
       padding: 1.5rem;
+
+      @media screen and (max-width: 76.25em) {
+        padding: 1.25rem;
+      }
 
       @media screen and (min-width: 112.5em) {
         min-height: 13rem;
