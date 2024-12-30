@@ -50,6 +50,10 @@
       gap: 2rem;
     }
 
+    @media screen and (max-width: 23.75em) {
+      gap: 1rem;
+    }
+
     &--username,
     &--date {
       display: flex;
@@ -253,6 +257,10 @@
 
       @media screen and (max-width: 31.25em) {
         gap: 2rem;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        gap: 1rem;
       }
 
       button {
