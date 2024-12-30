@@ -44,6 +44,10 @@
         height: 8rem;
       }
 
+      @media screen and (max-width: 26.875em) {
+        display: none;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 8.5rem;
         height: 8.5rem;
