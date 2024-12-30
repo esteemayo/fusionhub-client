@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: space-between;
 
-    @media screen and (max-width: 59.375em) {
+    @media screen and (max-width: 34.375em) {
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
@@ -30,10 +30,9 @@
     align-items: center;
     gap: 2rem;
 
-    width: 100%;
-
-    @media screen and (max-width: 59.375em) {
+    @media screen and (max-width: 34.375em) {
       justify-content: space-between;
+      width: 100%;
     }
   }
 
@@ -267,10 +266,10 @@
     align-items: center;
     gap: 2rem;
 
-    width: 100%;
-
-    @media screen and (max-width: 59.375em) {
+    @media screen and (max-width: 34.375em) {
       justify-content: space-between;
+
+      width: 100%;
       padding-top: 2rem;
       border-top: 1px solid vars.$clr-tertiary-blue;
     }
