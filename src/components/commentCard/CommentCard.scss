@@ -20,6 +20,31 @@
       object-fit: cover;
       object-position: center;
       border-radius: 50%;
+
+      @media screen and (max-width: 56.25em) {
+        width: 9rem;
+        height: 9rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 10rem;
+        height: 10rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 8.5rem;
+        height: 8.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 9rem;
+        height: 9rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 10rem;
+        height: 10rem;
+      }
     }
   }
 
