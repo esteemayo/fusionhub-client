@@ -215,12 +215,14 @@
     align-items: center;
     gap: 2rem;
 
+    width: 100%;
+
     @media screen and (max-width: 57.5em) {
       gap: 1.25rem;
     }
 
-    @media screen and (max-width: 28.125em) {
-      display: none;
+    @media screen and (max-width: 31.25em) {
+      justify-content: space-between;
     }
 
     &--likes,
@@ -231,10 +233,6 @@
 
       @media screen and (max-width: 57.5em) {
         gap: 1.25rem;
-      }
-
-      @media screen and (max-width: 28.125em) {
-        display: none;
       }
 
       button {
