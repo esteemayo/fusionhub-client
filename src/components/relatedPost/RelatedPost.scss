@@ -11,6 +11,10 @@
     width: 26rem;
   }
 
+  @media screen and (min-width: 125em) {
+    width: 30rem;
+  }
+
   &__container {
     position: relative;
 
@@ -44,6 +48,7 @@
       }
 
       @media screen and (min-width: 125em) {
+        width: 30rem;
         height: 18rem;
       }
 
@@ -60,6 +65,10 @@
 
       min-height: 12rem;
       padding: 1.5rem;
+
+      @media screen and (min-width: 112.5em) {
+        min-height: 13rem;
+      }
 
       @media screen and (min-width: 125em) {
         min-height: 15rem;
