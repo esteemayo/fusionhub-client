@@ -237,6 +237,10 @@
         gap: 1.25rem;
       }
 
+      @media screen and (max-width: 31.25em) {
+        gap: 2rem;
+      }
+
       button {
         display: flex;
         align-items: center;
