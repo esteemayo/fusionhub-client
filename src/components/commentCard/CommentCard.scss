@@ -8,6 +8,10 @@
 
   padding: 2.5rem 0;
 
+  @media screen and (max-width: 81.25em) {
+    gap: 2rem;
+  }
+
   &:not(:last-child) {
     border-bottom: 1px solid vars.$clr-tertiary-blue;
   }
@@ -21,13 +25,23 @@
       border-radius: 50%;
 
       @media screen and (max-width: 56.25em) {
+        width: 8.5rem;
+        height: 8.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
         width: 9rem;
         height: 9rem;
       }
 
-      @media screen and (max-width: 51.25em) {
-        width: 10rem;
-        height: 10rem;
+      @include bp.md {
+        width: 8.25rem;
+        height: 8.25rem;
+      }
+
+      @include bp.sm {
+        width: 8rem;
+        height: 8rem;
       }
 
       @media screen and (min-width: 106.25em) {
