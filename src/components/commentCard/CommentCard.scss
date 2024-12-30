@@ -153,6 +153,31 @@
         color: currentColor;
         stroke-width: 2px;
 
+        @media screen and (max-width: 56.25em) {
+          width: 1.55rem;
+          height: 1.55rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (max-width: 23.75em) {
+          width: 1.45rem;
+          height: 1.45rem;
+        }
+
+        @media screen and (max-width: 20em) {
+          width: 1.35rem;
+          height: 1.35rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 1.3rem;
+          height: 1.3rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 1.55rem;
           height: 1.55rem;
