@@ -346,8 +346,8 @@
           }
 
           @media screen and (max-width: 17.5em) {
-            width: 2.2rem;
-            height: 2.2rem;
+            width: 1.75rem;
+            height: 1.75rem;
           }
 
           @media screen and (min-width: 106.25em) {
@@ -390,6 +390,10 @@
 
           @media screen and (max-width: 18.75em) {
             font-size: 1.2rem;
+          }
+
+          @media screen and (max-width: 17.5em) {
+            font-size: 1rem;
           }
 
           @media screen and (min-width: 106.25em) {
