@@ -19,6 +19,10 @@
     width: 18rem;
   }
 
+  @include bp.md {
+    width: 17rem;
+  }
+
   @media screen and (min-width: 112.5em) {
     width: 26rem;
   }
@@ -40,6 +44,10 @@
 
       @media screen and (max-width: 76.25em) {
         height: 13rem;
+      }
+
+      @include bp.md {
+        height: 12rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -69,6 +77,11 @@
 
       @media screen and (max-width: 51.25em) {
         width: 18rem;
+      }
+
+      @include bp.md {
+        width: 17rem;
+        height: 12rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -103,6 +116,10 @@
         min-height: 13rem;
       }
 
+      @include bp.md {
+        min-height: 12rem;
+      }
+
       @media screen and (min-width: 112.5em) {
         min-height: 13rem;
       }
@@ -127,6 +144,10 @@
           // @media screen and (max-width: 51.25em) {
           //   font-size: 1.7rem;
           // }
+
+          @include bp.md {
+            font-size: 1.5rem;
+          }
 
           @media screen and (max-width: 26.875em) {
             font-size: 1.65rem;
