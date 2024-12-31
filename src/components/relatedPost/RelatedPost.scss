@@ -35,6 +35,10 @@
     width: 12rem;
   }
 
+  @include bp.sm {
+    width: 25rem;
+  }
+
   @media screen and (min-width: 112.5em) {
     width: 26rem;
   }
@@ -68,6 +72,10 @@
 
       @media screen and (max-width: 31.5em) {
         height: 9rem;
+      }
+
+      @include bp.sm {
+        height: 13rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -116,6 +124,11 @@
       @media screen and (max-width: 31.5em) {
         width: 12rem;
         height: 9rem;
+      }
+
+      @include bp.sm {
+        width: 25rem;
+        height: 13rem;
       }
 
       @media screen and (min-width: 112.5em) {
