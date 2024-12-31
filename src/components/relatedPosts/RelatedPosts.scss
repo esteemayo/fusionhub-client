@@ -55,5 +55,9 @@
     @media screen and (max-width: 59.375em) {
       gap: 2rem;
     }
+
+    @include bp.sm {
+      row-gap: 3rem;
+    }
   }
 }
