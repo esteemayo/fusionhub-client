@@ -166,6 +166,10 @@
         min-height: 12.5rem;
       }
 
+      @media screen and (max-width: 31.5em) {
+        min-height: 12rem;
+      }
+
       @media screen and (min-width: 112.5em) {
         min-height: 13rem;
       }
