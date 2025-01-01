@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as vars;
 
 .sidebar {
   position: fixed;
@@ -6,8 +6,8 @@
   bottom: 0;
   width: 40rem;
   height: 100%;
-  background-color: $clr-secondary-blue;
-  color: $clr-white;
+  background-color: vars.$clr-secondary-blue;
+  color: vars.$clr-white;
   z-index: 4000;
 
   @media screen and (max-width: 26.875em) {
@@ -41,7 +41,7 @@
 
     height: 9.943rem;
     padding: 0 2rem;
-    background-color: $clr-black;
+    background-color: vars.$clr-black;
   }
 
   &__logo {
@@ -62,11 +62,11 @@
         font-size: 2rem;
         background-image: linear-gradient(
           to right,
-          $clr-pink-dark-1,
-          $clr-pink-dark-2,
-          $clr-pink-light,
-          $clr-orange-dark,
-          $clr-orange-light
+          vars.$clr-pink-dark-1,
+          vars.$clr-pink-dark-2,
+          vars.$clr-pink-light,
+          vars.$clr-orange-dark,
+          vars.$clr-orange-light
         );
         -webkit-background-clip: text;
         background-clip: text;
@@ -112,7 +112,7 @@
 
     &--item {
       padding: 1.5rem 1rem;
-      background-color: $clr-tertiary-blue;
+      background-color: vars.$clr-tertiary-blue;
       font-size: 1.3rem;
       color: inherit;
       border-radius: 2px;
@@ -156,7 +156,7 @@
       height: 7rem;
       display: inline-block;
       object-fit: cover;
-      background-color: $clr-tertiary-blue;
+      background-color: vars.$clr-tertiary-blue;
       border-radius: 50%;
     }
 
@@ -177,8 +177,8 @@
     font-size: 1.3rem;
     width: 10rem;
     height: 4rem;
-    background-color: $clr-tertiary-blue;
-    color: $clr-white;
+    background-color: vars.$clr-tertiary-blue;
+    color: vars.$clr-white;
     border-radius: 0.5rem;
     cursor: pointer;
 
@@ -191,8 +191,8 @@
   &__login {
     width: 100%;
     padding: 1.5rem 1rem;
-    background-color: $clr-tertiary-blue;
-    color: $clr-white;
+    background-color: vars.$clr-tertiary-blue;
+    color: vars.$clr-white;
     border-radius: 2px;
   }
 }
