@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/variables.scss' as vars;
+@use '../../styles/responsive.scss' as bp;
 
 .login {
   display: flex;
@@ -58,7 +58,7 @@
   &__wrapper {
     width: 45rem;
     padding: 3rem;
-    border: 2px solid $clr-secondary-blue;
+    border: 2px solid vars.$clr-secondary-blue;
     border-radius: 0.5rem;
 
     @media screen and (max-width: 56.25em) {
@@ -211,7 +211,7 @@
         &:hover {
           text-decoration: underline;
           text-underline-offset: 0.5rem;
-          text-decoration-color: $clr-pink-dark-1;
+          text-decoration-color: vars.$clr-pink-dark-1;
         }
       }
     }

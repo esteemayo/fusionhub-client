@@ -1,11 +1,11 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .footer {
   display: flex;
   justify-content: center;
   min-height: 26.3rem;
-  background-color: $clr-black;
+  background-color: vars.$clr-black;
   color: inherit;
 
   &__container {
@@ -17,7 +17,7 @@
       width: 134rem;
     }
 
-    @include xxl {
+    @include bp.xxl {
       width: 124rem;
     }
 
@@ -29,7 +29,7 @@
       width: 110rem;
     }
 
-    @include xl {
+    @include bp.xl {
       width: 118rem;
     }
 
@@ -37,7 +37,7 @@
       width: 110rem;
     }
 
-    @include lg {
+    @include bp.lg {
       width: 100rem;
     }
 
@@ -61,7 +61,7 @@
       width: 90rem;
     }
 
-    @include md {
+    @include bp.md {
       width: 87rem;
     }
 
@@ -89,7 +89,7 @@
       width: 55rem;
     }
 
-    @include sm {
+    @include bp.sm {
       width: 53rem;
     }
 
@@ -184,7 +184,7 @@
         &:link,
         &:visited {
           font-size: 1.5rem;
-          color: $clr-gray-light-1;
+          color: vars.$clr-gray-light-1;
           transition: all 300ms ease-in-out;
 
           @media screen and (max-width: 56.25em) {
@@ -195,7 +195,7 @@
             font-size: 1.7rem;
           }
 
-          @include sm {
+          @include bp.sm {
             display: block;
             width: 25rem;
           }
@@ -242,7 +242,7 @@
         }
 
         &:hover {
-          color: $clr-white;
+          color: vars.$clr-white;
         }
       }
     }
@@ -262,8 +262,8 @@
       &-item {
         width: 3.2rem;
         height: 3.2rem;
-        background-color: $clr-gray-dark-3;
-        color: $clr-black;
+        background-color: vars.$clr-gray-dark-3;
+        color: vars.$clr-black;
         border-radius: 50%;
         transition: all 300ms ease-in-out;
 
@@ -292,7 +292,7 @@
         }
 
         &:hover {
-          background-color: $clr-pink-light;
+          background-color: vars.$clr-pink-light;
         }
 
         a {
@@ -335,7 +335,7 @@
           }
 
           &:hover {
-            color: $clr-white;
+            color: vars.$clr-white;
           }
         }
       }
@@ -347,7 +347,7 @@
 
     &--text {
       font-size: 1.2rem;
-      color: $clr-gray-light-1;
+      color: vars.$clr-gray-light-1;
       line-height: 1.4;
 
       @media screen and (max-width: 56.25em) {
@@ -377,7 +377,7 @@
 
     &--text {
       font-size: 1.2rem;
-      color: $clr-gray-light-1;
+      color: vars.$clr-gray-light-1;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.3rem;

@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .heading {
   text-align: left;

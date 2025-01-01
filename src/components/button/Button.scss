@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .btn {
   display: flex;
@@ -13,7 +13,7 @@
   padding: 1.6rem;
   font-weight: 700;
   font-size: 1.4rem;
-  color: $clr-white;
+  color: vars.$clr-white;
   border-radius: 0.5rem;
   cursor: pointer;
 
@@ -48,13 +48,13 @@
   }
 
   &.primary {
-    background-color: $clr-pink-dark-1;
+    background-color: vars.$clr-pink-dark-1;
     border: 2px solid transparent;
   }
 
   &.outline {
     background-color: transparent;
-    border: 2px solid $clr-secondary-blue;
+    border: 2px solid vars.$clr-secondary-blue;
 
     img {
       display: inline-block;

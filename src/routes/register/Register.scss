@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as vars;
 
 .register {
   display: flex;
@@ -57,7 +57,7 @@
   &__wrapper {
     width: 45rem;
     padding: 3rem;
-    border: 2px solid $clr-secondary-blue;
+    border: 2px solid vars.$clr-secondary-blue;
     border-radius: 0.5rem;
 
     @media screen and (max-width: 56.25em) {
@@ -192,17 +192,17 @@
       }
 
       &::-webkit-scrollbar-track {
-        background-color: $clr-gray-light-2;
+        background-color: vars.$clr-gray-light-2;
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: $clr-gray-dark-1;
+        background-color: vars.$clr-gray-dark-1;
         background-clip: content-box;
         box-shadow: inset 0;
       }
 
       &::-webkit-scrollbar-thumb:hover {
-        background-color: $clr-gray-dark-3;
+        background-color: vars.$clr-gray-dark-3;
       }
     }
   }

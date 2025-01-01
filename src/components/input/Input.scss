@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .input {
   display: flex;
@@ -54,8 +54,8 @@
     height: 5.6rem;
     padding: 1.6rem;
     background-color: transparent;
-    color: $clr-white;
-    border: 2px solid $clr-secondary-blue;
+    color: vars.$clr-white;
+    border: 2px solid vars.$clr-secondary-blue;
     border-radius: 0.5rem;
     transition: all 300ms ease-in-out;
 
@@ -90,12 +90,12 @@
     }
 
     &:focus {
-      background-color: $clr-secondary-blue;
+      background-color: vars.$clr-secondary-blue;
     }
 
     &::placeholder {
       font-size: 1.25rem;
-      color: $clr-white;
+      color: vars.$clr-white;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.35rem;
