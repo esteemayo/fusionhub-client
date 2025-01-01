@@ -51,18 +51,6 @@
     }
   }
 
-  @media screen and (max-width: 20em) {
-    width: 16rem;
-  }
-
-  @media screen and (max-width: 18.75em) {
-    width: 15rem;
-  }
-
-  @media screen and (max-width: 17.5em) {
-    width: 14rem;
-  }
-
   @media screen and (min-width: 112.5em) {
     width: 26rem;
   }
@@ -118,6 +106,11 @@
         height: 8rem;
       }
 
+      @media screen and (max-width: 18.75em) {
+        width: 6rem;
+        height: 6rem;
+      }
+
       @media screen and (min-width: 112.5em) {
         height: 16rem;
       }
@@ -169,6 +162,16 @@
       @include bp.sm {
         width: 10rem;
         height: 10rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 8rem;
+        height: 8rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 6rem;
+        height: 6rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -228,16 +231,6 @@
         padding: 0;
       }
 
-      @media screen and (max-width: 18.75em) {
-        min-height: 11rem;
-        padding: 0.8rem;
-      }
-
-      @media screen and (max-width: 17.5em) {
-        min-height: 10rem;
-        padding: 0.5rem;
-      }
-
       @media screen and (min-width: 112.5em) {
         min-height: 13rem;
       }
@@ -279,20 +272,12 @@
             font-size: 1.65rem;
           }
 
-          @media screen and (max-width: 23.75em) {
+          @media screen and (max-width: 21.5em) {
             font-size: var(--default-font-size);
           }
 
-          @media screen and (max-width: 21.5em) {
-            font-size: 1.525rem;
-          }
-
           @media screen and (max-width: 20em) {
-            font-size: 1.5rem;
-          }
-
-          @media screen and (max-width: 18.75em) {
-            font-size: 1.5rem;
+            font-size: 1.525rem;
           }
 
           @media screen and (max-width: 18.75em) {
@@ -325,6 +310,14 @@
         display: flex;
         flex-direction: column;
         line-height: 1.3;
+
+        @media screen and (max-width: 21.5em) {
+          line-height: 1.2;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          line-height: 1.1;
+        }
 
         span,
         time {
