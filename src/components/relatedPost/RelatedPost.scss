@@ -67,6 +67,16 @@
     width: 17rem;
   }
 
+  @media screen and (max-width: 21.5em) {
+    width: 100%;
+    padding-bottom: 1.5rem;
+    background-color: transparent;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid vars.$clr-secondary-blue;
+    }
+  }
+
   @media screen and (max-width: 20em) {
     width: 16rem;
   }
@@ -89,6 +99,11 @@
 
   &__container {
     position: relative;
+
+    @media screen and (max-width: 21.5em) {
+      display: flex;
+      gap: 1rem;
+    }
 
     &--overlay {
       position: absolute;
@@ -120,6 +135,11 @@
 
       @media screen and (max-width: 22.5em) {
         height: 12rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 8rem;
+        height: 8rem;
       }
 
       @media screen and (max-width: 18.75em) {
@@ -212,6 +232,11 @@
         width: 17rem;
       }
 
+      @media screen and (max-width: 21.5em) {
+        width: 8rem;
+        height: 8rem;
+      }
+
       @media screen and (max-width: 20em) {
         width: 16rem;
       }
@@ -290,6 +315,11 @@
       @media screen and (max-width: 23.75em) {
         min-height: 12rem;
         padding: 1rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        min-height: 0;
+        padding: 0;
       }
 
       @media screen and (max-width: 18.75em) {
