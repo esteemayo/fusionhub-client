@@ -5,6 +5,7 @@ import Footer from '../footer/Footer';
 import Sidebar from '../sidebar/Sidebar';
 
 import BackToTop from '../backToTop/BackToTop';
+import AddPost from '../addPost/AddPost';
 import ErrorBoundary from '../errors/ErrorBoundary';
 
 const MainLayout = () => {
@@ -16,6 +17,7 @@ const MainLayout = () => {
         <Outlet />
       </ErrorBoundary>
       <Footer />
+      <AddPost />
       <BackToTop />
     </main>
   );
