@@ -19,7 +19,7 @@
       width: 55rem;
     }
 
-    @include sm {
+    @include bp.sm {
       width: 53rem;
     }
 

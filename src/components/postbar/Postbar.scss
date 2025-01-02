@@ -1,10 +1,10 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .postbar {
   display: flex;
   justify-content: center;
-  background-color: $clr-secondary-blue;
+  background-color: vars.$clr-secondary-blue;
 
   &__container {
     width: 144rem;
@@ -15,7 +15,7 @@
       width: 134rem;
     }
 
-    @include xxl {
+    @include bp.xxl {
       width: 124rem;
     }
 
@@ -27,7 +27,7 @@
       width: 110rem;
     }
 
-    @include xl {
+    @include bp.xl {
       width: 118rem;
     }
 
@@ -35,7 +35,7 @@
       width: 110rem;
     }
 
-    @include lg {
+    @include bp.lg {
       width: 100rem;
     }
 
@@ -59,7 +59,7 @@
       width: 90rem;
     }
 
-    @include md {
+    @include bp.md {
       width: 87rem;
     }
 
@@ -87,7 +87,7 @@
       width: 55rem;
     }
 
-    @include sm {
+    @include bp.sm {
       width: 53rem;
     }
 
@@ -232,7 +232,7 @@
         font-size: 1.55rem;
       }
 
-      @include sm {
+      @include bp.sm {
         &:last-child {
           display: none;
         }
@@ -272,7 +272,7 @@
         }
 
         &:hover {
-          color: $clr-pink-light;
+          color: vars.$clr-pink-light;
         }
       }
     }

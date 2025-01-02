@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .posts {
   &__container {
@@ -25,7 +25,7 @@
       width: 134rem;
     }
 
-    @include xxl {
+    @include bp.xxl {
       width: 124rem;
       gap: 2rem;
     }
@@ -38,7 +38,7 @@
       width: 110rem;
     }
 
-    @include xl {
+    @include bp.xl {
       width: 118rem;
     }
 
@@ -46,7 +46,7 @@
       width: 110rem;
     }
 
-    @include lg {
+    @include bp.lg {
       width: 100rem;
       gap: 3rem;
     }
@@ -72,7 +72,7 @@
       position: relative;
     }
 
-    @include md {
+    @include bp.md {
       width: 87rem;
     }
 
@@ -100,7 +100,7 @@
       width: 55rem;
     }
 
-    @include sm {
+    @include bp.sm {
       width: 53rem;
     }
 

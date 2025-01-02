@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .tags {
   &__container {
@@ -9,7 +9,7 @@
     justify-content: center;
     gap: 2rem;
 
-    background-color: $clr-secondary-blue;
+    background-color: vars.$clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
 
@@ -17,7 +17,7 @@
       padding: 2rem;
     }
 
-    @include md {
+    @include bp.md {
       padding: 3rem;
     }
 
