@@ -1,5 +1,7 @@
-@use '../../styles/animation.scss';
+@use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
+
+@use '../../styles/animation.scss';
 
 .scroll {
   position: fixed;
@@ -7,6 +9,41 @@
   width: 4rem;
   height: 4rem;
   animation: moveInTop 0.5s ease-in-out 1s backwards;
+
+  @media screen and (max-width: 56.25em) {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  @include bp.sm {
+    width: 5.25rem;
+    height: 5.25rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    width: 6rem;
+    height: 6rem;
+  }
 
   &.show {
     bottom: 5rem;
@@ -42,6 +79,41 @@
       width: 2rem;
       height: 2rem;
       fill: currentColor;
+
+      @media screen and (max-width: 56.25em) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      @include bp.sm {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
     }
   }
 }
