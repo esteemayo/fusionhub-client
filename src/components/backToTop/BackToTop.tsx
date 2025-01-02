@@ -7,7 +7,7 @@ const BackToTop = () => {
 
   window.onscroll = () => {
     setIsVisible(() => {
-      return window.scrollY > 300 ? true : false;
+      return window.scrollY > 700 ? true : false;
     });
 
     return window.onscroll === null;

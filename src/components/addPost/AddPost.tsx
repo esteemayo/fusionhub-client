@@ -10,6 +10,14 @@ const AddPost = () => {
             fill='none'
             d='M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0'
           />
+          <text>
+            <textPath href='#circlePath' startOffset='0%'>
+              Post your article •
+            </textPath>
+            <textPath href='#circlePath' startOffset='50%'>
+              Share your story •
+            </textPath>
+          </text>
         </svg>
       </div>
       <button type='button'>
