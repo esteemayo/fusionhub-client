@@ -148,16 +148,31 @@
 
       @media screen and (max-width: 51.25em) {
         position: absolute;
-        right: 0;
-        right: -100rem;
 
         width: 40rem;
         padding: 3rem;
         background-color: vars.$clr-black;
-        border-top-right-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
         z-index: 2000;
         transition: all 300ms ease-in-out;
+
+        &.show {
+          right: 0;
+        }
+
+        &.hide {
+          right: -100rem;
+        }
+      }
+
+      @include bp.sm {
+        width: 100%;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        gap: 2rem;
+        padding: 2rem;
       }
     }
 

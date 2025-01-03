@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 
 import Comments from '../../components/comments/Comments';
 import Hero from '../../components/hero/Hero';
@@ -14,17 +14,25 @@ import Categories from '../../components/categories/Categories';
 
 import Search from './search/Search';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { onToggle } from '../../features/postActionMenu/postActionMenuSlice';
+
 import './PostDetails.scss';
 
 const PostDetails = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const { isOpen } = useAppSelector((state) => ({ ...state.postActionMenu }));
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setIsOpen((value) => {
-      return !value;
-    });
+    dispatch(onToggle());
   };
+
+  const postActionMenuClasses = useMemo(() => {
+    return isOpen
+      ? 'postDetails__container--right show'
+      : 'postDetails__container--right hide';
+  }, [isOpen]);
 
   return (
     <div className='postDetails'>
@@ -35,7 +43,7 @@ const PostDetails = () => {
           <RelatedTags />
           <Comments />
         </div>
-        <div className='postDetails__container--right'>
+        <div className={postActionMenuClasses}>
           <Search />
           <Follow />
           <Categories />
