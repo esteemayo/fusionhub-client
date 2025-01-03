@@ -27,7 +27,9 @@ const Posts = () => {
             <PostItems />
           </div>
         </div>
-        <PostMenuButton isOpen={isOpen} onClick={handleToggle} />
+        <div className='posts__btn'>
+          <PostMenuButton isOpen={isOpen} onClick={handleToggle} />
+        </div>
       </div>
     </div>
   );
