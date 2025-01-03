@@ -1,15 +1,13 @@
-import RelatedTags from '../../components/relatedTags/RelatedTags';
-import Hero from '../../components/hero/Hero';
 import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
-import Comments from '../../components/comments/Comments';
+import Hero from '../../components/hero/Hero';
 import PostMenuButton from '../../components/postMenuButton/PostMenuButton';
-import PostDetail from '../../components/postDetail/PostDetail';
+import PostContent from '../../components/postContent/PostContent';
+import PostActionMenu from '../../components/postActionMenu/PostActionMenu';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onToggle } from '../../features/postActionMenu/postActionMenuSlice';
 
 import './PostDetails.scss';
-import PostActionMenu from '../../components/postActionMenu/PostActionMenu';
 
 const PostDetails = () => {
   const dispatch = useAppDispatch();
@@ -24,11 +22,7 @@ const PostDetails = () => {
     <div className='postDetails'>
       <Hero />
       <div className='postDetails__container'>
-        <div className='postDetails__container--left'>
-          <PostDetail />
-          <RelatedTags />
-          <Comments />
-        </div>
+        <PostContent />
         <PostActionMenu isOpen={isOpen} />
         <div className='postDetails__container--btn'>
           <PostMenuButton isOpen={isOpen} onClick={handleToggle} />
