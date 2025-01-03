@@ -7,8 +7,8 @@
   right: 10rem;
 
   &__container {
-    font-size: 1.8rem;
-    letter-spacing: 0.1em;
+    font-size: 100%;
+    letter-spacing: 0.5rem;
     color: vars.$clr-white;
 
     svg {
@@ -16,7 +16,7 @@
     }
   }
 
-  button {
+  &__btn {
     display: flex;
     align-items: center;
     justify-content: center;

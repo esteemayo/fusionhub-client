@@ -20,7 +20,7 @@ const AddPost = () => {
           </text>
         </svg>
       </div>
-      <button type='button'>
+      <button type='button' className='addPost__btn'>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
