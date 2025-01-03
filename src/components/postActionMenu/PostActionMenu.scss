@@ -1,0 +1,43 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.postActionMenu {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  @media screen and (max-width: 51.25em) {
+    position: absolute;
+
+    width: 40rem;
+    padding: 3rem;
+    background-color: vars.$clr-black;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    z-index: 2000;
+    transition: all 300ms ease-in-out;
+
+    &.show {
+      right: 0;
+    }
+
+    &.hide {
+      right: -100rem;
+    }
+  }
+
+  @include bp.sm {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    padding: 1.5rem;
+  }
+}
