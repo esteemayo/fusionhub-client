@@ -11,8 +11,61 @@
     letter-spacing: 0.5rem;
     color: vars.$clr-white;
 
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.7rem;
+      letter-spacing: 0.7rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.8rem;
+      letter-spacing: 0.725rem;
+    }
+
+    @include bp.md {
+      font-size: 1.7rem;
+      letter-spacing: 0.8rem;
+    }
+
+    @media screen and (max-width: 43.75em) {
+      font-size: 1.8rem;
+      letter-spacing: 0.7rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      letter-spacing: 0.525rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      letter-spacing: 4px;
+    }
+
     svg {
       fill: currentColor;
+
+      @include bp.md {
+        width: 18rem;
+        height: 18rem;
+      }
+
+      @media screen and (max-width: 43.75em) {
+        width: 17rem;
+        height: 17rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 21rem;
+        height: 21rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 22rem;
+        height: 22rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 23rem;
+        height: 23rem;
+      }
     }
   }
 
@@ -37,6 +90,41 @@
     bottom: 0;
     margin: auto;
 
+    @media screen and (max-width: 56.25em) {
+      width: 9rem;
+      height: 9rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    @include bp.md {
+      width: 8rem;
+      height: 8rem;
+    }
+
+    @media screen and (max-width: 43.75em) {
+      width: 7rem;
+      height: 7rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 8.5rem;
+      height: 8.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 9rem;
+      height: 9rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 10rem;
+      height: 10rem;
+    }
+
     &:disabled {
       opacity: 0.75;
       cursor: default;
@@ -46,6 +134,41 @@
       width: 4rem;
       height: 4rem;
       color: currentColor;
+
+      @media screen and (max-width: 56.25em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      @include bp.md {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      @media screen and (max-width: 43.75em) {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 6rem;
+        height: 6rem;
+      }
     }
   }
 }
