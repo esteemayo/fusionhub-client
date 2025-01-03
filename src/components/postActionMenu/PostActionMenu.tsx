@@ -15,13 +15,15 @@ const PostActionMenu = ({ isOpen }: { isOpen: boolean }) => {
   }, [isOpen]);
 
   return (
-    <div className={postActionMenuClasses}>
-      <Search />
-      <Follow />
-      <Categories />
-      <Feeds />
-      <Tags />
-    </div>
+    <aside className={postActionMenuClasses}>
+      <div className='postActionMenu__container'>
+        <Search />
+        <Follow />
+        <Categories />
+        <Feeds />
+        <Tags />
+      </div>
+    </aside>
   );
 };
 

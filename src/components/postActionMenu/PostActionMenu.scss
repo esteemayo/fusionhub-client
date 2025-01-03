@@ -4,26 +4,23 @@
 .postActionMenu {
   flex: 1;
 
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-
   @media screen and (max-width: 51.25em) {
     position: absolute;
+    top: 8rem;
 
-    width: 40rem;
-    padding: 3rem;
-    background-color: vars.$clr-black;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
     z-index: 2000;
     transition: all 300ms ease-in-out;
+  }
 
-    &.show {
+  &.show {
+    @media screen and (max-width: 51.25em) {
       right: 0;
+      background-color: vars.$overlay;
     }
+  }
 
-    &.hide {
+  &.hide {
+    @media screen and (max-width: 51.25em) {
       right: -100rem;
     }
   }
@@ -32,12 +29,30 @@
     width: 100%;
   }
 
-  @media screen and (max-width: 22.5em) {
-    gap: 2rem;
-    padding: 2rem;
-  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 
-  @media screen and (max-width: 18.75em) {
-    padding: 1.5rem;
+    @media screen and (max-width: 51.25em) {
+      width: 40rem;
+      padding: 3rem;
+      background-color: vars.$clr-black;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+    }
+
+    @include bp.sm {
+      width: 100%;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      padding: 1.5rem;
+    }
   }
 }
