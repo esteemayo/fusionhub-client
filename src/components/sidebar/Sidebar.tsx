@@ -19,6 +19,10 @@ const Sidebar = () => {
     dispatch(onClose());
   };
 
+  const onCloseHandler = () => {
+    dispatch(onClose());
+  };
+
   const sidebarClasses = useMemo(() => {
     return isOpen ? 'sidebar show' : 'sidebar hide';
   }, [isOpen]);
@@ -53,7 +57,11 @@ const Sidebar = () => {
             {menuItems.map((menu) => {
               const { id, url, label } = menu;
               return (
-                <li key={id} className='sidebar__menu--item'>
+                <li
+                  key={id}
+                  className='sidebar__menu--item'
+                  onClick={onCloseHandler}
+                >
                   <Link to={url}>{label}</Link>
                 </li>
               );
@@ -62,7 +70,11 @@ const Sidebar = () => {
           <div className='sidebar__accountWrap'>
             {user && (
               <div className='sidebar__accounts'>
-                <Link to='/account' className='sidebar__account'>
+                <Link
+                  to='/account'
+                  className='sidebar__account'
+                  onClick={onCloseHandler}
+                >
                   <img
                     src='/user-default.jpg'
                     width={70}
@@ -78,7 +90,11 @@ const Sidebar = () => {
               </div>
             )}
             {!user && (
-              <Link to='/login' className='sidebar__login'>
+              <Link
+                to='/login'
+                className='sidebar__login'
+                onClick={onCloseHandler}
+              >
                 Login
               </Link>
             )}
