@@ -1,23 +1,58 @@
+import { useEffect, useMemo, useState } from 'react';
+
+import { ModalProps } from '../../types';
+
 import './Modal.scss';
 
-const Modal = () => {
+const Modal = ({
+  isOpen,
+  title,
+  size = 'small',
+  loading,
+  disabled,
+  actionLabel,
+  secondaryActionLabel,
+  body,
+  footer,
+  onClose,
+  onSubmit,
+  secondaryAction,
+}: ModalProps) => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
+
+  if (!isOpen) {
+    return;
+  }
+
   return (
     <aside className='modal'>
       <div className='modal__container'>
         <div className='modal__wrapper'>
-          <h1 className='modal__heading'>Modal heading</h1>
-          <div className='modal__body'>Modal body</div>
+          <h1 className='modal__heading'>{title}</h1>
+          <div className='modal__body'>{body}</div>
           <hr />
           <div className='modal__footer'>
             <div className='modal__btn'>
-              <button type='button' className='modal__btn--secondary'>
-                secondary
+              <button
+                type='button'
+                disabled={disabled}
+                className='modal__btn--secondary'
+              >
+                {loading ? '...' : secondaryActionLabel}
               </button>
-              <button type='button' className='modal__btn--primary'>
-                action
+              <button
+                type='button'
+                disabled={disabled}
+                className='modal__btn--primary'
+              >
+                {loading ? '...' : actionLabel}
               </button>
             </div>
-            Modal footer
+            {footer}
           </div>
           <div className='modal__close'>
             <button type='button' className='modal__close--btn'>

@@ -146,6 +146,21 @@ export interface PostMenuButtonProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ModalProps {
+  isOpen: boolean;
+  title?: string;
+  size?: 'small' | 'full';
+  loading?: boolean;
+  disabled?: boolean;
+  actionLabel?: string;
+  secondaryActionLabel?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
+  onClose(): void;
+  onSubmit(): void;
+  secondaryAction?(): void;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
