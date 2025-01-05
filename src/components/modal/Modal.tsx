@@ -9,15 +9,15 @@ const Modal = () => {
           <div className='modal__body'>Modal body</div>
           <hr />
           <div className='modal__footer'>
-            <div className='modal__buttons'>
-              <button type='button' className='modal__buttons--btn'>
+            <div className='modal__btn'>
+              <button type='button' className='modal__btn--secondary'>
                 secondary
               </button>
-              <button type='button' className='modal__buttons--btn'>
+              <button type='button' className='modal__btn--primary'>
                 action
               </button>
-              Modal footer
             </div>
+            Modal footer
           </div>
           <div className='modal__close'>
             <button type='button' className='modal__close--btn'>
