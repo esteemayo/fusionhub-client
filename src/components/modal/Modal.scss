@@ -36,5 +36,46 @@
     padding: 3rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 1rem;
+
+    position: relative;
+  }
+
+  &__heading {
+  }
+
+  &__body {
+  }
+
+  &__footer {
+    &__buttons {
+      &--btn {
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+
+    &--btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      outline: 0;
+      width: 4.5rem;
+      height: 4.5rem;
+      background-color: vars.$clr-tertiary-blue;
+      color: currentColor;
+      border-radius: 50%;
+      cursor: pointer;
+
+      svg {
+        width: 2.5rem;
+        color: currentColor;
+      }
+    }
   }
 }
