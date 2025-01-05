@@ -1,7 +1,9 @@
+import Modal from '../modal/Modal';
+
 import './PostModal.scss';
 
 const PostModal = () => {
-  return <div>PostModal</div>;
+  return <Modal />;
 };
 
 export default PostModal;

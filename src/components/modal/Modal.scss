@@ -2,9 +2,39 @@
 @use '../../styles/variables.scss' as vars;
 
 .modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: vars.$overlay;
+  backdrop-filter: blur(2px);
+  z-index: 5000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   &__container {
+    transition: all 300ms ease-in-out;
+
+    &.show {
+      transform: translateY(0);
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &.hide {
+      transform: translateY(100%);
+      visibility: hidden;
+      opacity: 0;
+    }
   }
 
   &__wrapper {
+    width: 50rem;
+    padding: 3rem;
+    background-color: vars.$clr-secondary-blue;
+    border-radius: 1rem;
   }
 }
