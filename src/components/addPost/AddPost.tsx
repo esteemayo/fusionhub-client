@@ -1,6 +1,16 @@
+import { useAppDispatch } from '../../hooks/hooks';
+import { onOpen } from '../../features/postModal/postModalSlice';
+
 import './AddPost.scss';
 
 const AddPost = () => {
+  const dispatch = useAppDispatch();
+
+  const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    dispatch(onOpen());
+  };
+
   return (
     <div className='addPost'>
       <div className='addPost__container'>
@@ -20,7 +30,7 @@ const AddPost = () => {
           </text>
         </svg>
       </div>
-      <button type='button' className='addPost__btn'>
+      <button type='button' className='addPost__btn' onClick={handleOpen}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

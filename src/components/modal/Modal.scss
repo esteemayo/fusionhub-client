@@ -34,7 +34,7 @@
   &__wrapper {
     width: 50rem;
     padding: 3rem;
-    background-color: vars.$clr-secondary-blue;
+    background-color: vars.$clr-primary-blue;
     border-radius: 1rem;
 
     position: relative;
@@ -99,7 +99,7 @@
     }
 
     &--secondary {
-      background-color: vars.$clr-primary-blue;
+      background-color: vars.$clr-secondary-blue;
     }
   }
 

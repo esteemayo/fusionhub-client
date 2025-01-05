@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ModalProps } from '../../types';
 
@@ -7,7 +7,6 @@ import './Modal.scss';
 const Modal = ({
   isOpen,
   title,
-  size = 'small',
   loading,
   disabled,
   actionLabel,
@@ -20,6 +19,70 @@ const Modal = ({
 }: ModalProps) => {
   const [showModal, setShowModal] = useState(false);
 
+  const handleClose = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
+    setShowModal(false);
+
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [disabled, onClose]);
+
+  const onCloseHandler = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+
+    if (target.classList.contains('modal')) {
+      handleClose();
+    }
+  };
+
+  const handleEscape = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
+  const handleSubmit = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+
+      if (disabled) {
+        return;
+      }
+
+      onSubmit();
+    },
+    [disabled, onSubmit]
+  );
+
+  const handleSecondaryAction = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+
+      if (disabled || !secondaryAction) {
+        return;
+      }
+
+      secondaryAction();
+    },
+    [disabled, secondaryAction]
+  );
+
+  const containerClasses = useMemo(() => {
+    return showModal ? 'modal__container show' : 'modal__container hide';
+  }, [showModal]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [handleEscape]);
+
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
@@ -29,33 +92,43 @@ const Modal = ({
   }
 
   return (
-    <aside className='modal'>
-      <div className='modal__container'>
+    <aside className='modal' onClick={onCloseHandler}>
+      <div className={containerClasses}>
         <div className='modal__wrapper'>
           <h1 className='modal__heading'>{title}</h1>
           <div className='modal__body'>{body}</div>
           <hr />
           <div className='modal__footer'>
             <div className='modal__btn'>
-              <button
-                type='button'
-                disabled={disabled}
-                className='modal__btn--secondary'
-              >
-                {loading ? '...' : secondaryActionLabel}
-              </button>
-              <button
-                type='button'
-                disabled={disabled}
-                className='modal__btn--primary'
-              >
-                {loading ? '...' : actionLabel}
-              </button>
+              {secondaryActionLabel && secondaryAction && (
+                <button
+                  type='button'
+                  disabled={disabled}
+                  className='modal__btn--secondary'
+                  onClick={handleSecondaryAction}
+                >
+                  {loading ? '...' : secondaryActionLabel}
+                </button>
+              )}
+              {actionLabel && (
+                <button
+                  type='button'
+                  disabled={disabled}
+                  className='modal__btn--primary'
+                  onClick={handleSubmit}
+                >
+                  {loading ? '...' : actionLabel}
+                </button>
+              )}
             </div>
             {footer}
           </div>
           <div className='modal__close'>
-            <button type='button' className='modal__close--btn'>
+            <button
+              type='button'
+              className='modal__close--btn'
+              onClick={handleClose}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
