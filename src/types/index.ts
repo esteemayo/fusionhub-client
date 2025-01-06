@@ -64,6 +64,17 @@ export interface TextareaProps
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
+export interface SelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  id?: string;
+  name?: string;
+  label?: string;
+  error?: string;
+  disabled?: boolean;
+  required?: boolean;
+  onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
+}
+
 type ButtonType = 'button' | 'reset' | 'submit';
 
 export interface ButtonProps {
@@ -233,4 +244,9 @@ export type FilterType = {
   name: string;
   value: string;
   label: string;
+}[];
+
+export type CategoryOptionType = {
+  id: string;
+  name: string;
 }[];

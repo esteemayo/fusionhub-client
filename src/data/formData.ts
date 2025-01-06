@@ -1,4 +1,4 @@
-import { FilterType } from '../types';
+import { CategoryOptionType, FilterType } from '../types';
 
 export const filters: FilterType = [
   {
@@ -24,5 +24,28 @@ export const filters: FilterType = [
     name: 'sort',
     value: 'oldest',
     label: 'Oldest',
+  },
+];
+
+export const categoryOptions: CategoryOptionType = [
+  {
+    id: '1',
+    name: 'Travel',
+  },
+  {
+    id: '2',
+    name: 'Lifestyle',
+  },
+  {
+    id: '3',
+    name: 'Creativity',
+  },
+  {
+    id: '4',
+    name: 'Adventures',
+  },
+  {
+    id: '5',
+    name: 'Technology',
   },
 ];

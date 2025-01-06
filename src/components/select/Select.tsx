@@ -1,14 +1,16 @@
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
+import { SelectProps } from '../../types';
+
 import './Select.scss';
 
-const Select = () => {
+const Select = ({ name, label, error, ...rest }: SelectProps) => {
   return (
     <div className='select'>
-      <label htmlFor='category' className='select__label'>
-        Category
+      <label htmlFor={name} className='select__label'>
+        {label}
       </label>
-      <select name='category' id='category' className='select__control'>
+      <select {...rest} id={name} name={name} className='select__control'>
         <option value=''>Category</option>
         <option value='lifestyle'>Lifestyle</option>
         <option value='photo'>Photo</option>
@@ -16,7 +18,7 @@ const Select = () => {
         <option value='creativity'>Creativity</option>
         <option value='culture'>Culture</option>
       </select>
-      <ErrorMessage message={''} />
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };

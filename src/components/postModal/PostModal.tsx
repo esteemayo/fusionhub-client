@@ -46,8 +46,7 @@ const PostModal = () => {
     <>
       <Input name='title' label='Title' placeholder='Title' />
       <Input name='desc' label='Description' placeholder='Description' />
-      <Input name='category' label='Category' placeholder='Category' />
-      <Select />
+      <Select name='category' label='Category' />
     </>
   );
 
