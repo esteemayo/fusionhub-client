@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 
-import Input from '../input/Input';
-import Modal from '../modal/Modal';
 import Select from '../select/Select';
+import Input from '../input/Input';
+import Textarea from '../textarea/Textarea';
+import Modal from '../modal/Modal';
 
 import { onClose } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -12,7 +13,7 @@ import { categoryOptions } from '../../data/formData';
 import './PostModal.scss';
 
 const enum STEPS {
-  INFO = 0,
+  DESC = 0,
   IMAGE = 1,
 }
 
@@ -20,7 +21,7 @@ const PostModal = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postModal }));
 
-  const [step, setStep] = useState(STEPS.INFO);
+  const [step, setStep] = useState(STEPS.DESC);
 
   const onBack = () => {
     setStep((value) => {
@@ -47,13 +48,18 @@ const PostModal = () => {
   bodyContent = (
     <>
       <Input name='title' label='Title' placeholder='Title' />
-      <Input name='desc' label='Description' placeholder='Description' />
-      <Select name='category' label='Category' options={categoryOptions} />
+      <Textarea name='desc' label='Description' placeholder='Description' />
     </>
   );
 
   if (step === STEPS.IMAGE) {
-    bodyContent = <div>Image</div>;
+    bodyContent = (
+      <>
+        <Input name='tags' label='Tags' placeholder='Tags' />
+        <Select name='category' label='Category' options={categoryOptions} />
+        <Input type='file' label='Image' accept='image/*' />
+      </>
+    );
   }
 
   return (
