@@ -7,6 +7,8 @@ import Select from '../select/Select';
 import { onClose } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
+import { categoryOptions } from '../../data/formData';
+
 import './PostModal.scss';
 
 const enum STEPS {
@@ -46,7 +48,7 @@ const PostModal = () => {
     <>
       <Input name='title' label='Title' placeholder='Title' />
       <Input name='desc' label='Description' placeholder='Description' />
-      <Select name='category' label='Category' />
+      <Select name='category' label='Category' options={categoryOptions} />
     </>
   );
 

@@ -72,6 +72,7 @@ export interface SelectProps
   error?: string;
   disabled?: boolean;
   required?: boolean;
+  options: CategoryOptionType;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
