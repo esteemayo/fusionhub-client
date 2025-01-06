@@ -40,8 +40,36 @@ const PostModal = () => {
   };
 
   const handleSubmit = () => {
+    if (step !== STEPS.IMAGE) {
+      return onNext();
+    }
+
     console.log('submitted');
   };
+
+  const actionLabel = useMemo(() => {
+    if (step !== STEPS.IMAGE) {
+      return 'Next';
+    }
+
+    return 'Submit';
+  }, [step]);
+
+  const secondaryActionLabel = useMemo(() => {
+    if (step === STEPS.IMAGE) {
+      return 'Prev';
+    }
+
+    return undefined;
+  }, [step]);
+
+  const secondaryAction = useMemo(() => {
+    if (step !== STEPS.DESC) {
+      return onBack;
+    }
+
+    return undefined;
+  }, [step]);
 
   let bodyContent: JSX.Element | undefined;
 
@@ -66,12 +94,12 @@ const PostModal = () => {
     <Modal
       isOpen={isOpen}
       title='Tell us your story'
-      actionLabel='Submit'
-      secondaryActionLabel='Prev'
+      actionLabel={actionLabel}
+      secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}
       onClose={handleClose}
       onSubmit={handleSubmit}
-      secondaryAction={() => console.log('clicked')}
+      secondaryAction={secondaryAction}
     />
   );
 };
