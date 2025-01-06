@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react';
 
-import Select from '../select/Select';
-import Input from '../input/Input';
-import Textarea from '../textarea/Textarea';
+import PostImage from '../PostImage';
 import Modal from '../modal/Modal';
+import PostDescription from '../PostDescription';
 
 import { onClose } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -73,21 +72,10 @@ const PostModal = () => {
 
   let bodyContent: JSX.Element | undefined;
 
-  bodyContent = (
-    <>
-      <Input name='title' label='Title' placeholder='Title' />
-      <Textarea name='desc' label='Description' placeholder='Description' />
-    </>
-  );
+  bodyContent = <PostDescription />;
 
   if (step === STEPS.IMAGE) {
-    bodyContent = (
-      <>
-        <Input name='tags' label='Tags' placeholder='Tags' />
-        <Select name='category' label='Category' options={categoryOptions} />
-        <Input type='file' label='Image' accept='image/*' />
-      </>
-    );
+    bodyContent = <PostImage options={categoryOptions} />;
   }
 
   return (
