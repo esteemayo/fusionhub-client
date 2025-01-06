@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 
 import Input from '../input/Input';
 import Modal from '../modal/Modal';
+import Select from '../select/Select';
 
 import { onClose } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -46,6 +47,7 @@ const PostModal = () => {
       <Input name='title' label='Title' placeholder='Title' />
       <Input name='desc' label='Description' placeholder='Description' />
       <Input name='category' label='Category' placeholder='Category' />
+      <Select />
     </>
   );
 
