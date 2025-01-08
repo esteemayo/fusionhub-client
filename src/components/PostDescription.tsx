@@ -1,11 +1,17 @@
+import { useState } from 'react';
+import ReactQuill from 'react-quill-new';
+
 import Input from './input/Input';
-import Textarea from './textarea/Textarea';
+
+import 'react-quill-new/dist/quill.snow.css';
 
 const PostDescription = () => {
+  const [value, setValue] = useState('');
+
   return (
     <>
       <Input name='title' label='Title' placeholder='Title' />
-      <Textarea name='desc' label='Description' placeholder='Description' />
+      <ReactQuill theme='snow' value={value} onChange={setValue} />
     </>
   );
 };
