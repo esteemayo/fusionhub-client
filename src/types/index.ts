@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 
 export interface HeadingProps {
   title: string;
@@ -74,6 +75,18 @@ export interface SelectProps
   required?: boolean;
   options: CategoryOptionType;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
+}
+
+export interface TextQuillProps {
+  id?: string;
+  label?: string;
+  value: ReactQuill.Value | undefined;
+  onChange?(
+    value: ReactQuill.Value | undefined,
+    delta: DeltaStatic,
+    source: EmitterSource,
+    editor: ReactQuill.UnprivilegedEditor
+  ): void;
 }
 
 type ButtonType = 'button' | 'reset' | 'submit';
