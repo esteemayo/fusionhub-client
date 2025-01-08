@@ -30,6 +30,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.0.1",
     "react-share": "^5.1.2",
+    "react-spinners": "^0.15.0",
     "react-toastify": "^10.0.6",
     "sass": "^1.82.0",
     "timeago.js": "^4.0.2"
