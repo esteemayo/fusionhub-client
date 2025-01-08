@@ -20,6 +20,11 @@ export interface EmptyStateProps {
   showReload?: boolean;
 }
 
+export interface LabelProps {
+  id?: string;
+  label?: string;
+}
+
 type InputType =
   | 'text'
   | 'password'

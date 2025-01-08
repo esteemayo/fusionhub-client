@@ -38,6 +38,30 @@
     border-radius: 1rem;
 
     position: relative;
+
+    @media only screen and (max-width: 56.25em) {
+      width: 53rem;
+    }
+
+    @media only screen and (max-width: 51.25em) {
+      width: 55rem;
+      padding: 3.5rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 55rem;
+      padding: 3.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 60rem;
+      padding: 4rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 65rem;
+      padding: 4.5rem;
+    }
   }
 
   &__heading {
@@ -83,6 +107,36 @@
       color: inherit;
       border-radius: 0.5rem;
       cursor: pointer;
+
+      @media screen and (max-width: 56.25em) {
+        height: 4.7rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 4.8rem;
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 17.5em) {
+        height: 4.7rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 4.8rem;
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 5rem;
+        font-size: 1.8rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.15rem;
+        height: 6rem;
+      }
 
       &.full {
         width: 100%;

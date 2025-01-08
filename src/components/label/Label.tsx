@@ -1,6 +1,8 @@
+import { LabelProps } from '../../types';
+
 import './Label.scss';
 
-const Label = ({ id, label }: { id?: string; label?: string }) => {
+const Label = ({ id, label }: LabelProps) => {
   return (
     <label htmlFor={id} className='label'>
       {label}
