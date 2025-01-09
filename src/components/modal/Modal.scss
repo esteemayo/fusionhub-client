@@ -48,6 +48,21 @@
       padding: 3.5rem;
     }
 
+    @media only screen and (max-width: 34.375em) {
+      width: 50rem;
+      padding: 3rem;
+    }
+
+    @include bp.sm {
+      width: 48rem;
+      padding: 2.5rem;
+    }
+
+    @media only screen and (max-width: 26.875em) {
+      width: 45rem;
+      padding: 2.25rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       width: 55rem;
       padding: 3.5rem;
