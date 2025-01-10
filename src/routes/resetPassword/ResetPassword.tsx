@@ -1,11 +1,23 @@
+import { useState } from 'react';
+
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
 import './ResetPassword.scss';
 
 const ResetPassword = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
+
+    console.log('password reset successfully!');
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   };
 
   return (
@@ -31,6 +43,8 @@ const ResetPassword = () => {
               <Button
                 type='submit'
                 label='Reset your password'
+                loading={!!isLoading}
+                disabled={!!isLoading}
                 className='primary'
               />
             </div>
