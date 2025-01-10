@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
 
@@ -7,8 +9,18 @@ import FormButton from '../../components/formButton/FormButton';
 import './Register.scss';
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
+
+    console.log('user registered');
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   };
 
   return (
@@ -46,9 +58,13 @@ const Register = () => {
                 placeholder='Phone'
               />
               <Textarea name='bio' label='Biography' placeholder='Biography' />
-              <Input type='file' label='Image' />
+              <Input type='file' label='Image' accept='image/*' />
             </div>
-            <FormButton label='Register' />
+            <FormButton
+              label='Register'
+              loading={!!isLoading}
+              disabled={!!isLoading}
+            />
           </form>
           <AuthLink
             url='login'

@@ -292,6 +292,21 @@
       background-color: vars.$clr-pink-dark-1;
 
       span {
+        @media screen and (max-width: 56.25em) {
+          width: 2.85rem !important;
+          height: 2.85rem !important;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 3.15rem !important;
+          height: 3.15rem !important;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 2.85rem !important;
+          height: 2.85rem !important;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 2.5rem !important;
           height: 2.5rem !important;

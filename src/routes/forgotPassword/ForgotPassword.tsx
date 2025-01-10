@@ -1,11 +1,23 @@
+import { useState } from 'react';
+
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
 import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
+
+    console.log('token sent to email');
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   };
 
   return (
@@ -27,6 +39,8 @@ const ForgotPassword = () => {
               <Button
                 type='submit'
                 label='Reset your password'
+                loading={!!isLoading}
+                disabled={!!isLoading}
                 className='primary'
               />
             </div>
