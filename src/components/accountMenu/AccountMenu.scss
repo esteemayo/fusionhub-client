@@ -3,8 +3,8 @@
 
 .accountMenu {
   flex: 1;
-  background-color: tomato;
 
   &__container {
+    background-color: vars.$clr-secondary-blue;
   }
 }
