@@ -290,6 +290,23 @@
 
     &--primary {
       background-color: vars.$clr-pink-dark-1;
+
+      span {
+        @media screen and (min-width: 106.25em) {
+          width: 2.5rem !important;
+          height: 2.5rem !important;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 3rem !important;
+          height: 3rem !important;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3.5rem !important;
+          height: 3.5rem !important;
+        }
+      }
     }
 
     &--secondary {

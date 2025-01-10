@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthLink from '../../components/authLink/AuthLink';
@@ -7,8 +8,18 @@ import FormButton from '../../components/formButton/FormButton';
 import './Login.scss';
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsLoading(true);
+
+    console.log('user logged in');
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   };
 
   return (
@@ -34,7 +45,11 @@ const Login = () => {
             <div className='login__form--forgot'>
               <Link to='/forgot-password'>Forgot password</Link>
             </div>
-            <FormButton label='Login' />
+            <FormButton
+              label='Login'
+              loading={!!isLoading}
+              disabled={!!isLoading}
+            />
           </form>
           <AuthLink
             url='register'

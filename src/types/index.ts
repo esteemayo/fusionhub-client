@@ -100,9 +100,15 @@ export interface ButtonProps {
   label: string;
   img?: string;
   type?: ButtonType;
-  className: 'primary' | 'outline';
-  disabled?: boolean;
   loading?: boolean;
+  disabled?: boolean;
+  className: 'primary' | 'outline';
+}
+
+export interface FormButtonProps {
+  label: string;
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 export interface CommentCardProps {
