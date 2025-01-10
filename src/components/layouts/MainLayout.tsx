@@ -4,8 +4,9 @@ import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import Sidebar from '../sidebar/Sidebar';
 
-import BackToTop from '../backToTop/BackToTop';
 import AddPost from '../addPost/AddPost';
+import BackToTop from '../backToTop/BackToTop';
+
 import ErrorBoundary from '../errors/ErrorBoundary';
 import ModalProvider from '../../providers/ModalProvider';
 
