@@ -191,6 +191,11 @@ export interface ModalProps {
   secondaryAction?(): void;
 }
 
+export interface SpinnerProps {
+  size?: number;
+  color?: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;

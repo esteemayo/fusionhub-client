@@ -21,6 +21,7 @@ const PostModal = () => {
   const { isOpen } = useAppSelector((state) => ({ ...state.postModal }));
 
   const [step, setStep] = useState(STEPS.DESC);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onBack = () => {
     setStep((value) => {
@@ -43,7 +44,13 @@ const PostModal = () => {
       return onNext();
     }
 
+    setIsLoading(true);
+
     console.log('submitted');
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 5000);
   };
 
   const actionLabel = useMemo(() => {
@@ -82,6 +89,8 @@ const PostModal = () => {
     <Modal
       isOpen={isOpen}
       title='Tell us your story'
+      loading={isLoading}
+      disabled={isLoading}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}

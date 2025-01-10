@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import Spinner from '../Spinner';
 import { ModalProps } from '../../types';
 
 import './Modal.scss';
@@ -107,7 +108,7 @@ const Modal = ({
                   className='modal__btn--secondary'
                   onClick={handleSecondaryAction}
                 >
-                  {loading ? '...' : secondaryActionLabel}
+                  {secondaryActionLabel}
                 </button>
               )}
               {actionLabel && (
@@ -117,7 +118,7 @@ const Modal = ({
                   className='modal__btn--primary'
                   onClick={handleSubmit}
                 >
-                  {loading ? '...' : actionLabel}
+                  {loading ? <Spinner /> : actionLabel}
                 </button>
               )}
             </div>
