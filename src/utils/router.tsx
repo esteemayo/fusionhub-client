@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '../components/layouts/MainLayout';
+import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
+
 import {
   Account,
   ForgotPassword,
@@ -32,7 +34,13 @@ export const router = createBrowserRouter([
       },
       {
         path: 'account',
-        element: <Account />,
+        element: <AccountLayout />,
+        children: [
+          {
+            path: '',
+            element: <Account />,
+          },
+        ],
       },
       {
         path: 'login',

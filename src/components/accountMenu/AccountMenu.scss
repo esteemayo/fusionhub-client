@@ -1,0 +1,10 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.accountMenu {
+  flex: 1;
+  background-color: tomato;
+
+  &__container {
+  }
+}

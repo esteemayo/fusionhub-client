@@ -1,15 +1,23 @@
+import { useLocation } from 'react-router-dom';
+
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/postModal/postModalSlice';
 
 import './AddPost.scss';
 
 const AddPost = () => {
+  const { pathname } = useLocation();
+
   const dispatch = useAppDispatch();
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onOpen());
   };
+
+  if (pathname !== '/' && pathname !== '/posts') {
+    return;
+  }
 
   return (
     <div className='addPost'>

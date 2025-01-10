@@ -1,11 +1,14 @@
 @use '../../styles/variables.scss' as vars;
 
 .account {
-  display: flex;
-  justify-content: center;
+  flex: 3;
+  background-color: greenyellow;
+
+  // display: flex;
+  // justify-content: center;
 
   &__container {
-    width: 144rem;
-    min-height: 100vh;
+    // width: 144rem;
+    // min-height: 100vh;
   }
 }
