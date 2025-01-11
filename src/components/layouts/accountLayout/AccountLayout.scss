@@ -12,6 +12,8 @@
 
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
 
     @media screen and (max-width: 93.75em) {
       width: 134rem;

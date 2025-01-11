@@ -9,6 +9,9 @@ const AccountMenu = () => {
         <div className='accountMenu__wrapper'>
           <ul className='accountMenu__list'>
             <li className='accountMenu__list--item'>
+              <Link to='#'>User profile</Link>
+            </li>
+            <li className='accountMenu__list--item'>
               <Link to='#'>Dashboard</Link>
             </li>
             <li className='accountMenu__list--item'>
