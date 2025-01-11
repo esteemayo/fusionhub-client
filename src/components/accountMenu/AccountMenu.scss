@@ -5,7 +5,7 @@
   flex: 1;
 
   &__container {
-    padding: 3rem 2rem;
+    padding: 3rem;
     background-color: vars.$clr-secondary-blue;
   }
 
@@ -21,7 +21,8 @@
       align-items: center;
       gap: 1rem;
 
-      padding: 0.8rem;
+      height: 4rem;
+      padding: 0.8rem 1.2rem;
       background-color: vars.$clr-tertiary-blue;
       border-radius: 3px;
 
@@ -32,9 +33,10 @@
       a {
         &:link,
         &:visited {
+          width: 100%;
           text-transform: capitalize;
-          font-weight: 600;
-          font-size: 100%;
+          font-weight: 500;
+          font-size: 1.5rem;
         }
       }
     }

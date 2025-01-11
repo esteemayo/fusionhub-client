@@ -9,7 +9,9 @@ const AccountLayout = () => {
     <div className='accountLayout'>
       <div className='accountLayout__container'>
         <AccountMenu />
-        <Outlet />
+        <div className='accountLayout__outlet'>
+          <Outlet />
+        </div>
       </div>
     </div>
   );
