@@ -9,10 +9,24 @@ const AccountMenu = () => {
         <div className='accountMenu__wrapper'>
           <ul className='accountMenu__list'>
             <li className='accountMenu__list--item'>
-              <Link to='#'>User profile</Link>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z'
+                />
+              </svg>
+              <Link to='/accounts/user-profile'>User profile</Link>
             </li>
             <li className='accountMenu__list--item'>
-              <Link to='#'>Dashboard</Link>
+              <Link to='/accounts/dashboard'>Dashboard</Link>
             </li>
             <li className='accountMenu__list--item'>
               <Link to='#'>Profile settings</Link>
@@ -25,9 +39,6 @@ const AccountMenu = () => {
             </li>
             <li className='accountMenu__list--item'>
               <Link to='#'>Posts</Link>
-            </li>
-            <li className='accountMenu__list--item'>
-              <Link to='#'>Notification</Link>
             </li>
           </ul>
         </div>
