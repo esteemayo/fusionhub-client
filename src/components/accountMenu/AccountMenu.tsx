@@ -23,7 +23,7 @@ const AccountMenu = () => {
                   d='M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z'
                 />
               </svg>
-              <Link to='/accounts/user-profile'>User profile</Link>
+              <Link to='/accounts/profile'>User profile</Link>
             </li>
             <li className='accountMenu__list--item'>
               <svg
@@ -57,7 +57,7 @@ const AccountMenu = () => {
                   d='M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25'
                 />
               </svg>
-              <Link to='#'>Profile settings</Link>
+              <Link to='/accounts/profile-settings'>Profile settings</Link>
             </li>
             <li className='accountMenu__list--item'>
               <svg

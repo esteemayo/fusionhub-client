@@ -1,0 +1,26 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.profileSettings {
+  &__container {
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__box {
+    width: 10rem;
+    height: 10rem;
+
+    &--avatar {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}

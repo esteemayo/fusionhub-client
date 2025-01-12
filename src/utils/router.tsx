@@ -12,6 +12,7 @@ import {
   NotFound,
   Posts,
   PostDetails,
+  ProfileSettings,
   Register,
   ResetPassword,
 } from '../routes';
@@ -38,12 +39,16 @@ export const router = createBrowserRouter([
         element: <AccountLayout />,
         children: [
           {
-            path: 'user-profile',
+            path: 'profile',
             element: <UserProfile />,
           },
           {
             path: 'dashboard',
             element: <Dashboard />,
+          },
+          {
+            path: 'profile-settings',
+            element: <ProfileSettings />,
           },
         ],
       },

@@ -8,6 +8,7 @@ import ResetPassword from './resetPassword/ResetPassword';
 import Register from './register/Register';
 import ForgotPassword from './forgotPassword/ForgotPassword';
 import Dashboard from './dashboard/Dashboard';
+import ProfileSettings from './profileSettings/ProfileSettings';
 
 export {
   Dashboard,
@@ -17,6 +18,7 @@ export {
   NotFound,
   Posts,
   PostDetails,
+  ProfileSettings,
   Register,
   ResetPassword,
   UserProfile,
