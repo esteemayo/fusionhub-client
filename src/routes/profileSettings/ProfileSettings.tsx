@@ -1,6 +1,15 @@
+import { useRef } from 'react';
+
 import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    inputRef?.current?.click();
+  };
+
   return (
     <div className='profileSettings'>
       <div className='profileSettings__container'>
@@ -14,7 +23,7 @@ const ProfileSettings = () => {
               className='profileSettings__box--avatar'
             />
             <div className='profileSettings__box--icon'>
-              <button type='button'>
+              <label htmlFor='file'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -34,11 +43,16 @@ const ProfileSettings = () => {
                     d='M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z'
                   />
                 </svg>
-              </button>
+              </label>
+              <input id='file' type='file' accept='image/*' ref={inputRef} />
             </div>
           </div>
           <div className='profileSettings__buttons'>
-            <button type='button' className='profileSettings__buttons--upload'>
+            <button
+              type='button'
+              className='profileSettings__buttons--upload'
+              onClick={handleUpload}
+            >
               Upload new
             </button>
             <button type='button' className='profileSettings__buttons--delete'>

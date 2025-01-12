@@ -34,27 +34,23 @@
 
       width: 4.5rem;
       height: 4.5rem;
-      background-color: vars.$clr-primary-blue;
+      background-color: vars.$clr-secondary-blue;
       border-radius: 50%;
 
       position: absolute;
       right: -1rem;
       bottom: 0;
 
-      button {
-        display: inline-block;
-        border: 0;
-        outline: 0;
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         width: 4rem;
         height: 4rem;
         background-color: vars.$clr-black;
         border-radius: 50%;
         cursor: pointer;
-
-        &:disabled {
-          opacity: 0.75;
-          cursor: default;
-        }
 
         svg {
           width: 2rem;
@@ -62,6 +58,10 @@
           color: vars.$clr-white;
           stroke-width: 2px;
         }
+      }
+
+      input[type='file'] {
+        display: none;
       }
     }
   }
@@ -73,8 +73,34 @@
 
     &--upload,
     &--delete {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       border: 0;
       outline: 0;
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 1.35rem;
+      width: fit-content;
+      height: 3.6rem;
+      padding: 1.25rem;
+      color: vars.$clr-white;
+      border-radius: 3px;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+    }
+
+    &--upload {
+      background-color: vars.$clr-pink-dark-1;
+    }
+
+    &--delete {
+      background-color: vars.$clr-black;
     }
   }
 }
