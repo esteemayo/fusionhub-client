@@ -3,6 +3,9 @@
 
 .profileSettings {
   &__container {
+    background-color: vars.$clr-secondary-blue;
+    padding: 3rem;
+    border-radius: 0.5rem;
   }
 
   &__wrapper {
@@ -12,8 +15,9 @@
   }
 
   &__box {
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
+    position: relative;
 
     &--avatar {
       width: 100%;
@@ -21,6 +25,56 @@
       display: inline-block;
       object-fit: cover;
       border-radius: 50%;
+    }
+
+    &--icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 4.5rem;
+      height: 4.5rem;
+      background-color: vars.$clr-primary-blue;
+      border-radius: 50%;
+
+      position: absolute;
+      right: -1rem;
+      bottom: 0;
+
+      button {
+        display: inline-block;
+        border: 0;
+        outline: 0;
+        width: 4rem;
+        height: 4rem;
+        background-color: vars.$clr-black;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:disabled {
+          opacity: 0.75;
+          cursor: default;
+        }
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+          color: vars.$clr-white;
+          stroke-width: 2px;
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--upload,
+    &--delete {
+      border: 0;
+      outline: 0;
     }
   }
 }
