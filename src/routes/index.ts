@@ -2,13 +2,14 @@ import NotFound from './notFound/NotFound';
 import Home from './home/Home';
 import PostDetails from './postDetails/PostDetails';
 import Login from './login/Login';
-import UserProfile from './userProfile/UserProfile';
-import Posts from './posts/Posts';
 import ResetPassword from './resetPassword/ResetPassword';
+import Posts from './posts/Posts';
+import UpdatePassword from './updatePassword/UpdatePassword';
 import Register from './register/Register';
 import ForgotPassword from './forgotPassword/ForgotPassword';
 import Dashboard from './dashboard/Dashboard';
 import ProfileSettings from './profileSettings/ProfileSettings';
+import UserProfile from './userProfile/UserProfile';
 
 export {
   Dashboard,
@@ -21,5 +22,6 @@ export {
   ProfileSettings,
   Register,
   ResetPassword,
+  UpdatePassword,
   UserProfile,
 };

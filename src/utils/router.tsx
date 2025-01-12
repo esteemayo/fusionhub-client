@@ -15,6 +15,7 @@ import {
   ProfileSettings,
   Register,
   ResetPassword,
+  UpdatePassword,
 } from '../routes';
 
 export const router = createBrowserRouter([
@@ -39,7 +40,7 @@ export const router = createBrowserRouter([
         element: <AccountLayout />,
         children: [
           {
-            path: 'profile',
+            path: 'user-profile',
             element: <UserProfile />,
           },
           {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
           {
             path: 'profile-settings',
             element: <ProfileSettings />,
+          },
+          {
+            path: 'password-settings',
+            element: <UpdatePassword />,
           },
         ],
       },
