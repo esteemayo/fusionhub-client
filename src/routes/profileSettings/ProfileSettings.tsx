@@ -1,5 +1,9 @@
 import { useRef } from 'react';
 
+import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
+import Textarea from '../../components/textarea/Textarea';
+
 import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
@@ -8,6 +12,10 @@ const ProfileSettings = () => {
   const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     inputRef?.current?.click();
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   return (
@@ -59,6 +67,35 @@ const ProfileSettings = () => {
               Delete avatar
             </button>
           </div>
+        </div>
+        <hr />
+        <div className='profileSettings__data'>
+          <form onSubmit={handleSubmit} className='profileSettings__form'>
+            <div className='profileSettings__form--data'>
+              <Input name='name' label='Name' placeholder='Name' />
+              <Input name='username' label='Username' placeholder='Username' />
+              <Input
+                type='email'
+                name='email'
+                label='Email address'
+                placeholder='Email address'
+              />
+              <Input
+                type='tel'
+                name='phone'
+                label='Mobile number'
+                placeholder='Mobile number'
+              />
+            </div>
+            <div className='profileSettings__form--info'>
+              <Textarea
+                name='bio'
+                label='Biography'
+                placeholder='Write something about who you are...'
+              />
+            </div>
+            <Button type='submit' label='Save changes' className='primary' />
+          </form>
         </div>
       </div>
     </div>

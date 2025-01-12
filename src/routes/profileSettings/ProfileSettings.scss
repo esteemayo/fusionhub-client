@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 3.5rem;
   }
 
   &__box {
@@ -101,6 +102,48 @@
 
     &--delete {
       background-color: vars.$clr-black;
+    }
+  }
+
+  hr {
+    border: 0.1px solid vars.$clr-tertiary-blue;
+    opacity: 0.5;
+  }
+
+  &__data {
+    margin-top: 3.5rem;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &--data {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+
+      input {
+        width: 52rem;
+        background-color: vars.$clr-primary-blue;
+
+        &:focus {
+          background-color: vars.$clr-tertiary-blue;
+        }
+      }
+    }
+
+    &--info {
+      margin-bottom: 2rem;
+
+      textarea {
+        background-color: vars.$clr-primary-blue;
+
+        &:focus {
+          background-color: vars.$clr-tertiary-blue;
+        }
+      }
     }
   }
 }
