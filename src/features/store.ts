@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import postsMenuReducer from './postsMenu/postsMenuSlice';
 import sidebarReducer from './sidebar/sidebarSlice';
-import postActionMenuReducer from './postActionMenu/postActionMenuSlice';
+import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
+import postActionMenuReducer from './postActionMenu/postActionMenuSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     postsMenu: postsMenuReducer,
     postActionMenu: postActionMenuReducer,
     postModal: postModalReducer,
+    accountModal: accountModalReducer,
   },
 });
 

@@ -1,6 +1,16 @@
+import { useAppDispatch } from '../../hooks/hooks';
+import { onOpen } from '../../features/accountModal/accountModalSlice';
+
 import './DeactivateAccount.scss';
 
 const DeactivateAccount = () => {
+  const dispatch = useAppDispatch();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    dispatch(onOpen());
+  };
+
   return (
     <section className='deactivateAccount'>
       <div className='deactivateAccount__container'>
@@ -14,7 +24,11 @@ const DeactivateAccount = () => {
           </span>
         </div>
         <div className='deactivateAccount__wrapper'>
-          <button type='button' className='deactivateAccount__wrapper--btn'>
+          <button
+            type='button'
+            className='deactivateAccount__wrapper--btn'
+            onClick={handleClick}
+          >
             Delete my Account
           </button>
         </div>

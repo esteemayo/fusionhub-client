@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface PostModalState {
+interface AccountModalState {
   isOpen: boolean;
 }
 
-const initialState: PostModalState = {
+const initialState: AccountModalState = {
   isOpen: false,
 };
 
-const postModalSlice = createSlice({
-  name: 'postModal',
+export const accountModalSlice = createSlice({
+  name: 'accountModal',
   initialState,
   reducers: {
     onOpen: (state) => {
@@ -21,6 +21,6 @@ const postModalSlice = createSlice({
   },
 });
 
-export const { onClose, onOpen } = postModalSlice.actions;
+export const { onClose, onOpen } = accountModalSlice.actions;
 
-export default postModalSlice.reducer;
+export default accountModalSlice.reducer;
