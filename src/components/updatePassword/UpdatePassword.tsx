@@ -11,9 +11,12 @@ const UpdatePassword = () => {
   return (
     <section className='updatePassword'>
       <div className='updatePassword__container'>
-        <h1 className='updatePassword__container--heading'>
-          Password settings
-        </h1>
+        <div className='updatePassword__header'>
+          <h1 className='updatePassword__header--heading'>Change password</h1>
+          <span className='updatePassword__header--text'>
+            Your new password must be different from the previous used passwords
+          </span>
+        </div>
         <div className='updatePassword__wrapper'>
           <form className='updatePassword__form' onSubmit={handleSubmit}>
             <div className='updatePassword__form--inputs'>
@@ -26,14 +29,14 @@ const UpdatePassword = () => {
               <Input
                 type='password'
                 name='password'
-                label='Password'
-                placeholder='Password'
+                label='New Password'
+                placeholder='New password'
               />
               <Input
                 type='password'
                 name='passwordConfirm'
-                label='Confirm Password'
-                placeholder='Confirm password'
+                label='Confirm New Password'
+                placeholder='Confirm new password'
               />
             </div>
             <Button type='submit' label='Save changes' className='primary' />

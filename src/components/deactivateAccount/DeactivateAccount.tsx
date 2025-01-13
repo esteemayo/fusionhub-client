@@ -4,14 +4,16 @@ const DeactivateAccount = () => {
   return (
     <section className='deactivateAccount'>
       <div className='deactivateAccount__container'>
-        <h2 className='deactivateAccount__container--heading'>
-          Deactivate account
-        </h2>
-        <div className='deactivateAccount__wrapper'>
-          <p className='deactivateAccount__wrapper--text'>
+        <div className='deactivateAccount__header'>
+          <h2 className='deactivateAccount__header--heading'>
+            Deactivate account
+          </h2>
+          <span className='deactivateAccount__header--text'>
             Deleting your account will remove all of your information from our
             database. This cannot be undone.
-          </p>
+          </span>
+        </div>
+        <div className='deactivateAccount__wrapper'>
           <button type='button' className='deactivateAccount__wrapper--btn'>
             Delete my Account
           </button>

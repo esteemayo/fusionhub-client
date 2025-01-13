@@ -6,7 +6,7 @@ const NotFound = () => {
   return (
     <EmptyState
       alt='404'
-      imgSrc='under-construction.svg'
+      imgSrc='/under-construction.svg'
       title='Page not found!'
       subtitle='Please! Try again later.'
       showReset
