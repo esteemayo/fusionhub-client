@@ -1,0 +1,12 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.deleteAccount {
+  &__container {
+    &--text {
+      font-size: 1.5rem;
+      color: vars.$clr-gray-light-1;
+      line-height: 1.3;
+    }
+  }
+}

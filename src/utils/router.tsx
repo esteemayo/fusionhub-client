@@ -9,6 +9,7 @@ import {
   ForgotPassword,
   Home,
   Login,
+  MyPosts,
   NotFound,
   PasswordSettings,
   Posts,
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
           {
             path: 'password-settings',
             element: <PasswordSettings />,
+          },
+          {
+            path: 'my-posts',
+            element: <MyPosts />,
           },
         ],
       },
