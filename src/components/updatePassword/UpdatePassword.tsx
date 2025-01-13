@@ -9,7 +9,7 @@ const UpdatePassword = () => {
   };
 
   return (
-    <div className='updatePassword'>
+    <section className='updatePassword'>
       <div className='updatePassword__container'>
         <h1 className='updatePassword__container--heading'>
           Password settings
@@ -40,7 +40,7 @@ const UpdatePassword = () => {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
