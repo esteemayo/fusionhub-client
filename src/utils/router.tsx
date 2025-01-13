@@ -10,12 +10,12 @@ import {
   Home,
   Login,
   NotFound,
+  PasswordSettings,
   Posts,
   PostDetails,
   ProfileSettings,
   Register,
   ResetPassword,
-  UpdatePassword,
 } from '../routes';
 
 export const router = createBrowserRouter([
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'password-settings',
-            element: <UpdatePassword />,
+            element: <PasswordSettings />,
           },
         ],
       },

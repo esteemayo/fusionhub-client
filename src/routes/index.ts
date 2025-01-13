@@ -4,11 +4,11 @@ import PostDetails from './postDetails/PostDetails';
 import Login from './login/Login';
 import ResetPassword from './resetPassword/ResetPassword';
 import Posts from './posts/Posts';
-import UpdatePassword from './updatePassword/UpdatePassword';
-import Register from './register/Register';
 import ForgotPassword from './forgotPassword/ForgotPassword';
-import Dashboard from './dashboard/Dashboard';
+import Register from './register/Register';
 import ProfileSettings from './profileSettings/ProfileSettings';
+import Dashboard from './dashboard/Dashboard';
+import PasswordSettings from './passwordSettings/PasswordSettings';
 import UserProfile from './userProfile/UserProfile';
 
 export {
@@ -17,11 +17,11 @@ export {
   Home,
   Login,
   NotFound,
+  PasswordSettings,
   Posts,
   PostDetails,
   ProfileSettings,
   Register,
   ResetPassword,
-  UpdatePassword,
   UserProfile,
 };
