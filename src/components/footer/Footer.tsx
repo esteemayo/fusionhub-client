@@ -92,8 +92,8 @@ const Footer = () => {
         </div>
         <div className='footer__copyright'>
           <p className='footer__copyright--text'>
-            &copy; {year} •&nbsp;All rights reserved •&nbsp;Designed & Developed
-            by <b>Emmanuel Adebayo&trade;</b>
+            &copy; 2024 - {year} •&nbsp;All rights reserved •&nbsp;Designed &
+            Developed by <b>Emmanuel Adebayo&trade;</b>
           </p>
         </div>
       </div>

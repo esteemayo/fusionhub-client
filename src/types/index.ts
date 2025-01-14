@@ -185,6 +185,7 @@ export interface PostMenuButtonProps {
 export interface ModalProps {
   isOpen: boolean;
   title?: string;
+  type?: 'cancel';
   size?: 'small' | 'full';
   loading?: boolean;
   disabled?: boolean;

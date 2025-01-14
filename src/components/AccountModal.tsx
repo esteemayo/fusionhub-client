@@ -22,6 +22,7 @@ const AccountModal = () => {
     <Modal
       isOpen={isOpen}
       title='De-Activate Account?'
+      type='cancel'
       actionLabel='Deactivate'
       secondaryActionLabel='Cancel'
       body={bodyContent}

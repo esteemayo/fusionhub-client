@@ -8,6 +8,7 @@ import './Modal.scss';
 const Modal = ({
   isOpen,
   title,
+  type,
   loading,
   disabled,
   actionLabel,
@@ -70,9 +71,15 @@ const Modal = ({
         return;
       }
 
-      secondaryAction();
+      if (type === 'cancel') {
+        handleClose();
+      }
+
+      if (type !== 'cancel') {
+        secondaryAction();
+      }
     },
-    [disabled, secondaryAction]
+    [disabled, handleClose, secondaryAction, type]
   );
 
   const containerClasses = useMemo(() => {

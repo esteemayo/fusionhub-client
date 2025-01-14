@@ -3,6 +3,11 @@
 
 .accountMenu {
   flex: 1;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  min-height: 48.5rem;
+  height: max-content;
 
   &__container {
     padding: 3rem;

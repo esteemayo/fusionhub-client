@@ -8,7 +8,7 @@ const UserMenu = () => {
       <div className='userMenu__container'>
         <ul className='userMenu__list'>
           <li className='userMenu__list--item'>
-            <Link to='/account'>Account</Link>
+            <Link to='/accounts/user-profile'>Account</Link>
           </li>
         </ul>
         <div className='userMenu__wrapper'>
