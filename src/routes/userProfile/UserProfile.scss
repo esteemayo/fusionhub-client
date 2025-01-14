@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    // margin-bottom: 4rem;
 
     &--heading {
       display: inline-block;
@@ -35,7 +34,7 @@
   }
 
   &__wrapper {
-    height: 50rem;
+    // height: 50rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -96,12 +95,27 @@
   &__wrap {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 
     &--username,
     &--email {
-      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+
       color: vars.$clr-gray-light-1;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke-width: 2px;
+        color: currentColor;
+      }
+
+      span {
+        font-size: 1.4rem;
+        color: currentColor;
+      }
     }
 
     &--dot {
@@ -135,8 +149,8 @@
     color: vars.$clr-gray-light-1;
 
     svg {
-      width: 1.75rem;
-      height: 1.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
       color: currentColor;
       stroke-width: 2px;
     }
