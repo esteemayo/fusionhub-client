@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 4rem;
 
     &--heading {
       display: inline-block;
@@ -26,6 +27,32 @@
     &--text {
       font-size: 1.35rem;
       color: vars.$clr-gray-light-1;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+
+    .card {
+      width: 25rem;
+
+      &__overlay {
+        height: 20rem;
+      }
+
+      &__img {
+        height: 20rem;
+      }
+
+      &__footer {
+        min-height: 17rem;
+        padding: 1.75rem;
+        padding-top: 2.5rem;
+        background-color: vars.$clr-primary-blue;
+      }
     }
   }
 }

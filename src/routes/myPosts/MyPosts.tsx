@@ -1,3 +1,7 @@
+import Card from '../../components/card/Card';
+
+import { postItems } from '../../data';
+
 import './MyPosts.scss';
 
 const MyPosts = () => {
@@ -7,6 +11,11 @@ const MyPosts = () => {
         <div className='myPosts__header'>
           <h1 className='myPosts__header--heading'>My posts</h1>
           <span className='myPosts__header--text'>Stories written by me</span>
+        </div>
+        <div className='myPosts__wrapper'>
+          {postItems.map((post) => {
+            return <Card key={post.id} {...post} />;
+          })}
         </div>
       </div>
     </div>
