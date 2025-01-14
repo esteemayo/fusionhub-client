@@ -108,4 +108,43 @@
       color: vars.$clr-gray-light-2;
     }
   }
+
+  &__cover {
+    margin-top: 1rem;
+
+    &--bio {
+      font-size: 1.45rem;
+      color: inherit;
+    }
+  }
+
+  &__package {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+
+    margin-top: 1rem;
+  }
+
+  &__tank {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    color: vars.$clr-gray-light-1;
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: currentColor;
+      stroke-width: 2px;
+    }
+
+    span {
+      text-transform: capitalize;
+      font-size: 1.4rem;
+      color: currentColor;
+    }
+  }
 }
