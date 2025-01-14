@@ -39,7 +39,7 @@ const UpdatePassword = () => {
                 placeholder='Confirm new password'
               />
             </div>
-            <Button type='submit' label='Save changes' className='primary' />
+            <Button type='submit' label='Update Changes' className='primary' />
           </form>
         </div>
       </div>

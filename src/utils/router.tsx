@@ -6,8 +6,10 @@ import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
 import {
   UserProfile,
   Dashboard,
+  DislikedPosts,
   ForgotPassword,
   Home,
+  LikedPosts,
   Login,
   MyPosts,
   NotFound,
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
           {
             path: 'my-posts',
             element: <MyPosts />,
+          },
+          {
+            path: 'liked-posts',
+            element: <LikedPosts />,
+          },
+          {
+            path: 'disliked-posts',
+            element: <DislikedPosts />,
           },
         ],
       },

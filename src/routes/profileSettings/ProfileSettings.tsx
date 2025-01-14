@@ -125,7 +125,7 @@ const ProfileSettings = () => {
                 placeholder='Write something about who you are...'
               />
             </div>
-            <Button type='submit' label='Save changes' className='primary' />
+            <Button type='submit' label='Save Changes' className='primary' />
           </form>
         </div>
       </div>

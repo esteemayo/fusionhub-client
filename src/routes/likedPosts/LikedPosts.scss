@@ -1,0 +1,32 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.likedPosts {
+  &__container {
+    padding: 3rem;
+    background-color: vars.$clr-secondary-blue;
+    border-radius: 0.5rem;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+
+    &--heading {
+      display: inline-block;
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 600;
+      font-size: 2.5rem;
+      color: inherit;
+      line-height: 1.3;
+    }
+
+    &--text {
+      font-size: 1.35rem;
+      color: vars.$clr-gray-light-1;
+    }
+  }
+}
