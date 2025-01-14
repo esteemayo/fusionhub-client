@@ -14,6 +14,7 @@ import Register from './register/Register';
 import ProfileSettings from './profileSettings/ProfileSettings';
 import Dashboard from './dashboard/Dashboard';
 import PasswordSettings from './passwordSettings/PasswordSettings';
+import SavedPosts from './savedPosts/SavedPosts';
 
 export {
   Dashboard,
@@ -30,5 +31,6 @@ export {
   ProfileSettings,
   Register,
   ResetPassword,
+  SavedPosts,
   UserProfile,
 };
