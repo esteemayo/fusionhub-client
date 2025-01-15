@@ -4,12 +4,12 @@ import MainLayout from '../components/layouts/MainLayout';
 import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
 
 import {
+  Articles,
   DislikedPosts,
   ForgotPassword,
   Home,
   LikedPosts,
   Login,
-  MyPosts,
   NotFound,
   PasswordSettings,
   Posts,
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'my-posts',
-            element: <MyPosts />,
+            element: <Articles />,
           },
           {
             path: 'saved-posts',

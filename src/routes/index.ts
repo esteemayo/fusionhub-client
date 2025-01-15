@@ -5,7 +5,7 @@ import Login from './login/Login';
 import DislikedPosts from './dislikedPosts/DislikedPosts';
 import Posts from './posts/Posts';
 import ResetPassword from './resetPassword/ResetPassword';
-import MyPosts from './myPosts/MyPosts';
+import Articles from './articles/Articles';
 
 import LikedPosts from './likedPosts/LikedPosts';
 import NotFound from './notFound/NotFound';
@@ -16,12 +16,12 @@ import SavedPosts from './savedPosts/SavedPosts';
 import PasswordSettings from './passwordSettings/PasswordSettings';
 
 export {
+  Articles,
   DislikedPosts,
   ForgotPassword,
   Home,
   LikedPosts,
   Login,
-  MyPosts,
   NotFound,
   PasswordSettings,
   Posts,
