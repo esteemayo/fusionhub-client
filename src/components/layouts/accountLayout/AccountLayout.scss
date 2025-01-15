@@ -53,14 +53,6 @@
     }
 
     @media screen and (max-width: 51.25em) {
-      width: 90rem;
-    }
-
-    @include bp.md {
-      width: 87rem;
-    }
-
-    @media screen and (max-width: 43.75em) {
       width: 80rem;
     }
 
