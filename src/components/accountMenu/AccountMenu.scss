@@ -9,10 +9,18 @@
   min-height: 43.8rem;
   height: max-content;
 
+  @include bp.lg {
+    display: none;
+  }
+
   &__container {
     padding: 3rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 3px;
+
+    @media screen and (max-width: 76.25em) {
+      padding: 2.5rem;
+    }
   }
 
   &__wrapper {

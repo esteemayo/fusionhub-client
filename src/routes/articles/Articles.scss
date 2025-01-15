@@ -6,6 +6,14 @@
     padding: 3rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
+
+    @media screen and (max-width: 76.25em) {
+      padding: 2.5rem;
+    }
+
+    @include bp.lg {
+      padding: 3rem;
+    }
   }
 
   &__header {
@@ -60,6 +68,26 @@
     justify-content: space-between;
     gap: 3rem;
 
+    @include bp.xxl {
+      row-gap: 4rem;
+    }
+
+    @media screen and (max-width: 76.25em) {
+      row-gap: 3.5rem;
+    }
+
+    @include bp.lg {
+      row-gap: 4.5rem;
+    }
+
+    @media screen and (max-width: 59.375em) {
+      row-gap: 3.65rem;
+    }
+
+    @media screen and (max-width: 57.5em) {
+      row-gap: 4rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       row-gap: 3.5rem;
     }
@@ -79,6 +107,34 @@
         width: 22rem;
       }
 
+      @media screen and (max-width: 76.25em) {
+        width: 20.5rem;
+      }
+
+      @include bp.xl {
+        width: 21.9rem;
+      }
+
+      @media screen and (max-width: 68.75em) {
+        width: 20.5rem;
+      }
+
+      @include bp.lg {
+        width: 25rem;
+      }
+
+      @media screen and (max-width: 59.375em) {
+        width: 24rem;
+      }
+
+      @media screen and (max-width: 57.5em) {
+        width: 23rem;
+      }
+
+      @media screen and (max-width: 56.25em) {
+        width: 25rem;
+      }
+
       @media screen and (min-width: 112.5em) {
         width: 26rem;
       }
@@ -92,6 +148,18 @@
 
         @include bp.xxl {
           height: 18rem;
+        }
+
+        @media screen and (max-width: 76.25em) {
+          height: 17rem;
+        }
+
+        @include bp.xl {
+          height: 18rem;
+        }
+
+        @include bp.lg {
+          height: 20rem;
         }
 
         @media screen and (min-width: 112.5em) {
@@ -108,6 +176,18 @@
 
         @include bp.xxl {
           height: 18rem;
+        }
+
+        @media screen and (max-width: 76.25em) {
+          height: 17rem;
+        }
+
+        @include bp.xl {
+          height: 18rem;
+        }
+
+        @include bp.lg {
+          height: 20rem;
         }
 
         @media screen and (min-width: 112.5em) {
@@ -129,6 +209,26 @@
           min-height: 16rem;
           padding: 1.5rem;
           padding-top: 2.5rem;
+        }
+
+        @media screen and (max-width: 76.25em) {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        @include bp.lg {
+          min-height: 15rem;
+          padding: 1.75rem;
+          padding-top: 2.5rem;
+        }
+
+        @media screen and (max-width: 59.375em) {
+          min-height: 16rem;
+        }
+
+        @media screen and (max-width: 57.5em) {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
         }
 
         @media screen and (min-width: 125em) {

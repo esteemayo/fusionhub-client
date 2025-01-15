@@ -15,48 +15,41 @@
     justify-content: space-between;
     gap: 3rem;
 
-    // @media screen and (max-width: 93.75em) {
-    //   width: 134rem;
-    // }
-
     @include bp.xxl {
       width: 110rem;
     }
 
-    // @media screen and (max-width: 81.25em) {
-    //   width: 118rem;
-    // }
-
     @media screen and (max-width: 76.25em) {
-      width: 110rem;
+      width: 100rem;
+      gap: 2.5rem;
     }
 
     @include bp.xl {
-      width: 118rem;
+      width: 105rem;
     }
 
     @media screen and (max-width: 68.75em) {
-      width: 110rem;
-    }
-
-    @include bp.lg {
       width: 100rem;
     }
 
+    @include bp.lg {
+      width: 90rem;
+    }
+
     @media screen and (max-width: 59.375em) {
-      width: 95rem;
+      width: 85rem;
     }
 
     @media screen and (max-width: 57.5em) {
-      width: 93rem;
+      width: 83rem;
     }
 
     @media screen and (max-width: 56.25em) {
-      width: 98rem;
+      width: 88rem;
     }
 
     @media screen and (max-width: 53.75em) {
-      width: 95rem;
+      width: 85rem;
     }
 
     @media screen and (max-width: 51.25em) {
