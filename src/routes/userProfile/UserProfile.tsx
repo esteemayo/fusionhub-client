@@ -130,6 +130,22 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
+        <div className='userProfile__about'>
+          <h4 className='userProfile__about--heading'>About me</h4>
+          <p className='userProfile__about--text'>
+            I'm a Full-stack Developer based in United State of America. I
+            specialize in Frontend Developement, UX/UI design, brand strategy,
+            and Webflow development. I'm always striving to grow and learn
+            something new and i don't take myself too seriously.
+          </p>
+          <p className='userProfile__about--text'>
+            I'm passionate about helping startups grow, improve their customer
+            experience, and to raise venture capital through good design.
+          </p>
+          <button type='button' className='userProfile__about--btn'>
+            Read more
+          </button>
+        </div>
       </div>
     </div>
   );
