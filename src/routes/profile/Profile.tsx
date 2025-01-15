@@ -1,34 +1,34 @@
-import './UserProfile.scss';
+import './Profile.scss';
 
 const UserProfile = () => {
   return (
-    <div className='userProfile'>
-      <div className='userProfile__container'>
-        <div className='userProfile__header'>
-          <h1 className='userProfile__header--heading'>Profile</h1>
-          <span className='userProfile__header--text'>
+    <div className='profile'>
+      <div className='profile__container'>
+        <div className='profile__header'>
+          <h1 className='profile__header--heading'>Profile</h1>
+          <span className='profile__header--text'>
             Manage your details and change your password.
           </span>
         </div>
       </div>
-      <div className='userProfile__wrapper'>
-        <div className='userProfile__banner'>
+      <div className='profile__wrapper'>
+        <div className='profile__banner'>
           &nbsp;
-          <div className='userProfile__user'>
+          <div className='profile__user'>
             <img
               src='/user-1.jpeg'
               width={120}
               height={120}
               alt='avatar'
-              className='userProfile__user--avatar'
+              className='profile__user--avatar'
             />
           </div>
         </div>
-        <div className='userProfile__box'>
+        <div className='profile__box'>
           <div>
-            <h3 className='userProfile__username'>Elise beverley</h3>
-            <div className='userProfile__wrap'>
-              <div className='userProfile__wrap--username'>
+            <h3 className='profile__username'>Elise beverley</h3>
+            <div className='profile__wrap'>
+              <div className='profile__wrap--username'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -45,8 +45,8 @@ const UserProfile = () => {
                 </svg>
                 <span>ebeverley25</span>
               </div>
-              <span className='userProfile__wrap--dot'>•</span>
-              <div className='userProfile__wrap--email'>
+              <span className='profile__wrap--dot'>•</span>
+              <div className='profile__wrap--email'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -65,14 +65,14 @@ const UserProfile = () => {
               </div>
             </div>
           </div>
-          <div className='userProfile__cover'>
-            <span className='userProfile__cover--bio'>
+          <div className='profile__cover'>
+            <span className='profile__cover--bio'>
               Full-stack JavaScript Developer (React, NextJS, VueJS, NodeJS,
               GraphQL, HTML5, CSS3)
             </span>
           </div>
-          <div className='userProfile__package'>
-            <div className='userProfile__tank'>
+          <div className='profile__package'>
+            <div className='profile__tank'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -94,7 +94,7 @@ const UserProfile = () => {
               </svg>
               <span>Canada</span>
             </div>
-            <div className='userProfile__tank'>
+            <div className='profile__tank'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -111,7 +111,7 @@ const UserProfile = () => {
               </svg>
               <span>Born January 14, 2025</span>
             </div>
-            <div className='userProfile__tank'>
+            <div className='profile__tank'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -130,19 +130,19 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        <div className='userProfile__about'>
-          <h4 className='userProfile__about--heading'>About me</h4>
-          <p className='userProfile__about--text'>
+        <div className='profile__about'>
+          <h4 className='profile__about--heading'>About me</h4>
+          <p className='profile__about--text'>
             I'm a Full-stack Developer based in United State of America. I
             specialize in Frontend Developement, UX/UI design, brand strategy,
             and Webflow development. I'm always striving to grow and learn
             something new and i don't take myself too seriously.
           </p>
-          <p className='userProfile__about--text'>
+          <p className='profile__about--text'>
             I'm passionate about helping startups grow, improve their customer
             experience, and to raise venture capital through good design.
           </p>
-          <button type='button' className='userProfile__about--btn'>
+          <button type='button' className='profile__about--btn'>
             Read more
           </button>
         </div>

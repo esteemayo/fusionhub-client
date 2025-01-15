@@ -71,7 +71,7 @@ const Sidebar = () => {
             {user && (
               <div className='sidebar__accounts'>
                 <Link
-                  to='/accounts/user-profile'
+                  to='/accounts/profile'
                   className='sidebar__account'
                   onClick={onCloseHandler}
                 >

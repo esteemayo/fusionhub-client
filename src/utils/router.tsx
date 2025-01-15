@@ -4,7 +4,6 @@ import MainLayout from '../components/layouts/MainLayout';
 import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
 
 import {
-  Dashboard,
   DislikedPosts,
   ForgotPassword,
   Home,
@@ -15,11 +14,11 @@ import {
   PasswordSettings,
   Posts,
   PostDetails,
+  Profile,
   ProfileSettings,
   Register,
   ResetPassword,
   SavedPosts,
-  UserProfile,
 } from '../routes';
 
 export const router = createBrowserRouter([
@@ -44,12 +43,8 @@ export const router = createBrowserRouter([
         element: <AccountLayout />,
         children: [
           {
-            path: 'user-profile',
-            element: <UserProfile />,
-          },
-          {
-            path: 'dashboard',
-            element: <Dashboard />,
+            path: 'profile',
+            element: <Profile />,
           },
           {
             path: 'profile-settings',
