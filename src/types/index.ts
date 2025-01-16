@@ -203,6 +203,10 @@ export interface SpinnerProps {
   color?: string;
 }
 
+export interface PostListProps {
+  posts: PostItemType;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;

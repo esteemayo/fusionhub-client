@@ -1,3 +1,7 @@
+import PostLists from '../../components/postList/PostList';
+
+import { postItems } from '../../data';
+
 import './LikedPosts.scss';
 
 const LikedPosts = () => {
@@ -10,6 +14,7 @@ const LikedPosts = () => {
             My favorite stories/articles
           </span>
         </div>
+        <PostLists posts={postItems} />
       </div>
     </div>
   );

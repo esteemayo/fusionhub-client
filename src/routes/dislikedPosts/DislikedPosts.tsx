@@ -1,3 +1,7 @@
+import PostLists from '../../components/postList/PostList';
+
+import { postItems } from '../../data';
+
 import './DislikedPosts.scss';
 
 const DislikedPosts = () => {
@@ -12,6 +16,7 @@ const DislikedPosts = () => {
             My least liked stories/articles
           </span>
         </div>
+        <PostLists posts={postItems} />
       </div>
     </div>
   );

@@ -1,3 +1,7 @@
+import PostLists from '../../components/postList/PostList';
+
+import { postItems } from '../../data';
+
 import './SavedPosts.scss';
 
 const SavedPosts = () => {
@@ -10,6 +14,7 @@ const SavedPosts = () => {
             My saved stories/articles
           </span>
         </div>
+        <PostLists posts={postItems} />
       </div>
     </div>
   );
