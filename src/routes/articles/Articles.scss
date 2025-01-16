@@ -18,6 +18,15 @@
     @include bp.sm {
       padding: 2rem;
     }
+
+    @media screen and (max-width: 26.875em) {
+      background-color: transparent;
+      padding: 0;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      padding: 1.5rem;
+    }
   }
 
   &__header {
@@ -185,11 +194,13 @@
 
       @media screen and (max-width: 26.875em) {
         width: 100%;
+        background-color: transparent;
+
         display: flex;
         gap: 1rem;
 
         &:not(:last-child) {
-          border-bottom: 1px solid vars.$clr-tertiary-blue;
+          border-bottom: 1px solid vars.$clr-secondary-blue;
         }
       }
 
@@ -245,7 +256,8 @@
         }
 
         @media screen and (max-width: 26.875em) {
-          display: none;
+          width: 10rem;
+          height: 10rem;
         }
 
         @media screen and (min-width: 112.5em) {
@@ -301,7 +313,8 @@
         }
 
         @media screen and (max-width: 26.875em) {
-          display: none;
+          width: 10rem;
+          height: 10rem;
         }
 
         @media screen and (min-width: 112.5em) {
@@ -400,6 +413,7 @@
 
             @media screen and (max-width: 26.875em) {
               font-size: 1.8rem;
+              white-space: wrap;
             }
 
             @media screen and (min-width: 106.25em) {
