@@ -114,8 +114,12 @@
       width: 23rem;
     }
 
+    @include bp.sm {
+      width: 25rem;
+    }
+
     @media screen and (max-width: 28.125em) {
-      width: 21.5rem;
+      width: 23.5rem;
     }
 
     @media screen and (max-width: 26.875em) {
@@ -348,8 +352,9 @@
         padding-top: 2.25rem;
       }
 
-      @media screen and (max-width: 28.125em) {
-        min-height: 16rem;
+      @include bp.sm {
+        background-color: vars.$clr-secondary-blue;
+        min-height: 15rem;
       }
 
       @media screen and (max-width: 26.875em) {
