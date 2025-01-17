@@ -1,4 +1,5 @@
 import PostLists from '../../components/postList/PostList';
+import AccountHeading from '../../components/accountHeading/AccountHeading';
 
 import { postItems } from '../../data';
 
@@ -8,12 +9,10 @@ const SavedPosts = () => {
   return (
     <div className='savedPosts'>
       <div className='savedPosts__container'>
-        <div className='savedPosts__header'>
-          <h1 className='savedPosts__header--heading'>Saved posts</h1>
-          <span className='savedPosts__header--text'>
-            My saved stories/articles
-          </span>
-        </div>
+        <AccountHeading
+          title='Saved posts'
+          subtitle='My saved stories/articles'
+        />
         <PostLists posts={postItems} />
       </div>
     </div>

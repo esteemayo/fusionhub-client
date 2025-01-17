@@ -1,5 +1,6 @@
-import Input from '../input/Input';
 import Button from '../button/Button';
+import Input from '../input/Input';
+import AccountHeading from '../accountHeading/AccountHeading';
 
 import './UpdatePassword.scss';
 
@@ -11,12 +12,10 @@ const UpdatePassword = () => {
   return (
     <section className='updatePassword'>
       <div className='updatePassword__container'>
-        <div className='updatePassword__header'>
-          <h1 className='updatePassword__header--heading'>Change password</h1>
-          <span className='updatePassword__header--text'>
-            Your new password must be different from the previous used passwords
-          </span>
-        </div>
+        <AccountHeading
+          title='Change password'
+          subtitle='Your new password must be different from the previous used passwords'
+        />
         <div className='updatePassword__wrapper'>
           <form className='updatePassword__form' onSubmit={handleSubmit}>
             <div className='updatePassword__form--inputs'>

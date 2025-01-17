@@ -4,6 +4,9 @@ import Button from '../../components/button/Button';
 import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
 
+import AccountHeader from '../../components/accountHeader/AccountHeader';
+import AccountHeading from '../../components/accountHeading/AccountHeading';
+
 import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
@@ -21,12 +24,10 @@ const ProfileSettings = () => {
   return (
     <div className='profileSettings'>
       <div className='profileSettings__container'>
-        <div className='profileSettings__header'>
-          <h1 className='profileSettings__header--heading'>My profile</h1>
-          <span className='profileSettings__header--text'>
-            Update your account information
-          </span>
-        </div>
+        <AccountHeading
+          title='My profile'
+          subtitle='Update your account information'
+        />
         <div className='profileSettings__wrapper'>
           <div className='profileSettings__box'>
             <div className='profileSettings__user'>
@@ -93,14 +94,10 @@ const ProfileSettings = () => {
         </div>
         <hr />
         <div className='profileSettings__data'>
-          <div className='profileSettings__info'>
-            <h2 className='profileSettings__info--heading'>
-              Personal information
-            </h2>
-            <span className='profileSettings__info--text'>
-              Update your personal information
-            </span>
-          </div>
+          <AccountHeader
+            title='Personal information'
+            subtitle='Update your personal information'
+          />
           <form onSubmit={handleSubmit} className='profileSettings__form'>
             <div className='profileSettings__form--data'>
               <Input name='name' label='Name' placeholder='Name' />

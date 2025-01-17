@@ -212,6 +212,11 @@ export interface AccountHeadingProps {
   subtitle: string;
 }
 
+export interface AccountHeaderProps {
+  title: string;
+  subtitle: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;

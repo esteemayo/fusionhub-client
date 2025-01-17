@@ -1,4 +1,5 @@
 import PostLists from '../../components/postList/PostList';
+import AccountHeading from '../../components/accountHeading/AccountHeading';
 
 import { postItems } from '../../data';
 
@@ -8,10 +9,7 @@ const Articles = () => {
   return (
     <div className='articles'>
       <div className='articles__container'>
-        <div className='articles__header'>
-          <h1 className='articles__header--heading'>My posts</h1>
-          <span className='articles__header--text'>Stories written by me</span>
-        </div>
+        <AccountHeading title='My posts' subtitle='Stories written by me' />
         <PostLists posts={postItems} />
       </div>
     </div>
