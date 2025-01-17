@@ -207,6 +207,11 @@ export interface PostListProps {
   posts: PostItemType;
 }
 
+export interface AccountHeadingProps {
+  title: string;
+  subtitle: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
