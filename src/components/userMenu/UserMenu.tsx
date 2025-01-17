@@ -12,7 +12,7 @@ const UserMenu = () => {
           </li>
         </ul>
         <div className='userMenu__wrapper'>
-          <span className='username'>John doe</span>
+          <span className='username'>Elise beverley</span>
           <button type='button' className='logoutBtn'>
             Logout
           </button>

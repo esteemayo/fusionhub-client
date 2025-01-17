@@ -5,7 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 4rem;
+
+  &.mb {
+    margin-bottom: 4rem;
+  }
 
   &--header {
     display: inline-block;

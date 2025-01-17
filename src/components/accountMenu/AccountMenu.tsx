@@ -8,7 +8,7 @@ const AccountMenu = () => {
       <div className='accountMenu__container'>
         <div className='accountMenu__wrapper'>
           <ul className='accountMenu__list'>
-            <li className='accountMenu__list--item'>
+            <li className='accountMenu__list--item active'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'

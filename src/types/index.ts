@@ -210,6 +210,7 @@ export interface PostListProps {
 export interface AccountHeadingProps {
   title: string;
   subtitle: string;
+  type?: 'profile';
 }
 
 export interface AccountHeaderProps {

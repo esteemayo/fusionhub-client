@@ -82,7 +82,7 @@ const Sidebar = () => {
                     alt='avatar'
                     className='sidebar__account--avatar'
                   />
-                  <span className='sidebar__account--name'>John doe</span>
+                  <span className='sidebar__account--name'>Elise beverley</span>
                 </Link>
                 <button type='button' className='sidebar__logoutBtn'>
                   Logout

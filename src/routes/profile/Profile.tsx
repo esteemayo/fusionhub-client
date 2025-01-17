@@ -1,15 +1,16 @@
+import AccountHeading from '../../components/accountHeading/AccountHeading';
+
 import './Profile.scss';
 
 const UserProfile = () => {
   return (
     <div className='profile'>
       <div className='profile__container'>
-        <div className='profile__header'>
-          <h1 className='profile__header--heading'>Profile</h1>
-          <span className='profile__header--text'>
-            Manage your details and change your password.
-          </span>
-        </div>
+        <AccountHeading
+          title='Profile'
+          subtitle='Manage your details and change your password.'
+          type='profile'
+        />
       </div>
       <div className='profile__wrapper'>
         <div className='profile__banner'>
