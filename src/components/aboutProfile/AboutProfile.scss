@@ -1,0 +1,41 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.aboutProfile {
+  &__container {
+    padding: 0 3rem 3rem;
+
+    &--heading {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 500;
+      font-size: 100%;
+    }
+
+    &--text {
+      font-size: 1.4rem;
+      color: vars.$clr-gray-light-1;
+
+      &:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    &--btn {
+      display: inline-block;
+      border: 0;
+      outline: 0;
+      text-transform: inherit;
+      font-weight: 500;
+      font-size: 1.3rem;
+      background-color: transparent;
+      color: vars.$clr-gray-light-3;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+    }
+  }
+}
