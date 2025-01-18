@@ -2,7 +2,7 @@ import './AboutProfile.scss';
 
 const AboutProfile = () => {
   return (
-    <div className='aboutProfile'>
+    <section className='aboutProfile'>
       <div className='aboutProfile__container'>
         <h4 className='aboutProfile__container--heading'>About me</h4>
         <p className='aboutProfile__container--text'>
@@ -19,7 +19,7 @@ const AboutProfile = () => {
           Read more
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -2,7 +2,7 @@ import './Banner.scss';
 
 const Banner = () => {
   return (
-    <div className='banner'>
+    <section className='banner'>
       &nbsp;
       <div className='banner__user'>
         <img
@@ -32,7 +32,7 @@ const Banner = () => {
         </label>
         <input type='file' id='file' className='banner__cover--input' />
       </div>
-    </div>
+    </section>
   );
 };
 

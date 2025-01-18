@@ -2,7 +2,7 @@ import './ProfileDetails.scss';
 
 const ProfileDetails = () => {
   return (
-    <div className='profileDetails'>
+    <section className='profileDetails'>
       <div className='profileDetails__container'>
         <h3 className='profileDetails__container--username'>Elise beverley</h3>
         <div className='profileDetails__wrapper'>
@@ -107,7 +107,7 @@ const ProfileDetails = () => {
           <span>Joined January 2025</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

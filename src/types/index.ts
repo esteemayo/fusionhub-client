@@ -296,3 +296,10 @@ export type CategoryOptionType = {
   id: string;
   name: string;
 }[];
+
+export type AccountMenuType = {
+  id: string;
+  url: string;
+  icon: string;
+  label: string;
+}[];
