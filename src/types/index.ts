@@ -218,6 +218,15 @@ export interface AccountHeaderProps {
   subtitle: string;
 }
 
+export interface AccountMenuItemProps {
+  id: string;
+  url: string;
+  icon: string;
+  label: string;
+  activeLink: string;
+  onAction(id: string): void;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;

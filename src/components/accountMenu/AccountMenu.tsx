@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { accountMenus } from '../../data';
+import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
 import './AccountMenu.scss';
 
@@ -12,43 +12,19 @@ const AccountMenu = () => {
     setIsActive(id);
   };
 
-  const activeMenu = (id: string) => {
-    return id === isActive
-      ? 'accountMenu__list--item active'
-      : 'accountMenu__list--item';
-  };
-
   return (
     <aside className='accountMenu'>
       <div className='accountMenu__container'>
         <div className='accountMenu__wrapper'>
           <ul className='accountMenu__list'>
             {accountMenus.map((menu) => {
-              const { id, url, icon, label } = menu;
               return (
-                <li
-                  key={id}
-                  className={activeMenu(id)}
-                  onClick={() => handleClick(id)}
-                >
-                  <Link to={`/accounts/${url}`}>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='size-6'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d={icon}
-                      />
-                    </svg>
-                    <span>{label}</span>
-                  </Link>
-                </li>
+                <AccountMenuItem
+                  key={menu.id}
+                  activeLink={isActive}
+                  onAction={handleClick}
+                  {...menu}
+                />
               );
             })}
           </ul>
