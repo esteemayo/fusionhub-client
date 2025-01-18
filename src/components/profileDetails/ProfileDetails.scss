@@ -1,0 +1,87 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.profileDetails {
+  padding: 0 3rem 3rem;
+
+  &__container {
+    &--username {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: inherit;
+      line-height: 1.2;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--username,
+    &--email {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+
+      color: vars.$clr-gray-light-1;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke-width: 2px;
+        color: currentColor;
+      }
+
+      span {
+        font-size: 1.4rem;
+        color: currentColor;
+      }
+    }
+
+    &--dot {
+      color: vars.$clr-gray-light-3;
+    }
+  }
+
+  &__box {
+    margin-top: 1rem;
+
+    &--bio {
+      font-size: 1.45rem;
+      color: inherit;
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+
+    margin-top: 1rem;
+
+    &--box {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+
+      color: vars.$clr-gray-light-1;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: currentColor;
+        stroke-width: 2px;
+      }
+
+      span {
+        text-transform: capitalize;
+        font-size: 1.4rem;
+        color: currentColor;
+      }
+    }
+  }
+}
