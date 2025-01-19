@@ -29,6 +29,10 @@
         font-size: 1.9rem;
       }
 
+      @media screen and (max-width: 51.25em) {
+        font-size: 2rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         font-size: 1.9rem;
       }
@@ -67,6 +71,11 @@
           height: 1.75rem;
         }
 
+        @media screen and (max-width: 51.25em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 1.75rem;
           height: 1.75rem;
@@ -89,6 +98,10 @@
 
         @media screen and (max-width: 56.25em) {
           font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: var(--default-font-size);
         }
 
         @media screen and (min-width: 106.25em) {
@@ -119,6 +132,10 @@
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.65rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -161,6 +178,11 @@
           height: 1.75rem;
         }
 
+        @media screen and (max-width: 51.25em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 1.75rem;
           height: 1.75rem;
@@ -184,6 +206,10 @@
 
         @media screen and (max-width: 56.25em) {
           font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: var(--default-font-size);
         }
 
         @media screen and (min-width: 106.25em) {
