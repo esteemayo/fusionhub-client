@@ -31,5 +31,9 @@
     background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
     overflow: hidden;
+
+    @include bp.sm {
+      background-color: transparent;
+    }
   }
 }
