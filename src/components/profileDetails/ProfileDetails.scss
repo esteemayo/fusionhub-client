@@ -4,6 +4,18 @@
 .profileDetails {
   padding: 0 3rem 3rem;
 
+  @media screen and (max-width: 76.25em) {
+    padding: 0 2.5rem 2.5rem;
+  }
+
+  @include bp.lg {
+    padding: 0 3rem 3rem;
+  }
+
+  @include bp.sm {
+    padding: 0;
+  }
+
   &__container {
     &--username {
       text-transform: capitalize;
@@ -12,6 +24,18 @@
       font-size: 1.8rem;
       color: inherit;
       line-height: 1.2;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.2rem;
+      }
     }
   }
 
@@ -33,11 +57,38 @@
         height: 1.5rem;
         stroke-width: 2px;
         color: currentColor;
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.2rem;
+          height: 2.2rem;
+        }
       }
 
       span {
         font-size: 1.4rem;
         color: currentColor;
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.8rem;
+        }
       }
     }
 
@@ -52,6 +103,18 @@
     &--bio {
       font-size: 1.45rem;
       color: inherit;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.65rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.85rem;
+      }
     }
   }
 
@@ -75,12 +138,39 @@
         height: 1.5rem;
         color: currentColor;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.2rem;
+          height: 2.2rem;
+        }
       }
 
       span {
         text-transform: capitalize;
         font-size: 1.4rem;
         color: currentColor;
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.8rem;
+        }
       }
     }
   }

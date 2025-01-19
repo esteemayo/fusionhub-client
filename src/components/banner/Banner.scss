@@ -16,6 +16,21 @@
   position: relative;
   margin-bottom: 7rem;
 
+  @media screen and (min-width: 106.25em) {
+    height: 16rem;
+    margin-bottom: 7.5rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    height: 17rem;
+    margin-bottom: 8rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    height: 18rem;
+    margin-bottom: 9rem;
+  }
+
   &__user {
     display: flex;
     align-items: center;
@@ -30,12 +45,53 @@
     left: 3rem;
     bottom: -6.5rem;
 
+    @media screen and (max-width: 76.25em) {
+      left: 2.5rem;
+    }
+
+    @include bp.lg {
+      left: 3rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 14rem;
+      height: 14rem;
+      bottom: -7rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 15rem;
+      height: 15rem;
+      bottom: -7.5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 16rem;
+      height: 16rem;
+      bottom: -8rem;
+    }
+
     &--avatar {
       width: 12rem;
       height: 12rem;
       display: inline-block;
       object-fit: cover;
       border-radius: 50%;
+
+      @media screen and (min-width: 106.25em) {
+        width: 13rem;
+        height: 13rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 14rem;
+        height: 14rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 15rem;
+        height: 15rem;
+      }
     }
   }
 
@@ -48,6 +104,32 @@
     position: absolute;
     top: 1.5rem;
     right: 3rem;
+
+    @media screen and (max-width: 76.25em) {
+      right: 2.5rem;
+    }
+
+    @include bp.lg {
+      right: 3rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 4.5rem;
+      height: 4.5rem;
+      top: 2rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 5rem;
+      height: 5rem;
+      top: 2.5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 6rem;
+      height: 6rem;
+      top: 3rem;
+    }
 
     &--label {
       display: flex;
@@ -66,6 +148,21 @@
         height: 1.75rem;
         color: currentColor;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.85rem;
+          height: 1.85rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
       }
     }
 

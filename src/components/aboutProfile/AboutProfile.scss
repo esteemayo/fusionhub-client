@@ -5,6 +5,18 @@
   &__container {
     padding: 0 3rem 3rem;
 
+    @media screen and (max-width: 76.25em) {
+      padding: 0 2.5rem 2.5rem;
+    }
+
+    @include bp.lg {
+      padding: 0 3rem 3rem;
+    }
+
+    @include bp.sm {
+      padding: 0;
+    }
+
     &--heading {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
