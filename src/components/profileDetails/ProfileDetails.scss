@@ -25,6 +25,10 @@
       color: inherit;
       line-height: 1.2;
 
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.9rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         font-size: 1.9rem;
       }
@@ -58,6 +62,11 @@
         stroke-width: 2px;
         color: currentColor;
 
+        @media screen and (max-width: 56.25em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 1.75rem;
           height: 1.75rem;
@@ -77,6 +86,10 @@
       span {
         font-size: 1.4rem;
         color: currentColor;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
+        }
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.5rem;
@@ -103,6 +116,10 @@
     &--bio {
       font-size: 1.45rem;
       color: inherit;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.55rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         font-size: 1.55rem;
@@ -139,6 +156,11 @@
         color: currentColor;
         stroke-width: 2px;
 
+        @media screen and (max-width: 56.25em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 1.75rem;
           height: 1.75rem;
@@ -159,6 +181,10 @@
         text-transform: capitalize;
         font-size: 1.4rem;
         color: currentColor;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
+        }
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.5rem;
