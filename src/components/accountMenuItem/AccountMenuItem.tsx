@@ -10,15 +10,15 @@ const AccountMenuItem = ({
   url,
   icon,
   label,
-  activeLink,
+  activeMenu,
   onAction,
 }: AccountMenuItemProps) => {
-  const activeMenu = useMemo(() => {
-    return id === activeLink ? 'accountMenuItem active' : 'accountMenuItem';
-  }, [id, activeLink]);
+  const menuClasses = useMemo(() => {
+    return id === activeMenu ? 'accountMenuItem active' : 'accountMenuItem';
+  }, [id, activeMenu]);
 
   return (
-    <li className={activeMenu} onClick={() => onAction(id)}>
+    <li className={menuClasses} onClick={() => onAction(id)}>
       <Link to={`/accounts/${url}`}>
         <svg
           xmlns='http://www.w3.org/2000/svg'

@@ -10,6 +10,20 @@
     padding: 3rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
+
+    @media screen and (max-width: 76.25em) {
+      padding: 2.5rem;
+    }
+
+    @include bp.lg {
+      padding: 3rem;
+    }
+
+    @include bp.sm {
+      padding: 0;
+      background-color: transparent;
+      border-radius: 0;
+    }
   }
 
   &__wrapper {

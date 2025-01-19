@@ -223,7 +223,7 @@ export interface AccountMenuItemProps {
   url: string;
   icon: string;
   label: string;
-  activeLink: string;
+  activeMenu: string;
   onAction(id: string): void;
 }
 

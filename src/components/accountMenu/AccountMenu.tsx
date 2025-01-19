@@ -21,7 +21,7 @@ const AccountMenu = () => {
               return (
                 <AccountMenuItem
                   key={menu.id}
-                  activeLink={isActive}
+                  activeMenu={isActive}
                   onAction={handleClick}
                   {...menu}
                 />
