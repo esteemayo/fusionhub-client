@@ -141,12 +141,11 @@
       bottom: -8rem;
     }
 
-    &--avatar {
+    &--label {
+      display: inline-block;
       width: 12rem;
       height: 12rem;
-      display: inline-block;
-      object-fit: cover;
-      border-radius: 50%;
+      cursor: pointer;
 
       @media screen and (max-width: 56.25em) {
         width: 13rem;
@@ -187,6 +186,21 @@
         width: 15rem;
         height: 15rem;
       }
+    }
+
+    &--avatar {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    &--input {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
     }
   }
 

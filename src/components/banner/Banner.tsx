@@ -5,12 +5,20 @@ const Banner = () => {
     <section className='banner'>
       &nbsp;
       <div className='banner__user'>
-        <img
-          src='/user-1.jpeg'
-          width={120}
-          height={120}
-          alt='avatar'
-          className='banner__user--avatar'
+        <label htmlFor='avatar' className='banner__user--label'>
+          <img
+            src='/user-1.jpeg'
+            width={120}
+            height={120}
+            alt='avatar'
+            className='banner__user--avatar'
+          />
+        </label>
+        <input
+          type='file'
+          name='avatar'
+          id='avatar'
+          className='banner__user--input'
         />
       </div>
       <div className='banner__cover'>
