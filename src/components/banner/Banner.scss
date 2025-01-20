@@ -80,18 +80,22 @@
     @media screen and (max-width: 56.25em) {
       width: 14rem;
       height: 14rem;
+
       bottom: -7rem;
     }
 
     @media screen and (max-width: 51.25em) {
       width: 15rem;
       height: 15rem;
+
       bottom: -7.5rem;
     }
 
     @include bp.sm {
       width: 10rem;
       height: 10rem;
+      background-color: vars.$clr-primary-blue;
+
       bottom: -5rem;
       left: 1.25rem;
     }
@@ -99,6 +103,7 @@
     @media screen and (max-width: 21.5em) {
       width: 9rem;
       height: 9rem;
+
       bottom: -4.5rem;
       left: 1rem;
     }
@@ -106,18 +111,21 @@
     @media screen and (min-width: 106.25em) {
       width: 14rem;
       height: 14rem;
+
       bottom: -7rem;
     }
 
     @media screen and (min-width: 112.5em) {
       width: 15rem;
       height: 15rem;
+
       bottom: -7.5rem;
     }
 
     @media screen and (min-width: 125em) {
       width: 16rem;
       height: 16rem;
+
       bottom: -8rem;
     }
 
