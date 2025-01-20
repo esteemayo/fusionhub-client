@@ -40,6 +40,11 @@
     margin-bottom: 6rem;
   }
 
+  @media screen and (max-width: 17.5em) {
+    height: 10rem;
+    margin-bottom: 5rem;
+  }
+
   @media screen and (min-width: 106.25em) {
     height: 16rem;
     margin-bottom: 7.5rem;
@@ -108,6 +113,13 @@
       left: 1rem;
     }
 
+    @media screen and (max-width: 17.5em) {
+      width: 7rem;
+      height: 7rem;
+
+      bottom: -3.5rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       width: 14rem;
       height: 14rem;
@@ -156,6 +168,11 @@
         height: 8rem;
       }
 
+      @media screen and (max-width: 17.5em) {
+        width: 6rem;
+        height: 6rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 13rem;
         height: 13rem;
@@ -194,18 +211,21 @@
     @media screen and (max-width: 56.25em) {
       width: 4.5rem;
       height: 4.5rem;
+
       top: 2rem;
     }
 
     @media screen and (max-width: 51.25em) {
       width: 5rem;
       height: 5rem;
+
       top: 2.5rem;
     }
 
     @include bp.sm {
       width: 4rem;
       height: 4rem;
+
       top: 1.25rem;
       right: 1.25rem;
     }
@@ -213,25 +233,34 @@
     @media screen and (max-width: 21.5em) {
       width: 3.5rem;
       height: 3.5rem;
+
       top: 1rem;
       right: 1rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 3rem;
+      height: 3rem;
     }
 
     @media screen and (min-width: 106.25em) {
       width: 4.5rem;
       height: 4.5rem;
+
       top: 2rem;
     }
 
     @media screen and (min-width: 112.5em) {
       width: 5rem;
       height: 5rem;
+
       top: 2.5rem;
     }
 
     @media screen and (min-width: 125em) {
       width: 6rem;
       height: 6rem;
+
       top: 3rem;
     }
 
@@ -271,6 +300,11 @@
         @media screen and (max-width: 21.5em) {
           width: 1.5rem;
           height: 1.5rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 1.45rem;
+          height: 1.45rem;
         }
 
         @media screen and (min-width: 106.25em) {

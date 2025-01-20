@@ -7,7 +7,7 @@ const AboutProfile = () => {
         <h4 className='aboutProfile__container--heading'>About me</h4>
         <p className='aboutProfile__container--text'>
           I'm a Full-stack Developer based in United State of America. I
-          specialize in Frontend Developement, UX/UI design, brand strategy, and
+          specialize in Frontend Development, UX/UI design, brand strategy, and
           Webflow development. I'm always striving to grow and learn something
           new and i don't take myself too seriously.
         </p>
