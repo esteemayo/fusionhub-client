@@ -227,6 +227,11 @@ export interface AccountMenuItemProps {
   onAction(id: string): void;
 }
 
+export interface ProfileImageProps {
+  ref: React.LegacyRef<HTMLInputElement>;
+  onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;

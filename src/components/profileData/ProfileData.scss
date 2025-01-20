@@ -1,0 +1,39 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.profileData {
+  margin-top: 3.5rem;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &--data {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+
+      input {
+        width: 39rem;
+        background-color: vars.$clr-primary-blue;
+
+        &:focus {
+          background-color: vars.$clr-tertiary-blue;
+        }
+      }
+    }
+
+    &--info {
+      margin-bottom: 2rem;
+
+      textarea {
+        background-color: vars.$clr-primary-blue;
+
+        &:focus {
+          background-color: vars.$clr-tertiary-blue;
+        }
+      }
+    }
+  }
+}

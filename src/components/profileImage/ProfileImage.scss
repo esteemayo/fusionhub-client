@@ -1,0 +1,128 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.profileImage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+
+  &__container {
+    position: relative;
+
+    &--icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 4.65rem;
+      height: 4.65rem;
+      background-color: vars.$clr-secondary-blue;
+      border-radius: 50%;
+
+      position: absolute;
+      right: -1rem;
+      bottom: 0;
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 4rem;
+        height: 4rem;
+        background-color: vars.$clr-black;
+        border-radius: 50%;
+        cursor: pointer;
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+          color: vars.$clr-white;
+          stroke-width: 2px;
+        }
+      }
+
+      input[type='file'] {
+        display: none;
+      }
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    width: 35rem;
+
+    &--name {
+      text-transform: capitalize;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: vars.$clr-gray-light-3;
+    }
+
+    &--bio {
+      font-size: 1.4rem;
+      color: vars.$clr-gray-light-1;
+    }
+  }
+
+  &__image {
+    width: 12rem;
+    height: 12rem;
+    position: relative;
+
+    &--avatar {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      object-fit: cover;
+      background-color: vars.$clr-tertiary-blue;
+      border-radius: 50%;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--upload,
+    &--remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      outline: 0;
+      text-transform: capitalize;
+      font-weight: 500;
+      font-size: 1.35rem;
+      width: fit-content;
+      height: 3.6rem;
+      padding: 1.25rem 2rem;
+      color: vars.$clr-white;
+      border-radius: 3px;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+    }
+
+    &--upload {
+      background-color: vars.$clr-pink-dark-1;
+    }
+
+    &--remove {
+      background-color: vars.$clr-black;
+    }
+  }
+}
