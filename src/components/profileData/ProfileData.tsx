@@ -5,6 +5,7 @@ import Textarea from '../../components/textarea/Textarea';
 import AccountHeader from '../../components/accountHeader/AccountHeader';
 
 import './ProfileData.scss';
+import PhoneNumber from '../phoneNumber/PhoneNumber';
 
 const ProfileData = ({
   onSubmit,
@@ -27,12 +28,13 @@ const ProfileData = ({
             label='Email address'
             placeholder='Email address'
           />
-          <Input
+          {/* <Input
             type='tel'
             name='phone'
             label='Mobile number'
             placeholder='Mobile number'
-          />
+          /> */}
+          <PhoneNumber />
         </div>
         <div className='profileData__form--info'>
           <Textarea

@@ -1,6 +1,6 @@
 import Button from '../button/Button';
 import Input from '../input/Input';
-import AccountHeading from '../accountHeading/AccountHeading';
+import AccountHeader from '../accountHeader/AccountHeader';
 
 import './UpdatePassword.scss';
 
@@ -12,7 +12,7 @@ const UpdatePassword = () => {
   return (
     <section className='updatePassword'>
       <div className='updatePassword__container'>
-        <AccountHeading
+        <AccountHeader
           title='Change password'
           subtitle='Your new password must be different from the previous used passwords'
         />
