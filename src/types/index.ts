@@ -1,3 +1,4 @@
+import { Value } from 'react-phone-number-input';
 import React from 'react';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 
@@ -23,6 +24,7 @@ export interface EmptyStateProps {
 export interface LabelProps {
   id?: string;
   label?: string;
+  onClick?(): void;
 }
 
 type InputType =
@@ -230,6 +232,11 @@ export interface AccountMenuItemProps {
 export interface ProfileImageProps {
   ref: React.LegacyRef<HTMLInputElement>;
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface PhoneNumberProps {
+  value: Value | undefined;
+  onChange(value?: Value): void;
 }
 
 export type MenuItemType = {

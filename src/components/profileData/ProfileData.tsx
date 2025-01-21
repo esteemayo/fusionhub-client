@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { Value } from 'react-phone-number-input';
+
 import Button from '../../components/button/Button';
 import Input from '../../components/input/Input';
 import Textarea from '../../components/textarea/Textarea';
@@ -12,6 +15,8 @@ const ProfileData = ({
 }: {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }) => {
+  const [value, setValue] = useState<Value | undefined>();
+
   return (
     <div className='profileData'>
       <AccountHeader
@@ -28,13 +33,7 @@ const ProfileData = ({
             label='Email address'
             placeholder='Email address'
           />
-          {/* <Input
-            type='tel'
-            name='phone'
-            label='Mobile number'
-            placeholder='Mobile number'
-          /> */}
-          <PhoneNumber />
+          <PhoneNumber value={value} onChange={setValue} />
         </div>
         <div className='profileData__form--info'>
           <Textarea
