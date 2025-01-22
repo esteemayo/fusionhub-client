@@ -17,7 +17,9 @@
 
     @include bp.sm {
       padding: 0;
+      padding-top: 3.25rem;
       background-color: transparent;
+      border-top: 1px solid vars.$clr-tertiary-blue;
       border-radius: 0;
     }
   }
@@ -36,11 +38,47 @@
       font-size: 1.4rem;
       width: fit-content;
       height: 3.6rem;
-      padding: 1rem;
+      padding: 2rem 1.25rem;
       background-color: vars.$clr-black;
       color: vars.$clr-white;
       border-radius: 0.5rem;
       cursor: pointer;
+
+      @media screen and (max-width: 56.25em) {
+        height: 3.7rem;
+        padding: 2.25rem 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 3.8rem;
+        padding: 2.5rem 1.75rem;
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 17.5em) {
+        height: 3.7rem;
+        padding: 2rem 1.25rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 3.7rem;
+        padding: 2.25rem 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 3.8rem;
+        padding: 2.5rem 1.75rem;
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 4rem;
+        padding: 3rem 2rem;
+        font-size: 1.8rem;
+      }
 
       &:disabled {
         opacity: 0.75;

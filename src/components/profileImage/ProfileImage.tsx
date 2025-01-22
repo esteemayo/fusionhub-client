@@ -43,8 +43,13 @@ const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
           <div className='profileImage__details'>
             <span className='profileImage__details--name'>Elise beverley</span>
             <span className='profileImage__details--bio'>
-              I'm a Senior Frontend Developer based in U.S
+              I'm a Senior Frontend Developer based in U.S. A Full-stack
+              JavaScript Developer (React, NextJS, VueJS, NodeJS, GraphQL,
+              HTML5, CSS3)
             </span>
+            <button type='button' className='profileImage__details--btn'>
+              More
+            </button>
           </div>
         </div>
       </div>
