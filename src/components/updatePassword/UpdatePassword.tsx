@@ -22,21 +22,23 @@ const UpdatePassword = () => {
               <Input
                 type='password'
                 name='passwordCurrent'
-                label='Current Password'
+                label='Current password'
                 placeholder='Current password'
               />
               <Input
                 type='password'
                 name='password'
-                label='New Password'
+                label='New password'
                 placeholder='New password'
               />
-              <Input
-                type='password'
-                name='passwordConfirm'
-                label='Confirm New Password'
-                placeholder='Confirm new password'
-              />
+              <div className='updatePassword__form--confirm'>
+                <Input
+                  type='password'
+                  name='passwordConfirm'
+                  label='Confirm new password'
+                  placeholder='Confirm new password'
+                />
+              </div>
             </div>
             <Button type='submit' label='Update Changes' className='primary' />
           </form>

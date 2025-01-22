@@ -24,6 +24,21 @@
       right: -1rem;
       bottom: 0;
 
+      @media screen and (min-width: 106.25em) {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 5.5rem;
+        height: 5.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 6rem;
+        height: 6rem;
+      }
+
       label {
         display: flex;
         align-items: center;
@@ -34,6 +49,21 @@
         background-color: vars.$clr-black;
         border-radius: 50%;
         cursor: pointer;
+
+        @media screen and (min-width: 106.25em) {
+          width: 4.25rem;
+          height: 4.25rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 4.85rem;
+          height: 4.85rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 5.35rem;
+          height: 5.35rem;
+        }
 
         svg {
           width: 2rem;
@@ -64,13 +94,69 @@
     &--name {
       text-transform: capitalize;
       font-weight: 600;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: vars.$clr-gray-light-3;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        font-size: 1.7rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.2rem;
+      }
     }
 
     &--bio {
       font-size: 1.4rem;
       color: vars.$clr-gray-light-1;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 21.5em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.8rem;
+      }
     }
 
     &--btn {
@@ -123,6 +209,46 @@
     width: 12rem;
     height: 12rem;
     position: relative;
+
+    @media screen and (max-width: 56.25em) {
+      width: 13rem;
+      height: 13rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 14rem;
+      height: 14rem;
+    }
+
+    @include bp.sm {
+      width: 9rem;
+      height: 9rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 8rem;
+      height: 8rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 13rem;
+      height: 13rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 14rem;
+      height: 14rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 15rem;
+      height: 15rem;
+    }
 
     &--avatar {
       width: 100%;
