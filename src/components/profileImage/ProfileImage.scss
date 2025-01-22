@@ -7,7 +7,16 @@
   justify-content: space-between;
   margin-bottom: 3.5rem;
 
+  @media screen and (max-width: 41.875em) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
   &__container {
+    display: flex;
+    align-items: center;
+
     position: relative;
 
     &--icon {
@@ -23,6 +32,16 @@
       position: absolute;
       right: -1rem;
       bottom: 0;
+
+      @media screen and (max-width: 56.25em) {
+        width: 5rem;
+        height: 5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 5.5rem;
+        height: 5.5rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 5rem;
@@ -49,6 +68,16 @@
         background-color: vars.$clr-black;
         border-radius: 50%;
         cursor: pointer;
+
+        @media screen and (max-width: 56.25em) {
+          width: 4.25rem;
+          height: 4.25rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 4.85rem;
+          height: 4.85rem;
+        }
 
         @media screen and (min-width: 106.25em) {
           width: 4.25rem;
@@ -132,6 +161,14 @@
 
     @include bp.lg {
       width: 45rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 35rem;
+    }
+
+    @media screen and (max-width: 41.875em) {
+      width: 75%;
     }
 
     @media screen and (min-width: 112.5em) {
@@ -316,6 +353,11 @@
     align-items: center;
     gap: 1rem;
 
+    @media screen and (max-width: 41.875em) {
+      width: 100%;
+      justify-content: flex-end;
+    }
+
     &--upload,
     &--remove {
       display: flex;
@@ -336,11 +378,13 @@
 
       @media screen and (max-width: 56.25em) {
         height: 3.7rem;
+        padding: 2rem 2.15rem;
         font-size: 1.45rem;
       }
 
       @media screen and (max-width: 51.25em) {
         height: 3.8rem;
+        padding: 2.15rem 2.25rem;
         font-size: 1.55rem;
       }
 
@@ -351,16 +395,19 @@
 
       @media screen and (min-width: 106.25em) {
         height: 3.7rem;
+        padding: 1.35rem 2rem;
         font-size: 1.45rem;
       }
 
       @media screen and (min-width: 112.5em) {
         height: 3.8rem;
+        padding: 1.5rem 2.25rem;
         font-size: 1.55rem;
       }
 
       @media screen and (min-width: 125em) {
         height: 4rem;
+        padding: 2.15rem 2.5rem;
         font-size: 1.75rem;
       }
 
