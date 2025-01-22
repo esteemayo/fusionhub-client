@@ -70,6 +70,41 @@
           height: 2rem;
           color: vars.$clr-white;
           stroke-width: 2px;
+
+          @media screen and (max-width: 56.25em) {
+            width: 2.25rem;
+            height: 2.25rem;
+          }
+
+          @media screen and (max-width: 51.25em) {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+
+          @media screen and (max-width: 21.5em) {
+            width: 2rem;
+            height: 2rem;
+          }
+
+          @media screen and (max-width: 17.5em) {
+            width: 1.95rem;
+            height: 1.95rem;
+          }
+
+          @media screen and (min-width: 106.25em) {
+            width: 2.25rem;
+            height: 2.25rem;
+          }
+
+          @media screen and (min-width: 112.5em) {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+
+          @media screen and (min-width: 125em) {
+            width: 3rem;
+            height: 3rem;
+          }
         }
       }
 
@@ -90,6 +125,22 @@
     flex-direction: column;
     align-items: flex-start;
     width: 35rem;
+
+    @media screen and (max-width: 76.25em) {
+      width: 31rem;
+    }
+
+    @include bp.lg {
+      width: 45rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 40rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 50rem;
+    }
 
     &--name {
       text-transform: capitalize;
@@ -282,6 +333,36 @@
       color: vars.$clr-white;
       border-radius: 3px;
       cursor: pointer;
+
+      @media screen and (max-width: 56.25em) {
+        height: 3.7rem;
+        font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 3.8rem;
+        font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        height: 3.7rem;
+        font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 3.7rem;
+        font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 3.8rem;
+        font-size: 1.55rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 4rem;
+        font-size: 1.75rem;
+      }
 
       &:disabled {
         opacity: 0.75;
