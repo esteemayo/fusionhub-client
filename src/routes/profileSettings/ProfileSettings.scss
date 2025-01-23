@@ -27,6 +27,15 @@
     }
   }
 
+  &__container {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid vars.$clr-tertiary-blue;
+  }
+
+  &__wrapper {
+    padding-top: 1rem;
+  }
+
   hr {
     border: 0.1px solid vars.$clr-tertiary-blue;
     opacity: 0.5;

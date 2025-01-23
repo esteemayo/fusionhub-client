@@ -27,6 +27,7 @@
       input {
         width: 39rem;
         background-color: vars.$clr-primary-blue;
+        border-color: vars.$clr-primary-blue;
 
         @include bp.xxl {
           width: 36rem;
@@ -89,6 +90,10 @@
           width: 100%;
         }
 
+        @include bp.sm {
+          border-color: vars.$clr-secondary-blue;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 39.5rem;
         }
@@ -103,6 +108,11 @@
 
         &:focus {
           background-color: vars.$clr-tertiary-blue;
+          border-color: vars.$clr-tertiary-blue;
+
+          @include bp.sm {
+            background-color: vars.$clr-secondary-blue;
+          }
         }
       }
 
@@ -189,7 +199,7 @@
         }
 
         .PhoneInputCountry {
-          background-color: vars.$clr-black;
+          background-color: vars.$clr-primary-blue;
 
           @include bp.sm {
             background-color: vars.$clr-secondary-blue;
@@ -198,6 +208,20 @@
 
         .PhoneInputInput {
           background-color: vars.$clr-primary-blue;
+          border-color: vars.$clr-primary-blue;
+
+          @include bp.sm {
+            border-color: vars.$clr-secondary-blue;
+          }
+
+          &:focus {
+            background-color: vars.$clr-tertiary-blue;
+            border-color: vars.$clr-tertiary-blue;
+
+            @include bp.sm {
+              background-color: vars.$clr-secondary-blue;
+            }
+          }
         }
       }
     }
