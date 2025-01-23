@@ -28,12 +28,16 @@
   }
 
   &__container {
-    padding-bottom: 3rem;
-    border-bottom: 1px solid vars.$clr-tertiary-blue;
+    @include bp.sm {
+      padding-bottom: 3rem;
+      border-bottom: 1px solid vars.$clr-tertiary-blue;
+    }
   }
 
   &__wrapper {
-    padding-top: 1rem;
+    @include bp.sm {
+      padding-top: 1rem;
+    }
   }
 
   hr {

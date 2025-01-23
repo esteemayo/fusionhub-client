@@ -2,7 +2,12 @@
 @use '../../styles/variables.scss' as vars;
 
 .articles {
-  &__container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__container,
+  &__wrapper {
     padding: 3rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
@@ -19,6 +24,19 @@
       padding: 0;
       background-color: transparent;
       border-radius: 0;
+    }
+  }
+
+  &__container {
+    @include bp.sm {
+      padding-bottom: 3rem;
+      border-bottom: 1px solid vars.$clr-tertiary-blue;
+    }
+  }
+
+  &__wrapper {
+    @include bp.sm {
+      padding-top: 2rem;
     }
   }
 }

@@ -1,4 +1,4 @@
-import PostLists from '../../components/postList/PostList';
+import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
 import { postItems } from '../../data';
@@ -12,8 +12,11 @@ const SavedPosts = () => {
         <AccountHeading
           title='Saved posts'
           subtitle='My saved stories/articles'
+          type='profile'
         />
-        <PostLists posts={postItems} />
+      </div>
+      <div className='savedPosts__wrapper'>
+        <PostList posts={postItems} />
       </div>
     </div>
   );

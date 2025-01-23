@@ -1,4 +1,4 @@
-import PostLists from '../../components/postList/PostList';
+import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
 import { postItems } from '../../data';
@@ -12,8 +12,11 @@ const DislikedPosts = () => {
         <AccountHeading
           title='Least favorite posts'
           subtitle='My least liked stories/articles'
+          type='profile'
         />
-        <PostLists posts={postItems} />
+      </div>
+      <div className='dislikedPosts__wrapper'>
+        <PostList posts={postItems} />
       </div>
     </div>
   );
