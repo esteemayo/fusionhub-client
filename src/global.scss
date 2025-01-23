@@ -141,80 +141,91 @@ a {
   }
 }
 
-.PhoneInputInput {
-  display: inline-block;
-  outline: 0;
-  font-family: inherit;
-  font-size: 1.45rem;
-  width: 100%;
-  height: 5.6rem;
-  padding: 1.6rem;
-  background-color: transparent;
-  color: vars.$clr-white;
-  border: 2px solid vars.$clr-secondary-blue;
-  border-radius: 0.5rem;
-  transition: all 300ms ease-in-out;
-
-  @media screen and (max-width: 56.25em) {
-    font-size: 1.55rem;
-    height: 5.7rem;
-  }
-
-  @media screen and (max-width: 51.25em) {
-    font-size: 1.65rem;
-    height: 5.8rem;
-  }
-
-  @media screen and (max-width: 17.5em) {
-    font-size: 1.55rem;
-    height: 5.7rem;
-  }
-
-  @media screen and (min-width: 106.25em) {
-    font-size: 1.65rem;
-    height: 5.8rem;
-  }
-
-  @media screen and (min-width: 112.5em) {
-    font-size: 1.85rem;
-    height: 6rem;
-  }
-
-  @media screen and (min-width: 125em) {
-    font-size: 2.2rem;
-    height: 7rem;
-  }
-
-  &:focus {
+.PhoneInput {
+  .PhoneInputCountry {
+    width: 6rem;
+    height: 100%;
     background-color: vars.$clr-secondary-blue;
+    border-radius: 0.5rem;
+
+    justify-content: center;
   }
 
-  &::placeholder {
-    font-size: 1.25rem;
+  .PhoneInputInput {
+    display: inline-block;
+    outline: 0;
+    font-family: inherit;
+    font-size: 1.45rem;
+    width: 100%;
+    height: 5.6rem;
+    padding: 1.6rem;
+    background-color: transparent;
     color: vars.$clr-white;
+    border: 2px solid vars.$clr-secondary-blue;
+    border-radius: 0.5rem;
+    transition: all 300ms ease-in-out;
 
     @media screen and (max-width: 56.25em) {
-      font-size: 1.35rem;
+      font-size: 1.55rem;
+      height: 5.7rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      font-size: 1.45rem;
+      font-size: 1.65rem;
+      height: 5.8rem;
     }
 
     @media screen and (max-width: 17.5em) {
-      font-size: 1.35rem;
+      font-size: 1.55rem;
+      height: 5.7rem;
     }
 
     @media screen and (min-width: 106.25em) {
-      font-size: 1.45rem;
+      font-size: 1.65rem;
+      height: 5.8rem;
     }
 
     @media screen and (min-width: 112.5em) {
-      font-size: 1.65rem;
+      font-size: 1.85rem;
+      height: 6rem;
     }
 
     @media screen and (min-width: 125em) {
-      font-size: 1.9rem;
+      font-size: 2.2rem;
+      height: 7rem;
+    }
+
+    &:focus {
+      background-color: vars.$clr-secondary-blue;
+    }
+
+    &::placeholder {
+      font-size: 1.25rem;
+      color: vars.$clr-white;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.35rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        font-size: 1.35rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.65rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.9rem;
+      }
     }
   }
 }
