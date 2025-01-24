@@ -34,6 +34,7 @@
 
     @include bp.lg {
       width: 90rem;
+      position: relative;
     }
 
     @media screen and (max-width: 59.375em) {
@@ -131,9 +132,27 @@
     @media screen and (min-width: 125em) {
       width: 135rem;
     }
-  }
 
-  &__outlet {
-    flex: 3;
+    &--outlet {
+      flex: 3;
+    }
+
+    &--btn {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+
+      @media screen and (max-width: 64em) {
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+
+        position: absolute;
+        top: -4rem;
+        left: 0;
+      }
+    }
   }
 }

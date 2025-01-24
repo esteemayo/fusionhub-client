@@ -1,0 +1,27 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  color: vars.$clr-white;
+
+  span {
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: currentColor;
+  }
+
+  svg {
+    width: 2.5rem;
+    fill: currentColor;
+    stroke-width: 2px;
+  }
+}

@@ -239,6 +239,12 @@ export interface PhoneNumberProps {
   onChange(value?: Value): void;
 }
 
+export interface ToggleButtonProps {
+  label?: string;
+  isOpen: boolean;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
