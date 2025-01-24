@@ -225,6 +225,7 @@ export interface AccountMenuItemProps {
   url: string;
   icon: string;
   label: string;
+  isOpen: boolean;
   activeMenu: string;
   onAction(id: string): void;
 }

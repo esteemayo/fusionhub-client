@@ -16,15 +16,21 @@
 
   &.show {
     @include bp.lg {
-      width: 35rem;
-      background-color: vars.$clr-black;
       top: 0;
       left: 0;
+
+      width: 35rem;
+      background-color: vars.$clr-black;
+      border-radius: 0.5rem;
       z-index: 2000;
 
       .accountMenu {
         &__container {
           background-color: transparent;
+        }
+
+        &__box {
+          border-color: vars.$clr-gray-dark-1;
         }
       }
     }
@@ -37,7 +43,7 @@
   }
 
   &__container {
-    padding: 3rem;
+    padding: 3rem 2.25rem;
     background-color: vars.$clr-secondary-blue;
     border-radius: 3px;
 

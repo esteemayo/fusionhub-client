@@ -3,16 +3,23 @@ import { useMemo, useState } from 'react';
 import { accountMenus } from '../../data';
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { onClose } from '../../features/accountMenu/accountMenuSlice';
 
 import './AccountMenu.scss';
 
 const AccountMenu = () => {
+  const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
 
   const [isActive, setIsActive] = useState('profile');
 
   const handleClick = (id: string) => {
+    if (isOpen) {
+      dispatch(onClose());
+      return;
+    }
+
     setIsActive(id);
   };
 
@@ -29,6 +36,7 @@ const AccountMenu = () => {
               return (
                 <AccountMenuItem
                   key={menu.id}
+                  isOpen={isOpen}
                   activeMenu={isActive}
                   onAction={handleClick}
                   {...menu}

@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
 
-  height: 4.5rem;
+  height: 5rem;
   background-color: vars.$clr-tertiary-blue;
   border-radius: 3px;
   overflow: hidden;
   transition: all 300ms ease-in-out;
 
   &:not(:last-of-type) {
-    margin-bottom: 2px;
+    margin-bottom: 5px;
   }
 
   &.active {
@@ -22,6 +22,14 @@
       width: 0.5rem;
       height: 100%;
       background-color: vars.$clr-pink-dark-1;
+    }
+  }
+
+  &.show {
+    background-color: vars.$clr-tertiary-blue;
+
+    @include bp.lg {
+      background-color: vars.$clr-primary-blue;
     }
   }
 
@@ -38,6 +46,7 @@
 
       width: 100%;
       padding: 0.8rem 1.25rem;
+      vertical-align: middle;
       text-transform: capitalize;
       transition: all 300ms ease-in-out;
     }
