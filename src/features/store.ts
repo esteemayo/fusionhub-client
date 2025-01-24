@@ -5,6 +5,7 @@ import sidebarReducer from './sidebar/sidebarSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
 import postActionMenuReducer from './postActionMenu/postActionMenuSlice';
+import accountMenuReducer from './accountMenu/accountMenuSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     postActionMenu: postActionMenuReducer,
     postModal: postModalReducer,
     accountModal: accountModalReducer,
+    accountMenu: accountMenuReducer,
   },
 });
 

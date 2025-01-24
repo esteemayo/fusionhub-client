@@ -1,19 +1,27 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { accountMenus } from '../../data';
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
+import { useAppSelector } from '../../hooks/hooks';
+
 import './AccountMenu.scss';
 
 const AccountMenu = () => {
+  const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
+
   const [isActive, setIsActive] = useState('profile');
 
   const handleClick = (id: string) => {
     setIsActive(id);
   };
 
+  const accountMenuClasses = useMemo(() => {
+    return isOpen ? 'accountMenu show' : 'accountMenu hide';
+  }, [isOpen]);
+
   return (
-    <aside className='accountMenu'>
+    <aside className={accountMenuClasses}>
       <div className='accountMenu__container'>
         <div className='accountMenu__wrapper'>
           <ul className='accountMenu__list'>

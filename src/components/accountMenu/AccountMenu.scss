@@ -10,7 +10,30 @@
   height: max-content;
 
   @include bp.lg {
-    display: none;
+    position: absolute;
+    transition: all 300ms ease-in-out;
+  }
+
+  &.show {
+    @include bp.lg {
+      width: 35rem;
+      background-color: vars.$clr-black;
+      top: 0;
+      left: 0;
+      z-index: 2000;
+
+      .accountMenu {
+        &__container {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  &.hide {
+    @include bp.lg {
+      left: -150rem;
+    }
   }
 
   &__container {
