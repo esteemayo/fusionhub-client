@@ -10,6 +10,13 @@
     padding: 2rem;
   }
 
+  @include bp.sm {
+    padding: 3rem 0;
+    background-color: transparent;
+    border-top: 1px solid vars.$clr-secondary-blue;
+    border-radius: 0;
+  }
+
   &__heading {
     font-weight: 600;
     font-size: 1.8rem;

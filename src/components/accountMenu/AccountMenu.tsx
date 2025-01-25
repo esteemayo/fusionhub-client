@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
-import useLogout from '../../hooks/useLogout';
+import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { accountMenus } from '../../data';
@@ -14,7 +14,7 @@ const AccountMenu = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
 
-  const { handleLogout } = useLogout({ isOpen, onClose });
+  const { handleLogout } = useLogout(isOpen, onClose);
 
   const [isActive, setIsActive] = useState('profile');
 

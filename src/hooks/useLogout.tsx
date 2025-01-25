@@ -1,7 +1,7 @@
 import { ILogout } from '../types';
 import { useAppDispatch } from './hooks';
 
-const useLogout = ({ isOpen, onClose }: ILogout) => {
+export const useLogout: ILogout = (isOpen, onClose) => {
   const dispatch = useAppDispatch();
 
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,5 +20,3 @@ const useLogout = ({ isOpen, onClose }: ILogout) => {
     handleLogout,
   };
 };
-
-export default useLogout;

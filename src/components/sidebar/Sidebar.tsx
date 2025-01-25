@@ -1,16 +1,19 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { onClose } from '../../features/sidebar/sidebarSlice';
+import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { menuItems } from '../../data';
+import { onClose } from '../../features/sidebar/sidebarSlice';
 
 import './Sidebar.scss';
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
+
+  const { handleLogout } = useLogout(isOpen, onClose);
 
   const user = true;
 
@@ -84,7 +87,11 @@ const Sidebar = () => {
                   />
                   <span className='sidebar__account--name'>Elise beverley</span>
                 </Link>
-                <button type='button' className='sidebar__logoutBtn'>
+                <button
+                  type='button'
+                  className='sidebar__logoutBtn'
+                  onClick={handleLogout}
+                >
                   Logout
                 </button>
               </div>

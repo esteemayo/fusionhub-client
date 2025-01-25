@@ -10,6 +10,13 @@
     padding: 2rem;
   }
 
+  @include bp.sm {
+    padding: 3rem 0;
+    background-color: transparent;
+    border-top: 1px solid vars.$clr-secondary-blue;
+    border-radius: 0;
+  }
+
   &__heading {
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
@@ -51,6 +58,14 @@
 
     textarea {
       background-color: vars.$clr-tertiary-blue !important;
+
+      @include bp.sm {
+        background-color: transparent !important;
+
+        &:focus {
+          background-color: vars.$clr-secondary-blue !important;
+        }
+      }
     }
   }
 }

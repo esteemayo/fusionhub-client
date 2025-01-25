@@ -1,6 +1,6 @@
 import PostClient from '../../components/postClient/PostClient';
 import Postbar from '../../components/postbar/Postbar';
-import PostMenuButton from '../../components/postMenuButton/PostMenuButton';
+import ToggleButton from '../../components/toggleButton/ToggleButton';
 import PostItems from '../../components/postItems/PostItems';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -28,7 +28,7 @@ const Posts = () => {
           </div>
         </div>
         <div className='posts__btn'>
-          <PostMenuButton isOpen={isOpen} onClick={handleToggle} />
+          <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
       </div>
     </div>

@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 
+import { useLogout } from '../../hooks/useLogout';
+
 import './UserMenu.scss';
 
 const UserMenu = () => {
+  const { handleLogout } = useLogout();
+
   return (
     <aside className='userMenu'>
       <div className='userMenu__container'>
@@ -13,7 +17,7 @@ const UserMenu = () => {
         </ul>
         <div className='userMenu__wrapper'>
           <span className='username'>Elise beverley</span>
-          <button type='button' className='logoutBtn'>
+          <button type='button' className='logoutBtn' onClick={handleLogout}>
             Logout
           </button>
         </div>

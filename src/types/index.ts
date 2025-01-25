@@ -248,8 +248,9 @@ export interface ToggleButtonProps {
 }
 
 export interface ILogout {
-  isOpen?: boolean;
-  onClose?(): Action;
+  (isOpen?: boolean, onClose?: () => Action): {
+    handleLogout: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  };
 }
 
 export type MenuItemType = {

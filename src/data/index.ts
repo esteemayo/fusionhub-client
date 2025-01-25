@@ -340,7 +340,7 @@ export const relatedPosts: RelatedPostType = [
     createdAt: '2024-12-17T16:03:59.085+00:00',
   },
   {
-    id: '2',
+    id: '3',
     img: '/post-8.jpeg',
     title: '20 Best Books to Read This Summer',
     slug: '20-best-books-to-read-this-summer',

@@ -1,6 +1,6 @@
 import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
 import Hero from '../../components/hero/Hero';
-import PostMenuButton from '../../components/postMenuButton/PostMenuButton';
+import ToggleButton from '../../components/toggleButton/ToggleButton';
 import PostContent from '../../components/postContent/PostContent';
 import PostActionMenu from '../../components/postActionMenu/PostActionMenu';
 
@@ -25,7 +25,7 @@ const PostDetails = () => {
         <PostContent />
         <PostActionMenu isOpen={isOpen} />
         <div className='postDetails__container--btn'>
-          <PostMenuButton isOpen={isOpen} onClick={handleToggle} />
+          <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
       </div>
       <div className='postDetails__wrapper'>
