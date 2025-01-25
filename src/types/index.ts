@@ -1,6 +1,7 @@
 import { Value } from 'react-phone-number-input';
 import React from 'react';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import { Action } from 'redux';
 
 export interface HeadingProps {
   title: string;
@@ -244,6 +245,11 @@ export interface ToggleButtonProps {
   label?: string;
   isOpen: boolean;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ILogout {
+  isOpen?: boolean;
+  onClose?(): Action;
 }
 
 export type MenuItemType = {

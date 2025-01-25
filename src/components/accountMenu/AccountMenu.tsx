@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
 
-import { accountMenus } from '../../data';
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
+import useLogout from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
+import { accountMenus } from '../../data';
 import { onClose } from '../../features/accountMenu/accountMenuSlice';
 
 import './AccountMenu.scss';
@@ -11,6 +13,8 @@ import './AccountMenu.scss';
 const AccountMenu = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
+
+  const { handleLogout } = useLogout({ isOpen, onClose });
 
   const [isActive, setIsActive] = useState('profile');
 
@@ -46,7 +50,7 @@ const AccountMenu = () => {
           </ul>
         </div>
         <div className='accountMenu__box'>
-          <button type='button'>
+          <button type='button' onClick={handleLogout}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
