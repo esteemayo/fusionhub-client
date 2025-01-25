@@ -11,6 +11,38 @@
   overflow: hidden;
   transition: all 300ms ease-in-out;
 
+  @media screen and (max-width: 56.25em) {
+    height: 5.25rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    height: 5.45rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    height: 5.25rem;
+  }
+
+  @media screen and (max-width: 21.5em) {
+    height: 5rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    height: 4.25rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    height: 5.25rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    height: 5.45rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    height: 5.75rem;
+  }
+
   &:not(:last-of-type) {
     margin-bottom: 5px;
   }
@@ -22,6 +54,14 @@
       width: 0.5rem;
       height: 100%;
       background-color: vars.$clr-pink-dark-1;
+
+      @media screen and (max-width: 18.75em) {
+        width: 3px;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 0.725rem;
+      }
     }
   }
 
@@ -49,18 +89,80 @@
       vertical-align: middle;
       text-transform: capitalize;
       transition: all 300ms ease-in-out;
+
+      @media screen and (min-width: 112.5em) {
+        gap: 1.25rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        gap: 1.5rem;
+      }
     }
 
     span {
       font-weight: 500;
       font-size: 1.4rem;
       color: inherit;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.8rem;
+      }
     }
 
     svg {
       width: 1.75rem;
       height: 1.75rem;
       stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
     }
   }
 }

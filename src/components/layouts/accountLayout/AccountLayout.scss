@@ -153,6 +153,11 @@
         top: -4rem;
         left: 0;
       }
+
+      @include bp.sm {
+        left: unset;
+        right: 0;
+      }
     }
   }
 }
