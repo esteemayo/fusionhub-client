@@ -281,6 +281,7 @@
     }
 
     &--likes,
+    &--buttons,
     &--bookmarks {
       display: flex;
       align-items: center;
@@ -411,6 +412,44 @@
 
           @media screen and (min-width: 125em) {
             font-size: 1.7rem;
+          }
+        }
+      }
+    }
+
+    &--bookmarks {
+      button {
+        @include bp.sm {
+          padding: 0.8rem 1.25rem;
+          background-color: vars.$clr-secondary-blue !important;
+          border-radius: 10rem;
+        }
+      }
+    }
+
+    &--btnComment {
+      @include bp.sm {
+        padding: 0.8rem 1.25rem;
+        background-color: vars.$clr-secondary-blue !important;
+        border-radius: 10rem;
+      }
+    }
+
+    &--buttons {
+      @include bp.sm {
+        gap: 1rem;
+
+        padding: 0.8rem 1.25rem;
+        background-color: vars.$clr-secondary-blue;
+        border-radius: 10rem;
+
+        button {
+          &:first-child {
+            &::after {
+              content: '|';
+              display: inline-block;
+              margin-left: 0.5rem;
+            }
           }
         }
       }

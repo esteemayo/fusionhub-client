@@ -11,21 +11,21 @@ const Postbar = () => {
           <div className='postbar__wrapper--breadcrumbs'>
             <ul className='postbar__lists'>
               <li className='postbar__lists--item'>
-                <Link to='/' className='postbar__lists--item-link'>
-                  Home
-                </Link>
+                Home
+                {/* <Link to='/' className='postbar__lists--item'>
+                </Link> */}
               </li>
-              |
+              <span>|</span>
               <li className='postbar__lists--item'>
-                <Link to='/posts' className='postbar__lists--item-link'>
-                  Posts
-                </Link>
+                Posts
+                {/* <Link to='/posts' className='postbar__lists--item'>
+                </Link> */}
               </li>
-              |
+              <span>|</span>
               <li className='postbar__lists--item'>
-                <Link to='#leftSidebar' className='postbar__lists--item-link'>
-                  Left sidebar
-                </Link>
+                Left sidebar
+                {/* <Link to='#leftSidebar' className='postbar__lists--item'>
+                </Link> */}
               </li>
             </ul>
           </div>

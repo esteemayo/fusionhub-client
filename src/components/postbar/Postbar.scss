@@ -234,7 +234,8 @@
 
       @include bp.sm {
         &:last-child {
-          display: none;
+          // display: none;
+          background-color: red;
         }
       }
 
@@ -262,7 +263,7 @@
         font-size: 1.75rem;
       }
 
-      &-link {
+      a {
         &:link,
         &:visited {
           text-transform: capitalize;
