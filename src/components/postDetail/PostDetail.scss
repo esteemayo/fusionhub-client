@@ -494,6 +494,7 @@
   &__desc {
     font-size: 1.65rem;
     color: vars.$clr-gray-light-1;
+    word-break: break-all;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.75rem;

@@ -188,6 +188,7 @@
 
     @include bp.sm {
       width: 53rem;
+      padding-top: 1rem;
     }
 
     @media screen and (max-width: 28.125em) {
