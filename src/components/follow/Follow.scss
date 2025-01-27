@@ -79,6 +79,10 @@
         border-radius: 50%;
         transition: all 300ms ease-in-out;
 
+        @include bp.md {
+          background-color: vars.$clr-secondary-blue;
+        }
+
         @media screen and (max-width: 56.25em) {
           width: 4rem;
           height: 4rem;

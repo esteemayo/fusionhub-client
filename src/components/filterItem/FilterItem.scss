@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .filterItem {
   &__container {
@@ -19,7 +19,7 @@
       text-rendering: optimizeLegibility;
       font-weight: 600;
       font-size: 1.4rem;
-      color: $clr-gray-light-3;
+      color: vars.$clr-gray-light-3;
       cursor: pointer;
 
       @media screen and (max-width: 56.25em) {
@@ -55,10 +55,15 @@
       appearance: none;
       width: 1.6rem;
       height: 1.6rem;
-      background-color: $clr-tertiary-blue;
-      border: 1.5px solid $clr-gray-light-3;
+      background-color: vars.$clr-tertiary-blue;
+      border: 1.5px solid vars.$clr-gray-light-3;
       border-radius: 2px;
       cursor: pointer;
+
+      @include bp.md {
+        background-color: vars.$clr-secondary-blue;
+        border-color: vars.$clr-gray-light-1;
+      }
 
       @media screen and (max-width: 56.25em) {
         width: 1.7rem;
@@ -91,7 +96,13 @@
       }
 
       &:checked {
-        background-color: $clr-gray-light-3;
+        background-color: vars.$clr-gray-light-3;
+
+        &:focus {
+          @include bp.md {
+            background-color: vars.$clr-gray-light-1;
+          }
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .categoryItem {
   display: flex;
@@ -10,11 +10,15 @@
   font-weight: 500;
   font-size: 1.25rem;
   padding: 1rem 0.5rem;
-  color: $clr-gray-light-1;
+  color: vars.$clr-gray-light-1;
   line-height: 1.2;
 
   &:not(:last-child) {
-    border-bottom: 1px solid $clr-tertiary-blue;
+    border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+    @include bp.md {
+      border-color: vars.$clr-secondary-blue;
+    }
   }
 
   &__label {
@@ -22,7 +26,7 @@
     text-rendering: optimizeLegibility;
     font-weight: 700;
     font-size: 1.4rem;
-    color: $clr-gray-light-3;
+    color: vars.$clr-gray-light-3;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.5rem;
@@ -61,7 +65,7 @@
       }
 
       &:hover {
-        color: $clr-pink-light;
+        color: vars.$clr-pink-light;
       }
     }
   }
@@ -69,7 +73,7 @@
   &__total {
     font-weight: 500;
     font-size: 1.2rem;
-    color: $clr-gray-light-1;
+    color: vars.$clr-gray-light-1;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.3rem;

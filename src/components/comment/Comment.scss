@@ -17,6 +17,12 @@
     border-radius: 0;
   }
 
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__heading {
     font-weight: 600;
     font-size: 1.5rem;
@@ -50,6 +56,28 @@
 
     @media screen and (min-width: 125em) {
       font-size: 1.85rem;
+    }
+  }
+
+  &__user {
+    display: none;
+
+    @media screen and (max-width: 26.875em) {
+      display: flex;
+      align-items: center;
+    }
+
+    &--img {
+      width: 5rem;
+      height: 5rem;
+      display: inline-block;
+      object-fit: cover;
+      border: 2.5px solid vars.$clr-black;
+      border-radius: 50%;
+
+      &:not(:last-child) {
+        margin-right: -1rem;
+      }
     }
   }
 }

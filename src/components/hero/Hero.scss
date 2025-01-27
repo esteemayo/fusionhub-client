@@ -158,6 +158,14 @@
         }
       }
 
+      &:first-child {
+        &::after {
+          content: '|';
+          display: inline-block;
+          margin-left: 1rem;
+        }
+      }
+
       &:hover {
         text-decoration: underline;
         text-underline-offset: 0.5rem;
