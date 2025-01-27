@@ -19,6 +19,7 @@
 
     @include bp.md {
       padding: 3rem;
+      background-color: vars.$clr-primary-blue;
     }
 
     @media screen and (max-width: 22.5em) {

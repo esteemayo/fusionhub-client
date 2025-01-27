@@ -233,9 +233,8 @@
       }
 
       @include bp.sm {
-        &:last-child {
-          // display: none;
-          background-color: red;
+        &:nth-child(5) {
+          display: none;
         }
       }
 
@@ -274,6 +273,14 @@
 
         &:hover {
           color: vars.$clr-pink-light;
+        }
+      }
+    }
+
+    span {
+      @include bp.sm {
+        &:nth-child(4) {
+          display: none;
         }
       }
     }

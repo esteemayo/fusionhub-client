@@ -22,6 +22,7 @@
 
     @include bp.md {
       height: 4.5rem;
+      background-color: vars.$clr-primary-blue;
     }
 
     @media screen and (min-width: 106.25em) {
