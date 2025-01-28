@@ -236,6 +236,31 @@
           background-color: vars.$clr-tertiary-blue;
         }
       }
+
+      .textQuill {
+        .quill {
+          .ql-toolbar,
+          .ql-container {
+            background-color: vars.$clr-primary-blue !important;
+            border: 2px solid transparent !important;
+
+            @include bp.sm {
+              border-color: vars.$clr-secondary-blue !important;
+            }
+          }
+
+          .ql-toolbar {
+            border-bottom-color: vars.$clr-gray-dark-2 !important;
+          }
+
+          .ql-editor {
+            &:focus {
+              background-color: vars.$clr-tertiary-blue;
+              border: 0 !important;
+            }
+          }
+        }
+      }
     }
   }
 }

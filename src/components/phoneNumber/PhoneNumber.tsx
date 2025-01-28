@@ -9,7 +9,7 @@ import 'react-phone-number-input/style.css';
 import './PhoneNumber.scss';
 
 const PhoneNumber = ({ value, onChange }: PhoneNumberProps) => {
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLInputElement | undefined>(null);
 
   const handleClick = () => {
     ref?.current?.focus();

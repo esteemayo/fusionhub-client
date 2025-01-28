@@ -2,9 +2,7 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill-new';
 
 import Input from './input/Input';
-import TextQuill from './TextQuill';
-
-import 'react-quill-new/dist/quill.snow.css';
+import TextQuill from './textQuill/TextQuill';
 
 const PostDescription = () => {
   const [value, setValue] = useState<ReactQuill.Value | undefined>('');

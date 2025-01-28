@@ -338,3 +338,8 @@ export type AccountMenuType = {
   icon: string;
   label: string;
 }[];
+
+export type CommentUserType = {
+  id: string;
+  img: string;
+}[];

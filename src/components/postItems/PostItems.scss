@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/responsive.scss';
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
 
 .postItems {
   flex: 5;
@@ -17,7 +17,7 @@
       gap: 5rem;
     }
 
-    @include xxl {
+    @include bp.xxl {
       gap: 1rem;
       row-gap: 2rem;
     }
@@ -31,7 +31,7 @@
       row-gap: 2.5rem;
     }
 
-    @include lg {
+    @include bp.lg {
       gap: 6rem;
     }
 
@@ -44,7 +44,7 @@
       row-gap: 4rem;
     }
 
-    @include md {
+    @include bp.md {
       row-gap: 3rem;
     }
 
@@ -72,7 +72,7 @@
       gap: 3rem;
     }
 
-    @include sm {
+    @include bp.sm {
       row-gap: 3.5rem;
     }
 

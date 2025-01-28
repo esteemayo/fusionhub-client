@@ -72,11 +72,38 @@
       height: 5rem;
       display: inline-block;
       object-fit: cover;
-      border: 2.5px solid vars.$clr-black;
+      border: 2.5px solid vars.$clr-secondary-blue;
       border-radius: 50%;
 
+      @media screen and (max-width: 22.5em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 4rem;
+        height: 4rem;
+      }
+
       &:not(:last-child) {
-        margin-right: -1rem;
+        margin-right: -2.5rem;
+
+        @media screen and (max-width: 22.5em) {
+          margin-right: -2.25rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          margin-right: -2.125rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          margin-right: -2rem;
+        }
       }
     }
   }

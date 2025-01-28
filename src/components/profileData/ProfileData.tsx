@@ -1,3 +1,4 @@
+import ReactQuill from 'react-quill-new';
 import { useState } from 'react';
 import { Value } from 'react-phone-number-input';
 
@@ -9,6 +10,7 @@ import AccountHeader from '../../components/accountHeader/AccountHeader';
 
 import './ProfileData.scss';
 import PhoneNumber from '../phoneNumber/PhoneNumber';
+import TextQuill from '../textQuill/TextQuill';
 
 const ProfileData = ({
   onSubmit,
@@ -16,6 +18,7 @@ const ProfileData = ({
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }) => {
   const [value, setValue] = useState<Value | undefined>();
+  const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 
   return (
     <div className='profileData'>
@@ -40,6 +43,12 @@ const ProfileData = ({
             name='bio'
             label='Biography'
             placeholder='Write something about who you are...'
+          />
+          <TextQuill
+            id='about'
+            label='About'
+            value={about}
+            onChange={setAbout}
           />
         </div>
         <Button type='submit' label='Save Changes' className='primary' />
