@@ -48,7 +48,7 @@ const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
               HTML5, CSS3)
             </span>
             <button type='button' className='profileImage__details--btn'>
-              More
+              Show more
             </button>
           </div>
         </div>

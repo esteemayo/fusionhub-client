@@ -2,16 +2,16 @@ import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
 import Hero from '../../components/hero/Hero';
 import ToggleButton from '../../components/toggleButton/ToggleButton';
 import PostContent from '../../components/postContent/PostContent';
-import PostActionMenu from '../../components/postActionMenu/PostActionMenu';
+import PostMenuActions from '../../components/postMenuActions/PostMenuActions';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { onToggle } from '../../features/postActionMenu/postActionMenuSlice';
+import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import './PostDetails.scss';
 
 const PostDetails = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.postActionMenu }));
+  const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -23,7 +23,7 @@ const PostDetails = () => {
       <Hero />
       <div className='postDetails__container'>
         <PostContent />
-        <PostActionMenu isOpen={isOpen} />
+        <PostMenuActions isOpen={isOpen} />
         <div className='postDetails__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>

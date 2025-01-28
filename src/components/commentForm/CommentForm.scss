@@ -57,13 +57,13 @@
     gap: 2rem;
 
     textarea {
-      background-color: vars.$clr-tertiary-blue !important;
+      background-color: vars.$clr-primary-blue !important;
 
       @include bp.sm {
         background-color: transparent !important;
 
         &:focus {
-          background-color: vars.$clr-secondary-blue !important;
+          background-color: vars.$clr-tertiary-blue !important;
         }
       }
     }

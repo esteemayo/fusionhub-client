@@ -2,15 +2,15 @@ import ReactQuill from 'react-quill-new';
 import { useState } from 'react';
 import { Value } from 'react-phone-number-input';
 
-import Button from '../../components/button/Button';
-import Input from '../../components/input/Input';
-import Textarea from '../../components/textarea/Textarea';
+import Textarea from '../textarea/Textarea';
+import Input from '../input/Input';
+import PhoneNumber from '../phoneNumber/PhoneNumber';
 
-import AccountHeader from '../../components/accountHeader/AccountHeader';
+import TextQuill from '../textQuill/TextQuill';
+import Button from '../button/Button';
+import AccountHeader from '../accountHeader/AccountHeader';
 
 import './ProfileData.scss';
-import PhoneNumber from '../phoneNumber/PhoneNumber';
-import TextQuill from '../textQuill/TextQuill';
 
 const ProfileData = ({
   onSubmit,
@@ -46,7 +46,7 @@ const ProfileData = ({
           />
           <TextQuill
             id='about'
-            label='About'
+            label='About me'
             value={about}
             onChange={setAbout}
           />

@@ -4,14 +4,14 @@ import postsMenuReducer from './postsMenu/postsMenuSlice';
 import sidebarReducer from './sidebar/sidebarSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
-import postActionMenuReducer from './postActionMenu/postActionMenuSlice';
+import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 import accountMenuReducer from './accountMenu/accountMenuSlice';
 
 export const store = configureStore({
   reducer: {
     sidebar: sidebarReducer,
     postsMenu: postsMenuReducer,
-    postActionMenu: postActionMenuReducer,
+    postMenuActions: postMenuActionsReducer,
     postModal: postModalReducer,
     accountModal: accountModalReducer,
     accountMenu: accountMenuReducer,

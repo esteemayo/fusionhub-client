@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface postActionMenuState {
+interface postMenuActionsState {
   isOpen: boolean;
 }
 
-const initialState: postActionMenuState = {
+const initialState: postMenuActionsState = {
   isOpen: false,
 };
 
-const postActionMenu = createSlice({
-  name: 'postActionMenu',
+const postMenuActions = createSlice({
+  name: 'postMenuActions',
   initialState,
   reducers: {
     onOpen: (state) => {
@@ -24,6 +24,6 @@ const postActionMenu = createSlice({
   },
 });
 
-export const { onClose, onOpen, onToggle } = postActionMenu.actions;
+export const { onClose, onOpen, onToggle } = postMenuActions.actions;
 
-export default postActionMenu.reducer;
+export default postMenuActions.reducer;

@@ -234,6 +234,11 @@
 
         &:focus {
           background-color: vars.$clr-tertiary-blue;
+          border-color: vars.$clr-tertiary-blue;
+
+          @include bp.sm {
+            background-color: vars.$clr-secondary-blue;
+          }
         }
       }
 
@@ -251,12 +256,20 @@
 
           .ql-toolbar {
             border-bottom-color: vars.$clr-gray-dark-2 !important;
+
+            @include bp.sm {
+              border-bottom: 0 !important;
+            }
           }
 
           .ql-editor {
             &:focus {
               background-color: vars.$clr-tertiary-blue;
-              border: 0 !important;
+              border-color: vars.$clr-tertiary-blue !important;
+
+              @include bp.sm {
+                background-color: vars.$clr-secondary-blue;
+              }
             }
           }
         }
