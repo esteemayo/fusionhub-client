@@ -6,6 +6,13 @@ import './CommentForm.scss';
 const CommentForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const target = e.target as HTMLFormElement;
+
+    const form = new FormData(target);
+
+    const desc = form.get('desc');
+    console.log(desc);
   };
 
   return (
