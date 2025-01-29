@@ -3,21 +3,26 @@
 
 .commentCard {
   display: flex;
-  align-items: flex-start;
-  gap: 3rem;
+  flex-direction: column;
 
   padding: 2.5rem 0;
 
-  @media screen and (max-width: 81.25em) {
-    gap: 2rem;
-  }
-
-  @media screen and (max-width: 26.875em) {
-    gap: 0;
-  }
-
   &:not(:last-child) {
     border-bottom: 1px solid vars.$clr-tertiary-blue;
+  }
+
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+
+    @media screen and (max-width: 81.25em) {
+      gap: 2rem;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      gap: 0;
+    }
   }
 
   &__user {
@@ -112,6 +117,47 @@
       color: vars.$clr-gray-light-1;
       word-break: break-all;
       hyphens: auto;
+    }
+
+    &--btn {
+      display: inline-block;
+      border: 0;
+      outline: 0;
+      font-weight: 500;
+      font-size: 1.3rem;
+      background-color: transparent;
+      color: vars.$clr-gray-light-3;
+      margin-left: 0.5rem;
+      cursor: pointer;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.3rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.7rem;
+      }
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
     }
   }
 
@@ -222,6 +268,43 @@
         font-size: inherit;
         color: inherit;
       }
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.8rem;
+
+    &--edit,
+    &--delete {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    &--edit {
+      color: vars.$clr-success;
+    }
+
+    &--delete {
+      color: vars.$clr-error;
     }
   }
 }
