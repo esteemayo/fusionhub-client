@@ -19,11 +19,11 @@ const PostMenuActions = ({ isOpen }: { isOpen: boolean }) => {
     <aside className={postMenuActionsClasses}>
       <div className='postMenuActions__container'>
         <Search />
-        <Follow />
+        <ActionMenus />
         <Categories />
         <Feeds />
         <Tags />
-        <ActionMenus />
+        <Follow />
       </div>
     </aside>
   );
