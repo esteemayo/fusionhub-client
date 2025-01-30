@@ -277,6 +277,8 @@
     justify-content: flex-end;
     gap: 0.8rem;
 
+    padding-top: 1rem;
+
     &--edit,
     &--delete {
       display: flex;
@@ -296,6 +298,36 @@
       svg {
         width: 1.5rem;
         height: 1.5rem;
+
+        @media screen and (max-width: 56.25em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 1.9rem;
+          height: 1.9rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.9rem;
+          height: 1.9rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.15rem;
+          height: 2.15rem;
+        }
       }
     }
 

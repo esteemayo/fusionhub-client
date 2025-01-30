@@ -5,6 +5,18 @@ import { CommentCardProps } from '../../types';
 import './CommentCard.scss';
 
 const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('comment updated!');
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('comment deleted!');
+  };
+
   return (
     <article className='commentCard'>
       <div className='commentCard__container'>
@@ -52,7 +64,11 @@ const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
         </div>
       </div>
       <div className='commentCard__btn'>
-        <button type='button' className='commentCard__btn--edit'>
+        <button
+          type='button'
+          className='commentCard__btn--edit'
+          onClick={handleUpdate}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -68,7 +84,11 @@ const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
             />
           </svg>
         </button>
-        <button type='button' className='commentCard__btn--delete'>
+        <button
+          type='button'
+          className='commentCard__btn--delete'
+          onClick={handleDelete}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
