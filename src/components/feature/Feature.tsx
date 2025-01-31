@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { formatDate } from '../../utils/formatDate';
 
 import './Feature.scss';
@@ -13,6 +15,12 @@ const Feature = () => {
           alt='image'
           className='feature__cover--img'
         />
+        <div className='feature__calendar'>
+          <div className='feature__calendar--wrap'>
+            <span>31</span>
+            <span>Jan</span>
+          </div>
+        </div>
       </div>
       <div className='feature__footer'>
         <div className='feature__wrapper'>
@@ -63,9 +71,9 @@ const Feature = () => {
             perspiciatis quam. Ad natus similique nemo at repudiandae omnis
             repellendus! Aut, excepturi dolores!
           </p>
-          <button type='button' className='feature__box--btn'>
+          <Link to='/' className='feature__box--link'>
             Read more
-          </button>
+          </Link>
         </div>
       </div>
     </article>

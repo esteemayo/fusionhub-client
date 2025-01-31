@@ -1,4 +1,5 @@
 import Feature from '../feature/Feature';
+import FeatureCard from '../featureCard/FeatureCard';
 
 import './Features.scss';
 
@@ -10,9 +11,10 @@ const Features = () => {
           <Feature />
         </div>
         <div className='features__box'>
-          <article>feature card</article>
-          <article>feature card</article>
-          <article>feature card</article>
+          <FeatureCard />
+          <FeatureCard />
+          <FeatureCard />
+          <FeatureCard />
         </div>
       </div>
     </section>

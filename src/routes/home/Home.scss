@@ -1,11 +1,12 @@
 @use '../../styles/variables.scss' as vars;
 
 .home {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
+  padding: 10rem 0;
 
   &__container {
-    width: 144rem;
+    // width: 144rem;
     min-height: 100vh;
   }
 }

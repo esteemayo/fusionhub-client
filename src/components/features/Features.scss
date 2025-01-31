@@ -2,17 +2,21 @@
 @use '../../styles/variables.scss' as vars;
 
 .features {
+  display: flex;
+  justify-content: center;
+
   &__container {
+    width: 90rem;
+
     display: flex;
-    align-items: center;
+    gap: 3rem;
   }
 
   &__wrapper {
-    flex: 2;
+    flex: 1;
   }
 
   &__box {
     flex: 1;
-    background-color: yellowgreen;
   }
 }
