@@ -1,0 +1,18 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.features {
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__wrapper {
+    flex: 2;
+  }
+
+  &__box {
+    flex: 1;
+    background-color: yellowgreen;
+  }
+}
