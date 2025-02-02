@@ -62,9 +62,9 @@ const Feature = () => {
           </div>
         </div>
         <div className='feature__box'>
-          <h2 className='feature__box--heading'>
+          <h4 className='feature__box--heading'>
             Elevate Your Home: Embrace the Future with Smart Technology
-          </h2>
+          </h4>
           <p className='feature__box--desc'>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi
             consequuntur a dolorum inventore corrupti explicabo officiis? Qui,

@@ -9,11 +9,24 @@
     width: 90rem;
     padding: 10rem 0;
 
+    &--heading {
+      display: inline-block;
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 600;
+      font-size: 2.25rem;
+      color: inherit;
+      margin-bottom: 3rem;
+      line-height: 1.3;
+    }
+  }
+
+  &__wrapper {
     display: flex;
     gap: 3rem;
   }
 
-  &__wrapper {
+  &__wrap {
     flex: 1;
   }
 

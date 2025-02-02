@@ -21,9 +21,9 @@ const Header = () => {
           <div className='header__wrapper--right'>
             <div className='header__info'>
               <span className='header__info--category'>Sport</span>
-              <h1 className='header__info--header'>
+              <h2 className='header__info--header'>
                 High-Tech Prototype Bike Announced
-              </h1>
+              </h2>
               <Link to='/' className='header__info--link'>
                 Read more
               </Link>

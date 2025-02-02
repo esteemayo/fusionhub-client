@@ -7,14 +7,17 @@ const Features = () => {
   return (
     <section className='features'>
       <div className='features__container'>
+        <h3 className='features__container--heading'>Featured articles</h3>
         <div className='features__wrapper'>
-          <Feature />
-        </div>
-        <div className='features__box'>
-          <FeatureCard />
-          <FeatureCard />
-          <FeatureCard />
-          <FeatureCard />
+          <div className='features__wrap'>
+            <Feature />
+          </div>
+          <div className='features__box'>
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+            <FeatureCard />
+          </div>
         </div>
       </div>
     </section>

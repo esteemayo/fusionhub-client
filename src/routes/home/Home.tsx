@@ -1,5 +1,6 @@
-import Header from '../../components/header/Header';
 import Features from '../../components/features/Features';
+import Header from '../../components/header/Header';
+import RecentPosts from '../../components/recentPosts/RecentPosts';
 
 import './Home.scss';
 
@@ -9,6 +10,7 @@ const Home = () => {
       <div className='home__container'>
         <Header />
         <Features />
+        <RecentPosts />
       </div>
     </div>
   );

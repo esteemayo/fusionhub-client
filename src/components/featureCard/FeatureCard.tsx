@@ -57,9 +57,9 @@ const FeatureCard = () => {
             </div>
           </div>
           <div className='featureCard__detail'>
-            <h3 className='featureCard__detail--heading'>
+            <h5 className='featureCard__detail--heading'>
               Embracing Smart: Transform Your Home, Transform Your Life
-            </h3>
+            </h5>
             <Link to='/' className='featureCard__detail--link'>
               Read more
             </Link>
