@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './Header.scss';
 
 const Header = () => {
@@ -6,25 +8,25 @@ const Header = () => {
       <div className='header__container'>
         <div className='header__wrapper'>
           <div className='header__wrapper--left'>
-            <div className='header__img'>
-              <img
-                src='/post-9.webp'
-                width={900}
-                height={500}
-                alt='image'
-                className='header__img--main'
-              />
+            <div className='header__info'>
+              <span className='header__info--category'>Travel</span>
+              <h1 className='header__info--heading'>
+                Best Surfing Spots for Beginners and Advanced
+              </h1>
+              <Link to='/' className='header__info--link'>
+                Read more
+              </Link>
             </div>
           </div>
           <div className='header__wrapper--right'>
-            <div className='header__img'>
-              <img
-                src='/post-10.webp'
-                width={500}
-                height={500}
-                alt='image'
-                className='header__img--sub'
-              />
+            <div className='header__info'>
+              <span className='header__info--category'>Sport</span>
+              <h1 className='header__info--header'>
+                High-Tech Prototype Bike Announced
+              </h1>
+              <Link to='/' className='header__info--link'>
+                Read more
+              </Link>
             </div>
           </div>
         </div>
