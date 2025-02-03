@@ -19,7 +19,7 @@ const Header = () => {
             </div>
           </div>
           <div className='header__wrapper--right'>
-            <div className='header__info'>
+            <div className='header__info small'>
               <span className='header__info--category small'>Sport</span>
               <h2 className='header__info--heading small'>
                 High-Tech Prototype Bike Announced

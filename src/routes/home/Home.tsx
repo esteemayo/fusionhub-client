@@ -1,8 +1,7 @@
-import Features from '../../components/features/Features';
-import Header from '../../components/header/Header';
 import RecentPosts from '../../components/recentPosts/RecentPosts';
-
-import SearchClient from './searchClient/SearchClient';
+import Header from '../../components/header/Header';
+import SearchClient from '../../components/searchClient/SearchClient';
+import Features from '../../components/features/Features';
 
 import './Home.scss';
 

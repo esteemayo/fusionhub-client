@@ -58,7 +58,7 @@ const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
           <p className='commentCard__details--desc'>
             {desc}
             <button type='button' className='commentCard__details--btn'>
-              See more
+              Read more
             </button>
           </p>
         </div>

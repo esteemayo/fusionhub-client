@@ -59,6 +59,11 @@
     justify-content: flex-end;
     gap: 1rem;
 
+    &.small {
+      align-items: flex-end;
+      text-align: right;
+    }
+
     &--category {
       display: inline-block;
       text-transform: uppercase;
