@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import { formatDate } from '../../utils/formatDate';
+import { formatDay } from '../../utils/formatDay';
+import { formatMonth } from '../../utils/formatMonth';
 
 import './Feature.scss';
 
@@ -17,8 +19,8 @@ const Feature = () => {
         />
         <div className='feature__calendar'>
           <div className='feature__calendar--wrap'>
-            <span>31</span>
-            <span>Jan</span>
+            <span>{formatDay('2025-01-31T17:00:13.085+00:00')}</span>
+            <span>{formatMonth('2025-01-31T17:00:13.085+00:00')}</span>
           </div>
         </div>
       </div>

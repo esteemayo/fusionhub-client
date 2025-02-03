@@ -17,8 +17,8 @@ const RecentPosts = () => {
           })}
         </div>
         <div className='recent-posts__box'>
-          <Link to='/' className='recent-posts__box--link'>
-            Show all
+          <Link to='/posts' className='recent-posts__box--link'>
+            Show more
           </Link>
         </div>
       </div>

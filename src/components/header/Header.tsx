@@ -20,11 +20,11 @@ const Header = () => {
           </div>
           <div className='header__wrapper--right'>
             <div className='header__info'>
-              <span className='header__info--category'>Sport</span>
-              <h2 className='header__info--header'>
+              <span className='header__info--category small'>Sport</span>
+              <h2 className='header__info--heading small'>
                 High-Tech Prototype Bike Announced
               </h2>
-              <Link to='/' className='header__info--link'>
+              <Link to='/' className='header__info--link small'>
                 Read more
               </Link>
             </div>
