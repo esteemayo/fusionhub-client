@@ -7,6 +7,14 @@
 
   &__container {
     width: 130rem;
+
+    @media screen and (min-width: 112.5em) {
+      width: 120rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 136rem;
+    }
   }
 
   &__wrapper {
@@ -15,6 +23,18 @@
 
     width: 100%;
     height: 32vw;
+
+    @media screen and (min-width: 106.25em) {
+      height: 33vw;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 34vw;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 35vw;
+    }
 
     &--left,
     &--right {
@@ -73,8 +93,32 @@
       color: inherit;
       line-height: 1.2;
 
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.7rem;
+      }
+
       &.small {
         font-size: 1.2rem;
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: var(--default-font-size);
+        }
       }
     }
 
@@ -88,6 +132,20 @@
       color: inherit;
       line-height: 1;
 
+      @media screen and (min-width: 106.25em) {
+        font-size: 2.9rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 70%;
+        font-size: 3rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 80%;
+        font-size: 3.2rem;
+      }
+
       &.small {
         display: inline-block;
         text-transform: initial;
@@ -97,6 +155,20 @@
         font-size: 2.45rem;
         color: inherit;
         line-height: 1;
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 2.55rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 90%;
+          font-size: 2.65rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 95%;
+          font-size: 2.85rem;
+        }
       }
     }
 
@@ -111,11 +183,50 @@
         font-size: 1.3rem;
         transition: all 300ms ease-in-out;
 
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.7rem;
+        }
+
         &.small {
           font-size: 1.2rem;
 
+          @media screen and (min-width: 106.25em) {
+            font-size: 1.3rem;
+          }
+
+          @media screen and (min-width: 112.5em) {
+            font-size: 1.4rem;
+          }
+
+          @media screen and (min-width: 125em) {
+            font-size: var(--default-font-size);
+          }
+
           &::after {
             width: 7.15rem;
+            height: 2px;
+
+            @media screen and (min-width: 106.25em) {
+              width: 7.65rem;
+            }
+
+            @media screen and (min-width: 112.5em) {
+              width: 8.25rem;
+              height: 3px;
+            }
+
+            @media screen and (min-width: 125em) {
+              width: 9.5rem;
+              height: 4px;
+            }
           }
         }
 
@@ -125,6 +236,20 @@
           width: 7.75rem;
           height: 2px;
           background-color: vars.$clr-white;
+
+          @media screen and (min-width: 106.25em) {
+            width: 8.325rem;
+          }
+
+          @media screen and (min-width: 112.5em) {
+            width: 8.95rem;
+            height: 3px;
+          }
+
+          @media screen and (min-width: 125em) {
+            width: 10rem;
+            height: 4px;
+          }
         }
       }
 
