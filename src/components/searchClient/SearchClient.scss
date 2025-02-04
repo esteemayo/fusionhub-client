@@ -6,6 +6,10 @@
   justify-content: center;
   margin-top: -3.5rem;
 
+  @media screen and (max-width: 37.5em) {
+    margin-top: 3rem;
+  }
+
   &__container {
     width: 70rem;
   }
