@@ -78,12 +78,39 @@
         height: 2rem;
         color: vars.$clr-gray-light-3;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 2.1rem;
+          height: 2.1rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.2rem;
+          height: 2.2rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.45rem;
+          height: 2.45rem;
+        }
       }
 
       time,
       span {
         font-size: 1.3rem;
         color: vars.$clr-gray-light-1;
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.65rem;
+        }
       }
     }
   }
@@ -101,11 +128,35 @@
       font-size: 2rem;
       color: inherit;
       line-height: 1.1;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 2.1rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2.2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.45rem;
+      }
     }
 
     &--desc {
       font-size: 1.4rem;
       color: vars.$clr-gray-light-1;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.9rem;
+      }
     }
 
     &--link {

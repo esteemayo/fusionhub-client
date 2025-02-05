@@ -8,7 +8,7 @@ import './RecentPosts.scss';
 
 const RecentPosts = () => {
   return (
-    <div className='recent-posts'>
+    <section className='recent-posts'>
       <div className='recent-posts__container'>
         <h6 className='recent-posts__container--heading'>Recent articles</h6>
         <div className='recent-posts__wrapper'>
@@ -22,7 +22,7 @@ const RecentPosts = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
