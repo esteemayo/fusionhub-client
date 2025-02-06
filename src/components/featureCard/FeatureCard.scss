@@ -16,11 +16,30 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+
+    @media screen and (max-width: 81.25em) {
+      gap: 1rem;
+    }
   }
 
   &__cover {
     width: 12rem;
     height: 12rem;
+
+    @media screen and (min-width: 106.25em) {
+      width: 12.5rem;
+      height: 12.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 13rem;
+      height: 13rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 15rem;
+      height: 15rem;
+    }
 
     &--img {
       width: 12rem;
@@ -28,6 +47,21 @@
       display: inline-block;
       background-color: vars.$clr-secondary-blue;
       object-fit: cover;
+
+      @media screen and (min-width: 106.25em) {
+        width: 12.5rem;
+        height: 12.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 13rem;
+        height: 13rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 15rem;
+        height: 15rem;
+      }
     }
   }
 
@@ -53,12 +87,39 @@
         height: 1.5rem;
         color: vars.$clr-gray-light-3;
         stroke-width: 2px;
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.7rem;
+          height: 1.7rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
       }
 
       time,
       span {
         font-size: 1.2rem;
         color: vars.$clr-gray-light-1;
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.55rem;
+        }
       }
     }
   }
@@ -76,6 +137,18 @@
       font-size: 1.5rem;
       color: inherit;
       line-height: 1.1;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.7rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.95rem;
+      }
     }
 
     &--link {
@@ -97,6 +170,21 @@
         color: vars.$clr-white;
         border-radius: 10rem;
         cursor: pointer;
+
+        @media screen and (min-width: 106.25em) {
+          height: 2.95rem;
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          height: 3.05rem;
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          height: 3.35rem;
+          font-size: 1.8rem;
+        }
       }
 
       &:disabled {
