@@ -15,6 +15,10 @@
     width: 42rem;
   }
 
+  @include bp.md {
+    width: 100%;
+  }
+
   @media screen and (min-width: 112.5em) {
     width: 46rem;
   }
@@ -28,6 +32,14 @@
     width: 100%;
     height: 30rem;
     position: relative;
+
+    @media screen and (max-width: 56.25em) {
+      height: 31rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 33rem;
+    }
 
     @media screen and (min-width: 112.5em) {
       height: 31rem;
@@ -64,6 +76,16 @@
       border-radius: 0.5rem;
       line-height: 1.2;
 
+      @media screen and (max-width: 56.25em) {
+        width: 5.5rem;
+        height: 5.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 6rem;
+        height: 6rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 5.5rem;
         height: 5.5rem;
@@ -84,6 +106,14 @@
           font-weight: 700;
           font-size: 1.5rem;
 
+          @media screen and (max-width: 56.25em) {
+            font-size: var(--default-font-size);
+          }
+
+          @media screen and (max-width: 51.25em) {
+            font-size: 1.7rem;
+          }
+
           @media screen and (min-width: 106.25em) {
             font-size: var(--default-font-size);
           }
@@ -100,6 +130,14 @@
         &:last-child {
           font-weight: 500;
           font-size: 1.4rem;
+
+          @media screen and (max-width: 56.25em) {
+            font-size: 1.5rem;
+          }
+
+          @media screen and (max-width: 51.25em) {
+            font-size: var(--default-font-size);
+          }
 
           @media screen and (min-width: 106.25em) {
             font-size: 1.5rem;
@@ -142,6 +180,16 @@
         color: vars.$clr-gray-light-3;
         stroke-width: 2px;
 
+        @media screen and (max-width: 56.25em) {
+          width: 2.1rem;
+          height: 2.1rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.2rem;
+          height: 2.2rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 2.1rem;
           height: 2.1rem;
@@ -162,6 +210,14 @@
       span {
         font-size: 1.3rem;
         color: vars.$clr-gray-light-1;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.5rem;
+        }
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.4rem;
@@ -192,6 +248,14 @@
       color: inherit;
       line-height: 1.1;
 
+      @media screen and (max-width: 56.25em) {
+        font-size: 2.1rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 2.2rem;
+      }
+
       @media screen and (min-width: 106.25em) {
         font-size: 2.1rem;
       }
@@ -208,6 +272,14 @@
     &--desc {
       font-size: 1.4rem;
       color: vars.$clr-gray-light-1;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: var(--default-font-size);
+      }
 
       @media screen and (min-width: 106.25em) {
         font-size: 1.5rem;
@@ -241,6 +313,16 @@
         color: vars.$clr-white;
         border-radius: 10rem;
         cursor: pointer;
+
+        @media screen and (max-width: 56.25em) {
+          height: 3.6rem;
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          height: 3.7rem;
+          font-size: var(--default-font-size);
+        }
 
         @media screen and (min-width: 106.25em) {
           height: 3.6rem;

@@ -8,6 +8,10 @@
   border-radius: 1rem;
   overflow: hidden;
 
+  @include bp.md {
+    padding: 1rem;
+  }
+
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -25,6 +29,21 @@
   &__cover {
     width: 12rem;
     height: 12rem;
+
+    @media screen and (max-width: 56.25em) {
+      width: 12.5rem;
+      height: 12.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 14rem;
+      height: 14rem;
+    }
+
+    @include bp.md {
+      width: 13rem;
+      height: 13rem;
+    }
 
     @media screen and (min-width: 106.25em) {
       width: 12.5rem;
@@ -47,6 +66,25 @@
       display: inline-block;
       background-color: vars.$clr-secondary-blue;
       object-fit: cover;
+
+      @media screen and (max-width: 56.25em) {
+        width: 12.5rem;
+        height: 12.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 14rem;
+        height: 14rem;
+      }
+
+      @include bp.md {
+        width: 13rem;
+        height: 13rem;
+      }
+
+      @include bp.md {
+        border-radius: 1rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 12.5rem;
@@ -88,6 +126,16 @@
         color: vars.$clr-gray-light-3;
         stroke-width: 2px;
 
+        @media screen and (max-width: 56.25em) {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 1.7rem;
+          height: 1.7rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           width: 1.6rem;
           height: 1.6rem;
@@ -108,6 +156,14 @@
       span {
         font-size: 1.2rem;
         color: vars.$clr-gray-light-1;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.4rem;
+        }
 
         @media screen and (min-width: 106.25em) {
           font-size: 1.3rem;
@@ -137,6 +193,18 @@
       font-size: 1.5rem;
       color: inherit;
       line-height: 1.1;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.7rem;
+      }
+
+      @include bp.md {
+        max-width: 90%;
+      }
 
       @media screen and (min-width: 106.25em) {
         font-size: var(--default-font-size);
@@ -170,6 +238,16 @@
         color: vars.$clr-white;
         border-radius: 10rem;
         cursor: pointer;
+
+        @media screen and (max-width: 56.25em) {
+          height: 2.95rem;
+          font-size: 1.4rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          height: 3.05rem;
+          font-size: 1.5rem;
+        }
 
         @media screen and (min-width: 106.25em) {
           height: 2.95rem;
