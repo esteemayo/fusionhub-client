@@ -22,7 +22,11 @@
     }
 
     @include bp.md {
-      width: 50rem;
+      width: 45rem;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 40rem;
     }
 
     @media screen and (min-width: 112.5em) {
@@ -83,7 +87,7 @@
     @include bp.md {
       flex-direction: column;
       align-items: center;
-      gap: 5rem;
+      gap: 3rem;
     }
   }
 
