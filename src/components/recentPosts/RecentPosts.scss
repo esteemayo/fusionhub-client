@@ -160,6 +160,37 @@
     display: flex;
     flex-wrap: wrap;
     gap: 3.25rem;
+
+    @media screen and (min-width: 106.25em) {
+      gap: 7.5rem;
+    }
+
+    .card {
+      @media screen and (min-width: 106.25em) {
+        width: 38.3rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 35rem;
+      }
+
+      &__overlay {
+        @media screen and (min-width: 106.25em) {
+          height: 30rem;
+        }
+      }
+
+      &__img {
+        @media screen and (min-width: 106.25em) {
+          height: 30rem;
+        }
+      }
+
+      &__footer {
+        min-height: 17rem;
+        padding-top: 3rem;
+      }
+    }
   }
 
   &__box {
