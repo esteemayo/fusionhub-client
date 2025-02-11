@@ -181,6 +181,46 @@
     flex-wrap: wrap;
     gap: 3.25rem;
 
+    @include bp.xxl {
+      gap: 7rem;
+    }
+
+    @media screen and (max-width: 76.25em) {
+      gap: 6rem;
+    }
+
+    @include bp.xl {
+      gap: 7rem;
+    }
+
+    @media screen and (max-width: 57.5em) {
+      gap: 6rem;
+    }
+
+    @media screen and (max-width: 53.75em) {
+      gap: 4.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      gap: 3rem;
+    }
+
+    @media screen and (max-width: 38.75em) {
+      gap: 2.5rem;
+    }
+
+    @media screen and (max-width: 37.5em) {
+      gap: 7rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      gap: 2rem;
+    }
+
+    @media screen and (max-width: 31.25em) {
+      gap: 3rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       gap: 7.5rem;
     }
@@ -190,6 +230,80 @@
     }
 
     .card {
+      @media screen and (max-width: 93.75em) {
+        width: 27.56rem;
+      }
+
+      @include bp.xxl {
+        width: 32rem;
+      }
+
+      @media screen and (max-width: 81.25em) {
+        width: 30rem;
+      }
+
+      @media screen and (max-width: 76.25em) {
+        width: 28rem;
+      }
+
+      @include bp.xl {
+        width: 30rem;
+      }
+
+      @media screen and (max-width: 68.75em) {
+        width: 27.3rem;
+      }
+
+      @include bp.lg {
+        width: 28.65rem;
+      }
+
+      @media screen and (max-width: 59.375em) {
+        width: 27rem;
+      }
+
+      @media screen and (max-width: 56.25em) {
+        width: 28.65rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 28rem;
+      }
+
+      @include bp.md {
+        width: 27rem;
+      }
+
+      @media screen and (max-width: 43.75em) {
+        width: 24rem;
+      }
+
+      @media screen and (max-width: 41.875em) {
+        width: 23rem;
+      }
+
+      @media screen and (max-width: 38.75em) {
+        width: 22rem;
+      }
+
+      @media screen and (max-width: 37.5em) {
+        width: 30rem;
+      }
+
+      @media screen and (max-width: 31.25em) {
+        width: 26rem;
+      }
+
+      @include bp.sm {
+        display: flex;
+        gap: 1rem;
+
+        width: 100%;
+        padding: 1rem;
+        background-color: transparent;
+        box-shadow: vars.$box;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 38.3rem;
       }
@@ -203,8 +317,24 @@
       }
 
       &__overlay {
+        @media screen and (max-width: 41.875em) {
+          height: 20rem;
+        }
+
+        @media screen and (max-width: 37.5em) {
+          height: 25rem;
+        }
+
+        @media screen and (max-width: 31.25em) {
+          height: 23rem;
+        }
+
+        @include bp.sm {
+          display: none;
+        }
+
         @media screen and (min-width: 106.25em) {
-          height: 27rem;
+          height: 29rem;
         }
 
         @media screen and (min-width: 125em) {
@@ -213,8 +343,26 @@
       }
 
       &__img {
+        @media screen and (max-width: 41.875em) {
+          height: 20rem;
+        }
+
+        @media screen and (max-width: 37.5em) {
+          height: 25rem;
+        }
+
+        @media screen and (max-width: 31.25em) {
+          height: 23rem;
+        }
+
+        @include bp.sm {
+          width: 15rem;
+          height: 15rem;
+          border-radius: 0.5rem;
+        }
+
         @media screen and (min-width: 106.25em) {
-          height: 27rem;
+          height: 29rem;
         }
 
         @media screen and (min-width: 125em) {
@@ -223,9 +371,79 @@
       }
 
       &__footer {
+        @media screen and (max-width: 41.875em) {
+          padding: 2rem 1.15rem;
+        }
+
+        @include bp.sm {
+          min-height: 0;
+          padding: 0;
+        }
+
         @media screen and (min-width: 106.25em) {
           min-height: 17rem;
           padding-top: 3rem;
+        }
+
+        &--container {
+          &-title {
+            @media screen and (max-width: 38.75em) {
+              font-size: 1.65rem;
+            }
+
+            @media screen and (max-width: 37.5em) {
+              font-size: 1.8rem;
+            }
+
+            @include bp.sm {
+              font-size: 2rem;
+              white-space: unset;
+            }
+          }
+
+          &-desc {
+            @media screen and (max-width: 38.75em) {
+              font-size: 1.55rem;
+            }
+
+            @media screen and (max-width: 37.5em) {
+              font-size: var(--default-font-size);
+            }
+
+            @include bp.sm {
+              font-size: 1.8rem;
+            }
+          }
+        }
+
+        &--wrapper {
+          &-category {
+            @media screen and (max-width: 38.75em) {
+              font-size: 1.55rem;
+            }
+
+            @media screen and (max-width: 37.5em) {
+              font-size: var(--default-font-size);
+            }
+
+            @include bp.sm {
+              font-size: 1.8rem;
+            }
+          }
+
+          &-time {
+            @media screen and (max-width: 38.75em) {
+              font-size: 1.55rem;
+            }
+
+            @media screen and (max-width: 37.5em) {
+              font-size: var(--default-font-size);
+            }
+
+            @include bp.sm {
+              font-size: 1.8rem;
+            }
+          }
         }
       }
     }

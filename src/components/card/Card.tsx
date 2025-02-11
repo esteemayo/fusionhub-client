@@ -9,16 +9,18 @@ import './Card.scss';
 const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
   return (
     <article className='card'>
-      <div className='card__overlay'>&nbsp;</div>
-      {img && (
-        <img
-          src={img}
-          alt='post'
-          width={300}
-          height={250}
-          className='card__img'
-        />
-      )}
+      <div className='card__wrapper'>
+        <div className='card__overlay'>&nbsp;</div>
+        {img && (
+          <img
+            src={img}
+            alt='post'
+            width={300}
+            height={250}
+            className='card__img'
+          />
+        )}
+      </div>
       <div className='card__footer'>
         <div className='card__footer--container'>
           <h3 className='card__footer--container-title'>
