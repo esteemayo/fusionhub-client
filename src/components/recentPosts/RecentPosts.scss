@@ -221,6 +221,10 @@
       gap: 3rem;
     }
 
+    @include bp.sm {
+      gap: 2rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       gap: 7.5rem;
     }
@@ -304,6 +308,18 @@
         box-shadow: vars.$box;
       }
 
+      @media screen and (max-width: 24.375em) {
+        padding: 0.8rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        padding: 0.5rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        padding: 3px;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 38.3rem;
       }
@@ -376,6 +392,21 @@
           height: 11rem;
         }
 
+        @media screen and (max-width: 21.5em) {
+          width: 10rem;
+          height: 10rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 9rem;
+          height: 9rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 8rem;
+          height: 8rem;
+        }
+
         @media screen and (min-width: 106.25em) {
           height: 29rem;
         }
@@ -405,6 +436,14 @@
             gap: 0.8rem;
           }
 
+          @media screen and (max-width: 21.5em) {
+            gap: 0.5rem;
+          }
+
+          @media screen and (max-width: 17.5em) {
+            gap: 3px;
+          }
+
           &-title {
             @media screen and (max-width: 38.75em) {
               font-size: 1.65rem;
@@ -422,6 +461,18 @@
 
             @media screen and (max-width: 25em) {
               font-size: 1.7rem;
+            }
+
+            @media screen and (max-width: 21.5em) {
+              font-size: var(--default-font-size);
+            }
+
+            @media screen and (max-width: 18.75em) {
+              font-size: 1.5rem;
+            }
+
+            @media screen and (max-width: 17.5em) {
+              font-size: 1.4rem;
             }
           }
 
@@ -442,6 +493,18 @@
             @media screen and (max-width: 25em) {
               font-size: 1.55rem;
             }
+
+            @media screen and (max-width: 21.5em) {
+              font-size: 1.45rem;
+            }
+
+            @media screen and (max-width: 18.75em) {
+              font-size: 1.35rem;
+            }
+
+            @media screen and (max-width: 17.5em) {
+              font-size: 1.25rem;
+            }
           }
         }
 
@@ -451,6 +514,14 @@
             gap: 0.5rem;
 
             margin-top: 0.8rem;
+          }
+
+          @media screen and (max-width: 21.5em) {
+            margin-top: 0.5rem;
+          }
+
+          @media screen and (max-width: 17.5em) {
+            margin-top: 3px;
           }
 
           &-category {
@@ -469,6 +540,18 @@
 
             @media screen and (max-width: 25em) {
               font-size: 1.55rem;
+            }
+
+            @media screen and (max-width: 21.5em) {
+              font-size: 1.45rem;
+            }
+
+            @media screen and (max-width: 18.75em) {
+              font-size: 1.35rem;
+            }
+
+            @media screen and (max-width: 17.5em) {
+              font-size: 1.25rem;
             }
 
             @media screen and (max-width: 24.375em) {
@@ -495,6 +578,18 @@
 
             @media screen and (max-width: 25em) {
               font-size: 1.55rem;
+            }
+
+            @media screen and (max-width: 21.5em) {
+              font-size: 1.45rem;
+            }
+
+            @media screen and (max-width: 18.75em) {
+              font-size: 1.35rem;
+            }
+
+            @media screen and (max-width: 17.5em) {
+              font-size: 1.25rem;
             }
           }
         }
