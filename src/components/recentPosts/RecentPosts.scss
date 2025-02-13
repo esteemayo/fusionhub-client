@@ -467,6 +467,10 @@
               font-size: var(--default-font-size);
             }
 
+            @media screen and (max-width: 20em) {
+              font-size: 1.55rem;
+            }
+
             @media screen and (max-width: 18.75em) {
               font-size: 1.5rem;
             }
@@ -496,6 +500,10 @@
 
             @media screen and (max-width: 21.5em) {
               font-size: 1.45rem;
+            }
+
+            @media screen and (max-width: 20em) {
+              font-size: 1.4rem;
             }
 
             @media screen and (max-width: 18.75em) {
@@ -542,8 +550,20 @@
               font-size: 1.55rem;
             }
 
+            @media screen and (max-width: 24.375em) {
+              &::after {
+                content: '•';
+                display: inline-block;
+                margin-left: 0.5rem;
+              }
+            }
+
             @media screen and (max-width: 21.5em) {
               font-size: 1.45rem;
+            }
+
+            @media screen and (max-width: 20em) {
+              font-size: 1.4rem;
             }
 
             @media screen and (max-width: 18.75em) {
@@ -552,14 +572,6 @@
 
             @media screen and (max-width: 17.5em) {
               font-size: 1.25rem;
-            }
-
-            @media screen and (max-width: 24.375em) {
-              &::after {
-                content: '•';
-                display: inline-block;
-                margin-left: 0.5rem;
-              }
             }
           }
 
@@ -582,6 +594,10 @@
 
             @media screen and (max-width: 21.5em) {
               font-size: 1.45rem;
+            }
+
+            @media screen and (max-width: 20em) {
+              font-size: 1.4rem;
             }
 
             @media screen and (max-width: 18.75em) {
@@ -620,22 +636,58 @@
         color: inherit;
         border-radius: 0.5rem;
 
-        @media screen and (min-width: 106.25em) {
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
           height: 3.75rem;
           padding: 2.25rem 2rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: var(--default-font-size);
+          height: 4rem;
+          padding: 2.35rem 2.15rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.55rem;
+          height: 5rem;
+          padding: 2.45rem 2.2rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
           font-size: 1.5rem;
+          height: 4.75rem;
+          padding: 2rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.45rem;
+          height: 4.5rem;
+          padding: 1.8rem 2rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          font-size: 1.4rem;
+          height: 4.25rem;
+          padding: 1.5rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.5rem;
+          height: 3.75rem;
+          padding: 2.25rem 2rem;
         }
 
         @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
           height: 4rem;
           padding: 2.35rem 2.15rem;
-          font-size: var(--default-font-size);
         }
 
         @media screen and (min-width: 125em) {
+          font-size: 1.8rem;
           height: 4.5rem;
           padding: 2.5rem 2.25rem;
-          font-size: 1.8rem;
         }
       }
 
