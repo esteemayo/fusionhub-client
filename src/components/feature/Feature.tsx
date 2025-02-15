@@ -4,23 +4,27 @@ import { formatDate } from '../../utils/formatDate';
 import { formatDay } from '../../utils/formatDay';
 import { formatMonth } from '../../utils/formatMonth';
 
+import { FeatureProps } from '../../types';
+
 import './Feature.scss';
 
-const Feature = () => {
+const Feature = ({ img, desc, title, slug, createdAt }: FeatureProps) => {
   return (
     <article className='feature'>
       <div className='feature__cover'>
-        <img
-          src='/post-1.jpg'
-          width={450}
-          height={300}
-          alt='image'
-          className='feature__cover--img'
-        />
+        {img && (
+          <img
+            src={img}
+            width={450}
+            height={300}
+            alt='image'
+            className='feature__cover--img'
+          />
+        )}
         <div className='feature__calendar'>
           <div className='feature__calendar--wrap'>
-            <span>{formatDay('2025-01-31T17:00:13.085+00:00')}</span>
-            <span>{formatMonth('2025-01-31T17:00:13.085+00:00')}</span>
+            <span>{formatDay(createdAt)}</span>
+            <span>{formatMonth(createdAt)}</span>
           </div>
         </div>
       </div>
@@ -41,9 +45,7 @@ const Feature = () => {
                 d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z'
               />
             </svg>
-            <time dateTime='2025-01-31T17:00:13.085+00:00'>
-              {formatDate('2025-01-31T17:00:13.085+00:00')}
-            </time>
+            <time dateTime={createdAt}>{formatDate(createdAt)}</time>
           </div>
           <div className='feature__wrapper--comments'>
             <svg
@@ -64,16 +66,9 @@ const Feature = () => {
           </div>
         </div>
         <div className='feature__box'>
-          <h4 className='feature__box--heading'>
-            Elevate Your Home: Embrace the Future with Smart Technology
-          </h4>
-          <p className='feature__box--desc'>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi
-            consequuntur a dolorum inventore corrupti explicabo officiis? Qui,
-            perspiciatis quam. Ad natus similique nemo at repudiandae omnis
-            repellendus! Aut, excepturi dolores!
-          </p>
-          <Link to='/' className='feature__box--link'>
+          <h4 className='feature__box--heading'>{title}</h4>
+          <p className='feature__box--desc'>{desc}</p>
+          <Link to={`/posts/${slug}`} className='feature__box--link'>
             Read more
           </Link>
         </div>

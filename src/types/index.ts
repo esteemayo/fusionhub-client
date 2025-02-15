@@ -253,6 +253,21 @@ export interface ILogout {
   };
 }
 
+export interface FeatureProps {
+  img?: string;
+  desc: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+}
+
+export interface FeatureCardProps {
+  img?: string;
+  title: string;
+  slug: string;
+  createdAt: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
@@ -271,6 +286,7 @@ export type PostItemType = {
   slug: string;
   desc: string;
   category: string;
+  isFeatured: boolean;
   createdAt: string;
 }[];
 
