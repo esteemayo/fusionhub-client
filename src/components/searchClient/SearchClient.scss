@@ -10,8 +10,28 @@
     margin-top: 3rem;
   }
 
+  @media screen and (min-width: 106.25em) {
+    margin-top: -3.75rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    margin-top: -4rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    margin-top: -4.5rem;
+  }
+
   &__container {
     width: 70rem;
+
+    @media screen and (min-width: 112.5em) {
+      width: 75rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 85rem;
+    }
   }
 
   &__form {
@@ -22,6 +42,18 @@
     border-radius: 1rem;
 
     position: relative;
+
+    @media screen and (min-width: 106.25em) {
+      height: 7.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 8rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 9rem;
+    }
 
     &--input {
       width: 100%;
@@ -60,6 +92,7 @@
 
       @media screen and (min-width: 125em) {
         font-size: 2.2rem;
+        padding-left: 6rem;
       }
 
       &:disabled {
@@ -106,6 +139,27 @@
       position: absolute;
       top: 2rem;
       left: 1rem;
+
+      @media screen and (min-width: 106.25em) {
+        width: 3.25rem;
+        height: 3.25rem;
+
+        top: 2.25rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 3.5rem;
+        height: 3.5rem;
+
+        top: 2.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 3.75rem;
+        height: 3.75rem;
+
+        top: 2.75rem;
+      }
     }
   }
 }

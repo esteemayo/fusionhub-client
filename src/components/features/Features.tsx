@@ -7,11 +7,8 @@ import './Features.scss';
 
 const Features = () => {
   const featuredPosts = postItems.filter((post) => post.isFeatured === true);
-  console.log(featuredPosts);
 
   const [firstPost, ...otherPosts] = featuredPosts;
-  console.log(firstPost);
-  console.log(otherPosts);
 
   return (
     <section className='features'>
