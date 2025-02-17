@@ -1,9 +1,9 @@
+import { useSearch } from '../../hooks/useSearch';
+
 import './SearchClient.scss';
 
 const Client = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  const { handleSubmit } = useSearch();
 
   return (
     <section className='search-client'>

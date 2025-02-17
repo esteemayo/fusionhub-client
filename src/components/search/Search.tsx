@@ -1,9 +1,9 @@
+import { useSearch } from '../../hooks/useSearch';
+
 import './Search.scss';
 
 const Search = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  const { handleSubmit } = useSearch();
 
   return (
     <form onSubmit={handleSubmit} className='searchForm'>

@@ -19,10 +19,6 @@
     padding: 7rem 0 4rem;
   }
 
-  @media screen and (max-width: 37.5em) {
-    margin-top: 3rem;
-  }
-
   @media screen and (min-width: 106.25em) {
     margin-top: -3.75rem;
   }
@@ -128,6 +124,10 @@
 
     @media screen and (max-width: 51.25em) {
       height: 8rem;
+    }
+
+    @include bp.md {
+      backdrop-filter: unset;
     }
 
     @media screen and (max-width: 37.5em) {

@@ -81,6 +81,7 @@
 
     border: 0;
     outline: 0;
+    font-family: inherit;
     background-color: transparent;
     cursor: pointer;
 
@@ -88,6 +89,7 @@
       width: 1.75rem;
       height: 1.75rem;
       color: vars.$clr-gray-light-3;
+      stroke-width: 2px;
 
       @media screen and (max-width: 56.25em) {
         width: 1.85rem;
@@ -122,36 +124,36 @@
 
     &--label {
       text-transform: capitalize;
-      font-weight: 500;
-      font-size: 1.35rem;
+      font-weight: 700;
+      font-size: 1.4rem;
       color: vars.$clr-gray-light-1;
 
       @media screen and (max-width: 56.25em) {
-        font-size: 1.45rem;
+        font-size: 1.5rem;
       }
 
       @media screen and (max-width: 51.25em) {
-        font-size: 1.55rem;
+        font-size: var(--default-font-size);
       }
 
       @media screen and (max-width: 18.75em) {
-        font-size: 1.35rem;
+        font-size: 1.4rem;
       }
 
       @media screen and (max-width: 17.5em) {
-        font-size: 1.3rem;
+        font-size: 1.35rem;
       }
 
       @media screen and (min-width: 106.25em) {
-        font-size: 1.45rem;
+        font-size: 1.5rem;
       }
 
       @media screen and (min-width: 112.5em) {
-        font-size: 1.55rem;
+        font-size: var(--default-font-size);
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.65rem;
+        font-size: 1.7rem;
       }
     }
 

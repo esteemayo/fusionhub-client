@@ -23,7 +23,7 @@
 
     @include bp.md {
       width: 45rem;
-      padding: 4rem 0;
+      padding: 4rem 0 5rem;
     }
 
     @media screen and (max-width: 25em) {
