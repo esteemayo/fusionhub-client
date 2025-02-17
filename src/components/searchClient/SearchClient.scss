@@ -6,6 +6,19 @@
   justify-content: center;
   margin-top: -3.5rem;
 
+  @media screen and (max-width: 56.25em) {
+    margin-top: -3.75rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    margin-top: -4rem;
+  }
+
+  @include bp.md {
+    margin-top: 0;
+    padding: 7rem 0 4rem;
+  }
+
   @media screen and (max-width: 37.5em) {
     margin-top: 3rem;
   }
@@ -25,6 +38,72 @@
   &__container {
     width: 70rem;
 
+    @media screen and (max-width: 51.25em) {
+      width: 60rem;
+    }
+
+    @include bp.md {
+      width: 70rem;
+      padding: 1rem;
+      box-shadow: vars.$box;
+      border-radius: 1rem;
+    }
+
+    @media screen and (max-width: 41.875em) {
+      width: 65rem;
+    }
+
+    @media screen and (max-width: 38.75em) {
+      width: 62rem;
+    }
+
+    @media screen and (max-width: 37.5em) {
+      width: 57rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      width: 52rem;
+    }
+
+    @media screen and (max-width: 31.5em) {
+      width: 45rem;
+    }
+
+    @media screen and (max-width: 25em) {
+      width: 43rem;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      width: 42rem;
+      padding: 0.8rem;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      width: 40rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      width: 38rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 36rem;
+      padding: 0.5rem;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 34rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 32rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 30rem;
+      padding: 3px;
+    }
+
     @media screen and (min-width: 112.5em) {
       width: 75rem;
     }
@@ -42,6 +121,22 @@
     border-radius: 1rem;
 
     position: relative;
+
+    @media screen and (max-width: 56.25em) {
+      height: 7.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 8rem;
+    }
+
+    @media screen and (max-width: 37.5em) {
+      height: 7rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      height: 6rem;
+    }
 
     @media screen and (min-width: 106.25em) {
       height: 7.5rem;
@@ -76,6 +171,10 @@
 
       @media screen and (max-width: 51.25em) {
         font-size: 1.65rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        padding-left: 4.5rem;
       }
 
       @media screen and (max-width: 17.5em) {
@@ -139,6 +238,34 @@
       position: absolute;
       top: 2rem;
       left: 1rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 3.25rem;
+        height: 3.25rem;
+
+        top: 2.25rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 3.5rem;
+        height: 3.5rem;
+
+        top: 2.5rem;
+      }
+
+      @media screen and (max-width: 37.5em) {
+        width: 3rem;
+        height: 3rem;
+
+        top: 2rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 2.75rem;
+        height: 2.75rem;
+
+        top: 1.75rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 3.25rem;
