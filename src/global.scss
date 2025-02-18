@@ -143,9 +143,10 @@ a {
 }
 
 .PhoneInput {
+  width: 100%;
+
   .PhoneInputCountry {
     width: 6rem;
-    height: 100%;
     background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
 

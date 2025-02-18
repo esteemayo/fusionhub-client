@@ -5,10 +5,14 @@ import Label from '../label/Label';
 import { PhoneNumberProps } from '../../types';
 
 import 'react-phone-number-input/style.css';
-
 import './PhoneNumber.scss';
 
-const PhoneNumber = ({ value, onChange }: PhoneNumberProps) => {
+const PhoneNumber = ({
+  label,
+  value,
+  placeholder,
+  onChange,
+}: PhoneNumberProps) => {
   const ref = useRef<HTMLInputElement | undefined>(null);
 
   const handleClick = () => {
@@ -17,9 +21,9 @@ const PhoneNumber = ({ value, onChange }: PhoneNumberProps) => {
 
   return (
     <div className='phoneNumber'>
-      <Label label='Mobile number' onClick={handleClick} />
+      <Label label={label} onClick={handleClick} />
       <PhoneInput
-        placeholder='Mobile number'
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
         ref={ref}

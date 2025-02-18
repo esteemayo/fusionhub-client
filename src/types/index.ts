@@ -237,7 +237,9 @@ export interface ProfileImageProps {
 }
 
 export interface PhoneNumberProps {
+  label?: string;
   value: Value | undefined;
+  placeholder?: string;
   onChange(value?: Value): void;
 }
 

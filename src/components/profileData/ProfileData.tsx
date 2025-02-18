@@ -36,7 +36,12 @@ const ProfileData = ({
             label='Email Address'
             placeholder='Email address'
           />
-          <PhoneNumber value={value} onChange={setValue} />
+          <PhoneNumber
+            label='Mobile Number'
+            value={value}
+            placeholder='Mobile number'
+            onChange={setValue}
+          />
           <Input
             type='date'
             name='dob'
