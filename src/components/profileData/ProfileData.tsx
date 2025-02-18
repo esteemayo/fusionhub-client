@@ -33,10 +33,17 @@ const ProfileData = ({
           <Input
             type='email'
             name='email'
-            label='Email address'
+            label='Email Address'
             placeholder='Email address'
           />
           <PhoneNumber value={value} onChange={setValue} />
+          <Input
+            type='date'
+            name='dob'
+            label='Date of Birth'
+            placeholder='Date of Birth'
+          />
+          <Input name='country' label='Country' placeholder='Country' />
         </div>
         <div className='profileData__form--info'>
           <Textarea
@@ -46,7 +53,7 @@ const ProfileData = ({
           />
           <TextQuill
             id='about'
-            label='About me'
+            label='About Me'
             value={about}
             onChange={setAbout}
           />

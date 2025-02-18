@@ -36,7 +36,7 @@ const Register = () => {
               <Input
                 type='email'
                 name='email'
-                label='Email address'
+                label='Email Address'
                 placeholder='Email address'
               />
               <Input
@@ -48,7 +48,7 @@ const Register = () => {
               <Input
                 type='password'
                 name='passwordConfirm'
-                label='Confirm password'
+                label='Confirm Password'
                 placeholder='Confirm password'
               />
               <Input

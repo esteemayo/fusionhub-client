@@ -32,7 +32,7 @@ const ForgotPassword = () => {
             <Input
               type='email'
               name='email'
-              label='Email address'
+              label='Email Address'
               placeholder='Email address'
             />
             <div className='forgotPassword__form--button'>

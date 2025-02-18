@@ -36,7 +36,7 @@ const ResetPassword = () => {
             <Input
               type='password'
               name='passwordConfirm'
-              label='Confirm password'
+              label='Confirm Password'
               placeholder='Confirm password'
             />
             <div className='resetPassword__form--button'>

@@ -33,7 +33,7 @@ const Login = () => {
           <form className='login__form' onSubmit={handleSubmit}>
             <Input
               name='identifier'
-              label='Email/username'
+              label='Email/Username'
               placeholder='Email or Username'
             />
             <Input
