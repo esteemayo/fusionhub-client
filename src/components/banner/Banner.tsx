@@ -3,7 +3,6 @@ import './Banner.scss';
 const Banner = () => {
   return (
     <section className='banner'>
-      &nbsp;
       <div className='banner__user'>
         <label htmlFor='avatar' className='banner__user--label'>
           <img
