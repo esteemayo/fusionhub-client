@@ -4,10 +4,17 @@ import { CommentCardProps } from '../../types';
 
 import './CommentCard.scss';
 
-const CommentCard = ({ desc, user, createdAt, onReply }: CommentCardProps) => {
+const CommentCard = ({
+  desc,
+  user,
+  createdAt,
+  onReply,
+  onUpdate,
+}: CommentCardProps) => {
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
+    onUpdate?.();
     console.log('comment updated!');
   };
 

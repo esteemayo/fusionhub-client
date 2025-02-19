@@ -2,11 +2,12 @@ import { useMemo } from 'react';
 
 import CommentCard from '../commentCard/CommentCard';
 
+import { CommentProps } from '../../types';
 import { comments, commentUsers } from '../../data';
 
 import './Comment.scss';
 
-const Comment = ({ onAction }: { onAction?: () => void }) => {
+const Comment = ({ onAction, onUpdate }: CommentProps) => {
   const commentHeading = useMemo(() => {
     return comments.length > 1 ? 'Comments' : 'Comment';
   }, []);
@@ -32,7 +33,14 @@ const Comment = ({ onAction }: { onAction?: () => void }) => {
         </figure>
       </div>
       {comments.map((comment) => {
-        return <CommentCard key={comment.id} {...comment} onReply={onAction} />;
+        return (
+          <CommentCard
+            key={comment.id}
+            {...comment}
+            onReply={onAction}
+            onUpdate={onUpdate}
+          />
+        );
       })}
     </div>
   );

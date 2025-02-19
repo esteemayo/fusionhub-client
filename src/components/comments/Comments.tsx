@@ -6,19 +6,24 @@ import CommentForm from '../commentForm/CommentForm';
 import './Comments.scss';
 
 const Comments = () => {
-  const ref =
-    useRef<
-      React.MutableRefObject<React.LegacyRef<HTMLTextAreaElement> | undefined>
-    >();
+  const ref = useRef<HTMLTextAreaElement>(null);
 
-  const handleClick = () => {
-    ref?.current?.focus();
+  const handleReply = () => {
+    const current = ref.current;
+
+    current?.focus();
+  };
+
+  const handleUpdate = () => {
+    const current = ref.current;
+
+    current?.focus();
   };
 
   return (
     <section className='comments'>
       <div className='comments__container'>
-        <Comment onAction={handleClick} />
+        <Comment onAction={handleReply} onUpdate={handleUpdate} />
         <CommentForm ref={ref} />
       </div>
     </section>

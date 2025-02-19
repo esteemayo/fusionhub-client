@@ -100,6 +100,11 @@ export interface FormButtonProps {
   disabled?: boolean;
 }
 
+export interface CommentProps {
+  onAction?(): void;
+  onUpdate?(): void;
+}
+
 export interface CommentCardProps {
   id: string;
   desc: string;
@@ -110,6 +115,7 @@ export interface CommentCardProps {
   createdAt: string;
   updatedAt: string;
   onReply?(): void;
+  onUpdate?(): void;
 }
 
 export interface FeedProps {
