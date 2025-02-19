@@ -3,7 +3,11 @@ import Textarea from '../textarea/Textarea';
 
 import './CommentForm.scss';
 
-const CommentForm = () => {
+const CommentForm = ({
+  ref,
+}: {
+  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
+}) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -12,14 +16,17 @@ const CommentForm = () => {
     const form = new FormData(target);
 
     const desc = form.get('desc');
-    console.log(desc);
+
+    if (desc) {
+      console.log(desc);
+    }
   };
 
   return (
     <div className='commentForm'>
       <h4 className='commentForm__heading'>Post comment</h4>
       <form onSubmit={handleSubmit}>
-        <Textarea name='desc' placeholder='Type your comments...' />
+        <Textarea name='desc' placeholder='Type your comments...' ref={ref} />
         <Button type='submit' label='Post Comment' className='primary' />
       </form>
     </div>

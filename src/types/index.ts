@@ -48,6 +48,7 @@ export interface TextareaProps
   error?: string;
   disabled?: boolean;
   required?: boolean;
+  ref?: React.LegacyRef<HTMLTextAreaElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
@@ -90,6 +91,7 @@ export interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   className: 'primary' | 'outline';
+  onClick?(): void;
 }
 
 export interface FormButtonProps {
@@ -107,6 +109,7 @@ export interface CommentCardProps {
   };
   createdAt: string;
   updatedAt: string;
+  onReply?(): void;
 }
 
 export interface FeedProps {

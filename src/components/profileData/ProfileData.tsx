@@ -8,8 +8,9 @@ import PhoneNumber from '../phoneNumber/PhoneNumber';
 
 import TextQuill from '../textQuill/TextQuill';
 import Button from '../button/Button';
-import AccountHeader from '../accountHeader/AccountHeader';
 import DateInput from '../dateInput/DateInput';
+
+import AccountHeader from '../accountHeader/AccountHeader';
 
 import './ProfileData.scss';
 

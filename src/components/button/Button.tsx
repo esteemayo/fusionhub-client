@@ -11,9 +11,15 @@ const Button = ({
   loading,
   disabled,
   className,
+  onClick,
 }: ButtonProps) => {
   return (
-    <button type={type} disabled={!!disabled} className={`btn ${className}`}>
+    <button
+      type={type}
+      disabled={!!disabled}
+      className={`btn ${className}`}
+      onClick={onClick}
+    >
       {img && <img src={img} width={25} height={25} alt='logo' />}
       {loading ? <Spinner /> : label}
     </button>

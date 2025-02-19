@@ -4,7 +4,7 @@ import { CommentCardProps } from '../../types';
 
 import './CommentCard.scss';
 
-const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
+const CommentCard = ({ desc, user, createdAt, onReply }: CommentCardProps) => {
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
@@ -36,7 +36,11 @@ const CommentCard = ({ desc, user, createdAt }: CommentCardProps) => {
             <time dateTime={createdAt} className='commentCard__dateBox--time'>
               {format(createdAt)}
             </time>
-            <button type='button' className='commentCard__dateBox--reply'>
+            <button
+              type='button'
+              className='commentCard__dateBox--reply'
+              onClick={onReply}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'

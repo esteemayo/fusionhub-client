@@ -6,7 +6,7 @@ import { comments, commentUsers } from '../../data';
 
 import './Comment.scss';
 
-const Comment = () => {
+const Comment = ({ onAction }: { onAction?: () => void }) => {
   const commentHeading = useMemo(() => {
     return comments.length > 1 ? 'Comments' : 'Comment';
   }, []);
@@ -32,7 +32,7 @@ const Comment = () => {
         </figure>
       </div>
       {comments.map((comment) => {
-        return <CommentCard key={comment.id} {...comment} />;
+        return <CommentCard key={comment.id} {...comment} onReply={onAction} />;
       })}
     </div>
   );
