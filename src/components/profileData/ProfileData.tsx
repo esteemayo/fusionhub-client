@@ -9,6 +9,7 @@ import PhoneNumber from '../phoneNumber/PhoneNumber';
 import TextQuill from '../textQuill/TextQuill';
 import Button from '../button/Button';
 import AccountHeader from '../accountHeader/AccountHeader';
+import DateInput from '../dateInput/DateInput';
 
 import './ProfileData.scss';
 
@@ -17,6 +18,7 @@ const ProfileData = ({
 }: {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }) => {
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [value, setValue] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 
@@ -42,11 +44,10 @@ const ProfileData = ({
             placeholder='Mobile number'
             onChange={setValue}
           />
-          <Input
-            type='date'
-            name='dob'
-            label='Date of Birth'
+          <DateInput
+            startDate={startDate}
             placeholder='Date of Birth'
+            onChange={setStartDate}
           />
           <Input name='country' label='Country' placeholder='Country' />
         </div>
