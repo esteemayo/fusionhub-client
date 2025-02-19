@@ -1,5 +1,5 @@
 import { Value } from 'react-phone-number-input';
-import React from 'react';
+import React, { HTMLInputTypeAttribute } from 'react';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { Action } from 'redux';
 
@@ -28,33 +28,11 @@ export interface LabelProps {
   onClick?(): void;
 }
 
-type InputType =
-  | 'text'
-  | 'password'
-  | 'email'
-  | 'tel'
-  | 'number'
-  | 'date'
-  | 'time'
-  | 'datetime'
-  | 'month'
-  | 'week'
-  | 'url'
-  | 'search'
-  | 'color'
-  | 'checkbox'
-  | 'radio'
-  | 'file'
-  | 'hidden'
-  | 'image'
-  | 'reset'
-  | 'submit';
-
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   name?: string;
-  type?: InputType;
+  type?: HTMLInputTypeAttribute;
   label: string;
   error?: string;
   disabled?: boolean;
@@ -95,6 +73,12 @@ export interface TextQuillProps {
     source: EmitterSource,
     editor: ReactQuill.UnprivilegedEditor
   ): void;
+}
+
+export interface DateInputProps {
+  startDate: Date | null;
+  placeholder?: string;
+  onChange: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
 type ButtonType = 'button' | 'reset' | 'submit';
