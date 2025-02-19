@@ -5,7 +5,14 @@ import { InputProps } from '../../types';
 
 import './Input.scss';
 
-const Input = ({ name, type = 'text', label, error, ...rest }: InputProps) => {
+const Input = ({
+  name,
+  type = 'text',
+  label,
+  error,
+  ref,
+  ...rest
+}: InputProps) => {
   return (
     <div className='input'>
       <Label id={name} label={label} />
@@ -15,6 +22,7 @@ const Input = ({ name, type = 'text', label, error, ...rest }: InputProps) => {
         name={name}
         type={type}
         className='input__control'
+        ref={ref}
       />
       {error && <ErrorMessage message={error} />}
     </div>

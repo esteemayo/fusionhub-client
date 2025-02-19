@@ -1,4 +1,61 @@
-import { CategoryOptionType, FilterType } from '../types';
+import {
+  CategoryOptionType,
+  FilterType,
+  LoginInputType,
+  RegisterInputType,
+} from '../types';
+
+export const loginInputs: LoginInputType = [
+  {
+    id: 'identifier',
+    name: 'identifier',
+    label: 'Email/Username',
+    placeholder: 'Email or Username',
+  },
+  {
+    id: 'password',
+    name: 'password',
+    type: 'password',
+    label: 'Password',
+    placeholder: 'Password',
+  },
+];
+
+export const registerInputs: RegisterInputType = [
+  {
+    id: 'name',
+    name: 'name',
+    label: 'Name',
+    placeholder: 'Name',
+  },
+  {
+    id: 'username',
+    name: 'username',
+    label: 'Username',
+    placeholder: 'Username',
+  },
+  {
+    id: 'email',
+    name: 'email',
+    type: 'email',
+    label: 'Email Address',
+    placeholder: 'Email Address',
+  },
+  {
+    id: 'password',
+    name: 'password',
+    type: 'password',
+    label: 'Password',
+    placeholder: 'Password',
+  },
+  {
+    id: 'passwordConfirm',
+    name: 'passwordConfirm',
+    type: 'password',
+    label: 'Confirm Password',
+    placeholder: 'Confirm Password',
+  },
+];
 
 export const filters: FilterType = [
   {

@@ -1,13 +1,17 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 
 import AuthLink from '../../components/authLink/AuthLink';
 import Input from '../../components/input/Input';
 import FormButton from '../../components/formButton/FormButton';
 
+import { loginInputs } from '../../data/formData';
+
 import './Login.scss';
 
 const Login = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,6 +26,12 @@ const Login = () => {
     }, 5000);
   };
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <section className='login'>
       <div className='login__container'>
@@ -31,17 +41,19 @@ const Login = () => {
             Welcome back! Please enter your details.
           </p>
           <form className='login__form' onSubmit={handleSubmit}>
-            <Input
-              name='identifier'
-              label='Email/Username'
-              placeholder='Email or Username'
-            />
-            <Input
-              type='password'
-              name='password'
-              label='Password'
-              placeholder='Password'
-            />
+            {loginInputs.map((input) => {
+              const { id, name, type, label, placeholder } = input;
+              return (
+                <Input
+                  key={id}
+                  name={name}
+                  type={type}
+                  label={label}
+                  placeholder={placeholder}
+                  ref={!type ? inputRef : null}
+                />
+              );
+            })}
             <div className='login__form--forgot'>
               <Link to='/forgot-password'>Forgot password</Link>
             </div>

@@ -37,6 +37,7 @@ export interface InputProps
   error?: string;
   disabled?: boolean;
   required?: boolean;
+  ref?: React.LegacyRef<HTMLInputElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
@@ -329,6 +330,22 @@ export type TopPostType = {
   slug: string;
   category: string[];
   createdAt: string;
+}[];
+
+export type LoginInputType = {
+  id: string;
+  name: string;
+  type?: HTMLInputTypeAttribute;
+  label: string;
+  placeholder: string;
+}[];
+
+export type RegisterInputType = {
+  id: string;
+  name: string;
+  type?: HTMLInputTypeAttribute;
+  label: string;
+  placeholder: string;
 }[];
 
 export type FilterType = {
