@@ -7,7 +7,7 @@ import './UserMenu.scss';
 const UserMenu = () => {
   const { handleLogout } = useLogout();
 
-  const currentUser = false;
+  const currentUser = true;
 
   return (
     <aside className='userMenu'>
