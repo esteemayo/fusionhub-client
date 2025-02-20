@@ -348,6 +348,14 @@ export type RegisterInputType = {
   placeholder: string;
 }[];
 
+export type ResetInputType = {
+  id: string;
+  name: string;
+  type: HTMLInputTypeAttribute;
+  label: string;
+  placeholder: string;
+}[];
+
 export type FilterType = {
   id: string;
   name: string;

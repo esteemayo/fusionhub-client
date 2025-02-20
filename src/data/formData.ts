@@ -3,6 +3,7 @@ import {
   FilterType,
   LoginInputType,
   RegisterInputType,
+  ResetInputType,
 } from '../types';
 
 export const loginInputs: LoginInputType = [
@@ -41,6 +42,23 @@ export const registerInputs: RegisterInputType = [
     label: 'Email Address',
     placeholder: 'Email Address',
   },
+  {
+    id: 'password',
+    name: 'password',
+    type: 'password',
+    label: 'Password',
+    placeholder: 'Password',
+  },
+  {
+    id: 'passwordConfirm',
+    name: 'passwordConfirm',
+    type: 'password',
+    label: 'Confirm Password',
+    placeholder: 'Confirm Password',
+  },
+];
+
+export const resetInputs: ResetInputType = [
   {
     id: 'password',
     name: 'password',

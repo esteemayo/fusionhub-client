@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
@@ -6,6 +6,8 @@ import Button from '../../components/button/Button';
 import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,6 +21,12 @@ const ForgotPassword = () => {
       setIsLoading(false);
     }, 5000);
   };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   return (
     <div className='forgotPassword'>
@@ -34,6 +42,7 @@ const ForgotPassword = () => {
               name='email'
               label='Email Address'
               placeholder='Email address'
+              ref={inputRef}
             />
             <div className='forgotPassword__form--button'>
               <Button

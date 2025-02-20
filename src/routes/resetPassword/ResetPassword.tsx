@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
+import { resetInputs } from '../../data/formData';
+
 import './ResetPassword.scss';
 
 const ResetPassword = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,6 +24,14 @@ const ResetPassword = () => {
     }, 5000);
   };
 
+  useEffect(() => {
+    const current = inputRef.current;
+
+    if (current) {
+      current.focus();
+    }
+  }, []);
+
   return (
     <div className='resetPassword'>
       <div className='resetPassword__container'>
@@ -27,18 +39,19 @@ const ResetPassword = () => {
           <h1 className='resetPassword__heading'>Reset password</h1>
           <p className='resetPassword__text'>Please enter your new password.</p>
           <form onSubmit={handleSubmit} className='resetPassword__form'>
-            <Input
-              type='password'
-              name='password'
-              label='Password'
-              placeholder='Password'
-            />
-            <Input
-              type='password'
-              name='passwordConfirm'
-              label='Confirm Password'
-              placeholder='Confirm password'
-            />
+            {resetInputs.map((input) => {
+              const { id, name, type, label, placeholder } = input;
+              return (
+                <Input
+                  key={id}
+                  type={type}
+                  name={name}
+                  label={label}
+                  placeholder={placeholder}
+                  ref={name === 'password' ? inputRef : null}
+                />
+              );
+            })}
             <div className='resetPassword__form--button'>
               <Button
                 type='submit'
