@@ -180,4 +180,45 @@
       }
     }
   }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    &--login,
+    &--register {
+      &:link,
+      &:visited {
+        display: block;
+        text-transform: capitalize;
+        text-rendering: optimizeLegibility;
+        font-weight: 500;
+        font-size: 1.5rem;
+        padding: 0.5rem 0.8rem;
+        color: inherit;
+        border-radius: 2px;
+      }
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+    }
+
+    &--login {
+      &:link,
+      &:visited {
+        background-color: vars.$clr-pink-dark-1;
+      }
+    }
+
+    &--register {
+      &:link,
+      &:visited {
+        background-color: vars.$clr-black;
+      }
+    }
+  }
 }

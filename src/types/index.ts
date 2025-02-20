@@ -62,6 +62,7 @@ export interface SelectProps
   disabled?: boolean;
   required?: boolean;
   options: CategoryOptionType;
+  ref?: React.LegacyRef<HTMLSelectElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
 }
 

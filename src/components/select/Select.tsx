@@ -5,11 +5,17 @@ import { SelectProps } from '../../types';
 
 import './Select.scss';
 
-const Select = ({ name, label, error, options, ...rest }: SelectProps) => {
+const Select = ({ name, label, error, options, ref, ...rest }: SelectProps) => {
   return (
     <div className='select'>
       <Label id={name} label={label} />
-      <select {...rest} id={name} name={name} className='select__control'>
+      <select
+        {...rest}
+        id={name}
+        name={name}
+        className='select__control'
+        ref={ref}
+      >
         <option value=''>Category</option>
         {options?.map((option) => {
           const { id, name } = option;
