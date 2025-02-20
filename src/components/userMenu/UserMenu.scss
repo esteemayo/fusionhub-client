@@ -191,19 +191,31 @@
     &--register {
       &:link,
       &:visited {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
         text-transform: capitalize;
         text-rendering: optimizeLegibility;
-        font-weight: 500;
-        font-size: 1.5rem;
-        padding: 0.5rem 0.8rem;
-        color: inherit;
+        padding: 0.8rem;
         border-radius: 2px;
+
+        span {
+          font-weight: 500;
+          font-size: 1.5rem;
+          color: inherit;
+        }
       }
 
       &:disabled {
         opacity: 0.75;
         cursor: default;
+      }
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+        stroke-width: 2px;
       }
     }
 
