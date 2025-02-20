@@ -1,3 +1,4 @@
+@use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
 .userMenu {
@@ -58,6 +59,11 @@
   }
 
   &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
     list-style: none;
 
     &:not(:last-of-type) {
@@ -66,9 +72,20 @@
 
     &--item {
       padding: 0.8rem;
-      background-color: vars.$clr-tertiary-blue;
       color: currentColor;
       border-radius: 2px;
+
+      &.profile-link {
+        background-color: vars.$clr-tertiary-blue;
+      }
+
+      &.login-link {
+        background-color: vars.$clr-pink-dark-1;
+      }
+
+      &.register-link {
+        background-color: vars.$clr-black;
+      }
 
       @media screen and (max-width: 56.25em) {
         padding: 0.9rem;
@@ -93,7 +110,12 @@
       a {
         &:link,
         &:visited {
-          display: block;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        span {
           text-transform: capitalize;
           text-rendering: optimizeLegibility;
           font-weight: 500;
@@ -120,14 +142,64 @@
             font-size: 2rem;
           }
         }
+
+        &:disabled {
+          opacity: 0.75;
+          cursor: default;
+        }
+      }
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+        color: currentColor;
+        stroke-width: 2px;
+
+        @media screen and (max-width: 56.25em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.75rem;
+          height: 2.75rem;
+        }
       }
     }
   }
 
   &__wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    &.show {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
 
     font-weight: 700;
     font-size: 1.3rem;
@@ -177,125 +249,6 @@
       &:disabled {
         opacity: 0.75;
         cursor: default;
-      }
-    }
-  }
-
-  &__box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-
-    &--login,
-    &--register {
-      &:link,
-      &:visited {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        text-transform: capitalize;
-        text-rendering: optimizeLegibility;
-        padding: 0.8rem;
-        border-radius: 2px;
-
-        @media screen and (max-width: 56.25em) {
-          padding: 0.9rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          padding: 1rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          padding: 1rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          padding: 1.2rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          padding: 1.4rem;
-        }
-
-        span {
-          font-weight: 500;
-          font-size: 1.5rem;
-          color: inherit;
-
-          @media screen and (max-width: 56.25em) {
-            font-size: var(--default-font-size);
-          }
-
-          @media screen and (max-width: 51.25em) {
-            font-size: 1.7rem;
-          }
-
-          @media screen and (min-width: 106.25em) {
-            font-size: var(--default-font-size);
-          }
-
-          @media screen and (min-width: 112.5em) {
-            font-size: 1.7rem;
-          }
-
-          @media screen and (min-width: 125em) {
-            font-size: 2rem;
-          }
-        }
-      }
-
-      &:disabled {
-        opacity: 0.75;
-        cursor: default;
-      }
-
-      svg {
-        width: 2rem;
-        height: 2rem;
-        color: currentColor;
-        stroke-width: 2px;
-
-        @media screen and (max-width: 56.25em) {
-          width: 2.25rem;
-          height: 2.25rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          width: 2.5rem;
-          height: 2.5rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          width: 2.25rem;
-          height: 2.25rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          width: 2.5rem;
-          height: 2.5rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          width: 2.75rem;
-          height: 2.75rem;
-        }
-      }
-    }
-
-    &--login {
-      &:link,
-      &:visited {
-        background-color: vars.$clr-pink-dark-1;
-      }
-    }
-
-    &--register {
-      &:link,
-      &:visited {
-        background-color: vars.$clr-black;
       }
     }
   }
