@@ -16,7 +16,7 @@
 
   &.show {
     @include bp.lg {
-      top: 0;
+      top: 1rem;
       left: 0;
 
       width: 35rem;

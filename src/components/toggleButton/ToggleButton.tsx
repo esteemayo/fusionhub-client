@@ -5,7 +5,7 @@ import './ToggleButton.scss';
 const ToggleButton = ({ label, isOpen, onClick }: ToggleButtonProps) => {
   return (
     <button type='button' className='toggleButton' onClick={onClick}>
-      <span>{label}</span>
+      <span>{isOpen ? 'Close' : label}</span>
       {isOpen ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'

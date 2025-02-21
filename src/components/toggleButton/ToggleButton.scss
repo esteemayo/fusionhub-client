@@ -8,8 +8,13 @@
 
   border: 0;
   outline: 0;
+  font-family: inherit;
+  padding: 0.8rem 1rem;
   background-color: transparent;
+  background-color: rgba(vars.$clr-black, 0.25);
   color: vars.$clr-white;
+  border-radius: 10rem;
+  cursor: pointer;
 
   span {
     text-transform: capitalize;
