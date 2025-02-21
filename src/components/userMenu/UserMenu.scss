@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.userMenu {
+.user-menu {
   position: absolute;
   top: 5rem;
   right: -100rem;
@@ -234,7 +234,7 @@
       color: vars.$clr-gray-light-1;
     }
 
-    .logoutBtn {
+    .logout-btn {
       display: inline-block;
       border: 0;
       outline: 0;

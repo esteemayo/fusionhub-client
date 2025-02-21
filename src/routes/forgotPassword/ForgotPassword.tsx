@@ -29,14 +29,14 @@ const ForgotPassword = () => {
   }, []);
 
   return (
-    <div className='forgotPassword'>
-      <div className='forgotPassword__container'>
-        <div className='forgotPassword__wrapper'>
-          <h1 className='forgotPassword__heading'>Forgot password</h1>
-          <p className='forgotPassword__text'>
+    <div className='forgot-password'>
+      <div className='forgot-password__container'>
+        <div className='forgot-password__wrapper'>
+          <h1 className='forgot-password__heading'>Forgot password</h1>
+          <p className='forgot-password__text'>
             Please enter your email address.
           </p>
-          <form onSubmit={handleSubmit} className='forgotPassword__form'>
+          <form onSubmit={handleSubmit} className='forgot-password__form'>
             <Input
               type='email'
               name='email'
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
               placeholder='Email address'
               ref={inputRef}
             />
-            <div className='forgotPassword__form--button'>
+            <div className='forgot-password__form--button'>
               <Button
                 type='submit'
                 label='Reset your password'

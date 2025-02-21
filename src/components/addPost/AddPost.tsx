@@ -20,8 +20,8 @@ const AddPost = () => {
   }
 
   return (
-    <div className='addPost'>
-      <div className='addPost__container'>
+    <div className='add-post'>
+      <div className='add-post__container'>
         <svg viewBox='0 0 200 200' width='200' height='200'>
           <path
             id='circlePath'
@@ -38,7 +38,7 @@ const AddPost = () => {
           </text>
         </svg>
       </div>
-      <button type='button' className='addPost__btn' onClick={handleOpen}>
+      <button type='button' className='add-post__btn' onClick={handleOpen}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

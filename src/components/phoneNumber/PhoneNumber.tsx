@@ -20,7 +20,7 @@ const PhoneNumber = ({
   };
 
   return (
-    <div className='phoneNumber'>
+    <div className='phone-number'>
       <Label label={label} onClick={handleClick} />
       <PhoneInput
         placeholder={placeholder}

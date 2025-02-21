@@ -2,11 +2,11 @@ import './ProfileDetails.scss';
 
 const ProfileDetails = () => {
   return (
-    <section className='profileDetails'>
-      <div className='profileDetails__container'>
-        <h3 className='profileDetails__container--username'>Elise beverley</h3>
-        <div className='profileDetails__wrapper'>
-          <div className='profileDetails__wrapper--username'>
+    <section className='profile-details'>
+      <div className='profile-details__container'>
+        <h3 className='profile-details__container--username'>Elise beverley</h3>
+        <div className='profile-details__wrapper'>
+          <div className='profile-details__wrapper--username'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -23,8 +23,8 @@ const ProfileDetails = () => {
             </svg>
             <span>ebeverley25</span>
           </div>
-          <span className='profileDetails__wrapper--dot'>•</span>
-          <div className='profileDetails__wrapper--email'>
+          <span className='profile-details__wrapper--dot'>•</span>
+          <div className='profile-details__wrapper--email'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -43,14 +43,14 @@ const ProfileDetails = () => {
           </div>
         </div>
       </div>
-      <div className='profileDetails__box'>
-        <span className='profileDetails__box--bio'>
+      <div className='profile-details__box'>
+        <span className='profile-details__box--bio'>
           Full-stack JavaScript Developer (React, NextJS, VueJS, NodeJS,
           GraphQL, HTML5, CSS3)
         </span>
       </div>
-      <div className='profileDetails__wrap'>
-        <div className='profileDetails__wrap--box'>
+      <div className='profile-details__wrap'>
+        <div className='profile-details__wrap--box'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -72,7 +72,7 @@ const ProfileDetails = () => {
           </svg>
           <span>Canada</span>
         </div>
-        <div className='profileDetails__wrap--box'>
+        <div className='profile-details__wrap--box'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -89,7 +89,7 @@ const ProfileDetails = () => {
           </svg>
           <span>Born January 14, 2025</span>
         </div>
-        <div className='profileDetails__wrap--box'>
+        <div className='profile-details__wrap--box'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

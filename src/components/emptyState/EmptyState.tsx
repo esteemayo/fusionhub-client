@@ -35,29 +35,29 @@ const EmptyState = ({
   };
 
   const imgBoxClasses = useMemo(() => {
-    return formatImg ? 'emptyState__box space' : 'emptyState__box';
+    return formatImg ? 'empty-state__box space' : 'empty-state__box';
   }, [formatImg]);
 
   const imgClasses = useMemo(() => {
-    return imgSrc ? 'emptyState__box--img show' : 'emptyState__box--img hide';
+    return imgSrc ? 'empty-state__box--img show' : 'empty-state__box--img hide';
   }, [imgSrc]);
 
   const btnResetClasses = useMemo(() => {
     return showReset
-      ? 'emptyState__btn--reset show'
-      : 'emptyState__btn--reset hide';
+      ? 'empty-state__btn--reset show'
+      : 'empty-state__btn--reset hide';
   }, [showReset]);
 
   const btnReloadClasses = useMemo(() => {
     return showReload
-      ? 'emptyState__btn--reload show'
-      : 'emptyState__btn--reload hide';
+      ? 'empty-state__btn--reload show'
+      : 'empty-state__btn--reload hide';
   }, [showReload]);
 
   return (
-    <div className='emptyState'>
-      <div className='emptyState__container'>
-        <div className='emptyState__wrapper'>
+    <div className='empty-state'>
+      <div className='empty-state__container'>
+        <div className='empty-state__wrapper'>
           <div className={imgBoxClasses}>
             <img
               src={imgSrc}
@@ -68,7 +68,7 @@ const EmptyState = ({
             />
             <Heading title={title} subtitle={subtitle} center={center} />
           </div>
-          <div className='emptyState__btn'>
+          <div className='empty-state__btn'>
             <button
               type='button'
               className={btnResetClasses}

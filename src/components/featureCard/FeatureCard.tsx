@@ -7,22 +7,22 @@ import './FeatureCard.scss';
 
 const FeatureCard = ({ img, title, slug, createdAt }: FeatureCardProps) => {
   return (
-    <article className='featureCard'>
-      <div className='featureCard__container'>
-        <div className='featureCard__cover'>
+    <article className='feature-card'>
+      <div className='feature-card__container'>
+        <div className='feature-card__cover'>
           {img && (
             <img
               src={img}
               width={110}
               height={110}
               alt='image'
-              className='featureCard__cover--img'
+              className='feature-card__cover--img'
             />
           )}
         </div>
-        <div className='featureCard__details'>
-          <div className='featureCard__box'>
-            <div className='featureCard__box--date'>
+        <div className='feature-card__details'>
+          <div className='feature-card__box'>
+            <div className='feature-card__box--date'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -39,7 +39,7 @@ const FeatureCard = ({ img, title, slug, createdAt }: FeatureCardProps) => {
               </svg>
               <time dateTime={createdAt}>{formatDate(createdAt)}</time>
             </div>
-            <div className='featureCard__box--comments'>
+            <div className='feature-card__box--comments'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -57,9 +57,9 @@ const FeatureCard = ({ img, title, slug, createdAt }: FeatureCardProps) => {
               <span>30</span>
             </div>
           </div>
-          <div className='featureCard__detail'>
-            <h5 className='featureCard__detail--heading'>{title}</h5>
-            <Link to={`/posts/${slug}`} className='featureCard__detail--link'>
+          <div className='feature-card__detail'>
+            <h5 className='feature-card__detail--heading'>{title}</h5>
+            <Link to={`/posts/${slug}`} className='feature-card__detail--link'>
               Read more
             </Link>
           </div>

@@ -11,15 +11,15 @@ const UserMenu = () => {
   const currentUser = true;
 
   const userMenuClasses = useMemo(() => {
-    return currentUser ? 'userMenu__wrapper show' : 'userMenu__wrapper hide';
+    return currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide';
   }, [currentUser]);
 
   return (
-    <aside className='userMenu'>
-      <div className='userMenu__container'>
-        <ul className='userMenu__list'>
+    <aside className='user-menu'>
+      <div className='user-menu__container'>
+        <ul className='user-menu__list'>
           {currentUser ? (
-            <li className='userMenu__list--item profile-link'>
+            <li className='user-menu__list--item profile-link'>
               <Link to='/accounts/profile'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -40,7 +40,7 @@ const UserMenu = () => {
             </li>
           ) : (
             <>
-              <li className='userMenu__list--item login-link'>
+              <li className='user-menu__list--item login-link'>
                 <Link to='/login'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -59,7 +59,7 @@ const UserMenu = () => {
                   <span>Login</span>
                 </Link>
               </li>
-              <li className='userMenu__list--item register-link'>
+              <li className='user-menu__list--item register-link'>
                 <Link to='/register'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -83,7 +83,7 @@ const UserMenu = () => {
         </ul>
         <div className={userMenuClasses}>
           <span className='username'>Elise beverley</span>
-          <button type='button' className='logoutBtn' onClick={handleLogout}>
+          <button type='button' className='logout-btn' onClick={handleLogout}>
             Logout
           </button>
         </div>

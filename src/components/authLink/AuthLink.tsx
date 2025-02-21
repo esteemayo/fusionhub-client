@@ -6,10 +6,10 @@ import './AuthLink.scss';
 
 const AuthLink = ({ url, label, urlLabel }: AuthLinkProps) => {
   return (
-    <div className='authLink'>
-      <span className='authLink__text'>
+    <div className='auth-link'>
+      <span className='auth-link__text'>
         {label}{' '}
-        <Link to={`/${url}`} className='authLink__text--link'>
+        <Link to={`/${url}`} className='auth-link__text--link'>
           {urlLabel}
         </Link>
       </span>

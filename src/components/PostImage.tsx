@@ -8,7 +8,7 @@ const PostImage = ({ options }: { options: CategoryOptionType }) => {
     <>
       <Input name='tags' label='Tags' placeholder='Tags' />
       <Select name='category' label='Category' options={options} />
-      <Input type='file' label='Image' accept='image/*' />
+      <Input type='file' name='file' label='Image' accept='image/*' />
     </>
   );
 };

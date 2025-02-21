@@ -33,12 +33,14 @@ const ResetPassword = () => {
   }, []);
 
   return (
-    <div className='resetPassword'>
-      <div className='resetPassword__container'>
-        <div className='resetPassword__wrapper'>
-          <h1 className='resetPassword__heading'>Reset password</h1>
-          <p className='resetPassword__text'>Please enter your new password.</p>
-          <form onSubmit={handleSubmit} className='resetPassword__form'>
+    <div className='reset-password'>
+      <div className='reset-password__container'>
+        <div className='reset-password__wrapper'>
+          <h1 className='reset-password__heading'>Reset password</h1>
+          <p className='reset-password__text'>
+            Please enter your new password.
+          </p>
+          <form onSubmit={handleSubmit} className='reset-password__form'>
             {resetInputs.map((input) => {
               const { id, name, type, label, placeholder } = input;
               return (
@@ -52,7 +54,7 @@ const ResetPassword = () => {
                 />
               );
             })}
-            <div className='resetPassword__form--button'>
+            <div className='reset-password__form--button'>
               <Button
                 type='submit'
                 label='Reset your password'

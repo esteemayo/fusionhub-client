@@ -2,9 +2,9 @@ import './DeleteAccount.scss';
 
 const DeleteAccount = () => {
   return (
-    <div className='deleteAccount'>
-      <div className='deleteAccount__container'>
-        <p className='deleteAccount__container--text'>
+    <div className='delete-account'>
+      <div className='delete-account__container'>
+        <p className='delete-account__container--text'>
           De-activating your account will remove all of your information from
           our database. This cannot be undone.
         </p>

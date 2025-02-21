@@ -7,7 +7,7 @@ import './FormButton.scss';
 
 const FormButton = ({ label, loading, disabled }: FormButtonProps) => {
   return (
-    <div className='formButton'>
+    <div className='form-button'>
       <Button
         type='submit'
         label={label}
