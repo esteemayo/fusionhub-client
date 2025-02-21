@@ -4,17 +4,17 @@ import './FilterItem.scss';
 
 const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
   return (
-    <article className='filterItem'>
-      <div className='filterItem__container'>
-        <div className='filterItem__group'>
+    <article className='filter-item'>
+      <div className='filter-item__container'>
+        <div className='filter-item__group'>
           <input
             type='radio'
             name={name}
             id={id}
             value={value}
-            className='filterItem__group--control'
+            className='filter-item__group--control'
           />
-          <label htmlFor={id} className='filterItem__group--label'>
+          <label htmlFor={id} className='filter-item__group--label'>
             {label}
           </label>
         </div>

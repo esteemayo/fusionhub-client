@@ -28,14 +28,14 @@ const AccountMenu = () => {
   };
 
   const accountMenuClasses = useMemo(() => {
-    return isOpen ? 'accountMenu show' : 'accountMenu hide';
+    return isOpen ? 'account-menu show' : 'account-menu hide';
   }, [isOpen]);
 
   return (
     <aside className={accountMenuClasses}>
-      <div className='accountMenu__container'>
-        <div className='accountMenu__wrapper'>
-          <ul className='accountMenu__list'>
+      <div className='account-menu__container'>
+        <div className='account-menu__wrapper'>
+          <ul className='account-menu__list'>
             {accountMenus.map((menu) => {
               return (
                 <AccountMenuItem
@@ -49,7 +49,7 @@ const AccountMenu = () => {
             })}
           </ul>
         </div>
-        <div className='accountMenu__box'>
+        <div className='account-menu__box'>
           <button type='button' onClick={handleLogout}>
             <svg
               xmlns='http://www.w3.org/2000/svg'

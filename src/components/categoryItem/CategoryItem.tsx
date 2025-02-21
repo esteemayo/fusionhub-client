@@ -16,16 +16,16 @@ const CategoryItem = ({ name, total }: CategoryItemProps) => {
   }, [total]);
 
   return (
-    <article className='categoryItem'>
-      <span className='categoryItem__label'>
+    <article className='category-item'>
+      <span className='category-item__label'>
         <Link
           to={`/posts?category=${name}`}
-          className='categoryItem__label--link'
+          className='category-item__label--link'
         >
           {name}
         </Link>
       </span>
-      <span className='categoryItem__total'>({formattedTotal})</span>
+      <span className='category-item__total'>({formattedTotal})</span>
     </article>
   );
 };

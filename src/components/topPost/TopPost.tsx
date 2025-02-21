@@ -12,14 +12,14 @@ const TopPost = ({ index, slug, title, category, createdAt }: TopPostProps) => {
   }, [category]);
 
   return (
-    <article className='topPost'>
-      <div className='topPost__container'>
-        <span className='topPost__container--number'>{index + 1}</span>
-        <div className='topPost__wrapper'>
-          <span className='topPost__wrapper--title'>
+    <article className='top-post'>
+      <div className='top-post__container'>
+        <span className='top-post__container--number'>{index + 1}</span>
+        <div className='top-post__wrapper'>
+          <span className='top-post__wrapper--title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
           </span>
-          <div className='topPost__wrapper--category'>
+          <div className='top-post__wrapper--category'>
             <span>{categoryLabel}</span>
             <span>-</span>
             <time dateTime={createdAt}>{formatDate(createdAt)}</time>

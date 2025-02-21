@@ -17,13 +17,13 @@ const AccountLayout = () => {
   };
 
   return (
-    <div className='accountLayout'>
-      <div className='accountLayout__container'>
+    <div className='account-layout'>
+      <div className='account-layout__container'>
         <AccountMenu />
-        <div className='accountLayout__container--outlet'>
+        <div className='account-layout__container--outlet'>
           <Outlet />
         </div>
-        <div className='accountLayout__container--btn'>
+        <div className='account-layout__container--btn'>
           <ToggleButton
             label='Account menu'
             isOpen={isOpen}

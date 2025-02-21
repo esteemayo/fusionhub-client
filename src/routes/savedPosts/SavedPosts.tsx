@@ -7,15 +7,15 @@ import './SavedPosts.scss';
 
 const SavedPosts = () => {
   return (
-    <div className='savedPosts'>
-      <div className='savedPosts__container'>
+    <div className='saved-posts'>
+      <div className='saved-posts__container'>
         <AccountHeading
           title='Saved posts'
           subtitle='My saved stories/articles'
           type='profile'
         />
       </div>
-      <div className='savedPosts__wrapper'>
+      <div className='saved-posts__wrapper'>
         <PostList posts={postItems} />
       </div>
     </div>

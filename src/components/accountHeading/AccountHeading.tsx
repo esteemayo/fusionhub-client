@@ -6,13 +6,13 @@ import './AccountHeading.scss';
 
 const AccountHeading = ({ title, subtitle, type }: AccountHeadingProps) => {
   const accountHeadingClasses = useMemo(() => {
-    return type !== 'profile' ? 'accountHeading mb' : 'accountHeading';
+    return type !== 'profile' ? 'account-heading mb' : 'account-heading';
   }, [type]);
 
   return (
     <div className={accountHeadingClasses}>
-      <h1 className='accountHeading--header'>{title}</h1>
-      <span className='accountHeading--text'>{subtitle}</span>
+      <h1 className='account-heading--header'>{title}</h1>
+      <span className='account-heading--text'>{subtitle}</span>
     </div>
   );
 };

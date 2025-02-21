@@ -14,16 +14,16 @@ const DeactivateAccount = () => {
   };
 
   return (
-    <section className='deactivateAccount'>
-      <div className='deactivateAccount__container'>
+    <section className='deactivate-account'>
+      <div className='deactivate-account__container'>
         <AccountHeader
           title='De-activate account'
           subtitle='De-activating your account will remove all of your information from our database. This cannot be undone.'
         />
-        <div className='deactivateAccount__wrapper'>
+        <div className='deactivate-account__wrapper'>
           <button
             type='button'
-            className='deactivateAccount__wrapper--btn'
+            className='deactivate-account__wrapper--btn'
             onClick={handleClick}
           >
             De-activate my Account

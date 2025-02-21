@@ -7,15 +7,15 @@ import './DislikedPosts.scss';
 
 const DislikedPosts = () => {
   return (
-    <div className='dislikedPosts'>
-      <div className='dislikedPosts__container'>
+    <div className='disliked-posts'>
+      <div className='disliked-posts__container'>
         <AccountHeading
           title='Least favorite posts'
           subtitle='My least liked stories/articles'
           type='profile'
         />
       </div>
-      <div className='dislikedPosts__wrapper'>
+      <div className='disliked-posts__wrapper'>
         <PostList posts={postItems} />
       </div>
     </div>

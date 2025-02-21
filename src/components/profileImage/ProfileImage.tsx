@@ -4,18 +4,18 @@ import './ProfileImage.scss';
 
 const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
   return (
-    <div className='profileImage'>
-      <div className='profileImage__container'>
-        <div className='profileImage__user'>
-          <div className='profileImage__image'>
+    <div className='profile-image'>
+      <div className='profile-image__container'>
+        <div className='profile-image__user'>
+          <div className='profile-image__image'>
             <img
               src='/user-1.jpeg'
               width={120}
               height={120}
               alt='avatar'
-              className='profileImage__image--avatar'
+              className='profile-image__image--avatar'
             />
-            <div className='profileImage__container--icon'>
+            <div className='profile-image__container--icon'>
               <label htmlFor='file'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -40,28 +40,28 @@ const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
               <input id='file' type='file' accept='image/*' ref={ref} />
             </div>
           </div>
-          <div className='profileImage__details'>
-            <span className='profileImage__details--name'>Elise beverley</span>
-            <span className='profileImage__details--bio'>
+          <div className='profile-image__details'>
+            <span className='profile-image__details--name'>Elise beverley</span>
+            <span className='profile-image__details--bio'>
               I'm a Senior Frontend Developer based in U.S. A Full-stack
               JavaScript Developer (React, NextJS, VueJS, NodeJS, GraphQL,
               HTML5, CSS3)
             </span>
-            <button type='button' className='profileImage__details--btn'>
+            <button type='button' className='profile-image__details--btn'>
               Show more
             </button>
           </div>
         </div>
       </div>
-      <div className='profileImage__buttons'>
+      <div className='profile-image__buttons'>
         <button
           type='button'
-          className='profileImage__buttons--upload'
+          className='profile-image__buttons--upload'
           onClick={onUpload}
         >
           Upload
         </button>
-        <button type='button' className='profileImage__buttons--remove'>
+        <button type='button' className='profile-image__buttons--remove'>
           Remove
         </button>
       </div>

@@ -9,12 +9,12 @@ import './PostClient.scss';
 
 const PostClient = ({ isOpen }: { isOpen: boolean }) => {
   const postClientClasses = useMemo(() => {
-    return isOpen ? 'postClient show' : 'postClient hide';
+    return isOpen ? 'post-client show' : 'post-client hide';
   }, [isOpen]);
 
   return (
     <aside className={postClientClasses}>
-      <div className='postClient__container'>
+      <div className='post-client__container'>
         <Search />
         <Filter />
         <Categories />

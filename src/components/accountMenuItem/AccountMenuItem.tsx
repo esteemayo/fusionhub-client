@@ -15,7 +15,7 @@ const AccountMenuItem = ({
   onAction,
 }: AccountMenuItemProps) => {
   const menuClasses = useMemo(() => {
-    return id === activeMenu ? 'accountMenuItem active' : 'accountMenuItem';
+    return id === activeMenu ? 'account-menu-item active' : 'account-menu-item';
   }, [activeMenu, id]);
 
   return (

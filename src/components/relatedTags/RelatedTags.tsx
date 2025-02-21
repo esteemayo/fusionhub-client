@@ -6,9 +6,9 @@ import './RelatedTags.scss';
 
 const RelatedTags = () => {
   return (
-    <section className='relatedTags'>
-      <h3 className='relatedTags__heading'>Related tags</h3>
-      <div className='relatedTags__container'>
+    <section className='related-tags'>
+      <h3 className='related-tags__heading'>Related tags</h3>
+      <div className='related-tags__container'>
         {relatedTags.map((tag) => {
           const { id, label } = tag;
           return <TagItem key={id} label={label} />;

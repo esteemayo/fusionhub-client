@@ -6,7 +6,7 @@ import './PostContent.scss';
 
 const PostContent = () => {
   return (
-    <div className='postContent'>
+    <div className='post-content'>
       <PostDetail />
       <RelatedTags />
       <Comments />

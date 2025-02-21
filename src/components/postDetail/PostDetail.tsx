@@ -5,12 +5,12 @@ import './PostDetail.scss';
 
 const PostDetail = () => {
   return (
-    <section className='postDetail'>
-      <div className='postDetail__container'>
-        <div className='postDetail__wrapper'>
-          <div className='postDetail__user'>
-            <div className='postDetail__wrap'>
-              <div className='postDetail__wrap--username'>
+    <section className='post-detail'>
+      <div className='post-detail__container'>
+        <div className='post-detail__wrapper'>
+          <div className='post-detail__user'>
+            <div className='post-detail__wrap'>
+              <div className='post-detail__wrap--username'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -29,7 +29,7 @@ const PostDetail = () => {
                   <span>John doe</span>
                 </Link>
               </div>
-              <div className='postDetail__wrap--date'>
+              <div className='post-detail__wrap--date'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -47,7 +47,7 @@ const PostDetail = () => {
                 <time dateTime={new Date().toDateString()}>19 hours ago</time>
               </div>
             </div>
-            <div className='postDetail__view'>
+            <div className='post-detail__view'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -70,9 +70,9 @@ const PostDetail = () => {
               <span>{millify(10000)} views</span>
             </div>
           </div>
-          <div className='postDetail__actions'>
-            <div className='postDetail__actions--likes'>
-              <div className='postDetail__actions--buttons'>
+          <div className='post-detail__actions'>
+            <div className='post-detail__actions--likes'>
+              <div className='post-detail__actions--buttons'>
                 <button type='button'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -107,7 +107,10 @@ const PostDetail = () => {
                   </svg>
                 </button>
               </div>
-              <button type='button' className='postDetail__actions--btnComment'>
+              <button
+                type='button'
+                className='post-detail__actions--btnComment'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -125,7 +128,7 @@ const PostDetail = () => {
                 <span>300</span>
               </button>
             </div>
-            <div className='postDetail__actions--bookmarks'>
+            <div className='post-detail__actions--bookmarks'>
               <button type='button'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -162,12 +165,12 @@ const PostDetail = () => {
           </div>
         </div>
       </div>
-      <div className='postDetail__box'>
-        <h2 className='postDetail__heading'>
+      <div className='post-detail__box'>
+        <h2 className='post-detail__heading'>
           Effective Communication Is At The Heart of Every Successful
           Professional.
         </h2>
-        <p className='postDetail__desc'>
+        <p className='post-detail__desc'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ex modi
           soluta. Minus omnis vero voluptatibus non nam quidem a, cumque
           explicabo, sint nesciunt, laudantium fugiat expedita sapiente sed
@@ -186,7 +189,7 @@ const PostDetail = () => {
           quis ratione neque? Optio eum ipsa voluptate, maxime recusandae omnis,
           nobis, voluptates debitis fugiat rerum veritatis? Iusto, ab.
         </p>
-        <p className='postDetail__desc'>
+        <p className='post-detail__desc'>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit
           maiores corrupti cum, ad in repellendus provident veritatis tempore?
           Numquam nulla molestiae inventore quisquam cum veniam natus repellat
@@ -199,7 +202,7 @@ const PostDetail = () => {
           id eius. Doloribus debitis corporis eveniet error possimus libero ab
           magni molestiae?
         </p>
-        <p className='postDetail__desc'>
+        <p className='post-detail__desc'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
           incidunt, saepe nihil esse deserunt inventore, sed sint alias error,
           quis tempora! Fuga quas repellat maxime animi exercitationem eum,

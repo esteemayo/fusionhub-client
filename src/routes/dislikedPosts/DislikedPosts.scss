@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.dislikedPosts {
+.disliked-posts {
   display: flex;
   flex-direction: column;
   gap: 2rem;

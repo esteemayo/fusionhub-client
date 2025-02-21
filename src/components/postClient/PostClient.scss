@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.postClient {
+.post-client {
   flex: 1.5;
 
   @include bp.lg {

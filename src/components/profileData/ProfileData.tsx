@@ -24,13 +24,13 @@ const ProfileData = ({
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 
   return (
-    <div className='profileData'>
+    <div className='profile-data'>
       <AccountHeader
         title='Personal information'
         subtitle='Update your personal information'
       />
-      <form onSubmit={onSubmit} className='profileData__form'>
-        <div className='profileData__form--data'>
+      <form onSubmit={onSubmit} className='profile-data__form'>
+        <div className='profile-data__form--data'>
           <Input name='name' label='Name' placeholder='Name' />
           <Input name='username' label='Username' placeholder='Username' />
           <Input
@@ -52,7 +52,7 @@ const ProfileData = ({
           />
           <Input name='country' label='Country' placeholder='Country' />
         </div>
-        <div className='profileData__form--info'>
+        <div className='profile-data__form--info'>
           <Textarea
             name='bio'
             label='Biography'

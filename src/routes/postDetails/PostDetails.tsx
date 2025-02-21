@@ -19,16 +19,16 @@ const PostDetails = () => {
   };
 
   return (
-    <div className='postDetails'>
+    <div className='post-details'>
       <Hero />
-      <div className='postDetails__container'>
+      <div className='post-details__container'>
         <PostContent />
         <PostMenuActions isOpen={isOpen} />
-        <div className='postDetails__container--btn'>
+        <div className='post-details__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
       </div>
-      <div className='postDetails__wrapper'>
+      <div className='post-details__wrapper'>
         <RelatedPosts />
       </div>
     </div>

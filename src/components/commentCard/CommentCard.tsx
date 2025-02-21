@@ -25,27 +25,27 @@ const CommentCard = ({
   };
 
   return (
-    <article className='commentCard'>
-      <div className='commentCard__container'>
-        <div className='commentCard__user'>
+    <article className='comment-card'>
+      <div className='comment-card__container'>
+        <div className='comment-card__user'>
           {user.img && (
             <img
               src={user.img}
               width={80}
               height={80}
               alt='avatar'
-              className='commentCard__user--img'
+              className='comment-card__user--img'
             />
           )}
         </div>
-        <div className='commentCard__details'>
-          <div className='commentCard__dateBox'>
-            <time dateTime={createdAt} className='commentCard__dateBox--time'>
+        <div className='comment-card__details'>
+          <div className='comment-card__dateBox'>
+            <time dateTime={createdAt} className='comment-card__dateBox--time'>
               {format(createdAt)}
             </time>
             <button
               type='button'
-              className='commentCard__dateBox--reply'
+              className='comment-card__dateBox--reply'
               onClick={onReply}
             >
               <svg
@@ -65,19 +65,19 @@ const CommentCard = ({
               <span>Reply</span>
             </button>
           </div>
-          <h5 className='commentCard__details--username'>{user.name}</h5>
-          <p className='commentCard__details--desc'>
+          <h5 className='comment-card__details--username'>{user.name}</h5>
+          <p className='comment-card__details--desc'>
             {desc}
-            <button type='button' className='commentCard__details--btn'>
+            <button type='button' className='comment-card__details--btn'>
               Read more
             </button>
           </p>
         </div>
       </div>
-      <div className='commentCard__btn'>
+      <div className='comment-card__btn'>
         <button
           type='button'
-          className='commentCard__btn--edit'
+          className='comment-card__btn--edit'
           onClick={handleUpdate}
         >
           <svg
@@ -97,7 +97,7 @@ const CommentCard = ({
         </button>
         <button
           type='button'
-          className='commentCard__btn--delete'
+          className='comment-card__btn--delete'
           onClick={handleDelete}
         >
           <svg

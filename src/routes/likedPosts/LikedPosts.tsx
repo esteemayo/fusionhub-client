@@ -7,15 +7,15 @@ import './LikedPosts.scss';
 
 const LikedPosts = () => {
   return (
-    <div className='likedPosts'>
-      <div className='likedPosts__container'>
+    <div className='liked-posts'>
+      <div className='liked-posts__container'>
         <AccountHeading
           title='Favorite posts'
           subtitle='My favorite stories/articles'
           type='profile'
         />
       </div>
-      <div className='likedPosts__wrapper'>
+      <div className='liked-posts__wrapper'>
         <PostList posts={postItems} />
       </div>
     </div>

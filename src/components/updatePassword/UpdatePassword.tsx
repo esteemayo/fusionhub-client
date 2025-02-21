@@ -10,15 +10,15 @@ const UpdatePassword = () => {
   };
 
   return (
-    <section className='updatePassword'>
-      <div className='updatePassword__container'>
+    <section className='update-password'>
+      <div className='update-password__container'>
         <AccountHeader
           title='Change password'
           subtitle='Your new password must be different from the previous used passwords'
         />
-        <div className='updatePassword__wrapper'>
-          <form className='updatePassword__form' onSubmit={handleSubmit}>
-            <div className='updatePassword__form--inputs'>
+        <div className='update-password__wrapper'>
+          <form className='update-password__form' onSubmit={handleSubmit}>
+            <div className='update-password__form--inputs'>
               <Input
                 type='password'
                 name='passwordCurrent'
@@ -31,7 +31,7 @@ const UpdatePassword = () => {
                 label='New password'
                 placeholder='New password'
               />
-              <div className='updatePassword__form--confirm'>
+              <div className='update-password__form--confirm'>
                 <Input
                   type='password'
                   name='passwordConfirm'

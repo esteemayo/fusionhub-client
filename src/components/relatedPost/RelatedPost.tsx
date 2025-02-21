@@ -13,21 +13,21 @@ const RelatedPost = ({
   createdAt,
 }: RelatedPostProps) => {
   return (
-    <article className='relatedPost'>
-      <div className='relatedPost__container'>
-        <div className='relatedPost__container--overlay'>&nbsp;</div>
+    <article className='related-post'>
+      <div className='related-post__container'>
+        <div className='related-post__container--overlay'>&nbsp;</div>
         {img && (
           <img
             src={img}
             width={250}
             height={150}
             alt='image'
-            className='relatedPost__container--img'
+            className='related-post__container--img'
           />
         )}
-        <div className='relatedPost__container--footer'>
+        <div className='related-post__container--footer'>
           <Link to={`/posts/${slug}`}>{title}</Link>
-          <div className='relatedPost__container--footer-category'>
+          <div className='related-post__container--footer-category'>
             <span>{category}</span>
             <time dateTime={createdAt}>{format(createdAt)}</time>
           </div>

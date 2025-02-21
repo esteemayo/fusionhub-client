@@ -6,8 +6,8 @@ import './PasswordSettings.scss';
 
 const PasswordSettings = () => {
   return (
-    <div className='passwordSettings'>
-      <div className='passwordSettings__container'>
+    <div className='password-settings'>
+      <div className='password-settings__container'>
         <AccountHeading
           title='Account settings'
           subtitle='Update your account passwords/de-activate your account'

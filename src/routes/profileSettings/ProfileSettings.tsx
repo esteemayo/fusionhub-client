@@ -19,15 +19,15 @@ const ProfileSettings = () => {
   };
 
   return (
-    <div className='profileSettings'>
-      <div className='profileSettings__container'>
+    <div className='profile-settings'>
+      <div className='profile-settings__container'>
         <AccountHeading
           title='Profile settings'
           subtitle='Update your account information'
           type='profile'
         />
       </div>
-      <div className='profileSettings__wrapper'>
+      <div className='profile-settings__wrapper'>
         <ProfileImage ref={inputRef} onUpload={handleUpload} />
         <hr />
         <ProfileData onSubmit={handleSubmit} />

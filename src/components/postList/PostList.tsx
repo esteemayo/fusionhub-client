@@ -6,7 +6,7 @@ import './PostList.scss';
 
 const PostLists = ({ posts }: PostListProps) => {
   return (
-    <div className='postList'>
+    <div className='post-list'>
       {posts.map((post) => {
         return <Card key={post.id} {...post} />;
       })}

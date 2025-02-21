@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.accountMenuItem {
+.account-menu-item {
   display: flex;
   align-items: center;
 
@@ -163,6 +163,11 @@
         width: 2.5rem;
         height: 2.5rem;
       }
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
     }
   }
 }

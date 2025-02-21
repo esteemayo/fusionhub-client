@@ -6,10 +6,10 @@ import './RelatedPosts.scss';
 
 const RelatedPosts = () => {
   return (
-    <section className='relatedPosts'>
-      <div className='relatedPosts__container'>
-        <h5 className='relatedPosts__container--heading'>Related posts</h5>
-        <div className='relatedPosts__wrapper'>
+    <section className='related-posts'>
+      <div className='related-posts__container'>
+        <h5 className='related-posts__container--heading'>Related posts</h5>
+        <div className='related-posts__wrapper'>
           {relatedPosts.slice(0, 4).map((post) => {
             return <RelatedPost key={post.id} {...post} />;
           })}

@@ -12,12 +12,12 @@ import './PostMenuActions.scss';
 
 const PostMenuActions = ({ isOpen }: { isOpen: boolean }) => {
   const postMenuActionsClasses = useMemo(() => {
-    return isOpen ? 'postMenuActions show' : 'postMenuActions hide';
+    return isOpen ? 'post-menu-actions show' : 'post-menu-actions hide';
   }, [isOpen]);
 
   return (
     <aside className={postMenuActionsClasses}>
-      <div className='postMenuActions__container'>
+      <div className='post-menu-actions__container'>
         <Search />
         <ActionMenus />
         <Categories />
