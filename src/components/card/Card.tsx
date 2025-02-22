@@ -22,15 +22,15 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
         )}
       </div>
       <div className='card__footer'>
-        <div className='card__footer--container'>
-          <h3 className='card__footer--container-title'>
+        <div className='card__box'>
+          <h3 className='card__box--title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
           </h3>
-          <p className='card__footer--container-desc'>{excerpts(desc, 60)}</p>
+          <p className='card__box--desc'>{excerpts(desc, 60)}</p>
         </div>
-        <div className='card__footer--wrapper'>
-          <span className='card__footer--wrapper-category'>{category}</span>
-          <time dateTime={createdAt} className='card__footer--wrapper-time'>
+        <div className='card__container'>
+          <span className='card__container--category'>{category}</span>
+          <time dateTime={createdAt} className='card__container--time'>
             {format(createdAt)}
           </time>
         </div>

@@ -96,16 +96,15 @@ export interface DateInputProps {
   onChange: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
-type ButtonType = 'button' | 'reset' | 'submit';
-
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   img?: string;
-  type?: ButtonType;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   loading?: boolean;
   disabled?: boolean;
   className: 'primary' | 'outline';
-  onClick?(): void;
+  onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface FormButtonProps {

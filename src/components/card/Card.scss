@@ -236,196 +236,196 @@
     @media screen and (min-width: 125em) {
       padding: 3rem 2rem;
     }
+  }
 
-    &--container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
 
-      &-title {
-        text-overflow: ellipsis;
-        text-rendering: optimizeLegibility;
-        white-space: nowrap;
-        font-weight: 700;
-        font-size: 1.65rem;
-        color: inherit;
-        line-height: 1.12;
-        overflow: hidden;
-        transition: all 300ms ease-in-out;
+    &--title {
+      text-overflow: ellipsis;
+      text-rendering: optimizeLegibility;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 1.65rem;
+      color: inherit;
+      line-height: 1.12;
+      overflow: hidden;
+      transition: all 300ms ease-in-out;
 
-        @media screen and (max-width: 56.25em) {
-          font-size: 1.75rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          font-size: 1.85rem;
-        }
-
-        @media screen and (max-width: 34.375em) {
-          font-size: 1.8rem;
-        }
-
-        @media screen and (max-width: 23.75em) {
-          font-size: 1.65rem;
-        }
-
-        @media screen and (max-width: 21.5em) {
-          font-size: var(--default-font-size);
-        }
-
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.7rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          font-size: 1.8rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: 2rem;
-        }
-
-        &:hover {
-          color: vars.$clr-pink-light;
-        }
-
-        a {
-          &:link,
-          &:visited {
-            font-weight: inherit;
-            font-size: inherit;
-          }
-        }
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.75rem;
       }
 
-      &-desc {
-        text-rendering: optimizeLegibility;
-        font-weight: 500;
-        font-size: 1.5rem;
-        color: currentColor;
-        word-break: break-all;
-        line-height: 1.12;
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.85rem;
+      }
 
-        @media screen and (max-width: 56.25em) {
-          font-size: var(--default-font-size);
-        }
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.8rem;
+      }
 
-        @media screen and (max-width: 51.25em) {
-          font-size: 1.7rem;
-        }
+      @media screen and (max-width: 23.75em) {
+        font-size: 1.65rem;
+      }
 
-        @media screen and (max-width: 34.375em) {
-          font-size: var(--default-font-size);
-        }
+      @media screen and (max-width: 21.5em) {
+        font-size: var(--default-font-size);
+      }
 
-        @media screen and (max-width: 23.75em) {
-          font-size: 1.45rem;
-        }
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.7rem;
+      }
 
-        @media screen and (max-width: 21.5em) {
-          font-size: 1.4rem;
-        }
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.8rem;
+      }
 
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.55rem;
-        }
+      @media screen and (min-width: 125em) {
+        font-size: 2rem;
+      }
 
-        @media screen and (min-width: 112.5em) {
-          font-size: 1.65rem;
-        }
+      &:hover {
+        color: vars.$clr-pink-light;
+      }
 
-        @media screen and (min-width: 125em) {
-          font-size: 1.8rem;
+      a {
+        &:link,
+        &:visited {
+          font-weight: inherit;
+          font-size: inherit;
         }
       }
     }
 
-    &--wrapper {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.3;
-      margin-top: 1rem;
+    &--desc {
+      text-rendering: optimizeLegibility;
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: currentColor;
+      word-break: break-all;
+      line-height: 1.12;
 
-      &-category,
-      &-time {
-        text-rendering: optimizeLegibility;
+      @media screen and (max-width: 56.25em) {
+        font-size: var(--default-font-size);
       }
 
-      &-category {
-        text-transform: capitalize;
-        font-weight: 500;
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.7rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 23.75em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
         font-size: 1.4rem;
-        color: vars.$clr-gray-light-3;
-
-        @media screen and (max-width: 56.25em) {
-          font-size: 1.5rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          font-size: var(--default-font-size);
-        }
-
-        @media screen and (max-width: 34.375em) {
-          font-size: 1.55rem;
-        }
-
-        @media screen and (max-width: 23.75em) {
-          font-size: 1.4rem;
-        }
-
-        @media screen and (max-width: 21.5em) {
-          font-size: 1.35rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.45rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          font-size: 1.55rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: 1.7rem;
-        }
       }
 
-      &-time {
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.65rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+    margin-top: 1rem;
+
+    &--category,
+    &--time {
+      text-rendering: optimizeLegibility;
+    }
+
+    &--category {
+      text-transform: capitalize;
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: vars.$clr-gray-light-3;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        font-size: 1.35rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.7rem;
+      }
+    }
+
+    &--time {
+      font-size: 1.3rem;
+      color: vars.$clr-gray-light-1;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        font-size: 1.35rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
         font-size: 1.3rem;
-        color: vars.$clr-gray-light-1;
+      }
 
-        @media screen and (max-width: 56.25em) {
-          font-size: 1.4rem;
-        }
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.35rem;
+      }
 
-        @media screen and (max-width: 51.25em) {
-          font-size: 1.5rem;
-        }
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.45rem;
+      }
 
-        @media screen and (max-width: 34.375em) {
-          font-size: 1.45rem;
-        }
-
-        @media screen and (max-width: 23.75em) {
-          font-size: 1.35rem;
-        }
-
-        @media screen and (max-width: 21.5em) {
-          font-size: 1.3rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.35rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          font-size: 1.45rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: var(--default-font-size);
-        }
+      @media screen and (min-width: 125em) {
+        font-size: var(--default-font-size);
       }
     }
   }
