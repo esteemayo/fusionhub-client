@@ -2,7 +2,7 @@ import './ErrorMessage.scss';
 
 const ErrorMessage = ({ message }: { message?: string }) => {
   return (
-    <div className='errorMessage'>
+    <div className='error-message'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'

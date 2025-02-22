@@ -112,8 +112,9 @@
 
     &--item {
       padding: 1.5rem 1rem;
+      font-weight: 700;
+      font-size: 1.4rem;
       background-color: vars.$clr-tertiary-blue;
-      font-size: 1.3rem;
       color: inherit;
       border-radius: 2px;
 
@@ -126,6 +127,7 @@
         &:visited {
           display: block;
           text-transform: uppercase;
+          font-weight: inherit;
           font-size: inherit;
           color: inherit;
         }
@@ -149,7 +151,7 @@
   &__account {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
 
     &--avatar {
       width: 7rem;
@@ -163,19 +165,19 @@
     &--name {
       text-transform: uppercase;
       text-rendering: optimizeLegibility;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       white-space: wrap;
     }
   }
 
-  &__logoutBtn {
+  &__logout-btn {
     display: inline-block;
     border: 0;
     outline: 0;
     text-transform: uppercase;
     font-family: inherit;
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     width: 10rem;
     height: 4rem;
     background-color: vars.$clr-tertiary-blue;
@@ -190,10 +192,36 @@
   }
 
   &__login {
-    width: 100%;
-    padding: 1.5rem 1rem;
-    background-color: vars.$clr-tertiary-blue;
-    color: vars.$clr-white;
-    border-radius: 2px;
+    &:link,
+    &:visited {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      width: 100%;
+      padding: 1.5rem 1rem;
+      background-color: vars.$clr-tertiary-blue;
+      color: vars.$clr-white;
+      border-radius: 2px;
+
+      span {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: currentColor;
+      }
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+        color: currentColor;
+        stroke-width: 2px;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
   }
 }

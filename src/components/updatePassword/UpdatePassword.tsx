@@ -22,20 +22,20 @@ const UpdatePassword = () => {
               <Input
                 type='password'
                 name='passwordCurrent'
-                label='Current password'
+                label='Current Password'
                 placeholder='Current password'
               />
               <Input
                 type='password'
                 name='password'
-                label='New password'
+                label='New Password'
                 placeholder='New password'
               />
               <div className='update-password__form--confirm'>
                 <Input
                   type='password'
                   name='passwordConfirm'
-                  label='Confirm new password'
+                  label='Confirm New Password'
                   placeholder='Confirm new password'
                 />
               </div>
