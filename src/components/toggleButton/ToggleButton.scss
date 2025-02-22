@@ -8,13 +8,25 @@
 
   border: 0;
   outline: 0;
-  font-family: inherit;
   padding: 0.8rem 1rem;
   background-color: transparent;
   background-color: rgba(vars.$clr-black, 0.25);
   color: vars.$clr-white;
   border-radius: 10rem;
   cursor: pointer;
+
+  &.nav {
+    display: none;
+
+    @media screen and (max-width: 30em) {
+      display: flex;
+      padding: 0;
+      background-color: transparent;
+      border-radius: unset;
+      position: relative;
+      z-index: 5000;
+    }
+  }
 
   span {
     text-transform: capitalize;

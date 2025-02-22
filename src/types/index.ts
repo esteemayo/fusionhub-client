@@ -240,6 +240,7 @@ export interface PhoneNumberProps {
 }
 
 export interface ToggleButtonProps {
+  type?: 'nav';
   label?: string;
   isOpen: boolean;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;

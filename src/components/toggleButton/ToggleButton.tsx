@@ -1,11 +1,17 @@
+import { useMemo } from 'react';
+
 import { ToggleButtonProps } from '../../types';
 
 import './ToggleButton.scss';
 
-const ToggleButton = ({ label, isOpen, onClick }: ToggleButtonProps) => {
+const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
+  const toggleBtnClasses = useMemo(() => {
+    return type === 'nav' ? 'toggle-button nav' : 'toggle-button';
+  }, [type]);
+
   return (
-    <button type='button' className='toggle-button' onClick={onClick}>
-      <span>{isOpen ? 'Close' : label}</span>
+    <button type='button' className={toggleBtnClasses} onClick={onClick}>
+      <span>{type === 'nav' ? label : isOpen ? 'Close' : label}</span>
       {isOpen ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'

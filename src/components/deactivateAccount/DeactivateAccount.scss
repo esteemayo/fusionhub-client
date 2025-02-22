@@ -3,8 +3,8 @@
 
 .deactivate-account {
   &__container {
-    background-color: vars.$clr-secondary-blue;
     padding: 3rem;
+    background-color: vars.$clr-secondary-blue;
     border-radius: 0.5rem;
 
     @media screen and (max-width: 76.25em) {
@@ -34,7 +34,6 @@
 
       border: 0;
       outline: 0;
-      font-family: inherit;
       font-weight: 600;
       font-size: 1.4rem;
       width: fit-content;

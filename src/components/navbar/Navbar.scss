@@ -203,37 +203,6 @@
     }
   }
 
-  &__toggle {
-    display: none;
-
-    @media screen and (max-width: 30em) {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      border: 0;
-      outline: 0;
-      font-family: inherit;
-      background-color: transparent;
-      color: vars.$clr-white;
-      cursor: pointer;
-
-      span {
-        text-transform: capitalize;
-        text-rendering: optimizeLegibility;
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: currentColor;
-      }
-
-      svg {
-        width: 2.5rem;
-        fill: currentColor;
-        stroke-width: 2px;
-      }
-    }
-  }
-
   &__links {
     display: none;
 
