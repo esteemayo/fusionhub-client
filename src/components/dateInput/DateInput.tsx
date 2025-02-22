@@ -8,7 +8,12 @@ import { DateInputProps } from '../../types';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DateInput.scss';
 
-const DateInput = ({ startDate, placeholder, onChange }: DateInputProps) => {
+const DateInput = ({
+  label,
+  startDate,
+  placeholder,
+  onChange,
+}: DateInputProps) => {
   const ref = useRef<DatePicker | null>(null);
 
   const handleClick = () => {
@@ -17,7 +22,7 @@ const DateInput = ({ startDate, placeholder, onChange }: DateInputProps) => {
 
   return (
     <div className='date-input'>
-      <Label label='Date of Birth' onClick={handleClick} />
+      <Label label={label} onClick={handleClick} />
       <DatePicker
         selected={startDate}
         placeholderText={placeholder}

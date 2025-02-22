@@ -79,6 +79,7 @@ export interface TextQuillProps {
 }
 
 export interface DateInputProps {
+  label?: string;
   startDate: Date | null;
   placeholder?: string;
   onChange: React.Dispatch<React.SetStateAction<Date | null>>;

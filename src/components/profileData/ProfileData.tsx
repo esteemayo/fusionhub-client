@@ -46,6 +46,7 @@ const ProfileData = ({
             onChange={setValue}
           />
           <DateInput
+            label='Date of Birth'
             startDate={startDate}
             placeholder='Date of Birth'
             onChange={setStartDate}
