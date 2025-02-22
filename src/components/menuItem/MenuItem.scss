@@ -1,0 +1,30 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.menu-item {
+  padding: 1.5rem 1rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+  background-color: vars.$clr-tertiary-blue;
+  color: inherit;
+  border-radius: 2px;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: block;
+      text-transform: uppercase;
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
+  }
+}

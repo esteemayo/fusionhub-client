@@ -3,6 +3,17 @@ import React, { HTMLInputTypeAttribute } from 'react';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { Action } from 'redux';
 
+export interface NavItemProps {
+  url: string;
+  label: string;
+}
+
+export interface MenuItemProps {
+  url: string;
+  label: string;
+  onClose(): void;
+}
+
 export interface HeadingProps {
   title: string;
   subtitle: string;

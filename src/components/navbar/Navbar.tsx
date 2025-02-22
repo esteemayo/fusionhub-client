@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import UserMenu from '../userMenu/UserMenu';
+import NavItem from '../navItem/NavItem';
 import ToggleButton from '../toggleButton/ToggleButton';
 
 import { onToggle } from '../../features/sidebar/sidebarSlice';
@@ -34,12 +35,7 @@ const Navbar = () => {
         />
         <ul className='navbar__links'>
           {menuItems.map((menu) => {
-            const { id, url, label } = menu;
-            return (
-              <li key={id} className='navbar__links--item'>
-                <Link to={url}>{label}</Link>
-              </li>
-            );
+            return <NavItem key={menu.id} {...menu} />;
           })}
           {user && (
             <div className='navbar__accounts'>

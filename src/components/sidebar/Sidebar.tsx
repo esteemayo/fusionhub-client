@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
+import MenuItem from '../menuItem/MenuItem';
+
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
@@ -38,13 +40,12 @@ const Sidebar = () => {
             {menuItems.map((menu) => {
               const { id, url, label } = menu;
               return (
-                <li
+                <MenuItem
                   key={id}
-                  className='sidebar__menu--item'
-                  onClick={handleClose}
-                >
-                  <Link to={url}>{label}</Link>
-                </li>
+                  url={url}
+                  label={label}
+                  onClose={handleClose}
+                />
               );
             })}
           </ul>

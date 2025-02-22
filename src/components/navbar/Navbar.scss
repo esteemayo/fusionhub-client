@@ -237,48 +237,6 @@
         gap: 4rem;
       }
 
-      &--item {
-        text-transform: uppercase;
-        font-size: 1.3rem;
-
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.4rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: 1.65rem;
-        }
-
-        a {
-          &:link,
-          &:visited {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 0;
-            outline: 0;
-            text-transform: uppercase;
-            font-size: inherit;
-            border-radius: 10rem;
-          }
-
-          &:hover {
-            background-image: linear-gradient(
-              to right,
-              vars.$clr-pink-dark-1,
-              vars.$clr-pink-dark-2,
-              vars.$clr-pink-light,
-              vars.$clr-orange-dark,
-              vars.$clr-orange-light
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-          }
-        }
-      }
-
       .login__btn {
         width: fit-content;
         padding: 0.8rem 1.6rem;
