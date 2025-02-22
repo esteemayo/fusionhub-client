@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className='navbar__logo'>
           <Link to='/'>Fusion hub</Link>
         </div>
-        <div className='navbar__toggle' onClick={handleToggle}>
+        <button type='button' className='navbar__toggle' onClick={handleToggle}>
           <span>Menu</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -37,7 +37,7 @@ const Navbar = () => {
               clipRule='evenodd'
             />
           </svg>
-        </div>
+        </button>
         <ul className='navbar__links'>
           {menuItems.map((menu) => {
             const { id, url, label } = menu;
