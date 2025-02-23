@@ -25,9 +25,11 @@ const RelatedPost = ({
             className='related-post__container--img'
           />
         )}
-        <div className='related-post__container--footer'>
-          <Link to={`/posts/${slug}`}>{title}</Link>
-          <div className='related-post__container--footer-category'>
+        <div className='related-post__footer'>
+          <Link to={`/posts/${slug}`} className='related-post__footer--link'>
+            {title}
+          </Link>
+          <div className='related-post__footer--category'>
             <span>{category}</span>
             <time dateTime={createdAt}>{format(createdAt)}</time>
           </div>

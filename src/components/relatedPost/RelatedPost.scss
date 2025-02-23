@@ -205,236 +205,236 @@
         filter: blur(1px) grayscale(1);
       }
     }
+  }
 
-    &--footer {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1rem;
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
 
+    min-height: 12rem;
+    padding: 1.5rem;
+
+    @media screen and (max-width: 76.25em) {
+      padding: 1.25rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      min-height: 13rem;
+    }
+
+    @include bp.md {
       min-height: 12rem;
-      padding: 1.5rem;
+    }
 
-      @media screen and (max-width: 76.25em) {
-        padding: 1.25rem;
-      }
+    @media screen and (max-width: 43.75em) {
+      padding: 1rem;
+    }
 
-      @media screen and (max-width: 51.25em) {
-        min-height: 13rem;
-      }
+    @media screen and (max-width: 41.875em) {
+      padding: 1rem 0.8rem;
+    }
 
-      @include bp.md {
-        min-height: 12rem;
-      }
+    @media screen and (max-width: 41.875em) {
+      min-height: 12.5rem;
+    }
 
-      @media screen and (max-width: 43.75em) {
-        padding: 1rem;
-      }
+    @media screen and (max-width: 31.5em) {
+      min-height: 12rem;
+    }
 
-      @media screen and (max-width: 41.875em) {
-        padding: 1rem 0.8rem;
-      }
+    @include bp.sm {
+      min-height: 0;
+      padding: 0;
+    }
 
-      @media screen and (max-width: 41.875em) {
-        min-height: 12.5rem;
-      }
+    @media screen and (max-width: 21.5em) {
+      gap: 0.7rem;
+    }
 
-      @media screen and (max-width: 31.5em) {
-        min-height: 12rem;
-      }
+    @media screen and (min-width: 112.5em) {
+      min-height: 13rem;
+    }
 
-      @include bp.sm {
-        min-height: 0;
-        padding: 0;
-      }
+    @media screen and (min-width: 125em) {
+      min-height: 15rem;
+    }
 
-      @media screen and (max-width: 21.5em) {
-        gap: 0.7rem;
-      }
+    &--link {
+      &:link,
+      &:visited {
+        text-rendering: optimizeLegibility;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 1.12;
+        transition: all 300ms ease-in-out;
 
-      @media screen and (min-width: 112.5em) {
-        min-height: 13rem;
-      }
+        @media screen and (max-width: 56.25em) {
+          font-size: var(--default-font-size);
+        }
 
-      @media screen and (min-width: 125em) {
-        min-height: 15rem;
-      }
+        // @media screen and (max-width: 51.25em) {
+        //   font-size: 1.7rem;
+        // }
 
-      a {
-        &:link,
-        &:visited {
-          text-rendering: optimizeLegibility;
-          font-weight: 700;
+        @include bp.md {
           font-size: 1.5rem;
-          line-height: 1.12;
-          transition: all 300ms ease-in-out;
-
-          @media screen and (max-width: 56.25em) {
-            font-size: var(--default-font-size);
-          }
-
-          // @media screen and (max-width: 51.25em) {
-          //   font-size: 1.7rem;
-          // }
-
-          @include bp.md {
-            font-size: 1.5rem;
-          }
-
-          @media screen and (max-width: 41.875em) {
-            font-size: 1.35rem;
-          }
-
-          @media screen and (max-width: 31.5em) {
-            font-size: 1.3rem;
-          }
-
-          @include bp.sm {
-            font-size: 1.65rem;
-          }
-
-          @media screen and (max-width: 21.5em) {
-            font-size: var(--default-font-size);
-          }
-
-          @media screen and (max-width: 20em) {
-            font-size: 1.525rem;
-          }
-
-          @media screen and (max-width: 18.75em) {
-            font-size: 1.425rem;
-          }
-
-          @media screen and (max-width: 17.5em) {
-            font-size: 1.3rem;
-          }
-
-          @media screen and (min-width: 106.25em) {
-            font-size: var(--default-font-size);
-          }
-
-          @media screen and (min-width: 112.5em) {
-            font-size: 1.7rem;
-          }
-
-          @media screen and (min-width: 125em) {
-            font-size: 1.85rem;
-          }
         }
 
-        &:hover {
-          color: vars.$clr-pink-light;
+        @media screen and (max-width: 41.875em) {
+          font-size: 1.35rem;
         }
-      }
 
-      &-category {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.3;
+        @media screen and (max-width: 31.5em) {
+          font-size: 1.3rem;
+        }
+
+        @include bp.sm {
+          font-size: 1.65rem;
+        }
 
         @media screen and (max-width: 21.5em) {
-          line-height: 1.2;
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (max-width: 20em) {
+          font-size: 1.525rem;
         }
 
         @media screen and (max-width: 18.75em) {
-          line-height: 1.1;
+          font-size: 1.425rem;
         }
 
-        span,
-        time {
-          text-rendering: optimizeLegibility;
-        }
-
-        span {
-          text-transform: capitalize;
-          font-weight: 500;
-          font-size: 1.4rem;
-          color: vars.$clr-gray-light-3;
-
-          @media screen and (max-width: 56.25em) {
-            font-size: 1.5rem;
-          }
-
-          @include bp.md {
-            font-size: 1.45rem;
-          }
-
-          @media screen and (max-width: 41.875em) {
-            font-size: 1.3rem;
-          }
-
-          @media screen and (max-width: 31.5em) {
-            font-size: 1.25rem;
-          }
-
-          @include bp.sm {
-            font-size: 1.55rem;
-          }
-
-          @media screen and (max-width: 21.5em) {
-            font-size: 1.5rem;
-          }
-
-          @media screen and (max-width: 18.75em) {
-            font-size: 1.45rem;
-          }
-
-          @media screen and (min-width: 106.25em) {
-            font-size: 1.5rem;
-          }
-
-          @media screen and (min-width: 112.5em) {
-            font-size: var(--default-font-size);
-          }
-
-          @media screen and (min-width: 125em) {
-            font-size: 1.75rem;
-          }
-        }
-
-        time {
+        @media screen and (max-width: 17.5em) {
           font-size: 1.3rem;
-          color: vars.$clr-gray-light-1;
+        }
 
-          @media screen and (max-width: 56.25em) {
-            font-size: 1.4rem;
-          }
+        @media screen and (min-width: 106.25em) {
+          font-size: var(--default-font-size);
+        }
 
-          @include bp.md {
-            font-size: 1.35rem;
-          }
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.7rem;
+        }
 
-          @media screen and (max-width: 41.875em) {
-            font-size: 1.25rem;
-          }
+        @media screen and (min-width: 125em) {
+          font-size: 1.85rem;
+        }
+      }
 
-          @media screen and (max-width: 31.5em) {
-            font-size: 1.23rem;
-          }
+      &:hover {
+        color: vars.$clr-pink-light;
+      }
+    }
 
-          @include bp.sm {
-            font-size: 1.45rem;
-          }
+    &--category {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
 
-          @media screen and (max-width: 21.5em) {
-            font-size: 1.4rem;
-          }
+      @media screen and (max-width: 21.5em) {
+        line-height: 1.2;
+      }
 
-          @media screen and (max-width: 18.75em) {
-            font-size: 1.35rem;
-          }
+      @media screen and (max-width: 18.75em) {
+        line-height: 1.1;
+      }
 
-          @media screen and (min-width: 106.25em) {
-            font-size: 1.4rem;
-          }
+      span,
+      time {
+        text-rendering: optimizeLegibility;
+      }
 
-          @media screen and (min-width: 112.5em) {
-            font-size: 1.5rem;
-          }
+      span {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 1.4rem;
+        color: vars.$clr-gray-light-3;
 
-          @media screen and (min-width: 125em) {
-            font-size: 1.65rem;
-          }
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
+        }
+
+        @include bp.md {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (max-width: 41.875em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-width: 31.5em) {
+          font-size: 1.25rem;
+        }
+
+        @include bp.sm {
+          font-size: 1.55rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.75rem;
+        }
+      }
+
+      time {
+        font-size: 1.3rem;
+        color: vars.$clr-gray-light-1;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.4rem;
+        }
+
+        @include bp.md {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (max-width: 41.875em) {
+          font-size: 1.25rem;
+        }
+
+        @media screen and (max-width: 31.5em) {
+          font-size: 1.23rem;
+        }
+
+        @include bp.sm {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.65rem;
         }
       }
     }
