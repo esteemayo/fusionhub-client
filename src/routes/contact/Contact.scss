@@ -2,6 +2,89 @@
 @use '../../styles/variables.scss' as vars;
 
 .contact {
+  // display: flex;
+  // justify-content: center;
+
   &__container {
+    // width: 144rem;
+    min-height: 100vh;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 30vw;
+    background-color: rgba(vars.$clr-black, 0.5);
+
+    &--wrapper {
+      width: 144rem;
+      height: 100%;
+      position: relative;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+
+    &.left {
+      top: 0;
+      left: 0;
+
+      svg {
+        color: vars.$clr-pink-dark-1;
+      }
+    }
+
+    &.right {
+      bottom: 0;
+      right: 0;
+      transform: rotate(180deg);
+
+      svg {
+        color: vars.$clr-orange-dark;
+      }
+    }
+
+    svg {
+      width: 5rem;
+      height: 5rem;
+      stroke-width: 1px;
+
+      &:not(:first-child) {
+        margin-left: -3.65rem;
+      }
+    }
+  }
+
+  &__box {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    &--heading {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      text-decoration: underline wavy;
+      text-underline-offset: 1rem;
+      text-decoration-thickness: 0.1rem;
+      font-weight: 700;
+      font-size: 4rem;
+      color: inherit;
+    }
+
+    &--paragraph {
+      font-size: 1.4rem;
+      color: inherit;
+    }
   }
 }
