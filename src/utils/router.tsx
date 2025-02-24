@@ -4,7 +4,9 @@ import MainLayout from '../components/layouts/MainLayout';
 import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
 
 import {
+  About,
   Articles,
+  Contact,
   DislikedPosts,
   ForgotPassword,
   Home,
@@ -87,6 +89,14 @@ export const router = createBrowserRouter([
       {
         path: 'reset-password/:token',
         element: <ResetPassword />,
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
       },
       {
         path: '*',
