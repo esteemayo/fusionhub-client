@@ -1,8 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.contact {
+.contatct-info-item {
   &__container {
-    min-height: 100vh;
   }
 }

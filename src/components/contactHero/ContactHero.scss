@@ -1,0 +1,93 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.contact-hero {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 30vw;
+  background-color: rgba(vars.$clr-black, 0.5);
+  background-image: linear-gradient(
+      to right bottom,
+      vars.$clr-gray-dark-1,
+      vars.$clr-gray-dark-2
+    ),
+    url('/contact-bg-5.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &__wrapper {
+    width: 144rem;
+    height: 100%;
+    position: relative;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+
+    &.left {
+      top: 0;
+      left: 0;
+
+      svg {
+        color: vars.$clr-pink-dark-1;
+      }
+    }
+
+    &.right {
+      bottom: 0;
+      right: 0;
+      transform: rotate(180deg);
+
+      svg {
+        color: vars.$clr-orange-dark;
+      }
+    }
+
+    svg {
+      width: 5rem;
+      height: 5rem;
+      stroke-width: 1px;
+
+      &:not(:first-child) {
+        margin-left: -3.65rem;
+      }
+    }
+  }
+
+  &__box {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    &--heading {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      text-decoration: underline wavy;
+      text-underline-offset: 1rem;
+      text-decoration-thickness: 0.25rem;
+      text-decoration-color: vars.$clr-pink-dark-1;
+      font-weight: 700;
+      font-size: 4rem;
+      color: inherit;
+    }
+
+    &--paragraph {
+      width: 75%;
+      text-align: center;
+      font-size: 1.8rem;
+      color: inherit;
+      line-height: 1.4;
+    }
+  }
+}
