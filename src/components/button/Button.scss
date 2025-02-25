@@ -47,50 +47,58 @@
     height: 7rem;
   }
 
+  &.dark,
+  &.primary {
+    border: 2px solid transparent;
+  }
+
+  &.dark {
+    background-color: vars.$clr-black;
+  }
+
   &.primary {
     background-color: vars.$clr-pink-dark-1;
-    border: 2px solid transparent;
   }
 
   &.outline {
     background-color: transparent;
     border: 2px solid vars.$clr-secondary-blue;
+  }
 
-    img {
-      display: inline-block;
-      width: 2.5rem;
-      height: 2.5rem;
-      object-fit: cover;
+  img {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
 
-      @media screen and (max-width: 56.25em) {
-        width: 2.6rem;
-        height: 2.6rem;
-      }
+    @media screen and (max-width: 56.25em) {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
 
-      @media screen and (max-width: 51.25em) {
-        width: 2.7rem;
-        height: 2.7rem;
-      }
+    @media screen and (max-width: 51.25em) {
+      width: 2.7rem;
+      height: 2.7rem;
+    }
 
-      @media screen and (max-width: 17.5em) {
-        width: 2.6rem;
-        height: 2.6rem;
-      }
+    @media screen and (max-width: 17.5em) {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
 
-      @media screen and (min-width: 106.25em) {
-        width: 2.7rem;
-        height: 2.7rem;
-      }
+    @media screen and (min-width: 106.25em) {
+      width: 2.7rem;
+      height: 2.7rem;
+    }
 
-      @media screen and (min-width: 112.5em) {
-        width: 3rem;
-        height: 3rem;
-      }
+    @media screen and (min-width: 112.5em) {
+      width: 3rem;
+      height: 3rem;
+    }
 
-      @media screen and (min-width: 125em) {
-        width: 3.5rem;
-        height: 3.5rem;
-      }
+    @media screen and (min-width: 125em) {
+      width: 3.5rem;
+      height: 3.5rem;
     }
   }
 

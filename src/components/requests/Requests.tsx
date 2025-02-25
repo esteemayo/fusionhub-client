@@ -5,12 +5,12 @@ import './Requests.scss';
 
 const Requests = () => {
   return (
-    <section className='requests'>
+    <div className='requests'>
       <div className='requests__container'>
         <ContactForm />
         <Newsletter />
       </div>
-    </section>
+    </div>
   );
 };
 

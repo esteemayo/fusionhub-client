@@ -103,7 +103,7 @@ export interface ButtonProps
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   loading?: boolean;
   disabled?: boolean;
-  className: 'primary' | 'outline';
+  className: 'dark' | 'primary' | 'outline';
   onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

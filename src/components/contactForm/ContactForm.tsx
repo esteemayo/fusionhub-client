@@ -8,8 +8,9 @@ const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
+
   return (
-    <div className='contact-form'>
+    <section className='contact-form'>
       <div className='contact-form__container'>
         <h3 className='contact-form__container--heading'>Get in touch !</h3>
         <p className='contact-form__container--paragraph'>
@@ -29,7 +30,7 @@ const ContactForm = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 
