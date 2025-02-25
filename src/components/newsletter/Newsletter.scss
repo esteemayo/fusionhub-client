@@ -4,9 +4,9 @@
 .newsletter {
   flex: 1;
 
-  position: sticky;
-  top: 0;
-  height: max-content;
+  // position: sticky;
+  // top: 0;
+  // height: max-content;
   background-image: linear-gradient(
       to right bottom,
       rgba(vars.$clr-black, 0.15),
@@ -21,7 +21,7 @@
   overflow: hidden;
 
   &__container {
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
     background-color: rgba(vars.$clr-primary-blue, 0.85);
 
     &--heading {
@@ -90,6 +90,17 @@
   }
 
   &__wrapper {
-    margin-top: 2rem;
+    margin-top: 1.75rem;
+
+    .input {
+      &__control {
+        border-color: vars.$clr-tertiary-blue;
+
+        &:focus {
+          background-color: rgba(vars.$clr-secondary-blue, 0.5);
+          backdrop-filter: blur(3px);
+        }
+      }
+    }
   }
 }

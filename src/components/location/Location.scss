@@ -1,13 +1,14 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.contact-form {
-  flex: 1.5;
+.location {
+  flex: 1;
+  box-shadow: vars.$box;
+  border-radius: 2rem;
+  overflow: hidden;
 
   &__container {
-    padding: 3rem 2rem;
-    box-shadow: vars.$box;
-    border-radius: 2rem;
+    padding: 2.5rem 2rem;
 
     &--heading {
       display: inline-block;
@@ -45,7 +46,6 @@
     }
 
     &--paragraph {
-      width: 85%;
       font-size: 1.35rem;
       color: vars.$clr-gray-light-1;
 
@@ -76,21 +76,13 @@
   }
 
   &__wrapper {
-    margin-top: 3rem;
+    margin-top: 1.75rem;
 
-    &--email {
+    &--map {
       width: 100%;
-
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-
-    &--btn {
-      button {
-        width: fit-content;
-      }
+      height: 100%;
+      border: 0;
+      border-radius: 0.5rem;
     }
   }
 }

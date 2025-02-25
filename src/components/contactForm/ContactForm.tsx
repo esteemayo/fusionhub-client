@@ -14,8 +14,8 @@ const ContactForm = () => {
       <div className='contact-form__container'>
         <h3 className='contact-form__container--heading'>Get in touch !</h3>
         <p className='contact-form__container--paragraph'>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis labore
-          blanditiis.
+          Feel free to reach out to us with any questions or inquiries. We're
+          here to help and look forward to hearing from you!
         </p>
         <form onSubmit={handleSubmit} className='contact-form__wrapper'>
           <div className='contact-form__wrapper--email'>

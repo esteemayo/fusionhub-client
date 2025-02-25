@@ -13,8 +13,8 @@ const Newsletter = () => {
       <div className='newsletter__container'>
         <h3 className='newsletter__container--heading'>Our newsletters</h3>
         <p className='newsletter__container--paragraph'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe iusto
-          nemo minima exercitationem.
+          Subscribe to our newsletter to get the latest updates directly to your
+          inbox.
         </p>
         <form onSubmit={handleSubmit} className='newsletter__wrapper'>
           <Input type='email' name='email' placeholder='Email address' />

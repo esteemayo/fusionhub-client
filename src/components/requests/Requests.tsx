@@ -1,4 +1,5 @@
 import Newsletter from '../newsletter/Newsletter';
+import Location from '../location/Location';
 import ContactForm from '../contactForm/ContactForm';
 
 import './Requests.scss';
@@ -8,7 +9,10 @@ const Requests = () => {
     <div className='requests'>
       <div className='requests__container'>
         <ContactForm />
-        <Newsletter />
+        <div className='requests__wrapper'>
+          <Newsletter />
+          <Location />
+        </div>
       </div>
     </div>
   );
