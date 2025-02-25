@@ -1,7 +1,61 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.contatct-info-item {
+.contact-info-item {
+  width: 40rem;
+  min-height: 20rem;
+  padding: 4rem 2rem;
+  box-shadow: vars.$box;
+  border-radius: 2rem;
+
+  &:first-child {
+    background-color: transparent;
+  }
+
+  &:nth-child(2) {
+    background-color: vars.$clr-secondary-blue;
+
+    svg {
+      color: vars.$clr-tertiary-blue;
+    }
+  }
+
+  &:last-child {
+    background-color: vars.$clr-tertiary-blue;
+
+    svg {
+      color: vars.$clr-secondary-blue;
+    }
+  }
+
   &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--icon {
+      width: 4rem;
+      height: 4rem;
+      color: currentColor;
+      stroke-width: 1px;
+    }
+
+    &--label {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__details {
+    font-size: 1.4rem;
+    color: currentColor;
+    line-height: 1.3;
   }
 }

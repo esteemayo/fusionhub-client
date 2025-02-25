@@ -1,4 +1,5 @@
 import ContactHero from '../../components/contactHero/ContactHero';
+import Requests from '../../components/requests/Requests';
 import ContactInfo from '../../components/contactInfo/ContactInfo';
 
 import './Contact.scss';
@@ -9,6 +10,7 @@ const Contact = () => {
       <div className='contact__container'>
         <ContactHero />
         <ContactInfo />
+        <Requests />
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ export interface InputProps
   id?: string;
   name?: string;
   type?: HTMLInputTypeAttribute;
-  label: string;
+  label?: string;
   error?: string;
   disabled?: boolean;
   required?: boolean;
@@ -277,6 +277,14 @@ export interface FeatureCardProps {
   createdAt: string;
 }
 
+export interface ContactInfoItemProps {
+  icon: string;
+  phone?: string;
+  email?: string;
+  location?: string;
+  text: string;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
@@ -391,4 +399,13 @@ export type AccountMenuType = {
 export type CommentUserType = {
   id: string;
   img: string;
+}[];
+
+export type ContactInfoItemType = {
+  id: number;
+  icon: string;
+  phone?: string;
+  email?: string;
+  location?: string;
+  text: string;
 }[];

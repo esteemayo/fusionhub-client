@@ -1,5 +1,7 @@
 import ContactInfoItem from '../contactInfoItem/ContactInfoItem';
 
+import { contactInfoItems } from '../../data';
+
 import './ContactInfo.scss';
 
 const ContactInfo = () => {
@@ -10,13 +12,12 @@ const ContactInfo = () => {
           Contact information
         </h2>
         <p className='contact-info__container--desc'>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-          voluptate.
+          Our team is available to assist you with any inquiries you may have.
         </p>
         <div className='contact-info__container--wrapper'>
-          <ContactInfoItem />
-          <ContactInfoItem />
-          <ContactInfoItem />
+          {contactInfoItems.map((item) => {
+            return <ContactInfoItem key={item.id} {...item} />;
+          })}
         </div>
       </div>
     </section>
