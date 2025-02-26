@@ -286,10 +286,17 @@ export interface ContactInfoItemProps {
 }
 
 export interface ContactHeadingProps {
+  id: number;
   title: string;
   subtitle: string;
   text?: 'sm';
   type: 'lg' | 'md' | 'sm';
+}
+
+export interface AboutItemProps {
+  id: number;
+  title: string;
+  subtitle: string;
 }
 
 export type MenuItemType = {
@@ -415,4 +422,10 @@ export type ContactInfoItemType = {
   email?: string;
   location?: string;
   text: string;
+}[];
+
+export type aboutItemType = {
+  id: number;
+  title: string;
+  subtitle: string;
 }[];

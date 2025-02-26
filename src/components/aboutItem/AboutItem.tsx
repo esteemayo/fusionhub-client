@@ -1,16 +1,13 @@
+import { AboutItemProps } from '../../types';
+
 import './AboutItem.scss';
 
-const AboutItem = () => {
+const AboutItem = ({ title, subtitle }: AboutItemProps) => {
   return (
     <article className='about-item'>
       <div className='about-item__container'>
-        <h2 className='about-item__container--heading'>Strategy</h2>
-        <p className='about-item__container--paragraph'>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis
-          asperiores a repellat officiis aliquam totam incidunt atque. Eaque
-          distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus
-          corrupti quidem!
-        </p>
+        <h2 className='about-item__container--heading'>{title}</h2>
+        <p className='about-item__container--paragraph'>{subtitle}</p>
       </div>
     </article>
   );
