@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.contact-info {
+.about-items {
   display: flex;
   justify-content: center;
 
@@ -10,14 +10,10 @@
   &__container {
     width: 110rem;
 
-    &--wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 5rem;
-
-      margin-top: 3rem;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
   }
 }

@@ -28,6 +28,22 @@
     }
   }
 
+  &:nth-child(2),
+  &:last-child {
+    .contact-info-item {
+      &__wrapper {
+        &--label {
+          color: vars.$clr-gray-light-3;
+        }
+      }
+
+      &__details {
+        color: vars.$clr-gray-light-1;
+        color: #ccc;
+      }
+    }
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
