@@ -1,3 +1,5 @@
+import { formatPhoneNumber } from 'react-phone-number-input';
+
 import { ContactInfoItemProps } from '../../types';
 
 import './ContactInfoItem.scss';
@@ -24,7 +26,7 @@ const ContactInfoItem = ({
             <path strokeLinecap='round' strokeLinejoin='round' d={icon} />
           </svg>
           <span className='contact-info-item__wrapper--label'>
-            {phone || email || location}
+            {(phone && formatPhoneNumber(phone!)) || email || location}
           </span>
         </div>
         <span className='contact-info-item__details'>{text}</span>

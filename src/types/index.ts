@@ -285,6 +285,13 @@ export interface ContactInfoItemProps {
   text: string;
 }
 
+export interface ContactHeadingProps {
+  title: string;
+  subtitle: string;
+  text?: 'sm';
+  type: 'lg' | 'md' | 'sm';
+}
+
 export type MenuItemType = {
   id: number;
   url: string;

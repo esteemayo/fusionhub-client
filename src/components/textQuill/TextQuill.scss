@@ -2,6 +2,8 @@
 @use '../../styles/variables.scss' as vars;
 
 .text-quill {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;

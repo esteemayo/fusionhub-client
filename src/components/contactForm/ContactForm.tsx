@@ -1,10 +1,17 @@
-import Button from '../button/Button';
-import Input from '../input/Input';
+import { useState } from 'react';
+import { Value } from 'react-phone-number-input';
+
 import Textarea from '../textarea/Textarea';
+import Input from '../input/Input';
+import PhoneNumber from '../phoneNumber/PhoneNumber';
+import Button from '../button/Button';
+import ContactHeading from '../contactHeading/ContactHeading';
 
 import './ContactForm.scss';
 
 const ContactForm = () => {
+  const [value, setValue] = useState<Value | undefined>();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -12,15 +19,20 @@ const ContactForm = () => {
   return (
     <section className='contact-form'>
       <div className='contact-form__container'>
-        <h3 className='contact-form__container--heading'>Get in touch !</h3>
-        <p className='contact-form__container--paragraph'>
-          Feel free to reach out to us with any questions or inquiries. We're
-          here to help and look forward to hearing from you!
-        </p>
+        <ContactHeading
+          title='Get in touch !'
+          subtitle="Feel free to reach out to us with any questions or inquiries. We're here to help and look forward to hearing from you!"
+          text='sm'
+          type='md'
+        />
         <form onSubmit={handleSubmit} className='contact-form__wrapper'>
           <div className='contact-form__wrapper--email'>
             <Input type='email' name='email' placeholder='Email address' />
-            <Input type='phone' name='phone' placeholder='Phone number' />
+            <PhoneNumber
+              value={value}
+              placeholder='Phone number'
+              onChange={setValue}
+            />
           </div>
           <Input name='name' placeholder='Name' />
           <Input name='subject' placeholder='Subject' />

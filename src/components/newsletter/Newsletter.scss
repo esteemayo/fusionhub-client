@@ -4,9 +4,6 @@
 .newsletter {
   flex: 1;
 
-  // position: sticky;
-  // top: 0;
-  // height: max-content;
   background-image: linear-gradient(
       to right bottom,
       rgba(vars.$clr-black, 0.15),
@@ -23,70 +20,6 @@
   &__container {
     padding: 2.5rem 2rem;
     background-color: rgba(vars.$clr-primary-blue, 0.85);
-
-    &--heading {
-      display: inline-block;
-      text-transform: capitalize;
-      text-rendering: optimizeLegibility;
-      font-weight: 600;
-      font-size: 2.25rem;
-      color: inherit;
-      margin-bottom: 1.25rem;
-      line-height: 1.3;
-
-      @media screen and (max-width: 56.25em) {
-        font-size: 2.35rem;
-      }
-
-      @media screen and (max-width: 51.25em) {
-        font-size: 2.45rem;
-      }
-
-      @media screen and (max-width: 22.5em) {
-        font-size: 2.3rem;
-      }
-
-      @media screen and (min-width: 106.25em) {
-        font-size: 2.35rem;
-      }
-
-      @media screen and (min-width: 112.5em) {
-        font-size: 2.45rem;
-      }
-
-      @media screen and (min-width: 125em) {
-        font-size: 2.55rem;
-      }
-    }
-
-    &--paragraph {
-      font-size: 1.35rem;
-      color: vars.$clr-gray-light-1;
-
-      @media screen and (max-width: 56.25em) {
-        font-size: 1.45rem;
-      }
-
-      @media screen and (max-width: 51.25em) {
-        font-size: 1.55rem;
-      }
-
-      @media screen and (max-width: 22.5em) {
-        font-size: 1.4rem;
-      }
-
-      @media screen and (min-width: 106.25em) {
-        font-size: 1.45rem;
-      }
-
-      @media screen and (min-width: 112.5em) {
-        font-size: 1.55rem;
-      }
-
-      @media screen and (min-width: 125em) {
-        font-size: 1.65rem;
-      }
-    }
   }
 
   &__wrapper {

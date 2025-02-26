@@ -1,3 +1,4 @@
+import ContactHeading from '../contactHeading/ContactHeading';
 import ContactInfoItem from '../contactInfoItem/ContactInfoItem';
 
 import { contactInfoItems } from '../../data';
@@ -8,12 +9,11 @@ const ContactInfo = () => {
   return (
     <section className='contact-info'>
       <div className='contact-info__container'>
-        <h2 className='contact-info__container--heading'>
-          Contact information
-        </h2>
-        <p className='contact-info__container--desc'>
-          Our team is available to assist you with any inquiries you may have.
-        </p>
+        <ContactHeading
+          title='Contact information'
+          subtitle='Our team is available to assist you with any inquiries you may have.'
+          type='lg'
+        />
         <div className='contact-info__container--wrapper'>
           {contactInfoItems.map((item) => {
             return <ContactInfoItem key={item.id} {...item} />;
