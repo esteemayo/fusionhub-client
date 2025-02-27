@@ -1,5 +1,7 @@
 import TeamItem from '../teamItem/TeamItem';
 
+import { teamItems } from '../../data';
+
 import './Team.scss';
 
 const Team = () => {
@@ -14,9 +16,9 @@ const Team = () => {
           </h3>
         </div>
         <div className='team__box'>
-          <TeamItem />
-          <TeamItem />
-          <TeamItem />
+          {teamItems.map((team) => {
+            return <TeamItem key={team.id} {...team} />;
+          })}
         </div>
       </div>
     </section>

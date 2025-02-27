@@ -1,7 +1,8 @@
 import { Value } from 'react-phone-number-input';
-import React, { HTMLInputTypeAttribute } from 'react';
-import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { Action } from 'redux';
+import React, { HTMLInputTypeAttribute } from 'react';
+import { IconType } from 'react-icons/lib';
+import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 
 export interface NavItemProps {
   url: string;
@@ -299,6 +300,14 @@ export interface AboutItemProps {
   subtitle: string;
 }
 
+export interface TeamItemProps {
+  id: number;
+  img: string;
+  name: string;
+  role: string;
+  socials: IconType[];
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
@@ -428,4 +437,12 @@ export type aboutItemType = {
   id: number;
   title: string;
   subtitle: string;
+}[];
+
+export type TeamType = {
+  id: number;
+  img: string;
+  name: string;
+  role: string;
+  socials: IconType[];
 }[];

@@ -18,6 +18,7 @@
       height: 100%;
       object-fit: cover;
       object-fit: contain;
+      background-color: vars.$clr-black;
     }
   }
 
@@ -51,9 +52,21 @@
       align-items: center;
       gap: 1rem;
 
-      svg {
-        font-size: 2rem;
-        fill: vars.$clr-gray-light-1;
+      a {
+        &:link,
+        &:visited {
+          color: vars.$clr-gray-light-1;
+
+          svg {
+            font-size: 1.5rem;
+            fill: currentColor;
+          }
+        }
+
+        &:disabled {
+          opacity: 0.75;
+          cursor: default;
+        }
       }
     }
   }

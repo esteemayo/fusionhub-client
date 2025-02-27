@@ -1,16 +1,15 @@
-import { FaLinkedinIn } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { FaGooglePlusG } from 'react-icons/fa6';
-import { FaInstagram } from 'react-icons/fa';
+
+import { TeamItemProps } from '../../types';
 
 import './TeamItem.scss';
 
-const TeamItem = () => {
+const TeamItem = ({ img, name, role, socials }: TeamItemProps) => {
   return (
     <article className='team-item'>
       <div className='team-item__container'>
         <img
-          src='/user-4.webp'
+          src={img}
           width={350}
           height={250}
           alt='avatar'
@@ -18,18 +17,17 @@ const TeamItem = () => {
         />
       </div>
       <div className='team-item__wrapper'>
-        <h4 className='team-item__wrapper--name'>Tim kamerer</h4>
-        <span className='team-item__wrapper--role'>Technical director</span>
+        <h4 className='team-item__wrapper--name'>{name}</h4>
+        <span className='team-item__wrapper--role'>{role}</span>
         <div className='team-item__wrapper--social'>
-          <Link to='#'>
-            <FaGooglePlusG />
-          </Link>
-          <Link to='#'>
-            <FaInstagram />
-          </Link>
-          <Link to='#'>
-            <FaLinkedinIn />
-          </Link>
+          {socials.map((social, index) => {
+            const Icon = social;
+            return (
+              <Link key={index} to='#'>
+                <Icon />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </article>

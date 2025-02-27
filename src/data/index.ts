@@ -1,4 +1,14 @@
+import { FaInstagram } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { FaYoutube } from 'react-icons/fa6';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
+import { FaGooglePlusG } from 'react-icons/fa6';
+import { FaGithub } from 'react-icons/fa';
+
 import {
+  aboutItemType,
   AccountMenuType,
   CategoryType,
   CommentType,
@@ -10,6 +20,7 @@ import {
   RelatedPostType,
   RelatedTagType,
   TagItemType,
+  TeamType,
   TopPostType,
 } from '../types';
 
@@ -506,5 +517,56 @@ export const contactInfoItems: ContactInfoItemType = [
     `,
     location: 'New York, USA',
     text: 'Visit us at our office in New York, USA. Our team is available to meet with you in person to discuss any inquiries or support you may need. We look forward to welcoming you.',
+  },
+];
+
+export const aboutItems: aboutItemType = [
+  {
+    id: 1,
+    title: 'Strategy',
+    subtitle:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+  },
+  {
+    id: 2,
+    title: 'Design',
+    subtitle:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+  },
+  {
+    id: 3,
+    title: 'Branding',
+    subtitle:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+  },
+  {
+    id: 4,
+    title: 'Development',
+    subtitle:
+      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+  },
+];
+
+export const teamItems: TeamType = [
+  {
+    id: 1,
+    img: '/user-4.webp',
+    name: 'Tim kamerer',
+    role: 'Technical director',
+    socials: [FaGooglePlusG, FaInstagram, FaLinkedinIn],
+  },
+  {
+    id: 2,
+    img: '/user-3.jpeg',
+    name: 'Lindsay perlen',
+    role: 'Senior producer',
+    socials: [FaFacebookF, FaXTwitter, FaYoutube],
+  },
+  {
+    id: 3,
+    img: '/user-5.webp',
+    name: 'John brown',
+    role: 'Software developer',
+    socials: [FaGithub, FaXTwitter, FaTiktok],
   },
 ];
