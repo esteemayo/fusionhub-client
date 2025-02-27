@@ -16,6 +16,7 @@ import {
   ContactInfoItemType,
   FeedItemTypes,
   MenuItemType,
+  PartnerItemType,
   PostItemType,
   RelatedPostType,
   RelatedTagType,
@@ -568,5 +569,78 @@ export const teamItems: TeamType = [
     name: 'John brown',
     role: 'Software developer',
     socials: [FaGithub, FaXTwitter, FaTiktok],
+  },
+];
+
+export const partnerItems: PartnerItemType = [
+  {
+    id: 1,
+    imgSrc: '/86-ideas.png',
+    alt: '86 Ideas Logo',
+  },
+  {
+    id: 2,
+    imgSrc: '/viatris.png',
+    alt: 'Viatris Logo',
+  },
+  {
+    id: 3,
+    imgSrc: '/gamelove.png',
+    alt: 'Game Love Logo',
+  },
+  {
+    id: 4,
+    imgSrc: '/apple.png',
+    alt: 'Apple Logo',
+  },
+  {
+    id: 5,
+    imgSrc: '/gen3.png',
+    alt: 'Gen3 Logo',
+  },
+  {
+    id: 6,
+    imgSrc: '/golfstar.png',
+    alt: 'GolfStar Logo',
+  },
+  {
+    id: 7,
+    imgSrc: '/guardian.png',
+    alt: 'Guardian Logo',
+  },
+  {
+    id: 8,
+    imgSrc: '/paypal.png',
+    alt: 'Paypal Logo',
+  },
+  {
+    id: 9,
+    imgSrc: '/linkedin.png',
+    alt: 'Linkedin Logo',
+  },
+  {
+    id: 10,
+    imgSrc: '/jellyfish.png',
+    alt: 'Jelly Fish Logo',
+  },
+  {
+    id: 11,
+    imgSrc: '/tp.png',
+    alt: 'Tp Logo',
+  },
+  {
+    id: 12,
+    imgSrc: '/stripe.png',
+    alt: 'Stripe Logo',
+  },
+  {
+    id: 13,
+    imgSrc: '/dragon.png',
+    alt: 'Dragon Logo',
+  },
+  {
+    id: 14,
+    imgSrc: '/sakwa.png',
+    alt: 'Sakwa Logo',
   },
 ];

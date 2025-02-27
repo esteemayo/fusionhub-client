@@ -55,4 +55,19 @@
       }
     }
   }
+
+  &__icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5rem;
+
+    &--logo {
+      display: inline-block;
+      width: 9.5rem;
+      height: 9.5rem;
+      object-fit: cover;
+    }
+  }
 }

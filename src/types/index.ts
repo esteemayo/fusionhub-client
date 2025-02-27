@@ -446,3 +446,9 @@ export type TeamType = {
   role: string;
   socials: IconType[];
 }[];
+
+export type PartnerItemType = {
+  id: number;
+  imgSrc: string;
+  alt?: string;
+}[];
