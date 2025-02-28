@@ -266,8 +266,8 @@
 
       background-image: linear-gradient(
           to right bottom,
-          vars.$clr-gray-dark-1,
-          vars.$clr-gray-dark-2
+          rgba(vars.$clr-black, 0.85),
+          rgba(vars.$clr-gray-dark-1, 0.15)
         ),
         url(/post-9.webp);
 
@@ -285,8 +285,8 @@
 
       background-image: linear-gradient(
           to right bottom,
-          vars.$clr-gray-dark-1,
-          vars.$clr-gray-dark-2
+          rgba(vars.$clr-black, 0.85),
+          rgba(vars.$clr-gray-dark-1, 0.15)
         ),
         url(/post-10.webp);
 

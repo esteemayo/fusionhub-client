@@ -526,25 +526,25 @@ export const aboutItems: aboutItemType = [
     id: 1,
     title: 'Strategy',
     subtitle:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+      'Our strategy is to provide high-quality content that engages and informs our readers. We focus on delivering value through well-researched articles, insightful commentary, and practical advice. Our goal is to build a loyal audience by consistently meeting their needs and exceeding their expectations.',
   },
   {
     id: 2,
     title: 'Design',
     subtitle:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+      'Our design philosophy centers around user experience and visual appeal. We aim to create a clean, intuitive, and aesthetically pleasing interface that enhances readability and navigation. By prioritizing simplicity and elegance, we ensure that our readers can easily access and enjoy our content.',
   },
   {
     id: 3,
     title: 'Branding',
     subtitle:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+      'Our branding efforts are focused on creating a strong, recognizable identity that resonates with our audience. We strive to maintain consistency in our visual elements, tone of voice, and messaging across all platforms. By building a cohesive brand, we aim to establish trust and credibility with our readers.',
   },
   {
     id: 4,
     title: 'Development',
     subtitle:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non debitis asperiores a repellat officiis aliquam totam incidunt atque. Eaque distinctio pariatur quam dolor quo, debitis omnis fugit necessitatibus corrupti quidem!',
+      'Our development team is dedicated to building a robust and scalable platform that supports our content strategy and design philosophy. We use the latest technologies and best practices to ensure our site is fast, secure, and reliable. Our goal is to provide a seamless experience for our readers, whether they are accessing our content on a desktop, tablet, or mobile device.',
   },
 ];
 
