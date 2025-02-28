@@ -12,7 +12,7 @@
     url('/hero-1.jpg');
   background-size: cover;
   background-position: center;
-  background-color: vars.$clr-secondary-blue;
+  background-color: rgba(vars.$clr-black, 0.2);
 
   display: flex;
   flex-direction: column;

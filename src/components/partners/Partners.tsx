@@ -1,4 +1,5 @@
 import { partnerItems } from '../../data';
+
 import './Partners.scss';
 
 const Partners = () => {

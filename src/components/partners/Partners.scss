@@ -62,6 +62,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 5rem;
+    row-gap: 2rem;
+
+    margin-top: 5rem;
 
     &--logo {
       display: inline-block;
