@@ -114,6 +114,11 @@ export interface FormButtonProps {
   disabled?: boolean;
 }
 
+export interface PostClientProps {
+  isOpen: boolean;
+  ref: React.LegacyRef<HTMLInputElement> | undefined;
+}
+
 export interface CommentProps {
   onAction?(): void;
   onUpdate?(): void;

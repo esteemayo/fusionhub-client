@@ -39,12 +39,12 @@ export const menuItems: MenuItemType = [
   {
     id: 3,
     url: '/about',
-    label: 'About us',
+    label: 'About',
   },
   {
     id: 4,
     url: '/contact',
-    label: 'Contact us',
+    label: 'Contact',
   },
 ];
 

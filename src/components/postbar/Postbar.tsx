@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import './Postbar.scss';
 
-const Postbar = () => {
+const Postbar = ({ onClick }: { onClick?: () => void }) => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postsMenu }));
 
@@ -49,7 +49,7 @@ const Postbar = () => {
               </li>
               <span>|</span>
               <li className='postbar__lists--item' onClick={handleClick}>
-                <Link to='#' className='postbar__lists--item'>
+                <Link to='#' className='postbar__lists--item' onClick={onClick}>
                   Left sidebar
                 </Link>
               </li>

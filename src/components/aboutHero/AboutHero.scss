@@ -19,6 +19,42 @@
   background-position: center;
   background-repeat: no-repeat;
 
+  @include bp.xxl {
+    height: 33vw;
+  }
+
+  @media screen and (max-width: 76.25em) {
+    height: 35vw;
+  }
+
+  @media screen and (max-width: 68.75em) {
+    height: 37vw;
+  }
+
+  @include bp.lg {
+    height: 40vw;
+  }
+
+  @media screen and (max-width: 59.375em) {
+    height: 43vw;
+  }
+
+  @media screen and (max-width: 56.25em) {
+    height: 47vw;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    height: 31vw;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    height: 33vw;
+  }
+
+  @media screen and (min-width: 125em) {
+    height: 37vw;
+  }
+
   &__container {
     width: 144rem;
     height: 100%;
@@ -45,6 +81,30 @@
       font-weight: 700;
       font-size: 4rem;
       color: inherit;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 4.1rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 4.2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 4.05rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 4.1rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 4.2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 4.3rem;
+      }
     }
 
     &--paragraph {
@@ -53,6 +113,30 @@
       font-size: 1.8rem;
       color: inherit;
       line-height: 1.4;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.1rem;
+      }
     }
   }
 }

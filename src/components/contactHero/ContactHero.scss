@@ -80,6 +80,30 @@
       font-weight: 700;
       font-size: 4rem;
       color: inherit;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 4.1rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 4.2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 4.05rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 4.1rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 4.2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 4.3rem;
+      }
     }
 
     &--paragraph {
@@ -88,6 +112,30 @@
       font-size: 1.8rem;
       color: inherit;
       line-height: 1.4;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.1rem;
+      }
     }
   }
 }

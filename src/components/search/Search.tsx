@@ -2,7 +2,11 @@ import { useSearch } from '../../hooks/useSearch';
 
 import './Search.scss';
 
-const Search = () => {
+const Search = ({
+  ref,
+}: {
+  ref: React.LegacyRef<HTMLInputElement> | undefined;
+}) => {
   const { handleSubmit } = useSearch();
 
   return (
@@ -14,6 +18,7 @@ const Search = () => {
           id='search'
           placeholder='Search posts...'
           className='search-form__container--input'
+          ref={ref}
         />
         <svg
           xmlns='http://www.w3.org/2000/svg'
