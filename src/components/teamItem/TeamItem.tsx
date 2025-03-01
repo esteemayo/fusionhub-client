@@ -19,7 +19,7 @@ const TeamItem = ({ img, name, role, socials }: TeamItemProps) => {
       <div className='team-item__wrapper'>
         <h4 className='team-item__wrapper--name'>{name}</h4>
         <span className='team-item__wrapper--role'>{role}</span>
-        <div className='team-item__wrapper--social'>
+        <div className='team-item__wrapper--socials'>
           {socials.map((social, index) => {
             const Icon = social;
             return (
