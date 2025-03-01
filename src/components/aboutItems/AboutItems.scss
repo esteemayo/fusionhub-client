@@ -12,8 +12,47 @@
 
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 4rem;
+
+    @include bp.xxl {
+      width: 105rem;
+      gap: 5rem;
+    }
+
+    @media screen and (max-width: 68.75em) {
+      width: 100rem;
+      gap: 6rem;
+    }
+
+    @include bp.lg {
+      width: 90rem;
+    }
+
+    @media screen and (max-width: 59.375em) {
+      width: 85rem;
+    }
+
+    @media screen and (max-width: 57.5em) {
+      width: 83rem;
+    }
+
+    @media screen and (max-width: 56.25em) {
+      width: 88rem;
+    }
+
+    @media screen and (max-width: 53.75em) {
+      width: 85rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 80rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 115rem;
+      gap: 7rem;
+    }
   }
 }

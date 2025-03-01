@@ -13,6 +13,30 @@
     display: flex;
     flex-direction: column;
 
+    @include bp.xxl {
+      width: 105rem;
+    }
+
+    @media screen and (max-width: 68.75em) {
+      width: 100rem;
+    }
+
+    @include bp.lg {
+      width: 90rem;
+    }
+
+    @media screen and (max-width: 59.375em) {
+      width: 85rem;
+    }
+
+    @media screen and (max-width: 57.5em) {
+      width: 83rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 115rem;
+    }
+
     &--heading {
       display: inline-block;
       text-transform: uppercase;

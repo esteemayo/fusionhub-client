@@ -4,6 +4,30 @@
 .about-item {
   width: 53rem;
 
+  @include bp.xxl {
+    width: 50rem;
+  }
+
+  @media screen and (max-width: 68.75em) {
+    width: 47rem;
+  }
+
+  @include bp.lg {
+    width: 42rem;
+  }
+
+  @media screen and (max-width: 59.375em) {
+    width: 39rem;
+  }
+
+  @media screen and (max-width: 57.5em) {
+    width: 38rem;
+  }
+
+  @media screen and (max-width: 56.25em) {
+    width: 41rem;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;

@@ -29,10 +29,8 @@ const ContactHero = () => {
           <h1 className='contact-hero__box--heading'>Contact us</h1>
           <p className='contact-hero__box--paragraph'>
             If you have any questions, feedback, or just want to get in touch,
-            feel free to reach out to us. We're here to help and would love to
-            hear from you. You can contact us via email, phone, or through our
-            social media channels. We aim to respond to all inquiries within 24
-            hours.
+            feel free to reach out to us. You can contact us via email, phone,
+            or through our social media channels.
           </p>
         </div>
         <div className='contact-hero__icon right'>
