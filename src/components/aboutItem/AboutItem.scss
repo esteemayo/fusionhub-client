@@ -28,6 +28,14 @@
     width: 41rem;
   }
 
+  @media screen and (max-width: 53.75em) {
+    width: 39rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    width: 100%;
+  }
+
   &__container {
     display: flex;
     flex-direction: column;
