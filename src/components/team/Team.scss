@@ -7,6 +7,10 @@
 
   padding: 5rem 0;
 
+  @include bp.sm {
+    padding: 3rem 0;
+  }
+
   &__container {
     width: 110rem;
 
@@ -162,6 +166,9 @@
 
       @media screen and (max-width: 37.5em) {
         width: 100%;
+        text-align: left;
+        word-break: break-all;
+        hyphens: auto;
       }
 
       @media screen and (max-width: 22.5em) {
@@ -225,7 +232,16 @@
     }
 
     @media screen and (max-width: 26.875em) {
-      // row-gap: 3rem;
+      gap: 4rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      gap: 2.5rem;
     }
   }
 }
