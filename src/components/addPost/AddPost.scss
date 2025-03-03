@@ -188,8 +188,9 @@
     outline: 0;
     width: 8rem;
     height: 8rem;
-    background-color: vars.$clr-pink-dark-1;
+    background-color: rgba(vars.$clr-pink-dark-1, 0.75);
     color: vars.$clr-white;
+    backdrop-filter: blur(1px);
     border-radius: 50%;
     cursor: pointer;
 

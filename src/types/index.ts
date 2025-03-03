@@ -292,7 +292,6 @@ export interface ContactInfoItemProps {
 }
 
 export interface ContactHeadingProps {
-  id: number;
   title: string;
   subtitle: string;
   text?: 'sm';
@@ -300,13 +299,11 @@ export interface ContactHeadingProps {
 }
 
 export interface AboutItemProps {
-  id: number;
   title: string;
   subtitle: string;
 }
 
 export interface TeamItemProps {
-  id: number;
   img: string;
   name: string;
   role: string;

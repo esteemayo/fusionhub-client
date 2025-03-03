@@ -33,10 +33,6 @@
     display: flex;
     align-items: center;
     gap: 2rem;
-
-    // &:nth-child(2n) {
-    //   flex-direction: row-reverse;
-    // }
   }
 
   @media screen and (min-width: 106.25em) {
