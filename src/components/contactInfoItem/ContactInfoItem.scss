@@ -11,6 +11,36 @@
   @media screen and (max-width: 68.75em) {
     width: 47.5rem;
   }
+
+  @include bp.lg {
+    width: 42rem;
+  }
+
+  @media screen and (max-width: 59.375em) {
+    width: 40rem;
+  }
+
+  @media screen and (max-width: 57.5em) {
+    width: 39rem;
+  }
+
+  @media screen and (max-width: 56.25em) {
+    width: 41rem;
+  }
+
+  @media screen and (max-width: 53.75em) {
+    width: 39rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    width: 100%;
+    min-height: 0;
+  }
+
+  @media screen and (max-width: 26.25em) {
+    padding: 2rem;
+  }
+
   &:first-child {
     background-color: transparent;
   }
@@ -64,6 +94,36 @@
       height: 4rem;
       color: currentColor;
       stroke-width: 1px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 4.15rem;
+        height: 4.15rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 3rem;
+        height: 3rem;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 4.25rem;

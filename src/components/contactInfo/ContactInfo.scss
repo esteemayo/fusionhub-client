@@ -138,6 +138,26 @@
         flex-wrap: wrap;
         gap: 5rem;
       }
+
+      @media screen and (max-width: 56.25em) {
+        gap: 6rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        gap: 5rem;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        gap: 4rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        gap: 3rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        gap: 2.5rem;
+      }
     }
   }
 }
