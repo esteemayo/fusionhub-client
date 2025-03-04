@@ -17,6 +17,10 @@
   border-radius: 2rem;
   overflow: hidden;
 
+  @media screen and (max-width: 57.5em) {
+    flex: unset;
+  }
+
   &__container {
     padding: 2.5rem 2rem;
     background-color: rgba(vars.$clr-primary-blue, 0.85);
@@ -28,6 +32,10 @@
 
   &__wrapper {
     margin-top: 1.75rem;
+
+    @media screen and (max-width: 57.5em) {
+      margin-top: 3rem;
+    }
 
     .input {
       &__control {

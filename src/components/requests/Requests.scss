@@ -36,10 +36,12 @@
 
     @media screen and (max-width: 57.5em) {
       width: 83rem;
+      gap: 5rem;
     }
 
     @media screen and (max-width: 56.25em) {
       width: 88rem;
+      gap: 6rem;
     }
 
     @media screen and (max-width: 53.75em) {
@@ -48,6 +50,7 @@
 
     @media screen and (max-width: 51.25em) {
       width: 80rem;
+      gap: 5rem;
     }
 
     @include bp.md {
@@ -80,6 +83,7 @@
 
     @media screen and (max-width: 26.875em) {
       width: 47rem;
+      gap: 4rem;
     }
 
     @media screen and (max-width: 26.25em) {
@@ -100,6 +104,7 @@
 
     @media screen and (max-width: 22.5em) {
       width: 38rem;
+      gap: 3rem;
     }
 
     @media screen and (max-width: 21.5em) {
@@ -116,6 +121,7 @@
 
     @media screen and (max-width: 17.5em) {
       width: 30rem;
+      gap: 2.5rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -145,7 +151,27 @@
 
     @media screen and (max-width: 57.5em) {
       flex-direction: column;
+      gap: 5rem;
+    }
+
+    @media screen and (max-width: 56.25em) {
       gap: 6rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      gap: 5rem;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      gap: 4rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      gap: 3rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      gap: 2.5rem;
     }
   }
 }

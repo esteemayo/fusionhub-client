@@ -7,12 +7,58 @@
   border-radius: 2rem;
   overflow: hidden;
 
+  @media screen and (max-width: 57.5em) {
+    flex: unset;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
   &__container {
     padding: 2.5rem 2rem;
+
+    @media screen and (max-width: 57.5em) {
+      padding: 3rem 2rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      padding: 0;
+    }
   }
 
   &__wrapper {
     margin-top: 1.75rem;
+
+    @media screen and (max-width: 57.5em) {
+      height: 30rem;
+      margin-top: 3rem;
+    }
+
+    @media screen and (max-width: 56.25em) {
+      height: 31rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 32rem;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      height: 27rem;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      height: 25rem;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      height: 23rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 20rem;
+    }
 
     @media screen and (min-width: 106.25em) {
       height: 16.5rem;

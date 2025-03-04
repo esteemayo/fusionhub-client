@@ -24,11 +24,24 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 2rem;
+
+      @include bp.md {
+        flex-direction: column;
+        gap: 0rem;
+
+        &:nth-child(2n-1) {
+          margin-bottom: 2rem;
+        }
+      }
     }
 
     &--btn {
       button {
         width: fit-content;
+
+        @include bp.sm {
+          width: 100%;
+        }
       }
     }
   }
