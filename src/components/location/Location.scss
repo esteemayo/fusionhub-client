@@ -60,6 +60,10 @@
       height: 20rem;
     }
 
+    @media screen and (max-width: 17.5em) {
+      height: 17rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       height: 16.5rem;
     }

@@ -21,12 +21,21 @@
     flex: unset;
   }
 
+  @media screen and (max-width: 18.75em) {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
   &__container {
     padding: 2.5rem 2rem;
     background-color: rgba(vars.$clr-primary-blue, 0.85);
 
     @include bp.lg {
       padding: 4.2rem 2rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      padding: 0;
     }
   }
 

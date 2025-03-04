@@ -102,6 +102,10 @@
 
     &.sm {
       width: 85%;
+
+      @include bp.sm {
+        width: 100%;
+      }
     }
 
     @media screen and (max-width: 56.25em) {

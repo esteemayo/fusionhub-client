@@ -117,11 +117,11 @@
 
     @media screen and (max-width: 18.75em) {
       width: 32rem;
+      gap: 5rem;
     }
 
     @media screen and (max-width: 17.5em) {
       width: 30rem;
-      gap: 2.5rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -170,8 +170,8 @@
       gap: 3rem;
     }
 
-    @media screen and (max-width: 17.5em) {
-      gap: 2.5rem;
+    @media screen and (max-width: 18.75em) {
+      gap: 5rem;
     }
   }
 }

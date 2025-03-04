@@ -12,6 +12,12 @@
     padding: 3rem 2rem;
     box-shadow: vars.$box;
     border-radius: 2rem;
+
+    @media screen and (max-width: 18.75em) {
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+    }
   }
 
   &__wrapper {
