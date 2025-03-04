@@ -20,6 +20,10 @@
   &__container {
     padding: 2.5rem 2rem;
     background-color: rgba(vars.$clr-primary-blue, 0.85);
+
+    @include bp.lg {
+      padding: 4.2rem 2rem;
+    }
   }
 
   &__wrapper {

@@ -9,10 +9,10 @@ const Requests = () => {
     <div className='requests'>
       <div className='requests__container'>
         <ContactForm />
-        <div className='requests__wrapper'>
+        <section className='requests__wrapper'>
           <Newsletter />
           <Location />
-        </div>
+        </section>
       </div>
     </div>
   );

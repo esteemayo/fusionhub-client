@@ -14,6 +14,18 @@
   &__wrapper {
     margin-top: 1.75rem;
 
+    @media screen and (min-width: 106.25em) {
+      height: 16.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 17rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 20.75rem;
+    }
+
     &--map {
       width: 100%;
       height: 100%;
