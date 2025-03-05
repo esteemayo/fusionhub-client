@@ -23,6 +23,10 @@
       padding: 3rem 2rem;
     }
 
+    @media screen and (max-width: 25em) {
+      padding: 2.5rem 1.5rem;
+    }
+
     @media screen and (max-width: 18.75em) {
       padding: 0;
     }

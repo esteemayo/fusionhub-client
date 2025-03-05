@@ -7,6 +7,10 @@
 
   padding: 8rem 0 5rem;
 
+  @include bp.sm {
+    padding: 6rem 0 3rem;
+  }
+
   &__container {
     width: 110rem;
 

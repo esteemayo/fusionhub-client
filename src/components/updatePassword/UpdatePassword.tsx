@@ -31,16 +31,16 @@ const UpdatePassword = () => {
                 label='New Password'
                 placeholder='New password'
               />
-              <div className='update-password__form--confirm'>
-                <Input
-                  type='password'
-                  name='passwordConfirm'
-                  label='Confirm New Password'
-                  placeholder='Confirm new password'
-                />
-              </div>
             </div>
-            <Button type='submit' label='Update Changes' className='primary' />
+            <div className='update-password__form--confirm'>
+              <Input
+                type='password'
+                name='passwordConfirm'
+                label='Confirm New Password'
+                placeholder='Confirm new password'
+              />
+            </div>
+            <Button type='submit' label='Update Changes' color='primary' />
           </form>
         </div>
       </div>

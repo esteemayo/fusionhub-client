@@ -36,15 +36,15 @@
   }
 
   @media screen and (min-width: 106.25em) {
-    width: 31rem;
-  }
-
-  @media screen and (min-width: 112.5em) {
     width: 32rem;
   }
 
+  @media screen and (min-width: 112.5em) {
+    width: 34rem;
+  }
+
   @media screen and (min-width: 125em) {
-    width: 33rem;
+    width: 37rem;
   }
 
   &__container {
@@ -112,15 +112,15 @@
     }
 
     @media screen and (min-width: 106.25em) {
-      height: 26rem;
-    }
-
-    @media screen and (min-width: 112.5em) {
       height: 27rem;
     }
 
+    @media screen and (min-width: 112.5em) {
+      height: 30rem;
+    }
+
     @media screen and (min-width: 125em) {
-      height: 28rem;
+      height: 35rem;
     }
 
     &--img {
@@ -167,12 +167,16 @@
       align-items: flex-start;
     }
 
+    @media screen and (min-width: 106.25em) {
+      min-height: 12.5rem;
+    }
+
     @media screen and (min-width: 112.5em) {
       min-height: 13rem;
     }
 
     @media screen and (min-width: 125em) {
-      min-height: 14rem;
+      min-height: 15rem;
     }
 
     &--name {
@@ -217,7 +221,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
 
@@ -260,7 +264,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.7rem;
+        font-size: 1.9rem;
       }
     }
 
@@ -311,7 +315,7 @@
             }
 
             @media screen and (min-width: 125em) {
-              font-size: 1.8rem;
+              font-size: 2rem;
             }
           }
         }

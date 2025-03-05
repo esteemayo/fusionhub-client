@@ -27,7 +27,7 @@ const CommentForm = ({
       <h4 className='comment-form__heading'>Post comment</h4>
       <form onSubmit={handleSubmit}>
         <Textarea name='desc' placeholder='Type your comments...' ref={ref} />
-        <Button type='submit' label='Post Comment' className='primary' />
+        <Button type='submit' label='Post Comment' color='primary' />
       </form>
     </div>
   );

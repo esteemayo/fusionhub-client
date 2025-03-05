@@ -20,7 +20,7 @@ const Newsletter = () => {
         <form onSubmit={handleSubmit} className='newsletter__wrapper'>
           <Input type='email' name='email' placeholder='Email address' />
           <div className='newsletter__wrapper--btn'>
-            <Button type='submit' label='Submit' className='dark' />
+            <Button type='submit' label='Submit' color='dark' />
           </div>
         </form>
       </div>

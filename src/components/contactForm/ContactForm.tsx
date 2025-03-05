@@ -38,7 +38,7 @@ const ContactForm = () => {
           <Input name='subject' placeholder='Subject' />
           <Textarea name='message' placeholder='Message' />
           <div className='contact-form__wrapper--btn'>
-            <Button type='submit' label='Send Message' className='primary' />
+            <Button type='submit' label='Send Message' color='primary' />
           </div>
         </form>
       </div>

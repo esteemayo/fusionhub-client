@@ -117,8 +117,16 @@
       width: 30rem;
     }
 
-    @media screen and (min-width: 125em) {
+    @media screen and (min-width: 106.25em) {
       width: 115rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 125rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 130rem;
     }
 
     &--heading {
@@ -131,6 +139,30 @@
       letter-spacing: 0.5px;
       line-height: 1.3;
       margin-bottom: 0.8rem;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 2.1rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 2.2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 2.05rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 2.1rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2.2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.5rem;
+      }
     }
 
     &--paragraph {
@@ -159,7 +191,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.75rem;
+        font-size: 1.95rem;
       }
     }
   }
@@ -210,6 +242,14 @@
     @media screen and (max-width: 22.5em) {
       column-gap: 3.3rem;
       margin-top: 3rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      column-gap: 6rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      column-gap: 7rem;
     }
 
     &--logo {
@@ -284,8 +324,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 11rem;
-        height: 11rem;
+        width: 12rem;
+        height: 12rem;
       }
     }
   }

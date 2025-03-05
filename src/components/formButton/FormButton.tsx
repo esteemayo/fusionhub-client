@@ -13,7 +13,7 @@ const FormButton = ({ label, loading, disabled }: FormButtonProps) => {
         label={label}
         loading={!!loading}
         disabled={!!disabled}
-        className='primary'
+        color='primary'
       />
       <GoogleButton />
     </div>

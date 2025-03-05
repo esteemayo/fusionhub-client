@@ -10,11 +10,11 @@
 
     &--data {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       gap: 2rem;
 
       @media screen and (max-width: 31.25em) {
+        flex-wrap: wrap;
         gap: 0rem;
       }
 
@@ -26,85 +26,11 @@
       }
 
       input {
-        width: 39rem;
         background-color: vars.$clr-primary-blue;
         border-color: vars.$clr-primary-blue;
 
-        @include bp.xxl {
-          width: 36rem;
-        }
-
-        @media screen and (max-width: 76.25em) {
-          width: 33rem;
-        }
-
-        @include bp.xl {
-          width: 34.5rem;
-        }
-
-        @media screen and (max-width: 68.75em) {
-          width: 33rem;
-        }
-
-        @include bp.lg {
-          width: 41rem;
-        }
-
-        @media screen and (max-width: 59.375em) {
-          width: 38rem;
-        }
-
-        @media screen and (max-width: 57.5em) {
-          width: 37rem;
-        }
-
-        @media screen and (max-width: 56.25em) {
-          width: 40rem;
-        }
-
-        @media screen and (max-width: 53.75em) {
-          width: 38rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          width: 36rem;
-        }
-
-        @media screen and (max-width: 41.875em) {
-          width: 33rem;
-        }
-
-        @media screen and (max-width: 38.75em) {
-          width: 32rem;
-        }
-
-        @media screen and (max-width: 37.5em) {
-          width: 29.5rem;
-        }
-
-        @media screen and (max-width: 34.375em) {
-          width: 27rem;
-        }
-
-        @media screen and (max-width: 31.25em) {
-          display: block;
-          width: 100%;
-        }
-
         @include bp.sm {
           border-color: vars.$clr-secondary-blue;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          width: 39.5rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          width: 41rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          width: 45rem;
         }
 
         &:focus {
@@ -119,84 +45,7 @@
 
       .phone-number {
         @media screen and (max-width: 31.25em) {
-          width: 100%;
           margin-bottom: 2rem;
-        }
-
-        .PhoneInput {
-          width: 39rem;
-
-          @include bp.xxl {
-            width: 36rem;
-          }
-
-          @media screen and (max-width: 76.25em) {
-            width: 33rem;
-          }
-
-          @include bp.xl {
-            width: 34.5rem;
-          }
-
-          @media screen and (max-width: 68.75em) {
-            width: 33rem;
-          }
-
-          @include bp.lg {
-            width: 41rem;
-          }
-
-          @media screen and (max-width: 59.375em) {
-            width: 38rem;
-          }
-
-          @media screen and (max-width: 57.5em) {
-            width: 37rem;
-          }
-
-          @media screen and (max-width: 56.25em) {
-            width: 40rem;
-          }
-
-          @media screen and (max-width: 53.75em) {
-            width: 38rem;
-          }
-
-          @media screen and (max-width: 51.25em) {
-            width: 36rem;
-          }
-
-          @media screen and (max-width: 41.875em) {
-            width: 33rem;
-          }
-
-          @media screen and (max-width: 38.75em) {
-            width: 32rem;
-          }
-
-          @media screen and (max-width: 37.5em) {
-            width: 29.5rem;
-          }
-
-          @media screen and (max-width: 34.375em) {
-            width: 27rem;
-          }
-
-          @media screen and (max-width: 31.25em) {
-            width: 100%;
-          }
-
-          @media screen and (min-width: 106.25em) {
-            width: 39.5rem;
-          }
-
-          @media screen and (min-width: 112.5em) {
-            width: 41rem;
-          }
-
-          @media screen and (min-width: 125em) {
-            width: 45rem;
-          }
         }
 
         .PhoneInputCountry {
@@ -228,92 +77,17 @@
 
       .date-input {
         @media screen and (max-width: 31.25em) {
-          width: 100%;
           margin-bottom: 2rem;
         }
 
         .react-datepicker-wrapper {
           .react-datepicker__input-container {
             input {
-              width: 39rem;
               background-color: vars.$clr-primary-blue;
               border-color: vars.$clr-primary-blue;
 
-              @include bp.xxl {
-                width: 36rem;
-              }
-
-              @media screen and (max-width: 76.25em) {
-                width: 33rem;
-              }
-
-              @include bp.xl {
-                width: 34.5rem;
-              }
-
-              @media screen and (max-width: 68.75em) {
-                width: 33rem;
-              }
-
-              @include bp.lg {
-                width: 41rem;
-              }
-
-              @media screen and (max-width: 59.375em) {
-                width: 38rem;
-              }
-
-              @media screen and (max-width: 57.5em) {
-                width: 37rem;
-              }
-
-              @media screen and (max-width: 56.25em) {
-                width: 40rem;
-              }
-
-              @media screen and (max-width: 53.75em) {
-                width: 38rem;
-              }
-
-              @media screen and (max-width: 51.25em) {
-                width: 36rem;
-              }
-
-              @media screen and (max-width: 41.875em) {
-                width: 33rem;
-              }
-
-              @media screen and (max-width: 38.75em) {
-                width: 32rem;
-              }
-
-              @media screen and (max-width: 37.5em) {
-                width: 29.5rem;
-              }
-
-              @media screen and (max-width: 34.375em) {
-                width: 27rem;
-              }
-
-              @media screen and (max-width: 31.25em) {
-                display: block;
-                width: 100%;
-              }
-
               @include bp.sm {
                 border-color: vars.$clr-secondary-blue;
-              }
-
-              @media screen and (min-width: 106.25em) {
-                width: 39.5rem;
-              }
-
-              @media screen and (min-width: 112.5em) {
-                width: 41rem;
-              }
-
-              @media screen and (min-width: 125em) {
-                width: 45rem;
               }
 
               &:focus {

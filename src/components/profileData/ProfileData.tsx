@@ -33,6 +33,8 @@ const ProfileData = ({
         <div className='profile-data__form--data'>
           <Input name='name' label='Name' placeholder='Name' />
           <Input name='username' label='Username' placeholder='Username' />
+        </div>
+        <div className='profile-data__form--data'>
           <Input
             type='email'
             name='email'
@@ -45,6 +47,8 @@ const ProfileData = ({
             placeholder='Mobile number'
             onChange={setValue}
           />
+        </div>
+        <div className='profile-data__form--data'>
           <DateInput
             label='Date of Birth'
             startDate={startDate}
@@ -66,7 +70,7 @@ const ProfileData = ({
             onChange={setAbout}
           />
         </div>
-        <Button type='submit' label='Save Changes' className='primary' />
+        <Button type='submit' label='Save Changes' color='primary' />
       </form>
     </div>
   );

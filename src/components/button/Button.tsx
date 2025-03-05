@@ -5,22 +5,22 @@ import { ButtonProps } from '../../types';
 import './Button.scss';
 
 const Button = ({
-  img,
+  icon,
   label,
   type = 'button',
   loading,
   disabled,
-  className,
+  color,
   onClick,
 }: ButtonProps) => {
   return (
     <button
       type={type}
       disabled={!!disabled}
-      className={`btn ${className}`}
+      className={`btn ${color}`}
       onClick={onClick}
     >
-      {img && <img src={img} width={25} height={25} alt='logo' />}
+      {icon && !loading && <img src={icon} width={25} height={25} alt='logo' />}
       {loading ? <Spinner /> : label}
     </button>
   );

@@ -41,6 +41,10 @@
     padding: 2rem;
   }
 
+  @media screen and (max-width: 25em) {
+    padding: 2rem 1.5rem;
+  }
+
   &:first-child {
     background-color: transparent;
   }
@@ -136,8 +140,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 4.75rem;
-        height: 4.75rem;
+        width: 5rem;
+        height: 5rem;
       }
     }
 
@@ -166,7 +170,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
   }
@@ -199,7 +203,7 @@
     }
 
     @media screen and (min-width: 125em) {
-      font-size: 1.7rem;
+      font-size: 1.9rem;
     }
   }
 }

@@ -127,8 +127,16 @@
       gap: 2.5rem;
     }
 
-    @media screen and (min-width: 125em) {
+    @media screen and (min-width: 106.25em) {
       width: 115rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 125rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 130rem;
       gap: 7rem;
     }
   }

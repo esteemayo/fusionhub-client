@@ -100,11 +100,11 @@ export interface DateInputProps {
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  img?: string;
+  icon?: string;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   loading?: boolean;
   disabled?: boolean;
-  className: 'dark' | 'primary' | 'outline';
+  color: 'dark' | 'primary' | 'outline';
   onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

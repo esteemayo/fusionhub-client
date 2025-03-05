@@ -60,7 +60,7 @@ const ResetPassword = () => {
                 label='Reset your password'
                 loading={!!isLoading}
                 disabled={!!isLoading}
-                className='primary'
+                color='primary'
               />
             </div>
           </form>
