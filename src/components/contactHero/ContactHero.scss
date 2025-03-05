@@ -123,7 +123,8 @@
   }
 
   &__wrapper {
-    width: 144rem;
+    // width: 144rem;
+    width: 100%;
     height: 100%;
     position: relative;
   }
@@ -137,6 +138,27 @@
     &.left {
       top: 0;
       left: 0;
+      left: 6rem;
+
+      @media screen and (max-width: 93.75em) {
+        left: 7rem;
+      }
+
+      @include bp.xxl {
+        left: 6.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        left: 11rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        left: 7rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        left: 6rem;
+      }
 
       svg {
         color: vars.$clr-pink-dark-1;
@@ -146,7 +168,28 @@
     &.right {
       bottom: 0;
       right: 0;
+      right: 6rem;
       transform: rotate(180deg);
+
+      @media screen and (max-width: 93.75em) {
+        right: 7rem;
+      }
+
+      @include bp.xxl {
+        right: 6.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        right: 11rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        right: 7rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        right: 6rem;
+      }
 
       svg {
         color: vars.$clr-orange-dark;
@@ -161,6 +204,26 @@
       @media screen and (max-width: 56.25em) {
         width: 5.25rem;
         height: 5.25rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 5.5rem;
+        height: 5.5rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 5.45rem;
+        height: 5.45rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 5.25rem;
+        height: 5.25rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 5rem;
+        height: 5rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -183,6 +246,22 @@
 
         @media screen and (max-width: 56.25em) {
           margin-left: -4rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          margin-left: -4.25rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          margin-left: -4.35rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          margin-left: -4.25rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          margin-left: -4.15rem;
         }
 
         @media screen and (min-width: 106.25em) {

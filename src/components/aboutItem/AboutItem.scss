@@ -91,8 +91,8 @@
     &--paragraph {
       display: inline-block;
       font-size: 1.45rem;
+      word-wrap: break-word;
       color: vars.$clr-gray-light-1;
-      word-break: break-all;
       hyphens: auto;
 
       @media screen and (max-width: 56.25em) {

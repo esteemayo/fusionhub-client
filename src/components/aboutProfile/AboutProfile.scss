@@ -54,9 +54,9 @@
 
     &--text {
       font-size: 1.4rem;
+      word-wrap: break-word;
       color: vars.$clr-gray-light-1;
       hyphens: auto;
-      word-wrap: break-word;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.5rem;
