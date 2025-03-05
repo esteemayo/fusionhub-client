@@ -158,8 +158,44 @@
       height: 5rem;
       stroke-width: 1px;
 
+      @media screen and (max-width: 56.25em) {
+        width: 5.25rem;
+        height: 5.25rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 5.25rem;
+        height: 5.25rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 5.5rem;
+        height: 5.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 7rem;
+        height: 7rem;
+      }
+
       &:not(:first-child) {
         margin-left: -3.65rem;
+
+        @media screen and (max-width: 56.25em) {
+          margin-left: -4rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          margin-left: -3.85rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          margin-left: -4.25rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          margin-left: -5.65rem;
+        }
       }
     }
   }

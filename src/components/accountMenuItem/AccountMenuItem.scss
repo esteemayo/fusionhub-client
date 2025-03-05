@@ -40,11 +40,15 @@
   }
 
   @media screen and (min-width: 125em) {
-    height: 5.75rem;
+    height: 7rem;
   }
 
   &:not(:last-of-type) {
     margin-bottom: 5px;
+
+    @media screen and (min-width: 125em) {
+      margin-bottom: 0.7rem;
+    }
   }
 
   &.active {
@@ -125,7 +129,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
 
@@ -160,8 +164,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 3rem;
+        height: 3rem;
       }
     }
 

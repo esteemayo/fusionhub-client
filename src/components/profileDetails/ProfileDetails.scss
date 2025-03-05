@@ -51,7 +51,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
     }
   }
@@ -61,6 +61,10 @@
     align-items: center;
     gap: 0.5rem;
 
+    @media screen and (min-width: 125em) {
+      gap: 1rem;
+    }
+
     &--username,
     &--email {
       display: flex;
@@ -68,6 +72,10 @@
       gap: 3px;
 
       color: vars.$clr-gray-light-1;
+
+      @media screen and (min-width: 125em) {
+        gap: 0.5rem;
+      }
 
       svg {
         width: 1.5rem;
@@ -106,8 +114,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 2.2rem;
-          height: 2.2rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 
@@ -140,7 +148,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.8rem;
+          font-size: 2rem;
         }
       }
     }
@@ -182,7 +190,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.85rem;
+        font-size: 2.05rem;
       }
     }
   }
@@ -201,6 +209,10 @@
       gap: 3px;
 
       color: vars.$clr-gray-light-1;
+
+      @media screen and (min-width: 125em) {
+        gap: 0.5rem;
+      }
 
       svg {
         width: 1.5rem;
@@ -239,8 +251,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 2.2rem;
-          height: 2.2rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 
@@ -274,7 +286,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.8rem;
+          font-size: 2rem;
         }
       }
     }

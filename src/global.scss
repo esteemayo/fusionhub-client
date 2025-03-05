@@ -155,6 +155,22 @@ button {
     border-radius: 0.5rem;
 
     justify-content: center;
+
+    @media screen and (max-width: 56.25em) {
+      width: 6.25rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 6.5rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 6.25rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 8rem;
+    }
   }
 
   .PhoneInputInput {

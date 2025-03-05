@@ -215,6 +215,10 @@
         display: none;
       }
 
+      @media screen and (min-width: 125em) {
+        height: 22rem;
+      }
+
       &--overlay {
         height: 100%;
 
@@ -434,8 +438,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        min-height: 16rem;
-        padding: 1.5rem;
+        min-height: 17.5rem;
+        padding: 2rem 1.5rem;
         padding-top: 2.75rem;
       }
     }
@@ -475,7 +479,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.7rem;
+          font-size: 1.9rem;
         }
       }
 
@@ -511,7 +515,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.55rem;
+          font-size: 1.75rem;
         }
       }
     }
@@ -549,7 +553,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.55rem;
+          font-size: 1.75rem;
         }
       }
 
@@ -585,7 +589,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.45rem;
+          font-size: 1.65rem;
         }
       }
     }
