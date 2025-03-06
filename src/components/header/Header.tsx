@@ -1,38 +1,64 @@
 import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+
+import { randomPostItems } from '../../data';
 
 import './Header.scss';
 
+interface IWrapper {
+  img: string;
+}
+
 const Header = () => {
+  const [firstItem, lastItem] = randomPostItems;
+
   return (
     <header className='header'>
       <div className='header__container'>
         <div className='header__wrapper'>
-          <div className='header__wrapper--left'>
+          <ImageWrapper img={firstItem.img} className='header__wrapper--left'>
             <div className='header__info'>
-              <span className='header__info--category'>Travel</span>
-              <h1 className='header__info--heading'>
-                Best Surfing Spots for Beginners and Advanced
-              </h1>
-              <Link to='/' className='header__info--link'>
+              <span className='header__info--category'>
+                {firstItem.category}
+              </span>
+              <h1 className='header__info--heading'>{firstItem.title}</h1>
+              <Link
+                to={`/posts/${firstItem.slug}`}
+                className='header__info--link'
+              >
                 Read more
               </Link>
             </div>
-          </div>
-          <div className='header__wrapper--right'>
+          </ImageWrapper>
+          <ImageWrapper img={lastItem.img} className='header__wrapper--right'>
             <div className='header__info small'>
-              <span className='header__info--category small'>Sport</span>
-              <h2 className='header__info--heading small'>
-                High-Tech Prototype Bike Announced
-              </h2>
-              <Link to='/' className='header__info--link small'>
+              <span className='header__info--category small'>
+                {lastItem.category}
+              </span>
+              <h2 className='header__info--heading small'>{lastItem.title}</h2>
+              <Link
+                to={`/posts/${lastItem.slug}`}
+                className='header__info--link small'
+              >
                 Read more
               </Link>
             </div>
-          </div>
+          </ImageWrapper>
         </div>
       </div>
     </header>
   );
 };
+
+const ImageWrapper = styled.div<IWrapper>`
+  background-image: ${({ img }) => css`
+  linear-gradient(
+      to right bottom,
+      rgba(0, 0, 0, 0.85),
+      rgba(50, 53, 56, 0.15)
+    ),
+    url(${img});
+  `};
+`;
 
 export default Header;

@@ -48,6 +48,29 @@ export const menuItems: MenuItemType = [
   },
 ];
 
+export const randomPostItems: PostItemType = [
+  {
+    id: '1',
+    img: '/post-9.webp',
+    title: 'Best Surfing Spots for Beginners and Advanced',
+    slug: 'best-surfing-spots-for-beginners-and-advanced',
+    desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
+    category: 'travel',
+    isFeatured: false,
+    createdAt: '2025-03-06T16:10:18.085+00:00',
+  },
+  {
+    id: '2',
+    img: '/post-10.webp',
+    title: 'High-Tech Prototype Bike Announced',
+    slug: 'high-tech-prototype-bike-announced',
+    desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
+    category: 'sport',
+    isFeatured: false,
+    createdAt: '2025-03-06T16:10:18.085+00:00',
+  },
+];
+
 export const postItems: PostItemType = [
   {
     id: '1',

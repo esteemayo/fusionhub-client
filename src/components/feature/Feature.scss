@@ -58,14 +58,14 @@
     }
 
     @media screen and (min-width: 125em) {
-      height: 33rem;
+      height: 35rem;
     }
 
     &--img {
       width: 100%;
       height: 100%;
       display: inline-block;
-      background-color: vars.$clr-secondary-blue;
+      background-color: rgba(vars.$clr-black, 0.2);
       object-fit: cover;
     }
   }
@@ -114,8 +114,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 7rem;
-        height: 7rem;
+        width: 8rem;
+        height: 8rem;
       }
 
       span {
@@ -144,7 +144,7 @@
           }
 
           @media screen and (min-width: 125em) {
-            font-size: 2rem;
+            font-size: 2.2rem;
           }
         }
 
@@ -173,7 +173,7 @@
           }
 
           @media screen and (min-width: 125em) {
-            font-size: 1.9rem;
+            font-size: 2.1rem;
           }
         }
       }
@@ -239,8 +239,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 2.45rem;
-          height: 2.45rem;
+          width: 2.65rem;
+          height: 2.65rem;
         }
       }
 
@@ -270,7 +270,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.65rem;
+          font-size: 1.85rem;
         }
       }
     }
@@ -339,14 +339,15 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 2.45rem;
+        font-size: 2.7rem;
       }
     }
 
     &--desc {
       font-size: 1.4rem;
+      word-wrap: break-word;
       color: vars.$clr-gray-light-1;
-      word-break: break-all;
+      hyphens: auto;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.5rem;
@@ -369,7 +370,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.9rem;
+        font-size: 2.1rem;
       }
     }
 
@@ -437,8 +438,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          height: 4rem;
-          font-size: 1.9rem;
+          height: 4.5rem;
+          font-size: 2.1rem;
         }
       }
 
