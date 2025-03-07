@@ -35,8 +35,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 10rem;
-        height: 10rem;
+        width: 12rem;
+        height: 12rem;
       }
     }
   }
@@ -51,8 +51,10 @@
       width: 20rem;
       font-weight: 700;
       font-size: 1.4rem;
+      word-wrap: break-word;
       color: vars.$clr-gray-light-3;
       line-height: 1.2;
+      hyphens: auto;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.5rem;
@@ -79,7 +81,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.7rem;
+        font-size: 1.9rem;
       }
 
       a {
@@ -134,8 +136,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 2rem;
-          height: 2rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 
@@ -164,7 +166,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.5rem;
+          font-size: 1.7rem;
         }
       }
     }

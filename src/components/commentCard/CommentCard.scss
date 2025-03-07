@@ -68,8 +68,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 10rem;
-        height: 10rem;
+        width: 13rem;
+        height: 13rem;
       }
     }
   }
@@ -100,7 +100,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.85rem;
+        font-size: 2.05rem;
       }
     }
 
@@ -114,8 +114,8 @@
 
     &--desc {
       line-height: 1.4;
+      word-wrap: break-word;
       color: vars.$clr-gray-light-1;
-      word-break: break-all;
       hyphens: auto;
     }
 
@@ -152,7 +152,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.7rem;
+        font-size: 1.9rem;
       }
 
       &:disabled {
@@ -197,7 +197,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.7rem;
+        font-size: 1.9rem;
       }
     }
 
@@ -260,8 +260,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 1.95rem;
-          height: 1.95rem;
+          width: 2.15rem;
+          height: 2.15rem;
         }
       }
 
@@ -328,8 +328,8 @@
         }
 
         @media screen and (min-width: 112.5em) {
-          width: 2.15rem;
-          height: 2.15rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
     }

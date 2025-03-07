@@ -112,8 +112,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 2rem;
-          height: 2rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 
@@ -158,7 +158,7 @@
         }
 
         @media screen and (min-width: 125em) {
-          font-size: 1.7rem;
+          font-size: 1.9rem;
         }
       }
     }
@@ -212,8 +212,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 2rem;
-        height: 2rem;
+        width: 2.5rem;
+        height: 2.5rem;
       }
     }
 
@@ -258,7 +258,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.7rem;
+        font-size: 1.9rem;
       }
     }
   }
@@ -367,8 +367,8 @@
           }
 
           @media screen and (min-width: 125em) {
-            width: 2.7rem;
-            height: 2.7rem;
+            width: 3.2rem;
+            height: 3.2rem;
           }
         }
 
@@ -411,7 +411,7 @@
           }
 
           @media screen and (min-width: 125em) {
-            font-size: 1.7rem;
+            font-size: 1.9rem;
           }
         }
       }
@@ -485,7 +485,9 @@
   &__heading {
     font-weight: 600;
     font-size: 2.15rem;
+    word-wrap: break-word;
     color: inherit;
+    hyphens: auto;
     line-height: 1.2;
     margin-bottom: 2rem;
 
@@ -526,14 +528,14 @@
     }
 
     @media screen and (min-width: 125em) {
-      font-size: 2.5rem;
+      font-size: 2.7rem;
     }
   }
 
   &__desc {
     font-size: 1.65rem;
+    word-wrap: break-word;
     color: vars.$clr-gray-light-1;
-    word-break: break-all;
     hyphens: auto;
 
     @media screen and (max-width: 56.25em) {
@@ -557,7 +559,7 @@
     }
 
     @media screen and (min-width: 125em) {
-      font-size: 2rem;
+      font-size: 2.3rem;
     }
 
     &:not(:last-child) {
