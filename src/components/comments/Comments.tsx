@@ -3,9 +3,14 @@ import { useRef } from 'react';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
 
+import { useAppDispatch } from '../../hooks/hooks';
+import { onOpen } from '../../features/commentModal/commentModalSlice';
+
 import './Comments.scss';
 
 const Comments = () => {
+  const dispatch = useAppDispatch();
+
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const handleReply = () => {
@@ -20,10 +25,18 @@ const Comments = () => {
     current?.focus();
   };
 
+  const handleOpen = () => {
+    dispatch(onOpen());
+  };
+
   return (
     <section className='comments'>
       <div className='comments__container'>
-        <Comment onAction={handleReply} onUpdate={handleUpdate} />
+        <Comment
+          onAction={handleReply}
+          onUpdate={handleUpdate}
+          onOpen={handleOpen}
+        />
         <CommentForm ref={ref} />
       </div>
     </section>

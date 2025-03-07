@@ -10,6 +10,7 @@ const CommentCard = ({
   createdAt,
   onReply,
   onUpdate,
+  onOpen,
 }: CommentCardProps) => {
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -21,7 +22,7 @@ const CommentCard = ({
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    console.log('comment deleted!');
+    onOpen();
   };
 
   return (

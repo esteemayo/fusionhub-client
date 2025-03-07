@@ -4,8 +4,9 @@ import postsMenuReducer from './postsMenu/postsMenuSlice';
 import sidebarReducer from './sidebar/sidebarSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
-import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
+import commentModalReducer from './commentModal/commentModalSlice';
 import accountMenuReducer from './accountMenu/accountMenuSlice';
+import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     postModal: postModalReducer,
     accountModal: accountModalReducer,
     accountMenu: accountMenuReducer,
+    commentModal: commentModalReducer,
   },
 });
 

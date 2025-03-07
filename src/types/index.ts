@@ -122,6 +122,7 @@ export interface PostClientProps {
 export interface CommentProps {
   onAction?(): void;
   onUpdate?(): void;
+  onOpen(): void;
 }
 
 export interface CommentCardProps {
@@ -135,6 +136,7 @@ export interface CommentCardProps {
   updatedAt: string;
   onReply?(): void;
   onUpdate?(): void;
+  onOpen(): void;
 }
 
 export interface FeedProps {

@@ -7,7 +7,7 @@ import { comments, commentUsers } from '../../data';
 
 import './Comment.scss';
 
-const Comment = ({ onAction, onUpdate }: CommentProps) => {
+const Comment = ({ onAction, onUpdate, onOpen }: CommentProps) => {
   const commentHeading = useMemo(() => {
     return comments.length > 1 ? 'Comments' : 'Comment';
   }, []);
@@ -39,6 +39,7 @@ const Comment = ({ onAction, onUpdate }: CommentProps) => {
             {...comment}
             onReply={onAction}
             onUpdate={onUpdate}
+            onOpen={onOpen}
           />
         );
       })}
