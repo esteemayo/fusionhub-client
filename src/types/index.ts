@@ -15,6 +15,16 @@ export interface MenuItemProps {
   onClose(): void;
 }
 
+export interface FooterMenuItemProps {
+  url: string;
+  label: string;
+}
+
+export interface SocialMenuItemProps {
+  url: string;
+  icon: IconType;
+}
+
 export interface HeadingProps {
   title: string;
   subtitle: string;
@@ -316,6 +326,18 @@ export type MenuItemType = {
   id: number;
   url: string;
   label: string;
+}[];
+
+export type FooterMenuType = {
+  id: number;
+  url: string;
+  label: string;
+}[];
+
+export type SocialMenuType = {
+  id: number;
+  url: string;
+  icon: IconType;
 }[];
 
 type TagType = {

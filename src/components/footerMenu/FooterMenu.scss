@@ -1,0 +1,25 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.footer-menu {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+
+  list-style: none;
+
+  @media screen and (max-width: 17.5em) {
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    gap: 2.25rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    row-gap: 3rem;
+    column-gap: 5rem;
+  }
+}

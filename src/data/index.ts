@@ -1,11 +1,13 @@
+import { FaFacebookF } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
 import { FaTiktok } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { FaYoutube } from 'react-icons/fa6';
 import { FaLinkedinIn } from 'react-icons/fa';
-import { FaFacebookF } from 'react-icons/fa';
+import { FaThreads } from 'react-icons/fa6';
 import { FaGooglePlusG } from 'react-icons/fa6';
-import { FaGithub } from 'react-icons/fa';
+import { BiLogoTiktok } from 'react-icons/bi';
 
 import {
   aboutItemType,
@@ -15,11 +17,13 @@ import {
   CommentUserType,
   ContactInfoItemType,
   FeedItemTypes,
+  FooterMenuType,
   MenuItemType,
   PartnerItemType,
   PostItemType,
   RelatedPostType,
   RelatedTagType,
+  SocialMenuType,
   TagItemType,
   TeamType,
   TopPostType,
@@ -45,6 +49,77 @@ export const menuItems: MenuItemType = [
     id: 4,
     url: '/contact',
     label: 'Contact',
+  },
+];
+
+export const footerMenuItems: FooterMenuType = [
+  {
+    id: 1,
+    url: '/',
+    label: 'Terms and Conditions',
+  },
+  {
+    id: 2,
+    url: '/',
+    label: 'Privacy Policy',
+  },
+  {
+    id: 3,
+    url: '/',
+    label: 'Cookie Preferences',
+  },
+  {
+    id: 4,
+    url: '/',
+    label: 'License Agreement',
+  },
+  {
+    id: 5,
+    url: '/',
+    label: 'Website Terms',
+  },
+  {
+    id: 6,
+    url: '/',
+    label: 'Privacy Portal',
+  },
+  {
+    id: 7,
+    url: '/',
+    label: 'Help',
+  },
+];
+
+export const socialMenuItems: SocialMenuType = [
+  {
+    id: 1,
+    url: '/',
+    icon: FaFacebookF,
+  },
+  {
+    id: 2,
+    url: '/',
+    icon: BiLogoTiktok,
+  },
+  {
+    id: 3,
+    url: '/',
+    icon: FaThreads,
+  },
+  {
+    id: 4,
+    url: '/',
+    icon: FaXTwitter,
+  },
+  {
+    id: 5,
+    url: '/',
+    icon: FaInstagram,
+  },
+  {
+    id: 6,
+    url: '/',
+    icon: FaYoutube,
   },
 ];
 

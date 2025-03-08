@@ -1,0 +1,70 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.footer-menu-item {
+  &__link {
+    &:link,
+    &:visited {
+      font-size: 1.5rem;
+      color: vars.$clr-gray-light-1;
+      transition: all 300ms ease-in-out;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.7rem;
+      }
+
+      @include bp.sm {
+        display: block;
+        width: 25rem;
+      }
+
+      @media screen and (max-width: 28.125em) {
+        width: 23rem;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 21rem;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 20rem;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 18rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 17rem;
+      }
+
+      @media screen and (max-width: 20em) {
+        display: inline;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        display: block;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.7rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.1rem;
+      }
+    }
+
+    &:hover {
+      color: vars.$clr-white;
+    }
+  }
+}

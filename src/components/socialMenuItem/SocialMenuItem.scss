@@ -1,0 +1,83 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.social-menu-item {
+  width: 3.2rem;
+  height: 3.2rem;
+  background-color: vars.$clr-gray-dark-3;
+  color: vars.$clr-black;
+  border-radius: 50%;
+  transition: all 300ms ease-in-out;
+
+  @media screen and (max-width: 56.25em) {
+    width: 4rem;
+    height: 4rem;
+  }
+  @media screen and (max-width: 51.25em) {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  &:hover {
+    background-color: vars.$clr-pink-light;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      height: 100%;
+      font-size: 1.65rem;
+      color: currentColor;
+      transition: all 300ms ease-in-out;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.5rem;
+      }
+
+      svg {
+        font-size: inherit;
+        color: inherit;
+      }
+    }
+
+    &:hover {
+      color: vars.$clr-white;
+    }
+  }
+}
