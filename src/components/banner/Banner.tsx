@@ -6,7 +6,7 @@ const Banner = () => {
       <div className='banner__user'>
         <label htmlFor='avatar' className='banner__user--label'>
           <img
-            src='/user-1.jpeg'
+            src='/img/user-1.jpeg'
             width={120}
             height={120}
             alt='avatar'

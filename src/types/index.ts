@@ -92,6 +92,7 @@ export interface TextQuillProps {
   id?: string;
   label?: string;
   value: ReactQuill.Value | undefined;
+  placeholder?: string;
   onChange?(
     value: ReactQuill.Value | undefined,
     delta: DeltaStatic,

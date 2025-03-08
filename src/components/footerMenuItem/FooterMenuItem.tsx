@@ -6,8 +6,8 @@ import './FooterMenuItem.scss';
 
 const FooterMenuItem = ({ url, label }: FooterMenuItemProps) => {
   return (
-    <li className='footer-menu__item'>
-      <Link to={url} className='footer-menu__item--link'>
+    <li className='footer-menu-item'>
+      <Link to={url} className='footer-menu-item__link'>
         {label}
       </Link>
     </li>

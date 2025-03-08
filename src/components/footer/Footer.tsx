@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 
+import Copyright from '../copyright/Copyright';
 import FooterMenu from '../footerMenu/FooterMenu';
+
 import Legal from '../legal/Legal';
 import SocialMenu from '../socialMenu/SocialMenu';
-import Copyright from '../copyright/Copyright';
 
 import './Footer.scss';
 
@@ -21,7 +22,7 @@ const Footer = () => {
           <SocialMenu />
         </div>
         <Legal />
-        <Copyright year={year} />
+        <Copyright value={year} />
       </div>
     </footer>
   );

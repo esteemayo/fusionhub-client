@@ -32,8 +32,8 @@ const ForgotPassword = () => {
     <div className='forgot-password'>
       <div className='forgot-password__container'>
         <div className='forgot-password__wrapper'>
-          <h1 className='forgot-password__heading'>Forgot password</h1>
-          <p className='forgot-password__text'>
+          <h1 className='forgot-password__wrapper--heading'>Forgot password</h1>
+          <p className='forgot-password__wrapper--text'>
             Please enter your email address.
           </p>
           <form onSubmit={handleSubmit} className='forgot-password__form'>

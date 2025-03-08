@@ -9,7 +9,7 @@ const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
         <div className='profile-image__user'>
           <div className='profile-image__image'>
             <img
-              src='/user-1.jpeg'
+              src='/img/user-1.jpeg'
               width={120}
               height={120}
               alt='avatar'

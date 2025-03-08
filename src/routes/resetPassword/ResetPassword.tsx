@@ -36,8 +36,8 @@ const ResetPassword = () => {
     <div className='reset-password'>
       <div className='reset-password__container'>
         <div className='reset-password__wrapper'>
-          <h1 className='reset-password__heading'>Reset password</h1>
-          <p className='reset-password__text'>
+          <h1 className='reset-password__wrapper--heading'>Reset password</h1>
+          <p className='reset-password__wrapper--text'>
             Please enter your new password.
           </p>
           <form onSubmit={handleSubmit} className='reset-password__form'>

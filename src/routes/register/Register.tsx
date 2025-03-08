@@ -47,8 +47,10 @@ const Register = () => {
     <section className='register'>
       <div className='register__container'>
         <div className='register__wrapper'>
-          <h1 className='register__heading'>Welcome</h1>
-          <p className='register__text'>Welcome! Please enter your details.</p>
+          <h1 className='register__wrapper--heading'>Welcome</h1>
+          <p className='register__wrapper--text'>
+            Welcome! Please enter your details.
+          </p>
           <form className='register__form' onSubmit={handleSubmit}>
             <div className='register__form--box'>
               {registerInputs.map((input) => {

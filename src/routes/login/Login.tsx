@@ -36,8 +36,8 @@ const Login = () => {
     <section className='login'>
       <div className='login__container'>
         <div className='login__wrapper'>
-          <h1 className='login__heading'>Welcome back</h1>
-          <p className='login__text'>
+          <h1 className='login__wrapper--heading'>Welcome back</h1>
+          <p className='login__wrapper--text'>
             Welcome back! Please enter your details.
           </p>
           <form className='login__form' onSubmit={handleSubmit}>

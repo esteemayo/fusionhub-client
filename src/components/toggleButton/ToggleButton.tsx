@@ -9,9 +9,13 @@ const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
     return type === 'nav' ? 'toggle-button nav' : 'toggle-button';
   }, [type]);
 
+  const btnLabel = useMemo(() => {
+    return type === 'nav' ? label : isOpen ? 'Close' : label;
+  }, [isOpen, label, type]);
+
   return (
     <button type='button' className={toggleBtnClasses} onClick={onClick}>
-      <span>{type === 'nav' ? label : isOpen ? 'Close' : label}</span>
+      <span>{btnLabel}</span>
       {isOpen ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'

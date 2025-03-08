@@ -78,8 +78,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 6rem;
-        height: 6rem;
+        width: 6.75rem;
+        height: 6.75rem;
       }
 
       label {
@@ -134,8 +134,8 @@
         }
 
         @media screen and (min-width: 125em) {
-          width: 5.35rem;
-          height: 5.35rem;
+          width: 6rem;
+          height: 6rem;
         }
 
         svg {
@@ -185,8 +185,8 @@
           }
 
           @media screen and (min-width: 125em) {
-            width: 3rem;
-            height: 3rem;
+            width: 3.5rem;
+            height: 3.5rem;
           }
         }
       }
@@ -431,7 +431,6 @@
       height: 100%;
       display: inline-block;
       object-fit: cover;
-      background-color: vars.$clr-tertiary-blue;
       border-radius: 50%;
     }
   }

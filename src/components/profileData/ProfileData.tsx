@@ -61,12 +61,13 @@ const ProfileData = ({
           <Textarea
             name='bio'
             label='Biography'
-            placeholder='Write something about who you are...'
+            placeholder='Write a short biography...'
           />
           <TextQuill
             id='about'
             label='About Me'
             value={about}
+            placeholder='Write something about who you are...'
             onChange={setAbout}
           />
         </div>

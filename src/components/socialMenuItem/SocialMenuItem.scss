@@ -79,5 +79,10 @@
     &:hover {
       color: vars.$clr-white;
     }
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
   }
 }
