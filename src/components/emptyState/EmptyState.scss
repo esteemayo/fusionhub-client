@@ -123,8 +123,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 35rem;
-        height: 27rem;
+        width: 37rem;
+        height: 29rem;
       }
 
       &.show {
@@ -186,7 +186,7 @@
       }
 
       @media screen and (min-width: 125em) {
-        font-size: 1.9rem;
+        font-size: 2.1rem;
       }
 
       &.show {
@@ -204,7 +204,7 @@
       }
 
       &:disabled {
-        opacity: 0.7;
+        opacity: 0.75;
         cursor: default;
       }
     }
@@ -247,7 +247,7 @@
 
       @media screen and (min-width: 125em) {
         width: 20rem;
-        height: 5.5rem;
+        height: 6.5rem;
       }
     }
 
@@ -288,7 +288,7 @@
 
       @media screen and (min-width: 125em) {
         width: 25rem;
-        height: 7rem;
+        height: 8rem;
       }
     }
   }
