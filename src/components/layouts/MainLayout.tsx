@@ -7,21 +7,24 @@ import Sidebar from '../sidebar/Sidebar';
 import AddPost from '../addPost/AddPost';
 import BackToTop from '../backToTop/BackToTop';
 
-import ErrorBoundary from '../errors/ErrorBoundary';
 import ModalProvider from '../../providers/ModalProvider';
+import ErrorBoundary from '../errors/ErrorBoundary';
+import SkeletonProvider from '../../providers/SkeletonProvider';
 
 const MainLayout = () => {
   return (
     <main>
-      <Navbar />
-      <Sidebar />
-      <ModalProvider />
-      <ErrorBoundary>
-        <Outlet />
-      </ErrorBoundary>
-      <Footer />
-      <AddPost />
-      <BackToTop />
+      <SkeletonProvider>
+        <Navbar />
+        <Sidebar />
+        <ModalProvider />
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
+        <Footer />
+        <AddPost />
+        <BackToTop />
+      </SkeletonProvider>
     </main>
   );
 };
