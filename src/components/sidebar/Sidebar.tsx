@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
+import Logo from '../logo/Logo';
 import MenuItem from '../menuItem/MenuItem';
 
 import { useLogout } from '../../hooks/useLogout';
@@ -23,6 +24,14 @@ const Sidebar = () => {
     dispatch(onClose());
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.stopPropagation();
+
+    if (isOpen) {
+      handleClose();
+    }
+  };
+
   const sidebarClasses = useMemo(() => {
     return isOpen ? 'sidebar show' : 'sidebar hide';
   }, [isOpen]);
@@ -31,9 +40,7 @@ const Sidebar = () => {
     <aside className={sidebarClasses}>
       <div className='sidebar__container'>
         <div className='sidebar__wrapper'>
-          <div className='sidebar__logo'>
-            <Link to='/'>Fusion hub</Link>
-          </div>
+          <Logo onClose={handleClick} />
         </div>
         <div className='sidebar__box'>
           <ul className='sidebar__menu'>
@@ -58,7 +65,7 @@ const Sidebar = () => {
                   onClick={handleClose}
                 >
                   <img
-                    src='/user-default.jpg'
+                    src='/img/user-default.jpg'
                     width={70}
                     height={70}
                     alt='avatar'

@@ -1,0 +1,23 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.logo {
+  &:link,
+  &:visited {
+    display: flex;
+    align-items: center;
+  }
+
+  &:disabled {
+    opacity: 0.75;
+    cursor: default;
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 20rem;
+    height: 5rem;
+    object-fit: cover;
+    background-color: transparent;
+  }
+}

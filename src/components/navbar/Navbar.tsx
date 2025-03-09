@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import UserMenu from '../userMenu/UserMenu';
-import NavItem from '../navItem/NavItem';
+import Logo from '../logo/Logo';
 import ToggleButton from '../toggleButton/ToggleButton';
+import NavItem from '../navItem/NavItem';
 
 import { onToggle } from '../../features/sidebar/sidebarSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -24,9 +25,7 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='navbar__container'>
-        <div className='navbar__logo'>
-          <Link to='/'>Fusion hub</Link>
-        </div>
+        <Logo />
         <ToggleButton
           type='nav'
           label='Menu'

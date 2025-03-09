@@ -4,6 +4,10 @@ import React, { HTMLInputTypeAttribute } from 'react';
 import { IconType } from 'react-icons/lib';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 
+export interface LogoProps {
+  onClose?(e: React.MouseEvent<HTMLAnchorElement>): void;
+}
+
 export interface NavItemProps {
   url: string;
   label: string;
