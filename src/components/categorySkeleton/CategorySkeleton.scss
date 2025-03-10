@@ -1,0 +1,97 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.category-skeleton {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__label {
+    span.react-loading-skeleton {
+      width: 17rem !important;
+      border-radius: 0.5rem;
+
+      @include bp.xxl {
+        width: 15rem !important;
+      }
+
+      @include bp.lg {
+        width: 17rem !important;
+      }
+
+      @media screen and (max-width: 59.375em) {
+        width: 15rem !important;
+      }
+
+      @media screen and (max-width: 51.275em) {
+        width: 14rem !important;
+      }
+
+      @include bp.md {
+        width: 17rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 21rem !important;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 19rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 17rem !important;
+      }
+
+      @media screen and (max-width: 20em) {
+        width: 15rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 13rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 17.5rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 19rem !important;
+        height: 2rem !important;
+      }
+    }
+  }
+
+  &__total {
+    span.react-loading-skeleton {
+      width: 4rem !important;
+      border-radius: 0.5rem;
+
+      @include bp.xxl {
+        width: 3rem !important;
+      }
+
+      @include bp.lg {
+        width: 4rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 5rem !important;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 4rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 3.5rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 2rem !important;
+      }
+    }
+  }
+}

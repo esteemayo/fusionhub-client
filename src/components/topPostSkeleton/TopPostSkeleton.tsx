@@ -1,23 +1,11 @@
 import Skeleton from 'react-loading-skeleton';
-import { useEffect, useMemo, useState } from 'react';
+
+import { useSkeleton } from '../../hooks/useSkeleton';
 
 import './TopPostSkeleton.scss';
 
 const TopPostSkeleton = () => {
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
-
-  const handleScreen = () => {
-    setScreenSize(window.innerWidth);
-  };
-
-  const baseColor = useMemo(() => {
-    return screenSize <= 768 ? '#152233' : '#021124';
-  }, [screenSize]);
-
-  useEffect(() => {
-    window.addEventListener('resize', handleScreen);
-    return () => window.removeEventListener('resize', handleScreen);
-  }, []);
+  const { baseColor } = useSkeleton();
 
   return (
     <article className='top-post-skeleton'>
