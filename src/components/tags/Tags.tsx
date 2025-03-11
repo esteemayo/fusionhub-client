@@ -1,19 +1,32 @@
+import { useEffect, useState } from 'react';
+
 import TagItem from '../tagItem/TagItem';
+import TagSkeleton from '../tagSkeleton/TagSkeleton';
 
 import { tagItems } from '../../data';
 
 import './Tags.scss';
 
 const Tags = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
+
   return (
     <section className='tags'>
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
         <div className='tags__wrapper'>
-          {tagItems.map((tag) => {
-            const { id, label } = tag;
-            return <TagItem key={id} label={label} />;
-          })}
+          {isLoading
+            ? Array.from(new Array(12)).map((_, index) => {
+                return <TagSkeleton key={index} />;
+              })
+            : tagItems.map((tag) => {
+                const { id, label } = tag;
+                return <TagItem key={id} label={label} />;
+              })}
         </div>
       </div>
     </section>
