@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import CommentCard from '../commentCard/CommentCard';
+import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 
 import { CommentProps } from '../../types';
 import { comments, commentUsers } from '../../data';
@@ -8,9 +9,15 @@ import { comments, commentUsers } from '../../data';
 import './Comment.scss';
 
 const Comment = ({ onAction, onUpdate, onOpen }: CommentProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const commentHeading = useMemo(() => {
     return comments.length > 1 ? 'Comments' : 'Comment';
   }, []);
+
+  // useEffect(() => {
+  //   setTimeout(() => setIsLoading(false), 5000);
+  // }, []);
 
   return (
     <div className='comment'>
@@ -32,17 +39,21 @@ const Comment = ({ onAction, onUpdate, onOpen }: CommentProps) => {
           })}
         </figure>
       </div>
-      {comments.map((comment) => {
-        return (
-          <CommentCard
-            key={comment.id}
-            {...comment}
-            onReply={onAction}
-            onUpdate={onUpdate}
-            onOpen={onOpen}
-          />
-        );
-      })}
+      {isLoading
+        ? Array.from(new Array(3)).map((_, index) => {
+            return <CommentSkeleton key={index} />;
+          })
+        : comments.map((comment) => {
+            return (
+              <CommentCard
+                key={comment.id}
+                {...comment}
+                onReply={onAction}
+                onUpdate={onUpdate}
+                onOpen={onOpen}
+              />
+            );
+          })}
     </div>
   );
 };
