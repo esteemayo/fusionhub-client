@@ -1,0 +1,39 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.follow-skeleton {
+  span.react-loading-skeleton {
+    width: 3.2rem !important;
+    height: 3.2rem !important;
+
+    @media screen and (max-width: 56.25em) {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 4.5rem !important;
+      height: 4.5rem !important;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 3.7rem !important;
+      height: 3.7rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 5.5rem !important;
+      height: 5.5rem !important;
+    }
+  }
+}

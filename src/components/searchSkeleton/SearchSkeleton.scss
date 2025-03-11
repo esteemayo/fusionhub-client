@@ -1,0 +1,77 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.search-skeleton {
+  span.react-loading-skeleton {
+    width: 27rem !important;
+    height: 4.5rem !important;
+
+    @media screen and (max-width: 56.25em) {
+      height: 4.6rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 30rem !important;
+      height: 4.7rem !important;
+    }
+
+    @include bp.md {
+      width: 28rem !important;
+      height: 5rem !important;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      width: 35rem !important;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 33rem !important;
+    }
+
+    @media screen and (max-width: 25em) {
+      width: 31rem !important;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      width: 30rem !important;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      width: 28rem !important;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      width: 30rem !important;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 28rem !important;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 26rem !important;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 4.5rem !important;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 24rem !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      height: 4.7rem !important;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 29rem !important;
+      height: 5rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 33rem !important;
+      height: 7rem !important;
+    }
+  }
+}

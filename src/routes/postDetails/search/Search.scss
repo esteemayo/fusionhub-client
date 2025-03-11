@@ -82,10 +82,6 @@
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
 
-        @include bp.md {
-          background-color: vars.$clr-secondary-blue;
-        }
-
         @media screen and (max-width: 56.25em) {
           height: 4.6rem;
           font-size: 1.5rem;
@@ -98,6 +94,7 @@
 
         @include bp.md {
           height: 5rem;
+          background-color: vars.$clr-secondary-blue;
         }
 
         @media screen and (max-width: 18.75em) {
