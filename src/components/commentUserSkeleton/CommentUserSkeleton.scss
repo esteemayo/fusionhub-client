@@ -1,0 +1,40 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.coment-user-skeleton {
+  &__img {
+    width: 5rem !important;
+    height: 5rem !important;
+
+    @media screen and (max-width: 22.5em) {
+      width: 4.5rem !important;
+      height: 4.5rem !important;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 4.25rem !important;
+      height: 4.25rem !important;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+
+    &:not(:last-child) {
+      margin-left: -2.5rem;
+
+      @media screen and (max-width: 22.5em) {
+        margin-left: -2.25rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        margin-left: -2.125rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        margin-left: -2rem;
+      }
+    }
+  }
+}

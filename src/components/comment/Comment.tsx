@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import CommentCard from '../commentCard/CommentCard';
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
+import CommentCard from '../commentCard/CommentCard';
+import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
 
 import { CommentProps } from '../../types';
 import { comments, commentUsers } from '../../data';
@@ -15,28 +16,32 @@ const Comment = ({ onAction, onUpdate, onOpen }: CommentProps) => {
     return comments.length > 1 ? 'Comments' : 'Comment';
   }, []);
 
-  // useEffect(() => {
-  //   setTimeout(() => setIsLoading(false), 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
 
   return (
     <div className='comment'>
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
         <figure className='comment__user'>
-          {commentUsers.map((user) => {
-            const { id, img } = user;
-            return (
-              <img
-                key={id}
-                src={img}
-                width={50}
-                height={50}
-                alt='avatar'
-                className='comment__user--img'
-              />
-            );
-          })}
+          {isLoading
+            ? Array.from(new Array(5)).map((_, index) => {
+                return <CommentUserSkeleton key={index} />;
+              })
+            : commentUsers.map((user) => {
+                const { id, img } = user;
+                return (
+                  <img
+                    key={id}
+                    src={img}
+                    width={50}
+                    height={50}
+                    alt='avatar'
+                    className='comment__user--img'
+                  />
+                );
+              })}
         </figure>
       </div>
       {isLoading
