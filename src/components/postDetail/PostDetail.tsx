@@ -1,13 +1,15 @@
 import PostDescription from './../postDescription/PostDescription';
 import PostDetailAction from '../postDetailAction/PostDetailAction';
 
+import { PostDetailType } from '../../types';
+
 import './PostDetail.scss';
 
-const PostDetail = () => {
+const PostDetail = ({ post }: { post: PostDetailType }) => {
   return (
     <section className='post-detail'>
-      <PostDetailAction />
-      <PostDescription />
+      <PostDetailAction post={post} />
+      <PostDescription post={post} />
     </section>
   );
 };

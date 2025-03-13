@@ -361,6 +361,30 @@ export type PostItemType = {
   createdAt: string;
 }[];
 
+export type PostDetailType = {
+  id: string;
+  title: string;
+  slug: string;
+  desc: string;
+  category: string;
+  tags: string[];
+  isFeatured: boolean;
+  author: {
+    id: string;
+    name: string;
+    username: string;
+    img: string;
+  };
+  likes: string[];
+  dislikes: string[];
+  likeCount: number;
+  dislikeCount: number;
+  comments: CommentType;
+  views: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type RelatedTagType = TagType[];
 
 export type CommentType = {

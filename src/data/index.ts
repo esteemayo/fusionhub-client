@@ -20,6 +20,7 @@ import {
   FooterMenuType,
   MenuItemType,
   PartnerItemType,
+  PostDetailType,
   PostItemType,
   RelatedPostType,
   RelatedTagType,
@@ -268,6 +269,122 @@ export const postItems: PostItemType = [
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
 ];
+
+export const postDetail: PostDetailType = {
+  id: '1',
+  title:
+    'Effective Communication Is At The Heart of Every Successful Professional.',
+  slug: 'effective-communication-is-at-the-heart-of-every-successful-professional.',
+  desc: `
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ex modi
+      soluta. Minus omnis vero voluptatibus non nam quidem a, cumque
+      explicabo, sint nesciunt, laudantium fugiat expedita sapiente sed
+      nostrum. Fugiat, incidunt ullam. Reprehenderit, aut possimus
+      cupiditate incidunt quas enim asperiores. Doloribus ipsa voluptatum
+      veniam voluptas natus incidunt consequatur blanditiis nisi facilis
+      distinctio quos, facere eum dignissimos fuga animi magnam! Corrupti
+      ducimus iure atque beatae! Architecto, quaerat consectetur obcaecati
+      tempore qui dicta adipisci nostrum reprehenderit ab ullam perferendis
+      blanditiis, esse debitis eos. Quibusdam commodi quidem cumque qui sunt
+      expedita incidunt. Provident assumenda necessitatibus in excepturi
+      cum, ab unde. Sed, doloribus sapiente ab eos blanditiis reiciendis
+      aperiam praesentium a obcaecati reprehenderit, eum dignissimos id
+      magni veritatis quis ea nam asperiores distinctio. Animi, tempora?
+      Sapiente a fugiat at consequatur vero cumque repudiandae, eaque libero
+      quis ratione neque? Optio eum ipsa voluptate, maxime recusandae omnis,
+      nobis, voluptates debitis fugiat rerum veritatis? Iusto, ab.
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit
+      maiores corrupti cum, ad in repellendus provident veritatis tempore?
+      Numquam nulla molestiae inventore quisquam cum veniam natus repellat
+      odit in ipsum. Saepe porro ducimus sapiente laborum recusandae
+      mollitia obcaecati cumque qui consectetur vero similique ipsum, fuga
+      debitis. Corrupti, ratione placeat, tempora ullam et qui facilis,
+      facere corporis quo asperiores repellat provident. Doloribus, mollitia
+      nemo ipsa laboriosam doloremque voluptas necessitatibus quidem
+      consequuntur dolorum cupiditate fugiat autem recusandae ab iure ipsam
+      id eius. Doloribus debitis corporis eveniet error possimus libero ab
+      magni molestiae?
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
+      incidunt, saepe nihil esse deserunt inventore, sed sint alias error,
+      quis tempora! Fuga quas repellat maxime animi exercitationem eum,
+      beatae quae. Maxime ex esse sequi soluta alias saepe nostrum, minima
+      exercitationem labore sed odit eaque laboriosam velit eligendi optio
+      commodi impedit est ipsa culpa nobis recusandae id iste architecto?
+      Nemo, error. Nemo quasi, deserunt minus ut inventore quia molestiae
+      ipsam reiciendis accusantium soluta tenetur nihil similique illum
+      laudantium totam sit minima corrupti iusto aliquid tempore, numquam
+      ipsa necessitatibus. Ipsum, voluptatem asperiores. Praesentium
+      obcaecati cum beatae explicabo perspiciatis doloremque nisi veritatis
+      voluptatum numquam aperiam facere culpa, assumenda fugit dicta
+      voluptatem unde, earum pariatur eum, tempore odit reprehenderit
+      commodi. Expedita illum mollitia eos. Vero placeat ex, ducimus
+      deleniti, qui nihil quos distinctio cupiditate ipsa doloremque esse
+      quis similique perferendis obcaecati dignissimos eum temporibus cumque
+      voluptate. Illo animi dolore tempore eligendi corporis maxime
+      doloribus! Nisi impedit tempora, soluta facere quisquam at incidunt,
+      pariatur quos laudantium deserunt totam repellat a quod ad inventore
+      dolorum possimus. Ullam obcaecati ea perferendis corporis minima
+      veritatis eligendi nemo nulla? Debitis earum cupiditate possimus,
+      accusantium, laboriosam deserunt voluptas ipsum accusamus assumenda
+      laudantium quia dolores ullam ad, animi laborum quidem aut
+      necessitatibus quam obcaecati! Ullam odio hic iste facere ex
+      doloribus!
+    </p>
+  `,
+  category: 'technlogy',
+  tags: ['tech'],
+  isFeatured: false,
+  author: {
+    id: '1',
+    name: 'John Doe',
+    username: 'jdoe',
+    img: '/user/user-4.webp',
+  },
+  likes: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+  dislikes: [],
+  likeCount: 3,
+  dislikeCount: 0,
+  comments: [
+    {
+      id: '1',
+      desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus soluta architecto aspernatur repudiandae provident odio voluptatibus quia! Beatae aspernatur alias repellat dicta, eum voluptas commodi voluptate reiciendis reprehenderit laboriosam.',
+      user: {
+        name: 'Rosalina Pong',
+        img: '/img/user-1.jpeg',
+      },
+      createdAt: '2024-12-16T17:23:56.085+00:00',
+      updatedAt: '2024-12-16T17:23:56.085+00:00',
+    },
+    {
+      id: '2',
+      desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ut fugit inventore nulla possimus debitis provident officia nihil velit, esse iste repudiandae dicta ad incidunt dolores sequi delectus distinctio consequatur?',
+      user: {
+        name: 'Christian Vega',
+        img: '/img/user-2.jpeg',
+      },
+      createdAt: '2024-12-16T17:23:56.085+00:00',
+      updatedAt: '2024-12-16T17:23:56.085+00:00',
+    },
+    {
+      id: '3',
+      desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, molestias quam odio ratione recusandae, temporibus veritatis necessitatibus eligendi libero ea similique beatae eaque, officiis enim est aspernatur consequuntur voluptatem quo.',
+      user: {
+        name: 'Lourdes Browning',
+        img: '/img/user-3.jpeg',
+      },
+      createdAt: '2024-12-16T17:23:56.085+00:00',
+      updatedAt: '2024-12-16T17:23:56.085+00:00',
+    },
+  ],
+  views: 10000,
+  createdAt: '2025-03-16T57:23:56.085+00:00',
+  updatedAt: '2025-03-16T57:23:56.085+00:00',
+};
 
 export const relatedTags: RelatedTagType = [
   {
