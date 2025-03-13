@@ -267,6 +267,8 @@
         text-rendering: optimizeLegibility;
         font-weight: 700;
         font-size: 1.5rem;
+        word-wrap: break-word;
+        hyphens: auto;
         line-height: 1.12;
         transition: all 300ms ease-in-out;
 

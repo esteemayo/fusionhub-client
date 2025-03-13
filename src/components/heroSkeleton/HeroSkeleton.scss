@@ -1,0 +1,371 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.hero-skeleton {
+  &__header {
+    width: 160rem !important;
+    height: 40vw !important;
+    position: relative;
+
+    @include bp.xxl {
+      height: 43vw !important;
+    }
+
+    @media screen and (max-width: 68.75em) {
+      height: 45vw !important;
+    }
+
+    @include bp.lg {
+      height: 47vw !important;
+    }
+
+    @media screen and (max-width: 59.375em) {
+      height: 50vw !important;
+    }
+
+    @media screen and (max-width: 56.25em) {
+      height: 52vw !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 55vw !important;
+    }
+
+    @include bp.md {
+      height: 57vw !important;
+    }
+
+    @media screen and (max-width: 43.75em) {
+      height: 60vw !important;
+    }
+
+    @media screen and (max-width: 40.625em) {
+      height: 62vw !important;
+    }
+
+    @media screen and (max-width: 37.5em) {
+      height: 65vw !important;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      height: 67vw !important;
+    }
+
+    @media screen and (max-width: 31.25em) {
+      height: 70vw !important;
+    }
+
+    @include bp.sm {
+      height: 73vw !important;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      height: 75vw !important;
+    }
+
+    @media screen and (max-width: 25em) {
+      height: 77vw !important;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      height: 80vw !important;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      height: 82vw !important;
+    }
+
+    @media screen and (max-width: 23.4375em) {
+      height: 85vw !important;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      height: 87vw !important;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      height: 90vw !important;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 93vw !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 170rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 43vw !important;
+    }
+  }
+
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // @include bp.lg {
+    //   top: 23%;
+    //   transform: translate(-50%, -23%);
+    // }
+
+    @media screen and (max-width: 57em) {
+      top: 21%;
+      transform: translate(-50%, -21%);
+    }
+
+    @media screen and (max-width: 51.25em) {
+      top: 25%;
+      transform: translate(-50%, -25%);
+    }
+
+    @include bp.md {
+      top: 28%;
+      transform: translate(-50%, -28%);
+    }
+
+    @media screen and (max-width: 37.5em) {
+      top: 45%;
+      transform: translate(-50%, -45%);
+    }
+
+    @media screen and (max-width: 34.375em) {
+      top: 34%;
+      transform: translate(-50%, -34%);
+    }
+
+    @include bp.sm {
+      top: 40%;
+      transform: translate(-50%, -40%);
+    }
+
+    @media screen and (max-width: 26.875em) {
+      top: 25%;
+      transform: translate(-50%, -25%);
+    }
+
+    @media screen and (max-width: 26.25em) {
+      top: 37%;
+      transform: translate(-50%, -37%);
+    }
+
+    @media screen and (max-width: 25.875em) {
+      top: 23%;
+      transform: translate(-50%, -23%);
+    }
+
+    @media screen and (max-width: 24.375em) {
+      top: 25%;
+      transform: translate(-50%, -25%);
+    }
+
+    @media screen and (max-width: 23.4375em) {
+      top: 31%;
+      transform: translate(-50%, -31%);
+    }
+
+    @media screen and (max-width: 22.5em) {
+      top: 30%;
+      transform: translate(-50%, -30%);
+    }
+
+    @media screen and (max-width: 21.5em) {
+      top: 25%;
+      transform: translate(-50%, -25%);
+    }
+
+    @media screen and (max-width: 18.75em) {
+      top: 35%;
+      transform: translate(-50%, -35%);
+    }
+
+    @media screen and (max-width: 17.5em) {
+      top: 33%;
+      transform: translate(-50%, -33%);
+    }
+
+    .react-loading-skeleton {
+      --base-color: #021124 !important;
+    }
+  }
+
+  &__breadCrumbs {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--home,
+    &--post {
+      width: 5rem !important;
+      border-radius: 0.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 6rem !important;
+        height: 2rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 7rem !important;
+        height: 2.25rem !important;
+      }
+
+      @include bp.sm {
+        width: 6rem !important;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 5rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        height: 1.8rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 7rem !important;
+        height: 2rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 9rem !important;
+        height: 3rem !important;
+      }
+    }
+  }
+
+  &__heading {
+    text-align: center;
+    margin-top: 1.5rem;
+
+    &--main,
+    &--sub {
+      border-radius: 0.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        height: 2rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 2.25rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        height: 1.8rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 2rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 3rem !important;
+      }
+    }
+
+    &--main {
+      width: 80rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 85rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 87rem !important;
+      }
+
+      @include bp.md {
+        width: 83rem !important;
+      }
+
+      @media screen and (max-width: 43.75em) {
+        width: 73rem !important;
+      }
+
+      @media screen and (max-width: 37.5em) {
+        width: 63rem !important;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 60rem !important;
+      }
+
+      @include bp.sm {
+        width: 50rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 40rem !important;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 37rem !important;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 35rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 30rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 90rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 100rem !important;
+      }
+    }
+
+    &--sub {
+      width: 50rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 55rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 57rem !important;
+      }
+
+      @include bp.md {
+        width: 53rem !important;
+      }
+
+      @media screen and (max-width: 43.75em) {
+        width: 43rem !important;
+      }
+
+      @media screen and (max-width: 37.5em) {
+        width: 33rem !important;
+      }
+
+      @include bp.sm {
+        width: 30rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 20rem !important;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 17rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 60rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 70rem !important;
+      }
+    }
+  }
+}

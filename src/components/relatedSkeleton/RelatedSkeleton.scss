@@ -3,7 +3,6 @@
 
 .related-skeleton {
   width: 25rem;
-  background-color: rgba(vars.$clr-black, 0.2);
   border-radius: 0.5rem;
   overflow: hidden;
 
@@ -37,8 +36,6 @@
 
   @include bp.sm {
     width: 100%;
-    background-color: transparent;
-    background-color: red;
     border-radius: 0;
 
     &:not(:last-child) {
@@ -262,6 +259,18 @@
         width: 27.75rem !important;
       }
 
+      @media screen and (max-width: 21.5em) {
+        width: 27rem !important;
+      }
+
+      @media screen and (max-width: 20em) {
+        width: 25rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 23rem !important;
+      }
+
       @media screen and (min-width: 112.5em) {
         width: 23rem !important;
       }
@@ -312,6 +321,10 @@
         width: 11rem !important;
       }
 
+      @media screen and (max-width: 21.5em) {
+        width: 9rem !important;
+      }
+
       @media screen and (min-width: 112.5em) {
         width: 12rem !important;
       }
@@ -350,6 +363,10 @@
 
       @media screen and (max-width: 23.75em) {
         width: 15rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 13rem !important;
       }
 
       @media screen and (min-width: 112.5em) {

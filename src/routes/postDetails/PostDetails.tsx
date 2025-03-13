@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
+
 import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
 import Hero from '../../components/hero/Hero';
 import ToggleButton from '../../components/toggleButton/ToggleButton';
 import PostContent from '../../components/postContent/PostContent';
 import PostMenuActions from '../../components/postMenuActions/PostMenuActions';
+import HeroSkeleton from '../../components/heroSkeleton/HeroSkeleton';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
@@ -13,14 +16,20 @@ const PostDetails = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onToggle());
   };
 
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
+
   return (
     <div className='post-details'>
-      <Hero />
+      {isLoading ? <HeroSkeleton /> : <Hero />}
       <div className='post-details__container'>
         <PostContent />
         <PostMenuActions isOpen={isOpen} />

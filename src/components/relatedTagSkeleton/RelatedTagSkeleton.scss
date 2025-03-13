@@ -1,0 +1,76 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.related-tag-skeleton {
+  .react-loading-skeleton {
+    --base-color: #021124 !important;
+
+    @include bp.sm {
+      --base-color: #152233 !important;
+    }
+  }
+
+  &__item {
+    width: 7rem !important;
+    height: 3rem !important;
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 56.25em) {
+      height: 3.5rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 8rem !important;
+      height: 4rem !important;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      width: 10rem !important;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 9rem !important;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      width: 8.5rem !important;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      width: 8rem !important;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      width: 8.5rem !important;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 8rem !important;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 7rem !important;
+      height: 3.5rem !important;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 6.5rem !important;
+      height: 3rem !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 7.25rem !important;
+      height: 3.25rem !important;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 8rem !important;
+      height: 3.5rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 9.65rem !important;
+      height: 4.5rem !important;
+    }
+  }
+}
