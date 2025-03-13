@@ -9,7 +9,12 @@ const TagSkeleton = () => {
 
   return (
     <span className='tag-skeleton'>
-      <Skeleton width={70} height={30} baseColor={baseColor} />
+      <Skeleton
+        width={70}
+        height={30}
+        baseColor={baseColor}
+        className='tag-skeleton__item'
+      />
     </span>
   );
 };

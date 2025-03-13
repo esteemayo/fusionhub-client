@@ -1,24 +1,22 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.post-detail {
-  &__container {
-    background-color: vars.$clr-secondary-blue;
-    padding: 3rem;
-    border-radius: 3px;
+.post-detail-action {
+  background-color: vars.$clr-secondary-blue;
+  padding: 3rem;
+  border-radius: 3px;
 
-    @media screen and (max-width: 81.25em) {
-      padding: 2rem;
-    }
-
-    @include bp.sm {
-      padding: 0;
-      padding-bottom: 3rem;
-      background-color: transparent;
-    }
+  @media screen and (max-width: 81.25em) {
+    padding: 2rem;
   }
 
-  &__wrapper {
+  @include bp.sm {
+    padding: 0;
+    padding-bottom: 3rem;
+    background-color: transparent;
+  }
+
+  &__container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,7 +40,7 @@
     }
   }
 
-  &__wrap {
+  &__wrapper {
     display: flex;
     align-items: center;
     gap: 2rem;
