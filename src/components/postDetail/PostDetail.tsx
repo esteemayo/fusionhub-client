@@ -1,15 +1,16 @@
-import PostDescription from './../postDescription/PostDescription';
 import PostDetailAction from '../postDetailAction/PostDetailAction';
+import PostDesc from '../postDesc/PostDesc';
+import PostActionSkeleton from '../postActionSkeleton/PostActionSkeleton';
 
-import { PostDetailType } from '../../types';
+import { PostDetailProps } from '../../types';
 
 import './PostDetail.scss';
 
-const PostDetail = ({ post }: { post: PostDetailType }) => {
+const PostDetail = ({ post, loading }: PostDetailProps) => {
   return (
     <section className='post-detail'>
-      <PostDetailAction post={post} />
-      <PostDescription post={post} />
+      {loading ? <PostActionSkeleton /> : <PostDetailAction post={post} />}
+      <PostDesc post={post} loading={loading} />
     </section>
   );
 };

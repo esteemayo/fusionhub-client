@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.post-description {
+.post-desc {
   &__box {
     background-color: vars.$clr-secondary-blue;
     padding: 3rem;
@@ -75,10 +75,18 @@
       @media screen and (min-width: 125em) {
         font-size: 2.7rem;
       }
+
+      .react-loading-skeleton {
+        --base-color: #021124 !important;
+
+        @include bp.sm {
+          --base-color: #152233 !important;
+        }
+      }
     }
 
     &--desc {
-      & > p {
+      & > * {
         font-size: 1.65rem;
         word-wrap: break-word;
         color: vars.$clr-gray-light-1;
@@ -110,6 +118,14 @@
 
         &:not(:last-child) {
           margin-bottom: 2rem;
+        }
+
+        .react-loading-skeleton {
+          --base-color: #021124 !important;
+
+          @include bp.sm {
+            --base-color: #152233 !important;
+          }
         }
       }
     }

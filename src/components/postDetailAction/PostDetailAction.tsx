@@ -1,11 +1,12 @@
+import { format } from 'timeago.js';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 
-import { PostDetailType } from '../../types';
+import { PostDetailActionProps } from '../../types';
 
 import './PostDetailAction.scss';
 
-const PostDetailAction = ({ post }: { post: PostDetailType }) => {
+const PostDetailAction = ({ post }: PostDetailActionProps) => {
   return (
     <div className='post-detail-action'>
       <div className='post-detail-action__container'>
@@ -45,7 +46,7 @@ const PostDetailAction = ({ post }: { post: PostDetailType }) => {
                   d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
                 />
               </svg>
-              <time dateTime={post?.createdAt}>19 hours ago</time>
+              <time dateTime={post?.createdAt}>{format(post?.createdAt)}</time>
             </div>
           </div>
           <div className='post-detail-action__view'>

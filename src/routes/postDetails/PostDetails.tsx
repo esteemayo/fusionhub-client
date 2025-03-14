@@ -25,15 +25,15 @@ const PostDetails = () => {
     dispatch(onToggle());
   };
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 5000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => setIsLoading(false), 5000);
+  // }, []);
 
   return (
     <div className='post-details'>
       {isLoading ? <HeroSkeleton /> : <Hero />}
       <div className='post-details__container'>
-        <PostContent post={postDetail} />
+        <PostContent post={postDetail} loading={isLoading} />
         <PostMenuActions isOpen={isOpen} />
         <div className='post-details__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />

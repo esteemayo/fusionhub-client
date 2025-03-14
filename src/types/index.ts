@@ -327,6 +327,25 @@ export interface TeamItemProps {
   socials: IconType[];
 }
 
+export interface PostContentProps {
+  post: PostDetailType;
+  loading: boolean;
+}
+
+export interface PostDetailProps {
+  post: PostDetailType;
+  loading: boolean;
+}
+
+export interface PostDetailActionProps {
+  post: PostDetailType;
+}
+
+export interface PostDescProps {
+  post: PostDetailType;
+  loading: boolean;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
