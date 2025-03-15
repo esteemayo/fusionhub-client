@@ -1,0 +1,299 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.feature-skeleton {
+  width: 45rem;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  @media screen and (max-width: 81.25em) {
+    width: 44rem;
+  }
+
+  @media screen and (max-width: 68.75em) {
+    width: 42rem;
+  }
+
+  @include bp.md {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    width: 46rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    width: 48.5rem;
+  }
+
+  &__container {
+    width: 40rem;
+    width: 100%;
+    height: 30rem;
+    position: relative;
+
+    @media screen and (max-width: 56.25em) {
+      height: 31rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 33rem;
+    }
+
+    @include bp.md {
+      height: 34rem;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      height: 30rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 25rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 31rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 35rem;
+    }
+
+    &--img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  &__wrap {
+    position: absolute;
+    bottom: -1rem;
+    right: 1rem;
+    z-index: 1000;
+
+    .react-loading-skeleton {
+      --base-color: #021124 !important;
+    }
+
+    &--calendar {
+      width: 5rem !important;
+      height: 5rem !important;
+      border-radius: 0.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 5.5rem !important;
+        height: 5.5rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 6rem !important;
+        height: 6rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 5rem !important;
+        height: 5rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 5.5rem !important;
+        height: 5.5rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 6rem !important;
+        height: 6rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 8rem !important;
+        height: 8rem !important;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    padding: 2rem;
+    background-color: blue;
+
+    @media screen and (max-width: 26.25em) {
+      padding: 1.25rem 1rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      gap: 1rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--icon {
+      width: 2rem !important;
+      height: 2rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 2.1rem !important;
+        height: 2.1rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 2.2rem !important;
+        height: 2.2rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 1.95rem !important;
+        height: 1.95rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 2.1rem !important;
+        height: 2.1rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.2rem !important;
+        height: 2.2rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2.65rem !important;
+        height: 2.65rem !important;
+      }
+    }
+
+    &--time {
+      width: 10rem !important;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &__comments {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--icon {
+      width: 2rem !important;
+      height: 2rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 2.1rem !important;
+        height: 2.1rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 2.2rem !important;
+        height: 2.2rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 1.95rem !important;
+        height: 1.95rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 2.1rem !important;
+        height: 2.1rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.2rem !important;
+        height: 2.2rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2.65rem !important;
+        height: 2.65rem !important;
+      }
+    }
+
+    &--count {
+      width: 2.5rem !important;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    background-color: red;
+
+    &--heading {
+      width: 41rem !important;
+      border-radius: 0.5rem;
+    }
+
+    &--desc {
+      width: 41rem !important;
+      height: 1.5rem !important;
+      border-radius: 0.5rem;
+
+      &.sm {
+        width: 25rem !important;
+      }
+    }
+
+    &--link {
+      width: 10rem !important;
+      height: 4rem !important;
+      border-radius: 10rem;
+
+      @media screen and (max-width: 56.25em) {
+        height: 3.6rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 3.7rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        height: 3.45rem !important;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        height: 3.25rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        height: 3rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        font-weight: 700;
+        padding: 0;
+        background-color: transparent;
+        color: vars.$clr-pink-dark-1;
+        border-radius: 0;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 3.6rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 3.7rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 4.5rem !important;
+      }
+    }
+  }
+}
