@@ -2,10 +2,12 @@
 @use '../../styles/variables.scss' as vars;
 
 .hero-skeleton {
+  width: 100vw;
+  position: relative;
+
   &__header {
-    width: 160rem !important;
+    width: 100% !important;
     height: 40vw !important;
-    position: relative;
 
     @include bp.xxl {
       height: 43vw !important;
@@ -91,10 +93,6 @@
       height: 93vw !important;
     }
 
-    @media screen and (min-width: 106.25em) {
-      width: 170rem !important;
-    }
-
     @media screen and (min-width: 125em) {
       height: 43vw !important;
     }
@@ -109,86 +107,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    // @include bp.lg {
-    //   top: 23%;
-    //   transform: translate(-50%, -23%);
-    // }
-
-    @media screen and (max-width: 57em) {
-      top: 21%;
-      transform: translate(-50%, -21%);
-    }
-
-    @media screen and (max-width: 51.25em) {
-      top: 25%;
-      transform: translate(-50%, -25%);
-    }
-
-    @include bp.md {
-      top: 28%;
-      transform: translate(-50%, -28%);
-    }
-
-    @media screen and (max-width: 37.5em) {
-      top: 45%;
-      transform: translate(-50%, -45%);
-    }
-
-    @media screen and (max-width: 34.375em) {
-      top: 34%;
-      transform: translate(-50%, -34%);
-    }
-
-    @include bp.sm {
-      top: 40%;
-      transform: translate(-50%, -40%);
-    }
-
-    @media screen and (max-width: 26.875em) {
-      top: 25%;
-      transform: translate(-50%, -25%);
-    }
-
-    @media screen and (max-width: 26.25em) {
-      top: 37%;
-      transform: translate(-50%, -37%);
-    }
-
-    @media screen and (max-width: 25.875em) {
-      top: 23%;
-      transform: translate(-50%, -23%);
-    }
-
-    @media screen and (max-width: 24.375em) {
-      top: 25%;
-      transform: translate(-50%, -25%);
-    }
-
-    @media screen and (max-width: 23.4375em) {
-      top: 31%;
-      transform: translate(-50%, -31%);
-    }
-
-    @media screen and (max-width: 22.5em) {
-      top: 30%;
-      transform: translate(-50%, -30%);
-    }
-
-    @media screen and (max-width: 21.5em) {
-      top: 25%;
-      transform: translate(-50%, -25%);
-    }
-
-    @media screen and (max-width: 18.75em) {
-      top: 35%;
-      transform: translate(-50%, -35%);
-    }
-
-    @media screen and (max-width: 17.5em) {
-      top: 33%;
-      transform: translate(-50%, -33%);
-    }
 
     .react-loading-skeleton {
       --base-color: #021124 !important;

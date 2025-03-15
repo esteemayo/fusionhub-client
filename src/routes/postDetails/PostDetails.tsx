@@ -25,9 +25,9 @@ const PostDetails = () => {
     dispatch(onToggle());
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => setIsLoading(false), 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
 
   return (
     <div className='post-details'>

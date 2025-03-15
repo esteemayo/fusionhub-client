@@ -2,4 +2,6 @@
 @use '../../styles/variables.scss' as vars;
 
 .post-detail {
+  display: flex;
+  flex-direction: column;
 }
