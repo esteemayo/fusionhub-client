@@ -25,19 +25,27 @@ const FeatureSkeleton = () => {
             <Skeleton
               width={20}
               height={20}
-              circle
+              borderRadius={'0.5rem'}
               className='feature-skeleton__date--icon'
             />
-            <Skeleton className='feature-skeleton__date--time' />
+            <Skeleton
+              width={80}
+              height={21}
+              className='feature-skeleton__date--time'
+            />
           </div>
           <div className='feature-skeleton__comments'>
             <Skeleton
               width={20}
               height={20}
               circle
-              className='feature-comments--icon'
+              className='feature-skeleton__comments--icon'
             />
-            <Skeleton width={25} className='feature-comments--count' />
+            <Skeleton
+              width={16}
+              height={21}
+              className='feature-skeleton__comments--count'
+            />
           </div>
         </div>
         <div className='feature-skeleton__box'>

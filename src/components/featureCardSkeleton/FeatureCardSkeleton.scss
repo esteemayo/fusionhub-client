@@ -1,0 +1,330 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.feature-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: rgba(vars.$clr-black, 0.2);
+
+  @include bp.md {
+    padding: 1rem;
+  }
+
+  @media screen and (max-width: 24.375em) {
+    padding: 0.8rem;
+  }
+
+  @media screen and (max-width: 21.5em) {
+    padding: 0.5rem;
+  }
+
+  @media screen and (max-width: 17.5em) {
+    padding: 3px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    @media screen and (max-width: 81.25em) {
+      gap: 1rem;
+    }
+  }
+
+  &__cover {
+    width: 12rem !important;
+    height: 12rem !important;
+
+    @media screen and (max-width: 56.25em) {
+      width: 12.5rem !important;
+      height: 12.5rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 14rem !important;
+      height: 14rem !important;
+    }
+
+    @include bp.md {
+      width: 13rem !important;
+      height: 13rem !important;
+    }
+
+    @include bp.sm {
+      width: 12rem !important;
+      height: 12rem !important;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      width: 11rem !important;
+      height: 11rem !important;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 10rem !important;
+      height: 10rem !important;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 9rem !important;
+      height: 9rem !important;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 8rem !important;
+      height: 8rem !important;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 7rem !important;
+      height: 7rem !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 12.5rem !important;
+      height: 12.5rem !important;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 13rem !important;
+      height: 13rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 17rem !important;
+      height: 17rem !important;
+    }
+
+    &--img {
+      width: 12rem !important;
+      height: 12rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 12.5rem !important;
+        height: 12.5rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 14rem !important;
+        height: 14rem !important;
+      }
+
+      @include bp.md {
+        width: 13rem !important;
+        height: 13rem !important;
+        border-radius: 1rem !important;
+      }
+
+      @include bp.sm {
+        width: 12rem !important;
+        height: 12rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 11rem !important;
+        height: 11rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 10rem !important;
+        height: 10rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 9rem !important;
+        height: 9rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 8rem !important;
+        height: 8rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 7rem !important;
+        height: 7rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 12.5rem !important;
+        height: 12.5rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 13rem !important;
+        height: 13rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 17rem !important;
+        height: 17rem !important;
+      }
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media screen and (max-width: 21.5em) {
+      gap: 0.5rem;
+    }
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--icon {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.6rem !important;
+        height: 1.6rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 1.7rem !important;
+        height: 1.7rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 1.45rem !important;
+        height: 1.45rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.6rem !important;
+        height: 1.6rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.7rem !important;
+        height: 1.7rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2.15rem !important;
+        height: 2.15rem !important;
+      }
+    }
+
+    &--time,
+    &--count {
+      height: 2rem !important;
+
+      @media screen and (min-width: 106.25em) {
+        height: 2.1rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 2.165rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 2.35rem !important;
+      }
+    }
+
+    &--time {
+      width: 7.3rem !important;
+
+      @media screen and (min-width: 106.25em) {
+        width: 8rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 10.208rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 12.767rem !important;
+      }
+    }
+
+    &--count {
+      width: 1.5rem !important;
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.7rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.16rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 2.52rem !important;
+      }
+    }
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    @media screen and (max-width: 21.5em) {
+      gap: 0.5rem;
+    }
+
+    &--heading {
+      width: 24rem !important;
+      height: 1.7rem !important;
+      border-radius: 0.5rem;
+
+      @media screen and (min-width: 106.25em) {
+        width: 25.63rem !important;
+        height: 1.75rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 28.678rem !important;
+        height: 1.9rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 28rem !important;
+        height: 2.5rem !important;
+      }
+    }
+
+    &--link {
+      width: 8.5rem !important;
+      height: 2.85rem !important;
+      border-radius: 10rem;
+
+      @media screen and (min-width: 106.25em) {
+        width: 8.841rem !important;
+        height: 2.95rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 11.195rem !important;
+        height: 3.25rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 14.147rem !important;
+        height: 4.35rem !important;
+      }
+    }
+  }
+}

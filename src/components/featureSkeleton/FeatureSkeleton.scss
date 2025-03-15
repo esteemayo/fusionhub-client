@@ -178,7 +178,22 @@
 
     &--time {
       width: 10rem !important;
+      height: 2.1rem !important;
       border-radius: 0.5rem;
+
+      @media screen and (min-width: 106.25em) {
+        height: 2.25rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 11rem !important;
+        height: 2.5rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 13.5rem !important;
+        height: 3rem !important;
+      }
     }
   }
 
@@ -223,8 +238,24 @@
     }
 
     &--count {
-      width: 2.5rem !important;
+      width: 1.6rem !important;
+      height: 2.1rem !important;
       border-radius: 0.5rem;
+
+      @media screen and (min-width: 106.25em) {
+        width: 2rem !important;
+        height: 2.5rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 3rem !important;
+        height: 2.5rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 3.25rem !important;
+        height: 3rem !important;
+      }
     }
   }
 
@@ -237,13 +268,50 @@
 
     &--heading {
       width: 41rem !important;
+      height: 2rem !important;
       border-radius: 0.5rem;
+
+      @media screen and (max-width: 81.25em) {
+        width: 40rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 2.15rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 42rem !important;
+        height: 2.25rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 44.5rem !important;
+        height: 3rem !important;
+      }
     }
 
     &--desc {
       width: 41rem !important;
       height: 1.5rem !important;
       border-radius: 0.5rem;
+
+      @media screen and (max-width: 81.25em) {
+        width: 40rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 1.75rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 42rem !important;
+        height: 2rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 44.5rem !important;
+        height: 2.25rem !important;
+      }
 
       &.sm {
         width: 25rem !important;
@@ -284,15 +352,18 @@
       }
 
       @media screen and (min-width: 106.25em) {
-        height: 3.6rem !important;
+        width: 11rem !important;
+        height: 4.1rem !important;
       }
 
       @media screen and (min-width: 112.5em) {
-        height: 3.7rem !important;
+        width: 13rem;
+        height: 4.2rem !important;
       }
 
       @media screen and (min-width: 125em) {
-        height: 4.5rem !important;
+        width: 15rem !important;
+        height: 5.5rem !important;
       }
     }
   }

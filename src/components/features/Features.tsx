@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import FeatureCard from '../featureCard/FeatureCard';
 import Feature from '../feature/Feature';
+import FeatureCard from '../featureCard/FeatureCard';
+
 import FeatureSkeleton from '../featureSkeleton/FeatureSkeleton';
+import FeatureCardSkeleton from '../featureCardSkeleton/FeatureCardSkeleton';
 
 import { postItems } from '../../data';
 
@@ -28,9 +30,13 @@ const Features = () => {
             {isLoading ? <FeatureSkeleton /> : <Feature {...firstPost} />}
           </div>
           <div className='features__box'>
-            {otherPosts?.map((post) => {
-              return <FeatureCard key={post.id} {...post} />;
-            })}
+            {isLoading
+              ? Array.from(new Array(4)).map((_, index) => {
+                  return <FeatureCardSkeleton key={index} />;
+                })
+              : otherPosts?.map((post) => {
+                  return <FeatureCard key={post.id} {...post} />;
+                })}
           </div>
         </div>
       </div>
