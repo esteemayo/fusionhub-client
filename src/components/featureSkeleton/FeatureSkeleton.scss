@@ -18,8 +18,16 @@
     width: 100%;
   }
 
+  @media screen and (max-width: 22.5em) {
+    width: 38rem;
+  }
+
   @media screen and (max-width: 21.5em) {
-    width: 35rem;
+    width: 36rem;
+  }
+
+  @media screen and (max-width: 20em) {
+    width: 34rem;
   }
 
   @media screen and (max-width: 18.75em) {

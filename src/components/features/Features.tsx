@@ -17,9 +17,9 @@ const Features = () => {
 
   const [firstPost, ...otherPosts] = featuredPosts;
 
-  // useEffect(() => {
-  //   setTimeout(() => setIsLoading(false), 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
 
   return (
     <section className='features'>
