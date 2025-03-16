@@ -6,7 +6,6 @@
   flex-direction: column;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: rgba(vars.$clr-black, 0.2);
 
   @include bp.md {
     padding: 1rem;
@@ -229,6 +228,18 @@
     &--count {
       height: 2rem !important;
 
+      @media screen and (max-width: 56.25em) {
+        height: 2.1rem !important;
+      }
+
+      @include bp.sm {
+        height: 1.9rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        height: 1.75rem !important;
+      }
+
       @media screen and (min-width: 106.25em) {
         height: 2.1rem !important;
       }
@@ -245,6 +256,10 @@
     &--time {
       width: 7.3rem !important;
 
+      @media screen and (max-width: 56.25em) {
+        width: 8rem !important;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 8rem !important;
       }
@@ -260,6 +275,10 @@
 
     &--count {
       width: 1.5rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.85rem !important;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 1.7rem !important;
@@ -290,6 +309,26 @@
       height: 1.7rem !important;
       border-radius: 0.5rem;
 
+      @include bp.xxl {
+        width: 21rem !important;
+      }
+
+      @media screen and (max-width: 56.25em) {
+        height: 1.95rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 19rem !important;
+      }
+
+      @include bp.sm {
+        height: 1.75rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        height: 1.5rem !important;
+      }
+
       @media screen and (min-width: 106.25em) {
         width: 25.63rem !important;
         height: 1.75rem !important;
@@ -310,6 +349,24 @@
       width: 8.5rem !important;
       height: 2.85rem !important;
       border-radius: 10rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 9rem !important;
+        height: 3rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 10rem !important;
+        height: 3.25rem !important;
+      }
+
+      @include bp.sm {
+        height: 3rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        height: 2.75rem !important;
+      }
 
       @media screen and (min-width: 106.25em) {
         width: 8.841rem !important;
