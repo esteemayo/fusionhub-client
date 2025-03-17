@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { randomPostItems } from '../../data';
+import { PostItemType } from '../../types';
 
 import './Header.scss';
 
@@ -9,8 +9,8 @@ interface IWrapper {
   img: string;
 }
 
-const Header = () => {
-  const [firstItem, lastItem] = randomPostItems;
+const Header = ({ posts }: { posts: PostItemType }) => {
+  const [firstItem, lastItem] = posts;
 
   return (
     <header className='header'>

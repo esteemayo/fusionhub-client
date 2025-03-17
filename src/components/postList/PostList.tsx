@@ -1,15 +1,20 @@
 import Card from '../card/Card';
+import PostListSkeleton from '../postListSkeleton/PostListSkeleton';
 
 import { PostListProps } from '../../types';
 
 import './PostList.scss';
 
-const PostLists = ({ posts }: PostListProps) => {
+const PostLists = ({ posts, loading }: PostListProps) => {
   return (
     <div className='post-list'>
-      {posts.map((post) => {
-        return <Card key={post.id} {...post} />;
-      })}
+      {loading
+        ? Array.from(new Array(12)).map((_, index) => {
+            return <PostListSkeleton key={index} />;
+          })
+        : posts.map((post) => {
+            return <Card key={post.id} {...post} />;
+          })}
     </div>
   );
 };

@@ -1,15 +1,26 @@
+import { useEffect, useState } from 'react';
+
 import RecentPosts from '../../components/recentPosts/RecentPosts';
 import Header from '../../components/header/Header';
 import SearchClient from '../../components/searchClient/SearchClient';
 import Features from '../../components/features/Features';
+import HeaderSkeleton from '../../components/headerSkeleton/HeaderSkeleton';
+
+import { randomPostItems } from '../../data';
 
 import './Home.scss';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
+
   return (
     <div className='home'>
       <div className='home__container'>
-        <Header />
+        {isLoading ? <HeaderSkeleton /> : <Header posts={randomPostItems} />}
         <SearchClient />
         <Features />
         <RecentPosts />

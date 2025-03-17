@@ -237,6 +237,7 @@ export interface SpinnerProps {
 
 export interface PostListProps {
   posts: PostItemType;
+  loading: boolean;
 }
 
 export interface AccountHeadingProps {
