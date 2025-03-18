@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
@@ -6,6 +8,12 @@ import { postItems } from '../../data';
 import './LikedPosts.scss';
 
 const LikedPosts = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
+
   return (
     <div className='liked-posts'>
       <div className='liked-posts__container'>
@@ -16,7 +24,7 @@ const LikedPosts = () => {
         />
       </div>
       <div className='liked-posts__wrapper'>
-        <PostList posts={postItems} />
+        <PostList posts={postItems} loading={isLoading} />
       </div>
     </div>
   );

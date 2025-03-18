@@ -9,7 +9,7 @@ const PostLists = ({ posts, loading }: PostListProps) => {
   return (
     <div className='post-list'>
       {loading
-        ? Array.from(new Array(12)).map((_, index) => {
+        ? Array.from(new Array(3)).map((_, index) => {
             return <PostListSkeleton key={index} />;
           })
         : posts.map((post) => {
