@@ -6,16 +6,41 @@ const CardSkeleton = () => {
   return (
     <article className='card-skeleton'>
       <div className='card-skeleton__cover'>
-        <Skeleton width={300} height={250} />
+        <Skeleton
+          width={300}
+          height={250}
+          className='card-skeleton__cover--img'
+        />
       </div>
       <div className='card-skeleton__footer'>
-        <div className='card-skeleton__footer--box'>
-          <Skeleton height={20} />
-          <Skeleton height={15} count={2} />
+        <div className='card-skeleton__box'>
+          <Skeleton
+            width={'100%'}
+            height={20}
+            className='card-skeleton__box--title'
+          />
+          <Skeleton
+            width={'100%'}
+            height={15}
+            className='card-skeleton__box--desc'
+          />
+          <Skeleton
+            width={'85%'}
+            height={15}
+            className='card-skeleton__box--subdesc'
+          />
         </div>
-        <div className='card-skeleton__footer--container'>
-          <Skeleton height={15} width={'70%'} />
-          <Skeleton height={15} width={'45%'} />
+        <div className='card-skeleton__container'>
+          <Skeleton
+            width={'60%'}
+            height={15}
+            className='card-skeleton__container--category'
+          />
+          <Skeleton
+            width={'65%'}
+            height={15}
+            className='card-skeleton__container--time'
+          />
         </div>
       </div>
     </article>
