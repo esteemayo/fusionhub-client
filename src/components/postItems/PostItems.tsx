@@ -10,15 +10,15 @@ import './PostItems.scss';
 const PostItems = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => setIsLoading(false), 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 5000);
+  }, []);
 
   return (
     <section className='postItems'>
       <div className='postItems__container'>
         {isLoading
-          ? Array.from(Array(12)).map((_, index) => {
+          ? Array.from(Array(3)).map((_, index) => {
               return <CardSkeleton key={index} />;
             })
           : postItems.map((post) => {
