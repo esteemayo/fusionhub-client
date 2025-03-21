@@ -155,95 +155,15 @@
     @media screen and (min-width: 125em) {
       width: 150rem;
     }
-  }
 
-  &__btn {
-    position: absolute;
-    top: 12rem;
-    left: 4.5rem;
+    &--btn {
+      position: absolute;
+      top: 4rem;
+      left: 0;
 
-    @media screen and (max-width: 43.75em) {
-      left: 3.8rem;
-    }
-
-    @media screen and (max-width: 42.5em) {
-      left: 2.5rem;
-    }
-
-    @media screen and (max-width: 41.875em) {
-      left: 4.3rem;
-    }
-
-    @media screen and (max-width: 40.625em) {
-      left: 3rem;
-    }
-
-    @media screen and (max-width: 38.75em) {
-      left: 2.7rem;
-    }
-
-    @media screen and (max-width: 37.5em) {
-      left: 4rem;
-    }
-
-    @media screen and (max-width: 35.625em) {
-      left: 2rem;
-    }
-
-    @media screen and (max-width: 34.375em) {
-      left: 3.25rem;
-    }
-
-    @media screen and (max-width: 33.75em) {
-      left: 2.7rem;
-    }
-
-    @media screen and (max-width: 31.5em) {
-      left: 3.65rem;
-    }
-
-    @include bp.sm {
-      left: 3.5rem;
-    }
-
-    @media screen and (max-width: 25.75em) {
-      left: 3.2rem;
-    }
-
-    @media screen and (max-width: 25em) {
-      left: 3.4rem;
-    }
-
-    @media screen and (max-width: 23.75em) {
-      left: 3.7rem;
-    }
-
-    @media screen and (max-width: 23.4375em) {
-      left: 3.5rem;
-    }
-
-    @media screen and (max-width: 20.625em) {
-      left: 2.5rem;
-    }
-
-    @media screen and (max-width: 20em) {
-      left: 3rem;
-    }
-
-    @media screen and (max-width: 18.75em) {
-      left: 2.7rem;
-    }
-
-    @media screen and (max-width: 18.125em) {
-      left: 2rem;
-    }
-
-    @media screen and (max-width: 17.5em) {
-      left: 2.5rem;
-    }
-
-    @media screen and (min-width: 48.0625em) {
-      display: none;
+      @media screen and (min-width: 48.0625em) {
+        display: none;
+      }
     }
   }
 }

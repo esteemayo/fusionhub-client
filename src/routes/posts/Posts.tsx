@@ -33,10 +33,14 @@ const Posts = () => {
           <div className='posts__box'>
             <PostClient isOpen={isOpen} ref={ref} />
             <PostItems />
+            <div className='posts__box--btn'>
+              <ToggleButton
+                label='Filter'
+                isOpen={isOpen}
+                onClick={handleToggle}
+              />
+            </div>
           </div>
-        </div>
-        <div className='posts__btn'>
-          <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
       </div>
     </div>

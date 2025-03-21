@@ -14,6 +14,11 @@
 
   &.show {
     @media screen and (max-width: 51.25em) {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+
       right: 0;
       background-color: vars.$overlay;
     }
@@ -21,6 +26,11 @@
 
   &.hide {
     @media screen and (max-width: 51.25em) {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+
       right: -100rem;
     }
   }

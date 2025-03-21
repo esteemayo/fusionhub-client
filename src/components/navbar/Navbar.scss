@@ -16,6 +16,10 @@
     height: 9.5rem;
   }
 
+  @media screen and (max-width: 23.4375em) {
+    background-color: yellow;
+  }
+
   @media screen and (min-width: 106.25em) {
     height: 9rem;
   }
@@ -137,6 +141,11 @@
 
     @media screen and (max-width: 23.75em) {
       width: 40rem;
+    }
+
+    @media screen and (max-width: 23.4375em) {
+      width: 38rem;
+      background-color: red;
     }
 
     @media screen and (max-width: 22.5em) {
