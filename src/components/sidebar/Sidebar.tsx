@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import Logo from '../logo/Logo';
 import MenuItem from '../menuItem/MenuItem';
+import Logo from '../logo/Logo';
+import ToggleButton from '../toggleButton/ToggleButton';
 
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -41,6 +42,12 @@ const Sidebar = () => {
       <div className='sidebar__container'>
         <div className='sidebar__wrapper'>
           <Logo onClose={handleClick} />
+          <ToggleButton
+            isOpen={isOpen}
+            onClick={handleClose}
+            label='Menu'
+            type='nav'
+          />
         </div>
         <div className='sidebar__box'>
           <ul className='sidebar__menu'>

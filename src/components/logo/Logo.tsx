@@ -1,12 +1,17 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LogoProps } from '../../types';
 
 import './Logo.scss';
 
-const Logo = ({ onClose }: LogoProps) => {
+const Logo = ({ isOpen, onClose }: LogoProps) => {
+  const logoClasses = useMemo(() => {
+    return isOpen ? 'logo hide' : 'logo show';
+  }, [isOpen]);
+
   return (
-    <Link to='/' className='logo' onClick={onClose}>
+    <Link to='/' className={logoClasses} onClick={onClose}>
       <img
         src='/svg/logo.svg'
         width={200}

@@ -5,6 +5,7 @@ import { IconType } from 'react-icons/lib';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 
 export interface LogoProps {
+  isOpen?: boolean;
   onClose?(e: React.MouseEvent<HTMLAnchorElement>): void;
 }
 

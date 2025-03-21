@@ -4,13 +4,28 @@
 .logo {
   &:link,
   &:visited {
-    display: flex;
-    align-items: center;
+    transition: all 300ms ease-in-out;
   }
 
   &:disabled {
     opacity: 0.75;
     cursor: default;
+  }
+
+  &.show {
+    display: flex;
+    align-items: center;
+
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
   }
 
   &__icon {

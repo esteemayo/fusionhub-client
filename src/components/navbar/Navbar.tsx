@@ -25,7 +25,8 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='navbar__container'>
-        <Logo />
+        <Logo isOpen={isOpen} />
+        <span>&nbsp;</span>
         <ToggleButton
           type='nav'
           label='Menu'

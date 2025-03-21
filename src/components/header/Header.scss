@@ -611,6 +611,9 @@
         flex-direction: column;
 
         text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 0.5rem;
+        text-decoration-thickness: 2px;
         font-weight: 600;
         font-size: 1.3rem;
         transition: all 300ms ease-in-out;
@@ -705,120 +708,16 @@
           @media screen and (min-width: 125em) {
             font-size: 1.8rem;
           }
-
-          &::after {
-            width: 7.15rem;
-            height: 2px;
-
-            @media screen and (max-width: 56.25em) {
-              width: 8rem;
-            }
-
-            @media screen and (max-width: 51.25em) {
-              width: 8.35rem;
-            }
-
-            @include bp.md {
-              width: 7.65rem;
-            }
-
-            @media screen and (max-width: 37.5em) {
-              width: 8.85rem;
-            }
-
-            @media screen and (max-width: 26.25em) {
-              width: 7.95rem;
-            }
-
-            @media screen and (max-width: 23.75em) {
-              width: 7.65rem;
-            }
-
-            @media screen and (min-width: 106.25em) {
-              width: 7.65rem;
-            }
-
-            @media screen and (max-width: 21.5em) {
-              width: 7.35rem;
-            }
-
-            @media screen and (max-width: 18.75em) {
-              width: 7.15rem;
-            }
-
-            @media screen and (min-width: 112.5em) {
-              width: 8.25rem;
-              height: 3px;
-            }
-
-            @media screen and (min-width: 125em) {
-              width: 10.65rem;
-              height: 4px;
-            }
-          }
-        }
-
-        &::after {
-          content: '';
-          display: inline-block;
-          width: 7.75rem;
-          height: 2px;
-          background-color: vars.$clr-white;
-
-          @media screen and (max-width: 56.25em) {
-            width: 8.45rem;
-          }
-
-          @media screen and (max-width: 51.25em) {
-            width: 8.85rem;
-          }
-
-          @include bp.md {
-            width: 8.15rem;
-          }
-
-          @media screen and (max-width: 37.5em) {
-            width: 8.85rem;
-          }
-
-          @media screen and (max-width: 26.25em) {
-            width: 7.95rem;
-          }
-
-          @media screen and (max-width: 23.75em) {
-            width: 7.65rem;
-          }
-
-          @media screen and (max-width: 21.5em) {
-            width: 7.35rem;
-          }
-
-          @media screen and (max-width: 18.75em) {
-            width: 7.15rem;
-          }
-
-          @media screen and (min-width: 106.25em) {
-            width: 8.325rem;
-          }
-
-          @media screen and (min-width: 112.5em) {
-            width: 8.95rem;
-            height: 3px;
-          }
-
-          @media screen and (min-width: 125em) {
-            width: 11.25rem;
-            height: 4px;
-          }
         }
       }
 
       &:hover {
         color: vars.$clr-pink-light;
+      }
 
-        &::after {
-          background-color: vars.$clr-pink-light;
-        }
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
       }
     }
   }
