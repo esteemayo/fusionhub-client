@@ -19,7 +19,7 @@ const TopPosts = () => {
       <div className='top-posts__container'>
         <h2 className='top-posts__container--heading'>Top posts</h2>
         {isLoading
-          ? Array.from(new Array(5)).map((_, index) => {
+          ? Array.from(new Array(3)).map((_, index) => {
               return <TopPostSkeleton key={index} />;
             })
           : topPosts.map((post, i) => {

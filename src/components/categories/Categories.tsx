@@ -19,7 +19,7 @@ const Categories = () => {
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
         {isLoading
-          ? Array.from(new Array(5)).map((_, index) => {
+          ? Array.from(new Array(3)).map((_, index) => {
               return <CategorySkeleton key={index} />;
             })
           : categoryItems.map((category) => {

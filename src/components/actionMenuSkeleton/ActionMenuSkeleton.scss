@@ -6,77 +6,81 @@
   align-items: center;
   gap: 0.8rem;
 
+  .react-loading-skeleton {
+    --base-color: #021124 !important;
+
+    @include bp.sm {
+      --base-color: #152233 !important;
+    }
+  }
+
   &__icon {
-    span.react-loading-skeleton {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 56.25em) {
+      width: 1.85rem !important;
+      height: 1.85rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
+
+    @media screen and (max-width: 18.75em) {
       width: 1.75rem !important;
       height: 1.75rem !important;
-      border-radius: 0.5rem;
+    }
 
-      @media screen and (max-width: 56.25em) {
-        width: 1.85rem !important;
-        height: 1.85rem !important;
-      }
+    @media screen and (min-width: 106.25em) {
+      width: 1.85rem !important;
+      height: 1.85rem !important;
+    }
 
-      @media screen and (max-width: 51.25em) {
-        width: 2rem !important;
-        height: 2rem !important;
-      }
+    @media screen and (min-width: 112.5em) {
+      width: 2rem !important;
+      height: 2rem !important;
+    }
 
-      @media screen and (max-width: 18.75em) {
-        width: 1.75rem !important;
-        height: 1.75rem !important;
-      }
-
-      @media screen and (min-width: 106.25em) {
-        width: 1.85rem !important;
-        height: 1.85rem !important;
-      }
-
-      @media screen and (min-width: 112.5em) {
-        width: 2rem !important;
-        height: 2rem !important;
-      }
-
-      @media screen and (min-width: 125em) {
-        width: 3rem !important;
-        height: 3rem !important;
-      }
+    @media screen and (min-width: 125em) {
+      width: 3rem !important;
+      height: 3rem !important;
     }
   }
 
   &__label {
-    span.react-loading-skeleton {
+    width: 15rem !important;
+    height: 2rem !important;
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 56.25em) {
+      width: 16rem !important;
+      height: 2.25rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 17rem !important;
+      height: 2.5rem !important;
+    }
+
+    @media screen and (max-width: 17.5em) {
       width: 15rem !important;
       height: 2rem !important;
-      border-radius: 0.5rem;
+    }
 
-      @media screen and (max-width: 56.25em) {
-        width: 16rem !important;
-        height: 2.25rem !important;
-      }
+    @media screen and (min-width: 106.25em) {
+      width: 16rem !important;
+    }
 
-      @media screen and (max-width: 51.25em) {
-        width: 17rem !important;
-        height: 2.5rem !important;
-      }
+    @media screen and (min-width: 112.5em) {
+      width: 18rem !important;
+    }
 
-      @media screen and (max-width: 17.5em) {
-        width: 15rem !important;
-        height: 2rem !important;
-      }
-
-      @media screen and (min-width: 106.25em) {
-        width: 16rem !important;
-      }
-
-      @media screen and (min-width: 112.5em) {
-        width: 18rem !important;
-      }
-
-      @media screen and (min-width: 125em) {
-        width: 20rem !important;
-        height: 3rem !important;
-      }
+    @media screen and (min-width: 125em) {
+      width: 20rem !important;
+      height: 3rem !important;
     }
   }
 }

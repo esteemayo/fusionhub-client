@@ -19,7 +19,7 @@ const RelatedTags = () => {
       <h3 className='related-tags__heading'>Related tags</h3>
       <div className='related-tags__container'>
         {isLoading
-          ? Array.from(Array(6)).map((_, index) => {
+          ? Array.from(Array(3)).map((_, index) => {
               return <RelatedTagSkeleton key={index} />;
             })
           : relatedTags.map((tag) => {

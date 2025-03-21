@@ -20,7 +20,7 @@ const Tags = () => {
         <h2 className='tags__container--heading'>Tags</h2>
         <div className='tags__wrapper'>
           {isLoading
-            ? Array.from(new Array(12)).map((_, index) => {
+            ? Array.from(new Array(3)).map((_, index) => {
                 return <TagSkeleton key={index} />;
               })
             : tagItems.map((tag) => {

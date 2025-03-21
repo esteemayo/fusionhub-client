@@ -19,7 +19,7 @@ const Feeds = () => {
       <div className='feeds__container'>
         <h2 className='feeds__container-heading'>Feeds</h2>
         {isLoading
-          ? Array.from(Array(5)).map((_, index) => {
+          ? Array.from(Array(3)).map((_, index) => {
               return <FeedSkeleton key={index} />;
             })
           : feedItems.map((feed) => {

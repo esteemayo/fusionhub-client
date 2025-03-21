@@ -2,7 +2,15 @@
 @use '../../styles/variables.scss' as vars;
 
 .follow-skeleton {
-  span.react-loading-skeleton {
+  .react-loading-skeleton {
+    --base-color: #021124 !important;
+
+    @include bp.sm {
+      --base-color: #152233 !important;
+    }
+  }
+
+  &__container {
     width: 3.2rem !important;
     height: 3.2rem !important;
 
