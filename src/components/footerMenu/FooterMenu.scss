@@ -10,10 +10,6 @@
 
   list-style: none;
 
-  @media screen and (max-width: 17.5em) {
-    justify-content: flex-start;
-  }
-
   @media screen and (min-width: 106.25em) {
     gap: 2.25rem;
   }
