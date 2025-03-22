@@ -9,7 +9,6 @@
   border: 0;
   outline: 0;
   padding: 0.8rem 1rem;
-  background-color: transparent;
   background-color: rgba(vars.$clr-black, 0.25);
   color: vars.$clr-white;
   border-radius: 10rem;
@@ -30,7 +29,7 @@
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 100%;
     color: currentColor;
   }
 
