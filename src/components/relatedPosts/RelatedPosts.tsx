@@ -20,7 +20,7 @@ const RelatedPosts = () => {
         <h5 className='related-posts__container--heading'>Related posts</h5>
         <div className='related-posts__container--wrapper'>
           {isLoading
-            ? Array.from(Array(4)).map((_, index) => {
+            ? Array.from(Array(3)).map((_, index) => {
                 return <RelatedSkeleton key={index} />;
               })
             : relatedPosts.slice(0, 4).map((post) => {

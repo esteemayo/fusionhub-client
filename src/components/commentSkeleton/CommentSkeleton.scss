@@ -176,51 +176,55 @@
       }
 
       @include bp.sm {
-        width: 43rem !important;
-      }
-
-      @media screen and (max-width: 28.125em) {
-        width: 40rem !important;
-      }
-
-      @media screen and (max-width: 26.875em) {
-        width: 47rem !important;
-      }
-
-      @media screen and (max-width: 26.25em) {
-        width: 45rem !important;
-      }
-
-      @media screen and (max-width: 25em) {
-        width: 43rem !important;
-      }
-
-      @media screen and (max-width: 24.375em) {
-        width: 42rem !important;
-      }
-
-      @media screen and (max-width: 23.75em) {
-        width: 40rem !important;
-      }
-
-      @media screen and (max-width: 22.5em) {
         width: 38rem !important;
       }
 
-      @media screen and (max-width: 21.5em) {
+      @media screen and (max-width: 28.125em) {
+        width: 35rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 43rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 42rem !important;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 40rem !important;
+      }
+
+      @media screen and (max-width: 24.375em) {
+        width: 39rem !important;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 38rem !important;
+      }
+
+      @media screen and (max-width: 23.4375em) {
+        width: 37.5rem !important;
+      }
+
+      @media screen and (max-width: 22.5em) {
         width: 36rem !important;
       }
 
-      @media screen and (max-width: 20em) {
+      @media screen and (max-width: 21.5em) {
         width: 34rem !important;
       }
 
-      @media screen and (max-width: 18.75em) {
+      @media screen and (max-width: 20em) {
         width: 32rem !important;
       }
 
-      @media screen and (max-width: 17.5em) {
+      @media screen and (max-width: 18.75em) {
         width: 30rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 28rem !important;
       }
 
       @media screen and (min-width: 112.5em) {

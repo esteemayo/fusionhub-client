@@ -26,7 +26,7 @@ const Comment = ({ onAction, onUpdate, onOpen }: CommentProps) => {
         <h4 className='comment__heading'>{commentHeading}</h4>
         <figure className='comment__user'>
           {isLoading
-            ? Array.from(new Array(5)).map((_, index) => {
+            ? Array.from(new Array(3)).map((_, index) => {
                 return <CommentUserSkeleton key={index} />;
               })
             : commentUsers.map((user) => {

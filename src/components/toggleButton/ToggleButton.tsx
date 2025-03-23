@@ -34,14 +34,16 @@ const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
       ) : (
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          viewBox='0 0 20 20'
-          fill='currentColor'
-          className='size-5'
+          fill='none'
+          viewBox='0 0 24 24'
+          strokeWidth={1.5}
+          stroke='currentColor'
+          className='size-6'
         >
           <path
-            fillRule='evenodd'
-            d='M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm7 10.5a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Z'
-            clipRule='evenodd'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            d='M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5'
           />
         </svg>
       )}
