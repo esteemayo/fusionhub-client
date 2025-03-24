@@ -23,19 +23,27 @@
       background-color: transparent;
       border-radius: unset;
     }
+
+    span {
+      font-size: 2rem;
+    }
+
+    svg {
+      stroke-width: 3px;
+    }
   }
 
   span {
     text-transform: capitalize;
     text-rendering: optimizeLegibility;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: currentColor;
   }
 
   svg {
     width: 2.5rem;
     fill: currentColor;
-    stroke-width: 3px;
+    stroke-width: 2px;
   }
 }
