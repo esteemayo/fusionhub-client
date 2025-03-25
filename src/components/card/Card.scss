@@ -410,12 +410,12 @@
       }
 
       @media screen and (max-width: 26.875em) {
-        font-size: 1.55rem;
+        font-size: 1.65rem;
 
         &::after {
           content: '•';
           display: inline-block;
-          font-size: 1.65rem;
+          font-size: inherit;
           color: vars.$clr-tertiary-blue;
           margin-left: 1rem;
         }
@@ -430,6 +430,10 @@
       }
 
       @media screen and (max-width: 21.5em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 20em) {
         font-size: 1.4rem;
       }
 
@@ -470,16 +474,16 @@
         font-size: 1.55rem;
       }
 
-      @media screen and (max-width: 23.75em) {
-        font-size: 1.5rem;
+      @media screen and (max-width: 21.5em) {
+        font-size: 1.45rem;
       }
 
-      @media screen and (max-width: 22.5em) {
+      @media screen and (max-width: 20em) {
         font-size: 1.4rem;
       }
 
-      @media screen and (max-width: 21.5em) {
-        font-size: 1.3rem;
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.35rem;
       }
 
       @media screen and (min-width: 106.25em) {

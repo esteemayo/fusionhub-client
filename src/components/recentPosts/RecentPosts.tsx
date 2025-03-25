@@ -21,7 +21,7 @@ const RecentPosts = () => {
         <h6 className='recent-posts__container--heading'>Recent articles</h6>
         <div className='recent-posts__wrapper'>
           {isLoading
-            ? Array.from(Array(8)).map((_, index) => {
+            ? Array.from(Array(4)).map((_, index) => {
                 return <RecentSkeleton key={index} />;
               })
             : postItems.slice(0, 8).map((post) => {

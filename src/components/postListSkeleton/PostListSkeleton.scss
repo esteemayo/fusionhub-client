@@ -199,9 +199,8 @@
   &__footer {
     padding: 1rem;
 
-    @media screen and (max-width: 26.875em) {
+    @include bp.sm {
       padding: 0;
-      padding-bottom: 3rem;
     }
 
     @media screen and (min-width: 125em) {
