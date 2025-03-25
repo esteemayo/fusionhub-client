@@ -28,6 +28,7 @@
       padding: 1rem;
       background-color: vars.$clr-black;
       border-radius: 0.5rem;
+      transition: all 300ms ease-in;
 
       .accountMenu {
         &__container {
@@ -60,17 +61,18 @@
 
   &.hide {
     @include bp.lg {
-      left: -150rem;
+      left: -100%;
 
       display: none;
       visibility: hidden;
       opacity: 0;
       z-index: -1;
+      transition: all 300ms ease-out;
     }
 
     @include bp.sm {
       left: unset;
-      right: -150rem;
+      right: -100%;
     }
   }
 
