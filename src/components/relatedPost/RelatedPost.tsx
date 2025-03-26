@@ -1,6 +1,8 @@
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { RelatedPostProps } from '../../types';
 
 import './RelatedPost.scss';
@@ -17,7 +19,7 @@ const RelatedPost = ({
       <div className='related-post__container'>
         <div className='related-post__container--overlay'>&nbsp;</div>
         {img && (
-          <img
+          <Image
             src={img}
             width={250}
             height={150}

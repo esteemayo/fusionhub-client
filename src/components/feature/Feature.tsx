@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { formatDate } from '../../utils/formatDate';
 import { formatDay } from '../../utils/formatDay';
 import { formatMonth } from '../../utils/formatMonth';
@@ -13,7 +15,7 @@ const Feature = ({ img, desc, title, slug, createdAt }: FeatureProps) => {
     <article className='feature'>
       <div className='feature__cover'>
         {img && (
-          <img
+          <Image
             src={img}
             width={450}
             height={300}

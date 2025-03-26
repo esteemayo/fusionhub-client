@@ -5,6 +5,8 @@ import Logo from '../logo/Logo';
 import ToggleButton from '../toggleButton/ToggleButton';
 import NavItem from '../navItem/NavItem';
 
+import Image from '../Image';
+
 import { onToggle } from '../../features/sidebar/sidebarSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
@@ -40,8 +42,8 @@ const Navbar = () => {
           {user && (
             <div className='navbar__accounts'>
               <div className='navbar__account'>
-                <img
-                  src='/img/user-default.jpg'
+                <Image
+                  src='/user-default.jpg'
                   width={32.5}
                   height={32.5}
                   alt='avatar'

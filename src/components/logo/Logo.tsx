@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { LogoProps } from '../../types';
 
 import './Logo.scss';
@@ -12,8 +14,8 @@ const Logo = ({ isOpen, onClose }: LogoProps) => {
 
   return (
     <Link to='/' className={logoClasses} onClick={onClose}>
-      <img
-        src='/svg/logo.svg'
+      <Image
+        src='/logo.svg'
         width={200}
         height={50}
         alt='logo'

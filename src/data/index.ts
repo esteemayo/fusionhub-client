@@ -127,7 +127,7 @@ export const socialMenuItems: SocialMenuType = [
 export const randomPostItems: PostItemType = [
   {
     id: '1',
-    img: '/img/post-9.webp',
+    img: 'https://ik.imagekit.io/devayo/post-9.webp',
     title: 'Best Surfing Spots for Beginners and Advanced',
     slug: 'best-surfing-spots-for-beginners-and-advanced',
     desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
@@ -137,7 +137,7 @@ export const randomPostItems: PostItemType = [
   },
   {
     id: '2',
-    img: '/img/post-10.webp',
+    img: 'https://ik.imagekit.io/devayo/post-10.webp',
     title: 'High-Tech Prototype Bike Announced',
     slug: 'high-tech-prototype-bike-announced',
     desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
@@ -150,7 +150,7 @@ export const randomPostItems: PostItemType = [
 export const postItems: PostItemType = [
   {
     id: '1',
-    img: '/img/post-1.jpg',
+    img: '/post-1.jpg',
     title: 'The Ultimate Guide to SEO Optimization',
     slug: 'the-ultimate-guide-to-seo-optimization',
     desc: 'Dolorem explicabo delectus officiis qui vel quibusdam veritatis, nostrum laudantium, obcaecati reiciendis esse veniam numquam magnam optio. Sit aperiam animi quos voluptas?',
@@ -160,7 +160,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '2',
-    img: '/img/post-2.jpeg',
+    img: '/post-2.jpeg',
     title: 'How to Create a Social Media Marketing Strategy',
     slug: 'how-to-create-a-social-media-marketing-strategy',
     desc: 'Dolorem incidunt vel sint eius. Corrupti eos fugit et necessitatibus beatae nobis fugiat? Distinctio harum vitae, consectetur dolor accusamus veniam doloribus...',
@@ -170,7 +170,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '3',
-    img: '/img/post-3.jpeg',
+    img: '/post-3.jpeg',
     title: 'How to Write a Bestselling Novel',
     slug: 'how-to-Write-a-bestselling-novel',
     desc: 'Eius cupiditate culpa nesciunt dignissimos beatae tempora consequatur deserunt at iste provident alias voluptatum itaque in nemo nisi ipsum, repellendus dolorum magnam!',
@@ -180,7 +180,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '4',
-    img: '/img/post-4.webp',
+    img: '/post-4.webp',
     title: 'How Can You Improve Your Public Speaking Skills',
     slug: 'how-can-you-improve-your-public-speaking-skills',
     desc: 'Nihil molestias quas ducimus libero! Dolorum quis sequi assumenda qui autem commodi debitis dicta, esse in vel repudiandae, odit delectus corporis excepturi...',
@@ -190,7 +190,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '5',
-    img: '/img/post-5.jpeg',
+    img: '/post-5.jpeg',
     title: 'Can You Learn to Code in Just a Few Weeks',
     slug: 'can-you-learn-to-code-in-just-a-few-weeks',
     desc: 'Doloremque animi dolores aut cupiditate sit sequi et veritatis, repellat inventore, nesciunt modi rerum ab deserunt maxime enim odit tempora officiis recusandae!!!',
@@ -200,7 +200,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '6',
-    img: '/img/post-6.jpeg',
+    img: '/post-6.jpeg',
     title: '10 Ways to Boost Your Productivity',
     slug: '10-ways-to-boost-your-productivity',
     desc: 'Corrupti, id minus odio cumque voluptas dicta, reiciendis ab laudantium exercitationem, minima cum ea. Quo aliquam placeat quibusdam tempore, minima labore cum.',
@@ -210,7 +210,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '7',
-    img: '/img/post-7.jpeg',
+    img: '/post-7.jpeg',
     title: '5 Tips To Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     desc: 'Dignissimos quo voluptatem recusandae repudiandae minima consectetur itaque fugit deserunt officia temporibus? Esse, aperiam sapiente reprehenderit libero dignissimos qui vel eum doloremque...',
@@ -220,7 +220,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '8',
-    img: '/img/post-8.jpeg',
+    img: '/post-8.jpeg',
     title: '20 Best Books to Read This Summer',
     slug: '20-best-books-to-read-this-summer',
     desc: 'Cum omnis provident molestias dolor quasi impedit nisi id ipsa dolore explicabo minus esse facilis laboriosam sint ab repudiandae expedita, saepe accusantium.',
@@ -230,7 +230,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '9',
-    img: '/img/post-9.webp',
+    img: '/post-9.webp',
     title: '7 Habits of Highly Successful People',
     slug: '7-habits-of-hightly-successful-people',
     desc: 'Exercitationem repellat voluptates reprehenderit illo expedita esse quia voluptatum voluptate dolore, perferendis, amet eveniet quo nemo soluta laudantium. Illo eveniet iure debitis!',
@@ -240,7 +240,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '10',
-    img: '/img/post-10.webp',
+    img: '/post-10.webp',
     title: '15 Ways to reduce stress and anxiety',
     slug: '15-ways-to-reduce-stress-and-anxiety',
     desc: 'Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
@@ -250,7 +250,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '11',
-    img: '/img/post-11.jpeg',
+    img: '/post-11.jpeg',
     title: 'How to Start a Blog and Make Money Online',
     slug: 'how-to-start-a-blog-and-make-money-online',
     desc: 'Numquam recusandae ullam explicabo fugiat vitae ea sed quas, consequatur, ad necessitatibus amet doloremque ratione omnis ipsa! Nisi, optio! Rem, odio eveniet!',
@@ -260,7 +260,7 @@ export const postItems: PostItemType = [
   },
   {
     id: '12',
-    img: '/img/post-12.jpeg',
+    img: '/post-12.jpeg',
     title: 'What is the Future of Artificial Intelligence',
     slug: 'what-is-the-future-of-artificial-intelligence',
     desc: 'Quo error odit quasi optio quia, sit aliquid voluptas asperiores provident cupiditate doloribus dolorum ipsum libero cumque enim praesentium quaerat, perspiciatis temporibus.',
@@ -355,7 +355,7 @@ export const postDetail: PostDetailType = {
       desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus soluta architecto aspernatur repudiandae provident odio voluptatibus quia! Beatae aspernatur alias repellat dicta, eum voluptas commodi voluptate reiciendis reprehenderit laboriosam.',
       user: {
         name: 'Rosalina Pong',
-        img: '/img/user-1.jpeg',
+        img: '/user-1.jpeg',
       },
       createdAt: '2024-12-16T17:23:56.085+00:00',
       updatedAt: '2024-12-16T17:23:56.085+00:00',
@@ -365,7 +365,7 @@ export const postDetail: PostDetailType = {
       desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ut fugit inventore nulla possimus debitis provident officia nihil velit, esse iste repudiandae dicta ad incidunt dolores sequi delectus distinctio consequatur?',
       user: {
         name: 'Christian Vega',
-        img: '/img/user-2.jpeg',
+        img: '/user-2.jpeg',
       },
       createdAt: '2024-12-16T17:23:56.085+00:00',
       updatedAt: '2024-12-16T17:23:56.085+00:00',
@@ -375,7 +375,7 @@ export const postDetail: PostDetailType = {
       desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, molestias quam odio ratione recusandae, temporibus veritatis necessitatibus eligendi libero ea similique beatae eaque, officiis enim est aspernatur consequuntur voluptatem quo.',
       user: {
         name: 'Lourdes Browning',
-        img: '/img/user-3.jpeg',
+        img: '/user-3.jpeg',
       },
       createdAt: '2024-12-16T17:23:56.085+00:00',
       updatedAt: '2024-12-16T17:23:56.085+00:00',
@@ -419,7 +419,7 @@ export const comments: CommentType = [
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus soluta architecto aspernatur repudiandae provident odio voluptatibus quia! Beatae aspernatur alias repellat dicta, eum voluptas commodi voluptate reiciendis reprehenderit laboriosam.',
     user: {
       name: 'Rosalina Pong',
-      img: '/img/user-1.jpeg',
+      img: '/user-1.jpeg',
     },
     createdAt: '2024-12-16T17:23:56.085+00:00',
     updatedAt: '2024-12-16T17:23:56.085+00:00',
@@ -429,7 +429,7 @@ export const comments: CommentType = [
     desc: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus ut fugit inventore nulla possimus debitis provident officia nihil velit, esse iste repudiandae dicta ad incidunt dolores sequi delectus distinctio consequatur?',
     user: {
       name: 'Christian Vega',
-      img: '/img/user-2.jpeg',
+      img: '/user-2.jpeg',
     },
     createdAt: '2024-12-16T17:23:56.085+00:00',
     updatedAt: '2024-12-16T17:23:56.085+00:00',
@@ -439,7 +439,7 @@ export const comments: CommentType = [
     desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta, molestias quam odio ratione recusandae, temporibus veritatis necessitatibus eligendi libero ea similique beatae eaque, officiis enim est aspernatur consequuntur voluptatem quo.',
     user: {
       name: 'Lourdes Browning',
-      img: '/img/user-3.jpeg',
+      img: '/user-3.jpeg',
     },
     createdAt: '2024-12-16T17:23:56.085+00:00',
     updatedAt: '2024-12-16T17:23:56.085+00:00',
@@ -477,35 +477,35 @@ export const categoryItems: CategoryType = [
 export const feedItems: FeedItemTypes = [
   {
     id: '1',
-    img: '/img/post-12.jpeg',
+    img: '/post-12.jpeg',
     title: 'My Journey to Becoming a Successful Entrepreneur',
     slug: 'my-journey-to-becoming-a-successful-entrepreneur',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '2',
-    img: '/img/post-11.jpeg',
+    img: '/post-11.jpeg',
     title: 'How I Overcame My Fear of Public Speaking',
     slug: 'how-i-overcame-my-fear-of-public-speaking',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '3',
-    img: '/img/post-10.webp',
+    img: '/post-10.webp',
     title: 'The 10 Most Ridiculous Excuses for Not Exercising',
     slug: 'the-10-most-ridiculous-excuses-for-not-exercising',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '4',
-    img: '/img/post-9.webp',
+    img: '/post-9.webp',
     title: 'My Experience with Online Dating and What I Learned',
     slug: 'my-experience-with-online-dating-and-what-i-learned',
     createdAt: '2024-12-19T19:34:43.085+00:00',
   },
   {
     id: '5',
-    img: '/img/post-8.jpeg',
+    img: '/post-8.jpeg',
     title: 'What Are the Benefits of Meditation and Mindfulness?',
     slug: 'what-are-the-benefits-of-meditation-and-mindfulness?',
     createdAt: '2024-12-19T19:34:43.085+00:00',
@@ -566,7 +566,7 @@ export const tagItems: TagItemType = [
 export const relatedPosts: RelatedPostType = [
   {
     id: '1',
-    img: '/img/post-7.jpeg',
+    img: '/post-7.jpeg',
     title: '5 Tips To Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     category: 'photo',
@@ -574,7 +574,7 @@ export const relatedPosts: RelatedPostType = [
   },
   {
     id: '2',
-    img: '/img/post-3.jpeg',
+    img: '/post-3.jpeg',
     title: 'How to Write a Bestselling Novel',
     slug: 'how-to-Write-a-bestselling-novel',
     category: 'nature',
@@ -582,7 +582,7 @@ export const relatedPosts: RelatedPostType = [
   },
   {
     id: '3',
-    img: '/img/post-8.jpeg',
+    img: '/post-8.jpeg',
     title: '20 Best Books to Read This Summer',
     slug: '20-best-books-to-read-this-summer',
     category: 'adventures',
@@ -590,7 +590,7 @@ export const relatedPosts: RelatedPostType = [
   },
   {
     id: '4',
-    img: '/img/post-4.webp',
+    img: '/post-4.webp',
     title: 'How Can You Improve Your Public Speaking Skills',
     slug: 'how-can-you-improve-your-public-speaking-skills',
     category: 'travel',
@@ -598,7 +598,7 @@ export const relatedPosts: RelatedPostType = [
   },
   {
     id: '5',
-    img: '/img/post-5.jpeg',
+    img: '/post-5.jpeg',
     title: 'Can You Learn to Code in Just a Few Weeks',
     slug: 'can-you-learn-to-code-in-just-a-few-weeks',
     category: 'lifestyle',
@@ -692,23 +692,23 @@ export const accountMenus: AccountMenuType = [
 export const commentUsers: CommentUserType = [
   {
     id: '1',
-    img: '/img/user-1.jpeg',
+    img: '/user-1.jpeg',
   },
   {
     id: '2',
-    img: '/img/user-2.jpeg',
+    img: '/user-2.jpeg',
   },
   {
     id: '3',
-    img: '/img/user-3.jpeg',
+    img: '/user-3.jpeg',
   },
   {
     id: '4',
-    img: '/img/user-4.webp',
+    img: '/user-4.webp',
   },
   {
     id: '5',
-    img: '/img/user-5.webp',
+    img: '/user-5.webp',
   },
 ];
 
@@ -766,21 +766,21 @@ export const aboutItems: aboutItemType = [
 export const teamItems: TeamType = [
   {
     id: 1,
-    img: '/img/team-1.png',
+    img: '/team-1.png',
     name: 'Tim kamerer',
     role: 'Technical director',
     socials: [FaGooglePlusG, FaInstagram, FaLinkedinIn],
   },
   {
     id: 2,
-    img: '/img/team-2.png',
+    img: '/team-2.png',
     name: 'Lindsay perlen',
     role: 'Senior producer',
     socials: [FaFacebookF, FaXTwitter, FaYoutube],
   },
   {
     id: 3,
-    img: '/img/team-3.png',
+    img: '/team-3.png',
     name: 'John brown',
     role: 'Software developer',
     socials: [FaGithub, FaXTwitter, FaTiktok],
@@ -790,72 +790,72 @@ export const teamItems: TeamType = [
 export const partnerItems: PartnerItemType = [
   {
     id: 1,
-    imgSrc: '/img/86-ideas.png',
+    imgSrc: '/86-ideas.png',
     alt: '86 Ideas Logo',
   },
   {
     id: 2,
-    imgSrc: '/img/viatris.png',
+    imgSrc: '/viatris.png',
     alt: 'Viatris Logo',
   },
   {
     id: 3,
-    imgSrc: '/img/gamelove.png',
+    imgSrc: '/gamelove.png',
     alt: 'Game Love Logo',
   },
   {
     id: 4,
-    imgSrc: '/img/apple.png',
+    imgSrc: '/apple.png',
     alt: 'Apple Logo',
   },
   {
     id: 5,
-    imgSrc: '/img/gen3.png',
+    imgSrc: '/gen3.png',
     alt: 'Gen3 Logo',
   },
   {
     id: 6,
-    imgSrc: '/img/golfstar.png',
+    imgSrc: '/golfstar.png',
     alt: 'GolfStar Logo',
   },
   {
     id: 7,
-    imgSrc: '/img/guardian.png',
+    imgSrc: '/guardian.png',
     alt: 'Guardian Logo',
   },
   {
     id: 8,
-    imgSrc: '/img/paypal.png',
+    imgSrc: '/paypal.png',
     alt: 'Paypal Logo',
   },
   {
     id: 9,
-    imgSrc: '/img/linkedin.png',
+    imgSrc: '/linkedin.png',
     alt: 'Linkedin Logo',
   },
   {
     id: 10,
-    imgSrc: '/img/jellyfish.png',
+    imgSrc: '/jellyfish.png',
     alt: 'Jelly Fish Logo',
   },
   {
     id: 11,
-    imgSrc: '/img/tp.png',
+    imgSrc: '/tp.png',
     alt: 'Tp Logo',
   },
   {
     id: 12,
-    imgSrc: '/img/stripe.png',
+    imgSrc: '/stripe.png',
     alt: 'Stripe Logo',
   },
   {
     id: 13,
-    imgSrc: '/img/dragon.png',
+    imgSrc: '/dragon.png',
     alt: 'Dragon Logo',
   },
   {
     id: 14,
-    imgSrc: '/img/sakwa.png',
+    imgSrc: '/sakwa.png',
     alt: 'Sakwa Logo',
   },
 ];

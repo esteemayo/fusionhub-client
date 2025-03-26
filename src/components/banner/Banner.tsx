@@ -1,3 +1,5 @@
+import Image from '../Image';
+
 import './Banner.scss';
 
 const Banner = () => {
@@ -5,8 +7,8 @@ const Banner = () => {
     <section className='banner'>
       <div className='banner__user'>
         <label htmlFor='avatar' className='banner__user--label'>
-          <img
-            src='/img/user-1.jpeg'
+          <Image
+            src='/user-1.jpeg'
             width={120}
             height={120}
             alt='avatar'

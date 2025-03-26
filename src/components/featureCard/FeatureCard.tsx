@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { FeatureCardProps } from '../../types';
 import { formatDate } from '../../utils/formatDate';
 
@@ -11,7 +13,7 @@ const FeatureCard = ({ img, title, slug, createdAt }: FeatureCardProps) => {
       <div className='feature-card__container'>
         <div className='feature-card__cover'>
           {img && (
-            <img
+            <Image
               src={img}
               width={110}
               height={110}

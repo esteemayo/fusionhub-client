@@ -1,6 +1,8 @@
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { FeedProps } from '../../types';
 
 import './Feed.scss';
@@ -10,7 +12,7 @@ const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
     <article className='feed'>
       <div className='feed__wrapper'>
         {img && (
-          <img
+          <Image
             src={img}
             alt='image'
             width={65}

@@ -1,3 +1,5 @@
+import Image from '../Image';
+
 import { ProfileImageProps } from '../../types';
 
 import './ProfileImage.scss';
@@ -8,8 +10,8 @@ const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
       <div className='profile-image__container'>
         <div className='profile-image__user'>
           <div className='profile-image__image'>
-            <img
-              src='/img/user-1.jpeg'
+            <Image
+              src='/user-1.jpeg'
               width={120}
               height={120}
               alt='avatar'

@@ -1,5 +1,7 @@
 import { format } from 'timeago.js';
 
+import Image from '../Image';
+
 import { CommentCardProps } from '../../types';
 
 import './CommentCard.scss';
@@ -30,7 +32,7 @@ const CommentCard = ({
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           {user.img && (
-            <img
+            <Image
               src={user.img}
               width={80}
               height={80}

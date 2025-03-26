@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { TeamItemProps } from '../../types';
 
 import './TeamItem.scss';
@@ -8,7 +10,7 @@ const TeamItem = ({ img, name, role, socials }: TeamItemProps) => {
   return (
     <article className='team-item'>
       <div className='team-item__container'>
-        <img
+        <Image
           src={img}
           width={350}
           height={250}

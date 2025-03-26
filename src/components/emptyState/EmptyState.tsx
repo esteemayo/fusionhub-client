@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import './EmptyState.scss';
 import Heading from '../heading/Heading';
+
 import { EmptyStateProps } from '../../types';
 
-import './EmptyState.scss';
+import Image from '../Image';
 
 const EmptyState = ({
   url,
@@ -59,7 +61,7 @@ const EmptyState = ({
       <div className='empty-state__container'>
         <div className='empty-state__wrapper'>
           <div className={imgBoxClasses}>
-            <img
+            <Image
               src={imgSrc}
               width={300}
               height={230}

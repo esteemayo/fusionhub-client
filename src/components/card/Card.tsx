@@ -1,6 +1,8 @@
 import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 
+import Image from '../Image';
+
 import { excerpts } from '../../utils';
 import { CardProps } from '../../types';
 
@@ -12,7 +14,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
       <div className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>
         {img && (
-          <img
+          <Image
             src={img}
             alt='post'
             width={300}

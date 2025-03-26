@@ -5,6 +5,8 @@ import MenuItem from '../menuItem/MenuItem';
 import Logo from '../logo/Logo';
 import ToggleButton from '../toggleButton/ToggleButton';
 
+import Image from '../Image';
+
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
@@ -71,8 +73,8 @@ const Sidebar = () => {
                   className='sidebar__account'
                   onClick={handleClose}
                 >
-                  <img
-                    src='/img/user-default.jpg'
+                  <Image
+                    src='/user-default.jpg'
                     width={70}
                     height={70}
                     alt='avatar'

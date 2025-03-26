@@ -1,3 +1,5 @@
+import Image from '../Image';
+
 import { partnerItems } from '../../data';
 
 import './Partners.scss';
@@ -14,7 +16,7 @@ const Partners = () => {
           {partnerItems.map((item) => {
             const { id, alt, imgSrc } = item;
             return (
-              <img
+              <Image
                 key={id}
                 src={imgSrc}
                 width={100}

@@ -30,6 +30,14 @@ export interface SocialMenuItemProps {
   icon: IconType;
 }
 
+export interface ImageProps {
+  alt?: string;
+  src: string;
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+}
+
 export interface HeadingProps {
   title: string;
   subtitle: string;

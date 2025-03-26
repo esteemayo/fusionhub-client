@@ -1,3 +1,4 @@
+import Image from '../Image';
 import Spinner from '../Spinner';
 
 import { ButtonProps } from '../../types';
@@ -20,7 +21,9 @@ const Button = ({
       className={`btn ${color}`}
       onClick={onClick}
     >
-      {icon && !loading && <img src={icon} width={25} height={25} alt='logo' />}
+      {icon && !loading && (
+        <Image src={icon} width={25} height={25} alt='logo' />
+      )}
       {loading ? <Spinner /> : label}
     </button>
   );
