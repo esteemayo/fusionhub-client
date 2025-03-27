@@ -4,6 +4,8 @@ import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import CommentCard from '../commentCard/CommentCard';
 import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
 
+import Image from '../Image';
+
 import { CommentProps } from '../../types';
 import { comments, commentUsers } from '../../data';
 
@@ -32,7 +34,7 @@ const Comment = ({ onAction, onUpdate, onOpen }: CommentProps) => {
             : commentUsers.map((user) => {
                 const { id, img } = user;
                 return (
-                  <img
+                  <Image
                     key={id}
                     src={img}
                     width={50}

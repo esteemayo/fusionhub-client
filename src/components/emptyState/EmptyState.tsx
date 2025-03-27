@@ -62,7 +62,7 @@ const EmptyState = ({
         <div className='empty-state__wrapper'>
           <div className={imgBoxClasses}>
             <Image
-              src={imgSrc}
+              src={imgSrc!}
               width={300}
               height={230}
               alt={alt}

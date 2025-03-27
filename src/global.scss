@@ -44,6 +44,7 @@ body {
   scroll-behavior: smooth;
   overflow-x: clip;
   cursor: default;
+  transition: scroll-behavior 300ms ease-in-out;
 }
 
 a {
