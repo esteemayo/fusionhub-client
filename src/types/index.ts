@@ -266,12 +266,14 @@ export interface AccountMenuItemProps {
   icon: string;
   label: string;
   isOpen: boolean;
-  activeMenu: string;
+  activeMenu?: string;
   onAction(id: string): void;
 }
 
 export interface ProfileImageProps {
   ref: React.LegacyRef<HTMLInputElement>;
+  file: File | undefined;
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

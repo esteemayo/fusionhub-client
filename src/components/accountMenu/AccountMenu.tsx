@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
@@ -14,9 +15,12 @@ const AccountMenu = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
 
+  const { pathname } = useLocation();
+  const path = pathname.split('/').pop();
+
   const { handleLogout } = useLogout(isOpen, onClose);
 
-  const [isActive, setIsActive] = useState('profile');
+  const [isActive, setIsActive] = useState(path);
 
   const handleClick = (id: string) => {
     if (isOpen) {
@@ -30,6 +34,10 @@ const AccountMenu = () => {
   const accountMenuClasses = useMemo(() => {
     return isOpen ? 'account-menu show' : 'account-menu hide';
   }, [isOpen]);
+
+  useEffect(() => {
+    setIsActive(path);
+  }, [path]);
 
   return (
     <aside className={accountMenuClasses}>

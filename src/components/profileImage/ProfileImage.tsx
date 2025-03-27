@@ -4,14 +4,18 @@ import { ProfileImageProps } from '../../types';
 
 import './ProfileImage.scss';
 
-const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
+const ProfileImage = ({ ref, file, onChange, onUpload }: ProfileImageProps) => {
   return (
     <div className='profile-image'>
       <div className='profile-image__container'>
         <div className='profile-image__user'>
           <div className='profile-image__image'>
             <Image
-              src='/user-1.jpeg'
+              src={
+                file
+                  ? URL.createObjectURL(file as Blob | MediaSource)
+                  : '/user-1.jpeg'
+              }
               width={120}
               height={120}
               alt='avatar'
@@ -39,7 +43,13 @@ const ProfileImage = ({ ref, onUpload }: ProfileImageProps) => {
                   />
                 </svg>
               </label>
-              <input id='file' type='file' accept='image/*' ref={ref} />
+              <input
+                id='file'
+                type='file'
+                accept='image/*'
+                onChange={onChange}
+                ref={ref}
+              />
             </div>
           </div>
           <div className='profile-image__details'>
