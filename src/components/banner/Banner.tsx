@@ -1,14 +1,28 @@
 import Image from '../Image';
 
+import { BannerProps } from '../../types';
+
 import './Banner.scss';
 
-const Banner = () => {
+const Banner = ({
+  file,
+  banner,
+  onChangeFile,
+  onChangeBanner,
+}: BannerProps) => {
+  console.log(file);
+  console.log(banner);
+
   return (
     <section className='banner'>
       <div className='banner__user'>
         <label htmlFor='avatar' className='banner__user--label'>
           <Image
-            src='/user-1.jpeg'
+            src={
+              file
+                ? URL.createObjectURL(file as Blob | MediaSource)
+                : '/user-1.jpeg'
+            }
             width={120}
             height={120}
             alt='avatar'
@@ -20,6 +34,7 @@ const Banner = () => {
           name='avatar'
           id='avatar'
           className='banner__user--input'
+          onChange={onChangeFile}
         />
       </div>
       <div className='banner__cover'>
@@ -39,7 +54,12 @@ const Banner = () => {
             />
           </svg>
         </label>
-        <input type='file' id='file' className='banner__cover--input' />
+        <input
+          type='file'
+          id='file'
+          className='banner__cover--input'
+          onChange={onChangeBanner}
+        />
       </div>
     </section>
   );

@@ -267,7 +267,14 @@ export interface AccountMenuItemProps {
   label: string;
   isOpen: boolean;
   activeMenu?: string;
-  onAction(id: string): void;
+  onAction(): void;
+}
+
+export interface BannerProps {
+  file: File | undefined;
+  banner: File | undefined;
+  onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
+  onChangeBanner(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface ProfileImageProps {

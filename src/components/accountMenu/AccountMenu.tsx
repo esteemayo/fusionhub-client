@@ -22,13 +22,11 @@ const AccountMenu = () => {
 
   const [isActive, setIsActive] = useState(path);
 
-  const handleClick = (id: string) => {
+  const handleClick = () => {
     if (isOpen) {
       dispatch(onClose());
       return;
     }
-
-    setIsActive(id);
   };
 
   const accountMenuClasses = useMemo(() => {

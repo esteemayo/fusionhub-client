@@ -6,7 +6,6 @@ import { AccountMenuItemProps } from '../../types';
 import './AccountMenuItem.scss';
 
 const AccountMenuItem = ({
-  id,
   url,
   icon,
   label,
@@ -15,13 +14,15 @@ const AccountMenuItem = ({
   onAction,
 }: AccountMenuItemProps) => {
   const menuClasses = useMemo(() => {
-    return id === activeMenu ? 'account-menu-item active' : 'account-menu-item';
-  }, [activeMenu, id]);
+    return url === activeMenu
+      ? 'account-menu-item active'
+      : 'account-menu-item';
+  }, [activeMenu, url]);
 
   return (
     <li
       className={`${menuClasses} ${isOpen ? 'show' : 'hide'}`}
-      onClick={() => onAction(id)}
+      onClick={onAction}
     >
       <Link to={`/accounts/${url}`}>
         <svg
