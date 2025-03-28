@@ -315,6 +315,11 @@
     display: flex;
     flex-direction: column;
 
+    @media screen and (max-width: 26.875em) {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
     &--category,
     &--time {
       height: 1.5rem !important;
@@ -341,11 +346,7 @@
       }
 
       @media screen and (max-width: 26.875em) {
-        width: 35% !important;
-      }
-
-      @media screen and (max-width: 26.25em) {
-        width: 30% !important;
+        width: 7rem !important;
       }
 
       @media screen and (max-width: 24.375em) {
@@ -353,6 +354,10 @@
       }
 
       @media screen and (max-width: 23.75em) {
+        width: 6.5rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
         width: 6rem !important;
       }
 
@@ -369,11 +374,11 @@
       }
 
       @media screen and (max-width: 26.875em) {
-        width: 40% !important;
+        width: 10rem !important;
       }
 
-      @media screen and (max-width: 26.25em) {
-        width: 35% !important;
+      @media screen and (max-width: 26.875em) {
+        width: 12rem !important;
       }
 
       @media screen and (max-width: 24.375em) {
@@ -381,7 +386,11 @@
       }
 
       @media screen and (max-width: 23.75em) {
-        width: 10rem !important;
+        width: 11.5rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 11rem !important;
       }
 
       @media screen and (max-width: 20em) {
