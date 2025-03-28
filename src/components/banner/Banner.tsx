@@ -1,8 +1,15 @@
+import { useMemo } from 'react';
+import styled, { css } from 'styled-components';
+
 import Image from '../Image';
 
 import { BannerProps } from '../../types';
 
 import './Banner.scss';
+
+interface IContainer {
+  banner: string;
+}
 
 const Banner = ({
   file,
@@ -10,31 +17,40 @@ const Banner = ({
   onChangeFile,
   onChangeBanner,
 }: BannerProps) => {
-  console.log(file);
-  console.log(banner);
+  const bannerImg = useMemo(() => {
+    return banner
+      ? URL.createObjectURL(banner as Blob | MediaSource)
+      : 'https://ik.imagekit.io/devayo/post-2.jpeg';
+  }, [banner]);
 
   return (
-    <section className='banner'>
+    <Container banner={bannerImg} className='banner'>
       <div className='banner__user'>
         <label htmlFor='avatar' className='banner__user--label'>
-          <Image
-            src={
-              file
-                ? URL.createObjectURL(file as Blob | MediaSource)
-                : '/user-1.jpeg'
-            }
-            width={120}
-            height={120}
-            alt='avatar'
-            className='banner__user--avatar'
-          />
+          {file ? (
+            <img
+              src={URL.createObjectURL(file as Blob | MediaSource)}
+              width={120}
+              height={120}
+              alt='avatar'
+              className='banner__user--avatar'
+            />
+          ) : (
+            <Image
+              src='/user-1.jpeg'
+              width={120}
+              height={120}
+              alt='avatar'
+              className='banner__user--avatar'
+            />
+          )}
         </label>
         <input
           type='file'
-          name='avatar'
           id='avatar'
-          className='banner__user--input'
+          name='avatar'
           onChange={onChangeFile}
+          className='banner__user--input'
         />
       </div>
       <div className='banner__cover'>
@@ -55,14 +71,18 @@ const Banner = ({
           </svg>
         </label>
         <input
-          type='file'
           id='file'
-          className='banner__cover--input'
+          type='file'
           onChange={onChangeBanner}
+          className='banner__cover--input'
         />
       </div>
-    </section>
+    </Container>
   );
 };
+
+const Container = styled.section<IContainer>`
+  background-image: ${({ banner }) => css`url(${banner})`};
+`;
 
 export default Banner;

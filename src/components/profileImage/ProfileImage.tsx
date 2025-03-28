@@ -10,17 +10,23 @@ const ProfileImage = ({ ref, file, onChange, onUpload }: ProfileImageProps) => {
       <div className='profile-image__container'>
         <div className='profile-image__user'>
           <div className='profile-image__image'>
-            <Image
-              src={
-                file
-                  ? URL.createObjectURL(file as Blob | MediaSource)
-                  : '/user-1.jpeg'
-              }
-              width={120}
-              height={120}
-              alt='avatar'
-              className='profile-image__image--avatar'
-            />
+            {file ? (
+              <img
+                src={URL.createObjectURL(file as Blob | MediaSource)}
+                width={120}
+                height={120}
+                alt='avatar'
+                className='profile-image__image--avatar'
+              />
+            ) : (
+              <Image
+                src='/user-1.jpeg'
+                width={120}
+                height={120}
+                alt='avatar'
+                className='profile-image__image--avatar'
+              />
+            )}
             <div className='profile-image__container--icon'>
               <label htmlFor='file'>
                 <svg
