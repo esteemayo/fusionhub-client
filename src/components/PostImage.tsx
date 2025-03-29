@@ -1,13 +1,25 @@
 import Input from './input/Input';
 import Select from './select/Select';
 
-import { CategoryOptionType } from '../types';
+import { PostImageProps } from '../types';
 
-const PostImage = ({ options }: { options: CategoryOptionType }) => {
+const PostImage = ({ tags, category, options, onChange }: PostImageProps) => {
   return (
     <>
-      <Input name='tags' label='Tags' placeholder='Tags' />
-      <Select name='category' label='Category' options={options} />
+      <Input
+        name='tags'
+        label='Tags'
+        value={tags}
+        placeholder='Tags'
+        onChange={onChange}
+      />
+      <Select
+        name='category'
+        label='Category'
+        value={category}
+        options={options}
+        onChange={onChange}
+      />
       <Input type='file' name='file' label='Image' accept='image/*' />
     </>
   );

@@ -1,16 +1,24 @@
-import { useState } from 'react';
-import ReactQuill from 'react-quill-new';
-
 import Input from './input/Input';
 import TextQuill from './textQuill/TextQuill';
 
-const PostDescription = () => {
-  const [value, setValue] = useState<ReactQuill.Value | undefined>('');
+import { PostDescriptionProps } from '../types';
 
+const PostDescription = ({
+  title,
+  value,
+  onChange,
+  onChangeDesc,
+}: PostDescriptionProps) => {
   return (
     <>
-      <Input name='title' label='Title' placeholder='Title' />
-      <TextQuill label='Description' value={value} onChange={setValue} />
+      <Input
+        name='title'
+        label='Title'
+        value={title}
+        placeholder='Title'
+        onChange={onChange}
+      />
+      <TextQuill label='Description' value={value} onChange={onChangeDesc} />
     </>
   );
 };

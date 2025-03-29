@@ -223,6 +223,25 @@ export interface PostMenuButtonProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface PostDescriptionProps {
+  title: string;
+  onChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
+  value: ReactQuill.Value | undefined;
+  onChangeDesc?(
+    value: ReactQuill.Value | undefined,
+    delta: DeltaStatic,
+    source: EmitterSource,
+    editor: ReactQuill.UnprivilegedEditor
+  ): void;
+}
+
+export interface PostImageProps {
+  tags: string[];
+  category: string;
+  options: CategoryOptionType;
+  onChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
+}
+
 export interface ModalProps {
   isOpen: boolean;
   title?: string;

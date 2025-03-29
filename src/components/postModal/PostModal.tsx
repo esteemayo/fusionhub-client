@@ -1,3 +1,4 @@
+import ReactQuill from 'react-quill-new';
 import { useMemo, useState } from 'react';
 
 import PostImage from '../PostImage';
@@ -16,12 +17,29 @@ const enum STEPS {
   IMAGE = 1,
 }
 
+const initialState = {
+  title: '',
+  tags: [],
+  category: '',
+};
+
 const PostModal = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postModal }));
 
-  const [step, setStep] = useState(STEPS.DESC);
   const [isLoading, setIsLoading] = useState(false);
+  const [step, setStep] = useState(STEPS.DESC);
+  const [value, setValue] = useState<ReactQuill.Value | undefined>('');
+  const [data, setData] = useState(initialState);
+
+  const handleChange = ({
+    target: input,
+  }: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = input;
+    setData((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
   const onBack = () => {
     setStep((value) => {
@@ -47,10 +65,14 @@ const PostModal = () => {
     setIsLoading(true);
 
     console.log('submitted');
+    console.log({
+      ...data,
+      value,
+    });
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 5000);
+    }, 3000);
   };
 
   const actionLabel = useMemo(() => {
@@ -79,10 +101,24 @@ const PostModal = () => {
 
   let bodyContent: JSX.Element | undefined;
 
-  bodyContent = <PostDescription />;
+  bodyContent = (
+    <PostDescription
+      title={data.title}
+      value={value}
+      onChange={handleChange}
+      onChangeDesc={setValue}
+    />
+  );
 
   if (step === STEPS.IMAGE) {
-    bodyContent = <PostImage options={categoryOptions} />;
+    bodyContent = (
+      <PostImage
+        tags={data.tags}
+        category={data.category}
+        options={categoryOptions}
+        onChange={handleChange}
+      />
+    );
   }
 
   return (
