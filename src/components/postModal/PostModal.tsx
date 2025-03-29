@@ -1,4 +1,5 @@
 import ReactQuill from 'react-quill-new';
+import { toast } from 'react-toastify';
 import { useMemo, useState } from 'react';
 
 import PostImage from '../PostImage';
@@ -19,7 +20,7 @@ const enum STEPS {
 
 const initialState = {
   title: '',
-  tags: [],
+  tags: '',
   category: '',
 };
 
@@ -29,8 +30,9 @@ const PostModal = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(STEPS.DESC);
-  const [value, setValue] = useState<ReactQuill.Value | undefined>('');
+  const [file, setFile] = useState<File | undefined>();
   const [data, setData] = useState(initialState);
+  const [value, setValue] = useState<ReactQuill.Value | undefined>('');
 
   const handleChange = ({
     target: input,
@@ -39,6 +41,13 @@ const PostModal = () => {
     setData((prev) => {
       return { ...prev, [name]: value };
     });
+  };
+
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const file = (target.files as FileList)[0];
+
+    setFile(file);
   };
 
   const onBack = () => {
@@ -57,6 +66,12 @@ const PostModal = () => {
     dispatch(onClose());
   };
 
+  const handleClear = () => {
+    setData(initialState);
+    setValue('');
+    setFile(undefined);
+  };
+
   const handleSubmit = () => {
     if (step !== STEPS.IMAGE) {
       return onNext();
@@ -64,15 +79,22 @@ const PostModal = () => {
 
     setIsLoading(true);
 
-    console.log('submitted');
     console.log({
       ...data,
+      tags: data.tags.split(','),
       value,
+      image: file?.name,
     });
 
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
+
+    toast.success('Post created!');
+
+    handleClear();
+    handleClose();
+    setStep(STEPS.DESC);
   };
 
   const actionLabel = useMemo(() => {
@@ -117,6 +139,7 @@ const PostModal = () => {
         category={data.category}
         options={categoryOptions}
         onChange={handleChange}
+        onChangeFile={handleFile}
       />
     );
   }

@@ -236,10 +236,11 @@ export interface PostDescriptionProps {
 }
 
 export interface PostImageProps {
-  tags: string[];
+  tags: string;
   category: string;
   options: CategoryOptionType;
   onChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
+  onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface ModalProps {

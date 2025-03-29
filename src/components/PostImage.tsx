@@ -3,7 +3,13 @@ import Select from './select/Select';
 
 import { PostImageProps } from '../types';
 
-const PostImage = ({ tags, category, options, onChange }: PostImageProps) => {
+const PostImage = ({
+  tags,
+  category,
+  options,
+  onChange,
+  onChangeFile,
+}: PostImageProps) => {
   return (
     <>
       <Input
@@ -20,7 +26,13 @@ const PostImage = ({ tags, category, options, onChange }: PostImageProps) => {
         options={options}
         onChange={onChange}
       />
-      <Input type='file' name='file' label='Image' accept='image/*' />
+      <Input
+        type='file'
+        name='file'
+        label='Image'
+        accept='image/*'
+        onChange={onChangeFile}
+      />
     </>
   );
 };

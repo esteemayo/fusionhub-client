@@ -7,9 +7,11 @@ import Sidebar from '../sidebar/Sidebar';
 import AddPost from '../addPost/AddPost';
 import BackToTop from '../backToTop/BackToTop';
 
+import ToasterProvider from '../../providers/ToasterProvider';
 import ModalProvider from '../../providers/ModalProvider';
-import ErrorBoundary from '../errors/ErrorBoundary';
 import SkeletonProvider from '../../providers/SkeletonProvider';
+
+import ErrorBoundary from '../errors/ErrorBoundary';
 
 const MainLayout = () => {
   return (
@@ -17,6 +19,7 @@ const MainLayout = () => {
       <SkeletonProvider>
         <Navbar />
         <Sidebar />
+        <ToasterProvider />
         <ModalProvider />
         <ErrorBoundary>
           <Outlet />
