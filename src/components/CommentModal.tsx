@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import Modal from './modal/Modal';
 import DeleteComment from './deleteComment/DeleteComment';
 
@@ -13,7 +15,7 @@ const CommentModal = () => {
   };
 
   const handleClick = () => {
-    console.log('comment deleted!!!');
+    toast.success('comment deleted!!!');
   };
 
   const bodyContent: JSX.Element | undefined = <DeleteComment />;

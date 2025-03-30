@@ -1,6 +1,14 @@
+import { onOpen } from '../../features/updateModal/updateModalSlice';
+import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
 import './ActionMenus.scss';
 
 const ActionMenus = () => {
+  const dispatch = useAppDispatch();
+  const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
+
   const isPending = false;
 
   const handleFeature = () => {
@@ -16,7 +24,11 @@ const ActionMenus = () => {
   };
 
   const handleUpdate = () => {
-    console.log('post updated!');
+    if (isOpen) {
+      dispatch(onClose());
+    }
+
+    dispatch(onOpen());
   };
 
   const handleDelete = () => {
