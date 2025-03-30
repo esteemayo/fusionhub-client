@@ -20,7 +20,7 @@ const ProfileImage = ({ ref, file, onChange, onUpload }: ProfileImageProps) => {
               />
             ) : (
               <Image
-                src='/user-1.jpeg'
+                src='/user-default.jpg'
                 width={120}
                 height={120}
                 alt='avatar'

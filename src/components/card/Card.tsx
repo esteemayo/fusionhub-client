@@ -13,15 +13,13 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
     <article className='card'>
       <div className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>
-        {img && (
-          <Image
-            src={img}
-            alt='post'
-            width={300}
-            height={250}
-            className='card__wrapper--img'
-          />
-        )}
+        <Image
+          src={img ?? 'https://ik.imagekit.io/devayo/default-post.jpg'}
+          alt='post'
+          width={300}
+          height={250}
+          className='card__wrapper--img'
+        />
       </div>
       <div className='card__footer'>
         <div className='card__box'>

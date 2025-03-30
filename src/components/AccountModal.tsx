@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import Modal from './modal/Modal';
 import DeleteAccount from './deleteAccount/DeleteAccount';
 
@@ -13,7 +15,7 @@ const AccountModal = () => {
   };
 
   const handleClick = () => {
-    console.log('clicked!');
+    toast.success('Account deactivated!');
   };
 
   const bodyContent: JSX.Element | undefined = <DeleteAccount />;

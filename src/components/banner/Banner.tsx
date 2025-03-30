@@ -20,7 +20,7 @@ const Banner = ({
   const bannerImg = useMemo(() => {
     return banner
       ? URL.createObjectURL(banner as Blob | MediaSource)
-      : 'https://ik.imagekit.io/devayo/post-2.jpeg';
+      : 'https://ik.imagekit.io/devayo/banner-2.jpg';
   }, [banner]);
 
   return (
@@ -37,7 +37,7 @@ const Banner = ({
             />
           ) : (
             <Image
-              src='/user-1.jpeg'
+              src='/user-default.jpg'
               width={120}
               height={120}
               alt='avatar'
