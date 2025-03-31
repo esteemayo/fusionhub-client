@@ -347,7 +347,7 @@ export const postDetail: PostDetailType = {
   },
   likes: ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
   dislikes: [],
-  likeCount: 3,
+  likeCount: 10,
   dislikeCount: 0,
   comments: [
     {
@@ -382,8 +382,8 @@ export const postDetail: PostDetailType = {
     },
   ],
   views: 10000,
-  createdAt: '2025-03-16T57:23:56.085+00:00',
-  updatedAt: '2025-03-16T57:23:56.085+00:00',
+  createdAt: '2025-3-19T16:14:09.085+00:00',
+  updatedAt: '2025-3-19T16:14:09.085+00:00',
 };
 
 export const relatedTags: RelatedTagType = [

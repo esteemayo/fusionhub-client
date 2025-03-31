@@ -117,7 +117,6 @@
 
       span,
       time {
-        text-transform: capitalize;
         text-rendering: optimizeLegibility;
         font-weight: 500;
         font-size: 1.3rem;
@@ -158,6 +157,10 @@
         @media screen and (min-width: 125em) {
           font-size: 1.9rem;
         }
+      }
+
+      span {
+        text-transform: capitalize;
       }
     }
   }
@@ -262,7 +265,9 @@
   }
 
   &__view {
-    font-variant: tabular-nums;
+    span {
+      font-variant: tabular-nums;
+    }
   }
 
   &__actions {
