@@ -20,7 +20,7 @@ const Banner = ({
   const bannerImg = useMemo(() => {
     return banner
       ? URL.createObjectURL(banner as Blob | MediaSource)
-      : 'https://ik.imagekit.io/devayo/banner-2.jpg';
+      : 'https://ik.imagekit.io/devayo/banner-1.jpg';
   }, [banner]);
 
   return (
@@ -53,29 +53,47 @@ const Banner = ({
           className='banner__user--input'
         />
       </div>
-      <div className='banner__cover'>
-        <label htmlFor='file' className='banner__cover--label'>
+      <div className='banner__wrapper'>
+        <div className='banner__cover'>
+          <label htmlFor='file' className='banner__cover--label'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth={1.5}
+              stroke='currentColor'
+              className='size-6'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5'
+              />
+            </svg>
+          </label>
+          <input
+            id='file'
+            type='file'
+            onChange={onChangeBanner}
+            className='banner__cover--input'
+          />
+        </div>
+        <button type='button' className='banner__btn'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'
-            strokeWidth={1.5}
+            strokeWidth='1.5'
             stroke='currentColor'
             className='size-6'
           >
             <path
               strokeLinecap='round'
               strokeLinejoin='round'
-              d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5'
+              d='M6 18 18 6M6 6l12 12'
             />
           </svg>
-        </label>
-        <input
-          id='file'
-          type='file'
-          onChange={onChangeBanner}
-          className='banner__cover--input'
-        />
+        </button>
       </div>
     </Container>
   );

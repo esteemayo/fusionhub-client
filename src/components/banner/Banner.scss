@@ -205,17 +205,14 @@
     }
   }
 
-  &__cover {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
     position: absolute;
     top: 1.5rem;
     right: 3rem;
-
-    width: 4rem;
-    height: 4rem;
-    background-color: vars.$clr-black;
-    box-shadow: vars.$box;
-    border-radius: 50%;
-    transition: all 0.5s ease-in-out;
 
     @media screen and (max-width: 76.25em) {
       right: 2.5rem;
@@ -226,33 +223,65 @@
     }
 
     @media screen and (max-width: 56.25em) {
-      width: 4.5rem;
-      height: 4.5rem;
-
       top: 2rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      width: 5rem;
-      height: 5rem;
-
       top: 2.5rem;
     }
 
     @include bp.sm {
-      width: 4rem;
-      height: 4rem;
-
       top: 1.25rem;
       right: 1.25rem;
     }
 
     @media screen and (max-width: 21.5em) {
-      width: 3.5rem;
-      height: 3.5rem;
-
       top: 1rem;
       right: 1rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      top: 2rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      top: 2.5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      top: 3rem;
+    }
+  }
+
+  &__cover,
+  &__btn {
+    width: 4rem;
+    height: 4rem;
+    background-color: rgba(vars.$clr-primary-blue, 0.5);
+    color: vars.$clr-white;
+    backdrop-filter: blur(3px);
+    box-shadow: inset vars.$box;
+    border-radius: 50%;
+    transition: all 0.5s ease-in-out;
+
+    @media screen and (max-width: 56.25em) {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    @include bp.sm {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     @media screen and (max-width: 17.5em) {
@@ -263,28 +292,71 @@
     @media screen and (min-width: 106.25em) {
       width: 4.5rem;
       height: 4.5rem;
-
-      top: 2rem;
     }
 
     @media screen and (min-width: 112.5em) {
       width: 5rem;
       height: 5rem;
-
-      top: 2.5rem;
     }
 
     @media screen and (min-width: 125em) {
       width: 6.5rem;
       height: 6.5rem;
-
-      top: 3rem;
     }
 
     &:hover {
-      background-color: vars.$clr-black-light;
+      background-color: rgba(vars.$clr-primary-blue, 0.75);
     }
 
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: currentColor;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @include bp.sm {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 1.45rem;
+        height: 1.45rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+
+  &__cover {
     &--label {
       display: flex;
       align-items: center;
@@ -296,57 +368,20 @@
       position: relative;
       z-index: 1000;
       cursor: pointer;
-
-      svg {
-        width: 1.75rem;
-        height: 1.75rem;
-        color: currentColor;
-        stroke-width: 2px;
-
-        @media screen and (max-width: 56.25em) {
-          width: 1.85rem;
-          height: 1.85rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          width: 2rem;
-          height: 2rem;
-        }
-
-        @include bp.sm {
-          width: 1.75rem;
-          height: 1.75rem;
-        }
-
-        @media screen and (max-width: 21.5em) {
-          width: 1.5rem;
-          height: 1.5rem;
-        }
-
-        @media screen and (max-width: 17.5em) {
-          width: 1.45rem;
-          height: 1.45rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          width: 1.85rem;
-          height: 1.85rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          width: 2rem;
-          height: 2rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          width: 3rem;
-          height: 3rem;
-        }
-      }
     }
 
     &--input {
       display: none;
     }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    outline: 0;
+    cursor: pointer;
   }
 }
