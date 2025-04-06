@@ -3,6 +3,9 @@ import styled, { css } from 'styled-components';
 
 import Image from '../Image';
 
+import { useAppDispatch } from '../../hooks/hooks';
+import { onOpen } from '../../features/bannerModal/bannerModalSlice';
+
 import { BannerProps } from '../../types';
 
 import './Banner.scss';
@@ -17,6 +20,13 @@ const Banner = ({
   onChangeFile,
   onChangeBanner,
 }: BannerProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    dispatch(onOpen());
+  };
+
   const bannerImg = useMemo(() => {
     return banner
       ? URL.createObjectURL(banner as Blob | MediaSource)
@@ -78,7 +88,7 @@ const Banner = ({
             className='banner__cover--input'
           />
         </div>
-        <button type='button' className='banner__btn'>
+        <button type='button' className='banner__btn' onClick={handleClick}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

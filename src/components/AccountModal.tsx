@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 import Modal from './modal/Modal';
-import DeleteAccount from './deleteAccount/DeleteAccount';
+import DeleteContent from './deleteContent/DeleteContent';
 
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { onClose } from '../features/accountModal/accountModalSlice';
@@ -18,7 +18,9 @@ const AccountModal = () => {
     toast.success('Account deactivated!');
   };
 
-  const bodyContent: JSX.Element | undefined = <DeleteAccount />;
+  const bodyContent: JSX.Element | undefined = (
+    <DeleteContent text='De-activating your account will remove all of your information from our database. This cannot be undone.' />
+  );
 
   return (
     <Modal

@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import postsMenuReducer from './postsMenu/postsMenuSlice';
+import bannerModalReducer from './bannerModal/bannerModalSlice';
 import sidebarReducer from './sidebar/sidebarSlice';
+import accountMenuReducer from './accountMenu/accountMenuSlice';
+import postsMenuReducer from './postsMenu/postsMenuSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
-import accountMenuReducer from './accountMenu/accountMenuSlice';
-import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 import updateModalReducer from './updateModal/updateModalSlice';
+import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     accountMenu: accountMenuReducer,
     commentModal: commentModalReducer,
     updateModal: updateModalReducer,
+    bannerModal: bannerModalReducer,
   },
 });
 

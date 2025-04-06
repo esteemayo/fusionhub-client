@@ -4,30 +4,31 @@ import Modal from './modal/Modal';
 import DeleteContent from './deleteContent/DeleteContent';
 
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import { onClose } from '../features/commentModal/commentModalSlice';
+import { onClose } from '../features/bannerModal/bannerModalSlice';
 
-const CommentModal = () => {
+const BannerModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.commentModal }));
+  const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
 
   const handleClose = () => {
     dispatch(onClose());
   };
 
   const handleClick = () => {
-    toast.success('comment deleted!!!');
+    toast.success('banner removed!');
+    handleClose();
   };
 
   const bodyContent: JSX.Element | undefined = (
-    <DeleteContent text='Are you sure you wanted to delete this comment?' />
+    <DeleteContent text='Are you sure you wanted to delete this banner?' />
   );
 
   return (
     <Modal
       isOpen={isOpen}
-      title='Delete Comment?'
+      title='Remove banner'
       type='cancel'
-      actionLabel='Delete'
+      actionLabel='Remove'
       secondaryActionLabel='Cancel'
       body={bodyContent}
       onClose={handleClose}
@@ -37,4 +38,4 @@ const CommentModal = () => {
   );
 };
 
-export default CommentModal;
+export default BannerModal;
