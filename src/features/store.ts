@@ -7,8 +7,9 @@ import postsMenuReducer from './postsMenu/postsMenuSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
-import updateModalReducer from './updateModal/updateModalSlice';
+import imageModalReducer from './imageModal/imageModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
+import updateModalReducer from './updateModal/updateModalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     commentModal: commentModalReducer,
     updateModal: updateModalReducer,
     bannerModal: bannerModalReducer,
+    imageModal: imageModalReducer,
   },
 });
 

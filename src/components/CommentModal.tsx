@@ -16,9 +16,10 @@ const CommentModal = () => {
 
   const handleClick = () => {
     toast.success('comment deleted!!!');
+    handleClose();
   };
 
-  const bodyContent: JSX.Element | undefined = (
+  const bodyContent: React.JSX.Element | undefined = (
     <DeleteContent text='Are you sure you wanted to delete this comment?' />
   );
 

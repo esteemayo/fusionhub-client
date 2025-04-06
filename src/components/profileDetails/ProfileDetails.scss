@@ -59,10 +59,10 @@
   &__wrapper {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 
     @media screen and (min-width: 125em) {
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     &--username,
@@ -154,7 +154,20 @@
     }
 
     &--dot {
+      font-size: 100%;
       color: vars.$clr-gray-light-3;
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.65rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.8rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.25rem;
+      }
     }
   }
 

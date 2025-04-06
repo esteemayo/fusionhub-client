@@ -257,10 +257,8 @@
   &__btn {
     width: 4rem;
     height: 4rem;
-    background-color: rgba(vars.$clr-primary-blue, 0.5);
+    background-color: rgba(vars.$clr-primary-blue, 0.25);
     color: vars.$clr-white;
-    backdrop-filter: blur(3px);
-    box-shadow: inset vars.$box;
     border-radius: 50%;
     transition: all 0.5s ease-in-out;
 
@@ -305,7 +303,7 @@
     }
 
     &:hover {
-      background-color: rgba(vars.$clr-primary-blue, 0.75);
+      background-color: rgba(vars.$clr-primary-blue, 0.35);
     }
 
     svg {

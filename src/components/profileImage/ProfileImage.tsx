@@ -4,7 +4,13 @@ import { ProfileImageProps } from '../../types';
 
 import './ProfileImage.scss';
 
-const ProfileImage = ({ ref, file, onChange, onUpload }: ProfileImageProps) => {
+const ProfileImage = ({
+  ref,
+  file,
+  onOpen,
+  onChange,
+  onUpload,
+}: ProfileImageProps) => {
   return (
     <div className='profile-image'>
       <div className='profile-image__container'>
@@ -79,7 +85,11 @@ const ProfileImage = ({ ref, file, onChange, onUpload }: ProfileImageProps) => {
         >
           Upload
         </button>
-        <button type='button' className='profile-image__buttons--remove'>
+        <button
+          type='button'
+          className='profile-image__buttons--remove'
+          onClick={onOpen}
+        >
           Remove
         </button>
       </div>

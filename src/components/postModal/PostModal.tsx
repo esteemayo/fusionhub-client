@@ -121,7 +121,7 @@ const PostModal = () => {
     return undefined;
   }, [step]);
 
-  let bodyContent: JSX.Element | undefined;
+  let bodyContent: React.JSX.Element | undefined;
 
   bodyContent = (
     <PostDescription

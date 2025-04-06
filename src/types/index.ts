@@ -300,6 +300,7 @@ export interface BannerProps {
 export interface ProfileImageProps {
   ref: React.LegacyRef<HTMLInputElement>;
   file: File | undefined;
+  onOpen(e: React.MouseEvent<HTMLButtonElement>): void;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
 }

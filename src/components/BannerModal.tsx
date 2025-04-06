@@ -19,17 +19,17 @@ const BannerModal = () => {
     handleClose();
   };
 
-  const bodyContent: JSX.Element | undefined = (
+  const bodyContent: React.JSX.Element | undefined = (
     <DeleteContent text='Are you sure you wanted to delete this banner?' />
   );
 
   return (
     <Modal
       isOpen={isOpen}
-      title='Remove banner'
+      title='Remove banner?'
       type='cancel'
       actionLabel='Remove'
-      secondaryActionLabel='Cancel'
+      secondaryActionLabel='Quit'
       body={bodyContent}
       onClose={handleClose}
       onSubmit={handleClick}

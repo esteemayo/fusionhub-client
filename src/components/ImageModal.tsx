@@ -4,32 +4,32 @@ import Modal from './modal/Modal';
 import DeleteContent from './deleteContent/DeleteContent';
 
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import { onClose } from '../features/accountModal/accountModalSlice';
+import { onClose } from '../features/imageModal/imageModalSlice';
 
-const AccountModal = () => {
+const ImageModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.accountModal }));
+  const { isOpen } = useAppSelector((state) => ({ ...state.imageModal }));
 
   const handleClose = () => {
     dispatch(onClose());
   };
 
   const handleClick = () => {
-    toast.success('Account deactivated!');
     handleClose();
+    toast.success('Image removed!');
   };
 
   const bodyContent: React.JSX.Element | undefined = (
-    <DeleteContent text='De-activating your account will remove all of your information from our database. This cannot be undone.' />
+    <DeleteContent text='Are you sure you wanted to delete your profile image?' />
   );
 
   return (
     <Modal
       isOpen={isOpen}
-      title='De-Activate Account?'
+      title='Remove avatar?'
       type='cancel'
-      actionLabel='Deactivate'
-      secondaryActionLabel='Cancel'
+      actionLabel='Remove'
+      secondaryActionLabel='Quit'
       body={bodyContent}
       onClose={handleClose}
       onSubmit={handleClick}
@@ -38,4 +38,4 @@ const AccountModal = () => {
   );
 };
 
-export default AccountModal;
+export default ImageModal;

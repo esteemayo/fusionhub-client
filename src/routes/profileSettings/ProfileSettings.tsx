@@ -1,14 +1,24 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import ProfileImage from '../../components/profileImage/ProfileImage';
 import ProfileData from '../../components/profileData/ProfileData';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
+import { useAppDispatch } from '../../hooks/hooks';
+import { onOpen } from '../../features/imageModal/imageModalSlice';
+
 import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
+  const dispatch = useAppDispatch();
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File>();
+
+  const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    dispatch(onOpen());
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -39,6 +49,7 @@ const ProfileSettings = () => {
         <ProfileImage
           ref={inputRef}
           file={file}
+          onOpen={handleOpen}
           onChange={handleChange}
           onUpload={handleUpload}
         />
