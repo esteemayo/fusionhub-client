@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import MenuItem from '../menuItem/MenuItem';
 import Logo from '../logo/Logo';
@@ -68,7 +68,7 @@ const Sidebar = () => {
           <div className='sidebar__accountWrap'>
             {user && (
               <div className='sidebar__accounts'>
-                <Link
+                <NavLink
                   to='/accounts/profile'
                   className='sidebar__account'
                   onClick={handleClose}
@@ -81,7 +81,7 @@ const Sidebar = () => {
                     className='sidebar__account--avatar'
                   />
                   <span className='sidebar__account--name'>Elise beverley</span>
-                </Link>
+                </NavLink>
                 <button
                   type='button'
                   className='sidebar__logout-btn'
@@ -106,7 +106,7 @@ const Sidebar = () => {
               </div>
             )}
             {!user && (
-              <Link
+              <NavLink
                 to='/login'
                 className='sidebar__login'
                 onClick={handleClose}
@@ -126,7 +126,7 @@ const Sidebar = () => {
                   />
                 </svg>
                 <span>Login</span>
-              </Link>
+              </NavLink>
             )}
           </div>
         </div>

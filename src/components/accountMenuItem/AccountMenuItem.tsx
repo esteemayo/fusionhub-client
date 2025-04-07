@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { AccountMenuItemProps } from '../../types';
 
@@ -24,7 +24,7 @@ const AccountMenuItem = ({
       className={`${menuClasses} ${isOpen ? 'show' : 'hide'}`}
       onClick={onAction}
     >
-      <Link to={`/accounts/${url}`}>
+      <NavLink to={`/accounts/${url}`}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -36,7 +36,7 @@ const AccountMenuItem = ({
           <path strokeLinecap='round' strokeLinejoin='round' d={icon} />
         </svg>
         <span>{label}</span>
-      </Link>
+      </NavLink>
     </li>
   );
 };
