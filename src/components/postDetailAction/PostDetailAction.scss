@@ -285,7 +285,7 @@
 
     &--likes,
     &--buttons,
-    &--bookmarks {
+    &--share {
       display: flex;
       align-items: center;
       gap: 2rem;
@@ -302,6 +302,8 @@
         gap: 1rem;
       }
 
+      a:link,
+      a:visited,
       button {
         display: flex;
         align-items: center;
@@ -420,7 +422,7 @@
       }
     }
 
-    &--bookmarks {
+    &--share {
       button {
         @include bp.sm {
           padding: 0.8rem 1.25rem;
@@ -430,7 +432,7 @@
       }
     }
 
-    &--btnComment {
+    &--comment-link {
       @include bp.sm {
         padding: 0.8rem 1.25rem;
         background-color: vars.$clr-secondary-blue !important;

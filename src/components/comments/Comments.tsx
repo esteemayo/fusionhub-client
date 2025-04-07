@@ -30,7 +30,7 @@ const Comments = () => {
   };
 
   return (
-    <section className='comments'>
+    <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
           onAction={handleReply}

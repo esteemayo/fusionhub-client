@@ -110,9 +110,9 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
                 <span>{post?.dislikeCount}</span>
               </button>
             </div>
-            <button
-              type='button'
-              className='post-detail-action__actions--btnComment'
+            <a
+              href='#comments'
+              className='post-detail-action__actions--comment-link'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -129,9 +129,9 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
                 />
               </svg>
               <span>{post?.comments.length}</span>
-            </button>
+            </a>
           </div>
-          <div className='post-detail-action__actions--bookmarks'>
+          <div className='post-detail-action__actions--share'>
             <button type='button'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'

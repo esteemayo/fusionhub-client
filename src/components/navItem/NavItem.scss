@@ -44,5 +44,12 @@
       opacity: 0.75;
       cursor: default;
     }
+
+    &.active {
+      text-decoration: underline;
+      text-underline-offset: 0.5rem;
+      text-decoration-thickness: 3px;
+      text-decoration-color: vars.$clr-pink-light;
+    }
   }
 }
