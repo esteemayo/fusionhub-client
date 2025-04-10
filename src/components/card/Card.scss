@@ -413,7 +413,7 @@
         font-size: 1.65rem;
 
         &::after {
-          content: '•';
+          content: '|';
           display: inline-block;
           font-size: inherit;
           color: vars.$clr-tertiary-blue;
