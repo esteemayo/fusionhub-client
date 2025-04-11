@@ -29,7 +29,6 @@
 
   @include bp.sm {
     height: 15rem;
-    margin-bottom: 7rem;
   }
 
   @media screen and (max-width: 26.875em) {
@@ -38,12 +37,15 @@
 
   @media screen and (max-width: 21.5em) {
     height: 11rem;
-    margin-bottom: 6rem;
+    margin-bottom: 8rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    margin-bottom: 7rem;
   }
 
   @media screen and (max-width: 17.5em) {
     height: 10rem;
-    margin-bottom: 5rem;
   }
 
   @media screen and (min-width: 106.25em) {
@@ -98,27 +100,34 @@
     }
 
     @include bp.sm {
-      width: 10rem;
-      height: 10rem;
+      width: 14rem;
+      height: 14rem;
       background-color: vars.$clr-primary-blue;
 
-      bottom: -5rem;
+      bottom: -7rem;
       left: 1.25rem;
     }
 
     @media screen and (max-width: 21.5em) {
-      width: 9rem;
-      height: 9rem;
+      width: 13rem;
+      height: 13rem;
 
-      bottom: -4.5rem;
+      bottom: -6.5rem;
       left: 1rem;
     }
 
-    @media screen and (max-width: 17.5em) {
-      width: 7rem;
-      height: 7rem;
+    @media screen and (max-width: 18.75em) {
+      width: 12rem;
+      height: 12rem;
 
-      bottom: -3.5rem;
+      bottom: -6rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 11rem;
+      height: 11rem;
+
+      bottom: -5.5rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -159,18 +168,23 @@
       }
 
       @include bp.sm {
-        width: 9rem;
-        height: 9rem;
+        width: 13rem;
+        height: 13rem;
       }
 
       @media screen and (max-width: 21.5em) {
-        width: 8rem;
-        height: 8rem;
+        width: 12rem;
+        height: 12rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 11rem;
+        height: 11rem;
       }
 
       @media screen and (max-width: 17.5em) {
-        width: 6rem;
-        height: 6rem;
+        width: 10rem;
+        height: 10rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -194,6 +208,7 @@
       height: 100%;
       display: inline-block;
       object-fit: cover;
+      background-color: #1d5870;
       border-radius: 50%;
     }
 

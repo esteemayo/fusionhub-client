@@ -62,6 +62,10 @@ button {
 
 img {
   background-color: rgba(vars.$clr-black, 0.2);
+
+  @include bp.sm {
+    background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+  }
 }
 
 .quill {

@@ -50,6 +50,7 @@
       @include bp.sm {
         width: 5.25rem;
         height: 5.25rem;
+        background-color: vars.$clr-primary-blue;
       }
 
       @media screen and (max-width: 26.875em) {
@@ -202,7 +203,7 @@
     align-items: center;
     gap: 2rem;
 
-    @media screen and (max-width: 25em) {
+    @include bp.sm {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -230,7 +231,7 @@
       width: 75%;
     }
 
-    @media screen and (max-width: 25em) {
+    @include bp.sm {
       width: 100%;
     }
 
