@@ -107,6 +107,7 @@
         @include bp.sm {
           width: 4.5rem;
           height: 4.5rem;
+          background-color: rgba(vars.$clr-tertiary-blue, 0.5);
         }
 
         @media screen and (max-width: 26.875em) {
@@ -397,12 +398,12 @@
       height: 13rem;
     }
 
-    @media screen and (max-width: 26.875em) {
+    @media screen and (max-width: 21.5em) {
       width: 12rem;
       height: 12rem;
     }
 
-    @media screen and (max-width: 21.5em) {
+    @media screen and (max-width: 18.75em) {
       width: 11rem;
       height: 11rem;
     }

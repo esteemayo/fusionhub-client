@@ -61,6 +61,12 @@
     align-items: center;
     gap: 1rem;
 
+    @media screen and (max-width: 18.75em) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
     @media screen and (min-width: 125em) {
       gap: 1.25rem;
     }
@@ -156,6 +162,10 @@
     &--dot {
       font-size: 100%;
       color: vars.$clr-gray-light-3;
+
+      @media screen and (max-width: 18.75em) {
+        display: none;
+      }
 
       @media screen and (min-width: 106.25em) {
         font-size: 1.65rem;

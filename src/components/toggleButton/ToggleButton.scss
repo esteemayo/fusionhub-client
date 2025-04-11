@@ -14,10 +14,14 @@
   border-radius: 10rem;
   cursor: pointer;
 
+  @include bp.sm {
+    background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+  }
+
   &.nav {
     display: none;
 
-    @media screen and (max-width: 30em) {
+    @include bp.sm {
       display: flex;
       padding: 0;
       background-color: transparent;
@@ -25,7 +29,7 @@
     }
 
     span {
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
 
     svg {
