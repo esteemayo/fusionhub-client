@@ -1,4 +1,5 @@
 import { format } from 'timeago.js';
+import { toast } from 'react-toastify';
 
 import Image from '../Image';
 
@@ -14,6 +15,16 @@ const CommentCard = ({
   onUpdate,
   onOpen,
 }: CommentCardProps) => {
+  const handleCopy = () => {
+    navigator.clipboard.writeText(desc);
+    toast.success('Copied');
+    return;
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+  };
+
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
@@ -69,9 +80,13 @@ const CommentCard = ({
             </button>
           </div>
           <h5 className='comment-card__details--username'>{user.name}</h5>
-          <p className='comment-card__details--desc'>
+          <p onDoubleClick={handleCopy} className='comment-card__details--desc'>
             {desc}
-            <button type='button' className='comment-card__details--btn'>
+            <button
+              type='button'
+              onClick={handleClick}
+              className='comment-card__details--btn'
+            >
               Read more
             </button>
           </p>

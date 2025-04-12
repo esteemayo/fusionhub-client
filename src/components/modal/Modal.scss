@@ -35,7 +35,7 @@
     width: 50rem;
     padding: 3rem;
     background-color: vars.$clr-primary-blue;
-    border: 3px solid vars.$clr-tertiary-blue;
+    border: 2px solid vars.$clr-tertiary-blue;
     border-radius: 1rem;
 
     position: relative;
@@ -127,6 +127,7 @@
     @media screen and (min-width: 106.25em) {
       width: 55rem;
       padding: 3.5rem;
+      border-width: 3px;
     }
 
     @media screen and (min-width: 112.5em) {
@@ -335,8 +336,48 @@
 
   &__close {
     position: absolute;
-    top: -1rem;
-    right: -1rem;
+    top: -2.25rem;
+    right: -2.25rem;
+
+    @media screen and (max-width: 56.25em) {
+      top: -2.375rem;
+      right: -2.375rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      top: -2.5rem;
+      right: -2.5rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      top: -2.25rem;
+      right: -2.25rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      top: -2.125rem;
+      right: -2.125rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      top: -2rem;
+      right: -2rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      top: -2.5rem;
+      right: -2.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      top: -2.75rem;
+      right: -2.75rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      top: -3.5rem;
+      right: -3.5rem;
+    }
 
     &--btn {
       display: flex;

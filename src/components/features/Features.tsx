@@ -18,7 +18,7 @@ const Features = () => {
   const [firstPost, ...otherPosts] = featuredPosts;
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 3000);
+    setTimeout(() => setIsLoading(false), 1500);
   }, []);
 
   return (

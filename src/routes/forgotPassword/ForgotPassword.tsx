@@ -19,7 +19,7 @@ const ForgotPassword = () => {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 1500);
   };
 
   useEffect(() => {
