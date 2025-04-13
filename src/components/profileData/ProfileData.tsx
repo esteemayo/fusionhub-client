@@ -11,6 +11,7 @@ import Button from '../button/Button';
 import DateInput from '../dateInput/DateInput';
 
 import AccountHeader from '../accountHeader/AccountHeader';
+import CountrySelect from '../countrySelect/CountrySelect';
 
 import './ProfileData.scss';
 
@@ -55,6 +56,7 @@ const ProfileData = ({
             placeholder='Date of Birth'
             onChange={setStartDate}
           />
+          <CountrySelect />
           <Input name='country' label='Country' placeholder='Country' />
         </div>
         <div className='profile-data__form--info'>
