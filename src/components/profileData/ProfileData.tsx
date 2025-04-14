@@ -57,7 +57,7 @@ const ProfileData = ({
             onChange={setStartDate}
           />
           <CountrySelect />
-          <Input name='country' label='Country' placeholder='Country' />
+          {/* <Input name='country' label='Country' placeholder='Country' /> */}
         </div>
         <div className='profile-data__form--info'>
           <Textarea
