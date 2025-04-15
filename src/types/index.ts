@@ -386,6 +386,11 @@ export interface PostDescProps {
   loading: boolean;
 }
 
+export interface CountrySelectProps {
+  value?: CountrySelectType;
+  onChange(value: CountrySelectType): void;
+}
+
 export type MenuItemType = {
   id: number;
   url: string;
@@ -566,3 +571,10 @@ export type PartnerItemType = {
   imgSrc: string;
   alt?: string;
 }[];
+
+export type CountrySelectType = {
+  flag: string;
+  label: string;
+  region: string;
+  value: string;
+};
