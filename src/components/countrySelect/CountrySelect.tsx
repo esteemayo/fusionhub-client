@@ -22,10 +22,40 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
           <div className='country-select__wrapper'>
             <div className='country-select__wrapper--flag'>{option.flag}</div>
             <span className='country-select__wrapper--region'>
-              {option.region}
+              {option.label}
             </span>
           </div>
         )}
+        styles={{
+          control: (base) => ({
+            ...base,
+            borderColor: '#d1d5db',
+            boxShadow: 'none',
+            '&:hover': {
+              borderColor: '#9ca3af',
+            },
+          }),
+          input: (base) => ({
+            ...base,
+            color: '#ffffff',
+          }),
+          option: (base, state) => ({
+            ...base,
+            backgroundColor: state.isFocused ? '#5b6d85' : '#f3f4f6', // Changed background color for options
+            color: state.isFocused ? '#ffffff' : '#dddcdc',
+            '&:active': {
+              backgroundColor: '#5b6d85',
+            },
+          }),
+          singleValue: (base) => ({
+            ...base,
+            color: '#ffffff',
+          }),
+          placeholder: (base) => ({
+            ...base,
+            color: '#ffffff',
+          }),
+        }}
         classNames={{
           control: () => 'country-select__control',
           input: () => 'country-select__input',
@@ -36,8 +66,8 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
           borderRadius: 5,
           colors: {
             ...theme.colors,
-            primary: 'black',
-            primary25: '#273547',
+            primary: '#ffffff',
+            primary25: '#5b6d85',
           },
         })}
       />

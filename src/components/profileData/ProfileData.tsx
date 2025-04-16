@@ -13,6 +13,8 @@ import DateInput from '../dateInput/DateInput';
 import AccountHeader from '../accountHeader/AccountHeader';
 import CountrySelect from '../countrySelect/CountrySelect';
 
+import { CountrySelectType } from '../../types';
+
 import './ProfileData.scss';
 
 const ProfileData = ({
@@ -23,6 +25,7 @@ const ProfileData = ({
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [value, setValue] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
+  const [location, setLocation] = useState<CountrySelectType>();
 
   return (
     <div className='profile-data'>
@@ -56,8 +59,7 @@ const ProfileData = ({
             placeholder='Date of Birth'
             onChange={setStartDate}
           />
-          <CountrySelect />
-          {/* <Input name='country' label='Country' placeholder='Country' /> */}
+          <CountrySelect value={location} onChange={setLocation} />
         </div>
         <div className='profile-data__form--info'>
           <Textarea
