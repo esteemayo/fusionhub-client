@@ -1,4 +1,6 @@
-import Select from 'react-select';
+import { useRef } from 'react';
+import Select, { GroupBase } from 'react-select';
+
 import Label from '../label/Label';
 
 import { useCountries } from '../../hooks/useCountries';
@@ -9,9 +11,19 @@ import './CountrySelect.scss';
 const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
   const { getAll } = useCountries();
 
+  const ref = useRef<Select<
+    CountrySelectType,
+    false,
+    GroupBase<CountrySelectType>
+  > | null>();
+
+  const handleClick = () => {
+    ref?.current?.focus();
+  };
+
   return (
     <div className='country-select'>
-      <Label label='Country' />
+      <Label label='Country' onClick={handleClick} />
       <Select
         placeholder='Country'
         isClearable
@@ -41,7 +53,7 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
           }),
           option: (base, state) => ({
             ...base,
-            backgroundColor: state.isFocused ? '#5b6d85' : '#f3f4f6', // Changed background color for options
+            backgroundColor: state.isFocused ? '#5b6d85' : '#f3f4f6',
             color: state.isFocused ? '#ffffff' : '#dddcdc',
             '&:active': {
               backgroundColor: '#5b6d85',
@@ -70,6 +82,7 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
             primary25: '#5b6d85',
           },
         })}
+        ref={ref}
       />
     </div>
   );
