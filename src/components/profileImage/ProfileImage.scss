@@ -204,7 +204,7 @@
     align-items: center;
     gap: 2rem;
 
-    @include bp.sm {
+    @media screen and (max-width: 34.375em) {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -447,7 +447,7 @@
       justify-content: flex-end;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 34.375em) {
       justify-content: flex-start;
     }
 
