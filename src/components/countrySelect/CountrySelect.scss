@@ -42,6 +42,10 @@
       height: 5.8rem;
     }
 
+    @media screen and (max-width: 34.375em) {
+      height: 6rem;
+    }
+
     @media screen and (max-width: 17.5em) {
       height: 5.7rem;
     }
@@ -65,6 +69,34 @@
     font-size: 1.45rem;
     color: vars.$clr-white !important;
 
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.65rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: 1.75rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.65rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.85rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 2.2rem;
+    }
+
     &:focus {
       background-color: vars.$clr-secondary-blue !important;
     }
@@ -79,6 +111,10 @@
 
       @media screen and (max-width: 51.25em) {
         font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: var(--default-font-size);
       }
 
       @media screen and (max-width: 17.5em) {
