@@ -21,7 +21,7 @@
   &.nav {
     display: none;
 
-    @include bp.sm {
+    @media screen and (max-width: 34.375em) {
       display: flex;
       padding: 0;
       background-color: transparent;

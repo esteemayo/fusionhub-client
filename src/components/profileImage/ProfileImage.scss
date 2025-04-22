@@ -204,7 +204,7 @@
     align-items: center;
     gap: 2rem;
 
-    @media screen and (max-width: 34.375em) {
+    @media screen and (max-width: 37.5em) {
       flex-direction: column;
       align-items: flex-start;
     }
@@ -447,7 +447,7 @@
       justify-content: flex-end;
     }
 
-    @media screen and (max-width: 34.375em) {
+    @media screen and (max-width: 37.5em) {
       justify-content: flex-start;
     }
 

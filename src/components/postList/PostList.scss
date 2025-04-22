@@ -103,15 +103,19 @@
     }
 
     @media screen and (max-width: 37.5em) {
-      width: 29rem;
+      width: 25rem;
     }
 
     @media screen and (max-width: 34.375em) {
-      width: 26rem;
+      width: 24rem;
+    }
+
+    @media screen and (max-width: 33.75em) {
+      width: 23.5rem;
     }
 
     @media screen and (max-width: 31.5em) {
-      width: 23rem;
+      width: 21.5rem;
     }
 
     @include bp.sm {
