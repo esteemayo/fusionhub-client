@@ -13,6 +13,14 @@
       padding: 0 3rem 3rem;
     }
 
+    @media screen and (max-width: 34.375em) {
+      padding: 0 2rem 3rem;
+    }
+
+    @media screen and (max-width: 31.5em) {
+      padding: 0 2rem 2rem;
+    }
+
     @include bp.sm {
       padding: 0;
     }

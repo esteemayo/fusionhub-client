@@ -100,6 +100,10 @@
       bottom: -7.5rem;
     }
 
+    @media screen and (max-width: 34.375em) {
+      left: 2rem;
+    }
+
     @include bp.sm {
       width: 14rem;
       height: 14rem;
