@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 
 import Card from '../card/Card';
 import RecentSkeleton from '../recentSkeleton/RecentSkeleton';
@@ -10,6 +10,10 @@ import './RecentPosts.scss';
 
 const RecentPosts = () => {
   const [isLoading, setIsLoading] = useState(true);
+
+  const boxClasses = useMemo(() => {
+    return !isLoading ? 'recent-posts__box show' : 'recent-posts__box hide';
+  }, [isLoading]);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1500);
@@ -28,7 +32,7 @@ const RecentPosts = () => {
                 return <Card key={post.id} {...post} />;
               })}
         </div>
-        <div className='recent-posts__box'>
+        <div className={boxClasses}>
           <Link to='/posts' className='recent-posts__box--link'>
             Show more
           </Link>

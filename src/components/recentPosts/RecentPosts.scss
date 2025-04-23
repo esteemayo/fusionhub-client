@@ -389,12 +389,6 @@
         }
 
         @media screen and (max-width: 31.25em) {
-          height: 23rem;
-          width: 30rem;
-          height: 17rem;
-        }
-
-        @include bp.sm {
           width: 30rem;
           height: 17rem;
         }
@@ -651,7 +645,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin-top: 5rem;
+    position: relative;
+
+    &.show {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+      transition: all 0.5s ease-in;
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+      transition: all 0.5s ease-out;
+    }
 
     &--link {
       &:link,
