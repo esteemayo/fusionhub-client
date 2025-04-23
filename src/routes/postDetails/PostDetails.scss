@@ -59,12 +59,20 @@
       width: 65rem;
     }
 
+    @media screen and (max-width: 37.5em) {
+      width: 60rem;
+    }
+
     @media screen and (max-width: 34.375em) {
-      width: 62rem;
+      width: 55rem;
+    }
+
+    @media screen and (max-width: 33.75em) {
+      width: 54rem;
     }
 
     @media screen and (max-width: 31.5em) {
-      width: 55rem;
+      width: 50rem;
     }
 
     @include bp.sm {
@@ -182,12 +190,20 @@
       width: 65rem;
     }
 
+    @media screen and (max-width: 37.5em) {
+      width: 60rem;
+    }
+
     @media screen and (max-width: 34.375em) {
-      width: 62rem;
+      width: 55rem;
+    }
+
+    @media screen and (max-width: 33.75em) {
+      width: 54rem;
     }
 
     @media screen and (max-width: 31.5em) {
-      width: 55rem;
+      width: 50rem;
     }
 
     @include bp.sm {

@@ -20,6 +20,10 @@
       gap: 2rem;
     }
 
+    @media screen and (max-width: 37.5em) {
+      gap: 1.5rem;
+    }
+
     @media screen and (max-width: 26.875em) {
       gap: 0;
     }
@@ -48,9 +52,14 @@
         height: 8.25rem;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         width: 8rem;
         height: 8rem;
+      }
+
+      @include bp.sm {
+        width: 7rem;
+        height: 7rem;
       }
 
       @media screen and (max-width: 26.875em) {
