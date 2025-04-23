@@ -31,8 +31,12 @@
     width: 14rem;
   }
 
-  @media screen and (max-width: 31.5em) {
-    width: 12rem;
+  @media screen and (max-width: 37.5em) {
+    width: 18rem;
+  }
+
+  @media screen and (max-width: 34.375em) {
+    width: 100%;
   }
 
   @include bp.sm {
@@ -63,9 +67,13 @@
   &__container {
     position: relative;
 
-    @include bp.sm {
+    @media screen and (max-width: 34.375em) {
       display: flex;
       align-items: flex-start;
+      gap: 1rem;
+    }
+
+    @include bp.sm {
       gap: 2rem;
     }
 
@@ -97,29 +105,43 @@
         height: 11rem;
       }
 
+      @media screen and (max-width: 37.5em) {
+        height: 13rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 20rem;
+        height: 14rem;
+      }
+
       @media screen and (max-width: 31.5em) {
-        height: 9rem;
+        width: 18rem;
+        height: 13rem;
       }
 
       @include bp.sm {
-        width: 10rem;
-        height: 10rem;
+        width: 15rem;
+        height: 12rem;
         border-radius: 0.5rem;
       }
 
+      @media screen and (max-width: 25em) {
+        width: 13rem;
+        height: 11rem;
+      }
+
       @media screen and (max-width: 22.5em) {
-        width: 9rem;
-        height: 9rem;
+        width: 11rem;
       }
 
       @media screen and (max-width: 21.5em) {
-        width: 8rem;
-        height: 8rem;
+        width: 10rem;
+        height: 10rem;
       }
 
       @media screen and (max-width: 18.75em) {
-        width: 6rem;
-        height: 6rem;
+        width: 8rem;
+        height: 8rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -165,30 +187,44 @@
         height: 11rem;
       }
 
+      @media screen and (max-width: 37.5em) {
+        width: 18rem;
+        height: 13rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 20rem;
+        height: 14rem;
+      }
+
       @media screen and (max-width: 31.5em) {
-        width: 12rem;
-        height: 9rem;
+        width: 18rem;
+        height: 13rem;
       }
 
       @include bp.sm {
-        width: 10rem;
-        height: 10rem;
+        width: 15rem;
+        height: 12rem;
         border-radius: 0.5rem;
       }
 
+      @media screen and (max-width: 25em) {
+        width: 13rem;
+        height: 11rem;
+      }
+
       @media screen and (max-width: 22.5em) {
-        width: 9rem;
-        height: 9rem;
+        width: 11rem;
       }
 
       @media screen and (max-width: 21.5em) {
-        width: 8rem;
-        height: 8rem;
+        width: 10rem;
+        height: 10rem;
       }
 
       @media screen and (max-width: 18.75em) {
-        width: 6rem;
-        height: 6rem;
+        width: 8rem;
+        height: 8rem;
       }
 
       @media screen and (min-width: 112.5em) {
@@ -240,8 +276,9 @@
       min-height: 12.5rem;
     }
 
-    @media screen and (max-width: 31.5em) {
-      min-height: 12rem;
+    @media screen and (max-width: 34.375em) {
+      min-height: 0;
+      padding: 1rem;
     }
 
     @include bp.sm {
@@ -276,10 +313,6 @@
           font-size: var(--default-font-size);
         }
 
-        // @media screen and (max-width: 51.25em) {
-        //   font-size: 1.7rem;
-        // }
-
         @include bp.md {
           font-size: 1.5rem;
         }
@@ -288,12 +321,14 @@
           font-size: 1.35rem;
         }
 
-        @media screen and (max-width: 31.5em) {
-          font-size: 1.3rem;
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.7rem;
+          line-height: 1.3;
         }
 
         @include bp.sm {
           font-size: 1.65rem;
+          line-height: 1.4;
         }
 
         @media screen and (max-width: 21.5em) {
@@ -335,6 +370,10 @@
       flex-direction: column;
       line-height: 1.3;
 
+      @media screen and (max-width: 34.375em) {
+        line-height: 1.4;
+      }
+
       @media screen and (max-width: 21.5em) {
         line-height: 1.2;
       }
@@ -366,8 +405,8 @@
           font-size: 1.3rem;
         }
 
-        @media screen and (max-width: 31.5em) {
-          font-size: 1.25rem;
+        @media screen and (max-width: 34.375em) {
+          font-size: var(--default-font-size);
         }
 
         @include bp.sm {
@@ -411,8 +450,8 @@
           font-size: 1.25rem;
         }
 
-        @media screen and (max-width: 31.5em) {
-          font-size: 1.23rem;
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.55rem;
         }
 
         @include bp.sm {

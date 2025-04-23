@@ -54,6 +54,14 @@
       @media screen and (max-width: 59.375em) {
         gap: 2rem;
       }
+
+      @media screen and (max-width: 37.5em) {
+        row-gap: 3rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        gap: 3rem;
+      }
     }
   }
 }
