@@ -49,29 +49,33 @@
   }
 
   @media screen and (max-width: 37.5em) {
-    width: 31rem;
+    width: 28rem;
   }
 
   @media screen and (max-width: 34.375em) {
-    width: 29rem;
-  }
-
-  @media screen and (max-width: 31.25em) {
     width: 26rem;
   }
 
-  @include bp.sm {
+  @media screen and (max-width: 33.75em) {
+    width: 25.5rem;
+  }
+
+  @media screen and (max-width: 31.25em) {
     width: 100%;
     padding-bottom: 3rem;
     background-color: transparent;
     border-radius: 0;
 
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid vars.$clr-secondary-blue;
     }
+  }
+
+  @include bp.sm {
+    gap: 1.5rem;
   }
 
   @media screen and (max-width: 26.875em) {
@@ -123,8 +127,7 @@
       height: 21rem;
     }
 
-    @include bp.sm {
-      width: 25rem;
+    @media screen and (max-width: 31.25em) {
       width: 30rem;
       height: 17rem;
     }
@@ -193,7 +196,7 @@
       display: block;
       object-fit: cover;
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         border-radius: 0.5rem;
       }
     }
@@ -223,7 +226,11 @@
       padding: 2rem;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 34.375em) {
+      padding: 2rem 1.5rem;
+    }
+
+    @media screen and (max-width: 31.25em) {
       min-height: 0;
       padding: 0;
     }
@@ -262,7 +269,7 @@
         font-size: 1.8rem;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         font-size: 2.25rem;
         white-space: unset;
         word-wrap: break-word;
@@ -336,7 +343,7 @@
         font-size: var(--default-font-size);
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         font-size: 1.8rem;
       }
 
@@ -405,7 +412,7 @@
         font-size: 1.55rem;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         font-size: 1.75rem;
       }
 
@@ -466,7 +473,7 @@
         font-size: 1.45rem;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         font-size: 1.65rem;
       }
 

@@ -47,28 +47,32 @@
   }
 
   @media screen and (max-width: 37.5em) {
-    width: 31rem;
+    width: 28rem;
   }
 
   @media screen and (max-width: 34.375em) {
-    width: 29rem;
-  }
-
-  @media screen and (max-width: 31.25em) {
     width: 26rem;
   }
 
-  @include bp.sm {
+  @media screen and (max-width: 33.75em) {
+    width: 25.5rem;
+  }
+
+  @media screen and (max-width: 31.25em) {
     width: 100%;
     padding-bottom: 3rem;
     border-radius: 0;
 
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid vars.$clr-secondary-blue;
     }
+  }
+
+  @include bp.sm {
+    gap: 1.5rem;
   }
 
   @media screen and (max-width: 26.875em) {
@@ -116,10 +120,6 @@
     }
 
     @media screen and (max-width: 31.25em) {
-      height: 21rem;
-    }
-
-    @include bp.sm {
       width: 17.5rem;
       height: 14rem;
     }
@@ -164,7 +164,7 @@
       width: 100% !important;
       height: 100% !important;
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         border-radius: 0.5rem;
       }
     }
@@ -173,7 +173,7 @@
   &__footer {
     padding: 2rem;
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding: 0;
     }
 
@@ -191,6 +191,10 @@
       width: 100% !important;
       height: 2rem !important;
       border-radius: 0.5rem;
+
+      @media screen and (max-width: 31.25em) {
+        width: 30.5rem !important;
+      }
 
       @include bp.sm {
         width: 29rem !important;
@@ -279,6 +283,10 @@
     &--subdesc {
       width: 85% !important;
 
+      @media screen and (max-width: 31.25em) {
+        width: 80% !important;
+      }
+
       @include bp.sm {
         width: 75% !important;
       }
@@ -315,6 +323,10 @@
     &--category {
       width: 60% !important;
 
+      @media screen and (max-width: 31.25em) {
+        width: 50% !important;
+      }
+
       @include bp.sm {
         width: 45% !important;
       }
@@ -342,6 +354,10 @@
 
     &--time {
       width: 65% !important;
+
+      @media screen and (max-width: 31.25em) {
+        width: 55% !important;
+      }
 
       @include bp.sm {
         width: 50% !important;
