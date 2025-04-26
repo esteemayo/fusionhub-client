@@ -578,3 +578,49 @@ export type CountrySelectType = {
   region: string;
   value: string;
 };
+
+export type RegisterCredentialType = {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  phone?: string;
+  dateOfBirth?: string;
+  country?: string;
+  bio?: string;
+  about?: string;
+  image?: File;
+  banner?: string;
+};
+
+export type AuthCrendentialType = {
+  identifier: string;
+  password: string;
+};
+
+export type ResetPasswordType = {
+  credentials: {
+    password: string;
+    passwordConfirm: string;
+  };
+  token: string;
+};
+
+export type UpdatePasswordType = {
+  passwordCurrent: string;
+  password: string;
+  passwordConfirm: string;
+};
+
+export type UpdateUserDataType = {
+  name?: string;
+  username?: string;
+  email?: string;
+  phone?: string;
+  dateOfBirth?: string;
+  country?: string;
+  bio?: string;
+  about?: string;
+  image?: string;
+};
