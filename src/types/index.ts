@@ -579,7 +579,7 @@ export type CountrySelectType = {
   value: string;
 };
 
-export type RegisterCredentialType = {
+export type RegisterUserType = {
   name: string;
   username: string;
   email: string;
@@ -600,11 +600,8 @@ export type AuthCrendentialType = {
 };
 
 export type ResetPasswordType = {
-  credentials: {
-    password: string;
-    passwordConfirm: string;
-  };
-  token: string;
+  password: string;
+  passwordConfirm: string;
 };
 
 export type UpdatePasswordType = {

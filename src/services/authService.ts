@@ -1,29 +1,33 @@
 import http from './httpService';
 import {
   AuthCrendentialType,
-  RegisterCredentialType,
+  RegisterUserType,
   ResetPasswordType,
   UpdatePasswordType,
 } from '../types';
 
 const apiEndpoint = '/auth';
 
-export const register = (credentials: RegisterCredentialType) =>
-  http.post(`${apiEndpoint}/register`, credentials);
+const authUrl = (url: string) => `${apiEndpoint}/${url}`;
 
-export const login = (credentials: AuthCrendentialType) =>
-  http.post(`${apiEndpoint}/login`, credentials);
+export const register = <T extends RegisterUserType>(user: T) =>
+  http.post(authUrl('register'), user);
 
-export const googleLogin = (email: { email: string }) =>
-  http.post(`${apiEndpoint}/google-login`, email);
+export const login = <T extends AuthCrendentialType>(credentials: T) =>
+  http.post(authUrl('login'), credentials);
 
-export const logout = () => http.post(`${apiEndpoint}/logout`);
+export const googleLogin = (email: string) =>
+  http.post(authUrl('google-login'), email);
 
-export const forgotPassword = (email: { email: string }) =>
-  http.post(`${apiEndpoint}/forgot-pasword`, email);
+export const logout = () => http.post(authUrl('logout'));
 
-export const resetPassword = ({ credentials, token }: ResetPasswordType) =>
-  http.post(`${apiEndpoint}/reset-password/${token}`, credentials);
+export const forgotPassword = (email: string) =>
+  http.post(authUrl('forgot-password'), email);
 
-export const updatePassword = (credentials: UpdatePasswordType) =>
-  http.patch(`${apiEndpoint}/update-my-password`, credentials);
+export const resetPassword = <T extends ResetPasswordType, U extends string>(
+  credentials: T,
+  token: U
+) => http.post(`${apiEndpoint}/reset-password/${token}`, credentials);
+
+export const updatePassword = <T extends UpdatePasswordType>(credentials: T) =>
+  http.patch(authUrl('update-my-password'), credentials);

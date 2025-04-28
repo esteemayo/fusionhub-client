@@ -3,6 +3,10 @@ import { UpdateUserDataType } from '../types';
 
 const apiEndpoint = '/users';
 
+const userUrl = (userId: string) => `${apiEndpoint}/${userId}`;
+
+export const getUser = (userId: string) => http.get(userUrl(userId));
+
 export const getCurrentUser = () => http.get(`${apiEndpoint}/me`);
 
 export const getSavedPosts = () => http.get(`${apiEndpoint}/saved-posts`);

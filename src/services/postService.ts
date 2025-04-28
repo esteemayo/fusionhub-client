@@ -2,6 +2,8 @@ import http from './httpService';
 
 const apiEndpoint = '/posts';
 
+const postUrl = (postId: string) => `${apiEndpoint}/${postId}`;
+
 export const getPosts = () => http.get(apiEndpoint);
 
 export const getUserPosts = () => http.get(`${apiEndpoint}/my-posts`);
@@ -32,20 +34,21 @@ export const getTags = () => http.get(`${apiEndpoint}/tags`);
 export const getPost = (slug: string) =>
   http.get(`${apiEndpoint}/${slug}/details`);
 
-export const createPost = <T extends object>(data: T) =>
-  http.post(apiEndpoint, data);
+export const createPost = <T extends object>(post: T) =>
+  http.post(apiEndpoint, post);
 
-export const updatePost = <T extends object>(post: T, postId: string) =>
-  http.patch(`${apiEndpoint}/${postId}`, post);
+export const updatePost = <T extends object, U extends string>(
+  post: T,
+  postId: U
+) => http.patch(postUrl(postId), post);
 
 export const featurePost = (postId: string) =>
-  http.patch(`${apiEndpoint}/${postId}/feature-post`);
+  http.patch(`${postUrl(postId)}/feature-post`);
 
 export const likePost = (postId: string) =>
-  http.patch(`${apiEndpoint}/${postId}/like`);
+  http.patch(`${postUrl(postId)}/like`);
 
 export const dislikePost = (postId: string) =>
-  http.patch(`${apiEndpoint}/${postId}/dislike`);
+  http.patch(`${postUrl(postId)}/dislike`);
 
-export const deletePost = (postId: string) =>
-  http.delete(`${apiEndpoint}/${postId}`);
+export const deletePost = (postId: string) => http.delete(postUrl(postId));
