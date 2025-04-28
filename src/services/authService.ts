@@ -8,6 +8,9 @@ import {
 
 const apiEndpoint = '/auth';
 
+const authURI = (link: string, token: string) =>
+  `${apiEndpoint}/${link}/${token}`;
+
 const authUrl = (url: string) => `${apiEndpoint}/${url}`;
 
 export const register = <T extends RegisterUserType>(user: T) =>
@@ -27,7 +30,7 @@ export const forgotPassword = (email: string) =>
 export const resetPassword = <T extends ResetPasswordType, U extends string>(
   credentials: T,
   token: U
-) => http.post(`${apiEndpoint}/reset-password/${token}`, credentials);
+) => http.post(authURI('reset-password', token), credentials);
 
 export const updatePassword = <T extends UpdatePasswordType>(credentials: T) =>
   http.patch(authUrl('update-my-password'), credentials);

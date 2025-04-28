@@ -2,34 +2,35 @@ import http from './httpService';
 
 const apiEndpoint = '/posts';
 
+const postURI = (link: string) => `${apiEndpoint}/${link}`;
+
 const postUrl = (postId: string) => `${apiEndpoint}/${postId}`;
 
 export const getPosts = () => http.get(apiEndpoint);
 
-export const getUserPosts = () => http.get(`${apiEndpoint}/my-posts`);
+export const getUserPosts = () => http.get(postURI('my-posts'));
 
-export const getFeaturedPosts = () => http.get(`${apiEndpoint}/featured-posts`);
+export const getFeaturedPosts = () => http.get(postURI('featured-posts'));
 
-export const getRandomPosts = http.get(`${apiEndpoint}/random-posts`);
+export const getRandomPosts = http.get(postURI('random-posts'));
 
-export const getTopPosts = () => http.get(`${apiEndpoint}/top-posts`);
+export const getTopPosts = () => http.get(postURI('top-posts'));
 
-export const getTrendingPosts = () => http.get(`${apiEndpoint}/trends`);
+export const getTrendingPosts = () => http.get(postURI('trends'));
 
 export const getRelatedPosts = () => (tags: string) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
-export const getLikedPosts = () => http.get(`${apiEndpoint}/liked-posts`);
+export const getLikedPosts = () => http.get(postURI('liked-posts'));
 
-export const getDislikedPosts = () => http.get(`${apiEndpoint}/disliked-posts`);
+export const getDislikedPosts = () => http.get(postURI('disliked-posts'));
 
 export const getPostComentUsers = (postId: string) =>
-  http.get(`${apiEndpoint}/comments/users/${postId}`);
+  http.get(`${apiEndpoint}/comments/${postId}/users`);
 
-export const getCountByCategory = () =>
-  http.get(`${apiEndpoint}/count-by-category`);
+export const getCountByCategory = () => http.get(postURI('count-by-category'));
 
-export const getTags = () => http.get(`${apiEndpoint}/tags`);
+export const getTags = () => http.get(postURI('tags'));
 
 export const getPost = (slug: string) =>
   http.get(`${apiEndpoint}/${slug}/details`);
