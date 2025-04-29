@@ -1,6 +1,9 @@
 import { Value } from 'react-phone-number-input';
-import ReactQuill from 'react-quill-new';
+import { string, z } from 'zod';
 import { useEffect, useRef, useState } from 'react';
+import ReactQuill from 'react-quill-new';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
 import Textarea from '../../components/textarea/Textarea';
 import Input from '../../components/input/Input';
@@ -23,12 +26,76 @@ const Register = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const schema = z.object({
+    name: z
+      .string({
+        required_error: 'Please provide your name',
+        invalid_type_error: 'Name must be a string',
+      })
+      .min(6, {
+        message: 'Your name cannot be less than 6 characters long',
+      })
+      .max(50, { message: 'Your name cannot be more than 50 characters long' })
+      .trim(),
+    username: z
+      .string({
+        required_error: 'Please provide your username',
+        invalid_type_error: 'Username must be a string',
+      })
+      .trim()
+      .regex(/^[a-zA-Z0-9_]+$/, {
+        message: 'Username cannot contain special characters',
+      }),
+    email: z
+      .string({
+        required_error: 'Please provide your email address',
+        invalid_type_error: 'Email address must be a string',
+      })
+      .email({ message: 'Invalid email address' })
+      .regex(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\0-9]+\.)+[a-zA-Z]{2,}))$/,
+        { message: 'Please enter a valid email address' }
+      )
+      .trim()
+      .toLowerCase(),
+    password: z
+      .string({
+        required_error: 'Please provide your password',
+        invalid_type_error: 'Password must be a string',
+      })
+      .min(8, { message: 'Passwords cannot be less than 8 characters long' })
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        {
+          message:
+            'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and at least 8 characters long',
+        }
+      ),
+    passwordConfirm: z.string({
+      required_error: 'Please confirm your password',
+      invalid_type_error: 'Confirm password must be a string',
+    }),
+    phone: z.string(),
+    dateOfBirth: z.string(),
+    country: z.string(),
+    bio: string(),
+    about: string(),
+  });
 
+  type FormData = z.infer<typeof schema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FormData) => {
     setIsLoading(true);
 
-    console.log('user registered');
+    console.log(data);
 
     setTimeout(() => {
       setIsLoading(false);
@@ -51,7 +118,7 @@ const Register = () => {
           <p className='register__wrapper--text'>
             Welcome! Please enter your details.
           </p>
-          <form className='register__form' onSubmit={handleSubmit}>
+          <form className='register__form' onSubmit={handleSubmit(onSubmit)}>
             <div className='register__form--box'>
               {registerInputs.map((input) => {
                 const { id, name, type, label, placeholder } = input;
@@ -61,7 +128,9 @@ const Register = () => {
                     name={name}
                     type={type}
                     label={label}
+                    register={register}
                     placeholder={placeholder}
+                    errors={errors}
                     ref={name === 'name' ? inputRef : null}
                   />
                 );
@@ -85,7 +154,7 @@ const Register = () => {
                 value={about}
                 onChange={setAbout}
               />
-              <Input type='file' name='file' label='Image' accept='image/*' />
+              {/* <Input type='file' name='file' label='Image' accept='image/*' /> */}
             </div>
             <FormButton
               label='Register'

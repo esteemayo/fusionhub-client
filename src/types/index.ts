@@ -3,6 +3,7 @@ import { Action } from 'redux';
 import React, { HTMLInputTypeAttribute } from 'react';
 import { IconType } from 'react-icons/lib';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -66,14 +67,21 @@ export interface LabelProps {
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
-  name?: string;
+  // name?: string;
   type?: HTMLInputTypeAttribute;
-  label?: string;
-  error?: string;
+  // error?: string;
+  register?: UseFormRegister<FieldValues>;
   disabled?: boolean;
   required?: boolean;
   ref?: React.LegacyRef<HTMLInputElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
+}
+
+export interface InputType {
+  name: string;
+  label?: string;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
 }
 
 export interface TextareaProps
@@ -389,6 +397,17 @@ export interface PostDescProps {
 export interface CountrySelectProps {
   value?: CountrySelectType;
   onChange(value: CountrySelectType): void;
+}
+
+export interface RegisterInputs {
+  name: string;
+  username: string;
+  email: string;
+  phone?: string;
+  dateOfBirth?: string;
+  country?: string;
+  bio?: string;
+  about?: string;
 }
 
 export type MenuItemType = {
