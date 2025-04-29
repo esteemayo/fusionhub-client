@@ -17,7 +17,7 @@ export const updateCurrentUser = (data: UpdateUserDataType) =>
   http.patch(userURI('update-me'), data);
 
 export const savePost = (postId: string) =>
-  http.patch(`${apiEndpoint}/save-post/${postId}`);
+  http.patch(`${apiEndpoint}/${postId}/save-post`);
 
 export const deleteCurrentUser = () => http.delete(userURI('delete-me'));
 
