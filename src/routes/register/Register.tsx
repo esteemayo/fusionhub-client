@@ -5,10 +5,10 @@ import ReactQuill from 'react-quill-new';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import Textarea from '../../components/textarea/Textarea';
+import TextQuill from '../../components/textQuill/TextQuill';
 import Input from '../../components/input/Input';
 import PhoneNumber from '../../components/phoneNumber/PhoneNumber';
-import TextQuill from '../../components/textQuill/TextQuill';
+import Textarea from '../../components/textarea/Textarea';
 
 import DateInput from '../../components/dateInput/DateInput';
 import AuthLink from '../../components/authLink/AuthLink';
@@ -75,10 +75,16 @@ const Register = () => {
       required_error: 'Please confirm your password',
       invalid_type_error: 'Confirm password must be a string',
     }),
-    phone: z.string(),
+    phone: z.string({
+      required_error: 'Please provide your mobile number',
+      invalid_type_error: 'Mobile number must be a string',
+    }),
     dateOfBirth: z.string(),
     country: z.string(),
-    bio: string(),
+    bio: string({
+      required_error: 'Please provide your biography',
+      invalid_type_error: 'Biography must be a string',
+    }),
     about: string(),
   });
 
@@ -147,12 +153,19 @@ const Register = () => {
                 placeholder='Mobile number'
                 onChange={setValue}
               />
-              <Textarea name='bio' label='Biography' placeholder='Biography' />
+              <Textarea
+                name='bio'
+                label='Biography'
+                placeholder='Biography'
+                register={register}
+                errors={errors}
+              />
               <TextQuill
                 id='about'
                 label='About Me'
                 value={about}
                 onChange={setAbout}
+                error={'required'}
               />
               {/* <Input type='file' name='file' label='Image' accept='image/*' /> */}
             </div>

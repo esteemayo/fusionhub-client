@@ -1,11 +1,17 @@
 import Label from '../label/Label';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-import { TextareaProps } from '../../types';
+import { TextareaProps, TextAreaType } from '../../types';
 
 import './Textarea.scss';
 
-const Textarea = ({ name, label, error, ref, ...rest }: TextareaProps) => {
+const Textarea = ({
+  name,
+  label,
+  errors,
+  ref,
+  ...rest
+}: TextareaProps & TextAreaType) => {
   return (
     <div className='textarea'>
       <Label id={name} label={label} />
@@ -16,7 +22,9 @@ const Textarea = ({ name, label, error, ref, ...rest }: TextareaProps) => {
         className='textarea__control'
         ref={ref}
       />
-      {error && <ErrorMessage message={error} />}
+      {errors[name] && (
+        <ErrorMessage message={errors[name].message as string | undefined} />
+      )}
     </div>
   );
 };

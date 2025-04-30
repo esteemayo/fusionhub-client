@@ -1,11 +1,18 @@
 import Label from '../label/Label';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-import { SelectProps } from '../../types';
+import { SelectProps, SelectType } from '../../types';
 
 import './Select.scss';
 
-const Select = ({ name, label, error, options, ref, ...rest }: SelectProps) => {
+const Select = ({
+  name,
+  label,
+  errors,
+  options,
+  ref,
+  ...rest
+}: SelectProps & SelectType) => {
   return (
     <div className='select'>
       <Label id={name} label={label} />
@@ -26,7 +33,9 @@ const Select = ({ name, label, error, options, ref, ...rest }: SelectProps) => {
           );
         })}
       </select>
-      {error && <ErrorMessage message={error} />}
+      {errors[name] && (
+        <ErrorMessage message={errors[name].message as string | undefined} />
+      )}
     </div>
   );
 };

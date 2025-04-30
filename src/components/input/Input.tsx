@@ -19,7 +19,7 @@ const Input = ({
       <Label id={name} label={label} />
       <input
         {...rest}
-        {...register!(name as string)}
+        {...register(name)}
         id={name}
         name={name}
         type={type}

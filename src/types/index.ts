@@ -67,10 +67,8 @@ export interface LabelProps {
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
-  // name?: string;
+  name: string;
   type?: HTMLInputTypeAttribute;
-  // error?: string;
-  register?: UseFormRegister<FieldValues>;
   disabled?: boolean;
   required?: boolean;
   ref?: React.LegacyRef<HTMLInputElement> | undefined;
@@ -78,7 +76,6 @@ export interface InputProps
 }
 
 export interface InputType {
-  name: string;
   label?: string;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
@@ -87,21 +84,23 @@ export interface InputType {
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   id?: string;
-  name?: string;
-  label?: string;
-  error?: string;
+  name: string;
   disabled?: boolean;
   required?: boolean;
   ref?: React.LegacyRef<HTMLTextAreaElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
+export interface TextAreaType {
+  label?: string;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+}
+
 export interface SelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string;
-  name?: string;
-  label?: string;
-  error?: string;
+  name: string;
   disabled?: boolean;
   required?: boolean;
   options: CategoryOptionType;
@@ -109,11 +108,18 @@ export interface SelectProps
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
+export interface SelectType {
+  label?: string;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+}
+
 export interface TextQuillProps {
   id?: string;
   label?: string;
   value: ReactQuill.Value | undefined;
   placeholder?: string;
+  error?: string;
   onChange?(
     value: ReactQuill.Value | undefined,
     delta: DeltaStatic,

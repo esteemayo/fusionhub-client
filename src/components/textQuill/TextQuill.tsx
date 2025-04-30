@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import ReactQuill from 'react-quill-new';
 
 import Label from '../label/Label';
+import ErrorMessage from '../errorMessage/ErrorMessage';
+
 import { TextQuillProps } from '../../types';
 
 import 'react-quill-new/dist/quill.snow.css';
@@ -12,6 +14,7 @@ const TextQuill = ({
   label,
   value,
   placeholder,
+  error,
   onChange,
 }: TextQuillProps) => {
   const ref = useRef<ReactQuill | null>(null);
@@ -30,6 +33,7 @@ const TextQuill = ({
         onChange={onChange}
         ref={ref}
       />
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };
