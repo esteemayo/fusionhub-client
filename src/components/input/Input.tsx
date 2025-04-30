@@ -9,6 +9,7 @@ const Input = ({
   name,
   type = 'text',
   label,
+  validate,
   errors,
   register,
   ref,
@@ -16,7 +17,7 @@ const Input = ({
 }: InputProps & InputType) => {
   return (
     <div className='input'>
-      <Label id={name} label={label} />
+      <Label id={name} label={label} validate={validate} />
       <input
         {...rest}
         {...register(name)}

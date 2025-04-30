@@ -33,4 +33,14 @@
   @media screen and (min-width: 125em) {
     font-size: 2.1rem;
   }
+
+  &.star {
+    &::after {
+      content: '*';
+      display: inline-block;
+      font-size: inherit;
+      color: vars.$clr-gray-light-2;
+      margin-left: 0.5rem;
+    }
+  }
 }

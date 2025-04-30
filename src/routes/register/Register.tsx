@@ -7,8 +7,9 @@ import { useForm } from 'react-hook-form';
 
 import TextQuill from '../../components/textQuill/TextQuill';
 import Input from '../../components/input/Input';
-import PhoneNumber from '../../components/phoneNumber/PhoneNumber';
+import FileInput from '../../components/fileInput/FileInput';
 import Textarea from '../../components/textarea/Textarea';
+import PhoneNumber from '../../components/phoneNumber/PhoneNumber';
 
 import DateInput from '../../components/dateInput/DateInput';
 import AuthLink from '../../components/authLink/AuthLink';
@@ -79,13 +80,11 @@ const Register = () => {
       required_error: 'Please provide your mobile number',
       invalid_type_error: 'Mobile number must be a string',
     }),
-    dateOfBirth: z.string(),
     country: z.string(),
     bio: string({
       required_error: 'Please provide your biography',
       invalid_type_error: 'Biography must be a string',
     }),
-    about: string(),
   });
 
   type FormData = z.infer<typeof schema>;
@@ -138,6 +137,7 @@ const Register = () => {
                     placeholder={placeholder}
                     errors={errors}
                     ref={name === 'name' ? inputRef : null}
+                    validate
                   />
                 );
               })}
@@ -156,18 +156,18 @@ const Register = () => {
               <Textarea
                 name='bio'
                 label='Biography'
-                placeholder='Biography'
+                placeholder='Write a short biography'
                 register={register}
                 errors={errors}
+                validate
               />
               <TextQuill
                 id='about'
                 label='About Me'
                 value={about}
                 onChange={setAbout}
-                error={'required'}
               />
-              {/* <Input type='file' name='file' label='Image' accept='image/*' /> */}
+              <FileInput name='file' label='Image' accept='image/*' />
             </div>
             <FormButton
               label='Register'

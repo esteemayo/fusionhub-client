@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import DatePicker from 'react-datepicker';
 
 import Label from '../label/Label';
+import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import { DateInputProps } from '../../types';
 
@@ -12,6 +13,7 @@ const DateInput = ({
   label,
   startDate,
   placeholder,
+  error,
   onChange,
 }: DateInputProps) => {
   const ref = useRef<DatePicker | null>(null);
@@ -29,6 +31,7 @@ const DateInput = ({
         onChange={(date) => onChange(date)}
         ref={ref}
       />
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };

@@ -9,12 +9,13 @@ const Textarea = ({
   name,
   label,
   errors,
+  validate,
   ref,
   ...rest
 }: TextareaProps & TextAreaType) => {
   return (
     <div className='textarea'>
-      <Label id={name} label={label} />
+      <Label id={name} label={label} validate={validate} />
       <textarea
         {...rest}
         id={name}

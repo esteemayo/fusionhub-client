@@ -61,6 +61,7 @@ export interface EmptyStateProps {
 export interface LabelProps {
   id?: string;
   label?: string;
+  validate?: boolean;
   onClick?(): void;
 }
 
@@ -77,8 +78,19 @@ export interface InputProps
 
 export interface InputType {
   label?: string;
+  validate?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+}
+
+export interface FileInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
+  name?: string;
+  label?: string;
+  disabled?: boolean;
+  required?: boolean;
+  onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface TextareaProps
@@ -93,6 +105,7 @@ export interface TextareaProps
 
 export interface TextAreaType {
   label?: string;
+  validate?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }
@@ -132,6 +145,7 @@ export interface DateInputProps {
   label?: string;
   startDate: Date | null;
   placeholder?: string;
+  error?: string;
   onChange: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
