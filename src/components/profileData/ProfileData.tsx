@@ -25,7 +25,7 @@ const ProfileData = ({
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [value, setValue] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
-  const [location, setLocation] = useState<CountrySelectType>();
+  const [country, setCountry] = useState<CountrySelectType>();
 
   return (
     <div className='profile-data'>
@@ -59,7 +59,7 @@ const ProfileData = ({
             placeholder='Date of Birth'
             onChange={setStartDate}
           />
-          <CountrySelect value={location} onChange={setLocation} />
+          <CountrySelect value={country} onChange={setCountry} />
         </div>
         <div className='profile-data__form--info'>
           <Textarea

@@ -123,6 +123,7 @@ export interface SelectProps
 
 export interface SelectType {
   label?: string;
+  validate?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 }
@@ -132,6 +133,7 @@ export interface TextQuillProps {
   label?: string;
   value: ReactQuill.Value | undefined;
   placeholder?: string;
+  validate?: boolean;
   error?: string;
   onChange?(
     value: ReactQuill.Value | undefined,
@@ -145,6 +147,7 @@ export interface DateInputProps {
   label?: string;
   startDate: Date | null;
   placeholder?: string;
+  validate?: boolean;
   error?: string;
   onChange: React.Dispatch<React.SetStateAction<Date | null>>;
 }
@@ -337,6 +340,8 @@ export interface PhoneNumberProps {
   label?: string;
   value: Value | undefined;
   placeholder?: string;
+  validate?: boolean;
+  error?: string;
   onChange(value?: Value): void;
 }
 
@@ -416,6 +421,7 @@ export interface PostDescProps {
 
 export interface CountrySelectProps {
   value?: CountrySelectType;
+  validate?: boolean;
   onChange(value: CountrySelectType): void;
 }
 

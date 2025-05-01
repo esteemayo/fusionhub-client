@@ -8,7 +8,7 @@ import { CountrySelectProps, CountrySelectType } from '../../types';
 
 import './CountrySelect.scss';
 
-const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
+const CountrySelect = ({ value, validate, onChange }: CountrySelectProps) => {
   const { getAll } = useCountries();
 
   const ref = useRef<Select<
@@ -23,7 +23,7 @@ const CountrySelect = ({ value, onChange }: CountrySelectProps) => {
 
   return (
     <div className='country-select'>
-      <Label label='Country' onClick={handleClick} />
+      <Label label='Country' validate={validate} onClick={handleClick} />
       <Select
         placeholder='Country'
         isClearable

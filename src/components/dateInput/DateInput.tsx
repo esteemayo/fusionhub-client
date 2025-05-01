@@ -13,6 +13,7 @@ const DateInput = ({
   label,
   startDate,
   placeholder,
+  validate,
   error,
   onChange,
 }: DateInputProps) => {
@@ -24,7 +25,7 @@ const DateInput = ({
 
   return (
     <div className='date-input'>
-      <Label label={label} onClick={handleClick} />
+      <Label label={label} validate={validate} onClick={handleClick} />
       <DatePicker
         selected={startDate}
         placeholderText={placeholder}

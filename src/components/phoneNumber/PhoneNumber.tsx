@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import PhoneInput from 'react-phone-number-input';
 
 import Label from '../label/Label';
+import ErrorMessage from '../errorMessage/ErrorMessage';
+
 import { PhoneNumberProps } from '../../types';
 
 import 'react-phone-number-input/style.css';
@@ -11,6 +13,8 @@ const PhoneNumber = ({
   label,
   value,
   placeholder,
+  validate,
+  error,
   onChange,
 }: PhoneNumberProps) => {
   const ref = useRef<HTMLInputElement | undefined>(null);
@@ -21,13 +25,14 @@ const PhoneNumber = ({
 
   return (
     <div className='phone-number'>
-      <Label label={label} onClick={handleClick} />
+      <Label label={label} validate={validate} onClick={handleClick} />
       <PhoneInput
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         ref={ref}
       />
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };

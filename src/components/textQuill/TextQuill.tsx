@@ -14,6 +14,7 @@ const TextQuill = ({
   label,
   value,
   placeholder,
+  validate,
   error,
   onChange,
 }: TextQuillProps) => {
@@ -25,7 +26,7 @@ const TextQuill = ({
 
   return (
     <div className='text-quill'>
-      <Label id={id} label={label} onClick={handleClick} />
+      <Label id={id} label={label} validate={validate} onClick={handleClick} />
       <ReactQuill
         theme='snow'
         value={value}

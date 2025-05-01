@@ -8,6 +8,7 @@ import './Select.scss';
 const Select = ({
   name,
   label,
+  validate,
   errors,
   options,
   ref,
@@ -15,7 +16,7 @@ const Select = ({
 }: SelectProps & SelectType) => {
   return (
     <div className='select'>
-      <Label id={name} label={label} />
+      <Label id={name} label={label} validate={validate} />
       <select
         {...rest}
         id={name}
