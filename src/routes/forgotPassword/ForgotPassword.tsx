@@ -1,6 +1,8 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { z } from 'zod';
-import { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   FieldValues,
   SubmitHandler,
@@ -14,24 +16,22 @@ import Button from '../../components/button/Button';
 import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const schema = z
     .object({
       email: z
         .string()
-        .email({ message: 'Invalid email address' })
         .min(5, 'Email address must be at least 5 characters long')
         .regex(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\0-9]+\.)+[a-zA-Z]{2,}))$/,
           { message: 'Please enter a valid email address' }
         )
+        .email({ message: 'Invalid email address' })
         .trim()
         .toLowerCase()
-        .refine((email) => email.endsWith('.com'), {
-          message: `Email must be from '.com' domain`,
+        .refine((email) => email.endsWith('gmail.com'), {
+          message: `Email must be from 'gmail.com' domain`,
         }),
     })
     .required();
@@ -50,22 +50,15 @@ const ForgotPassword = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-
     setIsLoading(true);
-
-    console.log('token sent to email');
 
     setTimeout(() => {
       setIsLoading(false);
+
+      console.log(data);
+      toast.success('Token sent to email');
     }, 1500);
   };
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
 
   return (
     <div className='forgot-password'>
@@ -81,12 +74,12 @@ const ForgotPassword = () => {
           >
             <Input
               type='email'
-              id='email'
+              name='email'
               label='Email Address'
               placeholder='Email address'
               register={register as unknown as UseFormRegister<FieldValues>}
               errors={errors}
-              ref={inputRef}
+              autoFocus
             />
             <div className='forgot-password__form--button'>
               <Button

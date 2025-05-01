@@ -6,7 +6,7 @@ import { InputProps, InputType } from '../../types';
 import './Input.scss';
 
 const Input = ({
-  id,
+  name,
   type = 'text',
   label,
   validate,
@@ -16,16 +16,17 @@ const Input = ({
 }: InputProps & InputType) => {
   return (
     <div className='input'>
-      <Label id={id} label={label} validate={validate} />
+      <Label id={name} label={label} validate={validate} />
       <input
         {...rest}
-        {...register(id)}
-        id={id}
+        {...register(name)}
+        id={name}
+        name={name}
         type={type}
         className='input__control'
       />
-      {errors[id] && (
-        <ErrorMessage message={errors[id].message as string | undefined} />
+      {errors[name] && (
+        <ErrorMessage message={errors[name].message as string | undefined} />
       )}
     </div>
   );
