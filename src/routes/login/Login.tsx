@@ -1,13 +1,15 @@
+import { useState } from 'react';
+import { z } from 'zod';
+import { Link } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { z } from 'zod';
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 import AuthLink from '../../components/authLink/AuthLink';
 import Input from '../../components/input/Input';
@@ -18,22 +20,15 @@ import { loginInputs } from '../../data/formData';
 import './Login.scss';
 
 const Login = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const [isLoading, setIsLoading] = useState(false);
 
   const schema = z
     .object({
-      identifier: z.string({
-        required_error: 'Please provide your username/email address',
-        invalid_type_error: 'Username/Email address must be a string',
-      }),
+      identifier: z.string(),
       password: z
-        .string({
-          required_error: 'Please provide your password',
-          invalid_type_error: 'Password must be a string',
-        })
-        .min(8, { message: 'Passwords cannot be less than 8 characters long' })
+        .string()
+        .min(8, { message: 'Password must be at least 8 characters long' })
+        .max(32, { message: 'Password cannot exceed 32 characters' })
         .regex(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
           {
@@ -61,18 +56,13 @@ const Login = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     setIsLoading(true);
 
-    console.log(data);
-
     setTimeout(() => {
       setIsLoading(false);
+
+      console.log(data);
+      toast.success('user login!');
     }, 1500);
   };
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
 
   return (
     <section className='login'>
@@ -92,9 +82,9 @@ const Login = () => {
                   type={type}
                   label={label}
                   placeholder={placeholder}
-                  ref={!type ? inputRef : null}
                   register={register as unknown as UseFormRegister<FieldValues>}
                   errors={errors}
+                  autoFocus={name === 'identifier'}
                   validate
                 />
               );

@@ -1,8 +1,10 @@
-import { Value } from 'react-phone-number-input';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
-import { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill-new';
+import { useState } from 'react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Value } from 'react-phone-number-input';
 import {
   FieldValues,
   SubmitHandler,
@@ -28,8 +30,6 @@ import { registerInputs } from '../../data/formData';
 import './Register.scss';
 
 const Register = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const [value, setValue] = useState<Value | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -60,17 +60,18 @@ const Register = () => {
           message: `Username cannot contain 'admin'`,
         }),
       email: z
-        .string({
-          required_error: 'Please provide your email address',
-          invalid_type_error: 'Email address must be a string',
-        })
-        .email({ message: 'Invalid email address' })
+        .string()
+        .min(5, 'Email address must be at least 5 characters long')
         .regex(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\0-9]+\.)+[a-zA-Z]{2,}))$/,
           { message: 'Please enter a valid email address' }
         )
+        .email({ message: 'Invalid email address' })
         .trim()
-        .toLowerCase(),
+        .toLowerCase()
+        .refine((email) => email.endsWith('gmail.com'), {
+          message: `Email must be from 'gmail.com' domain`,
+        }),
       password: z
         .string()
         .min(8, { message: 'Password must be at least 8 characters long' })
@@ -83,10 +84,10 @@ const Register = () => {
           }
         ),
       passwordConfirm: z.string(),
-      bio: z.string({
-        required_error: 'Please provide your biography',
-        invalid_type_error: 'Biography must be a string',
-      }),
+      bio: z
+        .string()
+        .min(1, { message: 'Please provide your biography' })
+        .trim(),
     })
     .superRefine(({ password, passwordConfirm }, ctx) => {
       if (password !== passwordConfirm) {
@@ -111,20 +112,13 @@ const Register = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     setIsLoading(true);
 
-    console.log(data);
-
     setTimeout(() => {
       setIsLoading(false);
+
+      console.log(data);
+      toast.success('user registered!');
     }, 1500);
   };
-
-  useEffect(() => {
-    const current = inputRef.current;
-
-    if (current) {
-      current.focus();
-    }
-  }, []);
 
   return (
     <section className='register'>
@@ -149,7 +143,7 @@ const Register = () => {
                     }
                     placeholder={placeholder}
                     errors={errors}
-                    ref={name === 'name' ? inputRef : null}
+                    autoFocus={name === 'name'}
                     validate
                   />
                 );

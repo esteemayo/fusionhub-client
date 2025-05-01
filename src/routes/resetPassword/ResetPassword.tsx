@@ -1,4 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form';
 
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
@@ -12,15 +21,49 @@ const ResetPassword = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const schema = z
+    .object({
+      password: z
+        .string()
+        .min(8, { message: 'Password must be at least 8 characters long' })
+        .max(32, { message: 'Password cannot exceed 32 characters' })
+        .regex(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+          {
+            message:
+              'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and at least 8 characters long',
+          }
+        ),
+      passwordConfirm: z.string(),
+    })
+    .superRefine(({ password, passwordConfirm }, ctx) => {
+      if (password !== passwordConfirm) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Passwords do not match',
+          path: ['passwordconfirm'],
+        });
+      }
+    });
 
+  type FormData = z.infer<typeof schema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
     setIsLoading(true);
-
-    console.log('password reset successfully!');
 
     setTimeout(() => {
       setIsLoading(false);
+
+      console.log(data);
+      toast.success('password reset successfully!');
     }, 1500);
   };
 
@@ -40,7 +83,10 @@ const ResetPassword = () => {
           <p className='reset-password__wrapper--text'>
             Please enter your new password.
           </p>
-          <form onSubmit={handleSubmit} className='reset-password__form'>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='reset-password__form'
+          >
             {resetInputs.map((input) => {
               const { id, name, type, label, placeholder } = input;
               return (
@@ -50,7 +96,10 @@ const ResetPassword = () => {
                   name={name}
                   label={label}
                   placeholder={placeholder}
-                  ref={name === 'password' ? inputRef : null}
+                  register={register as unknown as UseFormRegister<FieldValues>}
+                  errors={errors}
+                  autoFocus={name === 'password'}
+                  validate
                 />
               );
             })}
