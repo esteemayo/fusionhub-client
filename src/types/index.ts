@@ -67,8 +67,7 @@ export interface LabelProps {
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  id?: string;
-  name: string;
+  id: string;
   type?: HTMLInputTypeAttribute;
   disabled?: boolean;
   required?: boolean;

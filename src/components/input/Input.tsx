@@ -6,29 +6,26 @@ import { InputProps, InputType } from '../../types';
 import './Input.scss';
 
 const Input = ({
-  name,
+  id,
   type = 'text',
   label,
   validate,
   errors,
   register,
-  ref,
   ...rest
 }: InputProps & InputType) => {
   return (
     <div className='input'>
-      <Label id={name} label={label} validate={validate} />
+      <Label id={id} label={label} validate={validate} />
       <input
         {...rest}
-        {...register(name)}
-        id={name}
-        name={name}
+        {...register(id)}
+        id={id}
         type={type}
         className='input__control'
-        ref={ref}
       />
-      {errors[name] && (
-        <ErrorMessage message={errors[name].message as string | undefined} />
+      {errors[id] && (
+        <ErrorMessage message={errors[id].message as string | undefined} />
       )}
     </div>
   );

@@ -51,13 +51,13 @@ const Register = () => {
         })
         .trim(),
       username: z
-        .string({
-          required_error: 'Please provide your username',
-          invalid_type_error: 'Username must be a string',
-        })
+        .string()
         .trim()
         .regex(/^[a-zA-Z0-9_]+$/, {
           message: 'Username cannot contain special characters',
+        })
+        .refine((username) => username.endsWith('admin'), {
+          message: `Username cannot contain 'admin'`,
         }),
       email: z
         .string({
@@ -72,11 +72,9 @@ const Register = () => {
         .trim()
         .toLowerCase(),
       password: z
-        .string({
-          required_error: 'Please provide your password',
-          invalid_type_error: 'Password must be a string',
-        })
-        .min(8, { message: 'Passwords cannot be less than 8 characters long' })
+        .string()
+        .min(8, { message: 'Password must be at least 8 characters long' })
+        .max(32, { message: 'Password cannot exceed 32 characters' })
         .regex(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
           {
@@ -84,16 +82,21 @@ const Register = () => {
               'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and at least 8 characters long',
           }
         ),
-      passwordConfirm: z.string({
-        required_error: 'Please confirm your password',
-        invalid_type_error: 'Confirm password must be a string',
-      }),
+      passwordConfirm: z.string(),
       bio: z.string({
         required_error: 'Please provide your biography',
         invalid_type_error: 'Biography must be a string',
       }),
     })
-    .required();
+    .superRefine(({ password, passwordConfirm }, ctx) => {
+      if (password !== passwordConfirm) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Passwords do not match',
+          path: ['passwordConfirm'],
+        });
+      }
+    });
 
   type FormData = z.infer<typeof schema>;
 

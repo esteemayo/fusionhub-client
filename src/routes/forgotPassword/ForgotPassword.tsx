@@ -1,19 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-// import { yupResolver } from '@hookform/resolvers/yup';
-// import * as yup from 'yup';
 import { useEffect, useRef, useState } from 'react';
-
-import Input from '../../components/input/Input';
-import Button from '../../components/button/Button';
-
-import './ForgotPassword.scss';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+
+import Input from '../../components/input/Input';
+import Button from '../../components/button/Button';
+
+import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,29 +21,22 @@ const ForgotPassword = () => {
   const schema = z
     .object({
       email: z
-        .string({
-          required_error: 'Please provide your email address',
-          invalid_type_error: 'Email address must be a string',
-        })
+        .string()
         .email({ message: 'Invalid email address' })
+        .min(5, 'Email address must be at least 5 characters long')
         .regex(
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\0-9]+\.)+[a-zA-Z]{2,}))$/,
           { message: 'Please enter a valid email address' }
         )
         .trim()
-        .toLowerCase(),
+        .toLowerCase()
+        .refine((email) => email.endsWith('.com'), {
+          message: `Email must be from '.com' domain`,
+        }),
     })
     .required();
 
   type FormData = z.infer<typeof schema>;
-
-  // const schema = yup
-  //   .object({
-  //     email: yup.string().email().required(),
-  //   })
-  //   .required();
-
-  // type FormData = yup.InferType<typeof schema>;
 
   const {
     register,
@@ -53,7 +44,6 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    // resolver: yupResolver(schema),
     defaultValues: {
       email: '',
     },
@@ -91,7 +81,7 @@ const ForgotPassword = () => {
           >
             <Input
               type='email'
-              name='email'
+              id='email'
               label='Email Address'
               placeholder='Email address'
               register={register as unknown as UseFormRegister<FieldValues>}
