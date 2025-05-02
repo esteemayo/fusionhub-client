@@ -27,8 +27,13 @@
       font-size: 2.55rem;
     }
 
+    @media screen and (max-width: 31.25em) {
+      font-size: 2.65rem;
+      line-height: 1.4;
+    }
+
     @media screen and (max-width: 18.75em) {
-      font-size: 2.4rem;
+      font-size: 2.45rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -63,8 +68,13 @@
       font-size: 1.85rem;
     }
 
+    @media screen and (max-width: 31.25em) {
+      font-size: 1.95rem;
+      line-height: 1.4;
+    }
+
     @media screen and (max-width: 18.75em) {
-      font-size: 1.7rem;
+      font-size: 1.75rem;
     }
 
     @media screen and (min-width: 106.25em) {
