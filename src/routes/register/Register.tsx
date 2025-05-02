@@ -102,6 +102,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
@@ -114,6 +115,8 @@ const Register = () => {
 
       console.log(data);
       toast.success('user registered!');
+
+      reset();
     }, 1500);
   };
 

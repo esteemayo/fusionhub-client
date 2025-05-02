@@ -99,7 +99,6 @@ export interface TextareaProps
   name: string;
   disabled?: boolean;
   required?: boolean;
-  ref?: React.LegacyRef<HTMLTextAreaElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 

@@ -45,6 +45,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
@@ -57,6 +58,8 @@ const Login = () => {
 
       console.log(data);
       toast.success('user login!');
+
+      reset();
     }, 1500);
   };
 

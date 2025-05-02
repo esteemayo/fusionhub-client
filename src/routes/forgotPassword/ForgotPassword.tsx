@@ -42,11 +42,9 @@ const ForgotPassword = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      email: '',
-    },
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -57,6 +55,8 @@ const ForgotPassword = () => {
 
       console.log(data);
       toast.success('Token sent to email');
+
+      reset();
     }, 1500);
   };
 

@@ -32,10 +32,6 @@ const ProfileSettings = () => {
     inputRef?.current?.click();
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   return (
     <div className='profile-settings'>
       <div className='profile-settings__container'>
@@ -54,7 +50,7 @@ const ProfileSettings = () => {
           onUpload={handleUpload}
         />
         <hr />
-        <ProfileData onSubmit={handleSubmit} />
+        <ProfileData />
       </div>
     </div>
   );
