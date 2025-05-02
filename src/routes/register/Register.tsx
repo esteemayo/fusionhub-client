@@ -80,14 +80,11 @@ const Register = () => {
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
           {
             message:
-              'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and at least 8 characters long',
+              'Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and at least 8 characters long',
           }
         ),
       passwordConfirm: z.string(),
-      bio: z
-        .string()
-        .min(1, { message: 'Please provide your biography' })
-        .trim(),
+      bio: z.string().min(1, { message: 'Please write your biography' }).trim(),
     })
     .superRefine(({ password, passwordConfirm }, ctx) => {
       if (password !== passwordConfirm) {

@@ -47,10 +47,6 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      identifier: '',
-      password: '',
-    },
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
