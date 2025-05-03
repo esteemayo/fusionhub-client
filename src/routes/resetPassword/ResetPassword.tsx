@@ -52,6 +52,7 @@ const ResetPassword = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
@@ -64,6 +65,8 @@ const ResetPassword = () => {
 
       console.log(data);
       toast.success('password reset successfully!');
+
+      reset();
     }, 1500);
   };
 

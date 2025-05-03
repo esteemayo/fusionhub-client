@@ -53,7 +53,7 @@ const Register = () => {
       username: z
         .string()
         .trim()
-        .regex(/^[a-zA-Z0-9_]+$/, {
+        .regex(/^[a-zA-Z0-9_]{3,15}$/, {
           message: 'Username cannot contain special characters',
         })
         .refine((username) => username.endsWith('admin'), {
@@ -69,9 +69,12 @@ const Register = () => {
         .email({ message: 'Invalid email address' })
         .trim()
         .toLowerCase()
-        .refine((email) => email.endsWith('gmail.com'), {
-          message: `Email must be from 'gmail.com' domain`,
-        }),
+        .refine(
+          (email) => email.endsWith('gmail.com') || email.endsWith('yahoo.com'),
+          {
+            message: `Email must be from 'gmail.com or yahoo.com' domains`,
+          }
+        ),
       password: z
         .string()
         .min(8, { message: 'Password must be at least 8 characters long' })
