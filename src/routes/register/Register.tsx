@@ -56,7 +56,7 @@ const Register = () => {
         .regex(/^[a-zA-Z0-9_]{3,15}$/, {
           message: 'Username cannot contain special characters',
         })
-        .refine((username) => username.endsWith('admin'), {
+        .refine((username) => !username.endsWith('admin'), {
           message: `Username cannot contain 'admin'`,
         }),
       email: z
@@ -72,7 +72,7 @@ const Register = () => {
         .refine(
           (email) => email.endsWith('gmail.com') || email.endsWith('yahoo.com'),
           {
-            message: `Email must be from 'gmail.com or yahoo.com' domains`,
+            message: `Email must be from 'gmail.com/yahoo.com' domain`,
           }
         ),
       password: z

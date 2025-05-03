@@ -11,19 +11,12 @@ const Select = ({
   validate,
   errors,
   options,
-  ref,
   ...rest
 }: SelectProps & SelectType) => {
   return (
     <div className='select'>
       <Label id={name} label={label} validate={validate} />
-      <select
-        {...rest}
-        id={name}
-        name={name}
-        className='select__control'
-        ref={ref}
-      >
+      <select {...rest} id={name} name={name} className='select__control'>
         <option value=''>Category</option>
         {options?.map((option) => {
           const { id, name } = option;

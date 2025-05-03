@@ -30,9 +30,12 @@ const ForgotPassword = () => {
         .email({ message: 'Invalid email address' })
         .trim()
         .toLowerCase()
-        .refine((email) => email.endsWith('gmail.com'), {
-          message: `Email must be from 'gmail.com' domain`,
-        }),
+        .refine(
+          (email) => email.endsWith('gmail.com') || email.endsWith('yahoo.com'),
+          {
+            message: `Email must be from 'gmail.com/yahoo.com' domain`,
+          }
+        ),
     })
     .required();
 

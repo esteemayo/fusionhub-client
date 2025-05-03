@@ -116,6 +116,7 @@ export interface SelectProps
   disabled?: boolean;
   required?: boolean;
   options: CategoryOptionType;
+  register: UseFormRegister<FieldValues>;
   ref?: React.LegacyRef<HTMLSelectElement> | undefined;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
 }
@@ -254,9 +255,9 @@ export interface PostMenuButtonProps {
 }
 
 export interface PostDescriptionProps {
-  title: string;
-  onChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
   value: ReactQuill.Value | undefined;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
   onChangeDesc?(
     value: ReactQuill.Value | undefined,
     delta: DeltaStatic,
@@ -266,10 +267,9 @@ export interface PostDescriptionProps {
 }
 
 export interface PostImageProps {
-  tags: string;
-  category: string;
   options: CategoryOptionType;
-  onChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
   onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 

@@ -1,13 +1,13 @@
-import Input from './input/Input';
 import Select from './select/Select';
+import Input from './input/Input';
+import FileInput from './fileInput/FileInput';
 
 import { PostImageProps } from '../types';
 
 const PostImage = ({
-  tags,
-  category,
   options,
-  onChange,
+  register,
+  errors,
   onChangeFile,
 }: PostImageProps) => {
   return (
@@ -15,19 +15,18 @@ const PostImage = ({
       <Input
         name='tags'
         label='Tags'
-        value={tags}
         placeholder='Tags'
-        onChange={onChange}
+        register={register}
+        errors={errors}
       />
       <Select
+        {...register('category')}
         name='category'
         label='Category'
-        value={category}
         options={options}
-        onChange={onChange}
+        errors={errors}
       />
-      <Input
-        type='file'
+      <FileInput
         name='file'
         label='Image'
         accept='image/*'

@@ -1,4 +1,12 @@
 import ReactQuill from 'react-quill-new';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useMemo, useState } from 'react';
 
@@ -18,30 +26,33 @@ const enum STEPS {
   IMAGE = 1,
 }
 
-const initialState = {
-  title: '',
-  tags: '',
-  category: '',
-};
-
 const PostModal = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postModal }));
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [step, setStep] = useState(STEPS.DESC);
   const [file, setFile] = useState<File | undefined>();
-  const [data, setData] = useState(initialState);
+  const [step, setStep] = useState(STEPS.IMAGE);
   const [value, setValue] = useState<ReactQuill.Value | undefined>('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = ({
-    target: input,
-  }: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = input;
-    setData((prev) => {
-      return { ...prev, [name]: value };
-    });
-  };
+  const schema = z
+    .object({
+      title: z.string(),
+      tags: z.string(),
+      category: z.string(),
+    })
+    .required();
+
+  type FormData = z.infer<typeof schema>;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -67,13 +78,13 @@ const PostModal = () => {
   };
 
   const handleClear = () => {
-    setData(initialState);
     setValue('');
     setFile(undefined);
   };
 
-  const handleSubmit = () => {
+  const onSubmitHandler: SubmitHandler<FormData> = (data) => {
     if (step !== STEPS.IMAGE) {
+      console.log('next clicked!');
       return onNext();
     }
 
@@ -81,20 +92,21 @@ const PostModal = () => {
 
     console.log({
       ...data,
-      tags: data.tags.split(','),
       value,
       image: file?.name,
     });
 
     setTimeout(() => {
       setIsLoading(false);
+
+      console.log(data);
+      toast.success('Post created!');
+
+      reset();
+      handleClear();
+      handleClose();
+      setStep(STEPS.DESC);
     }, 3000);
-
-    toast.success('Post created!');
-
-    handleClear();
-    handleClose();
-    setStep(STEPS.DESC);
   };
 
   const actionLabel = useMemo(() => {
@@ -125,9 +137,9 @@ const PostModal = () => {
 
   bodyContent = (
     <PostDescription
-      title={data.title}
       value={value}
-      onChange={handleChange}
+      register={register as unknown as UseFormRegister<FieldValues>}
+      errors={errors}
       onChangeDesc={setValue}
     />
   );
@@ -135,10 +147,9 @@ const PostModal = () => {
   if (step === STEPS.IMAGE) {
     bodyContent = (
       <PostImage
-        tags={data.tags}
-        category={data.category}
         options={categoryOptions}
-        onChange={handleChange}
+        register={register as unknown as UseFormRegister<FieldValues>}
+        errors={errors}
         onChangeFile={handleFile}
       />
     );
@@ -154,7 +165,7 @@ const PostModal = () => {
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}
       onClose={handleClose}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmitHandler)}
       secondaryAction={secondaryAction}
     />
   );

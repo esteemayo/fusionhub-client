@@ -41,7 +41,7 @@ const ResetPassword = () => {
         ctx.addIssue({
           code: 'custom',
           message: 'Passwords do not match',
-          path: ['passwordconfirm'],
+          path: ['passwordConfirm'],
         });
       }
     });

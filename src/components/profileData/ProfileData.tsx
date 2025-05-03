@@ -69,7 +69,7 @@ const ProfileData = () => {
         .refine(
           (email) => email.endsWith('gmail.com') || email.endsWith('yahoo.com'),
           {
-            message: `Email must be from 'gmail.com or yahoo.com' domains`,
+            message: `Email must be from 'gmail.com/yahoo.com' domain`,
           }
         ),
       bio: z.string().min(1, { message: 'Please write your biography' }).trim(),

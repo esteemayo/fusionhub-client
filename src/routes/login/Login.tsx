@@ -46,7 +46,7 @@ const Login = () => {
       },
       {
         message:
-          'Must be a valid username or email address (@gmail.com or @yahoo.com)',
+          'Invalid identifier, Please enter a valid username or email (@gmail.com or @yahoo.com)',
       }
     );
 

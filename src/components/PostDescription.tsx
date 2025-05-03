@@ -4,9 +4,9 @@ import TextQuill from './textQuill/TextQuill';
 import { PostDescriptionProps } from '../types';
 
 const PostDescription = ({
-  title,
   value,
-  onChange,
+  register,
+  errors,
   onChangeDesc,
 }: PostDescriptionProps) => {
   return (
@@ -14,9 +14,9 @@ const PostDescription = ({
       <Input
         name='title'
         label='Title'
-        value={title}
         placeholder='Title'
-        onChange={onChange}
+        register={register}
+        errors={errors}
       />
       <TextQuill label='Description' value={value} onChange={onChangeDesc} />
     </>
