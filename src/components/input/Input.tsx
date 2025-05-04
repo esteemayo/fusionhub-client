@@ -1,7 +1,7 @@
 import Label from '../label/Label';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-import { InputProps, InputType } from '../../types';
+import { InputProps } from '../../types';
 
 import './Input.scss';
 
@@ -13,7 +13,7 @@ const Input = ({
   errors,
   register,
   ...rest
-}: InputProps & InputType) => {
+}: InputProps) => {
   return (
     <div className='input'>
       <Label id={name} label={label} validate={validate} />

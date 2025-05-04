@@ -61,13 +61,97 @@
     gap: 2rem;
 
     textarea {
-      background-color: vars.$clr-primary-blue !important;
+      display: inline-block;
+      outline: 0;
+      font-family: inherit;
+      font-size: 1.45rem;
+      width: 100%;
+      height: 11.2rem;
+      padding: 1.6rem;
+      background-color: vars.$clr-primary-blue;
+      color: vars.$clr-white;
+      border: 2px solid vars.$clr-secondary-blue;
+      border-radius: 0.5rem;
+      resize: none;
+      transition: all 300ms ease-in-out;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.55rem;
+        height: 11.4rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.65rem;
+        height: 11.6rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.75rem;
+        height: 12rem;
+      }
 
       @include bp.sm {
-        background-color: transparent !important;
+        background-color: transparent;
+      }
 
-        &:focus {
-          background-color: vars.$clr-tertiary-blue !important;
+      @media screen and (max-width: 17.5em) {
+        font-size: 1.55rem;
+        height: 11.4rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.65rem;
+        height: 11.6rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.85rem;
+        height: 12rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.2rem;
+        height: 15rem;
+      }
+
+      &:focus {
+        background-color: vars.$clr-tertiary-blue;
+
+        @include bp.sm {
+          background-color: vars.$clr-secondary-blue;
+        }
+      }
+
+      &::placeholder {
+        font-size: 1.25rem;
+        color: vars.$clr-white;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (max-width: 17.5em) {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.65rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.9rem;
         }
       }
     }

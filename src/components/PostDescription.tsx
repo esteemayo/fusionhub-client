@@ -17,8 +17,14 @@ const PostDescription = ({
         placeholder='Title'
         register={register}
         errors={errors}
+        validate
       />
-      <TextQuill label='Description' value={value} onChange={onChangeDesc} />
+      <TextQuill
+        label='Description'
+        value={value}
+        onChange={onChangeDesc}
+        validate
+      />
     </>
   );
 };

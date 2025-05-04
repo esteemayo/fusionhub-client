@@ -1,7 +1,7 @@
 import Label from '../label/Label';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-import { TextareaProps, TextAreaType } from '../../types';
+import { TextareaProps } from '../../types';
 
 import './Textarea.scss';
 
@@ -12,7 +12,7 @@ const Textarea = ({
   register,
   errors,
   ...rest
-}: TextareaProps & TextAreaType) => {
+}: TextareaProps) => {
   return (
     <div className='textarea'>
       <Label id={name} label={label} validate={validate} />

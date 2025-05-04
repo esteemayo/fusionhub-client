@@ -18,6 +18,7 @@ const PostImage = ({
         placeholder='Tags'
         register={register}
         errors={errors}
+        validate
       />
       <Select
         name='category'
@@ -25,6 +26,7 @@ const PostImage = ({
         options={options}
         register={register}
         errors={errors}
+        validate
       />
       <FileInput
         name='file'

@@ -1,5 +1,6 @@
+import { toast } from 'react-toastify';
+
 import Button from '../button/Button';
-import Textarea from '../textarea/Textarea';
 
 import './CommentForm.scss';
 
@@ -19,6 +20,7 @@ const CommentForm = ({
 
     if (desc) {
       console.log(desc);
+      toast.success('Comment posted!');
     }
   };
 
@@ -26,7 +28,12 @@ const CommentForm = ({
     <div className='comment-form'>
       <h4 className='comment-form__heading'>Post comment</h4>
       <form onSubmit={handleSubmit}>
-        <Textarea name='desc' placeholder='Type your comments...' ref={ref} />
+        <textarea
+          name='desc'
+          id='desc'
+          placeholder='Type your comments...'
+          ref={ref}
+        />
         <Button type='submit' label='Post Comment' color='primary' />
       </form>
     </div>

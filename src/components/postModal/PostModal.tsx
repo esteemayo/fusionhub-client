@@ -1,14 +1,15 @@
-import ReactQuill from 'react-quill-new';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
+import { useMemo, useState } from 'react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import ReactQuill from 'react-quill-new';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { useMemo, useState } from 'react';
 
 import PostImage from '../PostImage';
 import Modal from '../modal/Modal';
@@ -32,7 +33,9 @@ const PostModal = () => {
 
   const [file, setFile] = useState<File | undefined>();
   const [step, setStep] = useState(STEPS.IMAGE);
-  const [value, setValue] = useState<ReactQuill.Value | undefined>('');
+  const [description, setDescription] = useState<ReactQuill.Value | undefined>(
+    ''
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const schema = z
@@ -78,7 +81,7 @@ const PostModal = () => {
   };
 
   const handleClear = () => {
-    setValue('');
+    setDescription('');
     setFile(undefined);
   };
 
@@ -90,16 +93,16 @@ const PostModal = () => {
 
     setIsLoading(true);
 
-    console.log({
-      ...data,
-      value,
-      image: file?.name,
-    });
-
     setTimeout(() => {
       setIsLoading(false);
 
-      console.log(data);
+      console.log({
+        ...data,
+        tags: data.tags.split(','),
+        description,
+        image: file?.name,
+      });
+
       toast.success('Post created!');
 
       reset();
@@ -137,10 +140,10 @@ const PostModal = () => {
 
   bodyContent = (
     <PostDescription
-      value={value}
+      value={description}
       register={register as unknown as UseFormRegister<FieldValues>}
       errors={errors}
-      onChangeDesc={setValue}
+      onChangeDesc={setDescription}
     />
   );
 
