@@ -70,17 +70,13 @@ export interface InputProps
   id?: string;
   name: string;
   type?: HTMLInputTypeAttribute;
+  label?: string;
   disabled?: boolean;
   required?: boolean;
-  ref?: React.LegacyRef<HTMLInputElement> | undefined;
-  onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
-}
-
-export interface InputType {
-  label?: string;
   validate?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface FileInputProps
@@ -97,35 +93,27 @@ export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   id?: string;
   name: string;
+  label?: string;
   disabled?: boolean;
   required?: boolean;
-  onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
-}
-
-export interface TextAreaType {
-  label?: string;
   validate?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
 export interface SelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string;
   name: string;
+  label?: string;
   disabled?: boolean;
   required?: boolean;
+  validate?: boolean;
   options: CategoryOptionType;
   register: UseFormRegister<FieldValues>;
-  ref?: React.LegacyRef<HTMLSelectElement> | undefined;
-  onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
-}
-
-export interface SelectType {
-  label?: string;
-  validate?: boolean;
-  register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 export interface TextQuillProps {

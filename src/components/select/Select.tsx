@@ -1,7 +1,7 @@
 import Label from '../label/Label';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
-import { SelectProps, SelectType } from '../../types';
+import { SelectProps } from '../../types';
 
 import './Select.scss';
 
@@ -9,14 +9,21 @@ const Select = ({
   name,
   label,
   validate,
+  register,
   errors,
   options,
   ...rest
-}: SelectProps & SelectType) => {
+}: SelectProps) => {
   return (
     <div className='select'>
       <Label id={name} label={label} validate={validate} />
-      <select {...rest} id={name} name={name} className='select__control'>
+      <select
+        {...rest}
+        {...register(name)}
+        id={name}
+        name={name}
+        className='select__control'
+      >
         <option value=''>Category</option>
         {options?.map((option) => {
           const { id, name } = option;

@@ -20,10 +20,10 @@ const PostImage = ({
         errors={errors}
       />
       <Select
-        {...register('category')}
         name='category'
         label='Category'
         options={options}
+        register={register}
         errors={errors}
       />
       <FileInput
