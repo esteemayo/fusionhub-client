@@ -16,58 +16,14 @@ import Input from '../../components/input/Input';
 import FormButton from '../../components/formButton/FormButton';
 
 import { loginInputs } from '../../data/formData';
+import { loginSchema } from '../../validations/loginSchema';
 
 import './Login.scss';
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const identifierSchema = z
-    .string()
-    .trim()
-    .refine(
-      (value) => {
-        const emailRegex =
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\0-9]+\.)+[a-zA-Z]{2,}))$/;
-        const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/;
-
-        const isEmail = emailRegex.test(value);
-        const isUsername = usernameRegex.test(value);
-
-        if (
-          isEmail &&
-          !value.endsWith('gmail.com') &&
-          !value.endsWith('yahoo.com')
-        ) {
-          return false;
-        }
-
-        return isEmail || isUsername;
-      },
-      {
-        message:
-          'Invalid identifier, Please enter a valid username or email (@gmail.com or @yahoo.com)',
-      }
-    );
-
-  const schema = z
-    .object({
-      identifier: identifierSchema,
-      password: z
-        .string()
-        .min(8, { message: 'Password must be at least 8 characters long' })
-        .max(32, { message: 'Password cannot exceed 32 characters' })
-        .regex(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-          {
-            message:
-              'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and at least 8 characters long',
-          }
-        ),
-    })
-    .required();
-
-  type FormData = z.infer<typeof schema>;
+  type FormData = z.infer<typeof loginSchema>;
 
   const {
     register,
@@ -75,7 +31,7 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(loginSchema),
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {

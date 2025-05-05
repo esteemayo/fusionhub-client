@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { onClose } from '../features/updateModal/updateModalSlice';
 
 import { categoryOptions } from '../data/formData';
+import { postSchema } from '../validations/postSchema';
 
 const enum STEPS {
   DESC = 0,
@@ -36,18 +37,7 @@ const UpdateModal = () => {
   );
   const [file, setFile] = useState<File | undefined>();
 
-  const schema = z
-    .object({
-      title: z.string().min(1, { message: 'A post must have a title' }).trim(),
-      tags: z
-        .string()
-        .min(1, { message: 'A product must have at least one tag' })
-        .toLowerCase(),
-      category: z.string(),
-    })
-    .required();
-
-  type FormData = z.infer<typeof schema>;
+  type FormData = z.infer<typeof postSchema>;
 
   const {
     register,
@@ -55,7 +45,7 @@ const UpdateModal = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(postSchema),
   });
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {

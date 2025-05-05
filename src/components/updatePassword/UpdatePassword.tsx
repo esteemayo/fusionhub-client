@@ -14,43 +14,14 @@ import Button from '../button/Button';
 import Input from '../input/Input';
 import AccountHeader from '../accountHeader/AccountHeader';
 
+import { passwordSchema } from '../../validations/passwordSchema';
+
 import './UpdatePassword.scss';
 
 const UpdatePassword = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const schema = z
-    .object({
-      passwordCurrent: z
-        .string()
-        .min(8, {
-          message: 'Current password must be at least 8 characters long',
-        })
-        .max(32, { message: 'Current password cannot exceed 32 characters' }),
-      password: z
-        .string()
-        .min(8, { message: 'Password must be at least 8 characters long' })
-        .max(32, { message: 'Password cannot exceed 32 characters' })
-        .regex(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-          {
-            message:
-              'Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and at least 8 characters long',
-          }
-        ),
-      passwordConfirm: z.string(),
-    })
-    .superRefine(({ password, passwordConfirm }, ctx) => {
-      if (password !== passwordConfirm) {
-        ctx.addIssue({
-          code: 'custom',
-          message: 'Passwords do not match',
-          path: ['passwordConfirm'],
-        });
-      }
-    });
-
-  type FormData = z.infer<typeof schema>;
+  type FormData = z.infer<typeof passwordSchema>;
 
   const {
     register,
@@ -58,7 +29,7 @@ const UpdatePassword = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(passwordSchema),
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {

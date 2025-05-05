@@ -19,6 +19,7 @@ import { onClose } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { categoryOptions } from '../../data/formData';
+import { postSchema } from '../../validations/postSchema';
 
 import './PostModal.scss';
 
@@ -38,18 +39,7 @@ const PostModal = () => {
   );
   const [isLoading, setIsLoading] = useState(false);
 
-  const schema = z
-    .object({
-      title: z.string().min(1, { message: 'A post must have a title' }).trim(),
-      tags: z
-        .string()
-        .min(1, { message: 'A product must have at least one tag' })
-        .toLowerCase(),
-      category: z.string(),
-    })
-    .required();
-
-  type FormData = z.infer<typeof schema>;
+  type FormData = z.infer<typeof postSchema>;
 
   const {
     register,
@@ -57,7 +47,7 @@ const PostModal = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(postSchema),
   });
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {

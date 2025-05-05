@@ -13,33 +13,14 @@ import {
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
+import { forgotSchema } from '../../validations/forgotSchema';
+
 import './ForgotPassword.scss';
 
 const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const schema = z
-    .object({
-      email: z
-        .string()
-        .min(5, 'Email address must be at least 5 characters long')
-        .regex(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\0-9]+\.)+[a-zA-Z]{2,}))$/,
-          { message: 'Please enter a valid email address' }
-        )
-        .email({ message: 'Invalid email address' })
-        .trim()
-        .toLowerCase()
-        .refine(
-          (email) => email.endsWith('gmail.com') || email.endsWith('yahoo.com'),
-          {
-            message: `Email must be from 'gmail.com/yahoo.com' domain`,
-          }
-        ),
-    })
-    .required();
-
-  type FormData = z.infer<typeof schema>;
+  type FormData = z.infer<typeof forgotSchema>;
 
   const {
     register,
@@ -47,7 +28,7 @@ const ForgotPassword = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(forgotSchema),
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {

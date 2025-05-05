@@ -13,6 +13,7 @@ import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
 import { resetInputs } from '../../data/formData';
+import { resetSchema } from '../../validations/resetSchema';
 
 import './ResetPassword.scss';
 
@@ -21,32 +22,7 @@ const ResetPassword = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const schema = z
-    .object({
-      password: z
-        .string()
-        .min(8, { message: 'Password must be at least 8 characters long' })
-        .max(32, { message: 'Password cannot exceed 32 characters' })
-        .regex(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-          {
-            message:
-              'Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and at least 8 characters long',
-          }
-        ),
-      passwordConfirm: z.string(),
-    })
-    .superRefine(({ password, passwordConfirm }, ctx) => {
-      if (password !== passwordConfirm) {
-        ctx.addIssue({
-          code: 'custom',
-          message: 'Passwords do not match',
-          path: ['passwordConfirm'],
-        });
-      }
-    });
-
-  type FormData = z.infer<typeof schema>;
+  type FormData = z.infer<typeof resetSchema>;
 
   const {
     register,
@@ -54,7 +30,7 @@ const ResetPassword = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(resetSchema),
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
