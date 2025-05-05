@@ -118,19 +118,22 @@
       width: 21.5rem;
     }
 
-    @include bp.sm {
-      width: 25rem;
+    @media screen and (max-width: 31.25em) {
       width: 100%;
       padding-bottom: 3rem;
       background-color: transparent;
       border-radius: 0;
 
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
 
       &:not(:last-child) {
         border-bottom: 1px solid vars.$clr-secondary-blue;
       }
+    }
+
+    @include bp.sm {
+      gap: 1.5rem;
     }
 
     @media screen and (max-width: 26.875em) {
@@ -196,7 +199,7 @@
         height: 19rem;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         height: 17rem;
       }
 
@@ -301,7 +304,7 @@
         padding-top: 2.25rem;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         min-height: 0;
         padding: 0;
         background-color: transparent;
@@ -331,7 +334,7 @@
           font-size: 1.65rem;
         }
 
-        @include bp.sm {
+        @media screen and (max-width: 31.25em) {
           font-size: 2.25rem;
           white-space: wrap;
           word-wrap: break-word;
@@ -386,7 +389,7 @@
           font-size: 1.5rem;
         }
 
-        @include bp.sm {
+        @media screen and (max-width: 31.25em) {
           font-size: 1.8rem;
           word-wrap: break-word;
           hyphens: auto;
@@ -438,7 +441,7 @@
           font-size: 1.5rem;
         }
 
-        @include bp.sm {
+        @media screen and (max-width: 31.25em) {
           font-size: 1.75rem;
         }
 
@@ -498,7 +501,7 @@
           font-size: 1.435rem;
         }
 
-        @include bp.sm {
+        @media screen and (max-width: 31.25em) {
           font-size: 1.65rem;
         }
 

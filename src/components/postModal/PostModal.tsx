@@ -32,7 +32,7 @@ const PostModal = () => {
   const { isOpen } = useAppSelector((state) => ({ ...state.postModal }));
 
   const [file, setFile] = useState<File | undefined>();
-  const [step, setStep] = useState(STEPS.IMAGE);
+  const [step, setStep] = useState(STEPS.DESC);
   const [description, setDescription] = useState<ReactQuill.Value | undefined>(
     ''
   );
@@ -40,8 +40,11 @@ const PostModal = () => {
 
   const schema = z
     .object({
-      title: z.string(),
-      tags: z.string(),
+      title: z.string().min(1, { message: 'A post must have a title' }).trim(),
+      tags: z
+        .string()
+        .min(1, { message: 'A product must have at least one tag' })
+        .toLowerCase(),
       category: z.string(),
     })
     .required();
@@ -87,7 +90,6 @@ const PostModal = () => {
 
   const onSubmitHandler: SubmitHandler<FormData> = (data) => {
     if (step !== STEPS.IMAGE) {
-      console.log('next clicked!');
       return onNext();
     }
 

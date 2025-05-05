@@ -28,7 +28,7 @@
       padding: 2rem;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding: 0;
       background-color: transparent;
       border-radius: 0;
@@ -36,14 +36,14 @@
   }
 
   &__container {
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding-bottom: 3rem;
       border-bottom: 1px solid vars.$clr-tertiary-blue;
     }
   }
 
   &__wrapper {
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding-top: 2rem;
     }
   }

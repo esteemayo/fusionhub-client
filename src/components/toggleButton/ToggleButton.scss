@@ -14,7 +14,7 @@
   border-radius: 10rem;
   cursor: pointer;
 
-  @include bp.sm {
+  @media screen and (max-width: 31.25em) {
     background-color: rgba(vars.$clr-tertiary-blue, 0.5);
   }
 

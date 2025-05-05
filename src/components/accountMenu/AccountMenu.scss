@@ -41,7 +41,7 @@
       }
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       left: unset;
       right: 0;
     }

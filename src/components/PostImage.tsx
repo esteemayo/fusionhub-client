@@ -15,7 +15,7 @@ const PostImage = ({
       <Input
         name='tags'
         label='Tags'
-        placeholder='Tags'
+        placeholder='Separate tags by commas'
         register={register}
         errors={errors}
         validate

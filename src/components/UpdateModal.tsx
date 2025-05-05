@@ -1,9 +1,9 @@
-import ReactQuill from 'react-quill-new';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { useMemo, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'react-toastify';
+import ReactQuill from 'react-quill-new';
 import {
   FieldValues,
   SubmitHandler,
@@ -38,8 +38,11 @@ const UpdateModal = () => {
 
   const schema = z
     .object({
-      title: z.string(),
-      tags: z.string(),
+      title: z.string().min(1, { message: 'A post must have a title' }).trim(),
+      tags: z
+        .string()
+        .min(1, { message: 'A product must have at least one tag' })
+        .toLowerCase(),
       category: z.string(),
     })
     .required();

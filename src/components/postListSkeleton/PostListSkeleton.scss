@@ -70,17 +70,21 @@
     width: 21.5rem;
   }
 
-  @include bp.sm {
+  @media screen and (max-width: 31.25em) {
     width: 100%;
     padding-bottom: 3rem;
     border-radius: 0;
 
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid vars.$clr-secondary-blue;
     }
+  }
+
+  @include bp.sm {
+    gap: 1.5rem;
   }
 
   @media screen and (max-width: 26.875em) {
@@ -110,7 +114,7 @@
   .react-loading-skeleton {
     --base-color: #021124 !important;
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       --base-color: #152233 !important;
     }
   }
@@ -154,7 +158,7 @@
       height: 19rem;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       width: 17.5rem;
       height: 14rem;
     }
@@ -195,15 +199,20 @@
     }
 
     &--img {
+      display: block;
       width: 100% !important;
       height: 100% !important;
+
+      @media screen and (max-width: 31.25em) {
+        border-radius: 0.5rem;
+      }
     }
   }
 
   &__footer {
     padding: 1rem;
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding: 0;
     }
 
@@ -222,12 +231,16 @@
       height: 2rem !important;
       border-radius: 0.5rem;
 
+      @media screen and (max-width: 31.25em) {
+        width: 30.5rem !important;
+      }
+
       @include bp.sm {
-        width: 27rem !important;
+        width: 29rem !important;
       }
 
       @media screen and (max-width: 28.125em) {
-        width: 24rem !important;
+        width: 26rem !important;
       }
 
       @media screen and (max-width: 26.875em) {
@@ -309,6 +322,10 @@
     &--subdesc {
       width: 85% !important;
 
+      @media screen and (max-width: 31.25em) {
+        width: 80% !important;
+      }
+
       @include bp.sm {
         width: 75% !important;
       }
@@ -373,19 +390,15 @@
     &--time {
       width: 65% !important;
 
+      @media screen and (max-width: 31.25em) {
+        width: 55% !important;
+      }
+
       @include bp.sm {
         width: 50% !important;
       }
 
       @media screen and (max-width: 26.875em) {
-        width: 10rem !important;
-      }
-
-      @media screen and (max-width: 26.875em) {
-        width: 12rem !important;
-      }
-
-      @media screen and (max-width: 24.375em) {
         width: 12rem !important;
       }
 

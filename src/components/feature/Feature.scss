@@ -82,8 +82,9 @@
 
       width: 5rem;
       height: 5rem;
-      background-color: vars.$clr-pink-light;
+      background-color: rgba(vars.$clr-pink-light, 0.75);
       color: inherit;
+      backdrop-filter: blur(1px);
       border-radius: 0.5rem;
       line-height: 1.2;
 
@@ -291,7 +292,7 @@
       font-weight: 600;
       font-size: 2rem;
       color: inherit;
-      line-height: 1.1;
+      line-height: 1.3;
 
       @media screen and (max-width: 56.25em) {
         font-size: 2.1rem;
