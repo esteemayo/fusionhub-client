@@ -47,10 +47,13 @@
         height: 5.5rem;
       }
 
+      @media screen and (max-width: 31.25em) {
+        background-color: vars.$clr-primary-blue;
+      }
+
       @include bp.sm {
         width: 5.25rem;
         height: 5.25rem;
-        background-color: vars.$clr-primary-blue;
       }
 
       @media screen and (max-width: 26.875em) {
@@ -90,7 +93,7 @@
 
         width: 4rem;
         height: 4rem;
-        background-color: vars.$clr-black;
+        background-color: vars.$clr-tertiary-blue;
         border-radius: 50%;
         cursor: pointer;
 
@@ -104,10 +107,13 @@
           height: 4.85rem;
         }
 
+        @media screen and (max-width: 31.25em) {
+          background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+        }
+
         @include bp.sm {
           width: 4.5rem;
           height: 4.5rem;
-          background-color: rgba(vars.$clr-tertiary-blue, 0.5);
         }
 
         @media screen and (max-width: 26.875em) {
@@ -232,7 +238,7 @@
       width: 75%;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       width: 100%;
     }
 
@@ -516,7 +522,11 @@
     }
 
     &--remove {
-      background-color: vars.$clr-black;
+      background-color: vars.$clr-tertiary-blue;
+
+      @media screen and (max-width: 31.25em) {
+        background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+      }
     }
   }
 }

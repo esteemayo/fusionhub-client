@@ -29,7 +29,7 @@
         background-color: vars.$clr-primary-blue;
         border-color: vars.$clr-primary-blue !important;
 
-        @include bp.sm {
+        @media screen and (max-width: 31.25em) {
           border-color: vars.$clr-secondary-blue !important;
         }
 
@@ -37,7 +37,7 @@
           background-color: vars.$clr-tertiary-blue;
           border-color: vars.$clr-tertiary-blue !important;
 
-          @include bp.sm {
+          @media screen and (max-width: 31.25em) {
             background-color: vars.$clr-secondary-blue;
           }
         }
@@ -51,7 +51,7 @@
         .PhoneInputCountry {
           background-color: vars.$clr-primary-blue;
 
-          @include bp.sm {
+          @media screen and (max-width: 31.25em) {
             background-color: vars.$clr-secondary-blue;
           }
         }
@@ -60,7 +60,7 @@
           background-color: vars.$clr-primary-blue;
           border-color: vars.$clr-primary-blue;
 
-          @include bp.sm {
+          @media screen and (max-width: 31.25em) {
             border-color: vars.$clr-secondary-blue;
           }
 
@@ -68,7 +68,7 @@
             background-color: vars.$clr-tertiary-blue;
             border-color: vars.$clr-tertiary-blue;
 
-            @include bp.sm {
+            @media screen and (max-width: 31.25em) {
               background-color: vars.$clr-secondary-blue;
             }
           }
@@ -86,7 +86,7 @@
               background-color: vars.$clr-primary-blue;
               border-color: vars.$clr-primary-blue;
 
-              @include bp.sm {
+              @media screen and (max-width: 31.25em) {
                 border-color: vars.$clr-secondary-blue;
               }
 
@@ -94,7 +94,7 @@
                 background-color: vars.$clr-tertiary-blue;
                 border-color: vars.$clr-tertiary-blue;
 
-                @include bp.sm {
+                @media screen and (max-width: 31.25em) {
                   background-color: vars.$clr-secondary-blue;
                 }
               }
@@ -120,7 +120,7 @@
           background-color: vars.$clr-tertiary-blue;
           border-color: vars.$clr-tertiary-blue;
 
-          @include bp.sm {
+          @media screen and (max-width: 31.25em) {
             background-color: vars.$clr-secondary-blue;
           }
         }
@@ -133,7 +133,7 @@
             background-color: vars.$clr-primary-blue !important;
             border: 2px solid transparent !important;
 
-            @include bp.sm {
+            @media screen and (max-width: 31.25em) {
               border-color: vars.$clr-secondary-blue !important;
             }
           }
@@ -141,7 +141,7 @@
           .ql-toolbar {
             border-bottom-color: vars.$clr-gray-dark-2 !important;
 
-            @include bp.sm {
+            @media screen and (max-width: 31.25em) {
               border-bottom: 0 !important;
             }
           }
@@ -151,7 +151,7 @@
               background-color: vars.$clr-tertiary-blue;
               border-color: vars.$clr-tertiary-blue !important;
 
-              @include bp.sm {
+              @media screen and (max-width: 31.25em) {
                 background-color: vars.$clr-secondary-blue;
               }
             }

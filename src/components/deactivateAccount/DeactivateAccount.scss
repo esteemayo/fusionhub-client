@@ -23,7 +23,7 @@
       padding: 2rem;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding: 0;
       padding-top: 3.25rem;
       background-color: transparent;

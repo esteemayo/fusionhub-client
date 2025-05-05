@@ -21,8 +21,8 @@
       padding: 0 2rem 2rem;
     }
 
-    @include bp.sm {
-      padding: 0;
+    @media screen and (max-width: 31.25em) {
+      padding: 2rem 0 0;
     }
 
     &--heading {
