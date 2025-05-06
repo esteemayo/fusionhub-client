@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import bannerModalReducer from './bannerModal/bannerModalSlice';
+import authReducer from './auth/authSlice';
+import updateModalReducer from './updateModal/updateModalSlice';
 import sidebarReducer from './sidebar/sidebarSlice';
 import accountMenuReducer from './accountMenu/accountMenuSlice';
 import postsMenuReducer from './postsMenu/postsMenuSlice';
@@ -9,10 +11,10 @@ import postModalReducer from './postModal/postModalSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
 import imageModalReducer from './imageModal/imageModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
-import updateModalReducer from './updateModal/updateModalSlice';
 
 export const store = configureStore({
   reducer: {
+    auth: authReducer,
     sidebar: sidebarReducer,
     postsMenu: postsMenuReducer,
     postMenuActions: postMenuActionsReducer,
