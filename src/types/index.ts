@@ -653,3 +653,23 @@ export type UpdateUserDataType = {
   about?: string;
   image?: string;
 };
+
+type UserDetailType = {
+  bio: string;
+  createdAt: string;
+  email: string;
+  fromGoogle: boolean;
+  image?: string;
+  isActive: boolean;
+  name: string;
+  phone: string;
+  savedPosts: string[];
+  updatedAt: string;
+  __v: number;
+  _id: string;
+};
+
+export interface CurrentUserType {
+  details: UserDetailType;
+  role: 'admin' | 'user';
+}

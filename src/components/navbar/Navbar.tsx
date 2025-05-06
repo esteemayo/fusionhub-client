@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import UserMenu from '../userMenu/UserMenu';
 import Logo from '../logo/Logo';
 import ToggleButton from '../toggleButton/ToggleButton';
@@ -16,9 +14,9 @@ import './Navbar.scss';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
 
-  const user = true;
+  const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const handleToggle = () => {
     dispatch(onToggle());
@@ -39,27 +37,29 @@ const Navbar = () => {
           {menuItems.map((menu) => {
             return <NavItem key={menu.id} {...menu} />;
           })}
-          {user && (
-            <div className='navbar__accounts'>
-              <div className='navbar__account'>
-                <Image
-                  src='/user-default.jpg'
+          <div className='navbar__accounts'>
+            <div className='navbar__account'>
+              {currentUser ? (
+                <img
+                  src={currentUser?.details.image}
                   width={32.5}
                   height={32.5}
                   alt='avatar'
                   className='navbar__account--avatar'
                 />
-              </div>
-              <UserMenu />
+              ) : (
+                <Image
+                  src='/user-default.jpg'
+                  // src={currentUser?.details.image ?? '/user-default.jpg'}
+                  width={32.5}
+                  height={32.5}
+                  alt='avatar'
+                  className='navbar__account--avatar'
+                />
+              )}
             </div>
-          )}
-          {!user && (
-            <li className='navbar__links--item'>
-              <Link to='/login' className='login__btn'>
-                Login
-              </Link>
-            </li>
-          )}
+            <UserMenu />
+          </div>
         </ul>
       </div>
     </nav>

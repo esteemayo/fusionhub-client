@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { authKey, removeStorage, setStorage } from '../../utils';
+import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
 import { login, logout, register } from '../../services/authService';
+
+import { CurrentUserType } from '../../types';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -42,15 +44,17 @@ export const logoutUser = createAsyncThunk(
 );
 
 interface AuthState {
-  user: null;
+  user: CurrentUserType | null;
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
   message: string;
 }
 
+const user: CurrentUserType = getStorage(authKey);
+
 const initialState: AuthState = {
-  user: null,
+  user: user ?? null,
   isLoading: false,
   isError: false,
   isSuccess: false,

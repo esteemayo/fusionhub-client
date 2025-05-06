@@ -228,10 +228,14 @@
     .username {
       display: inline-block;
       text-transform: capitalize;
+      text-overflow: ellipsis;
       text-rendering: optimizeLegibility;
-
-      white-space: wrap;
+      white-space: nowrap;
+      font-weight: inherit;
+      font-size: inherit;
       color: vars.$clr-gray-light-1;
+      overflow: hidden;
+      cursor: default;
     }
 
     .logout-btn {

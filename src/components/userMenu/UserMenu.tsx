@@ -2,13 +2,14 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useLogout } from '../../hooks/useLogout';
+import { useAppSelector } from '../../hooks/hooks';
 
 import './UserMenu.scss';
 
 const UserMenu = () => {
   const { handleLogout } = useLogout();
 
-  const currentUser = true;
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const userMenuClasses = useMemo(() => {
     return currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide';
@@ -82,7 +83,7 @@ const UserMenu = () => {
           )}
         </ul>
         <div className={userMenuClasses}>
-          <span className='username'>Elise beverley</span>
+          <span className='username'>{currentUser?.details.name}</span>
           <button type='button' className='logout-btn' onClick={handleLogout}>
             Logout
           </button>
