@@ -341,6 +341,7 @@ export interface ToggleButtonProps {
 
 export interface ILogout {
   (isOpen?: boolean, onClose?: () => Action): {
+    btnLabel: string;
     handleLogout: (e: React.MouseEvent<HTMLButtonElement>) => void;
   };
 }
@@ -422,6 +423,46 @@ export interface RegisterInputs {
   bio?: string;
   about?: string;
 }
+
+export interface CurrentUserType {
+  details: UserDetailType;
+  role: 'admin' | 'user';
+}
+
+export interface AuthState {
+  user: CurrentUserType | null;
+  isLoading: boolean;
+  isError: boolean;
+  isSuccess: boolean;
+  message: string;
+}
+
+export interface ErrorPayload {
+  response?: {
+    data?: {
+      message: string;
+    };
+  };
+}
+
+type UserDetailType = {
+  _id: string;
+  name: string;
+  username: string;
+  email: string;
+  phone?: string;
+  dateOfBirth?: string;
+  country: string;
+  bio: string;
+  about?: string;
+  image?: string;
+  banner?: string;
+  savedPosts: string[];
+  fromGoogle: boolean;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
 
 export type MenuItemType = {
   id: number;
@@ -653,27 +694,3 @@ export type UpdateUserDataType = {
   about?: string;
   image?: string;
 };
-
-type UserDetailType = {
-  _id: string;
-  name: string;
-  username: string;
-  email: string;
-  phone?: string;
-  dateOfBirth?: string;
-  country: string;
-  bio: string;
-  about?: string;
-  image?: string;
-  banner?: string;
-  savedPosts: string[];
-  fromGoogle: boolean;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export interface CurrentUserType {
-  details: UserDetailType;
-  role: 'admin' | 'user';
-}

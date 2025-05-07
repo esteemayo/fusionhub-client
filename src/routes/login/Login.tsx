@@ -44,8 +44,10 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (credentials) => {
-    dispatch(loginUser({ credentials }));
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    const credentials = { ...data };
+
+    dispatch(loginUser(credentials));
     reset();
   };
 

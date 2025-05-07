@@ -1,22 +1,33 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { login, logout, register } from '../../services/authService';
 import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
+import {
+  googleLogin,
+  login,
+  logout,
+  register,
+  updatePassword,
+} from '../../services/authService';
 
 import {
   AuthCrendentialType,
+  AuthState,
   CurrentUserType,
+  ErrorPayload,
   RegisterUserType,
+  UpdatePasswordType,
 } from '../../types';
 
-interface AuthState {
-  user: CurrentUserType | null;
-  isLoading: boolean;
-  isError: boolean;
-  isSuccess: boolean;
-  message: string;
-}
+const user: CurrentUserType = getStorage(authKey);
+
+const initialState: AuthState = {
+  user: user ?? null,
+  isLoading: false,
+  isError: false,
+  isSuccess: false,
+  message: '',
+};
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -24,11 +35,15 @@ export const registerUser = createAsyncThunk(
     try {
       const { data } = await register({ ...userData });
       console.log(data);
-      toast.success('Account created!');
+      toast.success('Account Created!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
-        return rejectWithValue({ message: err.message });
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
       }
 
       return rejectWithValue({ message: 'Something went wrong!' });
@@ -38,17 +53,39 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'auth/login',
-  async (
-    { credentials }: { credentials: AuthCrendentialType },
-    { rejectWithValue }
-  ) => {
+  async (credentials: AuthCrendentialType, { rejectWithValue }) => {
     try {
       const { data } = await login({ ...credentials });
       toast.success('Access Granted!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
-        return rejectWithValue({ message: err.message });
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
+    }
+  }
+);
+
+export const googleLoginUser = createAsyncThunk(
+  'auth/google',
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const { data } = await googleLogin(email);
+      toast.success('Access Granted!');
+      return data;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
       }
 
       return rejectWithValue({ message: 'Something went wrong!' });
@@ -61,10 +98,15 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await logout();
+      toast.success('Account Logged Out!');
       return;
     } catch (err: unknown) {
       if (err instanceof Error) {
-        return rejectWithValue({ message: err.message });
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
       }
 
       return rejectWithValue({ message: 'Something went wrong!' });
@@ -72,15 +114,26 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-const user: CurrentUserType = getStorage(authKey);
+export const updateUserPassword = createAsyncThunk(
+  'auth/password',
+  async (credentials: UpdatePasswordType, { rejectWithValue }) => {
+    try {
+      const { data } = await updatePassword({ ...credentials });
+      toast.success('Password Updated!');
+      return data;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const errorResponse = (err as ErrorPayload)?.response?.data;
 
-const initialState: AuthState = {
-  user: user ?? null,
-  isLoading: false,
-  isError: false,
-  isSuccess: false,
-  message: '',
-};
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -127,6 +180,21 @@ const authSlice = createSlice({
         state.message = (payload as { message: string }).message;
         state.user = null;
       })
+      .addCase(googleLoginUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(googleLoginUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        setStorage(authKey, payload);
+        state.isSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(googleLoginUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = (payload as { message: string }).message;
+      })
       .addCase(logoutUser.pending, (state) => {
         state.isLoading = true;
       })
@@ -141,6 +209,22 @@ const authSlice = createSlice({
         state.isError = true;
         state.isSuccess = false;
         state.message = (payload as { message: string }).message;
+      })
+      .addCase(updateUserPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserPassword.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        setStorage(authKey, payload);
+        state.isSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(updateUserPassword.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = (payload as { message: string }).message;
+        state.user = null;
       });
   },
 });

@@ -7,7 +7,7 @@ import { useAppSelector } from '../../hooks/hooks';
 import './UserMenu.scss';
 
 const UserMenu = () => {
-  const { handleLogout } = useLogout();
+  const { btnLabel, handleLogout } = useLogout();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
@@ -85,7 +85,7 @@ const UserMenu = () => {
         <div className={userMenuClasses}>
           <span className='username'>{currentUser?.details.name}</span>
           <button type='button' className='logout-btn' onClick={handleLogout}>
-            Logout
+            {btnLabel}
           </button>
         </div>
       </div>
