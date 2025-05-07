@@ -1,32 +1,57 @@
+import { toast } from 'react-toastify';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
 import { login, logout, register } from '../../services/authService';
+import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
 
-import { CurrentUserType } from '../../types';
+import {
+  AuthCrendentialType,
+  CurrentUserType,
+  RegisterUserType,
+} from '../../types';
+
+interface AuthState {
+  user: CurrentUserType | null;
+  isLoading: boolean;
+  isError: boolean;
+  isSuccess: boolean;
+  message: string;
+}
 
 export const registerUser = createAsyncThunk(
   'auth/register',
-  async ({ credentials }, { rejectWithValue }) => {
+  async (userData: RegisterUserType, { rejectWithValue }) => {
     try {
-      const { data } = await register({ ...credentials });
+      const { data } = await register({ ...userData });
       console.log(data);
+      toast.success('Account created!');
       return data;
     } catch (err: unknown) {
-      return rejectWithValue(err.response.data);
+      if (err instanceof Error) {
+        return rejectWithValue({ message: err.message });
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
     }
   }
 );
 
 export const loginUser = createAsyncThunk(
   'auth/login',
-  async ({ credentials, toast }, { rejectWithValue }) => {
+  async (
+    { credentials }: { credentials: AuthCrendentialType },
+    { rejectWithValue }
+  ) => {
     try {
       const { data } = await login({ ...credentials });
       toast.success('Access Granted!');
       return data;
     } catch (err: unknown) {
-      return rejectWithValue(err.response.data);
+      if (err instanceof Error) {
+        return rejectWithValue({ message: err.message });
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
     }
   }
 );
@@ -38,18 +63,14 @@ export const logoutUser = createAsyncThunk(
       await logout();
       return;
     } catch (err: unknown) {
-      return rejectWithValue(err.response.data);
+      if (err instanceof Error) {
+        return rejectWithValue({ message: err.message });
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
     }
   }
 );
-
-interface AuthState {
-  user: CurrentUserType | null;
-  isLoading: boolean;
-  isError: boolean;
-  isSuccess: boolean;
-  message: string;
-}
 
 const user: CurrentUserType = getStorage(authKey);
 
@@ -86,7 +107,7 @@ const authSlice = createSlice({
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = payload.message;
+        state.message = (payload as { message: string }).message;
         state.isSuccess = false;
         state.user = null;
       })
@@ -103,7 +124,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
-        state.message = payload.message;
+        state.message = (payload as { message: string }).message;
         state.user = null;
       })
       .addCase(logoutUser.pending, (state) => {
@@ -119,7 +140,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
-        state.message = payload.message;
+        state.message = (payload as { message: string }).message;
       });
   },
 });

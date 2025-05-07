@@ -45,20 +45,22 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (credentials) => {
-    dispatch(loginUser({ credentials, toast }));
+    dispatch(loginUser({ credentials }));
     reset();
   };
 
   useEffect(() => {
     if (isError) {
-      return toast.error(message);
+      toast.error(message);
     }
 
     if (isSuccess && user) {
-      return navigate('/');
+      navigate('/');
     }
 
-    return () => dispatch(resetState());
+    return () => {
+      dispatch(resetState());
+    };
   }, [dispatch, isError, isSuccess, message, navigate, user]);
 
   return (

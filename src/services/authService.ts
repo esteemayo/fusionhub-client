@@ -13,8 +13,8 @@ const authURI = (link: string, token: string) =>
 
 const authUrl = (url: string) => `${apiEndpoint}/${url}`;
 
-export const register = <T extends RegisterUserType>(user: T) =>
-  http.post(authUrl('register'), user);
+export const register = <T extends RegisterUserType>(userData: T) =>
+  http.post(authUrl('register'), userData);
 
 export const login = <T extends AuthCrendentialType>(credentials: T) =>
   http.post(authUrl('login'), credentials);

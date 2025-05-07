@@ -655,18 +655,22 @@ export type UpdateUserDataType = {
 };
 
 type UserDetailType = {
-  bio: string;
-  createdAt: string;
-  email: string;
-  fromGoogle: boolean;
-  image?: string;
-  isActive: boolean;
-  name: string;
-  phone: string;
-  savedPosts: string[];
-  updatedAt: string;
-  __v: number;
   _id: string;
+  name: string;
+  username: string;
+  email: string;
+  phone?: string;
+  dateOfBirth?: string;
+  country: string;
+  bio: string;
+  about?: string;
+  image?: string;
+  banner?: string;
+  savedPosts: string[];
+  fromGoogle: boolean;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export interface CurrentUserType {
