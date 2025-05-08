@@ -447,9 +447,9 @@ export interface ErrorPayload {
 }
 
 export interface RegisterData {
-  about: string;
-  country: string;
-  phone: string;
+  about: ReactQuill.Value | undefined;
+  country: CountrySelectType | undefined;
+  phone: Value | undefined;
 }
 
 export interface RegisterErrors {
