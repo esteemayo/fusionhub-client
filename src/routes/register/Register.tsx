@@ -25,17 +25,21 @@ import AuthLink from '../../components/authLink/AuthLink';
 import FormButton from '../../components/formButton/FormButton';
 
 import { registerInputs } from '../../data/formData';
-import { CountrySelectType } from '../../types';
-import { registerSchema } from '../../validations/registerSchema';
+import { CountrySelectType, RegisterErrors } from '../../types';
+import {
+  registerSchema,
+  validateRegister,
+} from '../../validations/registerSchema';
 
 import './Register.scss';
 
 const Register = () => {
-  const [value, setValue] = useState<Value | undefined>();
+  const [phone, setPhone] = useState<Value | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [country, setCountry] = useState<CountrySelectType>();
+  const [error, setError] = useState<RegisterErrors>({});
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
+  const [country, setCountry] = useState<CountrySelectType>();
 
   type FormData = z.infer<typeof registerSchema>;
 
@@ -48,16 +52,46 @@ const Register = () => {
     resolver: zodResolver(registerSchema),
   });
 
+  const handleClear = () => {
+    setAbout('');
+    setCountry(undefined);
+    setPhone(undefined);
+    setStartDate(new Date());
+  };
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    const inputData = {
+      about,
+      country,
+      phone,
+    };
+
+    const error = validateRegister(inputData);
+
+    if (Object.keys(error).length > 0) {
+      setError(error);
+      return;
+    }
+
+    setError({});
+
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false);
 
-      console.log(data);
+      console.log({
+        ...data,
+        about,
+        phone,
+        country: country?.label,
+        dateOfBirth: startDate,
+      });
+
       toast.success('user registered!');
 
       reset();
+      handleClear();
     }, 1500);
   };
 
@@ -97,11 +131,18 @@ const Register = () => {
               />
               <PhoneNumber
                 label='Mobile Number'
-                value={value}
+                value={phone}
                 placeholder='Mobile number'
-                onChange={setValue}
+                onChange={setPhone}
+                error={error.phone}
+                validate
               />
-              <CountrySelect value={country} onChange={setCountry} validate />
+              <CountrySelect
+                value={country}
+                onChange={setCountry}
+                error={error.country}
+                validate
+              />
               <Textarea
                 name='bio'
                 label='Biography'
@@ -115,6 +156,8 @@ const Register = () => {
                 label='About Me'
                 value={about}
                 onChange={setAbout}
+                error={error.about}
+                validate
               />
               <FileInput name='file' label='Image' accept='image/*' />
             </div>

@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { RegisterData, RegisterErrors } from '../types';
+
 export const registerSchema = z
   .object({
     name: z
@@ -62,3 +64,22 @@ export const registerSchema = z
       });
     }
   });
+
+export const validateRegister = (data: RegisterData) => {
+  const errors: RegisterErrors = {};
+  const { about, country, phone } = data;
+
+  if (!about) {
+    errors.about = 'Please provide information about yourself';
+  }
+
+  if (!country) {
+    errors.country = 'Please select your country';
+  }
+
+  if (!phone) {
+    errors.phone = 'Please provide a valid phone number';
+  }
+
+  return errors;
+};

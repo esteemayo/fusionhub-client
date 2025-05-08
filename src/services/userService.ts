@@ -13,8 +13,8 @@ export const getCurrentUser = () => http.get(userURI('me'));
 
 export const getSavedPosts = () => http.get(userURI('saved-posts'));
 
-export const updateCurrentUser = (data: UpdateUserDataType) =>
-  http.patch(userURI('update-me'), data);
+export const updateCurrentUser = (userData: UpdateUserDataType) =>
+  http.patch(userURI('update-me'), userData);
 
 export const savePost = (postId: string) =>
   http.patch(`${apiEndpoint}/${postId}/save-post`);

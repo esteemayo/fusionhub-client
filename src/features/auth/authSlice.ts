@@ -17,7 +17,15 @@ import {
   ErrorPayload,
   RegisterUserType,
   UpdatePasswordType,
+  UpdateUserDataType,
 } from '../../types';
+
+import {
+  deleteCurrentUser,
+  deleteUserBanner,
+  deleteUserImage,
+  updateCurrentUser,
+} from '../../services/userService';
 
 const user: CurrentUserType = getStorage(authKey);
 
@@ -135,6 +143,90 @@ export const updateUserPassword = createAsyncThunk(
   }
 );
 
+export const updateUserData = createAsyncThunk(
+  'user/data',
+  async (userData: UpdateUserDataType, { rejectWithValue }) => {
+    try {
+      const { data } = await updateCurrentUser({ ...userData });
+      toast.success('Profile Updated!');
+      return data;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
+    }
+  }
+);
+
+export const deleteAccount = createAsyncThunk(
+  'user/deactivate',
+  async (_, { rejectWithValue }) => {
+    try {
+      await deleteCurrentUser();
+      toast.success('Account De-activated!');
+      return;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
+    }
+  }
+);
+
+export const removeAvatar = createAsyncThunk(
+  'user/avatar',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await deleteUserImage();
+      toast.success('Image Removed!');
+      return data;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
+    }
+  }
+);
+
+export const removeBanner = createAsyncThunk(
+  'user/banner',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await deleteUserBanner();
+      toast.success('Banner Removed!');
+      return data;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        const errorResponse = (err as ErrorPayload)?.response?.data;
+
+        return rejectWithValue(
+          errorResponse || { message: 'Something went wrong!' }
+        );
+      }
+
+      return rejectWithValue({ message: 'Something went wrong!' });
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -225,6 +317,64 @@ const authSlice = createSlice({
         state.isSuccess = false;
         state.message = (payload as { message: string }).message;
         state.user = null;
+      })
+      .addCase(updateUserData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserData.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        setStorage(authKey, payload);
+        state.isSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(updateUserData.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = (payload as { message: string }).message;
+      })
+      .addCase(deleteAccount.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteAccount.fulfilled, (state) => {
+        state.user = null;
+        removeStorage(authKey);
+        state.isSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(deleteAccount.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = (payload as { message: string }).message;
+      })
+      .addCase(removeAvatar.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeAvatar.fulfilled, (state, { payload }) => {
+        state.isSuccess = true;
+        setStorage(authKey, payload);
+        state.isLoading = false;
+      })
+      .addCase(removeAvatar.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = (payload as { message: string }).message;
+      })
+      .addCase(removeBanner.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeBanner.fulfilled, (state, { payload }) => {
+        state.isSuccess = true;
+        setStorage(authKey, payload);
+        state.isLoading = false;
+      })
+      .addCase(removeBanner.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = (payload as { message: string }).message;
       });
   },
 });

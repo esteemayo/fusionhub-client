@@ -17,10 +17,10 @@ const PhoneNumber = ({
   error,
   onChange,
 }: PhoneNumberProps) => {
-  const ref = useRef<HTMLInputElement | undefined>(null);
+  const ref = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
-    ref?.current?.focus();
+    ref.current?.focus();
   };
 
   return (
@@ -30,7 +30,7 @@ const PhoneNumber = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        ref={ref}
+        inputRef={ref}
       />
       {error && <ErrorMessage message={error} />}
     </div>

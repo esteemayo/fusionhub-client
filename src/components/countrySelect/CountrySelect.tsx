@@ -7,8 +7,14 @@ import { useCountries } from '../../hooks/useCountries';
 import { CountrySelectProps, CountrySelectType } from '../../types';
 
 import './CountrySelect.scss';
+import ErrorMessage from '../errorMessage/ErrorMessage';
 
-const CountrySelect = ({ value, validate, onChange }: CountrySelectProps) => {
+const CountrySelect = ({
+  value,
+  error,
+  validate,
+  onChange,
+}: CountrySelectProps) => {
   const { getAll } = useCountries();
 
   const ref = useRef<Select<
@@ -84,6 +90,7 @@ const CountrySelect = ({ value, validate, onChange }: CountrySelectProps) => {
         })}
         ref={ref}
       />
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 };

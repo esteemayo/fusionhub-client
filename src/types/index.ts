@@ -409,6 +409,7 @@ export interface PostDescProps {
 
 export interface CountrySelectProps {
   value?: CountrySelectType;
+  error?: string;
   validate?: boolean;
   onChange(value: CountrySelectType): void;
 }
@@ -443,6 +444,18 @@ export interface ErrorPayload {
       message: string;
     };
   };
+}
+
+export interface RegisterData {
+  about: string;
+  country: string;
+  phone: string;
+}
+
+export interface RegisterErrors {
+  about?: string;
+  country?: string;
+  phone?: string;
 }
 
 type UserDetailType = {
