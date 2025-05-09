@@ -11,14 +11,14 @@ export const loginInputs: LoginInputType = [
     id: 'identifier',
     name: 'identifier',
     label: 'Email/Username',
-    placeholder: 'Email or Username',
+    placeholder: 'Enter your email or username',
   },
   {
     id: 'password',
     name: 'password',
     type: 'password',
     label: 'Password',
-    placeholder: 'Password',
+    placeholder: 'Enter your password',
   },
 ];
 
@@ -27,34 +27,34 @@ export const registerInputs: RegisterInputType = [
     id: 'name',
     name: 'name',
     label: 'Name',
-    placeholder: 'Name',
+    placeholder: 'Enter your full name',
   },
   {
     id: 'username',
     name: 'username',
     label: 'Username',
-    placeholder: 'Username',
+    placeholder: 'Enter your username',
   },
   {
     id: 'email',
     name: 'email',
     type: 'email',
     label: 'Email Address',
-    placeholder: 'Email Address',
+    placeholder: 'Enter your email address',
   },
   {
     id: 'password',
     name: 'password',
     type: 'password',
     label: 'Password',
-    placeholder: 'Password',
+    placeholder: 'Enter a strong password',
   },
   {
     id: 'passwordConfirm',
     name: 'passwordConfirm',
     type: 'password',
     label: 'Confirm Password',
-    placeholder: 'Confirm Password',
+    placeholder: 'Re-enter your password',
   },
 ];
 
@@ -64,14 +64,14 @@ export const resetInputs: ResetInputType = [
     name: 'password',
     type: 'password',
     label: 'Password',
-    placeholder: 'Password',
+    placeholder: 'Enter your new password',
   },
   {
     id: 'passwordConfirm',
     name: 'passwordConfirm',
     type: 'password',
     label: 'Confirm Password',
-    placeholder: 'Confirm Password',
+    placeholder: 'Re-enter your new password',
   },
 ];
 

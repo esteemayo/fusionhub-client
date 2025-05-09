@@ -1,9 +1,9 @@
-import { Value } from 'react-phone-number-input';
-import { Action } from 'redux';
 import React, { HTMLInputTypeAttribute } from 'react';
-import { IconType } from 'react-icons/lib';
+import { Action } from 'redux';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import { IconType } from 'react-icons/lib';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { Value } from 'react-phone-number-input';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -114,6 +114,17 @@ export interface SelectProps
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
+}
+
+export interface CountrySelectProps {
+  name: string;
+  label?: string;
+  value?: CountrySelectType;
+  placeholder?: string;
+  validate?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  onChange(name: string, value: string): void;
 }
 
 export interface TextQuillProps {
@@ -407,13 +418,6 @@ export interface PostDescProps {
   loading: boolean;
 }
 
-export interface CountrySelectProps {
-  value?: CountrySelectType;
-  error?: string;
-  validate?: boolean;
-  onChange(value: CountrySelectType): void;
-}
-
 export interface RegisterInputs {
   name: string;
   username: string;
@@ -444,18 +448,6 @@ export interface ErrorPayload {
       message: string;
     };
   };
-}
-
-export interface RegisterData {
-  about: ReactQuill.Value | undefined;
-  country: CountrySelectType | undefined;
-  phone: Value | undefined;
-}
-
-export interface RegisterErrors {
-  about?: string;
-  country?: string;
-  phone?: string;
 }
 
 type UserDetailType = {

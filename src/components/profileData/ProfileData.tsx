@@ -22,16 +22,14 @@ import DateInput from '../dateInput/DateInput';
 import AccountHeader from '../accountHeader/AccountHeader';
 import CountrySelect from '../countrySelect/CountrySelect';
 
-import { CountrySelectType } from '../../types';
 import { profileSchema } from '../../validations/profileSchema';
 
 import './ProfileData.scss';
 
 const ProfileData = () => {
-  const [country, setCountry] = useState<CountrySelectType>();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [value, setValue] = useState<Value | undefined>();
+  const [phone, setPhone] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 
   type FormData = z.infer<typeof profileSchema>;
@@ -40,10 +38,19 @@ const ProfileData = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(profileSchema),
   });
+
+  const setCustomValue = (name: keyof FormData, value: string) => {
+    setValue(name, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     setIsLoading(true);
@@ -69,7 +76,7 @@ const ProfileData = () => {
           <Input
             name='name'
             label='Name'
-            placeholder='Name'
+            placeholder='Enter your full name'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             autoFocus
@@ -78,7 +85,7 @@ const ProfileData = () => {
           <Input
             name='username'
             label='Username'
-            placeholder='Username'
+            placeholder='Enter your username'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             validate
@@ -89,32 +96,40 @@ const ProfileData = () => {
             type='email'
             name='email'
             label='Email Address'
-            placeholder='Email address'
+            placeholder='Enter your email address'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             validate
           />
           <PhoneNumber
             label='Mobile Number'
-            value={value}
-            placeholder='Mobile number'
-            onChange={setValue}
+            value={phone}
+            placeholder='e.g. +1 234 567 8900'
+            onChange={setPhone}
           />
         </div>
         <div className='profile-data__form--data'>
           <DateInput
             label='Date of Birth'
             startDate={startDate}
-            placeholder='Date of Birth'
+            placeholder='Select your date of birth'
             onChange={setStartDate}
           />
-          <CountrySelect value={country} onChange={setCountry} />
+          <CountrySelect
+            name='country'
+            label='Country'
+            placeholder='Choose your country'
+            onChange={setCustomValue}
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+            validate
+          />
         </div>
         <div className='profile-data__form--info'>
           <Textarea
             name='bio'
             label='Biography'
-            placeholder='Write a short biography...'
+            placeholder='Tell us a little about yourself'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             validate
@@ -123,7 +138,7 @@ const ProfileData = () => {
             id='about'
             label='About Me'
             value={about}
-            placeholder='Write something about who you are...'
+            placeholder='Write something about yourself'
             onChange={setAbout}
           />
         </div>

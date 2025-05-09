@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-import { RegisterData, RegisterErrors } from '../types';
-
 export const registerSchema = z
   .object({
     name: z
@@ -53,7 +51,44 @@ export const registerSchema = z
         }
       ),
     passwordConfirm: z.string(),
-    bio: z.string().min(1, { message: 'Please write your biography' }).trim(),
+    bio: z
+      .string()
+      .min(1, {
+        message:
+          'Biography cannot be empty. Please provide some details about yourself.',
+      })
+      .trim(),
+    country: z
+      .object({
+        value: z
+          .string({
+            required_error: 'Country value is required',
+          })
+          .min(1, { message: 'Country value cannot be empty' }),
+        label: z
+          .string({
+            required_error: 'Country label is required',
+          })
+          .min(1, { message: 'Country label cannot be empty' }),
+        flag: z
+          .string({
+            required_error: 'Country flag is required',
+          })
+          .url({ message: 'Country flag must be a valid URL' }),
+        region: z
+          .string({
+            required_error: 'Country region is required',
+          })
+          .min(1, { message: 'Country region cannot be empty' }),
+      })
+      .refine(
+        (country) =>
+          country.value.length > 0 &&
+          country.label.length > 0 &&
+          country.flag.length > 0 &&
+          country.region.length > 0,
+        { message: 'All country fields must be filled' }
+      ),
   })
   .superRefine(({ password, passwordConfirm }, ctx) => {
     if (password !== passwordConfirm) {
@@ -64,22 +99,3 @@ export const registerSchema = z
       });
     }
   });
-
-export const validateRegister = (data: RegisterData) => {
-  const errors: RegisterErrors = {};
-  const { about, country, phone } = data;
-
-  if (!about) {
-    errors.about = 'Please provide information about yourself';
-  }
-
-  if (!country) {
-    errors.country = 'Please select your country';
-  }
-
-  if (!phone) {
-    errors.phone = 'Please provide a valid phone number';
-  }
-
-  return errors;
-};

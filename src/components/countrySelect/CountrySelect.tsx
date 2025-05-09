@@ -1,41 +1,43 @@
 import { useRef } from 'react';
-import Select, { GroupBase } from 'react-select';
+import Select from 'react-select';
 
 import Label from '../label/Label';
+import ErrorMessage from '../errorMessage/ErrorMessage';
 
 import { useCountries } from '../../hooks/useCountries';
 import { CountrySelectProps, CountrySelectType } from '../../types';
 
 import './CountrySelect.scss';
-import ErrorMessage from '../errorMessage/ErrorMessage';
 
 const CountrySelect = ({
-  value,
-  error,
+  name,
+  label,
+  placeholder,
   validate,
+  register,
+  errors,
   onChange,
 }: CountrySelectProps) => {
   const { getAll } = useCountries();
 
-  const ref = useRef<Select<
-    CountrySelectType,
-    false,
-    GroupBase<CountrySelectType>
-  > | null>();
+  const ref = useRef<Select<CountrySelectType, false>>(null);
 
   const handleClick = () => {
-    ref?.current?.focus();
+    ref.current?.focus();
   };
 
   return (
     <div className='country-select'>
-      <Label label='Country' validate={validate} onClick={handleClick} />
+      <Label label={label} validate={validate} onClick={handleClick} />
       <Select
-        placeholder='Country'
+        {...(register ? register(name) : {})}
+        name={name}
+        placeholder={placeholder}
         isClearable
         options={getAll()}
-        value={value}
-        onChange={(value) => onChange(value as CountrySelectType)}
+        onChange={(value) =>
+          onChange(name, (value as CountrySelectType)?.value || '')
+        }
         formatOptionLabel={(option: CountrySelectType) => (
           <div className='country-select__wrapper'>
             <div className='country-select__wrapper--flag'>{option.flag}</div>
@@ -90,7 +92,9 @@ const CountrySelect = ({
         })}
         ref={ref}
       />
-      {error && <ErrorMessage message={error} />}
+      {errors?.[name] && (
+        <ErrorMessage message={errors[name].message as string | undefined} />
+      )}
     </div>
   );
 };

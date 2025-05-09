@@ -1,10 +1,9 @@
 import { toast } from 'react-toastify';
 import { z } from 'zod';
-import ReactQuill from 'react-quill-new';
-import { useState } from 'react';
-
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Value } from 'react-phone-number-input';
+import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import ReactQuill from 'react-quill-new';
 import {
   FieldValues,
   SubmitHandler,
@@ -25,21 +24,15 @@ import AuthLink from '../../components/authLink/AuthLink';
 import FormButton from '../../components/formButton/FormButton';
 
 import { registerInputs } from '../../data/formData';
-import { CountrySelectType, RegisterErrors } from '../../types';
-import {
-  registerSchema,
-  validateRegister,
-} from '../../validations/registerSchema';
+import { registerSchema } from '../../validations/registerSchema';
 
 import './Register.scss';
 
 const Register = () => {
-  const [phone, setPhone] = useState<Value | undefined>();
-  const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [error, setError] = useState<RegisterErrors>({});
+  const [isLoading, setIsLoading] = useState(false);
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
-  const [country, setCountry] = useState<CountrySelectType>();
+  const [phone, setPhone] = useState<Value | undefined>();
 
   type FormData = z.infer<typeof registerSchema>;
 
@@ -47,46 +40,41 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(registerSchema),
   });
 
+  const setCustomValue = (name: keyof FormData, value: string) => {
+    setValue(name, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
+
   const handleClear = () => {
     setAbout('');
-    setCountry(undefined);
     setPhone(undefined);
     setStartDate(new Date());
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const inputData = {
-      about,
-      country,
-      phone,
-    };
-
-    const error = validateRegister(inputData);
-
-    if (Object.keys(error).length > 0) {
-      setError(error);
-      return;
-    }
-
-    setError({});
-
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false);
 
-      console.log({
+      const userData = {
         ...data,
+        country: data.country?.label,
         about,
         phone,
-        country: country?.label,
         dateOfBirth: startDate,
-      });
+      };
+
+      console.log(userData);
 
       toast.success('user registered!');
 
@@ -126,27 +114,28 @@ const Register = () => {
               <DateInput
                 label='Date of Birth'
                 startDate={startDate}
-                placeholder='Date of Birth'
+                placeholder='Select your date of birth'
                 onChange={setStartDate}
               />
               <PhoneNumber
                 label='Mobile Number'
                 value={phone}
-                placeholder='Mobile number'
+                placeholder='e.g. +1 234 567 8900'
                 onChange={setPhone}
-                error={error.phone}
-                validate
               />
               <CountrySelect
-                value={country}
-                onChange={setCountry}
-                error={error.country}
+                name='country'
+                label='Country'
+                placeholder='Choose your country'
+                onChange={setCustomValue}
+                register={register as unknown as UseFormRegister<FieldValues>}
+                errors={errors}
                 validate
               />
               <Textarea
                 name='bio'
                 label='Biography'
-                placeholder='Write a short biography'
+                placeholder='Tell us a little about yourself'
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
                 validate
@@ -155,9 +144,8 @@ const Register = () => {
                 id='about'
                 label='About Me'
                 value={about}
+                placeholder='Write something about yourself'
                 onChange={setAbout}
-                error={error.about}
-                validate
               />
               <FileInput name='file' label='Image' accept='image/*' />
             </div>
