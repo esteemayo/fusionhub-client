@@ -27,6 +27,7 @@ import { registerInputs } from '../../data/formData';
 import { registerSchema } from '../../validations/registerSchema';
 
 import './Register.scss';
+import { CountrySelectType } from '../../types';
 
 const Register = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
@@ -46,7 +47,10 @@ const Register = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const setCustomValue = (name: keyof FormData, value: string) => {
+  const setCustomValue = (
+    name: keyof FormData,
+    value: CountrySelectType | string
+  ) => {
     setValue(name, value, {
       shouldDirty: true,
       shouldTouch: true,

@@ -20,7 +20,7 @@ const AccountModal = () => {
   };
 
   const bodyContent: React.JSX.Element | undefined = (
-    <DeleteContent text='De-activating your account will remove all of your information from our database. This cannot be undone.' />
+    <DeleteContent text='Deactivating your account will permanently remove all your personal information, posts, and associated data from our database. This action is irreversible, and you will no longer be able to access your account or retrieve any of your data. Please confirm if you wish to proceed.' />
   );
 
   return (

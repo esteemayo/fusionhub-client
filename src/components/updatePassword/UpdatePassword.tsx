@@ -62,7 +62,7 @@ const UpdatePassword = () => {
                 type='password'
                 name='passwordCurrent'
                 label='Current Password'
-                placeholder='Current password'
+                placeholder='Enter your current password'
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
                 autoFocus
@@ -72,7 +72,7 @@ const UpdatePassword = () => {
                 type='password'
                 name='password'
                 label='New Password'
-                placeholder='New password'
+                placeholder='Enter a new password'
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
                 validate
@@ -83,7 +83,7 @@ const UpdatePassword = () => {
                 type='password'
                 name='passwordConfirm'
                 label='Confirm New Password'
-                placeholder='Confirm new password'
+                placeholder='Re-enter your new password to confirm'
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
                 validate

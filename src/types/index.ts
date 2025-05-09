@@ -124,7 +124,7 @@ export interface CountrySelectProps {
   validate?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
-  onChange(name: string, value: string): void;
+  onChange(name: string, value: CountrySelectType | string): void;
 }
 
 export interface TextQuillProps {

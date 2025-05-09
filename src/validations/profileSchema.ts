@@ -48,34 +48,14 @@ export const profileSchema = z
       .trim(),
     country: z
       .object({
-        value: z
-          .string({
-            required_error: 'Country value is required',
-          })
-          .min(1, { message: 'Country value cannot be empty' }),
         label: z
           .string({
-            required_error: 'Country label is required',
+            required_error: 'Country name is required',
           })
-          .min(1, { message: 'Country label cannot be empty' }),
-        flag: z
-          .string({
-            required_error: 'Country flag is required',
-          })
-          .url({ message: 'Country flag must be a valid URL' }),
-        region: z
-          .string({
-            required_error: 'Country region is required',
-          })
-          .min(1, { message: 'Country region cannot be empty' }),
+          .min(1, { message: 'Country name cannot be empty' }),
       })
-      .refine(
-        (country) =>
-          country.value.length > 0 &&
-          country.label.length > 0 &&
-          country.flag.length > 0 &&
-          country.region.length > 0,
-        { message: 'All country fields must be filled' }
-      ),
+      .refine((country) => country.label.trim().length > 0, {
+        message: 'Country name must be valid',
+      }),
   })
   .required();

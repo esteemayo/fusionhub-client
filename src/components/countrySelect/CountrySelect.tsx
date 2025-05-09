@@ -35,9 +35,7 @@ const CountrySelect = ({
         placeholder={placeholder}
         isClearable
         options={getAll()}
-        onChange={(value) =>
-          onChange(name, (value as CountrySelectType)?.value || '')
-        }
+        onChange={(value) => onChange(name, (value as CountrySelectType) || '')}
         formatOptionLabel={(option: CountrySelectType) => (
           <div className='country-select__wrapper'>
             <div className='country-select__wrapper--flag'>{option.flag}</div>
