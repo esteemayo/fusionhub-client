@@ -28,7 +28,7 @@ import './ProfileData.scss';
 
 const ProfileData = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(null);
   const [phone, setPhone] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 

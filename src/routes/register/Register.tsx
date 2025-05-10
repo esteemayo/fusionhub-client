@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { Value } from 'react-phone-number-input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ReactQuill from 'react-quill-new';
 import {
@@ -10,6 +10,7 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import FileInput from '../../components/fileInput/FileInput';
 import Input from '../../components/input/Input';
@@ -24,14 +25,23 @@ import AuthLink from '../../components/authLink/AuthLink';
 import FormButton from '../../components/formButton/FormButton';
 
 import { registerInputs } from '../../data/formData';
+import { CountrySelectType } from '../../types';
 import { registerSchema } from '../../validations/registerSchema';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { registerUser, resetState } from '../../features/auth/authSlice';
+
 import './Register.scss';
-import { CountrySelectType } from '../../types';
 
 const Register = () => {
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+  const { isError, isLoading, isSuccess, message, user } = useAppSelector(
+    (state) => ({ ...state.auth })
+  );
+
+  const [startDate, setStartDate] = useState<Date | null>(null);
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
   const [phone, setPhone] = useState<Value | undefined>();
 
@@ -61,31 +71,37 @@ const Register = () => {
   const handleClear = () => {
     setAbout('');
     setPhone(undefined);
-    setStartDate(new Date());
+    setStartDate(null);
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    setIsLoading(true);
+    const userData = {
+      ...data,
+      country: data.country?.label,
+      about,
+      phone,
+      dateOfBirth: startDate,
+    };
 
-    setTimeout(() => {
-      setIsLoading(false);
+    dispatch(registerUser(userData));
 
-      const userData = {
-        ...data,
-        country: data.country?.label,
-        about,
-        phone,
-        dateOfBirth: startDate,
-      };
-
-      console.log(userData);
-
-      toast.success('user registered!');
-
-      reset();
-      handleClear();
-    }, 1500);
+    reset();
+    handleClear();
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && user) {
+      navigate('/login');
+    }
+
+    return () => {
+      dispatch(resetState());
+    };
+  }, [dispatch, isError, isSuccess, message, navigate, user]);
 
   return (
     <section className='register'>

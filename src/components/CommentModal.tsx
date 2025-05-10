@@ -20,7 +20,7 @@ const CommentModal = () => {
   };
 
   const bodyContent: React.JSX.Element | undefined = (
-    <DeleteContent text='Are you sure you wanted to delete this comment?' />
+    <DeleteContent text='Are you sure you want to permanently delete this comment? This action cannot be undone.' />
   );
 
   return (

@@ -42,7 +42,6 @@ export const registerUser = createAsyncThunk(
   async (userData: RegisterUserType, { rejectWithValue }) => {
     try {
       const { data } = await register({ ...userData });
-      console.log(data);
       toast.success('Account Created!');
       return data;
     } catch (err: unknown) {
@@ -243,9 +242,7 @@ const authSlice = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        setStorage(authKey, payload);
+      .addCase(registerUser.fulfilled, (state) => {
         state.isSuccess = true;
         state.isLoading = false;
       })

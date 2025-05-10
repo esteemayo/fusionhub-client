@@ -597,6 +597,14 @@ export type ResetInputType = {
   placeholder: string;
 }[];
 
+export type PasswordInputType = {
+  id: string;
+  name: string;
+  type: HTMLInputTypeAttribute;
+  label: string;
+  placeholder: string;
+}[];
+
 export type FilterType = {
   id: string;
   name: string;
@@ -663,13 +671,13 @@ export type RegisterUserType = {
   email: string;
   password: string;
   passwordConfirm: string;
-  phone?: string;
-  dateOfBirth?: string;
+  phone?: Value;
+  dateOfBirth?: Date | null;
   country?: string;
   bio?: string;
-  about?: string;
+  about?: ReactQuill.Value;
   image?: File;
-  banner?: string;
+  banner?: File;
 };
 
 export type AuthCrendentialType = {

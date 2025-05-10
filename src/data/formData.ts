@@ -2,6 +2,7 @@ import {
   CategoryOptionType,
   FilterType,
   LoginInputType,
+  PasswordInputType,
   RegisterInputType,
   ResetInputType,
 } from '../types';
@@ -72,6 +73,30 @@ export const resetInputs: ResetInputType = [
     type: 'password',
     label: 'Confirm Password',
     placeholder: 'Re-enter your new password',
+  },
+];
+
+export const passwordInputs: PasswordInputType = [
+  {
+    id: 'passwordConfirm',
+    name: 'passwordConfirm',
+    type: 'password',
+    label: 'Confirm New Password',
+    placeholder: 'Re-enter your new password to confirm',
+  },
+  {
+    id: 'passwordCurrent',
+    name: 'passwordCurrent',
+    type: 'password',
+    label: 'Current Password',
+    placeholder: 'Enter your current password',
+  },
+  {
+    id: 'password',
+    name: 'password',
+    type: 'password',
+    label: 'New Password',
+    placeholder: 'Enter a new password',
   },
 ];
 

@@ -20,7 +20,7 @@ const ImageModal = () => {
   };
 
   const bodyContent: React.JSX.Element | undefined = (
-    <DeleteContent text='Are you sure you wanted to delete your profile image?' />
+    <DeleteContent text='Are you sure you want to permanently delete your profile image? This action cannot be undone.' />
   );
 
   return (

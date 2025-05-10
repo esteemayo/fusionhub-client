@@ -14,6 +14,7 @@ import Button from '../button/Button';
 import Input from '../input/Input';
 import AccountHeader from '../accountHeader/AccountHeader';
 
+import { passwordInputs } from '../../data/formData';
 import { passwordSchema } from '../../validations/passwordSchema';
 
 import './UpdatePassword.scss';
@@ -45,6 +46,8 @@ const UpdatePassword = () => {
     }, 1500);
   };
 
+  const [input, ...inputs] = passwordInputs;
+
   return (
     <section className='update-password'>
       <div className='update-password__container'>
@@ -58,32 +61,31 @@ const UpdatePassword = () => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className='update-password__form--inputs'>
-              <Input
-                type='password'
-                name='passwordCurrent'
-                label='Current Password'
-                placeholder='Enter your current password'
-                register={register as unknown as UseFormRegister<FieldValues>}
-                errors={errors}
-                autoFocus
-                validate
-              />
-              <Input
-                type='password'
-                name='password'
-                label='New Password'
-                placeholder='Enter a new password'
-                register={register as unknown as UseFormRegister<FieldValues>}
-                errors={errors}
-                validate
-              />
+              {inputs.map((input) => {
+                const { id, name, type, label, placeholder } = input;
+                return (
+                  <Input
+                    key={id}
+                    type={type}
+                    name={name}
+                    label={label}
+                    placeholder={placeholder}
+                    register={
+                      register as unknown as UseFormRegister<FieldValues>
+                    }
+                    errors={errors}
+                    autoFocus={name === 'passwordCurrent'}
+                    validate
+                  />
+                );
+              })}
             </div>
             <div className='update-password__form--confirm'>
               <Input
-                type='password'
-                name='passwordConfirm'
-                label='Confirm New Password'
-                placeholder='Re-enter your new password to confirm'
+                type={input.type}
+                name={input.name}
+                label={input.label}
+                placeholder={input.placeholder}
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
                 validate

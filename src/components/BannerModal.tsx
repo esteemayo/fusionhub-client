@@ -20,7 +20,7 @@ const BannerModal = () => {
   };
 
   const bodyContent: React.JSX.Element | undefined = (
-    <DeleteContent text='Are you sure you wanted to delete this banner?' />
+    <DeleteContent text='Are you sure you want to delete your profile banner? This action cannot be undone.' />
   );
 
   return (
