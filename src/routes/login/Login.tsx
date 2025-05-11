@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { z } from 'zod';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
@@ -23,6 +23,10 @@ import { loginUser, resetState } from '../../features/auth/authSlice';
 
 import './Login.scss';
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -32,6 +36,9 @@ const Login = () => {
       ...state.auth,
     })
   );
+
+  const query = useQuery();
+  const name = query.get('name');
 
   type FormData = z.infer<typeof loginSchema>;
 
@@ -69,9 +76,12 @@ const Login = () => {
     <section className='login'>
       <div className='login__container'>
         <div className='login__wrapper'>
-          <h1 className='login__wrapper--heading'>Welcome back</h1>
+          <h1 className='login__wrapper--heading'>
+            Welcome {!name && 'back'}
+            {name && <span>{name}</span>}
+          </h1>
           <p className='login__wrapper--text'>
-            Welcome back! Please enter your details.
+            Welcome {!name && 'back'}! Please enter your details.
           </p>
           <form className='login__form' onSubmit={handleSubmit(onSubmit)}>
             {loginInputs.map((input) => {

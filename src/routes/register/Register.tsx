@@ -37,13 +37,13 @@ const Register = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  const { isError, isLoading, isSuccess, message, user } = useAppSelector(
+  const { isError, isLoading, isSuccess, message, name } = useAppSelector(
     (state) => ({ ...state.auth })
   );
 
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
   const [phone, setPhone] = useState<Value | undefined>();
+  const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
 
   type FormData = z.infer<typeof registerSchema>;
 
@@ -77,10 +77,10 @@ const Register = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const userData = {
       ...data,
-      country: data.country?.label,
       about,
       phone,
       dateOfBirth: startDate,
+      country: data.country?.label,
     };
 
     dispatch(registerUser(userData));
@@ -94,14 +94,14 @@ const Register = () => {
       toast.error(message);
     }
 
-    if (isSuccess && user) {
-      navigate('/login');
+    if (isSuccess && name) {
+      navigate(`/login?name=${name}`);
     }
 
     return () => {
       dispatch(resetState());
     };
-  }, [dispatch, isError, isSuccess, message, navigate, user]);
+  }, [dispatch, isError, isSuccess, message, name, navigate]);
 
   return (
     <section className='register'>

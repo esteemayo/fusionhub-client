@@ -143,10 +143,13 @@
     }
 
     &--heading {
+      text-overflow: ellipsis;
       text-rendering: optimizeLegibility;
+      white-space: nowrap;
       font-weight: 500;
       font-size: 3rem;
       line-height: 2.5em;
+      overflow: hidden;
 
       @media screen and (max-width: 56.25em) {
         font-size: 3.1rem;
@@ -174,6 +177,35 @@
 
       @media screen and (min-width: 125em) {
         font-size: 4.2rem;
+      }
+
+      span {
+        text-transform: capitalize;
+        font-size: 2rem;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 2.1rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 2.2rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          font-size: 2.1rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 2.2rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 2.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 3rem;
+        }
       }
     }
 

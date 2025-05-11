@@ -31,6 +31,7 @@ const user: CurrentUserType = getStorage(authKey);
 
 const initialState: AuthState = {
   user: user ?? null,
+  name: '',
   isLoading: false,
   isError: false,
   isSuccess: false,
@@ -242,7 +243,8 @@ const authSlice = createSlice({
       .addCase(registerUser.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerUser.fulfilled, (state) => {
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.name = payload.details.name;
         state.isSuccess = true;
         state.isLoading = false;
       })

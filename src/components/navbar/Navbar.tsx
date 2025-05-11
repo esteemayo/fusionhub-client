@@ -41,7 +41,7 @@ const Navbar = () => {
             <div className='navbar__account'>
               {currentUser ? (
                 <img
-                  src={currentUser?.details.image}
+                  src={currentUser?.details.image ?? '/img/user-default.jpg'}
                   width={32.5}
                   height={32.5}
                   alt='avatar'

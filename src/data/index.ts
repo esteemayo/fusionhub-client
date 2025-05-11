@@ -211,7 +211,7 @@ export const postItems: PostItemType = [
   {
     id: '7',
     img: '/post-7.jpeg',
-    title: '5 Tips To Improve Your Writing Skills',
+    title: '5 Tips to Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     desc: 'Dignissimos quo voluptatem recusandae repudiandae minima consectetur itaque fugit deserunt officia temporibus? Esse, aperiam sapiente reprehenderit libero dignissimos qui vel eum doloremque...',
     category: 'branding',
@@ -241,7 +241,7 @@ export const postItems: PostItemType = [
   {
     id: '10',
     img: '/post-10.webp',
-    title: '15 Ways to reduce stress and anxiety',
+    title: '15 Ways to Reduce Stress and Anxiety',
     slug: '15-ways-to-reduce-stress-and-anxiety',
     desc: 'Officiis quia aut nostrum assumenda laboriosam reprehenderit exercitationem obcaecati dolor, aperiam deleniti laborum consequuntur, voluptatum eos earum maxime nulla nesciunt ab incidunt.',
     category: 'music',
@@ -567,7 +567,7 @@ export const relatedPosts: RelatedPostType = [
   {
     id: '1',
     img: '/post-7.jpeg',
-    title: '5 Tips To Improve Your Writing Skills',
+    title: '5 Tips to Improve Your Writing Skills',
     slug: '5-tips-to-improve-your-writing-skills',
     category: 'photo',
     createdAt: '2024-12-19T19:34:43.085+00:00',

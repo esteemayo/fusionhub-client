@@ -436,6 +436,7 @@ export interface CurrentUserType {
 
 export interface AuthState {
   user: CurrentUserType | null;
+  name?: string;
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
