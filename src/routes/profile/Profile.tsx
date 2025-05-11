@@ -1,13 +1,28 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 import Banner from '../../components/banner/Banner';
 import ProfileDetails from '../../components/profileDetails/ProfileDetails';
 import AboutProfile from '../../components/aboutProfile/AboutProfile';
 
+import { getCurrentUser } from '../../services/userService';
+
 import './Profile.scss';
 
+const fetchUser = async () => {
+  const { data } = await getCurrentUser();
+  return data;
+};
+
 const UserProfile = () => {
+  const { data } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => fetchUser(),
+  });
+
+  console.log(data);
+
   const [file, setFile] = useState<File>();
   const [banner, setBanner] = useState<File>();
 
@@ -41,8 +56,8 @@ const UserProfile = () => {
           onChangeFile={handleFileChange}
           onChangeBanner={handleBannerChange}
         />
-        <ProfileDetails />
-        <AboutProfile />
+        <ProfileDetails {...data} />
+        <AboutProfile about={data.about} />
       </div>
     </div>
   );

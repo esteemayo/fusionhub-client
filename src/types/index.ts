@@ -326,6 +326,16 @@ export interface BannerProps {
   onChangeBanner(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
+export interface ProfileDetailsProps {
+  name: string;
+  email: string;
+  username: string;
+  bio: string;
+  country: string;
+  dateOfBirth?: string;
+  createdAt: string;
+}
+
 export interface ProfileImageProps {
   ref: React.LegacyRef<HTMLInputElement>;
   file: File | undefined;
