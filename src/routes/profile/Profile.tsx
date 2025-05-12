@@ -21,10 +21,8 @@ const UserProfile = () => {
     queryFn: () => fetchUser(),
   });
 
-  console.log(data);
-
   const [file, setFile] = useState<File>();
-  const [banner, setBanner] = useState<File>();
+  const [cover, setCover] = useState<File>();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -33,11 +31,11 @@ const UserProfile = () => {
     setFile(file);
   };
 
-  const handleBannerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = (target.files as FileList)[0];
 
-    setBanner(file);
+    setCover(file);
   };
 
   return (
@@ -52,12 +50,14 @@ const UserProfile = () => {
       <div className='profile__wrapper'>
         <Banner
           file={file}
-          banner={banner}
+          cover={cover}
+          image={data?.image}
+          banner={data?.banner}
           onChangeFile={handleFileChange}
-          onChangeBanner={handleBannerChange}
+          onChangeCover={handleCoverChange}
         />
         <ProfileDetails {...data} />
-        <AboutProfile about={data.about} />
+        <AboutProfile about={data?.about} />
       </div>
     </div>
   );

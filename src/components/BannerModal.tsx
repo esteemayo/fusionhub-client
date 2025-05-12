@@ -1,23 +1,42 @@
 import { toast } from 'react-toastify';
+import { useCallback, useEffect } from 'react';
 
 import Modal from './modal/Modal';
 import DeleteContent from './deleteContent/DeleteContent';
 
-import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { onClose } from '../features/bannerModal/bannerModalSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { removeBanner, resetState } from '../features/auth/authSlice';
 
 const BannerModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
 
-  const handleClose = () => {
+  const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
+  const { isError, isLoading, isSuccess, message } = useAppSelector(
+    (state) => ({ ...state.auth })
+  );
+
+  const handleClose = useCallback(() => {
     dispatch(onClose());
-  };
+  }, [dispatch]);
 
   const handleClick = () => {
-    toast.success('banner removed!');
-    handleClose();
+    dispatch(removeBanner());
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess) {
+      handleClose();
+    }
+
+    return () => {
+      dispatch(resetState());
+    };
+  }, [dispatch, handleClose, isError, isSuccess, message]);
 
   const bodyContent: React.JSX.Element | undefined = (
     <DeleteContent text='Are you sure you want to delete your profile banner? This action cannot be undone.' />
@@ -28,6 +47,8 @@ const BannerModal = () => {
       isOpen={isOpen}
       title='Remove banner?'
       type='cancel'
+      loading={!!isLoading}
+      disabled={!!isLoading}
       actionLabel='Remove'
       secondaryActionLabel='Quit'
       body={bodyContent}

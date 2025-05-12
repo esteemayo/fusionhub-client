@@ -11,14 +11,16 @@ import { BannerProps } from '../../types';
 import './Banner.scss';
 
 interface IContainer {
-  banner: string;
+  cover: string;
 }
 
 const Banner = ({
   file,
+  cover,
+  image,
   banner,
   onChangeFile,
-  onChangeBanner,
+  onChangeCover,
 }: BannerProps) => {
   const dispatch = useAppDispatch();
 
@@ -27,14 +29,20 @@ const Banner = ({
     dispatch(onOpen());
   };
 
-  const bannerImg = useMemo(() => {
-    return banner
-      ? URL.createObjectURL(banner as Blob | MediaSource)
+  const coverImg = useMemo(() => {
+    return cover
+      ? URL.createObjectURL(cover as Blob | MediaSource)
+      : banner
+      ? banner
       : 'https://ik.imagekit.io/devayo/banner-1.jpg';
+  }, [banner, cover]);
+
+  const btnClasses = useMemo(() => {
+    return banner ? 'banner__btn show' : 'banner__btn hide';
   }, [banner]);
 
   return (
-    <Container banner={bannerImg} className='banner'>
+    <Container cover={coverImg} className='banner'>
       <div className='banner__user'>
         <label htmlFor='avatar' className='banner__user--label'>
           {file ? (
@@ -47,7 +55,7 @@ const Banner = ({
             />
           ) : (
             <Image
-              src='/user-default.jpg'
+              src={image ?? '/user-default.jpg'}
               width={120}
               height={120}
               alt='avatar'
@@ -59,6 +67,7 @@ const Banner = ({
           type='file'
           id='avatar'
           name='avatar'
+          accept='image/*'
           onChange={onChangeFile}
           className='banner__user--input'
         />
@@ -84,11 +93,12 @@ const Banner = ({
           <input
             id='file'
             type='file'
-            onChange={onChangeBanner}
+            accept='image/*'
+            onChange={onChangeCover}
             className='banner__cover--input'
           />
         </div>
-        <button type='button' className='banner__btn' onClick={handleClick}>
+        <button type='button' className={btnClasses} onClick={handleClick}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -110,7 +120,7 @@ const Banner = ({
 };
 
 const Container = styled.section<IContainer>`
-  background-image: ${({ banner }) => css`url(${banner})`};
+  background-image: ${({ cover }) => css`url(${cover})`};
 `;
 
 export default Banner;

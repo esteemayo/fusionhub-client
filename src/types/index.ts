@@ -321,9 +321,11 @@ export interface AccountMenuItemProps {
 
 export interface BannerProps {
   file: File | undefined;
-  banner: File | undefined;
+  cover: File | undefined;
+  image?: string;
+  banner?: string;
   onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
-  onChangeBanner(e: React.ChangeEvent<HTMLInputElement>): void;
+  onChangeCover(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface ProfileDetailsProps {
