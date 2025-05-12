@@ -1,16 +1,48 @@
+import { useMemo, useState } from 'react';
+
 import Image from '../Image';
 
+import { excerpts } from '../../utils';
 import { ProfileImageProps } from '../../types';
 
 import './ProfileImage.scss';
 
 const ProfileImage = ({
+  name,
+  bio,
+  image,
   ref,
   file,
   onOpen,
   onChange,
   onUpload,
 }: ProfileImageProps) => {
+  const [showMore, setShowMore] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setShowMore((value) => {
+      return !value;
+    });
+  };
+
+  const formattedTexts = useMemo(() => {
+    return showMore && bio && bio.length > 100
+      ? bio
+      : excerpts(bio as string, 100);
+  }, [bio, showMore]);
+
+  const btnClasses = useMemo(() => {
+    return bio && bio.length > 100
+      ? 'profile-image__details--btn show'
+      : 'profile-image__details--btn hide';
+  }, [bio]);
+
+  const btnLabel = useMemo(() => {
+    return `Show ${showMore ? 'less' : 'more'}`;
+  }, [showMore]);
+
   return (
     <div className='profile-image'>
       <div className='profile-image__container'>
@@ -26,7 +58,7 @@ const ProfileImage = ({
               />
             ) : (
               <Image
-                src='/user-default.jpg'
+                src={image ?? '/user-default.jpg'}
                 width={120}
                 height={120}
                 alt='avatar'
@@ -65,14 +97,12 @@ const ProfileImage = ({
             </div>
           </div>
           <div className='profile-image__details'>
-            <span className='profile-image__details--name'>Elise beverley</span>
+            <span className='profile-image__details--name'>{name}</span>
             <span className='profile-image__details--bio'>
-              I'm a Senior Frontend Developer based in U.S. A Full-stack
-              JavaScript Developer (React, NextJS, VueJS, NodeJS, GraphQL,
-              HTML5, CSS3)
+              {formattedTexts}
             </span>
-            <button type='button' className='profile-image__details--btn'>
-              Show more
+            <button type='button' className={btnClasses} onClick={handleClick}>
+              {btnLabel}
             </button>
           </div>
         </div>

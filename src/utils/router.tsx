@@ -3,6 +3,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../components/layouts/MainLayout';
 import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
 
+import AuthRoute from './AuthRoute';
+import ProtectedRoute from './ProtectedRoute';
+
 import {
   About,
   Articles,
@@ -42,7 +45,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'accounts',
-        element: <AccountLayout />,
+        element: (
+          <AuthRoute>
+            <AccountLayout />
+          </AuthRoute>
+        ),
         children: [
           {
             path: 'profile',
@@ -76,19 +83,35 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login />,
+        element: (
+          <ProtectedRoute>
+            <Login />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'register',
-        element: <Register />,
+        element: (
+          <ProtectedRoute>
+            <Register />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'forgot-password',
-        element: <ForgotPassword />,
+        element: (
+          <ProtectedRoute>
+            <ForgotPassword />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'reset-password/:token',
-        element: <ResetPassword />,
+        element: (
+          <ProtectedRoute>
+            <ResetPassword />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'about',

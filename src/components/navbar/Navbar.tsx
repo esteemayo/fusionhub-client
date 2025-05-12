@@ -39,24 +39,13 @@ const Navbar = () => {
           })}
           <div className='navbar__accounts'>
             <div className='navbar__account'>
-              {currentUser ? (
-                <img
-                  src={currentUser?.details.image ?? '/img/user-default.jpg'}
-                  width={32.5}
-                  height={32.5}
-                  alt='avatar'
-                  className='navbar__account--avatar'
-                />
-              ) : (
-                <Image
-                  src='/user-default.jpg'
-                  // src={currentUser?.details.image ?? '/user-default.jpg'}
-                  width={32.5}
-                  height={32.5}
-                  alt='avatar'
-                  className='navbar__account--avatar'
-                />
-              )}
+              <Image
+                src={currentUser?.details?.image ?? '/user-default.jpg'}
+                width={32.5}
+                height={32.5}
+                alt='avatar'
+                className='navbar__account--avatar'
+              />
             </div>
             <UserMenu />
           </div>

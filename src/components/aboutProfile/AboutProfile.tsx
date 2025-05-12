@@ -16,17 +16,17 @@ const AboutProfile = ({ about }: { about: string }) => {
   };
 
   const parsedText = useMemo(() => {
-    return readMore && about.length > 350
-      ? parse(about.toString())
-      : parse(excerpts(about.toString(), 350));
+    return readMore && about?.length > 350
+      ? parse(String(about))
+      : parse(excerpts(String(about), 350));
   }, [about, readMore]);
 
   const aboutClasses = useMemo(() => {
-    return about.length > 0 ? 'about-profile show' : 'about-profile hide';
+    return about?.length > 0 ? 'about-profile show' : 'about-profile hide';
   }, [about]);
 
   const btnClasses = useMemo(() => {
-    return about.length > 350
+    return about?.length > 350
       ? 'about-profile__container--btn show'
       : 'about-profile__container--btn hide';
   }, [about]);
@@ -34,6 +34,10 @@ const AboutProfile = ({ about }: { about: string }) => {
   const btnLabel = useMemo(() => {
     return `Read ${!readMore ? 'more' : 'less'} `;
   }, [readMore]);
+
+  if (!about) {
+    return null;
+  }
 
   return (
     <section className={aboutClasses}>

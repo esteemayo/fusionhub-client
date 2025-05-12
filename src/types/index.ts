@@ -339,6 +339,9 @@ export interface ProfileDetailsProps {
 }
 
 export interface ProfileImageProps {
+  name: string;
+  bio?: string;
+  image?: string;
   ref: React.LegacyRef<HTMLInputElement>;
   file: File | undefined;
   onOpen(e: React.MouseEvent<HTMLButtonElement>): void;

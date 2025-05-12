@@ -4,13 +4,14 @@ import ProfileImage from '../../components/profileImage/ProfileImage';
 import ProfileData from '../../components/profileData/ProfileData';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
 
 import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => ({ ...state.auth }));
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File>();
@@ -43,6 +44,9 @@ const ProfileSettings = () => {
       </div>
       <div className='profile-settings__wrapper'>
         <ProfileImage
+          name={user?.details.name as string}
+          bio={user?.details?.bio}
+          image={user?.details?.image}
           ref={inputRef}
           file={file}
           onOpen={handleOpen}
