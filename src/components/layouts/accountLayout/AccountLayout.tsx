@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import AccountMenu from '../../accountMenu/AccountMenu';
@@ -10,11 +11,19 @@ import './AccountLayout.scss';
 
 const AccountLayout = () => {
   const dispatch = useAppDispatch();
+
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const handleToggle = () => {
     dispatch(onToggle());
   };
+
+  const btnContainerClasses = useMemo(() => {
+    return currentUser
+      ? 'account-layout__container--btn show'
+      : 'account-layout__container--btn hide';
+  }, [currentUser]);
 
   return (
     <div className='account-layout'>
@@ -23,7 +32,7 @@ const AccountLayout = () => {
         <div className='account-layout__container--outlet'>
           <Outlet />
         </div>
-        <div className='account-layout__container--btn'>
+        <div className={btnContainerClasses}>
           <ToggleButton
             label='Account menu'
             isOpen={isOpen}

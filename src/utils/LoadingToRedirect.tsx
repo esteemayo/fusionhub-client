@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import EmptyState from '../components/emptyState/EmptyState';
+import ErrorState from '../components/errorState/ErrorState';
 
 const LoadingToRedirect = () => {
   const navigate = useNavigate();
@@ -24,10 +24,11 @@ const LoadingToRedirect = () => {
   }, [count, navigate]);
 
   return (
-    <EmptyState
-      title='Unauthorized Access'
+    <ErrorState
+      title='Unauthorized Access‼'
       subtitle={`You are not authorized to access this page. Redirecting you to the login page in ${count} seconds. Please log in to continue.`}
-      imgSrc='/towing.svg'
+      imgSrc='/page-eaten.svg'
+      center
     />
   );
 };

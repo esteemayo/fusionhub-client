@@ -45,39 +45,63 @@ export const router = createBrowserRouter([
       },
       {
         path: 'accounts',
-        element: (
-          <AuthRoute>
-            <AccountLayout />
-          </AuthRoute>
-        ),
+        element: <AccountLayout />,
         children: [
           {
             path: 'profile',
-            element: <Profile />,
+            element: (
+              <AuthRoute>
+                <Profile />
+              </AuthRoute>
+            ),
           },
           {
             path: 'profile-settings',
-            element: <ProfileSettings />,
+            element: (
+              <AuthRoute>
+                <ProfileSettings />
+              </AuthRoute>
+            ),
           },
           {
             path: 'password-settings',
-            element: <PasswordSettings />,
+            element: (
+              <AuthRoute>
+                <PasswordSettings />
+              </AuthRoute>
+            ),
           },
           {
             path: 'my-posts',
-            element: <Articles />,
+            element: (
+              <AuthRoute>
+                <Articles />
+              </AuthRoute>
+            ),
           },
           {
             path: 'saved-posts',
-            element: <SavedPosts />,
+            element: (
+              <AuthRoute>
+                <SavedPosts />
+              </AuthRoute>
+            ),
           },
           {
             path: 'liked-posts',
-            element: <LikedPosts />,
+            element: (
+              <AuthRoute>
+                <LikedPosts />
+              </AuthRoute>
+            ),
           },
           {
             path: 'disliked-posts',
-            element: <DislikedPosts />,
+            element: (
+              <AuthRoute>
+                <DislikedPosts />
+              </AuthRoute>
+            ),
           },
         ],
       },

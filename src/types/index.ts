@@ -58,6 +58,14 @@ export interface EmptyStateProps {
   showReload?: boolean;
 }
 
+export interface ErrorStateProps {
+  title: string;
+  subtitle: string;
+  center?: boolean;
+  imgSrc?: string;
+  alt?: string;
+}
+
 export interface LabelProps {
   id?: string;
   label?: string;
@@ -340,7 +348,7 @@ export interface ProfileDetailsProps {
 
 export interface ProfileImageProps {
   name: string;
-  bio?: string;
+  bio: string;
   image?: string;
   ref: React.LegacyRef<HTMLInputElement>;
   file: File | undefined;

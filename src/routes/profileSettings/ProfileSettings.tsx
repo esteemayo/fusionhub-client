@@ -1,17 +1,29 @@
 import { useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import ProfileImage from '../../components/profileImage/ProfileImage';
 import ProfileData from '../../components/profileData/ProfileData';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
+
+import { getCurrentUser } from '../../services/userService';
 
 import './ProfileSettings.scss';
 
+const fetchUser = async () => {
+  const { data } = await getCurrentUser();
+  return data;
+};
+
 const ProfileSettings = () => {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => ({ ...state.auth }));
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => fetchUser(),
+  });
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File>();
@@ -33,6 +45,8 @@ const ProfileSettings = () => {
     inputRef?.current?.click();
   };
 
+  if (isLoading) return 'loading...';
+
   return (
     <div className='profile-settings'>
       <div className='profile-settings__container'>
@@ -44,9 +58,9 @@ const ProfileSettings = () => {
       </div>
       <div className='profile-settings__wrapper'>
         <ProfileImage
-          name={user?.details.name as string}
-          bio={user?.details?.bio}
-          image={user?.details?.image}
+          name={data.name}
+          bio={data.bio}
+          image={data?.image}
           ref={inputRef}
           file={file}
           onOpen={handleOpen}

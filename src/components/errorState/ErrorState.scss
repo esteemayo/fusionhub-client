@@ -1,0 +1,147 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.error-state {
+  width: 100%;
+  height: 57vh;
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 70rem;
+
+    @media screen and (max-width: 37.5em) {
+      width: 60rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      width: 55rem;
+    }
+
+    @media screen and (max-width: 33.75em) {
+      width: 54rem;
+    }
+
+    @media screen and (max-width: 31.5em) {
+      width: 50rem;
+    }
+
+    @include bp.sm {
+      width: 48rem;
+    }
+
+    @media screen and (max-width: 28.125em) {
+      width: 45rem;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      width: 43rem;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 42rem;
+    }
+
+    @media screen and (max-width: 25em) {
+      width: 40rem;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      width: 39rem;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      width: 38rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      width: 37.5rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 36rem;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 34rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 32rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 30rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 75rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 85rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 100rem;
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--img {
+      display: inline-block;
+      width: 30rem;
+      height: 23rem;
+      background-color: transparent;
+      object-fit: contain;
+      margin-bottom: 1rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 31rem;
+        height: 24rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 32rem;
+        height: 25rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 28rem;
+        height: 22rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 26rem;
+        height: 20rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 31rem;
+        height: 24rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 32rem;
+        height: 25rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 37rem;
+        height: 29rem;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import { toast } from 'react-toastify';
 import { useCallback, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useQuery } from '@tanstack/react-query';
 
 import Modal from './modal/Modal';
 import DeleteContent from './deleteContent/DeleteContent';
@@ -8,6 +9,13 @@ import { onClose } from '../features/imageModal/imageModalSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { removeAvatar, resetState } from '../features/auth/authSlice';
 
+import { getCurrentUser } from '../services/userService';
+
+const fetchUser = async () => {
+  const { data } = await getCurrentUser();
+  return data;
+};
+
 const ImageModal = () => {
   const dispatch = useAppDispatch();
 
@@ -15,6 +23,11 @@ const ImageModal = () => {
   const { isError, isLoading, isSuccess, message } = useAppSelector(
     (state) => ({ ...state.auth })
   );
+
+  const { refetch } = useQuery({
+    queryKey: ['user'],
+    queryFn: () => fetchUser(),
+  });
 
   const handleClose = useCallback(() => {
     dispatch(onClose());
@@ -31,12 +44,13 @@ const ImageModal = () => {
 
     if (isSuccess) {
       handleClose();
+      refetch();
     }
 
     return () => {
       dispatch(resetState());
     };
-  }, [dispatch, handleClose, isError, isSuccess, message]);
+  }, [dispatch, handleClose, isError, isSuccess, message, refetch]);
 
   const bodyContent: React.JSX.Element | undefined = (
     <DeleteContent text='Are you sure you want to permanently delete your profile image? This action cannot be undone.' />

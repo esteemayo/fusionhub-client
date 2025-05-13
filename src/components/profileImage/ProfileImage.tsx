@@ -28,13 +28,11 @@ const ProfileImage = ({
   };
 
   const formattedTexts = useMemo(() => {
-    return showMore && bio && bio.length > 100
-      ? bio
-      : excerpts(bio as string, 100);
+    return showMore && bio?.length > 100 ? bio : excerpts(bio, 100);
   }, [bio, showMore]);
 
   const btnClasses = useMemo(() => {
-    return bio && bio.length > 100
+    return bio?.length > 100
       ? 'profile-image__details--btn show'
       : 'profile-image__details--btn hide';
   }, [bio]);

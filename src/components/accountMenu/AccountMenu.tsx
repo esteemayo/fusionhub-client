@@ -3,17 +3,19 @@ import { useEffect, useMemo, useState } from 'react';
 
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
-import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useLogout } from '../../hooks/useLogout';
+import { onClose } from '../../features/accountMenu/accountMenuSlice';
 
 import { accountMenus } from '../../data';
-import { onClose } from '../../features/accountMenu/accountMenuSlice';
 
 import './AccountMenu.scss';
 
 const AccountMenu = () => {
   const dispatch = useAppDispatch();
+
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const { pathname } = useLocation();
   const path = pathname.split('/').pop();
@@ -36,6 +38,10 @@ const AccountMenu = () => {
   useEffect(() => {
     setIsActive(path);
   }, [path]);
+
+  if (!currentUser) {
+    return null;
+  }
 
   return (
     <aside className={accountMenuClasses}>
