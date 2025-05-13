@@ -357,6 +357,17 @@ export interface ProfileImageProps {
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ProfileDataProps {
+  name: string;
+  email: string;
+  username: string;
+  phone: Value;
+  dateOfBirth?: Date | null;
+  country: CountrySelectType;
+  bio: string;
+  about?: string;
+}
+
 export interface PhoneNumberProps {
   label?: string;
   value: Value | undefined;

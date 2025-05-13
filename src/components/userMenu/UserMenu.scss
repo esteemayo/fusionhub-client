@@ -243,11 +243,15 @@
       border: 0;
       outline: 0;
       text-transform: initial;
+      text-overflow: ellipsis;
+      text-rendering: optimizeLegibility;
+      white-space: nowrap;
       font-family: inherit;
       font-weight: inherit;
       font-size: inherit;
       background-color: transparent;
       color: vars.$clr-pink-dark-1;
+      overflow: hidden;
       cursor: pointer;
 
       &:disabled {

@@ -295,6 +295,7 @@ export const postDetail: PostDetailType = {
       quis ratione neque? Optio eum ipsa voluptate, maxime recusandae omnis,
       nobis, voluptates debitis fugiat rerum veritatis? Iusto, ab.
     </p>
+    <br />
     <p>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit
       maiores corrupti cum, ad in repellendus provident veritatis tempore?
@@ -308,6 +309,7 @@ export const postDetail: PostDetailType = {
       id eius. Doloribus debitis corporis eveniet error possimus libero ab
       magni molestiae?
     </p>
+    <br />
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
       incidunt, saepe nihil esse deserunt inventore, sed sint alias error,

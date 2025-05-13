@@ -45,8 +45,6 @@ const ProfileSettings = () => {
     inputRef?.current?.click();
   };
 
-  if (isLoading) return 'loading...';
-
   return (
     <div className='profile-settings'>
       <div className='profile-settings__container'>
@@ -57,18 +55,24 @@ const ProfileSettings = () => {
         />
       </div>
       <div className='profile-settings__wrapper'>
-        <ProfileImage
-          name={data.name}
-          bio={data.bio}
-          image={data?.image}
-          ref={inputRef}
-          file={file}
-          onOpen={handleOpen}
-          onChange={handleChange}
-          onUpload={handleUpload}
-        />
-        <hr />
-        <ProfileData />
+        {isLoading ? (
+          'loading...'
+        ) : (
+          <>
+            <ProfileImage
+              name={data.name}
+              bio={data.bio}
+              image={data?.image}
+              ref={inputRef}
+              file={file}
+              onOpen={handleOpen}
+              onChange={handleChange}
+              onUpload={handleUpload}
+            />
+            <hr />
+            <ProfileData {...data} />
+          </>
+        )}
       </div>
     </div>
   );

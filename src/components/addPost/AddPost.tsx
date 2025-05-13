@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 
-import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/postModal/postModalSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import './AddPost.scss';
 
@@ -9,14 +9,15 @@ const AddPost = () => {
   const { pathname } = useLocation();
 
   const dispatch = useAppDispatch();
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onOpen());
   };
 
-  if (pathname !== '/' && pathname !== '/posts') {
-    return;
+  if (!currentUser || (pathname !== '/' && pathname !== '/posts')) {
+    return null;
   }
 
   return (

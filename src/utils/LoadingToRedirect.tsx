@@ -28,6 +28,7 @@ const LoadingToRedirect = () => {
       title='Unauthorized Access‼'
       subtitle={`You are not authorized to access this page. Redirecting you to the login page in ${count} seconds. Please log in to continue.`}
       imgSrc='/page-eaten.svg'
+      alt='unauthorized'
       center
     />
   );

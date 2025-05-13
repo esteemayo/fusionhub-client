@@ -55,7 +55,6 @@ const Login = () => {
     const credentials = { ...data };
 
     dispatch(loginUser(credentials));
-    reset();
   };
 
   useEffect(() => {
@@ -64,13 +63,14 @@ const Login = () => {
     }
 
     if (isSuccess && user) {
+      reset();
       navigate('/');
     }
 
     return () => {
       dispatch(resetState());
     };
-  }, [dispatch, isError, isSuccess, message, navigate, user]);
+  }, [dispatch, isError, isSuccess, message, navigate, reset, user]);
 
   return (
     <section className='login'>

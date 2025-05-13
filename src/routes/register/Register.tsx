@@ -84,9 +84,6 @@ const Register = () => {
     };
 
     dispatch(registerUser(userData));
-
-    reset();
-    handleClear();
   };
 
   useEffect(() => {
@@ -95,13 +92,15 @@ const Register = () => {
     }
 
     if (isSuccess && name) {
+      reset();
+      handleClear();
       navigate(`/login?name=${name}`);
     }
 
     return () => {
       dispatch(resetState());
     };
-  }, [dispatch, isError, isSuccess, message, name, navigate]);
+  }, [dispatch, isError, isSuccess, message, name, navigate, reset]);
 
   return (
     <section className='register'>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -14,13 +14,19 @@ import Button from '../button/Button';
 import Input from '../input/Input';
 import AccountHeader from '../accountHeader/AccountHeader';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { resetState, updateUserPassword } from '../../features/auth/authSlice';
+
 import { passwordInputs } from '../../data/formData';
 import { passwordSchema } from '../../validations/passwordSchema';
 
 import './UpdatePassword.scss';
 
 const UpdatePassword = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
+  const { isError, isLoading, isSuccess, message, user } = useAppSelector(
+    (state) => ({ ...state.auth })
+  );
 
   type FormData = z.infer<typeof passwordSchema>;
 
@@ -34,17 +40,22 @@ const UpdatePassword = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-
-      console.log(data);
-      toast.success('Profile updated!');
-
-      reset();
-    }, 1500);
+    dispatch(updateUserPassword(data));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess && user) {
+      reset();
+    }
+
+    return () => {
+      dispatch(resetState());
+    };
+  }, [dispatch, isError, isSuccess, message, reset, user]);
 
   const [input, ...inputs] = passwordInputs;
 

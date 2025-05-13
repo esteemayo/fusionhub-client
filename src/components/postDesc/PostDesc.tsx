@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import parse from 'html-react-parser';
 import Skeleton from 'react-loading-skeleton';
 
 import { PostDescProps } from '../../types';
@@ -18,9 +19,9 @@ const PostDesc = ({ post, loading }: PostDescProps) => {
         {loading ? <Skeleton /> : post?.title}
       </h2>
       <div className='post-desc__box--desc'>
-        <p onDoubleClick={handleCopy}>
-          {loading ? <Skeleton count={15} /> : post?.desc}
-        </p>
+        <div onDoubleClick={handleCopy}>
+          {loading ? <Skeleton count={15} /> : parse(String(post?.desc))}
+        </div>
       </div>
     </div>
   );

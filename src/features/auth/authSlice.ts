@@ -244,9 +244,9 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.name = payload.details.name;
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -259,10 +259,10 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.user = payload;
         setStorage(authKey, payload);
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -275,10 +275,10 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(googleLoginUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.user = payload;
         setStorage(authKey, payload);
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(googleLoginUser.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -290,10 +290,10 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoading = false;
         state.user = null;
         removeStorage(authKey);
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -305,26 +305,25 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUserPassword.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.user = payload;
         setStorage(authKey, payload);
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(updateUserPassword.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = (payload as { message: string }).message;
-        state.user = null;
       })
       .addCase(updateUserData.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(updateUserData.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
         state.user = payload;
         setStorage(authKey, payload);
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(updateUserData.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -336,10 +335,10 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteAccount.fulfilled, (state) => {
+        state.isLoading = false;
         state.user = null;
         removeStorage(authKey);
         state.isSuccess = true;
-        state.isLoading = false;
       })
       .addCase(deleteAccount.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -351,9 +350,9 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(removeAvatar.fulfilled, (state, { payload }) => {
-        state.isSuccess = true;
-        setStorage(authKey, payload);
         state.isLoading = false;
+        setStorage(authKey, payload);
+        state.isSuccess = true;
       })
       .addCase(removeAvatar.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -365,9 +364,9 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(removeBanner.fulfilled, (state, { payload }) => {
-        state.isSuccess = true;
-        setStorage(authKey, payload);
         state.isLoading = false;
+        setStorage(authKey, payload);
+        state.isSuccess = true;
       })
       .addCase(removeBanner.rejected, (state, { payload }) => {
         state.isLoading = false;

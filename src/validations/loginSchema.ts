@@ -39,7 +39,7 @@ export const loginSchema = z
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
         {
           message:
-            'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character, and at least 8 characters long',
+            'Password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and at least 8 characters long',
         }
       ),
   })

@@ -22,15 +22,25 @@ import DateInput from '../dateInput/DateInput';
 import AccountHeader from '../accountHeader/AccountHeader';
 import CountrySelect from '../countrySelect/CountrySelect';
 
+import { ProfileDataProps } from '../../types';
 import { profileSchema } from '../../validations/profileSchema';
 
 import './ProfileData.scss';
 
-const ProfileData = () => {
+const ProfileData = ({
+  name,
+  email,
+  username,
+  phone,
+  dateOfBirth,
+  country,
+  bio,
+  about,
+}: ProfileDataProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const [phone, setPhone] = useState<Value | undefined>();
-  const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
+  const [telephone, setTelephone] = useState<Value | undefined>();
+  const [aboutMe, setAboutMe] = useState<ReactQuill.Value | undefined>('');
 
   type FormData = z.infer<typeof profileSchema>;
 
@@ -53,12 +63,20 @@ const ProfileData = () => {
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    const userData = {
+      ...data,
+      country: data.country.label,
+      phone: telephone,
+      about: aboutMe,
+      dateOfBirth: startDate,
+    };
+
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false);
 
-      console.log(data);
+      console.log(userData);
       toast.success('Profile updated!');
 
       reset();
@@ -76,6 +94,7 @@ const ProfileData = () => {
           <Input
             name='name'
             label='Name'
+            value={name ?? ''}
             placeholder='Enter your full name'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -85,6 +104,7 @@ const ProfileData = () => {
           <Input
             name='username'
             label='Username'
+            value={username ?? ''}
             placeholder='Enter your username'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -96,6 +116,7 @@ const ProfileData = () => {
             type='email'
             name='email'
             label='Email Address'
+            value={email ?? ''}
             placeholder='Enter your email address'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -103,21 +124,22 @@ const ProfileData = () => {
           />
           <PhoneNumber
             label='Mobile Number'
-            value={phone}
+            value={phone ?? telephone}
             placeholder='e.g. +1 234 567 8900'
-            onChange={setPhone}
+            onChange={setTelephone}
           />
         </div>
         <div className='profile-data__form--data'>
           <DateInput
             label='Date of Birth'
-            startDate={startDate}
+            startDate={dateOfBirth ?? startDate}
             placeholder='Select your date of birth'
             onChange={setStartDate}
           />
           <CountrySelect
             name='country'
             label='Country'
+            value={country ?? ''}
             placeholder='Choose your country'
             onChange={setCustomValue}
             register={register as unknown as UseFormRegister<FieldValues>}
@@ -129,6 +151,7 @@ const ProfileData = () => {
           <Textarea
             name='bio'
             label='Biography'
+            value={bio ?? ''}
             placeholder='Tell us a little about yourself'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -137,9 +160,9 @@ const ProfileData = () => {
           <TextQuill
             id='about'
             label='About Me'
-            value={about}
+            value={about ?? aboutMe}
             placeholder='Write something about yourself'
-            onChange={setAbout}
+            onChange={setAboutMe}
           />
         </div>
         <Button
