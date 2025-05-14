@@ -17,11 +17,11 @@ import './Sidebar.scss';
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
+
   const { isOpen } = useAppSelector((state) => ({ ...state.sidebar }));
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const { btnLabel, handleLogout } = useLogout(isOpen, onClose);
-
-  const user = true;
 
   const handleClose = () => {
     dispatch(onClose());
@@ -66,7 +66,7 @@ const Sidebar = () => {
             })}
           </ul>
           <div className='sidebar__accountWrap'>
-            {user && (
+            {!!currentUser && (
               <div className='sidebar__accounts'>
                 <NavLink
                   to='/accounts/profile'
@@ -74,13 +74,15 @@ const Sidebar = () => {
                   onClick={handleClose}
                 >
                   <Image
-                    src='/user-default.jpg'
+                    src={currentUser.details.image ?? '/user-default.jpg'}
                     width={70}
                     height={70}
                     alt='avatar'
                     className='sidebar__account--avatar'
                   />
-                  <span className='sidebar__account--name'>Elise beverley</span>
+                  <span className='sidebar__account--name'>
+                    {currentUser.details.name}
+                  </span>
                 </NavLink>
                 <button
                   type='button'
@@ -105,7 +107,7 @@ const Sidebar = () => {
                 </button>
               </div>
             )}
-            {!user && (
+            {!currentUser && (
               <NavLink
                 to='/login'
                 className='sidebar__login'

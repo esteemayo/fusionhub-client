@@ -1,7 +1,7 @@
-import ReactQuill from 'react-quill-new';
+import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import { Value } from 'react-phone-number-input';
-import { useState } from 'react';
+import parse from 'html-react-parser';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import {
@@ -10,6 +10,7 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import ReactQuill from 'react-quill-new';
 
 import Textarea from '../textarea/Textarea';
 import Input from '../input/Input';
@@ -22,8 +23,11 @@ import DateInput from '../dateInput/DateInput';
 import AccountHeader from '../accountHeader/AccountHeader';
 import CountrySelect from '../countrySelect/CountrySelect';
 
-import { ProfileDataProps } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { resetState, updateUserData } from '../../features/auth/authSlice';
+
 import { profileSchema } from '../../validations/profileSchema';
+import { CountrySelectType, ProfileDataProps } from '../../types';
 
 import './ProfileData.scss';
 
@@ -37,9 +41,13 @@ const ProfileData = ({
   bio,
   about,
 }: ProfileDataProps) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [startDate, setStartDate] = useState<Date | null>(null);
+  const dispatch = useAppDispatch();
+  const { isError, isLoading, message } = useAppSelector((state) => ({
+    ...state.auth,
+  }));
+
   const [telephone, setTelephone] = useState<Value | undefined>();
+  const [startDate, setStartDate] = useState<Date | null>(null);
   const [aboutMe, setAboutMe] = useState<ReactQuill.Value | undefined>('');
 
   type FormData = z.infer<typeof profileSchema>;
@@ -49,9 +57,15 @@ const ProfileData = ({
     handleSubmit,
     formState: { errors },
     setValue,
-    reset,
   } = useForm<FormData>({
     resolver: zodResolver(profileSchema),
+    defaultValues: {
+      name: name || '',
+      username: username || '',
+      email: email || '',
+      bio: bio || '',
+      country: country || '',
+    },
   });
 
   const setCustomValue = (name: keyof FormData, value: string) => {
@@ -65,23 +79,39 @@ const ProfileData = ({
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const userData = {
       ...data,
-      country: data.country.label,
+      country: (data.country as CountrySelectType).label,
       phone: telephone,
       about: aboutMe,
       dateOfBirth: startDate,
     };
 
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-
-      console.log(userData);
-      toast.success('Profile updated!');
-
-      reset();
-    }, 1500);
+    dispatch(updateUserData(userData));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    return () => {
+      dispatch(resetState());
+    };
+  }, [dispatch, isError, message]);
+
+  useEffect(() => {
+    if (about) {
+      const parsedText = parse(String(about)) as ReactQuill.Value;
+      setAboutMe(parsedText || '');
+    }
+
+    if (dateOfBirth) {
+      setStartDate(dateOfBirth || null);
+    }
+
+    if (phone) {
+      setTelephone(phone || undefined);
+    }
+  }, [about, dateOfBirth, phone]);
 
   return (
     <div className='profile-data'>
@@ -94,7 +124,6 @@ const ProfileData = ({
           <Input
             name='name'
             label='Name'
-            value={name ?? ''}
             placeholder='Enter your full name'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -104,7 +133,6 @@ const ProfileData = ({
           <Input
             name='username'
             label='Username'
-            value={username ?? ''}
             placeholder='Enter your username'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -116,7 +144,6 @@ const ProfileData = ({
             type='email'
             name='email'
             label='Email Address'
-            value={email ?? ''}
             placeholder='Enter your email address'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -124,7 +151,7 @@ const ProfileData = ({
           />
           <PhoneNumber
             label='Mobile Number'
-            value={phone ?? telephone}
+            value={telephone}
             placeholder='e.g. +1 234 567 8900'
             onChange={setTelephone}
           />
@@ -139,7 +166,6 @@ const ProfileData = ({
           <CountrySelect
             name='country'
             label='Country'
-            value={country ?? ''}
             placeholder='Choose your country'
             onChange={setCustomValue}
             register={register as unknown as UseFormRegister<FieldValues>}
@@ -151,7 +177,6 @@ const ProfileData = ({
           <Textarea
             name='bio'
             label='Biography'
-            value={bio ?? ''}
             placeholder='Tell us a little about yourself'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
@@ -160,7 +185,7 @@ const ProfileData = ({
           <TextQuill
             id='about'
             label='About Me'
-            value={about ?? aboutMe}
+            value={aboutMe}
             placeholder='Write something about yourself'
             onChange={setAboutMe}
           />

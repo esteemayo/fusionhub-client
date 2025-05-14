@@ -16,7 +16,7 @@ const fetchUser = async () => {
 };
 
 const UserProfile = () => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['user'],
     queryFn: () => fetchUser(),
   });
@@ -48,16 +48,22 @@ const UserProfile = () => {
         />
       </div>
       <div className='profile__wrapper'>
-        <Banner
-          file={file}
-          cover={cover}
-          image={data?.image}
-          banner={data?.banner}
-          onChangeFile={handleFileChange}
-          onChangeCover={handleCoverChange}
-        />
-        <ProfileDetails {...data} />
-        <AboutProfile about={data?.about} />
+        {isLoading ? (
+          'loading...'
+        ) : (
+          <>
+            <Banner
+              file={file}
+              cover={cover}
+              image={data?.image}
+              banner={data?.banner}
+              onChangeFile={handleFileChange}
+              onChangeCover={handleCoverChange}
+            />
+            <ProfileDetails {...data} />
+            <AboutProfile about={data?.about} />
+          </>
+        )}
       </div>
     </div>
   );

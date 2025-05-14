@@ -359,13 +359,13 @@ export interface ProfileImageProps {
 
 export interface ProfileDataProps {
   name: string;
-  email: string;
   username: string;
-  phone: Value;
+  email: string;
+  phone?: Value;
   dateOfBirth?: Date | null;
   country: CountrySelectType;
   bio: string;
-  about?: string;
+  about?: ReactQuill.Value;
 }
 
 export interface PhoneNumberProps {
@@ -732,13 +732,12 @@ export type UpdatePasswordType = {
 };
 
 export type UpdateUserDataType = {
-  name?: string;
-  username?: string;
-  email?: string;
-  phone?: string;
-  dateOfBirth?: string;
-  country?: string;
-  bio?: string;
-  about?: string;
-  image?: string;
+  name: string;
+  username: string;
+  email: string;
+  phone?: Value;
+  dateOfBirth?: Date | null;
+  country: CountrySelectType | string;
+  bio: string;
+  about?: ReactQuill.Value;
 };

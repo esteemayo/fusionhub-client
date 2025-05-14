@@ -43,7 +43,7 @@ const AboutProfile = ({ about }: { about: string }) => {
     <section className={aboutClasses}>
       <div className='about-profile__container'>
         <h4 className='about-profile__container--heading'>About me</h4>
-        {parsedText}
+        {parse(String(parsedText))}
         <button type='button' className={btnClasses} onClick={handleClick}>
           {btnLabel}
         </button>

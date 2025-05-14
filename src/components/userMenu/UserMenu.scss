@@ -75,16 +75,13 @@
       color: currentColor;
       border-radius: 2px;
 
-      &.profile-link {
+      &.profile-link,
+      &.register-link {
         background-color: vars.$clr-tertiary-blue;
       }
 
       &.login-link {
         background-color: vars.$clr-pink-dark-1;
-      }
-
-      &.register-link {
-        background-color: vars.$clr-black;
       }
 
       @media screen and (max-width: 56.25em) {
