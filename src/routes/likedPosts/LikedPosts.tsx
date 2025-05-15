@@ -1,18 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
-import { postItems } from '../../data';
+import { getLikedPosts } from '../../services/postService';
 
 import './LikedPosts.scss';
 
-const LikedPosts = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const fetchLikedPosts = async () => {
+  const { data } = await getLikedPosts();
+  return data;
+};
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+const LikedPosts = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ['likedPosts'],
+    queryFn: () => fetchLikedPosts(),
+  });
+
+  if (error) {
+    return <span>Something went wrong! {error.message}</span>;
+  }
 
   return (
     <div className='liked-posts'>
@@ -23,9 +31,13 @@ const LikedPosts = () => {
           type='profile'
         />
       </div>
-      <div className='liked-posts__wrapper'>
-        <PostList posts={postItems} loading={isLoading} />
-      </div>
+      {data?.length < 1 ? (
+        <span>There are no posts to display now...</span>
+      ) : (
+        <div className='liked-posts__wrapper'>
+          <PostList posts={data} isLoading={isPending} />
+        </div>
+      )}
     </div>
   );
 };

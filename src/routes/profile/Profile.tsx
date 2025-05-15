@@ -16,7 +16,7 @@ const fetchUser = async () => {
 };
 
 const UserProfile = () => {
-  const { data, isLoading } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ['user'],
     queryFn: () => fetchUser(),
   });
@@ -48,8 +48,10 @@ const UserProfile = () => {
         />
       </div>
       <div className='profile__wrapper'>
-        {isLoading ? (
-          'loading...'
+        {isPending ? (
+          <span>loading...</span>
+        ) : error ? (
+          <span>Something went wrong! {error.message}</span>
         ) : (
           <>
             <Banner

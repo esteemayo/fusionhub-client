@@ -1,18 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
-import { postItems } from '../../data';
+import { getUserPosts } from '../../services/postService';
 
 import './Articles.scss';
 
-const Articles = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const fetchUserPosts = async () => {
+  const { data } = await getUserPosts();
+  return data;
+};
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+const Articles = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ['userPosts'],
+    queryFn: () => fetchUserPosts(),
+  });
+
+  if (error) {
+    return <span>Something went wrong! {error.message}</span>;
+  }
 
   return (
     <div className='articles'>
@@ -23,9 +31,13 @@ const Articles = () => {
           type='profile'
         />
       </div>
-      <div className='articles__wrapper'>
-        <PostList posts={postItems} loading={isLoading} />
-      </div>
+      {data?.length < 1 ? (
+        <span>There are no posts to display now...</span>
+      ) : (
+        <div className='articles__wrapper'>
+          <PostList posts={data} isLoading={isPending} />
+        </div>
+      )}
     </div>
   );
 };

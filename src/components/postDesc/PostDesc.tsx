@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
-import parse from 'html-react-parser';
+import { useMemo } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import parse from 'html-react-parser';
 
 import { PostDescProps } from '../../types';
 
@@ -13,6 +14,10 @@ const PostDesc = ({ post, loading }: PostDescProps) => {
     return;
   };
 
+  const parsedDesc = useMemo(() => {
+    return parse(String(post?.desc));
+  }, [post?.desc]);
+
   return (
     <div className='post-desc__box'>
       <h2 className='post-desc__box--heading'>
@@ -20,7 +25,7 @@ const PostDesc = ({ post, loading }: PostDescProps) => {
       </h2>
       <div className='post-desc__box--desc'>
         <div onDoubleClick={handleCopy}>
-          {loading ? <Skeleton count={15} /> : parse(String(post?.desc))}
+          {loading ? <Skeleton count={15} /> : parse(String(parsedDesc))}
         </div>
       </div>
     </div>

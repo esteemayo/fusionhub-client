@@ -5,10 +5,10 @@ import { PostListProps } from '../../types';
 
 import './PostList.scss';
 
-const PostLists = ({ posts, loading }: PostListProps) => {
+const PostLists = ({ posts, isLoading }: PostListProps) => {
   return (
     <div className='post-list'>
-      {loading
+      {isLoading
         ? Array.from(new Array(3)).map((_, index) => {
             return <PostListSkeleton key={index} />;
           })

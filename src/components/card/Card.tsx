@@ -1,5 +1,7 @@
-import { format } from 'timeago.js';
+import parse from 'html-react-parser';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { format } from 'timeago.js';
 
 import Image from '../Image';
 
@@ -9,12 +11,16 @@ import { CardProps } from '../../types';
 import './Card.scss';
 
 const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
+  const parsedDesc = useMemo(() => {
+    return parse(String(excerpts(desc, 60)));
+  }, [desc]);
+
   return (
     <article className='card'>
       <div className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>
         <Image
-          src={img ?? 'https://ik.imagekit.io/devayo/default-post.jpg'}
+          src={img ?? '/default-post.jpg'}
           alt='post'
           width={300}
           height={250}
@@ -26,7 +32,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
           <h3 className='card__box--title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
           </h3>
-          <p className='card__box--desc'>{excerpts(desc, 60)}</p>
+          <p className='card__box--desc'>{parse(String(parsedDesc))}</p>
         </div>
         <div className='card__container'>
           <span className='card__container--category'>{category}</span>

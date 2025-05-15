@@ -276,7 +276,7 @@ export const postDetail: PostDetailType = {
     'Effective Communication Is At The Heart of Every Successful Professional.',
   slug: 'effective-communication-is-at-the-heart-of-every-successful-professional.',
   desc: `
-    <p>
+    &lt;p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ex modi
       soluta. Minus omnis vero voluptatibus non nam quidem a, cumque
       explicabo, sint nesciunt, laudantium fugiat expedita sapiente sed
@@ -294,9 +294,9 @@ export const postDetail: PostDetailType = {
       Sapiente a fugiat at consequatur vero cumque repudiandae, eaque libero
       quis ratione neque? Optio eum ipsa voluptate, maxime recusandae omnis,
       nobis, voluptates debitis fugiat rerum veritatis? Iusto, ab.
-    </p>
-    <br />
-    <p>
+    &lt;/p>
+    &lt;br>
+    &lt;p>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit
       maiores corrupti cum, ad in repellendus provident veritatis tempore?
       Numquam nulla molestiae inventore quisquam cum veniam natus repellat
@@ -308,9 +308,9 @@ export const postDetail: PostDetailType = {
       consequuntur dolorum cupiditate fugiat autem recusandae ab iure ipsam
       id eius. Doloribus debitis corporis eveniet error possimus libero ab
       magni molestiae?
-    </p>
-    <br />
-    <p>
+    &lt;/p>
+    &lt;br>
+    &lt;p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
       incidunt, saepe nihil esse deserunt inventore, sed sint alias error,
       quis tempora! Fuga quas repellat maxime animi exercitationem eum,
@@ -336,7 +336,7 @@ export const postDetail: PostDetailType = {
       laudantium quia dolores ullam ad, animi laborum quidem aut
       necessitatibus quam obcaecati! Ullam odio hic iste facere ex
       doloribus!
-    </p>
+    &lt;/p>
   `,
   category: 'technlogy',
   tags: ['tech'],
@@ -384,8 +384,8 @@ export const postDetail: PostDetailType = {
     },
   ],
   views: 10000,
-  createdAt: '2025-3-19T16:14:09.085+00:00',
-  updatedAt: '2025-3-19T16:14:09.085+00:00',
+  createdAt: '2024-10-16T01:50:04.085+00:00',
+  updatedAt: '2024-10-16T01:50:04.085+00:00',
 };
 
 export const relatedTags: RelatedTagType = [

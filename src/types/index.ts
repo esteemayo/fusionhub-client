@@ -303,7 +303,7 @@ export interface SpinnerProps {
 
 export interface PostListProps {
   posts: PostItemType;
-  loading: boolean;
+  isLoading: boolean;
 }
 
 export interface AccountHeadingProps {

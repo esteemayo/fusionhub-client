@@ -20,7 +20,7 @@ const fetchUser = async () => {
 const ProfileSettings = () => {
   const dispatch = useAppDispatch();
 
-  const { data, isLoading } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ['user'],
     queryFn: () => fetchUser(),
   });
@@ -55,8 +55,10 @@ const ProfileSettings = () => {
         />
       </div>
       <div className='profile-settings__wrapper'>
-        {isLoading ? (
-          'loading...'
+        {isPending ? (
+          <span>loading...</span>
+        ) : error ? (
+          <span>Something went wrong! {error.message}</span>
         ) : (
           <>
             <ProfileImage
