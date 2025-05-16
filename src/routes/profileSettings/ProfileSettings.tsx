@@ -2,8 +2,9 @@ import { useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import ProfileImage from '../../components/profileImage/ProfileImage';
-import ProfileData from '../../components/profileData/ProfileData';
+import ErrorState from '../../components/errorState/ErrorState';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
+import ProfileData from '../../components/profileData/ProfileData';
 
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
@@ -58,7 +59,11 @@ const ProfileSettings = () => {
         {isPending ? (
           <span>loading...</span>
         ) : error ? (
-          <span>Something went wrong! {error.message}</span>
+          <ErrorState
+            title='Something went wrong!'
+            subtitle={error.message}
+            imgSrc='/private-files.svg'
+          />
         ) : (
           <>
             <ProfileImage

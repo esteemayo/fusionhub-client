@@ -43,5 +43,14 @@
     @media screen and (max-width: 31.25em) {
       background-color: transparent;
     }
+
+    &--loader {
+      width: 100%;
+      min-height: 50rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

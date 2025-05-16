@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+import AboutProfile from '../../components/aboutProfile/AboutProfile';
+import Spinner from '../../components/Spinner';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 import Banner from '../../components/banner/Banner';
 import ProfileDetails from '../../components/profileDetails/ProfileDetails';
-import AboutProfile from '../../components/aboutProfile/AboutProfile';
+import ErrorState from '../../components/errorState/ErrorState';
 
 import { getCurrentUser } from '../../services/userService';
 
@@ -49,9 +51,15 @@ const UserProfile = () => {
       </div>
       <div className='profile__wrapper'>
         {isPending ? (
-          <span>loading...</span>
+          <div className='profile__wrapper--loader'>
+            <Spinner size={80} />
+          </div>
         ) : error ? (
-          <span>Something went wrong! {error.message}</span>
+          <ErrorState
+            title='Something went wrong!'
+            subtitle={error.message}
+            imgSrc='/private-files.svg'
+          />
         ) : (
           <>
             <Banner
