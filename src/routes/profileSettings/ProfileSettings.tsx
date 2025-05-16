@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+import ProfileData from '../../components/profileData/ProfileData';
+import Spinner from '../../components/Spinner';
 import ProfileImage from '../../components/profileImage/ProfileImage';
 import ErrorState from '../../components/errorState/ErrorState';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
-import ProfileData from '../../components/profileData/ProfileData';
 
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
@@ -57,7 +58,9 @@ const ProfileSettings = () => {
       </div>
       <div className='profile-settings__wrapper'>
         {isPending ? (
-          <span>loading...</span>
+          <div className='profile-settings__wrapper--loader'>
+            <Spinner size={80} />
+          </div>
         ) : error ? (
           <ErrorState
             title='Something went wrong!'

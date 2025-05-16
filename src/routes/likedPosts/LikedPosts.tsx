@@ -18,10 +18,6 @@ const LikedPosts = () => {
     queryFn: () => fetchLikedPosts(),
   });
 
-  if (error) {
-    return <span>Something went wrong! {error.message}</span>;
-  }
-
   return (
     <div className='liked-posts'>
       <div className='liked-posts__container'>
@@ -35,7 +31,7 @@ const LikedPosts = () => {
         <span>There are no posts to display now...</span>
       ) : (
         <div className='liked-posts__wrapper'>
-          <PostList posts={data} isLoading={isPending} />
+          <PostList isLoading={isPending} error={error} posts={data} />
         </div>
       )}
     </div>

@@ -18,10 +18,6 @@ const DislikedPosts = () => {
     queryFn: () => fetchDislikedPosts(),
   });
 
-  if (error) {
-    return <span>Something went wrong! {error.message}</span>;
-  }
-
   return (
     <div className='disliked-posts'>
       <div className='disliked-posts__container'>
@@ -35,7 +31,7 @@ const DislikedPosts = () => {
         <span>There are no posts to display now...</span>
       ) : (
         <div className='disliked-posts__wrapper'>
-          <PostList posts={data} isLoading={isPending} />
+          <PostList isLoading={isPending} error={error} posts={data} />
         </div>
       )}
     </div>

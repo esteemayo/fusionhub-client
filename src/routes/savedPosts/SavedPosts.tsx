@@ -18,10 +18,6 @@ const SavedPosts = () => {
     queryFn: () => fetchSavedPosts(),
   });
 
-  if (error) {
-    return <span>Something went wrong! {error.message}</span>;
-  }
-
   return (
     <div className='saved-posts'>
       <div className='saved-posts__container'>
@@ -35,7 +31,7 @@ const SavedPosts = () => {
         <span>There are no posts to display now...</span>
       ) : (
         <div className='saved-posts__wrapper'>
-          <PostList posts={data} isLoading={isPending} />
+          <PostList isLoading={isPending} error={error} posts={data} />
         </div>
       )}
     </div>

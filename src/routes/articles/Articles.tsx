@@ -18,10 +18,6 @@ const Articles = () => {
     queryFn: () => fetchUserPosts(),
   });
 
-  if (error) {
-    return <span>Something went wrong! {error.message}</span>;
-  }
-
   return (
     <div className='articles'>
       <div className='articles__container'>
@@ -32,10 +28,16 @@ const Articles = () => {
         />
       </div>
       {data?.length < 1 ? (
-        <span>There are no posts to display now...</span>
+        <div className='articles__empty'>
+          <h2>No Posts Yet</h2>
+          <p>
+            It looks like you haven't written any posts yet. Start sharing your
+            stories with the world!
+          </p>
+        </div>
       ) : (
         <div className='articles__wrapper'>
-          <PostList posts={data} isLoading={isPending} />
+          <PostList isLoading={isPending} error={error} posts={data} />
         </div>
       )}
     </div>

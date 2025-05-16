@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
+import Cookie from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { jwtDecode } from 'jwt-decode';
 
 import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
 import {
@@ -27,6 +29,7 @@ import {
   updateCurrentUser,
 } from '../../services/userService';
 
+const token = Cookie.get('authToken');
 const user: CurrentUserType = getStorage(authKey);
 
 const initialState: AuthState = {
@@ -37,6 +40,16 @@ const initialState: AuthState = {
   isSuccess: false,
   message: '',
 };
+
+if (token) {
+  const decodedToken = jwtDecode(token) as CurrentUserType & { exp: number };
+  const expiryTime = new Date().getTime();
+
+  if (decodedToken.exp * 1000 < expiryTime) {
+    removeStorage(authKey);
+    initialState.user = null;
+  }
+}
 
 export const registerUser = createAsyncThunk(
   'auth/register',

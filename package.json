@@ -23,6 +23,7 @@
     "firebase": "^11.0.2",
     "html-react-parser": "^5.2.4",
     "imagekitio-react": "^4.2.0",
+    "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "millify": "^6.1.0",
     "react": "19.0.0-rc-66855b96-20241106",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react": "^4.3.4",
