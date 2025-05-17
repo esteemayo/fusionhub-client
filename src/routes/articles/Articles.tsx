@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
@@ -27,19 +28,16 @@ const Articles = () => {
           type='profile'
         />
       </div>
-      {data?.length < 1 ? (
-        <div className='articles__empty'>
-          <h2>No Posts Yet</h2>
-          <p>
-            It looks like you haven't written any posts yet. Start sharing your
-            stories with the world!
-          </p>
-        </div>
-      ) : (
-        <div className='articles__wrapper'>
+      <div className='articles__wrapper'>
+        {data?.length < 1 ? (
+          <EmptyPosts
+            title='No posts yet'
+            subtitle="It looks like you haven't written any posts yet. Start sharing your stories with the world!"
+          />
+        ) : (
           <PostList isLoading={isPending} error={error} posts={data} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

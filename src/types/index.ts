@@ -66,6 +66,11 @@ export interface ErrorStateProps {
   alt?: string;
 }
 
+export interface EmptyPostsProps {
+  title: string;
+  subtitle: string;
+}
+
 export interface LabelProps {
   id?: string;
   label?: string;

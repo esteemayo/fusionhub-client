@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
@@ -27,13 +28,16 @@ const LikedPosts = () => {
           type='profile'
         />
       </div>
-      {data?.length < 1 ? (
-        <span>There are no posts to display now...</span>
-      ) : (
-        <div className='liked-posts__wrapper'>
+      <div className='liked-posts__wrapper'>
+        {data?.length < 1 ? (
+          <EmptyPosts
+            title='No liked posts found'
+            subtitle="You haven't liked any posts yet. Explore stories and articles that resonate with you, and click the like button to save them here!"
+          />
+        ) : (
           <PostList isLoading={isPending} error={error} posts={data} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

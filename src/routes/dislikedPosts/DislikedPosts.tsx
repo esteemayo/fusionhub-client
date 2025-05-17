@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
@@ -27,13 +28,16 @@ const DislikedPosts = () => {
           type='profile'
         />
       </div>
-      {data?.length < 1 ? (
-        <span>There are no posts to display now...</span>
-      ) : (
-        <div className='disliked-posts__wrapper'>
+      <div className='disliked-posts__wrapper'>
+        {data?.length < 1 ? (
+          <EmptyPosts
+            title='No disliked posts found'
+            subtitle="You haven't disliked any posts yet. Explore content and mark posts you don't prefer to see them here."
+          />
+        ) : (
           <PostList isLoading={isPending} error={error} posts={data} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

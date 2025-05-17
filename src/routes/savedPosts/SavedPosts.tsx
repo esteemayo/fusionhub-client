@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
@@ -27,13 +28,16 @@ const SavedPosts = () => {
           type='profile'
         />
       </div>
-      {data?.length < 1 ? (
-        <span>There are no posts to display now...</span>
-      ) : (
-        <div className='saved-posts__wrapper'>
+      <div className='saved-posts__wrapper'>
+        {data?.length < 1 ? (
+          <EmptyPosts
+            title='No saved posts yet'
+            subtitle="You haven't saved any posts yet. Start exploring content and save posts you find interesting to view them here later."
+          />
+        ) : (
           <PostList isLoading={isPending} error={error} posts={data} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -46,5 +46,10 @@
     @media screen and (max-width: 31.25em) {
       padding-top: 2rem;
     }
+
+    .empty-posts {
+      width: 100%;
+      min-height: 41vh;
+    }
   }
 }

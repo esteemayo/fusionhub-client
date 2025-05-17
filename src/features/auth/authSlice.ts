@@ -1,16 +1,18 @@
-import { toast } from 'react-toastify';
+import { jwtDecode } from 'jwt-decode';
 import Cookie from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 
-import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
+import * as authAPI from '../../services/authService';
+import * as userAPI from '../../services/userService';
+
 import {
-  googleLogin,
-  login,
-  logout,
-  register,
-  updatePassword,
-} from '../../services/authService';
+  authKey,
+  cookieName,
+  getStorage,
+  removeStorage,
+  setStorage,
+} from '../../utils';
 
 import {
   AuthCrendentialType,
@@ -22,14 +24,7 @@ import {
   UpdateUserDataType,
 } from '../../types';
 
-import {
-  deleteCurrentUser,
-  deleteUserBanner,
-  deleteUserImage,
-  updateCurrentUser,
-} from '../../services/userService';
-
-const token = Cookie.get('authToken');
+const token = Cookie.get(cookieName);
 const user: CurrentUserType = getStorage(authKey);
 
 const initialState: AuthState = {
@@ -47,6 +42,8 @@ if (token) {
 
   if (decodedToken.exp * 1000 < expiryTime) {
     removeStorage(authKey);
+    Cookie.remove(cookieName);
+
     initialState.user = null;
   }
 }
@@ -55,7 +52,7 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async (userData: RegisterUserType, { rejectWithValue }) => {
     try {
-      const { data } = await register({ ...userData });
+      const { data } = await authAPI.register({ ...userData });
       toast.success('Account Created!');
       return data;
     } catch (err: unknown) {
@@ -76,7 +73,7 @@ export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: AuthCrendentialType, { rejectWithValue }) => {
     try {
-      const { data } = await login({ ...credentials });
+      const { data } = await authAPI.login({ ...credentials });
       toast.success('Access Granted!');
       return data;
     } catch (err: unknown) {
@@ -97,7 +94,7 @@ export const googleLoginUser = createAsyncThunk(
   'auth/google',
   async (email: string, { rejectWithValue }) => {
     try {
-      const { data } = await googleLogin(email);
+      const { data } = await authAPI.googleLogin(email);
       toast.success('Access Granted!');
       return data;
     } catch (err: unknown) {
@@ -118,7 +115,7 @@ export const logoutUser = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await logout();
+      await authAPI.logout();
       toast.success('Account Logged Out!');
       return;
     } catch (err: unknown) {
@@ -139,7 +136,7 @@ export const updateUserPassword = createAsyncThunk(
   'auth/password',
   async (credentials: UpdatePasswordType, { rejectWithValue }) => {
     try {
-      const { data } = await updatePassword({ ...credentials });
+      const { data } = await authAPI.updatePassword({ ...credentials });
       toast.success('Password Updated!');
       return data;
     } catch (err: unknown) {
@@ -160,7 +157,7 @@ export const updateUserData = createAsyncThunk(
   'user/data',
   async (userData: UpdateUserDataType, { rejectWithValue }) => {
     try {
-      const { data } = await updateCurrentUser({ ...userData });
+      const { data } = await userAPI.updateCurrentUser({ ...userData });
       toast.success('Profile Updated!');
       return data;
     } catch (err: unknown) {
@@ -181,7 +178,7 @@ export const deleteAccount = createAsyncThunk(
   'user/deactivate',
   async (_, { rejectWithValue }) => {
     try {
-      await deleteCurrentUser();
+      await userAPI.deleteCurrentUser();
       toast.success('Account De-activated!');
       return;
     } catch (err: unknown) {
@@ -202,7 +199,7 @@ export const removeAvatar = createAsyncThunk(
   'user/avatar',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await deleteUserImage();
+      const { data } = await userAPI.deleteUserImage();
       toast.success('Image Removed!');
       return data;
     } catch (err: unknown) {
@@ -223,7 +220,7 @@ export const removeBanner = createAsyncThunk(
   'user/banner',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await deleteUserBanner();
+      const { data } = await userAPI.deleteUserBanner();
       toast.success('Banner Removed!');
       return data;
     } catch (err: unknown) {
