@@ -13,7 +13,7 @@ import {
   aboutItemType,
   AccountMenuType,
   CategoryType,
-  CommentType,
+  CommentsType,
   CommentUserType,
   ContactInfoItemType,
   FeedItemTypes,
@@ -415,7 +415,7 @@ export const relatedTags: RelatedTagType = [
   },
 ];
 
-export const comments: CommentType = [
+export const comments: CommentsType = [
   {
     id: '1',
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque minus soluta architecto aspernatur repudiandae provident odio voluptatibus quia! Beatae aspernatur alias repellat dicta, eum voluptas commodi voluptate reiciendis reprehenderit laboriosam.',

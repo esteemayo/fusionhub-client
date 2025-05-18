@@ -50,6 +50,18 @@
     .empty-posts {
       width: 100%;
       min-height: 41vh;
+
+      @include bp.lg {
+        min-height: 45vh;
+      }
+
+      @media screen and (max-width: 31.25em) {
+        min-height: 40vh;
+      }
+
+      @media screen and (min-width: 125em) {
+        min-height: 51vh;
+      }
     }
   }
 }

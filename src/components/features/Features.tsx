@@ -1,25 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
+import ErrorState from '../errorState/ErrorState';
 import Feature from '../feature/Feature';
 import FeatureCard from '../featureCard/FeatureCard';
 
 import FeatureSkeleton from '../featureSkeleton/FeatureSkeleton';
 import FeatureCardSkeleton from '../featureCardSkeleton/FeatureCardSkeleton';
 
-import { postItems } from '../../data';
+import { PostType } from '../../types';
+import { getFeaturedPosts } from '../../services/postService';
 
 import './Features.scss';
 
+const fetchFeaturedPosts = async () => {
+  const { data } = await getFeaturedPosts();
+  return data;
+};
+
 const Features = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isPending, error, data } = useQuery({
+    queryKey: ['featuredPosts'],
+    queryFn: () => fetchFeaturedPosts(),
+  });
 
-  const featuredPosts = postItems.filter((post) => post.isFeatured === true);
+  console.log(data);
 
-  const [firstPost, ...otherPosts] = featuredPosts;
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+  const [firstPost, ...otherPosts] = data && data;
 
   return (
     <section className='features'>
@@ -27,16 +33,34 @@ const Features = () => {
         <h3 className='features__container--heading'>Featured articles</h3>
         <div className='features__wrapper'>
           <div className='features__wrap'>
-            {isLoading ? <FeatureSkeleton /> : <Feature {...firstPost} />}
+            {isPending ? (
+              <FeatureSkeleton />
+            ) : error ? (
+              <ErrorState
+                title='Something went wrong!'
+                subtitle={error.message}
+                imgSrc='/book-writer.svg'
+              />
+            ) : (
+              <Feature {...firstPost} />
+            )}
           </div>
           <div className='features__box'>
-            {isLoading
-              ? Array.from(new Array(4)).map((_, index) => {
-                  return <FeatureCardSkeleton key={index} />;
-                })
-              : otherPosts?.map((post) => {
-                  return <FeatureCard key={post.id} {...post} />;
-                })}
+            {isPending ? (
+              Array.from(new Array(4)).map((_, index) => {
+                return <FeatureCardSkeleton key={index} />;
+              })
+            ) : error ? (
+              <ErrorState
+                title='Something went wrong!'
+                subtitle={error.message}
+                imgSrc='/book-writer.svg'
+              />
+            ) : (
+              otherPosts?.map((post: PostType) => {
+                return <FeatureCard key={post._id} {...post} />;
+              })
+            )}
           </div>
         </div>
       </div>

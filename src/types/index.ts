@@ -402,6 +402,7 @@ export interface FeatureProps {
   desc: string;
   title: string;
   slug: string;
+  comments?: CommentType[];
   createdAt: string;
 }
 
@@ -409,6 +410,7 @@ export interface FeatureCardProps {
   img?: string;
   title: string;
   slug: string;
+  comments?: CommentType[];
   createdAt: string;
 }
 
@@ -491,6 +493,41 @@ export interface ErrorPayload {
   };
 }
 
+export type PostType = {
+  _id: string;
+  title: string;
+  desc: string;
+  category: 'general' | string;
+  img: string;
+  isFeatured: boolean;
+  likes: string[];
+  dislikes: string[];
+  likeCount: number;
+  dislikeCount: number;
+  tags: string[];
+  views: number;
+  author: AuthorType;
+  slug: string;
+  comments: CommentType;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type AuthorType = {
+  _id: string;
+  name: string;
+  image?: string;
+};
+
+export type CommentType = {
+  _id: string;
+  content: string;
+  post: string;
+  author: AuthorType;
+  createdAt: string;
+  updatedAt: string;
+};
+
 type UserDetailType = {
   _id: string;
   name: string;
@@ -562,7 +599,7 @@ export type PostDetailType = {
   dislikes: string[];
   likeCount: number;
   dislikeCount: number;
-  comments: CommentType;
+  comments: CommentsType;
   views: number;
   createdAt: string;
   updatedAt: string;
@@ -570,7 +607,7 @@ export type PostDetailType = {
 
 export type RelatedTagType = TagType[];
 
-export type CommentType = {
+export type CommentsType = {
   id: string;
   desc: string;
   user: {
