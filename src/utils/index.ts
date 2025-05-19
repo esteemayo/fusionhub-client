@@ -1,6 +1,6 @@
 export const authKey = 'access_token';
 
-export const cookieName = '__session';
+export const cookieName = 'auth_token';
 
 export const excerpts = (str: string, count: number) => {
   if (typeof str === 'string' && str.length > count) {

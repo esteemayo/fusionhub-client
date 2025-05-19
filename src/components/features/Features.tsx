@@ -23,9 +23,7 @@ const Features = () => {
     queryFn: () => fetchFeaturedPosts(),
   });
 
-  console.log(data);
-
-  const [firstPost, ...otherPosts] = data && data;
+  const [firstPost, ...otherPosts] = data ? data : [];
 
   return (
     <section className='features'>
@@ -42,7 +40,12 @@ const Features = () => {
                 imgSrc='/book-writer.svg'
               />
             ) : (
-              <Feature {...firstPost} />
+              <Feature
+                {...firstPost}
+                comments={
+                  Array.isArray(firstPost.comments) ? firstPost.comments : []
+                }
+              />
             )}
           </div>
           <div className='features__box'>
@@ -58,7 +61,13 @@ const Features = () => {
               />
             ) : (
               otherPosts?.map((post: PostType) => {
-                return <FeatureCard key={post._id} {...post} />;
+                return (
+                  <FeatureCard
+                    key={post._id}
+                    {...post}
+                    comments={Array.isArray(post.comments) ? post.comments : []}
+                  />
+                );
               })
             )}
           </div>
