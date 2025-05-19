@@ -1,30 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
+import ErrorState from '../errorState/ErrorState';
 import TopPost from '../topPost/TopPost';
 import TopPostSkeleton from '../topPostSkeleton/TopPostSkeleton';
 
-import { topPosts } from '../../data';
+import { PostType } from '../../types';
+import { getTopPosts } from '../../services/postService';
 
 import './TopPosts.scss';
 
-const TopPosts = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const fetchTopPosts = async () => {
+  const { data } = await getTopPosts();
+  return data;
+};
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+const TopPosts = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ['topPosts'],
+    queryFn: () => fetchTopPosts(),
+  });
+
+  if (data?.length < 1) {
+    return (
+      <section className='top-posts'>
+        <div className='top-posts__container'>
+          <h2 className='top-posts__container--heading'>Top posts</h2>
+          <ErrorState
+            title='No top posts available'
+            subtitle='Currently, there are no top posts to display. Please check back later for the latest updates.'
+          />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className='top-posts'>
       <div className='top-posts__container'>
         <h2 className='top-posts__container--heading'>Top posts</h2>
-        {isLoading
-          ? Array.from(new Array(3)).map((_, index) => {
-              return <TopPostSkeleton key={index} />;
-            })
-          : topPosts.map((post, i) => {
-              return <TopPost key={post.id} index={i} {...post} />;
-            })}
+        {isPending ? (
+          Array.from(new Array(3)).map((_, index) => {
+            return <TopPostSkeleton key={index} />;
+          })
+        ) : error ? (
+          <ErrorState title='' subtitle='' />
+        ) : (
+          data?.map((post: PostType, index: number) => {
+            return <TopPost key={post._id} index={index} {...post} />;
+          })
+        )}
       </div>
     </section>
   );

@@ -1,30 +1,57 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import CategoryItem from '../categoryItem/CategoryItem';
+import ErrorState from '../errorState/ErrorState';
 import CategorySkeleton from '../categorySkeleton/CategorySkeleton';
 
-import { categoryItems } from '../../data';
+import { CategoryItemType } from '../../types';
+import { getCountByCategory } from '../../services/postService';
 
 import './Categories.scss';
 
-const Categories = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const fetchCountByCategory = async () => {
+  const { data } = await getCountByCategory();
+  return data;
+};
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+const Categories = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => fetchCountByCategory(),
+  });
+
+  if (data?.length < 1) {
+    return (
+      <section className='categories'>
+        <div className='categories__container'>
+          <h2 className='categories__container--heading'>Categories</h2>
+          <ErrorState
+            title='No categories found'
+            subtitle='It seems there are no categories available at the moment. Please check back later or try refreshing the page.'
+          />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className='categories'>
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
-        {isLoading
-          ? Array.from(new Array(3)).map((_, index) => {
-              return <CategorySkeleton key={index} />;
-            })
-          : categoryItems.map((category) => {
-              return <CategoryItem key={category.id} {...category} />;
-            })}
+        {isPending ? (
+          Array.from(new Array(3)).map((_, index) => {
+            return <CategorySkeleton key={index} />;
+          })
+        ) : error ? (
+          <ErrorState
+            title='Error loading categories'
+            subtitle='An error occurred while fetching the categories. Please try again later or contact support if the issue persists.'
+          />
+        ) : (
+          data?.map((item: CategoryItemType) => {
+            return <CategoryItem key={item.category} {...item} />;
+          })
+        )}
       </div>
     </section>
   );

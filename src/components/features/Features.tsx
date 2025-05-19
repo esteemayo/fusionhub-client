@@ -25,6 +25,19 @@ const Features = () => {
 
   const [firstPost, ...otherPosts] = data ? data : [];
 
+  if (data?.length < 1) {
+    return (
+      <section className='features'>
+        <div className='features__container'>
+          <ErrorState
+            title='No featured posts available'
+            subtitle='Currently, there are no featured articles to display. Please check back later for updates.'
+          />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className='features'>
       <div className='features__container'>

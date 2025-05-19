@@ -224,10 +224,11 @@ export interface RelatedPostProps {
 }
 
 export interface TopPostProps {
-  id: string;
+  _id: string;
   title: string;
   slug: string;
-  category: string[];
+  tags: string[];
+  category: string;
   createdAt: string;
   index: number;
 }
@@ -245,14 +246,15 @@ export interface FilterItemProps {
   label: string;
 }
 
-export interface CategoryItemProps {
-  id: string;
-  name: string;
-  total: number;
-}
+export type CategoryItemType = {
+  category: string;
+  count: number;
+};
+
+export type CategoryItemProps = CategoryItemType;
 
 export interface CardProps {
-  id: string;
+  _id: string;
   img: string;
   title: string;
   slug: string;
@@ -497,7 +499,7 @@ export type PostType = {
   _id: string;
   title: string;
   desc: string;
-  category: 'general' | string;
+  category: string;
   img: string;
   isFeatured: boolean;
   likes: string[];

@@ -6,10 +6,10 @@ import { formatDate } from '../../utils/formatDate';
 
 import './TopPost.scss';
 
-const TopPost = ({ index, slug, title, category, createdAt }: TopPostProps) => {
-  const categoryLabel = useMemo(() => {
-    return category.join(', ');
-  }, [category]);
+const TopPost = ({ index, slug, title, tags, createdAt }: TopPostProps) => {
+  const tagLabel = useMemo(() => {
+    return tags.slice(0, 2).join(', ');
+  }, [tags]);
 
   return (
     <article className='top-post'>
@@ -19,8 +19,8 @@ const TopPost = ({ index, slug, title, category, createdAt }: TopPostProps) => {
           <span className='top-post__wrapper--title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
           </span>
-          <div className='top-post__wrapper--category'>
-            <span>{categoryLabel}</span>
+          <div className='top-post__wrapper--tags'>
+            <span>{tagLabel}</span>
             <span>-</span>
             <time dateTime={createdAt}>{formatDate(createdAt)}</time>
           </div>

@@ -12,7 +12,9 @@ export const getUserPosts = () => http.get(postURI('my-posts'));
 
 export const getFeaturedPosts = () => http.get(postURI('featured-posts'));
 
-export const getRandomPosts = http.get(postURI('random-posts'));
+export const getRandomPosts = () => http.get(postURI('random-posts'));
+
+export const getRecentPosts = () => http.get(postURI('recent-posts'));
 
 export const getTopPosts = () => http.get(postURI('top-posts'));
 

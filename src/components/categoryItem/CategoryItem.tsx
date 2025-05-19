@@ -5,27 +5,27 @@ import { CategoryItemProps } from '../../types';
 
 import './CategoryItem.scss';
 
-const CategoryItem = ({ name, total }: CategoryItemProps) => {
-  const formattedTotal = useMemo(() => {
-    if (total < 10) {
-      const formattedNumber = total.toString().padStart(2, '0');
+const CategoryItem = ({ category, count }: CategoryItemProps) => {
+  const formattedCount = useMemo(() => {
+    if (count < 10) {
+      const formattedNumber = count.toString().padStart(2, '0');
       return formattedNumber;
     }
 
-    return total;
-  }, [total]);
+    return count;
+  }, [count]);
 
   return (
     <article className='category-item'>
       <span className='category-item__label'>
         <Link
-          to={`/posts?category=${name}`}
+          to={`/posts?category=${category}`}
           className='category-item__label--link'
         >
-          {name}
+          {category}
         </Link>
       </span>
-      <span className='category-item__total'>({formattedTotal})</span>
+      <span className='category-item__total'>({formattedCount})</span>
     </article>
   );
 };
