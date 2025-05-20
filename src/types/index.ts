@@ -186,26 +186,6 @@ export interface PostClientProps {
   ref: React.LegacyRef<HTMLInputElement> | undefined;
 }
 
-export interface CommentProps {
-  onAction?(): void;
-  onUpdate?(): void;
-  onOpen(): void;
-}
-
-export interface CommentCardProps {
-  id: string;
-  desc: string;
-  user: {
-    name: string;
-    img: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-  onReply?(): void;
-  onUpdate?(): void;
-  onOpen(): void;
-}
-
 export interface FeedProps {
   _id: string;
   img: string;
@@ -252,6 +232,16 @@ export type CategoryItemType = {
 };
 
 export type CategoryItemProps = CategoryItemType;
+
+export type TagProps = {
+  _id: string;
+  count: number;
+};
+
+export interface TagItemProps {
+  label: string;
+  count?: number;
+}
 
 export interface CardProps {
   _id: string;
@@ -451,12 +441,35 @@ export interface HeroProps {
 
 export interface PostContentProps {
   post: PostType;
-  loading: boolean;
+  isLoading: boolean;
 }
 
 export interface PostDetailProps {
   post: PostType;
-  loading: boolean;
+  isLoading: boolean;
+}
+
+export interface RelatedTagsProps {
+  isLoading: boolean;
+  tags: string[];
+}
+
+export interface CommentsProps {
+  postId: string;
+}
+
+export interface CommentProps {
+  postId: string;
+  onAction?(): void;
+  onUpdate?(): void;
+  onOpen(): void;
+}
+
+export interface CommentCardProps {
+  comment: CommentType;
+  onReply?(): void;
+  onUpdate?(): void;
+  onOpen(): void;
 }
 
 export interface PostDetailActionProps {
@@ -465,7 +478,7 @@ export interface PostDetailActionProps {
 
 export interface PostDescProps {
   post: PostType;
-  loading: boolean;
+  isLoading: boolean;
 }
 
 export interface RelatedPostsProps {
@@ -540,6 +553,12 @@ export type CommentType = {
   author: AuthorType;
   createdAt: string;
   updatedAt: string;
+};
+
+export type CommentImageType = {
+  _id: string;
+  name: string;
+  image: string;
 };
 
 type UserDetailType = {

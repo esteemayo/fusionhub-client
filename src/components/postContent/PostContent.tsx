@@ -6,12 +6,12 @@ import { PostContentProps } from '../../types';
 
 import './PostContent.scss';
 
-const PostContent = ({ post, loading }: PostContentProps) => {
+const PostContent = ({ post, isLoading }: PostContentProps) => {
   return (
     <div className='post-content'>
-      <PostDetail post={post} loading={loading} />
-      <RelatedTags />
-      <Comments />
+      <PostDetail isLoading={isLoading} post={post} />
+      <RelatedTags isLoading={isLoading} tags={post.tags} />
+      <Comments postId={post._id} />
     </div>
   );
 };

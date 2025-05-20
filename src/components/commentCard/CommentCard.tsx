@@ -8,15 +8,13 @@ import { CommentCardProps } from '../../types';
 import './CommentCard.scss';
 
 const CommentCard = ({
-  desc,
-  user,
-  createdAt,
+  comment,
   onReply,
   onUpdate,
   onOpen,
 }: CommentCardProps) => {
   const handleCopy = () => {
-    navigator.clipboard.writeText(desc);
+    navigator.clipboard.writeText(comment.content);
     toast.success('Copied');
     return;
   };
@@ -38,13 +36,15 @@ const CommentCard = ({
     onOpen();
   };
 
+  const { author, content, createdAt } = comment;
+
   return (
     <article className='comment-card'>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
-          {user.img && (
+          {author.image && (
             <Image
-              src={user.img}
+              src={author.image}
               width={80}
               height={80}
               alt='avatar'
@@ -79,9 +79,9 @@ const CommentCard = ({
               <span>Reply</span>
             </button>
           </div>
-          <h5 className='comment-card__details--username'>{user.name}</h5>
+          <h5 className='comment-card__details--username'>{author.name}</h5>
           <p onDoubleClick={handleCopy} className='comment-card__details--desc'>
-            {desc}
+            {content}
             <button
               type='button'
               onClick={handleClick}

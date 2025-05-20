@@ -6,11 +6,11 @@ import { PostDetailProps } from '../../types';
 
 import './PostDetail.scss';
 
-const PostDetail = ({ post, loading }: PostDetailProps) => {
+const PostDetail = ({ post, isLoading }: PostDetailProps) => {
   return (
     <section className='post-detail'>
-      {loading ? <PostActionSkeleton /> : <PostDetailAction post={post} />}
-      <PostDesc post={post} loading={loading} />
+      {isLoading ? <PostActionSkeleton /> : <PostDetailAction post={post} />}
+      <PostDesc post={post} isLoading={isLoading} />
     </section>
   );
 };

@@ -6,9 +6,11 @@ import CommentForm from '../commentForm/CommentForm';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/commentModal/commentModalSlice';
 
+import { CommentsProps } from '../../types';
+
 import './Comments.scss';
 
-const Comments = () => {
+const Comments = ({ postId }: CommentsProps) => {
   const dispatch = useAppDispatch();
 
   const ref = useRef<HTMLTextAreaElement>(null);
@@ -33,6 +35,7 @@ const Comments = () => {
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
+          postId={postId}
           onAction={handleReply}
           onUpdate={handleUpdate}
           onOpen={handleOpen}

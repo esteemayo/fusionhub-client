@@ -7,7 +7,7 @@ import { PostDescProps } from '../../types';
 
 import './PostDesc.scss';
 
-const PostDesc = ({ post, loading }: PostDescProps) => {
+const PostDesc = ({ post, isLoading }: PostDescProps) => {
   const handleCopy = () => {
     navigator.clipboard.writeText(post?.desc);
     toast.success('Copied to clipboard');
@@ -21,11 +21,11 @@ const PostDesc = ({ post, loading }: PostDescProps) => {
   return (
     <div className='post-desc__box'>
       <h2 className='post-desc__box--heading'>
-        {loading ? <Skeleton /> : post?.title}
+        {isLoading ? <Skeleton /> : post?.title}
       </h2>
       <div className='post-desc__box--desc'>
         <div onDoubleClick={handleCopy}>
-          {loading ? <Skeleton count={15} /> : parse(String(parsedDesc))}
+          {isLoading ? <Skeleton count={15} /> : parse(String(parsedDesc))}
         </div>
       </div>
     </div>

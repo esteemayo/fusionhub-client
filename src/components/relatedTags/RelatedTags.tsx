@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react';
-
 import TagItem from '../tagItem/TagItem';
 import RelatedTagSkeleton from '../relatedTagSkeleton/RelatedTagSkeleton';
 
-import { relatedTags } from '../../data';
+import { RelatedTagsProps } from '../../types';
 
 import './RelatedTags.scss';
 
-const RelatedTags = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+const RelatedTags = ({ isLoading, tags }: RelatedTagsProps) => {
+  if (tags?.length < 1) {
+    return null;
+  }
 
   return (
     <section className='related-tags'>
@@ -22,9 +18,8 @@ const RelatedTags = () => {
           ? Array.from(Array(3)).map((_, index) => {
               return <RelatedTagSkeleton key={index} />;
             })
-          : relatedTags.map((tag) => {
-              const { id, label } = tag;
-              return <TagItem key={id} label={label} />;
+          : tags?.map((tag, index) => {
+              return <TagItem key={index} label={tag} />;
             })}
       </div>
     </section>

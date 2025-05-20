@@ -58,7 +58,7 @@ const PostDetails = () => {
       </div>
     );
   }
-
+  // console.log(data);
   return (
     <div className='post-details'>
       {isPending ? (
@@ -67,7 +67,7 @@ const PostDetails = () => {
         <Hero title={data.title} img={data.img} slug={data.slug} />
       )}
       <div className='post-details__container'>
-        <PostContent post={data} loading={isPending} />
+        <PostContent post={data} isLoading={isPending} />
         <PostMenuActions isOpen={isOpen} />
         <div className='post-details__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
