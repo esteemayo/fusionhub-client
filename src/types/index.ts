@@ -207,7 +207,7 @@ export interface CommentCardProps {
 }
 
 export interface FeedProps {
-  id: string;
+  _id: string;
   img: string;
   title: string;
   slug: string;
@@ -215,7 +215,7 @@ export interface FeedProps {
 }
 
 export interface RelatedPostProps {
-  id: string;
+  _id: string;
   img: string;
   title: string;
   slug: string;
@@ -443,23 +443,34 @@ export interface TeamItemProps {
   socials: IconType[];
 }
 
+export interface HeroProps {
+  title: string;
+  img?: string;
+  slug: string;
+}
+
 export interface PostContentProps {
-  post: PostDetailType;
+  post: PostType;
   loading: boolean;
 }
 
 export interface PostDetailProps {
-  post: PostDetailType;
+  post: PostType;
   loading: boolean;
 }
 
 export interface PostDetailActionProps {
-  post: PostDetailType;
+  post: PostType;
 }
 
 export interface PostDescProps {
-  post: PostDetailType;
+  post: PostType;
   loading: boolean;
+}
+
+export interface RelatedPostsProps {
+  postId: string;
+  tags: string[];
 }
 
 export interface RegisterInputs {
@@ -510,7 +521,7 @@ export type PostType = {
   views: number;
   author: AuthorType;
   slug: string;
-  comments: CommentType;
+  comments: CommentType[];
   createdAt: string;
   updatedAt: string;
 };
@@ -518,6 +529,7 @@ export type PostType = {
 type AuthorType = {
   _id: string;
   name: string;
+  username: string;
   image?: string;
 };
 

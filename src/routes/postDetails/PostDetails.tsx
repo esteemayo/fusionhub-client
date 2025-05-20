@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
 import Hero from '../../components/hero/Hero';
@@ -10,37 +11,70 @@ import HeroSkeleton from '../../components/heroSkeleton/HeroSkeleton';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
 
-import { postDetail } from '../../data';
+import { getPost } from '../../services/postService';
 
 import './PostDetails.scss';
 
+const fetchPost = async (slug: string) => {
+  const { data } = await getPost(slug);
+  return data;
+};
+
 const PostDetails = () => {
+  const { pathname } = useLocation();
+  const slug = pathname.split('/').pop();
+
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
-  const [isLoading, setIsLoading] = useState(true);
+  const { isPending, error, data } = useQuery({
+    queryKey: [`post-${slug}`],
+    queryFn: () => fetchPost(slug!),
+    enabled: !!slug,
+  });
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onToggle());
   };
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+  if (!data) {
+    return (
+      <div className='post-details'>
+        <div className='post-details__container'>
+          <h2>Post not found!</h2>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='post-details'>
+        <div className='post-details__container'>
+          <h2>Something went wrong!</h2>
+          <span>{error.message}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='post-details'>
-      {isLoading ? <HeroSkeleton /> : <Hero />}
+      {isPending ? (
+        <HeroSkeleton />
+      ) : (
+        <Hero title={data.title} img={data.img} slug={data.slug} />
+      )}
       <div className='post-details__container'>
-        <PostContent post={postDetail} loading={isLoading} />
+        <PostContent post={data} loading={isPending} />
         <PostMenuActions isOpen={isOpen} />
         <div className='post-details__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
       </div>
       <div className='post-details__wrapper'>
-        <RelatedPosts />
+        <RelatedPosts postId={data._id} tags={data.tags} />
       </div>
     </div>
   );

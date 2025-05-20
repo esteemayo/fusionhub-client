@@ -20,7 +20,7 @@ export const getTopPosts = () => http.get(postURI('top-posts'));
 
 export const getTrendingPosts = () => http.get(postURI('trends'));
 
-export const getRelatedPosts = () => (tags: string) =>
+export const getRelatedPosts = (tags: Array<string>) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
 export const getLikedPosts = () => http.get(postURI('liked-posts'));
