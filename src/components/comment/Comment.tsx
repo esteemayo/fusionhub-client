@@ -43,7 +43,7 @@ const Comment = ({
     error: errorUser,
     data: commentUsers,
   } = useQuery({
-    queryKey: ['commentUsers'],
+    queryKey: ['commentUsers', postId],
     queryFn: () => fetchPostComentUsers(postId),
     enabled: !!postId,
   });

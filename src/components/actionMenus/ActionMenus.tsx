@@ -1,24 +1,61 @@
+import { toast } from 'react-toastify';
+import { useMemo } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { onOpen } from '../../features/updateModal/updateModalSlice';
 import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
 
+import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
+import { ActionMenusProps } from '../../types';
+import { featurePost } from '../../services/postService';
 
 import './ActionMenus.scss';
 
-const ActionMenus = () => {
+const createFeaturePost = async (postId: string) => {
+  const { data } = await featurePost(postId);
+  return data;
+};
+
+const ActionMenus = ({ post }: ActionMenusProps) => {
   const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
-  const isPending = false;
+  const postId = useMemo(() => {
+    return post._id;
+  }, [post]);
+
+  const { isPending, isSaved, error, saveMutation, handleSave } =
+    useSavedPosts(postId);
+
+  const featureMutation = useMutation({
+    mutationFn: () => createFeaturePost(postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['featuredPosts'] });
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  // const isPending = false;
 
   const handleFeature = () => {
     console.log('post featured!');
-  };
-
-  const handleSave = () => {
-    console.log('post saved!');
   };
 
   const handleShare = () => {
@@ -37,10 +74,22 @@ const ActionMenus = () => {
     console.log('post deleted!');
   };
 
+  const isAdmin = useMemo(() => {
+    return currentUser?.role === 'admin';
+  }, [currentUser]);
+
+  const userId = useMemo(() => {
+    return currentUser?.details._id;
+  }, [currentUser]);
+
+  const authorId = useMemo(() => {
+    return post.author._id;
+  }, [post]);
+
   return (
     <section className='action-menus'>
       <div className='action-menus__container'>
-        {currentUser && currentUser.role === 'admin' && (
+        {currentUser && isAdmin && (
           <div className='action-menus__action'>
             <button
               type='button'
@@ -70,34 +119,50 @@ const ActionMenus = () => {
             </button>
           </div>
         )}
-        <div className='action-menus__action'>
-          <button
-            type='button'
-            className='action-menus__btn'
-            onClick={handleSave}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6 action-menus__btn--svg'
+        {isPending ? (
+          'loading...'
+        ) : error ? (
+          'saved post fetching failed'
+        ) : (
+          <div className='action-menus__action'>
+            <button
+              type='button'
+              className='action-menus__btn'
+              onClick={handleSave}
+              disabled={saveMutation.isPending}
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
-              />
-            </svg>
-            <span className='action-menus__btn--label'>Save post</span>
-            {isPending && (
-              <span className='action-menus__btn--loader success'>
-                (in progress)
-              </span>
-            )}
-          </button>
-        </div>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6 action-menus__btn--svg'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
+                  fill={
+                    saveMutation.isPending
+                      ? isSaved
+                        ? 'none'
+                        : '#dddcdc'
+                      : isSaved
+                      ? '#dddcdc'
+                      : 'none'
+                  }
+                />
+              </svg>
+              <span className='action-menus__btn--label'>Save post</span>
+              {saveMutation.isPending && (
+                <span className='action-menus__btn--loader success'>
+                  (in progress)
+                </span>
+              )}
+            </button>
+          </div>
+        )}
         <div className='action-menus__action'>
           <button
             type='button'
@@ -126,57 +191,61 @@ const ActionMenus = () => {
             )}
           </button>
         </div>
-        <div className='action-menus__action'>
-          <button
-            type='button'
-            className='action-menus__btn'
-            onClick={handleUpdate}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6 action-menus__btn--svg'
+        {(userId === authorId || isAdmin) && (
+          <div className='action-menus__action'>
+            <button
+              type='button'
+              className='action-menus__btn'
+              onClick={handleUpdate}
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125'
-              />
-            </svg>
-            <span className='action-menus__btn--label'>Update post</span>
-          </button>
-        </div>
-        <div className='action-menus__action'>
-          <button
-            type='button'
-            className='action-menus__btn'
-            onClick={handleDelete}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6 action-menus__btn--svg'
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6 action-menus__btn--svg'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125'
+                />
+              </svg>
+              <span className='action-menus__btn--label'>Update post</span>
+            </button>
+          </div>
+        )}
+        {(userId === authorId || isAdmin) && (
+          <div className='action-menus__action'>
+            <button
+              type='button'
+              className='action-menus__btn'
+              onClick={handleDelete}
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0'
-              />
-            </svg>
-            <span className='action-menus__btn--label'>Delete post</span>
-            {isPending && (
-              <span className='action-menus__btn--loader error'>
-                (in progress)
-              </span>
-            )}
-          </button>
-        </div>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6 action-menus__btn--svg'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0'
+                />
+              </svg>
+              <span className='action-menus__btn--label'>Delete post</span>
+              {isPending && (
+                <span className='action-menus__btn--loader error'>
+                  (in progress)
+                </span>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,23 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-
 import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
-import { getSavedPosts } from '../../services/userService';
+import { useSavedPosts } from '../../hooks/useSavedPosts';
 
 import './SavedPosts.scss';
 
-const fetchSavedPosts = async () => {
-  const { data } = await getSavedPosts();
-  return data;
-};
-
 const SavedPosts = () => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ['savedPosts'],
-    queryFn: () => fetchSavedPosts(),
-  });
+  const { isPending, error, savedPosts } = useSavedPosts();
 
   return (
     <div className='saved-posts'>
@@ -29,13 +19,13 @@ const SavedPosts = () => {
         />
       </div>
       <div className='saved-posts__wrapper'>
-        {data?.length < 1 ? (
+        {savedPosts?.length < 1 ? (
           <EmptyPosts
             title='No saved posts yet'
             subtitle="You haven't saved any posts yet. Start exploring content and save posts you find interesting to view them here later."
           />
         ) : (
-          <PostList isLoading={isPending} error={error} posts={data} />
+          <PostList isLoading={isPending} error={error} posts={savedPosts} />
         )}
       </div>
     </div>

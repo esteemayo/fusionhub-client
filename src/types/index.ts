@@ -302,7 +302,7 @@ export interface SpinnerProps {
 export interface PostListProps {
   isLoading: boolean;
   error: Error | null;
-  posts: PostItemType;
+  posts: PostType[];
 }
 
 export interface AccountHeadingProps {
@@ -390,6 +390,17 @@ export interface ILogout {
   };
 }
 
+export interface ISavedPosts {
+  (postId?: string): {
+    isPending: boolean;
+    isSaved: boolean;
+    error: Error | null;
+    savedPosts: PostType[];
+    saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
+    handleSave(): void;
+  };
+}
+
 export interface FeatureProps {
   img?: string;
   desc: string;
@@ -443,6 +454,15 @@ export interface HeroProps {
 export interface PostContentProps {
   post: PostType;
   isLoading: boolean;
+}
+
+export interface PostMenuActionsProps {
+  isOpen: boolean;
+  post: PostType;
+}
+
+export interface ActionMenusProps {
+  post: PostType;
 }
 
 export interface PostDetailProps {

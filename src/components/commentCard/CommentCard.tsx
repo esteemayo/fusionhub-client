@@ -66,6 +66,18 @@ const CommentCard = ({
     return `Read ${readMore ? 'less' : 'more'}`;
   }, [readMore]);
 
+  const isAdmin = useMemo(() => {
+    return currentUser?.role === 'admin';
+  }, [currentUser]);
+
+  const userId = useMemo(() => {
+    return currentUser?.details._id;
+  }, [currentUser]);
+
+  const authorId = useMemo(() => {
+    return author._id;
+  }, [author]);
+
   return (
     <article className='comment-card'>
       <div className='comment-card__container'>
@@ -115,8 +127,7 @@ const CommentCard = ({
         </div>
       </div>
       <div className='comment-card__btn'>
-        {(currentUser?.details._id === author._id ||
-          currentUser?.role === 'admin') && (
+        {(userId === authorId || isAdmin) && (
           <button
             type='button'
             className='comment-card__btn--edit'
@@ -138,8 +149,7 @@ const CommentCard = ({
             </svg>
           </button>
         )}
-        {(currentUser?.details._id === author._id ||
-          currentUser?.role === 'admin') && (
+        {(userId === authorId || isAdmin) && (
           <button
             type='button'
             className='comment-card__btn--delete'

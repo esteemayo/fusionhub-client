@@ -1,12 +1,20 @@
 import { format } from 'timeago.js';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
 
 import { PostDetailActionProps } from '../../types';
+import { useSavedPosts } from '../../hooks/useSavedPosts';
 
 import './PostDetailAction.scss';
 
 const PostDetailAction = ({ post }: PostDetailActionProps) => {
+  const postId = useMemo(() => {
+    return post._id;
+  }, [post]);
+
+  const { isSaved, saveMutation, handleSave } = useSavedPosts(postId);
+
   return (
     <div className='post-detail-action'>
       <div className='post-detail-action__container'>
@@ -132,7 +140,11 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
             </a>
           </div>
           <div className='post-detail-action__actions--share'>
-            <button type='button'>
+            <button
+              type='button'
+              onClick={handleSave}
+              disabled={saveMutation.isPending}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -145,6 +157,15 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
                   strokeLinecap='round'
                   strokeLinejoin='round'
                   d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
+                  fill={
+                    saveMutation.isPending
+                      ? isSaved
+                        ? 'none'
+                        : '#dddcdc'
+                      : isSaved
+                      ? '#dddcdc'
+                      : 'none'
+                  }
                 />
               </svg>
             </button>

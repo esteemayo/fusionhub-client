@@ -1,0 +1,79 @@
+import { useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+
+import { ISavedPosts, PostType } from '../types';
+import { useAppSelector } from './hooks';
+import { getSavedPosts, savePost } from '../services/userService';
+
+const fetchSavedPosts = async () => {
+  const { data } = await getSavedPosts();
+  return data;
+};
+
+const createSavePost = async (postId: string) => {
+  const { data } = await savePost(postId);
+  return data;
+};
+
+export const useSavedPosts: ISavedPosts = (postId) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const {
+    isPending,
+    error,
+    data: savedPosts,
+  } = useQuery({
+    queryKey: ['savedPosts'],
+    queryFn: () => fetchSavedPosts(),
+  });
+
+  const saveMutation = useMutation({
+    mutationFn: () => createSavePost(postId as string),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['savedPosts'] });
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  const handleSave = () => {
+    if (!currentUser) {
+      return navigate('/login');
+    }
+
+    saveMutation.mutate();
+  };
+
+  const isSaved = useMemo(() => {
+    const isSavedPost: boolean = savedPosts?.some(
+      (post: PostType) => post._id === (postId as string)
+    );
+
+    return !!isSavedPost;
+  }, [postId, savedPosts]);
+
+  return {
+    isPending,
+    isSaved,
+    error,
+    savedPosts,
+    saveMutation,
+    handleSave,
+  };
+};

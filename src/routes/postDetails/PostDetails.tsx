@@ -9,9 +9,8 @@ import PostMenuActions from '../../components/postMenuActions/PostMenuActions';
 import HeroSkeleton from '../../components/heroSkeleton/HeroSkeleton';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
-
 import { getPost } from '../../services/postService';
+import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import './PostDetails.scss';
 
@@ -67,8 +66,8 @@ const PostDetails = () => {
         <Hero title={data.title} img={data.img} slug={data.slug} />
       )}
       <div className='post-details__container'>
-        <PostContent post={data} isLoading={isPending} />
-        <PostMenuActions isOpen={isOpen} />
+        <PostContent isLoading={isPending} post={data} />
+        <PostMenuActions isOpen={isOpen} post={data} />
         <div className='post-details__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
