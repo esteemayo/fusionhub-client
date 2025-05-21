@@ -106,8 +106,8 @@ const UpdatePassword = () => {
               type='submit'
               label='Update Changes'
               color='primary'
-              loading={!!isLoading}
-              disabled={!!isLoading}
+              isLoading={isLoading}
+              disabled={isLoading}
             />
           </form>
         </div>

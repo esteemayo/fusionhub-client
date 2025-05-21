@@ -30,8 +30,8 @@ export const getDislikedPosts = () => http.get(postURI('disliked-posts'));
 export const getPostComments = (postId: string) =>
   http.get(`${postUrl(postId)}/comments`);
 
-export const createCommentOnPost = (postId: string) =>
-  http.post(`${postUrl(postId)}/comments`);
+export const createCommentOnPost = (content: string, postId: string) =>
+  http.post(`${postUrl(postId)}/comments`, { content });
 
 export const getPostComentUsers = (postId: string) =>
   http.get(`${apiEndpoint}/comments/${postId}/users`);

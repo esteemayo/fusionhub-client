@@ -1,40 +1,27 @@
-import { toast } from 'react-toastify';
-
 import Button from '../button/Button';
+
+import { CommentFormProps } from '../../types';
 
 import './CommentForm.scss';
 
-const CommentForm = ({
-  ref,
-}: {
-  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
-}) => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const target = e.target as HTMLFormElement;
-
-    const form = new FormData(target);
-
-    const desc = form.get('desc');
-
-    if (desc) {
-      console.log(desc);
-      toast.success('Comment posted!');
-    }
-  };
-
+const CommentForm = ({ ref, isLoading, onSubmit }: CommentFormProps) => {
   return (
     <div className='comment-form'>
       <h4 className='comment-form__heading'>Post comment</h4>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <textarea
-          name='desc'
-          id='desc'
+          name='content'
+          id='content'
           placeholder='Type your comments...'
           ref={ref}
         />
-        <Button type='submit' label='Post Comment' color='primary' />
+        <Button
+          type='submit'
+          label='Post Comment'
+          color='primary'
+          isLoading={isLoading}
+          disabled={isLoading}
+        />
       </form>
     </div>
   );

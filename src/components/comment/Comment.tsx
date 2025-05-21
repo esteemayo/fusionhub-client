@@ -8,6 +8,7 @@ import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
 import Image from '../Image';
 
 import * as postAPI from '../../services/postService';
+import { useAppSelector } from '../../hooks/hooks';
 import { CommentProps, CommentType, CommentImageType } from '../../types';
 
 import './Comment.scss';
@@ -22,9 +23,17 @@ const fetchPostComentUsers = async (postId: string) => {
   return data;
 };
 
-const Comment = ({ postId, onAction, onUpdate, onOpen }: CommentProps) => {
+const Comment = ({
+  postId,
+  mutation,
+  onAction,
+  onUpdate,
+  onOpen,
+}: CommentProps) => {
+  const { user } = useAppSelector((state) => ({ ...state.auth }));
+
   const { isPending, error, data } = useQuery({
-    queryKey: ['comments'],
+    queryKey: ['comments', postId],
     queryFn: () => fetchPostComments(postId),
     enabled: !!postId,
   });
@@ -81,17 +90,42 @@ const Comment = ({ postId, onAction, onUpdate, onOpen }: CommentProps) => {
           <span>{error.message}</span>
         </div>
       ) : (
-        data?.map((comment: CommentType) => {
-          return (
+        <>
+          {mutation.isPending && (
             <CommentCard
-              key={comment._id}
-              comment={comment}
+              comment={{
+                _id: new Date().getTime().toString(),
+                content: `${
+                  (mutation.variables as unknown as { content: string }).content
+                } (Sending...)`,
+                post: (mutation.variables as unknown as { postId: string })
+                  .postId,
+                author: {
+                  _id: user?.details._id as string,
+                  name: user?.details.name as string,
+                  username: user?.details.username as string,
+                  image: user?.details.image as string,
+                },
+                createdAt: new Date().toString(),
+                updatedAt: new Date().toString(),
+              }}
               onReply={onAction}
               onUpdate={onUpdate}
               onOpen={onOpen}
             />
-          );
-        })
+          )}
+          {data?.map((comment: CommentType) => {
+            return (
+              <CommentCard
+                key={comment._id}
+                comment={comment}
+                onReply={onAction}
+                onUpdate={onUpdate}
+                onOpen={onOpen}
+              />
+            );
+          })}
+        </>
       )}
     </div>
   );

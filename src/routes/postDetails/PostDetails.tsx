@@ -22,14 +22,14 @@ const fetchPost = async (slug: string) => {
 
 const PostDetails = () => {
   const { pathname } = useLocation();
-  const slug = pathname.split('/').pop();
+  const slug = pathname.split('/').pop() as string;
 
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
   const { isPending, error, data } = useQuery({
     queryKey: [`post-${slug}`],
-    queryFn: () => fetchPost(slug!),
+    queryFn: () => fetchPost(slug),
     enabled: !!slug,
   });
 
@@ -58,7 +58,7 @@ const PostDetails = () => {
       </div>
     );
   }
-  // console.log(data);
+
   return (
     <div className='post-details'>
       {isPending ? (

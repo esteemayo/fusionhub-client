@@ -4,6 +4,7 @@ import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { IconType } from 'react-icons/lib';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 import { Value } from 'react-phone-number-input';
+import { UseMutationResult } from '@tanstack/react-query';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -169,7 +170,7 @@ export interface ButtonProps
   label: string;
   icon?: string;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  loading?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   color: 'dark' | 'primary' | 'outline';
   onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -282,7 +283,7 @@ export interface ModalProps {
   title?: string;
   type?: 'cancel';
   size?: 'small' | 'full';
-  loading?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   actionLabel?: string;
   secondaryActionLabel?: string;
@@ -460,6 +461,7 @@ export interface CommentsProps {
 
 export interface CommentProps {
   postId: string;
+  mutation: UseMutationResult<unknown, unknown, string, unknown>;
   onAction?(): void;
   onUpdate?(): void;
   onOpen(): void;
@@ -470,6 +472,12 @@ export interface CommentCardProps {
   onReply?(): void;
   onUpdate?(): void;
   onOpen(): void;
+}
+
+export interface CommentFormProps {
+  isLoading?: boolean;
+  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface PostDetailActionProps {

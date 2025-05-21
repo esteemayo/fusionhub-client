@@ -9,7 +9,7 @@ const Button = ({
   icon,
   label,
   type = 'button',
-  loading,
+  isLoading,
   disabled,
   color,
   onClick,
@@ -21,10 +21,10 @@ const Button = ({
       className={`btn ${color}`}
       onClick={onClick}
     >
-      {icon && !loading && (
+      {icon && !isLoading && (
         <Image src={icon} width={25} height={25} alt='logo' />
       )}
-      {loading ? <Spinner /> : label}
+      {isLoading ? <Spinner /> : label}
     </button>
   );
 };

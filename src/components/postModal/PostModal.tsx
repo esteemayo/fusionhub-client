@@ -154,8 +154,8 @@ const PostModal = () => {
     <Modal
       isOpen={isOpen}
       title='Tell us your story'
-      loading={!!isLoading}
-      disabled={!!isLoading}
+      isLoading={isLoading}
+      disabled={isLoading}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}

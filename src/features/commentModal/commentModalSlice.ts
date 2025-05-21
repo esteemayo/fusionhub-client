@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface CommentModalState {
   isOpen: boolean;
+  commentId: string;
 }
 
 const initialState: CommentModalState = {
   isOpen: false,
+  commentId: '',
 };
 
 export const commentModalSlice = createSlice({
@@ -18,9 +20,12 @@ export const commentModalSlice = createSlice({
     onClose: (state) => {
       state.isOpen = false;
     },
+    setCommentId: (state, { payload }) => {
+      state.commentId = payload;
+    },
   },
 });
 
-export const { onClose, onOpen } = commentModalSlice.actions;
+export const { onClose, onOpen, setCommentId } = commentModalSlice.actions;
 
 export default commentModalSlice.reducer;

@@ -86,8 +86,8 @@ const ResetPassword = () => {
               <Button
                 type='submit'
                 label='Reset your password'
-                loading={!!isLoading}
-                disabled={!!isLoading}
+                isLoading={isLoading}
+                disabled={isLoading}
                 color='primary'
               />
             </div>

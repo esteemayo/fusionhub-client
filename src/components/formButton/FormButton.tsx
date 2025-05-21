@@ -11,7 +11,7 @@ const FormButton = ({ label, loading, disabled }: FormButtonProps) => {
       <Button
         type='submit'
         label={label}
-        loading={!!loading}
+        isLoading={!!loading}
         disabled={!!disabled}
         color='primary'
       />

@@ -194,8 +194,8 @@ const ProfileData = ({
           type='submit'
           label='Save Changes'
           color='primary'
-          loading={!!isLoading}
-          disabled={!!isLoading}
+          isLoading={isLoading}
+          disabled={isLoading}
         />
       </form>
     </div>

@@ -69,7 +69,7 @@ const ForgotPassword = () => {
               <Button
                 type='submit'
                 label='Reset your password'
-                loading={!!isLoading}
+                isLoading={!!isLoading}
                 disabled={!!isLoading}
                 color='primary'
               />

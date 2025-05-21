@@ -61,8 +61,8 @@ const ImageModal = () => {
       isOpen={isOpen}
       title='Remove avatar?'
       type='cancel'
-      loading={!!isLoading}
-      disabled={!!isLoading}
+      isLoading={isLoading}
+      disabled={isLoading}
       actionLabel='Remove'
       secondaryActionLabel='Quit'
       body={bodyContent}

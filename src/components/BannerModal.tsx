@@ -61,8 +61,8 @@ const BannerModal = () => {
       isOpen={isOpen}
       title='Remove banner?'
       type='cancel'
-      loading={!!isLoading}
-      disabled={!!isLoading}
+      isLoading={isLoading}
+      disabled={isLoading}
       actionLabel='Remove'
       secondaryActionLabel='Quit'
       body={bodyContent}

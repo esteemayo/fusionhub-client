@@ -143,8 +143,8 @@ const UpdateModal = () => {
     <Modal
       isOpen={isOpen}
       title='Update post'
-      loading={!!isLoading}
-      disabled={!!isLoading}
+      isLoading={isLoading}
+      disabled={isLoading}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}
