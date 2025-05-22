@@ -1,6 +1,7 @@
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
 import { onOpen } from '../../features/updateModal/updateModalSlice';
 import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
@@ -9,7 +10,7 @@ import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { ActionMenusProps } from '../../types';
-import { featurePost } from '../../services/postService';
+import { deletePost, featurePost } from '../../services/postService';
 
 import './ActionMenus.scss';
 
@@ -18,8 +19,14 @@ const createFeaturePost = async (postId: string) => {
   return data;
 };
 
+const removePost = async (postId: string) => {
+  const { data } = await deletePost(postId);
+  return data;
+};
+
 const ActionMenus = ({ post }: ActionMenusProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
@@ -52,10 +59,30 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     },
   });
 
-  // const isPending = false;
+  const deleteMutation = useMutation({
+    mutationFn: () => removePost(postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      toast.success('Post deleted!');
+      navigate('/posts');
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
 
   const handleFeature = () => {
-    console.log('post featured!');
+    featureMutation.mutate();
   };
 
   const handleShare = () => {
@@ -71,7 +98,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   };
 
   const handleDelete = () => {
-    console.log('post deleted!');
+    deleteMutation.mutate();
   };
 
   const isAdmin = useMemo(() => {
@@ -86,6 +113,10 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     return post.author._id;
   }, [post]);
 
+  const isFeatured = useMemo(() => {
+    return !!post.isFeatured;
+  }, [post]);
+
   return (
     <section className='action-menus'>
       <div className='action-menus__container'>
@@ -95,6 +126,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
               type='button'
               className='action-menus__btn'
               onClick={handleFeature}
+              disabled={featureMutation.isPending}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -108,54 +140,19 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
                   strokeLinecap='round'
                   strokeLinejoin='round'
                   d='M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z'
-                />
-              </svg>
-              <span className='action-menus__btn--label'>Feature post</span>
-              {isPending && (
-                <span className='action-menus__btn--loader success'>
-                  (in progress)
-                </span>
-              )}
-            </button>
-          </div>
-        )}
-        {isPending ? (
-          'loading...'
-        ) : error ? (
-          'saved post fetching failed'
-        ) : (
-          <div className='action-menus__action'>
-            <button
-              type='button'
-              className='action-menus__btn'
-              onClick={handleSave}
-              disabled={saveMutation.isPending}
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='size-6 action-menus__btn--svg'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
                   fill={
-                    saveMutation.isPending
-                      ? isSaved
+                    featureMutation.isPending
+                      ? isFeatured
                         ? 'none'
                         : '#dddcdc'
-                      : isSaved
+                      : isFeatured
                       ? '#dddcdc'
                       : 'none'
                   }
                 />
               </svg>
-              <span className='action-menus__btn--label'>Save post</span>
-              {saveMutation.isPending && (
+              <span className='action-menus__btn--label'>Feature post</span>
+              {featureMutation.isPending && (
                 <span className='action-menus__btn--loader success'>
                   (in progress)
                 </span>
@@ -163,6 +160,50 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
             </button>
           </div>
         )}
+        {isPending
+          ? 'loading...'
+          : error
+          ? 'saved post fetching failed'
+          : currentUser?.role !== 'admin' && (
+              <div className='action-menus__action'>
+                <button
+                  type='button'
+                  className='action-menus__btn'
+                  onClick={handleSave}
+                  disabled={saveMutation.isPending}
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 24 24'
+                    strokeWidth={1.5}
+                    stroke='currentColor'
+                    className='size-6 action-menus__btn--svg'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
+                      fill={
+                        saveMutation.isPending
+                          ? isSaved
+                            ? 'none'
+                            : '#dddcdc'
+                          : isSaved
+                          ? '#dddcdc'
+                          : 'none'
+                      }
+                    />
+                  </svg>
+                  <span className='action-menus__btn--label'>Save post</span>
+                  {saveMutation.isPending && (
+                    <span className='action-menus__btn--loader success'>
+                      (in progress)
+                    </span>
+                  )}
+                </button>
+              </div>
+            )}
         <div className='action-menus__action'>
           <button
             type='button'
@@ -222,6 +263,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
               type='button'
               className='action-menus__btn'
               onClick={handleDelete}
+              disabled={deleteMutation.isPending}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -238,7 +280,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
                 />
               </svg>
               <span className='action-menus__btn--label'>Delete post</span>
-              {isPending && (
+              {deleteMutation.isPending && (
                 <span className='action-menus__btn--loader error'>
                   (in progress)
                 </span>

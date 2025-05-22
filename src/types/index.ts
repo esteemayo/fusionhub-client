@@ -401,6 +401,17 @@ export interface ISavedPosts {
   };
 }
 
+export interface IFavourite {
+  (post: PostType, currentUser: CurrentUserType): {
+    isLiked: boolean;
+    isDisliked: boolean;
+    likeMutation: UseMutationResult<unknown, unknown, void, unknown>;
+    disLikeMutation: UseMutationResult<unknown, unknown, void, unknown>;
+    handleLike(): void;
+    handleDislike(): void;
+  };
+}
+
 export interface FeatureProps {
   img?: string;
   desc: string;

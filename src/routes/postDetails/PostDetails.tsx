@@ -27,7 +27,7 @@ const PostDetails = () => {
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
   const { isPending, error, data } = useQuery({
-    queryKey: [`post-${slug}`],
+    queryKey: ['post', slug],
     queryFn: () => fetchPost(slug),
     enabled: !!slug,
   });
