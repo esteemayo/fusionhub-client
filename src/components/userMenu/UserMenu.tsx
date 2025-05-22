@@ -7,13 +7,17 @@ import { useAppSelector } from '../../hooks/hooks';
 import './UserMenu.scss';
 
 const UserMenu = () => {
-  const { btnLabel, handleLogout } = useLogout();
+  const { isLoading, btnLabel, handleLogout } = useLogout();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const userMenuClasses = useMemo(() => {
     return currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide';
   }, [currentUser]);
+
+  const btnLogoutClasses = useMemo(() => {
+    return isLoading ? 'logout-btn trunc' : 'logout-btn';
+  }, [isLoading]);
 
   return (
     <aside className='user-menu'>
@@ -84,7 +88,11 @@ const UserMenu = () => {
         </ul>
         <div className={userMenuClasses}>
           <span className='username'>{currentUser?.details.name}</span>
-          <button type='button' className='logout-btn' onClick={handleLogout}>
+          <button
+            type='button'
+            className={btnLogoutClasses}
+            onClick={handleLogout}
+          >
             {btnLabel}
           </button>
         </div>

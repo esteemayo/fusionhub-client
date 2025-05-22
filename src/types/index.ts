@@ -386,6 +386,7 @@ export interface ToggleButtonProps {
 export interface ILogout {
   (isOpen?: boolean, onClose?: () => Action): {
     btnLabel: string;
+    isLoading: boolean;
     handleLogout: (e: React.MouseEvent<HTMLButtonElement>) => void;
   };
 }

@@ -11,6 +11,7 @@
   padding: 2rem;
   background-color: vars.$clr-secondary-blue;
   color: inherit;
+  border: 2px solid vars.$clr-tertiary-blue;
   border-radius: 0.5rem;
   visibility: hidden;
   opacity: 0;
@@ -240,16 +241,19 @@
       border: 0;
       outline: 0;
       text-transform: initial;
-      text-overflow: ellipsis;
       text-rendering: optimizeLegibility;
-      white-space: nowrap;
       font-family: inherit;
       font-weight: inherit;
       font-size: inherit;
       background-color: transparent;
       color: vars.$clr-pink-dark-1;
-      overflow: hidden;
       cursor: pointer;
+
+      &.trunc {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
 
       &:disabled {
         opacity: 0.75;

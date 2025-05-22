@@ -31,6 +31,7 @@ export const useLogout: ILogout = (isOpen, onClose) => {
 
   return {
     btnLabel,
+    isLoading,
     handleLogout,
   };
 };

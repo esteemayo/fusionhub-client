@@ -82,6 +82,10 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   });
 
   const handleFeature = () => {
+    if (!currentUser) {
+      return navigate('/login');
+    }
+
     featureMutation.mutate();
   };
 
@@ -94,10 +98,18 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
       dispatch(onClose());
     }
 
+    if (!currentUser) {
+      return navigate('/login');
+    }
+
     dispatch(onOpen());
   };
 
   const handleDelete = () => {
+    if (!currentUser) {
+      return navigate('/login');
+    }
+
     deleteMutation.mutate();
   };
 
