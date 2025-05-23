@@ -1,19 +1,19 @@
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
-import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
+import HeroSkeleton from '../../components/heroSkeleton/HeroSkeleton';
 import Hero from '../../components/hero/Hero';
+import RelatedPosts from '../../components/relatedPosts/RelatedPosts';
+import ErrorState from '../../components/errorState/ErrorState';
 import ToggleButton from '../../components/toggleButton/ToggleButton';
 import PostContent from '../../components/postContent/PostContent';
 import PostMenuActions from '../../components/postMenuActions/PostMenuActions';
-import HeroSkeleton from '../../components/heroSkeleton/HeroSkeleton';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { getPost } from '../../services/postService';
 import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import './PostDetails.scss';
-import ErrorState from '../../components/errorState/ErrorState';
 
 const fetchPost = async (slug: string) => {
   const { data } = await getPost(slug);
@@ -38,7 +38,7 @@ const PostDetails = () => {
     dispatch(onToggle());
   };
 
-  if (!data) {
+  if (!data && !isPending) {
     return (
       <div className='post-details'>
         <div className='post-details__container'>
@@ -73,7 +73,7 @@ const PostDetails = () => {
       {isPending ? (
         <HeroSkeleton />
       ) : (
-        <Hero title={data.title} img={data.img} slug={data.slug} />
+        <Hero title={data?.title} img={data?.img} slug={data?.slug} />
       )}
       <div className='post-details__container'>
         <PostContent isLoading={isPending} post={data} />
@@ -83,7 +83,7 @@ const PostDetails = () => {
         </div>
       </div>
       <div className='post-details__wrapper'>
-        <RelatedPosts postId={data._id} tags={data.tags} />
+        <RelatedPosts postId={data?._id} tags={data?.tags} />
       </div>
     </div>
   );

@@ -57,7 +57,7 @@ const UpdatePassword = () => {
     };
   }, [dispatch, isError, isSuccess, message, reset, user]);
 
-  const [input, ...inputs] = passwordInputs;
+  const [input, ...inputs] = passwordInputs ? passwordInputs : [];
 
   return (
     <section className='update-password'>

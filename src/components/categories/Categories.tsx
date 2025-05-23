@@ -20,25 +20,16 @@ const Categories = () => {
     queryFn: () => fetchCountByCategory(),
   });
 
-  if (data?.length < 1) {
-    return (
-      <section className='categories'>
-        <div className='categories__container'>
-          <h2 className='categories__container--heading'>Categories</h2>
-          <ErrorState
-            title='No categories found'
-            subtitle='It seems there are no categories available at the moment. Please check back later or try refreshing the page.'
-          />
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className='categories'>
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
-        {isPending ? (
+        {data?.length < 1 ? (
+          <ErrorState
+            title='No categories found'
+            subtitle='It seems there are no categories available at the moment. Please check back later or try refreshing the page.'
+          />
+        ) : isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <CategorySkeleton key={index} />;
           })
@@ -48,9 +39,11 @@ const Categories = () => {
             subtitle='An error occurred while fetching the categories. Please try again later or contact support if the issue persists.'
           />
         ) : (
-          data?.map((item: CategoryItemType) => {
-            return <CategoryItem key={item.category} {...item} />;
-          })
+          data
+            ?.filter((item: CategoryItemType) => item.count !== 0)
+            .map((item: CategoryItemType) => {
+              return <CategoryItem key={item.category} {...item} />;
+            })
         )}
       </div>
     </section>

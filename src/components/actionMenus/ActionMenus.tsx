@@ -33,7 +33,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
   const postId = useMemo(() => {
-    return post._id;
+    return post?._id;
   }, [post]);
 
   const { isPending, isSaved, error, saveMutation, handleSave } =
@@ -42,7 +42,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const featureMutation = useMutation({
     mutationFn: () => createFeaturePost(postId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['post', post.slug] });
+      queryClient.invalidateQueries({ queryKey: ['post', post?.slug] });
     },
     onError: (error: unknown) => {
       if (
@@ -122,11 +122,11 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   }, [currentUser]);
 
   const authorId = useMemo(() => {
-    return post.author._id;
+    return post?.author._id;
   }, [post]);
 
   const isFeatured = useMemo(() => {
-    return !!post.isFeatured;
+    return !!post?.isFeatured;
   }, [post]);
 
   return (

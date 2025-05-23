@@ -516,6 +516,12 @@ export interface PostDetailActionProps {
   post: PostType;
 }
 
+export interface PostInfoProps {
+  name: string;
+  username: string;
+  createdAt: string;
+}
+
 export interface FavoriteButtonProps {
   likeCount: number;
   dislikeCount: number;
@@ -539,6 +545,20 @@ export interface DislikeButtonProps {
   hasDisliked: boolean;
   isLoading: boolean;
   onAction(): void;
+}
+
+export interface ShareProps {
+  isSaved: boolean;
+  currentUser: CurrentUserType;
+  saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
+  onClick(): void;
+}
+
+export interface SavePostProps {
+  hasSaved: boolean;
+  isLoading: boolean;
+  currentUser: CurrentUserType;
+  onSave(): void;
 }
 
 export interface PostDescProps {
