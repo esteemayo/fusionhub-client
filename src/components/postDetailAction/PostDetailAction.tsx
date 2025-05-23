@@ -3,10 +3,9 @@ import millify from 'millify';
 import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
 
-import LikeIcon from '../LikeIcon';
-import DislikeIcon from '../DislikeIcon';
+import FavoriteButton from '../favoriteButton/FavoriteButton';
 
-import { useFavourite } from '../../hooks/useFavourite';
+import { useFavorite } from '../../hooks/useFavorite';
 import { useAppSelector } from '../../hooks/hooks';
 import { useSavedPosts } from '../../hooks/useSavedPosts';
 
@@ -29,7 +28,7 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
     disLikeMutation,
     handleLike,
     handleDislike,
-  } = useFavourite(post, currentUser!);
+  } = useFavorite(post, currentUser!);
 
   return (
     <div className='post-detail-action'>
@@ -98,24 +97,16 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
         </div>
         <div className='post-detail-action__actions'>
           <div className='post-detail-action__actions--likes'>
-            <div className='post-detail-action__actions--buttons'>
-              <button
-                type='button'
-                onClick={handleLike}
-                disabled={likeMutation.isPending || isLiked}
-              >
-                <LikeIcon isLiked={isLiked} />
-                <span>{post?.likeCount}</span>
-              </button>
-              <button
-                type='button'
-                onClick={handleDislike}
-                disabled={disLikeMutation.isPending || isDisliked}
-              >
-                <DislikeIcon isDisliked={isDisliked} />
-                <span>{post?.dislikeCount}</span>
-              </button>
-            </div>
+            <FavoriteButton
+              likeCount={post?.likeCount}
+              dislikeCount={post?.dislikeCount}
+              isLiked={isLiked}
+              isDisliked={isDisliked}
+              likeMutation={likeMutation}
+              disLikeMutation={disLikeMutation}
+              onLike={handleLike}
+              onDislike={handleDislike}
+            />
             <a
               href='#comments'
               className='post-detail-action__actions--comment-link'

@@ -15,7 +15,7 @@ const createDislikePost = async (postId: string) => {
   return data;
 };
 
-export const useFavourite: IFavourite = (post, currentUser) => {
+export const useFavorite: IFavourite = (post, currentUser) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 

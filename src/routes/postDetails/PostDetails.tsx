@@ -13,6 +13,7 @@ import { getPost } from '../../services/postService';
 import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import './PostDetails.scss';
+import ErrorState from '../../components/errorState/ErrorState';
 
 const fetchPost = async (slug: string) => {
   const { data } = await getPost(slug);
@@ -41,7 +42,13 @@ const PostDetails = () => {
     return (
       <div className='post-details'>
         <div className='post-details__container'>
-          <h2>Post not found!</h2>
+          <ErrorState
+            title='Post not found'
+            subtitle='The post you are looking for does not exist or may have been removed.'
+            imgSrc='/empty.svg'
+            alt='not-found'
+            center
+          />
         </div>
       </div>
     );
@@ -51,8 +58,11 @@ const PostDetails = () => {
     return (
       <div className='post-details'>
         <div className='post-details__container'>
-          <h2>Something went wrong!</h2>
-          <span>{error.message}</span>
+          <ErrorState
+            title='Something went wrong!'
+            subtitle={error.message}
+            imgSrc='/book-writer.svg'
+          />
         </div>
       </div>
     );

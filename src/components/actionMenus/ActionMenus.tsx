@@ -42,7 +42,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const featureMutation = useMutation({
     mutationFn: () => createFeaturePost(postId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['featuredPosts'] });
+      queryClient.invalidateQueries({ queryKey: ['post', post.slug] });
     },
     onError: (error: unknown) => {
       if (

@@ -516,6 +516,31 @@ export interface PostDetailActionProps {
   post: PostType;
 }
 
+export interface FavoriteButtonProps {
+  likeCount: number;
+  dislikeCount: number;
+  isLiked: boolean;
+  isDisliked: boolean;
+  likeMutation: UseMutationResult<unknown, unknown, void, unknown>;
+  disLikeMutation: UseMutationResult<unknown, unknown, void, unknown>;
+  onLike(): void;
+  onDislike(): void;
+}
+
+export interface LikeButtonProps {
+  count: number;
+  hasLiked: boolean;
+  isLoading: boolean;
+  onAction(): void;
+}
+
+export interface DislikeButtonProps {
+  count: number;
+  hasDisliked: boolean;
+  isLoading: boolean;
+  onAction(): void;
+}
+
 export interface PostDescProps {
   post: PostType;
   isLoading: boolean;
