@@ -14,7 +14,7 @@ const fetchTags = async () => {
 };
 
 const Tags = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<TagProps[]>({
     queryKey: ['tags'],
     queryFn: () => fetchTags(),
   });
@@ -23,7 +23,7 @@ const Tags = () => {
     <section className='tags'>
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
-        {data?.length < 1 ? (
+        {(data ?? [])?.length < 1 ? (
           <span>empty tags</span>
         ) : (
           <div className='tags__wrapper'>
@@ -37,7 +37,7 @@ const Tags = () => {
                 <span>{error.message}</span>
               </div>
             ) : (
-              data?.map((tag: TagProps) => {
+              data?.map((tag) => {
                 const { _id: id, count } = tag;
                 return <TagItem key={id} label={id} count={count} />;
               })

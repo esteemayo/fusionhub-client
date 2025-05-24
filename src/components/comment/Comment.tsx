@@ -32,7 +32,7 @@ const Comment = ({
 }: CommentProps) => {
   const { user } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<CommentType[]>({
     queryKey: ['comments', postId],
     queryFn: () => fetchPostComments(postId),
     enabled: !!postId,
@@ -42,51 +42,67 @@ const Comment = ({
     isPending: isPendingUser,
     error: errorUser,
     data: commentUsers,
-  } = useQuery({
+  } = useQuery<CommentImageType[]>({
     queryKey: ['commentUsers', postId],
     queryFn: () => fetchPostComentUsers(postId),
     enabled: !!postId,
   });
 
   const commentHeading = useMemo(() => {
-    return data?.length > 1 ? 'Comments' : 'Comment';
+    return (data ?? [])?.length > 1 ? 'Comments' : 'Comment';
   }, [data]);
 
   return (
     <div className='comment'>
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
-        <figure className='comment__user'>
-          {isPendingUser ? (
-            Array.from(new Array(3)).map((_, index) => {
-              return <CommentUserSkeleton key={index} />;
-            })
-          ) : errorUser ? (
-            <span>Something went wrong! {errorUser?.message}</span>
-          ) : (
-            commentUsers.map((user: CommentImageType) => {
-              const { _id: id, image } = user;
-              return (
-                <Image
-                  key={id}
-                  src={image}
-                  width={50}
-                  height={50}
-                  alt='avatar'
-                  className='comment__user--img'
-                />
-              );
-            })
-          )}
-        </figure>
+        {(commentUsers ?? [])?.length > 0 && (
+          <figure className='comment__user'>
+            {isPendingUser ? (
+              Array.from(new Array(3)).map((_, index) => {
+                return <CommentUserSkeleton key={index} />;
+              })
+            ) : errorUser ? (
+              <div className='comment__user--error'>
+                <span>
+                  An error occurred while loading the comment users. Please try
+                  again later or contact support if the issue persists.
+                </span>
+                <span>{errorUser?.message}</span>
+              </div>
+            ) : (
+              commentUsers.map((user) => {
+                const { _id: id, image } = user;
+                return (
+                  <Image
+                    key={id}
+                    src={image}
+                    width={50}
+                    height={50}
+                    alt='avatar'
+                    className='comment__user--img'
+                  />
+                );
+              })
+            )}
+          </figure>
+        )}
       </div>
-      {isPending ? (
+      {(data ?? [])?.length < 1 ? (
+        <div className='comment__no-comments'>
+          <span>No comments yet.</span>
+          <span>Be the first to share your thoughts!</span>
+        </div>
+      ) : isPending ? (
         Array.from(new Array(3)).map((_, index) => {
           return <CommentSkeleton key={index} />;
         })
       ) : error ? (
-        <div>
-          <p>Something went wrong!</p>
+        <div className='comment__error'>
+          <span>
+            An error occurred while loading the comments. Please try again later
+            or contact support if the issue persists.
+          </span>
           <span>{error.message}</span>
         </div>
       ) : (
@@ -114,7 +130,7 @@ const Comment = ({
               onOpen={onOpen}
             />
           )}
-          {data?.map((comment: CommentType) => {
+          {data?.map((comment) => {
             return (
               <CommentCard
                 key={comment._id}

@@ -15,12 +15,12 @@ const fetchTopPosts = async () => {
 };
 
 const TopPosts = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<PostType[]>({
     queryKey: ['topPosts'],
     queryFn: () => fetchTopPosts(),
   });
 
-  if (data?.length < 1) {
+  if ((data ?? [])?.length < 1) {
     return (
       <section className='top-posts'>
         <div className='top-posts__container'>
@@ -45,7 +45,7 @@ const TopPosts = () => {
         ) : error ? (
           <ErrorState title='' subtitle='' />
         ) : (
-          data?.map((post: PostType, index: number) => {
+          data?.map((post, index: number) => {
             return <TopPost key={post._id} index={index} {...post} />;
           })
         )}

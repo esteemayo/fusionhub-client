@@ -42,6 +42,7 @@
       border: 0;
       outline: 0;
       font-family: inherit;
+      font-weight: 600;
       font-size: 1.4rem;
       width: 100%;
       height: 100%;
@@ -80,35 +81,36 @@
       }
 
       &::placeholder {
-        font-size: 1.2rem;
+        font-weight: 600;
+        font-size: 1.4rem;
         color: vars.$clr-white;
 
         @media screen and (max-width: 56.25em) {
-          font-size: 1.3rem;
+          font-size: 1.5rem;
         }
 
         @media screen and (max-width: 51.25em) {
-          font-size: 1.4rem;
-        }
-
-        @media screen and (max-width: 18.75em) {
-          font-size: 1.35rem;
-        }
-
-        @media screen and (max-width: 17.5em) {
-          font-size: 1.3rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.4rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
           font-size: var(--default-font-size);
         }
 
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.7rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.8rem;
+        }
+
         @media screen and (min-width: 125em) {
-          font-size: 1.85rem;
+          font-size: 2.15rem;
         }
       }
     }

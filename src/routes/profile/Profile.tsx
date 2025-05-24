@@ -61,8 +61,8 @@ const UserProfile = () => {
               onChangeFile={handleFileChange}
               onChangeCover={handleCoverChange}
             />
-            <ProfileDetails {...data} />
-            <AboutProfile about={data?.about} />
+            <ProfileDetails {...data!} />
+            <AboutProfile about={data?.about as string} />
           </>
         )}
       </div>

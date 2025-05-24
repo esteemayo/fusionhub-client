@@ -15,14 +15,14 @@ const fetchRelatedPosts = async (tags: Array<string>) => {
 };
 
 const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<PostType[]>({
     queryKey: ['relatedPosts'],
     queryFn: () => fetchRelatedPosts(tags),
     enabled: !!tags,
   });
 
   const isPost = useMemo(() => {
-    return data?.some((post: PostType) => post._id === postId);
+    return data?.some((post) => post._id === postId);
   }, [data, postId]);
 
   return (
@@ -30,7 +30,7 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
       <div className='related-posts__container'>
         <h5 className='related-posts__container--heading'>Related posts</h5>
         <div className='related-posts__container--wrapper'>
-          {data?.length < 1 || isPost ? (
+          {(data ?? [])?.length < 1 || isPost ? (
             <span>empty related posts</span>
           ) : isPending ? (
             Array.from(Array(3)).map((_, index) => {
@@ -43,9 +43,9 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
             </div>
           ) : (
             data
-              ?.filter((post: PostType) => post._id !== postId)
+              ?.filter((post) => post._id !== postId)
               .slice(0, 4)
-              .map((post: PostType) => {
+              .map((post) => {
                 return <RelatedPost key={post._id} {...post} />;
               })
           )}

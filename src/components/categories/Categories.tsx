@@ -15,7 +15,7 @@ const fetchCountByCategory = async () => {
 };
 
 const Categories = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<CategoryItemType[]>({
     queryKey: ['categories'],
     queryFn: () => fetchCountByCategory(),
   });
@@ -24,7 +24,7 @@ const Categories = () => {
     <section className='categories'>
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
-        {data?.length < 1 ? (
+        {(data ?? [])?.length < 1 ? (
           <ErrorState
             title='No categories found'
             subtitle='It seems there are no categories available at the moment. Please check back later or try refreshing the page.'
@@ -40,8 +40,8 @@ const Categories = () => {
           />
         ) : (
           data
-            ?.filter((item: CategoryItemType) => item.count !== 0)
-            .map((item: CategoryItemType) => {
+            ?.filter((item) => item.count !== 0)
+            .map((item) => {
               return <CategoryItem key={item.category} {...item} />;
             })
         )}

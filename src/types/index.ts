@@ -653,7 +653,7 @@ export type CommentImageType = {
   image: string;
 };
 
-type UserDetailType = {
+export type UserDetailType = {
   _id: string;
   name: string;
   username: string;

@@ -12,8 +12,10 @@ const CommentForm = ({ ref, isLoading, onSubmit }: CommentFormProps) => {
         <textarea
           name='content'
           id='content'
-          placeholder='Type your comments...'
+          placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
           ref={ref}
+          rows={5}
+          className='comment-form__textarea'
         />
         <Button
           type='submit'
