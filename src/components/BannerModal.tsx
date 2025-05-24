@@ -1,6 +1,5 @@
-import { useCallback, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useQuery } from '@tanstack/react-query';
+import { useCallback, useEffect } from 'react';
 
 import Modal from './modal/Modal';
 import DeleteContent from './deleteContent/DeleteContent';
@@ -9,25 +8,16 @@ import { onClose } from '../features/bannerModal/bannerModalSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { removeBanner, resetState } from '../features/auth/authSlice';
 
-import { getCurrentUser } from '../services/userService';
-
-const fetchUser = async () => {
-  const { data } = await getCurrentUser();
-  return data;
-};
+import { useProfile } from '../hooks/useProfile';
 
 const BannerModal = () => {
   const dispatch = useAppDispatch();
 
   const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
+  const { refetch } = useProfile();
   const { isError, isLoading, isSuccess, message } = useAppSelector(
     (state) => ({ ...state.auth })
   );
-
-  const { refetch } = useQuery({
-    queryKey: ['user'],
-    queryFn: () => fetchUser(),
-  });
 
   const handleClose = useCallback(() => {
     dispatch(onClose());

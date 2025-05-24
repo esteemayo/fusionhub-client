@@ -477,6 +477,13 @@ export interface ActionMenusProps {
   post: PostType;
 }
 
+export interface ActionMenuProps {
+  label: string;
+  isLoading?: boolean;
+  onAction(): void;
+  children: React.ReactNode;
+}
+
 export interface PostDetailProps {
   post: PostType;
   isLoading: boolean;

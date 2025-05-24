@@ -23,7 +23,7 @@ const PostMenuActions = ({ isOpen, post }: PostMenuActionsProps) => {
         <Search />
         <ActionMenus post={post} />
         <Categories />
-        <Feeds />
+        <Feeds postId={post?._id} />
         <Tags />
         <Follow />
       </div>

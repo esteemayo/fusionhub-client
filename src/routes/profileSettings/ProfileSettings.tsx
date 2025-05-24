@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 import ProfileData from '../../components/profileData/ProfileData';
 import Spinner from '../../components/Spinner';
@@ -10,22 +9,13 @@ import AccountHeading from '../../components/accountHeading/AccountHeading';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
 
-import { getCurrentUser } from '../../services/userService';
+import { useProfile } from '../../hooks/useProfile';
 
 import './ProfileSettings.scss';
 
-const fetchUser = async () => {
-  const { data } = await getCurrentUser();
-  return data;
-};
-
 const ProfileSettings = () => {
   const dispatch = useAppDispatch();
-
-  const { isPending, error, data } = useQuery({
-    queryKey: ['user'],
-    queryFn: () => fetchUser(),
-  });
+  const { isPending, error, data } = useProfile();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File>();

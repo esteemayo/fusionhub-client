@@ -13,8 +13,8 @@ const fetchTrendingPosts = async () => {
   return data;
 };
 
-const Feeds = () => {
-  const { isPending, error, data } = useQuery({
+const Feeds = ({ postId }: { postId: string }) => {
+  const { isPending, error, data } = useQuery<PostType[]>({
     queryKey: ['trends'],
     queryFn: () => fetchTrendingPosts(),
   });
@@ -23,7 +23,7 @@ const Feeds = () => {
     <section className='feeds'>
       <div className='feeds__container'>
         <h2 className='feeds__container-heading'>Feeds</h2>
-        {data?.length < 1 ? (
+        {(data ?? []).length < 1 ? (
           <span>empty feeds</span>
         ) : isPending ? (
           Array.from(Array(3)).map((_, index) => {
@@ -35,9 +35,11 @@ const Feeds = () => {
             <span>{error.message}</span>
           </div>
         ) : (
-          data.map((feed: PostType) => {
-            return <Feed key={feed._id} {...feed} />;
-          })
+          data
+            .filter((item) => item._id !== postId)
+            .map((feed) => {
+              return <Feed key={feed._id} {...feed} />;
+            })
         )}
       </div>
     </section>

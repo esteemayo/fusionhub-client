@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 import AboutProfile from '../../components/aboutProfile/AboutProfile';
 import Spinner from '../../components/Spinner';
@@ -8,20 +7,12 @@ import Banner from '../../components/banner/Banner';
 import ProfileDetails from '../../components/profileDetails/ProfileDetails';
 import ErrorState from '../../components/errorState/ErrorState';
 
-import { getCurrentUser } from '../../services/userService';
+import { useProfile } from '../../hooks/useProfile';
 
 import './Profile.scss';
 
-const fetchUser = async () => {
-  const { data } = await getCurrentUser();
-  return data;
-};
-
 const UserProfile = () => {
-  const { isPending, error, data } = useQuery({
-    queryKey: ['user'],
-    queryFn: () => fetchUser(),
-  });
+  const { isPending, error, data } = useProfile();
 
   const [file, setFile] = useState<File>();
   const [cover, setCover] = useState<File>();
