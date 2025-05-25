@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import CommentCard from '../commentCard/CommentCard';
@@ -7,24 +6,18 @@ import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
 
 import Image from '../Image';
 
-import * as postAPI from '../../services/postService';
+import { CommentProps } from '../../types';
 import { useAppSelector } from '../../hooks/hooks';
-import { CommentProps, CommentType, CommentImageType } from '../../types';
 
 import './Comment.scss';
 
-const fetchPostComments = async (postId: string) => {
-  const { data } = await postAPI.getPostComments(postId);
-  return data;
-};
-
-const fetchPostComentUsers = async (postId: string) => {
-  const { data } = await postAPI.getPostComentUsers(postId);
-  return data;
-};
-
 const Comment = ({
-  postId,
+  comments,
+  commentUsers,
+  isLoading,
+  isLoadingUser,
+  error,
+  errorUser,
   mutation,
   onAction,
   onUpdate,
@@ -32,25 +25,9 @@ const Comment = ({
 }: CommentProps) => {
   const { user } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { isPending, error, data } = useQuery<CommentType[]>({
-    queryKey: ['comments', postId],
-    queryFn: () => fetchPostComments(postId),
-    enabled: !!postId,
-  });
-
-  const {
-    isPending: isPendingUser,
-    error: errorUser,
-    data: commentUsers,
-  } = useQuery<CommentImageType[]>({
-    queryKey: ['commentUsers', postId],
-    queryFn: () => fetchPostComentUsers(postId),
-    enabled: !!postId,
-  });
-
   const commentHeading = useMemo(() => {
-    return (data ?? [])?.length > 1 ? 'Comments' : 'Comment';
-  }, [data]);
+    return (comments ?? [])?.length > 1 ? 'Comments' : 'Comment';
+  }, [comments]);
 
   return (
     <div className='comment'>
@@ -58,7 +35,7 @@ const Comment = ({
         <h4 className='comment__heading'>{commentHeading}</h4>
         {(commentUsers ?? [])?.length > 0 && (
           <figure className='comment__user'>
-            {isPendingUser ? (
+            {isLoadingUser ? (
               Array.from(new Array(3)).map((_, index) => {
                 return <CommentUserSkeleton key={index} />;
               })
@@ -88,12 +65,12 @@ const Comment = ({
           </figure>
         )}
       </div>
-      {(data ?? [])?.length < 1 ? (
+      {(comments ?? [])?.length < 1 ? (
         <div className='comment__no-comments'>
           <span>No comments yet.</span>
           <span>Be the first to share your thoughts!</span>
         </div>
-      ) : isPending ? (
+      ) : isLoading ? (
         Array.from(new Array(3)).map((_, index) => {
           return <CommentSkeleton key={index} />;
         })
@@ -130,7 +107,7 @@ const Comment = ({
               onOpen={onOpen}
             />
           )}
-          {data?.map((comment) => {
+          {comments?.map((comment) => {
             return (
               <CommentCard
                 key={comment._id}

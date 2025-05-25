@@ -55,10 +55,56 @@
     }
   }
 
-  form {
+  &__subtitle,
+  &__link {
+    font-weight: 600;
+    font-size: 1.35rem;
+    line-height: 1.4;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.45rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.45rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.85rem;
+    }
+  }
+
+  &__subtitle {
+    color: vars.$clr-gray-light-3;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      color: vars.$clr-pink-dark-1;
+    }
+  }
+
+  &__form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    &.show {
+      margin-top: 1rem;
+    }
 
     textarea {
       display: inline-block;

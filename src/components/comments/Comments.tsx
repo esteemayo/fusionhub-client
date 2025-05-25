@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { useRef } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
@@ -8,13 +8,23 @@ import CommentForm from '../commentForm/CommentForm';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/commentModal/commentModalSlice';
 
-import { CommentsProps } from '../../types';
-import { createCommentOnPost } from '../../services/postService';
+import * as postAPI from '../../services/postService';
+import { CommentImageType, CommentsProps, CommentType } from '../../types';
 
 import './Comments.scss';
 
+const fetchPostComments = async (postId: string) => {
+  const { data } = await postAPI.getPostComments(postId);
+  return data;
+};
+
+const fetchPostComentUsers = async (postId: string) => {
+  const { data } = await postAPI.getPostComentUsers(postId);
+  return data;
+};
+
 const createComment = async (comment: string, postId: string) => {
-  const { data } = await createCommentOnPost(comment, postId);
+  const { data } = await postAPI.createCommentOnPost(comment, postId);
   return data;
 };
 
@@ -22,6 +32,22 @@ const Comments = ({ postId }: CommentsProps) => {
   const dispatch = useAppDispatch();
 
   const queryClient = useQueryClient();
+
+  const { isPending, error, data } = useQuery<CommentType[]>({
+    queryKey: ['comments', postId],
+    queryFn: () => fetchPostComments(postId),
+    enabled: !!postId,
+  });
+
+  const {
+    isPending: isPendingUser,
+    error: errorUser,
+    data: commentUsers,
+  } = useQuery<CommentImageType[]>({
+    queryKey: ['commentUsers', postId],
+    queryFn: () => fetchPostComentUsers(postId),
+    enabled: !!postId,
+  });
 
   const mutation = useMutation({
     mutationFn: (comment: string) => createComment(comment, postId),
@@ -84,16 +110,22 @@ const Comments = ({ postId }: CommentsProps) => {
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
-          postId={postId}
+          comments={data!}
+          commentUsers={commentUsers!}
+          isLoading={isPending}
+          isLoadingUser={isPendingUser}
+          error={error}
+          errorUser={errorUser}
           mutation={mutation}
           onAction={handleReply}
           onUpdate={handleUpdate}
           onOpen={handleOpen}
         />
         <CommentForm
-          ref={ref}
+          comments={data!}
           isLoading={mutation.isPending}
           onSubmit={handleSubmit}
+          ref={ref}
         />
       </div>
     </section>

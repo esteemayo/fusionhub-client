@@ -499,7 +499,12 @@ export interface CommentsProps {
 }
 
 export interface CommentProps {
-  postId: string;
+  comments: CommentType[];
+  commentUsers: CommentImageType[];
+  isLoading: boolean;
+  isLoadingUser: boolean;
+  error: Error | null;
+  errorUser: Error | null;
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
   onAction?(): void;
   onUpdate?(): void;
@@ -514,9 +519,10 @@ export interface CommentCardProps {
 }
 
 export interface CommentFormProps {
+  comments: CommentType[];
   isLoading?: boolean;
-  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
 }
 
 export interface PostDetailActionProps {
