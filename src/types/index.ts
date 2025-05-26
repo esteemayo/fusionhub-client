@@ -498,29 +498,54 @@ export interface CommentsProps {
   postId: string;
 }
 
+export interface IComment {
+  (postId: string): {
+    isPending: boolean;
+    isPendingUser: boolean;
+    error: Error | null;
+    errorUser: Error | null;
+    data: CommentType[] | undefined;
+    commentUsers: CommentImageType[] | undefined;
+    mutation: UseMutationResult<unknown, unknown, string, unknown>;
+    updateMutation: UseMutationResult<
+      unknown,
+      unknown,
+      {
+        content: string;
+        commentId: string;
+      },
+      unknown
+    >;
+  };
+}
+
 export interface CommentProps {
-  comments: CommentType[];
-  commentUsers: CommentImageType[];
   isLoading: boolean;
   isLoadingUser: boolean;
   error: Error | null;
   errorUser: Error | null;
+  comments: CommentType[];
+  commentUsers: CommentImageType[];
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
   onAction?(): void;
-  onUpdate?(): void;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onUpdate?(commentId: string): void;
   onOpen(): void;
 }
 
 export interface CommentCardProps {
   comment: CommentType;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
   onReply?(): void;
-  onUpdate?(): void;
+  onUpdate?(commentId: string): void;
   onOpen(): void;
 }
 
 export interface CommentFormProps {
-  comments: CommentType[];
+  value: string;
   isLoading?: boolean;
+  comments: CommentType[];
+  onChange: React.Dispatch<React.SetStateAction<string>>;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
   ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
 }

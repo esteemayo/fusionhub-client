@@ -9,8 +9,10 @@ import { useAppSelector } from '../../hooks/hooks';
 import './CommentForm.scss';
 
 const CommentForm = ({
-  comments,
+  value,
   isLoading,
+  comments,
+  onChange,
   onSubmit,
   ref,
 }: CommentFormProps) => {
@@ -23,7 +25,9 @@ const CommentForm = ({
   }, [comments, currentUser]);
 
   const formClasses = useMemo(() => {
-    return !hasCommented ? 'comment-form__form show' : 'comment-form__form';
+    return !hasCommented
+      ? 'comment-form__form show'
+      : 'comment-form__form hide';
   }, [hasCommented]);
 
   return (
@@ -53,10 +57,12 @@ const CommentForm = ({
             <textarea
               name='content'
               id='content'
+              value={value || ''}
               placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
               ref={ref}
               rows={5}
               className='comment-form__textarea'
+              onChange={(e) => onChange(e.target.value)}
             />
             <Button
               type='submit'

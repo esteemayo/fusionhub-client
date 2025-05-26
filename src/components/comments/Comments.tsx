@@ -1,76 +1,35 @@
-import { toast } from 'react-toastify';
-import { useRef } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRef, useState } from 'react';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
 
 import { useAppDispatch } from '../../hooks/hooks';
+import { useComment } from '../../hooks/useComment';
+
+import { CommentsProps } from '../../types';
 import { onOpen } from '../../features/commentModal/commentModalSlice';
 
-import * as postAPI from '../../services/postService';
-import { CommentImageType, CommentsProps, CommentType } from '../../types';
-
 import './Comments.scss';
-
-const fetchPostComments = async (postId: string) => {
-  const { data } = await postAPI.getPostComments(postId);
-  return data;
-};
-
-const fetchPostComentUsers = async (postId: string) => {
-  const { data } = await postAPI.getPostComentUsers(postId);
-  return data;
-};
-
-const createComment = async (comment: string, postId: string) => {
-  const { data } = await postAPI.createCommentOnPost(comment, postId);
-  return data;
-};
 
 const Comments = ({ postId }: CommentsProps) => {
   const dispatch = useAppDispatch();
 
-  const queryClient = useQueryClient();
-
-  const { isPending, error, data } = useQuery<CommentType[]>({
-    queryKey: ['comments', postId],
-    queryFn: () => fetchPostComments(postId),
-    enabled: !!postId,
-  });
-
   const {
-    isPending: isPendingUser,
-    error: errorUser,
-    data: commentUsers,
-  } = useQuery<CommentImageType[]>({
-    queryKey: ['commentUsers', postId],
-    queryFn: () => fetchPostComentUsers(postId),
-    enabled: !!postId,
-  });
-
-  const mutation = useMutation({
-    mutationFn: (comment: string) => createComment(comment, postId),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-      toast.success('Comment posted!');
-    },
-    onError: (error: unknown) => {
-      if (
-        error instanceof Error &&
-        (error as { response?: { data?: string } })?.response?.data
-      ) {
-        const errorMessage = (
-          error as unknown as { response: { data: string } }
-        ).response.data;
-        toast.error(errorMessage);
-      } else {
-        toast.error('An error occurred');
-      }
-    },
-  });
+    isPending,
+    isPendingUser,
+    error,
+    errorUser,
+    data,
+    commentUsers,
+    mutation,
+    updateMutation,
+  } = useComment(postId);
 
   const ref = useRef<HTMLTextAreaElement>(null);
+
+  const [commentId, setCommentId] = useState('');
+  const [value, setValue] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleReply = () => {
     const current = ref.current;
@@ -78,14 +37,23 @@ const Comments = ({ postId }: CommentsProps) => {
     current?.focus();
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (commentId: string) => {
     const current = ref.current;
 
     current?.focus();
+
+    setIsEditing(true);
+    setCommentId(commentId);
   };
 
   const handleOpen = () => {
     dispatch(onOpen());
+  };
+
+  const handleClear = () => {
+    setCommentId('');
+    setValue('');
+    setIsEditing(false);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -97,10 +65,27 @@ const Comments = ({ postId }: CommentsProps) => {
 
     const content = form.get('content') as string;
 
+    if (isEditing && commentId) {
+      if (value) {
+        updateMutation.mutate(
+          { content, commentId },
+          {
+            onSuccess: () => {
+              target.reset();
+              handleClear();
+            },
+          }
+        );
+
+        return;
+      }
+    }
+
     if (content) {
       mutation.mutate(content, {
         onSuccess: () => {
           target.reset();
+          if (value) setValue('');
         },
       });
     }
@@ -110,20 +95,23 @@ const Comments = ({ postId }: CommentsProps) => {
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
-          comments={data!}
-          commentUsers={commentUsers!}
           isLoading={isPending}
           isLoadingUser={isPendingUser}
           error={error}
           errorUser={errorUser}
+          comments={data!}
+          commentUsers={commentUsers!}
           mutation={mutation}
           onAction={handleReply}
+          onChange={setValue}
           onUpdate={handleUpdate}
           onOpen={handleOpen}
         />
         <CommentForm
-          comments={data!}
+          value={value}
           isLoading={mutation.isPending}
+          comments={data!}
+          onChange={setValue}
           onSubmit={handleSubmit}
           ref={ref}
         />

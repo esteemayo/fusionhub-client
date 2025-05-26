@@ -12,14 +12,15 @@ import { useAppSelector } from '../../hooks/hooks';
 import './Comment.scss';
 
 const Comment = ({
-  comments,
-  commentUsers,
   isLoading,
   isLoadingUser,
   error,
   errorUser,
+  comments,
+  commentUsers,
   mutation,
   onAction,
+  onChange,
   onUpdate,
   onOpen,
 }: CommentProps) => {
@@ -102,6 +103,7 @@ const Comment = ({
                 createdAt: new Date().toString(),
                 updatedAt: new Date().toString(),
               }}
+              onChange={onChange}
               onReply={onAction}
               onUpdate={onUpdate}
               onOpen={onOpen}
@@ -112,6 +114,7 @@ const Comment = ({
               <CommentCard
                 key={comment._id}
                 comment={comment}
+                onChange={onChange}
                 onReply={onAction}
                 onUpdate={onUpdate}
                 onOpen={onOpen}

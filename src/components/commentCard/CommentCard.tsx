@@ -14,6 +14,7 @@ import './CommentCard.scss';
 
 const CommentCard = ({
   comment,
+  onChange,
   onReply,
   onUpdate,
   onOpen,
@@ -41,7 +42,8 @@ const CommentCard = ({
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    onUpdate?.();
+    onUpdate?.(commentId);
+    onChange(content);
     console.log('comment updated!');
   };
 
