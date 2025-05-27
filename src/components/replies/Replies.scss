@@ -1,0 +1,54 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.replies {
+  margin-top: 1.5rem;
+  margin-left: 4rem;
+
+  &__container {
+    &--btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      border: 0;
+      outline: 0;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 1.3rem;
+      padding: 0.35rem 0.7rem;
+      background-color: rgba(vars.$clr-pink-light, 0.5);
+      color: vars.$clr-white;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      margin-bottom: 1rem;
+
+      svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        color: currentColor;
+        stroke-width: 2px;
+      }
+    }
+  }
+
+  &__wrapper {
+    padding-top: 1rem;
+    transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out,
+      min-height 0.5s ease-in-out;
+
+    &.show {
+      min-height: 17rem;
+      display: inline-block;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    &.hide {
+      height: 0;
+      min-height: 0;
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}

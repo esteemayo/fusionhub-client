@@ -189,7 +189,7 @@
     }
   }
 
-  &__dateBox {
+  &__box {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -197,7 +197,6 @@
     color: vars.$clr-gray-light-3;
     margin-bottom: 1rem;
 
-    &--time,
     &--reply {
       font-weight: 700;
       font-size: 1.3rem;
@@ -296,6 +295,58 @@
         font-weight: inherit;
         font-size: inherit;
         color: inherit;
+      }
+    }
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &--time,
+    &--status {
+      font-weight: 700;
+      font-size: 1.3rem;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.3rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.9rem;
+      }
+    }
+
+    &--time {
+      color: inherit;
+    }
+
+    &--status {
+      text-transform: lowercase;
+      padding: 0 0.5rem;
+      background-color: rgba(vars.$clr-success, 0.2);
+      color: vars.$clr-white;
+      border-radius: 0.25rem;
+
+      @media screen and (min-width: 112.5em) {
+        padding: 0.125rem 0.75rem;
       }
     }
   }

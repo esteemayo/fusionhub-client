@@ -541,6 +541,16 @@ export interface CommentCardProps {
   onOpen(): void;
 }
 
+export interface RepliesProps {
+  replies: ReplyType[];
+}
+
+export interface ReplyProps {
+  content: string;
+  author: AuthorType;
+  createdAt: string;
+}
+
 export interface CommentFormProps {
   value: string;
   isLoading?: boolean;
@@ -672,6 +682,17 @@ type AuthorType = {
 export type CommentType = {
   _id: string;
   content: string;
+  post: string;
+  author: AuthorType;
+  replies: ReplyType[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ReplyType = {
+  _id: string;
+  content: string;
+  comment: string;
   post: string;
   author: AuthorType;
   createdAt: string;

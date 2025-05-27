@@ -41,7 +41,7 @@ const CommentForm = ({
           </Link>{' '}
           to post a comment.
         </span>
-      ) : !currentUser.details.isActive ? (
+      ) : currentUser.details.isActive === false ? (
         <span className='comment-form__subtitle'>
           You are blocked from commenting.
         </span>

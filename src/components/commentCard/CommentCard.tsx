@@ -3,6 +3,7 @@ import { format } from 'timeago.js';
 import { useMemo, useState } from 'react';
 
 import Image from '../Image';
+import Replies from '../replies/Replies';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { setCommentId } from '../../features/commentModal/commentModalSlice';
@@ -24,7 +25,14 @@ const CommentCard = ({
 
   const [readMore, setReadMore] = useState(false);
 
-  const { _id: commentId, author, content, createdAt } = comment;
+  const {
+    _id: commentId,
+    author,
+    content,
+    replies,
+    createdAt,
+    updatedAt,
+  } = comment;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);
@@ -44,7 +52,6 @@ const CommentCard = ({
 
     onUpdate?.(commentId);
     onChange(content);
-    console.log('comment updated!');
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -53,6 +60,10 @@ const CommentCard = ({
     onOpen();
     dispatch(setCommentId(commentId));
   };
+
+  const isUpdated = useMemo(() => {
+    return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
+  }, [createdAt, updatedAt]);
 
   const contentLabel = useMemo(() => {
     return readMore && content?.length > 200 ? content : excerpts(content, 200);
@@ -93,13 +104,18 @@ const CommentCard = ({
           />
         </div>
         <div className='comment-card__details'>
-          <div className='comment-card__dateBox'>
-            <time dateTime={createdAt} className='comment-card__dateBox--time'>
-              {format(createdAt)}
-            </time>
+          <div className='comment-card__box'>
+            <div className='comment-card__date'>
+              <time dateTime={createdAt} className='comment-card__date--time'>
+                {format(createdAt)}
+              </time>
+              {isUpdated && authorId !== (userId as string) && (
+                <span className='comment-card__date--status'>updated</span>
+              )}
+            </div>
             <button
               type='button'
-              className='comment-card__dateBox--reply'
+              className='comment-card__box--reply'
               onClick={onReply}
             >
               <svg
@@ -174,6 +190,7 @@ const CommentCard = ({
           </button>
         )}
       </div>
+      {replies.length > 0 && <Replies replies={replies} />}
     </article>
   );
 };
