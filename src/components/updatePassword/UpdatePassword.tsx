@@ -85,6 +85,7 @@ const UpdatePassword = () => {
                       register as unknown as UseFormRegister<FieldValues>
                     }
                     errors={errors}
+                    disabled={isLoading}
                     autoFocus={name === 'passwordCurrent'}
                     validate
                   />
@@ -99,6 +100,7 @@ const UpdatePassword = () => {
                 placeholder={input.placeholder}
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
+                disabled={isLoading}
                 validate
               />
             </div>

@@ -95,6 +95,7 @@ const Login = () => {
                   placeholder={placeholder}
                   register={register as unknown as UseFormRegister<FieldValues>}
                   errors={errors}
+                  disabled={isLoading}
                   autoFocus={name === 'identifier'}
                   validate
                 />
@@ -105,8 +106,8 @@ const Login = () => {
             </div>
             <FormButton
               label='Login'
-              loading={!!isLoading}
-              disabled={!!isLoading}
+              loading={isLoading}
+              disabled={isLoading}
             />
           </form>
           <AuthLink

@@ -127,6 +127,7 @@ const ProfileData = ({
             placeholder='Enter your full name'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={isLoading}
             autoFocus
             validate
           />
@@ -136,6 +137,7 @@ const ProfileData = ({
             placeholder='Enter your username'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={isLoading}
             validate
           />
         </div>
@@ -147,6 +149,7 @@ const ProfileData = ({
             placeholder='Enter your email address'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={isLoading}
             validate
           />
           <PhoneNumber
@@ -180,6 +183,7 @@ const ProfileData = ({
             placeholder='Tell us a little about yourself'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={isLoading}
             validate
           />
           <TextQuill

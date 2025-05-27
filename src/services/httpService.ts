@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import logger from './logService';
 
-const devEnv = import.meta.env.NODE_ENV !== 'production';
+const devEnv = import.meta.env.MODE !== 'production';
 const { VITE_DEV_URL_ENDPOINT, VITE_PROD_URL_ENDPOINT } = import.meta.env;
 
 const authFetch = axios.create({

@@ -5,6 +5,14 @@
   margin-top: 1.5rem;
   margin-left: 4rem;
 
+  @media screen and (max-width: 26.875em) {
+    margin-left: 2rem;
+  }
+
+  @media screen and (max-width: 20em) {
+    margin-left: 1.25rem;
+  }
+
   &__container {
     &--btn {
       display: flex;
@@ -16,18 +24,66 @@
       font-family: inherit;
       font-weight: 600;
       font-size: 1.3rem;
-      padding: 0.35rem 0.7rem;
-      background-color: rgba(vars.$clr-pink-light, 0.5);
+      background-color: transparent;
       color: vars.$clr-white;
       border-radius: 0.5rem;
       cursor: pointer;
       margin-bottom: 1rem;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.3rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2rem;
+      }
 
       svg {
         width: 1.75rem;
         height: 1.75rem;
         color: currentColor;
         stroke-width: 2px;
+
+        @media screen and (max-width: 56.25em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 2rem;
+          height: 2rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3rem;
+          height: 3rem;
+        }
       }
     }
   }

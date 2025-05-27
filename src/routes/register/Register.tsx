@@ -125,6 +125,7 @@ const Register = () => {
                     }
                     placeholder={placeholder}
                     errors={errors}
+                    disabled={isLoading}
                     autoFocus={name === 'name'}
                     validate
                   />
@@ -157,6 +158,7 @@ const Register = () => {
                 placeholder='Tell us a little about yourself'
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
+                disabled={isLoading}
                 validate
               />
               <TextQuill
@@ -170,8 +172,8 @@ const Register = () => {
             </div>
             <FormButton
               label='Register'
-              loading={!!isLoading}
-              disabled={!!isLoading}
+              loading={isLoading}
+              disabled={isLoading}
             />
           </form>
           <AuthLink

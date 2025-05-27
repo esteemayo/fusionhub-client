@@ -3,11 +3,20 @@
 
 .reply {
   display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
+  flex-direction: column;
 
   &:not(:last-child) {
     margin-bottom: 2rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+
+    @media screen and (max-width: 26.875em) {
+      gap: 1rem;
+    }
   }
 
   &__author {
@@ -17,20 +26,87 @@
       display: inline-block;
       object-fit: cover;
       border-radius: 50%;
+
+      @media screen and (max-width: 56.25em) {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @include bp.md {
+        width: 4.125rem;
+        height: 4.125rem;
+      }
+
+      @media screen and (max-width: 31.25em) {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      @include bp.sm {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 3.25rem;
+        height: 3.25rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      @media screen and (max-width: 20em) {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 6.5rem;
+        height: 6.5rem;
+      }
     }
   }
 
   &__content {
+    width: 100%;
+    line-height: 1.3;
+
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-
-    line-height: 1.3;
 
     &--time {
       text-rendering: optimizeLegibility;
       font-weight: 600;
       font-size: 1.25rem;
+      color: vars.$clr-gray-light-3;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.35rem;
@@ -57,7 +133,7 @@
       }
     }
 
-    &--name,
+    &--username,
     &--text {
       font-size: 1.35rem;
 
@@ -86,7 +162,7 @@
       }
     }
 
-    &--name {
+    &--username {
       font-weight: 700;
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
@@ -154,6 +230,91 @@
         opacity: 0.75;
         cursor: default;
       }
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.8rem;
+
+    padding-top: 1rem;
+    position: relative;
+
+    &.show {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    &--update,
+    &--remove {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+
+      svg {
+        width: 1.4rem;
+        height: 1.4rem;
+        stroke-width: 2px;
+
+        @media screen and (max-width: 56.25em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 1.8rem;
+          height: 1.8rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 1.4rem;
+          height: 1.4rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.8rem;
+          height: 1.8rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+      }
+    }
+
+    &--update {
+      color: vars.$clr-success;
+    }
+
+    &--remove {
+      color: vars.$clr-danger;
     }
   }
 }
