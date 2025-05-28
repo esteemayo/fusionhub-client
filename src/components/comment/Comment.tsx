@@ -19,7 +19,6 @@ const Comment = ({
   comments,
   commentUsers,
   mutation,
-  onAction,
   onChange,
   onUpdate,
   onOpen,
@@ -104,7 +103,6 @@ const Comment = ({
                 updatedAt: new Date().toString(),
               }}
               onChange={onChange}
-              onReply={onAction}
               onUpdate={onUpdate}
               onOpen={onOpen}
             />
@@ -115,7 +113,6 @@ const Comment = ({
                 key={comment._id}
                 comment={comment}
                 onChange={onChange}
-                onReply={onAction}
                 onUpdate={onUpdate}
                 onOpen={onOpen}
               />

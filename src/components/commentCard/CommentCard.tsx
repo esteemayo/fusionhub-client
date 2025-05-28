@@ -16,13 +16,13 @@ import './CommentCard.scss';
 const CommentCard = ({
   comment,
   onChange,
-  onReply,
   onUpdate,
   onOpen,
 }: CommentCardProps) => {
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
+  const [isOpen, setIsOpen] = useState(false);
   const [readMore, setReadMore] = useState(false);
 
   const {
@@ -38,6 +38,13 @@ const CommentCard = ({
     navigator.clipboard.writeText(content);
     toast.success('Copied');
     return;
+  };
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsOpen((value) => {
+      return !value;
+    });
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,6 +66,10 @@ const CommentCard = ({
 
     onOpen();
     dispatch(setCommentId(commentId));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   const isUpdated = useMemo(() => {
@@ -97,6 +108,10 @@ const CommentCard = ({
       : 'comment-card__btn hide';
   }, [authorId, isAdmin, userId]);
 
+  const replyFormClasses = useMemo(() => {
+    return isOpen ? 'comment-card__reply show' : 'comment-card__reply hide';
+  }, [isOpen]);
+
   return (
     <article className='comment-card'>
       <div className='comment-card__container'>
@@ -122,7 +137,7 @@ const CommentCard = ({
             <button
               type='button'
               className='comment-card__box--reply'
-              onClick={onReply}
+              onClick={handleToggle}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -192,7 +207,27 @@ const CommentCard = ({
           </svg>
         </button>
       </div>
-      {replies.length > 0 && <Replies replies={replies} />}
+      {(replies ?? [])?.length > 0 && <Replies replies={replies} />}
+
+      <form className={replyFormClasses} onSubmit={handleSubmit}>
+        <textarea
+          placeholder='Write your reply here...'
+          className='comment-card__reply--textarea'
+          rows={3}
+        />
+        <div className='comment-card__reply--actions'>
+          <button type='submit' className='comment-card__reply--submit'>
+            Submit Reply
+          </button>
+          <button
+            type='button'
+            className='comment-card__reply--cancel'
+            onClick={() => setIsOpen(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </article>
   );
 };

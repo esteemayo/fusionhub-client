@@ -31,12 +31,6 @@ const Comments = ({ postId }: CommentsProps) => {
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleReply = () => {
-    const current = ref.current;
-
-    current?.focus();
-  };
-
   const handleUpdate = (commentId: string) => {
     const current = ref.current;
 
@@ -102,7 +96,6 @@ const Comments = ({ postId }: CommentsProps) => {
           comments={data!}
           commentUsers={commentUsers!}
           mutation={mutation}
-          onAction={handleReply}
           onChange={setValue}
           onUpdate={handleUpdate}
           onOpen={handleOpen}

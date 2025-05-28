@@ -30,8 +30,8 @@ export const getDislikedPosts = () => http.get(postURI('disliked-posts'));
 export const getPostComments = (postId: string) =>
   http.get(`${postUrl(postId)}/comments`);
 
-export const createCommentOnPost = (content: string, postId: string) =>
-  http.post(`${postUrl(postId)}/comments`, { content });
+export const getPostCommentReplies = (postId: string, commentId: string) =>
+  http.get(`${apiEndpoint}/${postId}/comments/${commentId}/replies`);
 
 export const getPostComentUsers = (postId: string) =>
   http.get(`${apiEndpoint}/comments/${postId}/users`);
@@ -45,6 +45,18 @@ export const getPost = (slug: string) =>
 
 export const createPost = <T extends object>(post: T) =>
   http.post(apiEndpoint, post);
+
+export const createCommentOnPost = (content: string, postId: string) =>
+  http.post(`${postUrl(postId)}/comments`, { content });
+
+export const createReplyOnComment = (
+  content: string,
+  postId: string,
+  commentId: string
+) =>
+  http.post(`${apiEndpoint}/${postId}/comments/${commentId}/replies`, {
+    content,
+  });
 
 export const updatePost = <T extends object, U extends string>(
   post: T,

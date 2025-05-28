@@ -28,7 +28,7 @@ const Replies = ({ replies }: RepliesProps) => {
           className='replies__container--btn'
           onClick={handleToggle}
         >
-          Replies ({replies.length})
+          Replies ({replies?.length})
           {isShow ? (
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -62,7 +62,7 @@ const Replies = ({ replies }: RepliesProps) => {
           )}
         </button>
         <div className={wrapperClasses}>
-          {replies.map((reply) => {
+          {replies?.map((reply) => {
             return <Reply key={reply._id} {...reply} />;
           })}
         </div>

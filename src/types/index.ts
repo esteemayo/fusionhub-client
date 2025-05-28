@@ -527,7 +527,6 @@ export interface CommentProps {
   comments: CommentType[];
   commentUsers: CommentImageType[];
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
-  onAction?(): void;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onUpdate?(commentId: string): void;
   onOpen(): void;
@@ -536,13 +535,12 @@ export interface CommentProps {
 export interface CommentCardProps {
   comment: CommentType;
   onChange: React.Dispatch<React.SetStateAction<string>>;
-  onReply?(): void;
   onUpdate?(commentId: string): void;
   onOpen(): void;
 }
 
 export interface RepliesProps {
-  replies: ReplyType[];
+  replies?: ReplyType[];
 }
 
 export interface ReplyProps {
@@ -684,7 +682,7 @@ export type CommentType = {
   content: string;
   post: string;
   author: AuthorType;
-  replies: ReplyType[];
+  replies?: ReplyType[];
   createdAt: string;
   updatedAt: string;
 };
