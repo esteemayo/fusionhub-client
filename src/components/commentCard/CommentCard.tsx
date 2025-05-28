@@ -6,6 +6,7 @@ import Image from '../Image';
 import Replies from '../replies/Replies';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useReply } from '../../hooks/useReply';
 import { setCommentId } from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
@@ -19,20 +20,23 @@ const CommentCard = ({
   onUpdate,
   onOpen,
 }: CommentCardProps) => {
-  const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [readMore, setReadMore] = useState(false);
-
   const {
     _id: commentId,
     author,
     content,
-    replies,
+    post: postId,
     createdAt,
     updatedAt,
   } = comment;
+
+  const dispatch = useAppDispatch();
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const { data } = useReply(postId, commentId);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const [readMore, setReadMore] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);
@@ -45,6 +49,13 @@ const CommentCard = ({
     setIsOpen((value) => {
       return !value;
     });
+  };
+
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsOpen(false);
+    if (value.trim() !== '') setValue('');
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -207,13 +218,15 @@ const CommentCard = ({
           </svg>
         </button>
       </div>
-      {(replies ?? [])?.length > 0 && <Replies replies={replies} />}
+      {(data ?? [])?.length > 0 && <Replies replies={data} />}
 
       <form className={replyFormClasses} onSubmit={handleSubmit}>
         <textarea
+          value={value}
           placeholder='Write your reply here...'
           className='comment-card__reply--textarea'
           rows={3}
+          onChange={(e) => setValue(e.target.value)}
         />
         <div className='comment-card__reply--actions'>
           <button type='submit' className='comment-card__reply--submit'>
@@ -222,7 +235,7 @@ const CommentCard = ({
           <button
             type='button'
             className='comment-card__reply--cancel'
-            onClick={() => setIsOpen(false)}
+            onClick={handleCancel}
           >
             Cancel
           </button>

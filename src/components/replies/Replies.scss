@@ -89,6 +89,7 @@
   }
 
   &__wrapper {
+    width: 100%;
     padding-top: 1rem;
     transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out,
       min-height 0.5s ease-in-out;

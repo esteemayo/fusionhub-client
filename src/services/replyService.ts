@@ -11,9 +11,7 @@ export const getReply = (replyId: string) => http.get(replyUrl(replyId));
 export const createReply = <T extends object>(reply: T) =>
   http.post(apiEndpoint, reply);
 
-export const updateReply = <T extends object, U extends string>(
-  reply: T,
-  replyId: U
-) => http.patch(replyUrl(replyId), reply);
+export const updateReply = (content: string, replyId: string) =>
+  http.patch(replyUrl(replyId), { content });
 
 export const deleteReply = (replyId: string) => http.delete(replyUrl(replyId));

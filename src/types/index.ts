@@ -1,10 +1,10 @@
 import React, { HTMLInputTypeAttribute } from 'react';
 import { Action } from 'redux';
-import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
-import { IconType } from 'react-icons/lib';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
-import { Value } from 'react-phone-number-input';
 import { UseMutationResult } from '@tanstack/react-query';
+import { IconType } from 'react-icons/lib';
+import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import { Value } from 'react-phone-number-input';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -516,6 +516,25 @@ export interface IComment {
       },
       unknown
     >;
+  };
+}
+
+export interface IReply {
+  (postId: string, commentId: string): {
+    isPending: boolean;
+    error: Error | null;
+    data: ReplyType[] | [];
+    saveReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    updateReplyMutation: UseMutationResult<
+      unknown,
+      unknown,
+      {
+        content: string;
+        replyId: string;
+      },
+      unknown
+    >;
+    deleteReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
   };
 }
 
