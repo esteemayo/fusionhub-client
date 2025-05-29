@@ -46,7 +46,7 @@ export const useReply: IReply = (postId, commentId) => {
     mutationFn: (content: string) => createReply(content, postId, commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
-      toast.success('Reply posted!');
+      toast.success('Your reply has been successfully posted!');
     },
     onError: (error: unknown) => {
       if (
@@ -68,7 +68,7 @@ export const useReply: IReply = (postId, commentId) => {
       editReply(content, replyId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
-      toast.success('Reply updated!');
+      toast.success('Your reply has been successfully updated!');
     },
     onError: (error: unknown) => {
       if (
@@ -88,7 +88,8 @@ export const useReply: IReply = (postId, commentId) => {
   const deleteReplyMutation = useMutation({
     mutationFn: (replyId: string) => removeReply(replyId),
     onSuccess: () => {
-      toast.success('Reply removed!');
+      queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
+      toast.success('Reply successfully deleted!');
     },
     onError: (error: unknown) => {
       if (

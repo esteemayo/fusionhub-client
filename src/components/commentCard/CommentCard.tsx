@@ -8,7 +8,10 @@ import ReplyForm from '../replyForm/ReplyForm';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useReply } from '../../hooks/useReply';
-import { setCommentId } from '../../features/commentModal/commentModalSlice';
+import {
+  setCommentId,
+  setPostId,
+} from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
 import { CommentCardProps } from '../../types';
@@ -33,8 +36,10 @@ const CommentCard = ({
   const dispatch = useAppDispatch();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
-  const { data, replyMutation, updateReplyMutation, deleteReplyMutation } =
-    useReply(postId, commentId);
+  const { data, replyMutation, updateReplyMutation } = useReply(
+    postId,
+    commentId
+  );
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -95,6 +100,7 @@ const CommentCard = ({
 
     onOpen();
     dispatch(setCommentId(commentId));
+    dispatch(setPostId(postId));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -256,11 +262,7 @@ const CommentCard = ({
           </svg>
         </button>
       </div>
-      <Replies
-        replies={data}
-        deleteMutation={deleteReplyMutation}
-        onUpdate={handleUpdateReply}
-      />
+      <Replies replies={data} onUpdate={handleUpdateReply} />
       <ReplyForm
         content={value}
         isOpen={isOpen}

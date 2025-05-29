@@ -3,20 +3,27 @@ import { useMemo, useState } from 'react';
 
 import Image from '../Image';
 
-import { ReplyProps } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import {
+  onOpen,
+  setPostId,
+  setReplyId,
+} from '../../features/commentModal/commentModalSlice';
+
 import { excerpts } from '../../utils';
-import { useAppSelector } from '../../hooks/hooks';
+import { ReplyProps } from '../../types';
 
 import './Reply.scss';
 
 const Reply = ({
   _id: replyId,
   author,
+  post: postId,
   content,
   createdAt,
-  deleteMutation,
   onUpdate,
 }: ReplyProps) => {
+  const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const [readMore, setReadMore] = useState(false);
@@ -35,7 +42,10 @@ const Reply = ({
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    deleteMutation.mutate(replyId);
+
+    dispatch(onOpen());
+    dispatch(setPostId(postId));
+    dispatch(setReplyId(replyId));
   };
 
   const contentLabel = useMemo(() => {

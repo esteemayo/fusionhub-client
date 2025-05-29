@@ -6,7 +6,7 @@ import { RepliesProps } from '../../types';
 
 import './Replies.scss';
 
-const Replies = ({ replies, deleteMutation, onUpdate }: RepliesProps) => {
+const Replies = ({ replies, onUpdate }: RepliesProps) => {
   const [isShow, setIsShow] = useState(false);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,14 +67,7 @@ const Replies = ({ replies, deleteMutation, onUpdate }: RepliesProps) => {
         </button>
         <div className={wrapperClasses}>
           {replies?.map((reply) => {
-            return (
-              <Reply
-                key={reply._id}
-                {...reply}
-                deleteMutation={deleteMutation}
-                onUpdate={onUpdate}
-              />
-            );
+            return <Reply key={reply._id} {...reply} onUpdate={onUpdate} />;
           })}
         </div>
       </div>

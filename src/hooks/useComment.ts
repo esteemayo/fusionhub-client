@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import * as postAPI from '../services/postService';
-import { updateComment } from '../services/commentService';
+import { deleteComment, updateComment } from '../services/commentService';
 
 import { CommentImageType, CommentType, IComment } from '../types';
 
@@ -23,6 +23,11 @@ const createComment = async (comment: string, postId: string) => {
 
 const editComment = async (content: string, commentId: string) => {
   const { data } = await updateComment(content, commentId);
+  return data;
+};
+
+const removeComment = async (commentId: string) => {
+  const { data } = await deleteComment(commentId);
   return data;
 };
 
@@ -49,7 +54,7 @@ export const useComment: IComment = (postId) => {
     mutationFn: (comment: string) => createComment(comment, postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-      toast.success('Comment posted!');
+      toast.success('Your comment has been successfully posted!');
     },
     onError: (error: unknown) => {
       if (
@@ -76,7 +81,28 @@ export const useComment: IComment = (postId) => {
     }) => editComment(content, commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-      toast.success('Comment updated!');
+      toast.success('Your comment has been successfully updated!');
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (commentId: string) => removeComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['comments'] });
+      toast.success('Comment removed!');
     },
     onError: (error: unknown) => {
       if (
@@ -102,5 +128,6 @@ export const useComment: IComment = (postId) => {
     commentUsers,
     mutation,
     updateMutation,
+    deleteMutation,
   };
 };

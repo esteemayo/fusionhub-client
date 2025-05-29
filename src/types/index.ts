@@ -516,6 +516,7 @@ export interface IComment {
       },
       unknown
     >;
+    deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
   };
 }
 
@@ -560,16 +561,15 @@ export interface CommentCardProps {
 
 export interface RepliesProps {
   replies?: ReplyType[];
-  deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
   onUpdate(content: string, replyId: string): void;
 }
 
 export interface ReplyProps {
   _id: string;
   content: string;
+  post: string;
   author: AuthorType;
   createdAt: string;
-  deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
   onUpdate(content: string, replyId: string): void;
 }
 

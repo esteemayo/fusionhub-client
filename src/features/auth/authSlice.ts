@@ -53,7 +53,7 @@ export const registerUser = createAsyncThunk(
   async (userData: RegisterUserType, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.register({ ...userData });
-      toast.success('Account Created!');
+      toast.success('Your account has been successfully created!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -74,7 +74,7 @@ export const loginUser = createAsyncThunk(
   async (credentials: AuthCrendentialType, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.login({ ...credentials });
-      toast.success('Access Granted!');
+      toast.success('Login successful! Welcome back!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -95,7 +95,7 @@ export const googleLoginUser = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.googleLogin(email);
-      toast.success('Access Granted!');
+      toast.success('You have successfully logged in with Google!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -116,7 +116,7 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await authAPI.logout();
-      toast.success('Account Logged Out!');
+      toast.success('You have successfully logged out. See you again soon!');
       return;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -137,7 +137,7 @@ export const updateUserPassword = createAsyncThunk(
   async (credentials: UpdatePasswordType, { rejectWithValue }) => {
     try {
       const { data } = await authAPI.updatePassword({ ...credentials });
-      toast.success('Password Updated!');
+      toast.success('Your password has been successfully updated!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -158,7 +158,7 @@ export const updateUserData = createAsyncThunk(
   async (userData: UpdateUserDataType, { rejectWithValue }) => {
     try {
       const { data } = await userAPI.updateCurrentUser({ ...userData });
-      toast.success('Profile Updated!');
+      toast.success('Your profile has been successfully updated!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -179,7 +179,9 @@ export const deleteAccount = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await userAPI.deleteCurrentUser();
-      toast.success('Account De-activated!');
+      toast.success(
+        'Your account has been successfully deactivated. We hope to see you again!'
+      );
       return;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -200,7 +202,7 @@ export const removeAvatar = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await userAPI.deleteUserImage();
-      toast.success('Image Removed!');
+      toast.success('Your profile image has been successfully removed!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -221,7 +223,7 @@ export const removeBanner = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await userAPI.deleteUserBanner();
-      toast.success('Banner Removed!');
+      toast.success('Your profile banner has been successfully removed!');
       return data;
     } catch (err: unknown) {
       if (err instanceof Error) {
