@@ -6,7 +6,7 @@ import { RepliesProps } from '../../types';
 
 import './Replies.scss';
 
-const Replies = ({ replies }: RepliesProps) => {
+const Replies = ({ replies, deleteMutation, onUpdate }: RepliesProps) => {
   const [isShow, setIsShow] = useState(false);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,6 +19,10 @@ const Replies = ({ replies }: RepliesProps) => {
   const wrapperClasses = useMemo(() => {
     return isShow ? 'replies__wrapper show' : 'replies__wrapper hide';
   }, [isShow]);
+
+  if ((replies ?? [])?.length < 1) {
+    return null;
+  }
 
   return (
     <div className='replies'>
@@ -63,7 +67,14 @@ const Replies = ({ replies }: RepliesProps) => {
         </button>
         <div className={wrapperClasses}>
           {replies?.map((reply) => {
-            return <Reply key={reply._id} {...reply} />;
+            return (
+              <Reply
+                key={reply._id}
+                {...reply}
+                deleteMutation={deleteMutation}
+                onUpdate={onUpdate}
+              />
+            );
           })}
         </div>
       </div>

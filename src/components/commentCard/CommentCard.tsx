@@ -1,9 +1,10 @@
 import { toast } from 'react-toastify';
 import { format } from 'timeago.js';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
-import Image from '../Image';
 import Replies from '../replies/Replies';
+import Image from '../Image';
+import ReplyForm from '../replyForm/ReplyForm';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useReply } from '../../hooks/useReply';
@@ -30,13 +31,18 @@ const CommentCard = ({
   } = comment;
 
   const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { data } = useReply(postId, commentId);
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { data, replyMutation, updateReplyMutation, deleteReplyMutation } =
+    useReply(postId, commentId);
+
+  const ref = useRef<HTMLTextAreaElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState('');
   const [readMore, setReadMore] = useState(false);
+  const [replyId, setReplyId] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);
@@ -51,10 +57,22 @@ const CommentCard = ({
     });
   };
 
+  const handleUpdateReply = (content: string, replyId: string) => {
+    setValue(content);
+    setReplyId(replyId);
+
+    setIsOpen(true);
+    setIsEditing(true);
+
+    const current = ref.current;
+    current?.focus();
+  };
+
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     setIsOpen(false);
+    if (isEditing) setIsEditing(false);
     if (value.trim() !== '') setValue('');
   };
 
@@ -81,6 +99,30 @@ const CommentCard = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (value.trim() !== '') {
+      if (isEditing) {
+        updateReplyMutation.mutate(
+          { content: value, replyId },
+          {
+            onSuccess: () => {
+              setValue('');
+              setIsOpen(false);
+              setReplyId('');
+              setIsEditing(false);
+            },
+          }
+        );
+        return;
+      } else {
+        replyMutation.mutate(value, {
+          onSuccess: () => {
+            setValue('');
+            setIsOpen(false);
+          },
+        });
+      }
+    }
   };
 
   const isUpdated = useMemo(() => {
@@ -118,10 +160,6 @@ const CommentCard = ({
       ? 'comment-card__btn show'
       : 'comment-card__btn hide';
   }, [authorId, isAdmin, userId]);
-
-  const replyFormClasses = useMemo(() => {
-    return isOpen ? 'comment-card__reply show' : 'comment-card__reply hide';
-  }, [isOpen]);
 
   return (
     <article className='comment-card'>
@@ -218,29 +256,20 @@ const CommentCard = ({
           </svg>
         </button>
       </div>
-      {(data ?? [])?.length > 0 && <Replies replies={data} />}
-
-      <form className={replyFormClasses} onSubmit={handleSubmit}>
-        <textarea
-          value={value}
-          placeholder='Write your reply here...'
-          className='comment-card__reply--textarea'
-          rows={3}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <div className='comment-card__reply--actions'>
-          <button type='submit' className='comment-card__reply--submit'>
-            Submit Reply
-          </button>
-          <button
-            type='button'
-            className='comment-card__reply--cancel'
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <Replies
+        replies={data}
+        deleteMutation={deleteReplyMutation}
+        onUpdate={handleUpdateReply}
+      />
+      <ReplyForm
+        content={value}
+        isOpen={isOpen}
+        isLoading={replyMutation.isPending}
+        onChange={setValue}
+        onCancel={handleCancel}
+        onSubmit={handleSubmit}
+        ref={ref}
+      />
     </article>
   );
 };

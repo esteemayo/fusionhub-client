@@ -523,8 +523,8 @@ export interface IReply {
   (postId: string, commentId: string): {
     isPending: boolean;
     error: Error | null;
-    data: ReplyType[] | [];
-    saveReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    data: ReplyType[] | [] | undefined;
+    replyMutation: UseMutationResult<unknown, unknown, string, unknown>;
     updateReplyMutation: UseMutationResult<
       unknown,
       unknown,
@@ -560,12 +560,27 @@ export interface CommentCardProps {
 
 export interface RepliesProps {
   replies?: ReplyType[];
+  deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  onUpdate(content: string, replyId: string): void;
 }
 
 export interface ReplyProps {
+  _id: string;
   content: string;
   author: AuthorType;
   createdAt: string;
+  deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  onUpdate(content: string, replyId: string): void;
+}
+
+export interface ReplyFormProps {
+  content: string;
+  isOpen: boolean;
+  isLoading: boolean;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
 }
 
 export interface CommentFormProps {

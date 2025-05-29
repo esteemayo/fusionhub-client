@@ -9,7 +9,14 @@ import { useAppSelector } from '../../hooks/hooks';
 
 import './Reply.scss';
 
-const Reply = ({ author, content, createdAt }: ReplyProps) => {
+const Reply = ({
+  _id: replyId,
+  author,
+  content,
+  createdAt,
+  deleteMutation,
+  onUpdate,
+}: ReplyProps) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const [readMore, setReadMore] = useState(false);
@@ -19,6 +26,16 @@ const Reply = ({ author, content, createdAt }: ReplyProps) => {
     setReadMore((value) => {
       return !value;
     });
+  };
+
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    onUpdate(content, replyId);
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    deleteMutation.mutate(replyId);
   };
 
   const contentLabel = useMemo(() => {
@@ -68,7 +85,11 @@ const Reply = ({ author, content, createdAt }: ReplyProps) => {
         </div>
       </div>
       <div className={actionBtnClasses}>
-        <button type='button' className='reply__btn--update'>
+        <button
+          type='button'
+          className='reply__btn--update'
+          onClick={handleUpdate}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -84,7 +105,11 @@ const Reply = ({ author, content, createdAt }: ReplyProps) => {
             />
           </svg>
         </button>
-        <button type='button' className='reply__btn--remove'>
+        <button
+          type='button'
+          className='reply__btn--remove'
+          onClick={handleDelete}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

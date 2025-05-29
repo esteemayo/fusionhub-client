@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import * as postAPI from '../services/postService';
 import * as replyAPI from '../services/replyService';
 
-import { IReply } from '../types';
+import { IReply, ReplyType } from '../types';
 
 const fetchPostCommentReplies = async (postId: string, commentId: string) => {
   const { data } = await postAPI.getPostCommentReplies(postId, commentId);
@@ -37,12 +37,12 @@ const removeReply = async (replyId: string) => {
 export const useReply: IReply = (postId, commentId) => {
   const queryClient = useQueryClient();
 
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<ReplyType[] | [] | undefined>({
     queryKey: ['replies', commentId],
     queryFn: () => fetchPostCommentReplies(postId, commentId),
   });
 
-  const saveReplyMutation = useMutation({
+  const replyMutation = useMutation({
     mutationFn: (content: string) => createReply(content, postId, commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
@@ -109,7 +109,7 @@ export const useReply: IReply = (postId, commentId) => {
     isPending,
     error,
     data,
-    saveReplyMutation,
+    replyMutation,
     updateReplyMutation,
     deleteReplyMutation,
   };
