@@ -18,6 +18,11 @@ export const commentModalSlice = createSlice({
   name: 'commentModal',
   initialState,
   reducers: {
+    reset: (state) => {
+      state.commentId = '';
+      state.postId = '';
+      state.replyId = '';
+    },
     onOpen: (state) => {
       state.isOpen = true;
     },
@@ -36,7 +41,7 @@ export const commentModalSlice = createSlice({
   },
 });
 
-export const { onClose, onOpen, setCommentId, setPostId, setReplyId } =
+export const { onClose, onOpen, reset, setCommentId, setPostId, setReplyId } =
   commentModalSlice.actions;
 
 export default commentModalSlice.reducer;

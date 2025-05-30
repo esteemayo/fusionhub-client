@@ -24,15 +24,23 @@ const Feeds = ({ postId }: { postId: string }) => {
       <div className='feeds__container'>
         <h2 className='feeds__container-heading'>Feeds</h2>
         {(data ?? []).length < 1 ? (
-          <span>empty feeds</span>
+          <div className='feeds__empty'>
+            <p>No trending posts available at the moment.</p>
+            <span>Check back later or explore other sections!</span>
+          </div>
         ) : isPending ? (
           Array.from(Array(3)).map((_, index) => {
             return <FeedSkeleton key={index} />;
           })
         ) : error ? (
-          <div>
-            <p>Something went wrong!</p>
-            <span>{error.message}</span>
+          <div className='feeds__error'>
+            <p>
+              Oops! We encountered an issue while loading the trending posts.
+            </p>
+            <span>
+              {error.message ||
+                'Please try refreshing the page or check your internet connection.'}
+            </span>
           </div>
         ) : (
           data

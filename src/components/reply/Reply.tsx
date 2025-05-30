@@ -21,6 +21,8 @@ const Reply = ({
   post: postId,
   content,
   createdAt,
+  updatedAt,
+  postAuthorId,
   onUpdate,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
@@ -48,6 +50,10 @@ const Reply = ({
     dispatch(setReplyId(replyId));
   };
 
+  const hasUpdated = useMemo(() => {
+    return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
+  }, [createdAt, updatedAt]);
+
   const contentLabel = useMemo(() => {
     return readMore && content.length > 150 ? content : excerpts(content, 150);
   }, [content, readMore]);
@@ -62,12 +68,19 @@ const Reply = ({
     return `Read ${readMore ? 'less' : 'more'}`;
   }, [readMore]);
 
+  const userId = useMemo(() => {
+    return currentUser?.details._id;
+  }, [currentUser]);
+
+  const isAdmin = useMemo(() => {
+    return currentUser?.role === 'admin';
+  }, [currentUser]);
+
   const actionBtnClasses = useMemo(() => {
-    return author._id === currentUser?.details._id ||
-      currentUser?.role === 'admin'
+    return author._id === userId || postAuthorId === userId || isAdmin
       ? 'reply__btn show'
       : 'reply__btn hide';
-  }, [author, currentUser]);
+  }, [author, isAdmin, postAuthorId, userId]);
 
   return (
     <div className='reply'>
@@ -84,6 +97,9 @@ const Reply = ({
         <div className='reply__content'>
           <div className='reply__content--time'>
             <time dateTime={createdAt}>{format(createdAt)}</time>
+            {hasUpdated && author._id !== userId && (
+              <span className='reply__content--time'>updated</span>
+            )}
           </div>
           <h6 className='reply__content--username'>{author.name}</h6>
           <p className='reply__content--text'>

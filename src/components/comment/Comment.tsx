@@ -12,6 +12,7 @@ import { useAppSelector } from '../../hooks/hooks';
 import './Comment.scss';
 
 const Comment = ({
+  postAuthorId,
   isLoading,
   isLoadingUser,
   error,
@@ -86,6 +87,7 @@ const Comment = ({
         <>
           {mutation.isPending && (
             <CommentCard
+              postAuthorId={postAuthorId}
               comment={{
                 _id: new Date().getTime().toString(),
                 content: `${
@@ -111,6 +113,7 @@ const Comment = ({
             return (
               <CommentCard
                 key={comment._id}
+                postAuthorId={postAuthorId}
                 comment={comment}
                 onChange={onChange}
                 onUpdate={onUpdate}

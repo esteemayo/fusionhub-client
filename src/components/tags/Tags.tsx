@@ -24,7 +24,10 @@ const Tags = () => {
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
         {(data ?? [])?.length < 1 ? (
-          <span>empty tags</span>
+          <div className='tags__empty'>
+            <p>No tags available at the moment.</p>
+            <span>Tags help categorize content. Please check back later!</span>
+          </div>
         ) : (
           <div className='tags__wrapper'>
             {isPending ? (
@@ -32,9 +35,12 @@ const Tags = () => {
                 return <TagSkeleton key={index} />;
               })
             ) : error ? (
-              <div>
-                <p>Something went wrong!</p>
-                <span>{error.message}</span>
+              <div className='tags__error'>
+                <p>Oops! We encountered an issue while loading tags.</p>
+                <span>
+                  {error.message ||
+                    'Please try refreshing the page or check back later.'}
+                </span>
               </div>
             ) : (
               data?.map((tag) => {

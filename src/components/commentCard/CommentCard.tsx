@@ -19,6 +19,7 @@ import { CommentCardProps } from '../../types';
 import './CommentCard.scss';
 
 const CommentCard = ({
+  postAuthorId,
   comment,
   onChange,
   onUpdate,
@@ -162,10 +163,10 @@ const CommentCard = ({
   }, [author]);
 
   const actionBtnClasses = useMemo(() => {
-    return userId === authorId || isAdmin
+    return userId === authorId || userId === postAuthorId || isAdmin
       ? 'comment-card__btn show'
       : 'comment-card__btn hide';
-  }, [authorId, isAdmin, userId]);
+  }, [authorId, isAdmin, postAuthorId, userId]);
 
   return (
     <article className='comment-card'>
@@ -262,7 +263,11 @@ const CommentCard = ({
           </svg>
         </button>
       </div>
-      <Replies replies={data} onUpdate={handleUpdateReply} />
+      <Replies
+        replies={data}
+        postAuthorId={postAuthorId}
+        onUpdate={handleUpdateReply}
+      />
       <ReplyForm
         content={value}
         isOpen={isOpen}

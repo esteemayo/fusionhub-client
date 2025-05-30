@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import Modal from './modal/Modal';
 import DeleteContent from './deleteContent/DeleteContent';
@@ -7,7 +7,7 @@ import { useComment } from '../hooks/useComment';
 import { useReply } from '../hooks/useReply';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
-import { onClose } from '../features/commentModal/commentModalSlice';
+import { onClose, reset } from '../features/commentModal/commentModalSlice';
 
 const CommentModal = () => {
   const dispatch = useAppDispatch();
@@ -23,21 +23,16 @@ const CommentModal = () => {
   };
 
   const handleClick = () => {
-    if (postId) {
-      if (replyId) {
-        return deleteReplyMutation.mutate(replyId, {
-          onSuccess: () => {
-            handleClose();
-          },
-        });
-      }
+    if (!postId) return;
 
-      return deleteMutation.mutate(commentId, {
-        onSuccess: () => {
-          handleClose();
-        },
-      });
-    }
+    const mutation = replyId ? deleteReplyMutation : deleteMutation;
+    const id = replyId || commentId;
+
+    mutation.mutate(id, {
+      onSuccess: () => {
+        handleClose();
+      },
+    });
   };
 
   const titleLabel = useMemo(() => {
@@ -56,6 +51,14 @@ const CommentModal = () => {
       : '';
   }, [postId, replyId]);
 
+  useEffect(() => {
+    if (isOpen) {
+      return () => {
+        dispatch(reset());
+      };
+    }
+  }, [dispatch, isOpen]);
+
   const bodyContent: React.JSX.Element | undefined = (
     <DeleteContent text={textLabel} />
   );
@@ -65,8 +68,8 @@ const CommentModal = () => {
       isOpen={isOpen}
       title={titleLabel}
       type='cancel'
-      isLoading={deleteMutation.isPending ?? deleteReplyMutation.isPending}
-      disabled={deleteMutation.isPending ?? deleteReplyMutation.isPending}
+      isLoading={deleteMutation.isPending || deleteReplyMutation.isPending}
+      disabled={deleteMutation.isPending || deleteReplyMutation.isPending}
       actionLabel='Confirm Delete'
       secondaryActionLabel='Cancel Deletion'
       body={bodyContent}

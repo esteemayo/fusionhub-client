@@ -496,6 +496,7 @@ export interface RelatedTagsProps {
 
 export interface CommentsProps {
   postId: string;
+  postAuthorId: string;
 }
 
 export interface IComment {
@@ -540,6 +541,7 @@ export interface IReply {
 }
 
 export interface CommentProps {
+  postAuthorId: string;
   isLoading: boolean;
   isLoadingUser: boolean;
   error: Error | null;
@@ -553,6 +555,7 @@ export interface CommentProps {
 }
 
 export interface CommentCardProps {
+  postAuthorId: string;
   comment: CommentType;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onUpdate?(commentId: string): void;
@@ -560,6 +563,7 @@ export interface CommentCardProps {
 }
 
 export interface RepliesProps {
+  postAuthorId: string;
   replies?: ReplyType[];
   onUpdate(content: string, replyId: string): void;
 }
@@ -569,7 +573,9 @@ export interface ReplyProps {
   content: string;
   post: string;
   author: AuthorType;
+  postAuthorId: string;
   createdAt: string;
+  updatedAt: string;
   onUpdate(content: string, replyId: string): void;
 }
 

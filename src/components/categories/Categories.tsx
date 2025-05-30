@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
 import CategoryItem from '../categoryItem/CategoryItem';
-import ErrorState from '../errorState/ErrorState';
 import CategorySkeleton from '../categorySkeleton/CategorySkeleton';
 
 import { CategoryItemType } from '../../types';
@@ -25,19 +24,25 @@ const Categories = () => {
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
         {(data ?? [])?.length < 1 ? (
-          <ErrorState
-            title='No categories found'
-            subtitle='It seems there are no categories available at the moment. Please check back later or try refreshing the page.'
-          />
+          <div className='categories__empty'>
+            <span>No categories found</span>
+            <span>
+              It seems there are no categories available at the moment. Please
+              check back later or try refreshing the page.
+            </span>
+          </div>
         ) : isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <CategorySkeleton key={index} />;
           })
         ) : error ? (
-          <ErrorState
-            title='Error loading categories'
-            subtitle='An error occurred while fetching the categories. Please try again later or contact support if the issue persists.'
-          />
+          <div className='categories__error'>
+            <span>Error loading categories</span>
+            <span>
+              {error.message ||
+                'An error occurred while fetching the categories. Please try again later or contact support if the issue persists.'}
+            </span>
+          </div>
         ) : (
           data
             ?.filter((item) => item.count !== 0)

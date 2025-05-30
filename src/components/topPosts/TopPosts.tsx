@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-import ErrorState from '../errorState/ErrorState';
 import TopPost from '../topPost/TopPost';
 import TopPostSkeleton from '../topPostSkeleton/TopPostSkeleton';
 
@@ -20,30 +19,30 @@ const TopPosts = () => {
     queryFn: () => fetchTopPosts(),
   });
 
-  if ((data ?? [])?.length < 1) {
-    return (
-      <section className='top-posts'>
-        <div className='top-posts__container'>
-          <h2 className='top-posts__container--heading'>Top posts</h2>
-          <ErrorState
-            title='No top posts available'
-            subtitle='Currently, there are no top posts to display. Please check back later for the latest updates.'
-          />
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className='top-posts'>
       <div className='top-posts__container'>
         <h2 className='top-posts__container--heading'>Top posts</h2>
-        {isPending ? (
+        {(data ?? [])?.length < 1 ? (
+          <div className='top-posts__empty'>
+            <span>No top posts available</span>
+            <span>
+              Currently, there are no top posts to display. Please check back
+              later for the latest updates.
+            </span>
+          </div>
+        ) : isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <TopPostSkeleton key={index} />;
           })
         ) : error ? (
-          <ErrorState title='' subtitle='' />
+          <div className='top-posts__error'>
+            <span>Unable to load top posts</span>
+            <span>
+              {error.message ||
+                'An error occurred while fetching the top posts. Please try again later or contact support if the issue persists.'}
+            </span>
+          </div>
         ) : (
           data?.map((post, index: number) => {
             return <TopPost key={post._id} index={index} {...post} />;

@@ -45,12 +45,12 @@ const AccountModal = () => {
   return (
     <Modal
       isOpen={isOpen}
-      title='De-Activate Account?'
+      title='Are you sure you want to deactivate your account?'
       type='cancel'
       isLoading={isLoading}
       disabled={isLoading}
-      actionLabel='Deactivate'
-      secondaryActionLabel='Cancel'
+      actionLabel='Confirm Deactivation'
+      secondaryActionLabel='Cancel Deactivation'
       body={bodyContent}
       onClose={handleClose}
       onSubmit={handleClick}

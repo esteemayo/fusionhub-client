@@ -11,7 +11,7 @@ import { onOpen } from '../../features/commentModal/commentModalSlice';
 
 import './Comments.scss';
 
-const Comments = ({ postId }: CommentsProps) => {
+const Comments = ({ postId, postAuthorId }: CommentsProps) => {
   const dispatch = useAppDispatch();
 
   const {
@@ -89,6 +89,7 @@ const Comments = ({ postId }: CommentsProps) => {
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
+          postAuthorId={postAuthorId}
           isLoading={isPending}
           isLoadingUser={isPendingUser}
           error={error}
