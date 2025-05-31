@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-import ErrorState from '../errorState/ErrorState';
 import Feature from '../feature/Feature';
 import FeatureCard from '../featureCard/FeatureCard';
 
@@ -25,66 +24,63 @@ const Features = () => {
 
   const [firstPost, ...otherPosts] = data ? data : [];
 
-  if (data?.length < 1) {
-    return (
-      <section className='features'>
-        <div className='features__container'>
-          <ErrorState
-            title='No featured posts available'
-            subtitle='Currently, there are no featured articles to display. Please check back later for updates.'
-          />
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className='features'>
       <div className='features__container'>
         <h3 className='features__container--heading'>Featured articles</h3>
-        <div className='features__wrapper'>
-          <div className='features__wrap'>
-            {isPending ? (
-              <FeatureSkeleton />
-            ) : error ? (
-              <ErrorState
-                title='Something went wrong!'
-                subtitle={error.message}
-                imgSrc='/book-writer.svg'
-              />
-            ) : (
-              <Feature
-                {...firstPost}
-                comments={
-                  Array.isArray(firstPost.comments) ? firstPost.comments : []
-                }
-              />
-            )}
+        {(data ?? [])?.length < 1 && !isPending ? (
+          <div className='features__empty'>
+            <span>
+              Oops! It seems we don't have any featured articles to display
+              right now.
+            </span>
+            <span>
+              Don't worry, we're constantly updating our content. Please check
+              back soon for the latest featured articles, or explore other
+              sections of our blog to discover more interesting reads.
+            </span>
           </div>
-          <div className='features__box'>
-            {isPending ? (
-              Array.from(new Array(4)).map((_, index) => {
-                return <FeatureCardSkeleton key={index} />;
-              })
-            ) : error ? (
-              <ErrorState
-                title='Something went wrong!'
-                subtitle={error.message}
-                imgSrc='/book-writer.svg'
-              />
-            ) : (
-              otherPosts?.map((post: PostType) => {
-                return (
-                  <FeatureCard
-                    key={post._id}
-                    {...post}
-                    comments={Array.isArray(post.comments) ? post.comments : []}
-                  />
-                );
-              })
-            )}
+        ) : error ? (
+          <div className='features__error'>
+            <span>Unable to Load Featured Articles</span>
+            <span>
+              {error.message ||
+                'We encountered an issue while trying to load the featured articles. Please check your internet connection or try refreshing the page. If the problem persists, feel free to contact our support team for assistance.'}
+            </span>
           </div>
-        </div>
+        ) : (
+          <div className='features__wrapper'>
+            <div className='features__wrap'>
+              {isPending ? (
+                <FeatureSkeleton />
+              ) : (
+                <Feature
+                  {...firstPost}
+                  comments={
+                    Array.isArray(firstPost.comments) ? firstPost.comments : []
+                  }
+                />
+              )}
+            </div>
+            <div className='features__box'>
+              {isPending
+                ? Array.from(new Array(4)).map((_, index) => {
+                    return <FeatureCardSkeleton key={index} />;
+                  })
+                : otherPosts?.map((post: PostType) => {
+                    return (
+                      <FeatureCard
+                        key={post._id}
+                        {...post}
+                        comments={
+                          Array.isArray(post.comments) ? post.comments : []
+                        }
+                      />
+                    );
+                  })}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

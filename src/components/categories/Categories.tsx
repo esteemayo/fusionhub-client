@@ -23,7 +23,7 @@ const Categories = () => {
     <section className='categories'>
       <div className='categories__container'>
         <h2 className='categories__container--heading'>Categories</h2>
-        {(data ?? [])?.length < 1 ? (
+        {(data ?? [])?.length < 1 && !isPending ? (
           <div className='categories__empty'>
             <span>No categories found</span>
             <span>

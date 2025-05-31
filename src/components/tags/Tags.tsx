@@ -23,7 +23,7 @@ const Tags = () => {
     <section className='tags'>
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
-        {(data ?? [])?.length < 1 ? (
+        {(data ?? [])?.length < 1 && !isPending ? (
           <div className='tags__empty'>
             <p>No tags available at the moment.</p>
             <span>Tags help categorize content. Please check back later!</span>

@@ -23,7 +23,7 @@ const TopPosts = () => {
     <section className='top-posts'>
       <div className='top-posts__container'>
         <h2 className='top-posts__container--heading'>Top posts</h2>
-        {(data ?? [])?.length < 1 ? (
+        {(data ?? [])?.length < 1 && !isPending ? (
           <div className='top-posts__empty'>
             <span>No top posts available</span>
             <span>

@@ -71,10 +71,12 @@
       align-items: center;
     }
 
+    &--empty,
     &--error {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      gap: 0.5rem;
 
       font-weight: 600;
       font-size: 1.35rem;
@@ -110,6 +112,14 @@
         font-size: inherit;
         color: inherit;
         line-height: inherit;
+      }
+    }
+
+    &--empty {
+      display: none;
+
+      @media screen and (max-width: 26.875em) {
+        display: flex;
       }
     }
 
@@ -160,6 +170,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 1rem;
 
     font-weight: 600;
     font-size: 1.35rem;

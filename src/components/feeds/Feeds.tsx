@@ -23,7 +23,7 @@ const Feeds = ({ postId }: { postId: string }) => {
     <section className='feeds'>
       <div className='feeds__container'>
         <h2 className='feeds__container-heading'>Feeds</h2>
-        {(data ?? []).length < 1 ? (
+        {(data ?? []).length < 1 && !isPending ? (
           <div className='feeds__empty'>
             <p>No trending posts available at the moment.</p>
             <span>Check back later or explore other sections!</span>

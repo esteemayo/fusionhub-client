@@ -34,7 +34,14 @@ const Comment = ({
     <div className='comment'>
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
-        {(commentUsers ?? [])?.length > 0 && (
+        {(commentUsers ?? [])?.length < 1 && !isLoadingUser ? (
+          <div className='comment__user--empty'>
+            <span>No users found.</span>
+            {/* <span>
+              It seems there are no users associated with these comments yet.
+            </span> */}
+          </div>
+        ) : (
           <figure className='comment__user'>
             {isLoadingUser ? (
               Array.from(new Array(3)).map((_, index) => {
@@ -66,7 +73,7 @@ const Comment = ({
           </figure>
         )}
       </div>
-      {(comments ?? [])?.length < 1 ? (
+      {(comments ?? [])?.length < 1 && !isLoading ? (
         <div className='comment__no-comments'>
           <span>No comments yet.</span>
           <span>Be the first to share your thoughts!</span>
