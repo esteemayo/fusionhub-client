@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+import EmptyMessage from '../emptyMessage/EmptyMessage';
 import Card from '../card/Card';
 import RecentSkeleton from '../recentSkeleton/RecentSkeleton';
 
@@ -32,10 +33,11 @@ const RecentPosts = () => {
       <div className='recent-posts__container'>
         <h6 className='recent-posts__container--heading'>Recent articles</h6>
         {(data ?? [])?.length < 1 && !isPending ? (
-          <div className='recent-posts__empty'>
-            <span>No recent articles available.</span>
-            <span>Check back later for the latest updates and posts.</span>
-          </div>
+          <EmptyMessage
+            title='No recent articles available.'
+            subtitle='Check back later for the latest updates and posts.'
+            center
+          />
         ) : (
           <div className={`recent-posts__wrapper ${error && 'error'}`}>
             {isPending ? (
@@ -43,13 +45,14 @@ const RecentPosts = () => {
                 return <RecentSkeleton key={index} />;
               })
             ) : error ? (
-              <div className='recent-posts__error'>
-                <span>Unable to load recent articles</span>
-                <span>
-                  {error.message ||
-                    'There was an issue fetching the recent articles. Please try again later.'}
-                </span>
-              </div>
+              <EmptyMessage
+                title='Unable to load recent articles'
+                subtitle={
+                  error.message ||
+                  'There was an issue fetching the recent articles. Please try again later.'
+                }
+                center
+              />
             ) : (
               data?.slice(0, 8).map((post: PostType) => {
                 return <Card key={post._id} {...post} />;

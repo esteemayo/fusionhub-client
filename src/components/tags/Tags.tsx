@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import TagItem from '../tagItem/TagItem';
 import TagSkeleton from '../tagSkeleton/TagSkeleton';
+import TagItem from '../tagItem/TagItem';
+import EmptyMessage from '../emptyMessage/EmptyMessage';
 
 import { TagProps } from '../../types';
 import { getTags } from '../../services/postService';
@@ -24,10 +25,10 @@ const Tags = () => {
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
         {(data ?? [])?.length < 1 && !isPending ? (
-          <div className='tags__empty'>
-            <p>No tags available at the moment.</p>
-            <span>Tags help categorize content. Please check back later!</span>
-          </div>
+          <EmptyMessage
+            title='No tags available at the moment.'
+            subtitle='Tags help categorize content. Please check back later!'
+          />
         ) : (
           <div className='tags__wrapper'>
             {isPending ? (
@@ -35,13 +36,13 @@ const Tags = () => {
                 return <TagSkeleton key={index} />;
               })
             ) : error ? (
-              <div className='tags__error'>
-                <p>Oops! We encountered an issue while loading tags.</p>
-                <span>
-                  {error.message ||
-                    'Please try refreshing the page or check back later.'}
-                </span>
-              </div>
+              <EmptyMessage
+                title='Oops! We encountered an issue while loading tags.'
+                subtitle={
+                  error.message ||
+                  'Please try refreshing the page or check back later.'
+                }
+              />
             ) : (
               data?.map((tag) => {
                 const { _id: id, count } = tag;

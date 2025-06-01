@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
-import Feature from '../feature/Feature';
 import FeatureCard from '../featureCard/FeatureCard';
+import Feature from '../feature/Feature';
+import EmptyMessage from '../emptyMessage/EmptyMessage';
 
 import FeatureSkeleton from '../featureSkeleton/FeatureSkeleton';
 import FeatureCardSkeleton from '../featureCardSkeleton/FeatureCardSkeleton';
@@ -29,25 +30,20 @@ const Features = () => {
       <div className='features__container'>
         <h3 className='features__container--heading'>Featured articles</h3>
         {(data ?? [])?.length < 1 && !isPending ? (
-          <div className='features__empty'>
-            <span>
-              Oops! It seems we don't have any featured articles to display
-              right now.
-            </span>
-            <span>
-              Don't worry, we're constantly updating our content. Please check
-              back soon for the latest featured articles, or explore other
-              sections of our blog to discover more interesting reads.
-            </span>
-          </div>
+          <EmptyMessage
+            title="Oops! It seems we don't have any featured articles to display right now."
+            subtitle="Don't worry, we're constantly updating our content. Please check back soon for the latest featured articles, or explore other sections of our blog to discover more interesting reads."
+            center
+          />
         ) : error ? (
-          <div className='features__error'>
-            <span>Unable to Load Featured Articles</span>
-            <span>
-              {error.message ||
-                'We encountered an issue while trying to load the featured articles. Please check your internet connection or try refreshing the page. If the problem persists, feel free to contact our support team for assistance.'}
-            </span>
-          </div>
+          <EmptyMessage
+            title='Unable to Load Featured Articles'
+            subtitle={
+              error.message ||
+              'We encountered an issue while trying to load the featured articles. Please check your internet connection or try refreshing the page. If the problem persists, feel free to contact our support team for assistance.'
+            }
+            center
+          />
         ) : (
           <div className='features__wrapper'>
             <div className='features__wrap'>

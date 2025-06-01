@@ -72,6 +72,12 @@ export interface EmptyPostsProps {
   subtitle: string;
 }
 
+export interface EmptyMessageProps {
+  title: string;
+  subtitle?: string;
+  center?: boolean;
+}
+
 export interface LabelProps {
   id?: string;
   label?: string;
