@@ -11,7 +11,7 @@ import { accountMenus } from '../../data';
 
 import './AccountMenu.scss';
 
-const AccountMenu = () => {
+const AccountMenu = ({ query }: { query: string | null }) => {
   const dispatch = useAppDispatch();
 
   const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
@@ -39,7 +39,7 @@ const AccountMenu = () => {
     setIsActive(path);
   }, [path]);
 
-  if (!currentUser) {
+  if (!currentUser || query) {
     return null;
   }
 

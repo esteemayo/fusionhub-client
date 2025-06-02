@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import PostClient from '../../components/postClient/PostClient';
 import Postbar from '../../components/postbar/Postbar';
@@ -8,11 +9,26 @@ import PostItems from '../../components/postItems/PostItems';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onToggle } from '../../features/postsMenu/postsMenuSlice';
 
+import { PostsType } from '../../types';
+import { getPosts } from '../../services/postService';
+
 import './Posts.scss';
+
+const fetchPosts = async () => {
+  const { data } = await getPosts();
+  return data;
+};
 
 const Posts = () => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postsMenu }));
+
+  const { isPending, error, data } = useQuery<PostsType>({
+    queryKey: ['posts'],
+    queryFn: () => fetchPosts(),
+  });
+
+  const posts = data ? data.posts : [];
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -32,7 +48,7 @@ const Posts = () => {
         <div className='posts__wrapper'>
           <div className='posts__box'>
             <PostClient isOpen={isOpen} ref={ref} />
-            <PostItems />
+            <PostItems posts={posts} isLoading={isPending} error={error} />
             <div className='posts__box--btn'>
               <ToggleButton
                 label='Filter'

@@ -9,6 +9,9 @@ const userUrl = (userId: string) => `${apiEndpoint}/${userId}`;
 
 export const getUser = (userId: string) => http.get(userUrl(userId));
 
+export const getUserByUsername = (username: string) =>
+  http.get(`${userUrl(username)}/details`);
+
 export const getCurrentUser = () => http.get(userURI('me'));
 
 export const getSavedPosts = () => http.get(userURI('saved-posts'));

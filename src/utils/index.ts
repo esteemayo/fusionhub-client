@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom';
+
 export const authKey = 'access_token';
 
 export const cookieName = 'auth_token';
@@ -20,4 +22,8 @@ export const setStorage = <T extends string, U>(key: T, value: U) => {
 
 export const removeStorage = (key: string) => {
   return localStorage.removeItem(key);
+};
+
+export const useQueryParams = () => {
+  return new URLSearchParams(useLocation().search);
 };

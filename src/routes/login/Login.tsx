@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { z } from 'zod';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
@@ -21,11 +21,9 @@ import { loginSchema } from '../../validations/loginSchema';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { loginUser, resetState } from '../../features/auth/authSlice';
 
-import './Login.scss';
+import { useQueryParams } from '../../utils';
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
+import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,7 +35,7 @@ const Login = () => {
     })
   );
 
-  const query = useQuery();
+  const query = useQueryParams();
   const name = query.get('name');
 
   type FormData = z.infer<typeof loginSchema>;

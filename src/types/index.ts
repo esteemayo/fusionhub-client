@@ -193,6 +193,12 @@ export interface PostClientProps {
   ref: React.LegacyRef<HTMLInputElement> | undefined;
 }
 
+export interface PostItemsProps {
+  posts: PostType[] | [];
+  isLoading: boolean;
+  error: Error | null;
+}
+
 export interface FeedProps {
   _id: string;
   img: string;
@@ -333,15 +339,17 @@ export interface AccountMenuItemProps {
 }
 
 export interface BannerProps {
-  file: File | undefined;
-  cover: File | undefined;
   image?: string;
   banner?: string;
+  query: string | null;
+  file: File | undefined;
+  cover: File | undefined;
   onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
   onChangeCover(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface ProfileDetailsProps {
+  _id: string;
   name: string;
   email: string;
   username: string;
@@ -695,6 +703,14 @@ export interface ErrorPayload {
     };
   };
 }
+
+export type PostsType = {
+  page: number;
+  counts: number;
+  numberOfPages: number;
+  hasMore: boolean;
+  posts: PostType[] | [];
+};
 
 export type PostType = {
   _id: string;

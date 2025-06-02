@@ -106,7 +106,7 @@
       width: 12rem;
       height: 12rem;
       display: inline-block;
-      background-color: vars.$clr-secondary-blue;
+      background-color: vars.$clr-secondary-blue !important;
       object-fit: cover;
 
       @media screen and (max-width: 56.25em) {

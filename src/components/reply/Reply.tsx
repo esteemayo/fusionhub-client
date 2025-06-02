@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { format } from 'timeago.js';
 import { useMemo, useState } from 'react';
 
@@ -76,6 +77,12 @@ const Reply = ({
     return currentUser?.role === 'admin';
   }, [currentUser]);
 
+  const url = useMemo(() => {
+    return userId === author._id
+      ? '/accounts/profile'
+      : `/accounts/profile?username=${author.username}`;
+  }, [author, userId]);
+
   const actionBtnClasses = useMemo(() => {
     return author._id === userId || postAuthorId === userId || isAdmin
       ? 'reply__btn show'
@@ -86,13 +93,15 @@ const Reply = ({
     <div className='reply'>
       <div className='reply__container'>
         <div className='reply__author'>
-          <Image
-            src={author.image ?? '/user-default.jpg'}
-            width={40}
-            height={40}
-            alt='avatar'
-            className='reply__author--img'
-          />
+          <Link to={url}>
+            <Image
+              src={author.image ?? '/user-default.jpg'}
+              width={40}
+              height={40}
+              alt='avatar'
+              className='reply__author--img'
+            />
+          </Link>
         </div>
         <div className='reply__content'>
           <div className='reply__content--time'>
@@ -101,7 +110,9 @@ const Reply = ({
               <span className='reply__content--time'>updated</span>
             )}
           </div>
-          <h6 className='reply__content--username'>{author.name}</h6>
+          <h6 className='reply__content--username'>
+            <Link to={url}>{author.name}</Link>
+          </h6>
           <p className='reply__content--text'>
             {contentLabel}
             <button type='button' className={btnClasses} onClick={handleClick}>

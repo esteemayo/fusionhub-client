@@ -17,6 +17,7 @@ interface IContainer {
 const Banner = ({
   file,
   cover,
+  query,
   image,
   banner,
   onChangeFile,
@@ -37,6 +38,10 @@ const Banner = ({
       : 'https://ik.imagekit.io/devayo/banner-1.jpg';
   }, [banner, cover]);
 
+  const wrapperClasses = useMemo(() => {
+    return query ? 'banner__wrapper hide' : 'banner__wrapper show';
+  }, [query]);
+
   const btnClasses = useMemo(() => {
     return banner ? 'banner__btn show' : 'banner__btn hide';
   }, [banner]);
@@ -44,7 +49,10 @@ const Banner = ({
   return (
     <Container cover={coverImg} className='banner'>
       <div className='banner__user'>
-        <label htmlFor='avatar' className='banner__user--label'>
+        <label
+          htmlFor='avatar'
+          className={`banner__user--label ${!!query && 'disabled'}`}
+        >
           {file ? (
             <img
               src={URL.createObjectURL(file as Blob | MediaSource)}
@@ -70,9 +78,10 @@ const Banner = ({
           accept='image/*'
           onChange={onChangeFile}
           className='banner__user--input'
+          disabled={!!query}
         />
       </div>
-      <div className='banner__wrapper'>
+      <div className={wrapperClasses}>
         <div className='banner__cover'>
           <label htmlFor='file' className='banner__cover--label'>
             <svg

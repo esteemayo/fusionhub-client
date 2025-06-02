@@ -1,6 +1,7 @@
-import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import { format } from 'timeago.js';
 import { useMemo, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import Replies from '../replies/Replies';
 import Image from '../Image';
@@ -162,6 +163,12 @@ const CommentCard = ({
     return author._id;
   }, [author]);
 
+  const url = useMemo(() => {
+    return userId === author._id
+      ? '/accounts/profile'
+      : `/accounts/profile?username=${author.username}`;
+  }, [author, userId]);
+
   const actionBtnClasses = useMemo(() => {
     return userId === authorId || userId === postAuthorId || isAdmin
       ? 'comment-card__btn show'
@@ -172,13 +179,15 @@ const CommentCard = ({
     <article className='comment-card'>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
-          <Image
-            src={author.image ?? '/user-default.jpg'}
-            width={80}
-            height={80}
-            alt='avatar'
-            className='comment-card__user--img'
-          />
+          <Link to={url}>
+            <Image
+              src={author.image ?? '/user-default.jpg'}
+              width={80}
+              height={80}
+              alt='avatar'
+              className='comment-card__user--img'
+            />
+          </Link>
         </div>
         <div className='comment-card__details'>
           <div className='comment-card__box'>
@@ -212,7 +221,9 @@ const CommentCard = ({
               <span>Reply</span>
             </button>
           </div>
-          <h5 className='comment-card__details--username'>{author.name}</h5>
+          <h5 className='comment-card__details--username'>
+            <Link to={url}>{author.name}</Link>
+          </h5>
           <p onDoubleClick={handleCopy} className='comment-card__details--desc'>
             {contentLabel}
             <button type='button' onClick={handleClick} className={btnClasses}>

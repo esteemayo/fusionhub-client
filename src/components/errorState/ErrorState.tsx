@@ -17,13 +17,15 @@ const ErrorState = ({
       <div className='error-state__container'>
         <div className='error-state__wrapper'>
           <div className='error-state__box'>
-            <Image
-              src={imgSrc as string}
-              width={300}
-              height={230}
-              alt={alt}
-              className='error-state__box--img'
-            />
+            {imgSrc && (
+              <Image
+                src={imgSrc as string}
+                width={300}
+                height={230}
+                alt={alt}
+                className='error-state__box--img'
+              />
+            )}
             <Heading title={title} subtitle={subtitle} center={center} />
           </div>
         </div>

@@ -6,10 +6,9 @@ import ProfileImage from '../../components/profileImage/ProfileImage';
 import ErrorState from '../../components/errorState/ErrorState';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
+import { useProfile } from '../../hooks/useProfile';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
-
-import { useProfile } from '../../hooks/useProfile';
 
 import './ProfileSettings.scss';
 
@@ -47,21 +46,29 @@ const ProfileSettings = () => {
         />
       </div>
       <div className='profile-settings__wrapper'>
-        {isPending ? (
+        {!data && !isPending ? (
+          <ErrorState
+            title='No profile data available'
+            subtitle='It seems we couldn’t find any profile information to display. Please ensure your account is set up correctly or try refreshing the page. If the issue persists, contact support for assistance.'
+            imgSrc='/towing.svg'
+            center
+          />
+        ) : isPending ? (
           <div className='profile-settings__wrapper--loader'>
-            <Spinner size={80} />
+            <Spinner size={40} />
           </div>
         ) : error ? (
           <ErrorState
-            title='Something went wrong!'
-            subtitle={error.message}
+            title='Unable to load profile settings'
+            subtitle={`We encountered an error while fetching your profile data. Please try refreshing the page or contact support if the issue persists. Error details: ${error.message}`}
             imgSrc='/private-files.svg'
+            center
           />
         ) : (
           <>
             <ProfileImage
-              name={data.name}
-              bio={data.bio}
+              name={data?.name as string}
+              bio={data?.bio as string}
               image={data?.image}
               ref={inputRef}
               file={file}

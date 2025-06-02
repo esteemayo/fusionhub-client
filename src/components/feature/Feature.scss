@@ -65,7 +65,7 @@
       width: 100%;
       height: 100%;
       display: inline-block;
-      background-color: vars.$clr-secondary-blue;
+      background-color: vars.$clr-secondary-blue !important;
       object-fit: cover;
     }
   }
