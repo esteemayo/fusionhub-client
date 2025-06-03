@@ -6,6 +6,7 @@ import AccountHeading from '../../components/accountHeading/AccountHeading';
 import Banner from '../../components/banner/Banner';
 import ProfileDetails from '../../components/profileDetails/ProfileDetails';
 import ErrorState from '../../components/errorState/ErrorState';
+import ProfileFeatures from '../../components/profileFeatures/ProfileFeatures';
 
 import { useQueryParams } from '../../utils';
 import { useProfile } from '../../hooks/useProfile';
@@ -99,6 +100,7 @@ const UserProfile = () => {
             />
             <ProfileDetails {...userObj!} />
             <AboutProfile about={userObj?.about as string} />
+            <ProfileFeatures query={username} />
           </>
         )}
       </div>

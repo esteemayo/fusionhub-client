@@ -10,6 +10,8 @@ import { useProfile } from '../../hooks/useProfile';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
 
+import { CountrySelectType } from '../../types';
+
 import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
@@ -77,7 +79,15 @@ const ProfileSettings = () => {
               onUpload={handleUpload}
             />
             <hr />
-            <ProfileData {...data} />
+            <ProfileData
+              name={data?.name as string}
+              email={data?.email as string}
+              username={data?.username as string}
+              dateOfBirth={data?.dateOfBirth as unknown as Date | null}
+              country={data?.country as unknown as CountrySelectType}
+              bio={data?.bio as string}
+              about={data?.about}
+            />
           </>
         )}
       </div>

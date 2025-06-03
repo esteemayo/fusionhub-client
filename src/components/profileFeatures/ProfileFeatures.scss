@@ -1,0 +1,95 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.profile-features {
+  &.show {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &__container {
+    padding: 0 3rem 3rem;
+
+    @media screen and (max-width: 76.25em) {
+      padding: 0 2.5rem 2.5rem;
+    }
+
+    @include bp.lg {
+      padding: 0 3rem 3rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      padding: 0 2rem 3rem;
+    }
+
+    @media screen and (max-width: 31.5em) {
+      padding: 0 2rem 2rem;
+    }
+
+    @media screen and (max-width: 31.25em) {
+      padding: 2rem 0 0;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 50%;
+
+    &::after {
+      display: inline-block;
+      content: '';
+      width: 100%;
+      height: 2px;
+      background-color: vars.$clr-gray-light-2;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+    &--btn {
+      display: inline-block;
+      border: 0;
+      outline: 0;
+      font-weight: 600;
+      font-size: 1.4rem;
+      background-color: transparent;
+      color: vars.$clr-white;
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+
+      &.active {
+        text-decoration: underline;
+        text-underline-offset: 0.5rem;
+        text-decoration-thickness: 2px;
+        z-index: 1000;
+        transition: all 0.5s ease-in-out;
+      }
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+    }
+  }
+
+  &__box {
+    padding-top: 3rem;
+  }
+}
