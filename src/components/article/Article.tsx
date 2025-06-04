@@ -1,31 +1,57 @@
 import millify from 'millify';
 
-// import Image from '../Image';
+import Image from '../Image';
 
-import './UserArticles.scss';
+import './Article.scss';
 
-const UserArticles = () => {
+const Article = () => {
   return (
-    <article className='user-articles'>
-      <div className='user-articles__container'>
-        <div className='user-articles__img'>
-          <img src='/img/user-1.jpeg' width={40} height={40} alt='avatar' />
+    <article className='article'>
+      <div className='article__container'>
+        <div className='article__cover'>
+          <Image
+            src='/user-3.jpeg'
+            width={60}
+            height={60}
+            alt='avatar'
+            className='article__cover--img'
+          />
         </div>
-        <div className='user-articles__wrapper'>
-          <div className='user-articles__profile'>
-            <span className='user-articles__profile--name'>Elise beverley</span>
-            <div className='user-articles__profile--username'>
-              <span>@</span>
+        <div className='article__wrapper'>
+          <div className='article__profile'>
+            <span className='article__profile--name'>Elise beverley</span>
+            <div className='article__profile--username'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25'
+                />
+              </svg>
               <span>ebeverley</span>
             </div>
+            <span className='article__profile--dot'>•</span>
+            <time
+              dateTime={new Date().toDateString()}
+              className='article__profile--time'
+            >
+              1d
+            </time>
           </div>
-          <p className='user-articles__desc'>
+          <p className='article__desc'>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum
-            accusantium iusto velit dolorum labore nemo...{' '}
-            <button type='button'>show more</button>
+            accusantium iusto velit dolorum labore nemo...
+            <button type='button'>more</button>
           </p>
-          <div className='user-articles__actions'>
-            <div className='user-articles__actions--comments'>
+          <div className='article__actions'>
+            <div className='article__actions--comments'>
               <button type='button'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -44,7 +70,7 @@ const UserArticles = () => {
                 <span>{millify(218)}</span>
               </button>
             </div>
-            <div className='user-articles__actions--likes'>
+            <div className='article__actions--likes'>
               <button type='button'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -63,7 +89,7 @@ const UserArticles = () => {
                 <span>{millify(1800)}</span>
               </button>
             </div>
-            <div className='user-articles__actions--dislikes'>
+            <div className='article__actions--dislikes'>
               <button type='button'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -82,7 +108,7 @@ const UserArticles = () => {
                 <span>{millify(500)}</span>
               </button>
             </div>
-            <div className='user-articles__actions--saved'>
+            <div className='article__actions--saved-post'>
               <button type='button'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -107,4 +133,4 @@ const UserArticles = () => {
   );
 };
 
-export default UserArticles;
+export default Article;

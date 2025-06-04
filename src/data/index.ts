@@ -22,6 +22,7 @@ import {
   PartnerItemType,
   PostDetailType,
   PostItemType,
+  ProfileMenuItems,
   RelatedPostType,
   RelatedTagType,
   SocialMenuType,
@@ -859,5 +860,28 @@ export const partnerItems: PartnerItemType = [
     id: 14,
     imgSrc: '/sakwa.png',
     alt: 'Sakwa Logo',
+  },
+];
+
+export const profileMenus: ProfileMenuItems = [
+  {
+    id: 'articles',
+    label: 'Articles',
+  },
+  {
+    id: 'comments',
+    label: 'Comments',
+  },
+  {
+    id: 'replies',
+    label: 'Replies',
+  },
+  {
+    id: 'likes',
+    label: 'Likes',
+  },
+  {
+    id: 'dislikes',
+    label: 'Dislikes',
   },
 ];

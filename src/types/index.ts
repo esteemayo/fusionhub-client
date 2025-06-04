@@ -1021,3 +1021,8 @@ export type UpdateUserDataType = {
   bio: string;
   about?: ReactQuill.Value;
 };
+
+export type ProfileMenuItems = {
+  id: string;
+  label: string;
+}[];

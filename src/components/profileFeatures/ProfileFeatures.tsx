@@ -1,18 +1,25 @@
 import { useMemo, useState } from 'react';
 
-import UserArticles from '../userArticles/UserArticles';
+import ProfileReply from '../profileReply/ProfileReply';
+import Article from '../article/Article';
+import ProfileComment from '../profileComment/ProfileComment';
+
+import { profileMenus } from '../../data';
 
 import './ProfileFeatures.scss';
 
 const ProfileFeatures = ({ query }: { query: string | null }) => {
-  const [isActive, setIsActive] = useState('article');
+  const [isSelected, setIsSelected] = useState('articles');
 
-  const handleClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    type: string
-  ) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.stopPropagation();
-    setIsActive(type);
+    setIsSelected(id);
+  };
+
+  const btnClasses = (id: string) => {
+    return isSelected === id
+      ? 'profile-features__buttons--btn active'
+      : 'profile-features__buttons--btn';
   };
 
   const profileClasses = useMemo(() => {
@@ -21,25 +28,55 @@ const ProfileFeatures = ({ query }: { query: string | null }) => {
 
   let bodyContent: JSX.Element | undefined;
 
-  switch (isActive) {
-    case 'article':
-      bodyContent = <UserArticles />;
+  switch (isSelected) {
+    case 'articles':
+      bodyContent = (
+        <>
+          {Array.from(new Array(3)).map((_, index) => {
+            return <Article key={index} />;
+          })}
+        </>
+      );
       break;
 
     case 'comments':
-      bodyContent = <h1>Comments</h1>;
+      bodyContent = (
+        <>
+          {Array.from(new Array(2)).map((_, index) => {
+            return <ProfileComment key={index} />;
+          })}
+        </>
+      );
       break;
 
     case 'replies':
-      bodyContent = <h1>Replies</h1>;
+      bodyContent = (
+        <>
+          {Array.from(new Array(5)).map((_, index) => {
+            return <ProfileReply key={index} />;
+          })}
+        </>
+      );
       break;
 
     case 'likes':
-      bodyContent = <h1>Likes</h1>;
+      bodyContent = (
+        <>
+          {Array.from(new Array(3)).map((_, index) => {
+            return <Article key={index} />;
+          })}
+        </>
+      );
       break;
 
     case 'dislikes':
-      bodyContent = <h1>Dislikes</h1>;
+      bodyContent = (
+        <>
+          {Array.from(new Array(5)).map((_, index) => {
+            return <Article key={index} />;
+          })}
+        </>
+      );
       break;
 
     default:
@@ -51,61 +88,19 @@ const ProfileFeatures = ({ query }: { query: string | null }) => {
       <div className='profile-features__container'>
         <div className='profile-features__wrapper'>
           <div className='profile-features__buttons'>
-            <button
-              type='button'
-              className={
-                isActive === 'article'
-                  ? 'profile-features__buttons--btn active'
-                  : 'profile-features__buttons--btn'
-              }
-              onClick={(e) => handleClick(e, 'article')}
-            >
-              Articles
-            </button>
-            <button
-              type='button'
-              className={
-                isActive === 'comments'
-                  ? 'profile-features__buttons--btn active'
-                  : 'profile-features__buttons--btn'
-              }
-              onClick={(e) => handleClick(e, 'comments')}
-            >
-              Comments
-            </button>
-            <button
-              type='button'
-              className={
-                isActive === 'replies'
-                  ? 'profile-features__buttons--btn active'
-                  : 'profile-features__buttons--btn'
-              }
-              onClick={(e) => handleClick(e, 'replies')}
-            >
-              Replies
-            </button>
-            <button
-              type='button'
-              className={
-                isActive === 'likes'
-                  ? 'profile-features__buttons--btn active'
-                  : 'profile-features__buttons--btn'
-              }
-              onClick={(e) => handleClick(e, 'likes')}
-            >
-              Likes
-            </button>
-            <button
-              type='button'
-              className={
-                isActive === 'dislikes'
-                  ? 'profile-features__buttons--btn active'
-                  : 'profile-features__buttons--btn'
-              }
-              onClick={(e) => handleClick(e, 'dislikes')}
-            >
-              Dislikes
-            </button>
+            {profileMenus.map((menu) => {
+              const { id, label } = menu;
+              return (
+                <button
+                  key={id}
+                  type='button'
+                  className={btnClasses(id)}
+                  onClick={(e) => handleClick(e, id)}
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </div>
         <div className='profile-features__box'>{bodyContent}</div>
