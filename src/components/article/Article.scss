@@ -12,6 +12,10 @@
     display: flex;
     align-items: flex-start;
     gap: 1.25rem;
+
+    @media screen and (max-width: 20em) {
+      gap: 1rem;
+    }
   }
 
   &__cover {
@@ -21,6 +25,21 @@
       display: inline-block;
       object-fit: cover;
       border-radius: 50%;
+
+      @media screen and (max-width: 26.875em) {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 3.5rem;
+        height: 3.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 3rem;
+        height: 3rem;
+      }
     }
   }
 
@@ -119,6 +138,7 @@
 
     &--name {
       text-transform: capitalize;
+      text-rendering: optimizeLegibility;
       color: vars.$clr-white;
       font-weight: 600;
       font-size: 1.5rem;
@@ -131,11 +151,35 @@
         font-size: var(--default-font-size);
       }
 
+      @media screen and (max-width: 25em) {
+        width: 20rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 18rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 16rem;
+      }
+
       @media screen and (max-width: 21.5em) {
         font-size: 1.65rem;
       }
 
+      @media screen and (max-width: 20em) {
+        width: 14rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 12rem;
+      }
+
       @media screen and (max-width: 17.5em) {
+        width: 10rem;
         font-size: var(--default-font-size);
       }
 
@@ -393,8 +437,8 @@
           }
 
           @media screen and (min-width: 125em) {
-            width: 3.2rem;
-            height: 3.2rem;
+            width: 2.6rem;
+            height: 2.6rem;
           }
         }
 

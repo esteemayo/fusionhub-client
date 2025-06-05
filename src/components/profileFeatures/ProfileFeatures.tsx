@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 
-import ProfileReply from '../profileReply/ProfileReply';
-import Article from '../article/Article';
-import ProfileComment from '../profileComment/ProfileComment';
+import ProfileReplies from '../profileReplies/ProfileReplies';
+import ProfileArticles from '../profileArticles/ProfileArticles';
+import ProfileComments from '../profileComments/ProfileComments';
 
 import { profileMenus } from '../../data';
 
@@ -30,53 +30,23 @@ const ProfileFeatures = ({ query }: { query: string | null }) => {
 
   switch (isSelected) {
     case 'articles':
-      bodyContent = (
-        <>
-          {Array.from(new Array(3)).map((_, index) => {
-            return <Article key={index} />;
-          })}
-        </>
-      );
+      bodyContent = <ProfileArticles />;
       break;
 
     case 'comments':
-      bodyContent = (
-        <>
-          {Array.from(new Array(2)).map((_, index) => {
-            return <ProfileComment key={index} />;
-          })}
-        </>
-      );
-      break;
-
-    case 'replies':
-      bodyContent = (
-        <>
-          {Array.from(new Array(5)).map((_, index) => {
-            return <ProfileReply key={index} />;
-          })}
-        </>
-      );
+      bodyContent = <ProfileComments />;
       break;
 
     case 'likes':
-      bodyContent = (
-        <>
-          {Array.from(new Array(3)).map((_, index) => {
-            return <Article key={index} />;
-          })}
-        </>
-      );
+      bodyContent = <ProfileArticles />;
+      break;
+
+    case 'replies':
+      bodyContent = <ProfileReplies />;
       break;
 
     case 'dislikes':
-      bodyContent = (
-        <>
-          {Array.from(new Array(5)).map((_, index) => {
-            return <Article key={index} />;
-          })}
-        </>
-      );
+      bodyContent = <ProfileArticles />;
       break;
 
     default:

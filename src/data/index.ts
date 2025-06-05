@@ -873,12 +873,12 @@ export const profileMenus: ProfileMenuItems = [
     label: 'Comments',
   },
   {
-    id: 'replies',
-    label: 'Replies',
-  },
-  {
     id: 'likes',
     label: 'Likes',
+  },
+  {
+    id: 'replies',
+    label: 'Replies',
   },
   {
     id: 'dislikes',
