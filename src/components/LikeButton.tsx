@@ -9,7 +9,7 @@ const LikeButton = ({
   onAction,
 }: LikeButtonProps) => {
   return (
-    <button type='button' onClick={onAction} disabled={isLoading || hasLiked}>
+    <button type='button' onClick={onAction} disabled={isLoading}>
       <LikeIcon liked={hasLiked} />
       <span>{count}</span>
     </button>

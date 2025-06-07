@@ -23,6 +23,28 @@ export const getTrendingPosts = () => http.get(postURI('trends'));
 export const getRelatedPosts = (tags: Array<string>) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
+export const getPostsByUser = (
+  userId: string,
+  pageParam: number,
+  searchParams: URLSearchParams
+) => {
+  const searchParamsObj = Object.fromEntries([...searchParams]);
+
+  return http.get(`${apiEndpoint}/user/${userId}/posts`, {
+    params: {
+      page: pageParam,
+      limit: 6,
+      ...searchParamsObj,
+    },
+  });
+};
+
+export const getPostsLikedByUser = (userId: string) =>
+  http.get(`${apiEndpoint}/user/${userId}/liked-posts`);
+
+export const getPostsDislikedByUser = (userId: string) =>
+  http.get(`${apiEndpoint}/user/${userId}/disliked-posts`);
+
 export const getLikedPosts = () => http.get(postURI('liked-posts'));
 
 export const getDislikedPosts = () => http.get(postURI('disliked-posts'));

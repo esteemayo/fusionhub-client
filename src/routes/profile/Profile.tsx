@@ -100,7 +100,10 @@ const UserProfile = () => {
             />
             <ProfileDetails {...userObj!} />
             <AboutProfile about={userObj?.about as string} />
-            <ProfileFeatures query={username} />
+            <ProfileFeatures
+              query={username}
+              userId={userData?._id as string}
+            />
           </>
         )}
       </div>

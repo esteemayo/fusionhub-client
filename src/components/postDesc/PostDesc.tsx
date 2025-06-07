@@ -9,7 +9,8 @@ import './PostDesc.scss';
 
 const PostDesc = ({ post, isLoading }: PostDescProps) => {
   const handleCopy = () => {
-    navigator.clipboard.writeText(post?.desc);
+    const parsedText = parse(String(post?.desc));
+    navigator.clipboard.writeText(parsedText as string);
     toast.success('Copied to clipboard');
     return;
   };

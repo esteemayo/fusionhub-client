@@ -1,6 +1,11 @@
 import React, { HTMLInputTypeAttribute } from 'react';
 import { Action } from 'redux';
-import { UseMutationResult } from '@tanstack/react-query';
+import {
+  FetchNextPageOptions,
+  InfiniteData,
+  InfiniteQueryObserverResult,
+  UseMutationResult,
+} from '@tanstack/react-query';
 import { IconType } from 'react-icons/lib';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { Value } from 'react-phone-number-input';
@@ -359,6 +364,16 @@ export interface ProfileDetailsProps {
   createdAt: string;
 }
 
+export interface ProfileArticlesProps {
+  posts: PostType[];
+  fetchNextPage: (
+    options?: FetchNextPageOptions
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
+  >;
+  hasNextPage: boolean;
+}
+
 export interface ProfileImageProps {
   name: string;
   bio: string;
@@ -619,6 +634,8 @@ export interface PostDetailActionProps {
 export interface PostInfoProps {
   name: string;
   username: string;
+  authorId: string;
+  userId: string | undefined;
   createdAt: string;
 }
 
@@ -659,6 +676,12 @@ export interface SavePostProps {
   isLoading: boolean;
   currentUser: CurrentUserType;
   onSave(): void;
+}
+
+export interface SaveIconProps {
+  isLoading: boolean;
+  hasSaved: boolean;
+  className?: string;
 }
 
 export interface PostDescProps {

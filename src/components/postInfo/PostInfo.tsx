@@ -1,11 +1,24 @@
 import { format } from 'timeago.js';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PostInfoProps } from '../../types';
 
 import './PostInfo.scss';
 
-const PostInfo = ({ name, username, createdAt }: PostInfoProps) => {
+const PostInfo = ({
+  name,
+  username,
+  authorId,
+  userId,
+  createdAt,
+}: PostInfoProps) => {
+  const url = useMemo(() => {
+    return authorId === userId
+      ? `/accounts/profile`
+      : `/accounts/profile?username=${username}`;
+  }, [authorId, userId, username]);
+
   return (
     <div className='post-info'>
       <div className='post-info__username'>
@@ -23,7 +36,7 @@ const PostInfo = ({ name, username, createdAt }: PostInfoProps) => {
             d='M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z'
           />
         </svg>
-        <Link to={`/accounts/profile?username=${username}`}>
+        <Link to={url}>
           <span>{name}</span>
         </Link>
       </div>

@@ -9,11 +9,7 @@ const DislikeButton = ({
   onAction,
 }: DislikeButtonProps) => {
   return (
-    <button
-      type='button'
-      onClick={onAction}
-      disabled={isLoading || hasDisliked}
-    >
+    <button type='button' onClick={onAction} disabled={isLoading}>
       <DislikeIcon disliked={hasDisliked} />
       <span>{count}</span>
     </button>

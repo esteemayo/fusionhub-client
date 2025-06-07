@@ -30,6 +30,7 @@ export const useSavedPosts: ISavedPosts = (postId) => {
   } = useQuery({
     queryKey: ['savedPosts'],
     queryFn: () => fetchSavedPosts(),
+    enabled: !!postId,
   });
 
   const saveMutation = useMutation({
@@ -61,9 +62,9 @@ export const useSavedPosts: ISavedPosts = (postId) => {
   };
 
   const isSaved = useMemo(() => {
-    const isSavedPost: boolean = savedPosts?.some(
-      (post: PostType) => post._id === (postId as string)
-    );
+    const isSavedPost: boolean =
+      savedPosts?.some((post: PostType) => post._id === (postId as string)) ||
+      false;
 
     return !!isSavedPost;
   }, [postId, savedPosts]);

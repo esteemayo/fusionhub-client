@@ -38,6 +38,8 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
           <PostInfo
             name={post?.author.name}
             username={post?.author.username}
+            authorId={post?.author._id}
+            userId={currentUser?.details._id}
             createdAt={post?.createdAt}
           />
           <PostViews views={post?.views} />

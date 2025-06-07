@@ -1,14 +1,46 @@
+import { useSearchParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import ProfileReplies from '../profileReplies/ProfileReplies';
 import ProfileArticles from '../profileArticles/ProfileArticles';
 import ProfileComments from '../profileComments/ProfileComments';
 
 import { profileMenus } from '../../data';
+import { getPostsByUser } from '../../services/postService';
 
 import './ProfileFeatures.scss';
 
-const ProfileFeatures = ({ query }: { query: string | null }) => {
+const fetchPostsByUser = async (
+  userId: string,
+  pageParam: number,
+  searchParams: URLSearchParams
+) => {
+  const { data } = await getPostsByUser(userId, pageParam, searchParams);
+  return data;
+};
+
+const ProfileFeatures = ({
+  query,
+  userId,
+}: {
+  query: string | null;
+  userId: string;
+}) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { isFetching, error, fetchNextPage, hasNextPage, data } =
+    useInfiniteQuery({
+      queryKey: ['posts', searchParams.toString()],
+      queryFn: ({ pageParam = 1 }) =>
+        fetchPostsByUser(userId, pageParam, searchParams),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, pages) =>
+        lastPage.hasMore ? pages.length + 1 : undefined,
+    });
+
+  const allArticles = data?.pages.flatMap((page) => page.posts) || [];
+
   const [isSelected, setIsSelected] = useState('articles');
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
@@ -30,7 +62,13 @@ const ProfileFeatures = ({ query }: { query: string | null }) => {
 
   switch (isSelected) {
     case 'articles':
-      bodyContent = <ProfileArticles />;
+      bodyContent = (
+        <ProfileArticles
+          posts={allArticles}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+        />
+      );
       break;
 
     case 'comments':
@@ -38,7 +76,13 @@ const ProfileFeatures = ({ query }: { query: string | null }) => {
       break;
 
     case 'likes':
-      bodyContent = <ProfileArticles />;
+      bodyContent = (
+        <ProfileArticles
+          posts={allArticles}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+        />
+      );
       break;
 
     case 'replies':
@@ -46,7 +90,13 @@ const ProfileFeatures = ({ query }: { query: string | null }) => {
       break;
 
     case 'dislikes':
-      bodyContent = <ProfileArticles />;
+      bodyContent = (
+        <ProfileArticles
+          posts={allArticles}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+        />
+      );
       break;
 
     default:

@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
+import SaveIcon from '../SaveIcon';
 import ActionMenu from '../actionMenu/ActionMenu';
 
 import { onOpen } from '../../features/updateModal/updateModalSlice';
@@ -175,29 +176,11 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
                 isLoading={saveMutation.isPending}
                 onAction={handleSave}
               >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6 action-menus__btn--svg'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'
-                    fill={
-                      saveMutation.isPending
-                        ? isSaved
-                          ? 'none'
-                          : '#dddcdc'
-                        : isSaved
-                        ? '#dddcdc'
-                        : 'none'
-                    }
-                  />
-                </svg>
+                <SaveIcon
+                  isLoading={saveMutation.isPending}
+                  hasSaved={isSaved}
+                  className='action-menus__btn--svg'
+                />
               </ActionMenu>
             )}
         <ActionMenu label='Share post' onAction={handleShare}>

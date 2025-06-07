@@ -40,6 +40,7 @@ export const useReply: IReply = (postId, commentId) => {
   const { isPending, error, data } = useQuery<ReplyType[] | [] | undefined>({
     queryKey: ['replies', commentId],
     queryFn: () => fetchPostCommentReplies(postId, commentId),
+    enabled: !!commentId,
   });
 
   const replyMutation = useMutation({
