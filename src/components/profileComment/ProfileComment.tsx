@@ -1,14 +1,22 @@
+import { formatDistanceToNow } from 'date-fns';
+
 import Image from '../Image';
+
+import { ProfileCommentProps } from '../../types';
 
 import './ProfileComment.scss';
 
-const ProfileComment = () => {
+const ProfileComment = ({
+  author,
+  content,
+  createdAt,
+}: ProfileCommentProps) => {
   return (
     <article className='profile-comment'>
       <div className='profile-comment__container'>
         <div className='profile-comment__cover'>
           <Image
-            src='/user-4.webp'
+            src={author.image ?? '/user-default.jpg'}
             width={60}
             height={60}
             alt='avatar'
@@ -17,11 +25,13 @@ const ProfileComment = () => {
         </div>
         <div className='profile-comment__wrapper'>
           <div className='profile-comment__box'>
-            <time
-              dateTime={new Date().toDateString()}
-              className='profile-comment__box--time'
-            >
-              {new Date().toDateString()}
+            <time dateTime={createdAt} className='profile-comment__box--time'>
+              {formatDistanceToNow(new Date(createdAt), {
+                addSuffix: false,
+                includeSeconds: false,
+              })
+                .replace('about ', '')
+                .replace('less than a minute', '1m')}
             </time>
             <button type='button' className='profile-comment__box--reply-btn'>
               <svg
@@ -42,14 +52,10 @@ const ProfileComment = () => {
             </button>
           </div>
           <div className='profile-comment__info'>
-            <span className='profile-comment__info--name'>
-              Emmanuel Ayodeji Adebayo
-            </span>
+            <span className='profile-comment__info--name'>{author.name}</span>
             <p className='profile-comment__info--content'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-              vitae modi fuga quisquam laboriosam, explicabo dolore accusamus
-              dolorum. Consectetur quo culpa sed fuga aut pariatur commodi quos
-              sit non rerum...<button type='button'>more</button>
+              {content}
+              <button type='button'>more</button>
             </p>
           </div>
           <div className='profile-comment__actions'>

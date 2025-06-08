@@ -6,6 +6,14 @@ const commentUrl = (commentId: string) => `${apiEndpoint}/${commentId}`;
 
 export const getComments = () => http.get(apiEndpoint);
 
+export const getCommentsByUser = (userId: string, pageParam: number) =>
+  http.get(`${apiEndpoint}/user/${userId}/comments`, {
+    params: {
+      page: pageParam,
+      limit: 6,
+    },
+  });
+
 export const getComment = (commentId: string) =>
   http.get(commentUrl(commentId));
 

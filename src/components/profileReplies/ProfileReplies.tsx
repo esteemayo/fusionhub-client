@@ -1,25 +1,23 @@
-import { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 import Spinner from '../Spinner';
 import ProfileReply from '../profileReply/ProfileReply';
 
-import { PostType } from '../../types';
+import { ProfileRepliesProps } from '../../types';
 
 import './ProfileReplies.scss';
 
-const ProfileReplies = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
-
-  const data: PostType[] = [];
-
+const ProfileReplies = ({
+  replies,
+  isLoading,
+  hasNextPage,
+  error,
+  fetchNextPage,
+}: ProfileRepliesProps) => {
   return (
     <div className='profile-replies'>
-      {(data ?? [])?.length < 1 && isLoading ? (
+      {(replies ?? [])?.length < 1 && isLoading ? (
         <EmptyMessage
           title='empty replies'
           subtitle='something went wrong!'
@@ -29,10 +27,35 @@ const ProfileReplies = () => {
         <div className='profile-replies__spinner'>
           <Spinner size={30} />
         </div>
+      ) : error ? (
+        <EmptyMessage
+          title='Unable to load articles'
+          subtitle={
+            error.message ||
+            'There was a problem fetching articles. Please try refreshing the page or check your internet connection.'
+          }
+          center
+        />
       ) : (
-        Array.from(new Array(5)).map((_, index) => {
-          return <ProfileReply key={index} />;
-        })
+        <InfiniteScroll
+          dataLength={replies.length}
+          next={fetchNextPage}
+          hasMore={hasNextPage}
+          loader={
+            <div className='profile-replies__spinner'>
+              <Spinner size={30} />
+            </div>
+          }
+          endMessage={
+            <span className='profile-replies__message'>
+              There are no more replies to display.
+            </span>
+          }
+        >
+          {replies.map((reply) => {
+            return <ProfileReply key={reply._id} {...reply} />;
+          })}
+        </InfiniteScroll>
       )}
     </div>
   );

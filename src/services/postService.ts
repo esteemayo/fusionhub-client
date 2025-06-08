@@ -23,27 +23,29 @@ export const getTrendingPosts = () => http.get(postURI('trends'));
 export const getRelatedPosts = (tags: Array<string>) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
-export const getPostsByUser = (
-  userId: string,
-  pageParam: number,
-  searchParams: URLSearchParams
-) => {
-  const searchParamsObj = Object.fromEntries([...searchParams]);
-
-  return http.get(`${apiEndpoint}/user/${userId}/posts`, {
+export const getPostsByUser = (userId: string, pageParam: number) =>
+  http.get(`${apiEndpoint}/user/${userId}/posts`, {
     params: {
       page: pageParam,
       limit: 6,
-      ...searchParamsObj,
     },
   });
-};
 
-export const getPostsLikedByUser = (userId: string) =>
-  http.get(`${apiEndpoint}/user/${userId}/liked-posts`);
+export const getPostsLikedByUser = (userId: string, pageParam: number) =>
+  http.get(`${apiEndpoint}/user/${userId}/liked-posts`, {
+    params: {
+      page: pageParam,
+      limit: 6,
+    },
+  });
 
-export const getPostsDislikedByUser = (userId: string) =>
-  http.get(`${apiEndpoint}/user/${userId}/disliked-posts`);
+export const getPostsDislikedByUser = (userId: string, pageParam: number) =>
+  http.get(`${apiEndpoint}/user/${userId}/disliked-posts`, {
+    params: {
+      page: pageParam,
+      limit: 6,
+    },
+  });
 
 export const getLikedPosts = () => http.get(postURI('liked-posts'));
 

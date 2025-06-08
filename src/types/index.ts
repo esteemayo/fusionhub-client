@@ -1,15 +1,15 @@
 import React, { HTMLInputTypeAttribute } from 'react';
 import { Action } from 'redux';
+import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import { IconType } from 'react-icons/lib';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { Value } from 'react-phone-number-input';
 import {
   FetchNextPageOptions,
   InfiniteData,
   InfiniteQueryObserverResult,
   UseMutationResult,
 } from '@tanstack/react-query';
-import { IconType } from 'react-icons/lib';
-import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
-import { Value } from 'react-phone-number-input';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -366,12 +366,58 @@ export interface ProfileDetailsProps {
 
 export interface ProfileArticlesProps {
   posts: PostType[];
+  title: string;
+  subtitle: string;
+  isLoading: boolean;
+  hasNextPage: boolean;
+  error: Error | null;
   fetchNextPage: (
     options?: FetchNextPageOptions
   ) => Promise<
     InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
   >;
+}
+
+export interface ArticleProps {
+  post: PostType;
+}
+
+export interface ProfileCommentsProps {
+  comments: CommentType[];
+  isLoading: boolean;
   hasNextPage: boolean;
+  error: Error | null;
+  fetchNextPage: (
+    options?: FetchNextPageOptions
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
+  >;
+}
+
+export interface ProfileCommentProps {
+  _id: string;
+  content: string;
+  author: AuthorType;
+  createdAt: string;
+}
+
+export interface ProfileRepliesProps {
+  replies: ReplyType[];
+  isLoading: boolean;
+  hasNextPage: boolean;
+  error: Error | null;
+  fetchNextPage: (
+    options?: FetchNextPageOptions
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
+  >;
+}
+
+export interface ProfileReplyProps {
+  _id: string;
+  content: string;
+  author: AuthorType;
+  createdAt: string;
 }
 
 export interface ProfileImageProps {

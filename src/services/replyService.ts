@@ -6,6 +6,14 @@ const replyUrl = (replyId: string) => `${apiEndpoint}/${replyId}`;
 
 export const getReplies = () => http.get(apiEndpoint);
 
+export const getRepliesByUser = (userId: string, pageParam: number) =>
+  http.get(`${apiEndpoint}/user/${userId}/replies`, {
+    params: {
+      page: pageParam,
+      limit: 6,
+    },
+  });
+
 export const getReply = (replyId: string) => http.get(replyUrl(replyId));
 
 export const createReply = <T extends object>(reply: T) =>

@@ -10,41 +10,51 @@ import './ProfileArticles.scss';
 
 const ProfileArticles = ({
   posts,
-  fetchNextPage,
+  title,
+  subtitle,
+  isLoading,
   hasNextPage,
+  error,
+  fetchNextPage,
 }: ProfileArticlesProps) => {
   return (
     <div className='profile-articles'>
-      {/* {(data ?? [])?.length < 1 && isLoading ? (
-        <EmptyMessage
-          title='empty replies'
-          subtitle='something went wrong!'
-          center
-        />
+      {(posts ?? [])?.length < 1 && !isLoading ? (
+        <EmptyMessage title={title} subtitle={subtitle} center />
       ) : isLoading ? (
         <div className='profile-articles__spinner'>
           <Spinner size={30} />
         </div>
+      ) : error ? (
+        <EmptyMessage
+          title='Unable to load articles'
+          subtitle={
+            error.message ||
+            'There was a problem fetching articles. Please try refreshing the page or check your internet connection.'
+          }
+          center
+        />
       ) : (
-        Array.from(new Array(3)).map((_, index) => {
-          return <Article key={index} />;
-        })
-      )} */}
-      <InfiniteScroll
-        dataLength={posts.length}
-        next={fetchNextPage}
-        hasMore={!!hasNextPage}
-        loader={
-          <div className='profile-articles__spinner'>
-            <Spinner size={30} />
-          </div>
-        }
-        endMessage={<span>All posts loaded</span>}
-      >
-        {posts.map((post) => {
-          return <Article key={post._id} {...post} />;
-        })}
-      </InfiniteScroll>
+        <InfiniteScroll
+          dataLength={posts.length}
+          next={fetchNextPage}
+          hasMore={!!hasNextPage}
+          loader={
+            <div className='profile-articles__spinner'>
+              <Spinner size={30} />
+            </div>
+          }
+          endMessage={
+            <span className='profile-articles__message'>
+              There are no more articles to display.
+            </span>
+          }
+        >
+          {posts.map((post) => {
+            return <Article key={post._id} post={post} />;
+          })}
+        </InfiniteScroll>
+      )}
     </div>
   );
 };

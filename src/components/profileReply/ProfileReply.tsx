@@ -1,8 +1,12 @@
+import { formatDistanceToNow } from 'date-fns';
+
 import Image from '../Image';
+
+import { ProfileReplyProps } from '../../types';
 
 import './ProfileReply.scss';
 
-const ProfileReply = () => {
+const ProfileReply = ({ content, author, createdAt }: ProfileReplyProps) => {
   return (
     <article className='profile-reply'>
       <div className='profile-reply__container'>
@@ -17,22 +21,20 @@ const ProfileReply = () => {
         </div>
         <div className='profile-reply__wrapper'>
           <div className='profile-reply__box'>
-            <time
-              dateTime={new Date().toDateString()}
-              className='profile-reply__box--time'
-            >
-              {new Date().toDateString()}
+            <time dateTime={createdAt} className='profile-reply__box--time'>
+              {formatDistanceToNow(new Date(createdAt), {
+                addSuffix: false,
+                includeSeconds: false,
+              })
+                .replace('about ', '')
+                .replace('less than a minute', '1m')}
             </time>
           </div>
           <div className='profile-reply__info'>
-            <span className='profile-reply__info--name'>
-              Emmanuel Ayodeji Adebayo
-            </span>
+            <span className='profile-reply__info--name'>{author.name}</span>
             <p className='profile-reply__info--content'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-              vitae modi fuga quisquam laboriosam, explicabo dolore accusamus
-              dolorum. Consectetur quo culpa sed fuga aut pariatur commodi quos
-              sit non rerum...<button type='button'>more</button>
+              {content}
+              <button type='button'>more</button>
             </p>
           </div>
           <div className='profile-reply__actions'>
