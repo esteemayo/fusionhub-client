@@ -21,7 +21,7 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     errorUser,
     data,
     commentUsers,
-    mutation,
+    commentMutation,
     updateMutation,
   } = useComment(postId);
 
@@ -76,7 +76,7 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     }
 
     if (content) {
-      mutation.mutate(content, {
+      commentMutation.mutate(content, {
         onSuccess: () => {
           target.reset();
           if (value) setValue('');
@@ -96,14 +96,14 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
           errorUser={errorUser}
           comments={data!}
           commentUsers={commentUsers!}
-          mutation={mutation}
+          mutation={commentMutation}
           onChange={setValue}
           onUpdate={handleUpdate}
           onOpen={handleOpen}
         />
         <CommentForm
           value={value}
-          isLoading={mutation.isPending}
+          isLoading={commentMutation.isPending}
           comments={data!}
           onChange={setValue}
           onSubmit={handleSubmit}

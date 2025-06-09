@@ -10,6 +10,7 @@ import accountModalReducer from './accountModal/accountModalSlice';
 import postModalReducer from './postModal/postModalSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
 import imageModalReducer from './imageModal/imageModalSlice';
+import replyCommentModalReducer from './replyCommentModal/replyCommentModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 
 export const store = configureStore({
@@ -25,6 +26,7 @@ export const store = configureStore({
     updateModal: updateModalReducer,
     bannerModal: bannerModalReducer,
     imageModal: imageModalReducer,
+    replyCommentModal: replyCommentModalReducer,
   },
 });
 

@@ -4,6 +4,7 @@ import CommentModal from '../components/CommentModal';
 import BannerModal from '../components/BannerModal';
 import PostModal from '../components/postModal/PostModal';
 import UpdateModal from '../components/UpdateModal';
+import ReplyCommentModal from '../components/ReplyCommentModal';
 
 const ModalProvider = () => {
   return (
@@ -14,6 +15,7 @@ const ModalProvider = () => {
       <CommentModal />
       <BannerModal />
       <ImageModal />
+      <ReplyCommentModal />
     </>
   );
 };

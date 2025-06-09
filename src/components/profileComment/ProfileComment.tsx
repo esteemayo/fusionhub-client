@@ -1,16 +1,79 @@
+import { useMemo, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 import Image from '../Image';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import {
+  onOpen,
+  setCommentId,
+  setPostId,
+} from '../../features/replyCommentModal/replyCommentModalSlice';
+
+import { excerpts } from '../../utils';
 import { ProfileCommentProps } from '../../types';
 
 import './ProfileComment.scss';
 
 const ProfileComment = ({
+  _id: commentId,
   author,
   content,
+  post: postId,
   createdAt,
 }: ProfileCommentProps) => {
+  const dispatch = useAppDispatch();
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const [more, setMore] = useState(false);
+
+  const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(onOpen());
+    dispatch(setCommentId(commentId));
+    dispatch(setPostId(postId));
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setMore((value) => {
+      return !value;
+    });
+  };
+
+  const handleCollapse = () => {
+    if (more) {
+      setMore(false);
+    }
+  };
+
+  const replyBtnClasses = useMemo(() => {
+    return currentUser?.role !== 'admin'
+      ? 'profile-comment__box--reply-btn show'
+      : 'profile-comment__box--reply-btn hide';
+  }, [currentUser]);
+
+  const contentLabel = useMemo(() => {
+    return more && content.length > 200 ? content : excerpts(content, 200);
+  }, [content, more]);
+
+  const btnClasses = useMemo(() => {
+    return content.length > 200
+      ? 'profile-comment__info--btn show'
+      : 'profile-comment__info--btn hide';
+  }, [content]);
+
+  const btnLabel = useMemo(() => {
+    return more ? undefined : 'more';
+  }, [more]);
+
+  const actionClasses = useMemo(() => {
+    return currentUser?.role === 'admin'
+      ? 'profile-comment__actions show'
+      : 'profile-comment__actions hide';
+  }, [currentUser]);
+
   return (
     <article className='profile-comment'>
       <div className='profile-comment__container'>
@@ -31,9 +94,16 @@ const ProfileComment = ({
                 includeSeconds: false,
               })
                 .replace('about ', '')
-                .replace('less than a minute', '1m')}
+                .replace('less than a minute', '1m')
+                .replace('minutes', 'min')
+                .replace('days', 'd')
+                .replace('months', 'm')}
             </time>
-            <button type='button' className='profile-comment__box--reply-btn'>
+            <button
+              type='button'
+              onClick={handleReply}
+              className={replyBtnClasses}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -53,12 +123,21 @@ const ProfileComment = ({
           </div>
           <div className='profile-comment__info'>
             <span className='profile-comment__info--name'>{author.name}</span>
-            <p className='profile-comment__info--content'>
-              {content}
-              <button type='button'>more</button>
+            <p
+              className='profile-comment__info--content'
+              onClick={handleCollapse}
+            >
+              {contentLabel}
+              <button
+                type='button'
+                onClick={handleClick}
+                className={btnClasses}
+              >
+                {btnLabel}
+              </button>
             </p>
           </div>
-          <div className='profile-comment__actions'>
+          <div className={actionClasses}>
             <button type='button' className='profile-comment__actions--update'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'

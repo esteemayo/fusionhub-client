@@ -9,17 +9,23 @@ import Image from '../Image';
 import DislikeIcon from '../DislikeIcon';
 import SaveIcon from '../SaveIcon';
 
-import { useFavorite } from '../../hooks/useFavorite';
-import { useAppSelector } from '../../hooks/hooks';
 import { useSavedPosts } from '../../hooks/useSavedPosts';
+import { useFavorite } from '../../hooks/useFavorite';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { excerpts } from '../../utils';
 import { ArticleProps } from '../../types';
+import { excerpts } from '../../utils';
+import {
+  onOpen,
+  setPostId,
+} from '../../features/replyCommentModal/replyCommentModalSlice';
 
 import './Article.scss';
 
 const Article = ({ post }: ArticleProps) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const { isSaved, saveMutation, handleSave } = useSavedPosts(post._id);
@@ -36,6 +42,13 @@ const Article = ({ post }: ArticleProps) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     navigate(`/posts/${post.slug}`);
+  };
+
+  const handleComment = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(onOpen());
+    dispatch(setPostId(post._id));
   };
 
   const parsedDesc = useMemo(() => {
@@ -81,7 +94,10 @@ const Article = ({ post }: ArticleProps) => {
                 includeSeconds: false,
               })
                 .replace('about ', '')
-                .replace('less than a minute', '1m')}
+                .replace('less than a minute', '1m')
+                .replace('minutes', 'min')
+                .replace('days', 'd')
+                .replace('months', 'm')}
             </time>
           </div>
           <div className='article__desc'>
@@ -92,7 +108,7 @@ const Article = ({ post }: ArticleProps) => {
           </div>
           <div className='article__actions'>
             <div className='article__actions--comments'>
-              <button type='button'>
+              <button type='button' onClick={handleComment}>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'

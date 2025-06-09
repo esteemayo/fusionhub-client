@@ -127,6 +127,12 @@ export interface TextareaProps
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
+export interface ReplyCommentTextareaProps {
+  value: string;
+  placeholder: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export interface SelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string;
@@ -397,6 +403,7 @@ export interface ProfileCommentsProps {
 export interface ProfileCommentProps {
   _id: string;
   content: string;
+  post: string;
   author: AuthorType;
   createdAt: string;
 }
@@ -582,7 +589,7 @@ export interface IComment {
     errorUser: Error | null;
     data: CommentType[] | undefined;
     commentUsers: CommentImageType[] | undefined;
-    mutation: UseMutationResult<unknown, unknown, string, unknown>;
+    commentMutation: UseMutationResult<unknown, unknown, string, unknown>;
     updateMutation: UseMutationResult<
       unknown,
       unknown,

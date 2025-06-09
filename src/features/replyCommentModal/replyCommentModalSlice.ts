@@ -1,27 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface CommentModalState {
+interface ReplyCommentModalState {
   isOpen: boolean;
   commentId: string;
   postId: string;
-  replyId: string;
+  userId: string;
 }
 
-const initialState: CommentModalState = {
+const initialState: ReplyCommentModalState = {
   isOpen: false,
   commentId: '',
   postId: '',
-  replyId: '',
+  userId: '',
 };
 
-const commentModalSlice = createSlice({
-  name: 'commentModal',
+const replyCommentModalSlice = createSlice({
+  name: 'replyCommentModal',
   initialState,
   reducers: {
     reset: (state) => {
       state.commentId = '';
-      state.postId = '';
-      state.replyId = '';
     },
     onOpen: (state) => {
       state.isOpen = true;
@@ -35,13 +33,13 @@ const commentModalSlice = createSlice({
     setPostId: (state, { payload }) => {
       state.postId = payload;
     },
-    setReplyId: (state, { payload }) => {
-      state.replyId = payload;
+    setUserId: (state, { payload }) => {
+      state.userId = payload;
     },
   },
 });
 
-export const { onClose, onOpen, reset, setCommentId, setPostId, setReplyId } =
-  commentModalSlice.actions;
+export const { onClose, onOpen, reset, setCommentId, setPostId, setUserId } =
+  replyCommentModalSlice.actions;
 
-export default commentModalSlice.reducer;
+export default replyCommentModalSlice.reducer;

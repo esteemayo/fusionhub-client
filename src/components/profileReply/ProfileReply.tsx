@@ -1,18 +1,58 @@
+import { useMemo, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 import Image from '../Image';
 
 import { ProfileReplyProps } from '../../types';
+import { excerpts } from '../../utils';
+import { useAppSelector } from '../../hooks/hooks';
 
 import './ProfileReply.scss';
 
-const ProfileReply = ({ content, author, createdAt }: ProfileReplyProps) => {
+const ProfileReply = ({ author, content, createdAt }: ProfileReplyProps) => {
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const [more, setMore] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setMore((value) => {
+      return !value;
+    });
+  };
+
+  const handleCollapse = () => {
+    if (more) {
+      setMore(false);
+    }
+  };
+
+  const contentLabel = useMemo(() => {
+    return more && content.length > 150 ? content : excerpts(content, 150);
+  }, [content, more]);
+
+  const btnClasses = useMemo(() => {
+    return content.length > 150
+      ? 'profile-reply__info--btn show'
+      : 'profile-reply__info--btn hide';
+  }, [content]);
+
+  const btnLabel = useMemo(() => {
+    return more ? undefined : 'more';
+  }, [more]);
+
+  const actionClasses = useMemo(() => {
+    return currentUser?.role === 'admin'
+      ? 'profile-reply__actions show'
+      : 'profile-reply__actions hide';
+  }, [currentUser]);
+
   return (
     <article className='profile-reply'>
       <div className='profile-reply__container'>
         <div className='profile-reply__cover'>
           <Image
-            src='/user-4.webp'
+            src={author.image ?? '/user-default.jpg'}
             width={60}
             height={60}
             alt='avatar'
@@ -27,17 +67,29 @@ const ProfileReply = ({ content, author, createdAt }: ProfileReplyProps) => {
                 includeSeconds: false,
               })
                 .replace('about ', '')
-                .replace('less than a minute', '1m')}
+                .replace('less than a minute', '1m')
+                .replace('minutes', 'min')
+                .replace('days', 'd')
+                .replace('months', 'm')}
             </time>
           </div>
           <div className='profile-reply__info'>
             <span className='profile-reply__info--name'>{author.name}</span>
-            <p className='profile-reply__info--content'>
-              {content}
-              <button type='button'>more</button>
+            <p
+              className='profile-reply__info--content'
+              onClick={handleCollapse}
+            >
+              {contentLabel}
+              <button
+                type='button'
+                onClick={handleClick}
+                className={btnClasses}
+              >
+                {btnLabel}
+              </button>
             </p>
           </div>
-          <div className='profile-reply__actions'>
+          <div className={actionClasses}>
             <button type='button' className='profile-reply__actions--update'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'

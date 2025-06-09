@@ -135,6 +135,8 @@
   }
 
   &__box {
+    width: 100%;
+    min-height: 10vw;
     padding-top: 3rem;
   }
 }

@@ -50,7 +50,7 @@ export const useComment: IComment = (postId) => {
     enabled: !!postId,
   });
 
-  const mutation = useMutation({
+  const commentMutation = useMutation({
     mutationFn: (comment: string) => createComment(comment, postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', postId] });
@@ -126,7 +126,7 @@ export const useComment: IComment = (postId) => {
     errorUser,
     data,
     commentUsers,
-    mutation,
+    commentMutation,
     updateMutation,
     deleteMutation,
   };

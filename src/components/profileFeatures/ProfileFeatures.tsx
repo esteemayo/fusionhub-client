@@ -118,7 +118,7 @@ const ProfileFeatures = ({
   const allComments =
     CommentsData?.pages.flatMap((page) => page.comments) || [];
   const allLikes = likesData?.pages.flatMap((page) => page.posts) || [];
-  const allReplies = repliesData?.pages.flatMap((page) => page.replies);
+  const allReplies = repliesData?.pages.flatMap((page) => page.replies) || [];
   const allDislikes = dislikesData?.pages.flatMap((page) => page.posts) || [];
 
   const [isSelected, setIsSelected] = useState('articles');
