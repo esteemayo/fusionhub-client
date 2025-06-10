@@ -96,6 +96,7 @@ const Article = ({ post }: ArticleProps) => {
                 .replace('about ', '')
                 .replace('less than a minute', '1m')
                 .replace('minutes', 'min')
+                .replace('hour', 'h')
                 .replace('days', 'd')
                 .replace('months', 'm')}
             </time>

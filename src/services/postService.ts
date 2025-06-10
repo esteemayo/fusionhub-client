@@ -6,7 +6,18 @@ const postURI = (link: string) => `${apiEndpoint}/${link}`;
 
 const postUrl = (postId: string) => `${apiEndpoint}/${postId}`;
 
-export const getPosts = () => http.get(apiEndpoint);
+export const getPosts = (pageParam: number, searchParams: URLSearchParams) => {
+  const searchParamsObj = Object.fromEntries([...searchParams]);
+  console.log(searchParamsObj);
+
+  return http.get(apiEndpoint, {
+    params: {
+      page: pageParam,
+      limit: 6,
+      ...searchParamsObj,
+    },
+  });
+};
 
 export const getUserPosts = () => http.get(postURI('my-posts'));
 

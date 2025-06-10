@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import ProfileReplies from '../profileReplies/ProfileReplies';
 import ProfileArticles from '../profileArticles/ProfileArticles';
+import ProfileReplies from '../profileReplies/ProfileReplies';
 import ProfileComments from '../profileComments/ProfileComments';
 
 import { getRepliesByUser } from '../../services/replyService';
@@ -10,6 +10,7 @@ import * as postAPI from '../../services/postService';
 import { getCommentsByUser } from '../../services/commentService';
 
 import { profileMenus } from '../../data';
+import { ProfileFeaturesProps } from '../../types';
 
 import './ProfileFeatures.scss';
 
@@ -37,13 +38,7 @@ const fetchPostsDislikedByUser = async (userId: string, pageParam: number) => {
   return data;
 };
 
-const ProfileFeatures = ({
-  query,
-  userId,
-}: {
-  query: string | null;
-  userId: string;
-}) => {
+const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
   const { isFetching, error, fetchNextPage, hasNextPage, data } =
     useInfiniteQuery({
       queryKey: ['posts', userId],
@@ -59,7 +54,7 @@ const ProfileFeatures = ({
     error: commentsError,
     fetchNextPage: fetchNextPageComments,
     hasNextPage: hasNextPageComments,
-    data: CommentsData,
+    data: commentsData,
   } = useInfiniteQuery({
     queryKey: ['comments', userId],
     queryFn: ({ pageParam }) => fetchCommentsByUser(userId, pageParam),
@@ -114,13 +109,6 @@ const ProfileFeatures = ({
     enabled: !!userId,
   });
 
-  const allArticles = data?.pages.flatMap((page) => page.posts) || [];
-  const allComments =
-    CommentsData?.pages.flatMap((page) => page.comments) || [];
-  const allLikes = likesData?.pages.flatMap((page) => page.posts) || [];
-  const allReplies = repliesData?.pages.flatMap((page) => page.replies) || [];
-  const allDislikes = dislikesData?.pages.flatMap((page) => page.posts) || [];
-
   const [isSelected, setIsSelected] = useState('articles');
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
@@ -137,6 +125,26 @@ const ProfileFeatures = ({
   const profileClasses = useMemo(() => {
     return query ? 'profile-features show' : 'profile-features hide';
   }, [query]);
+
+  const allArticles = useMemo(() => {
+    return data?.pages.flatMap((page) => page.posts) || [];
+  }, [data]);
+
+  const allComments = useMemo(() => {
+    return commentsData?.pages.flatMap((page) => page.comments) || [];
+  }, [commentsData]);
+
+  const allLikes = useMemo(() => {
+    return likesData?.pages.flatMap((page) => page.posts) || [];
+  }, [likesData]);
+
+  const allReplies = useMemo(() => {
+    return repliesData?.pages.flatMap((page) => page.replies) || [];
+  }, [repliesData]);
+
+  const allDislikes = useMemo(() => {
+    return dislikesData?.pages.flatMap((page) => page.posts) || [];
+  }, [dislikesData]);
 
   let bodyContent: JSX.Element | undefined;
 

@@ -1,5 +1,6 @@
-import { useRef } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
+import { useMemo, useRef } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 import PostClient from '../../components/postClient/PostClient';
 import Postbar from '../../components/postbar/Postbar';
@@ -9,26 +10,30 @@ import PostItems from '../../components/postItems/PostItems';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onToggle } from '../../features/postsMenu/postsMenuSlice';
 
-import { PostsType } from '../../types';
 import { getPosts } from '../../services/postService';
 
 import './Posts.scss';
 
-const fetchPosts = async () => {
-  const { data } = await getPosts();
+const fetchPosts = async (pageParam: number, searchParams: URLSearchParams) => {
+  const { data } = await getPosts(pageParam, searchParams);
   return data;
 };
 
 const Posts = () => {
+  const [searchParams] = useSearchParams();
+
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.postsMenu }));
 
-  const { isPending, error, data } = useQuery<PostsType>({
-    queryKey: ['posts'],
-    queryFn: () => fetchPosts(),
-  });
-
-  const posts = data ? data.posts : [];
+  const { isFetching, error, fetchNextPage, hasNextPage, data } =
+    useInfiniteQuery({
+      queryKey: ['posts', searchParams.toString()],
+      queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam, searchParams),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, pages) =>
+        lastPage.hasMore ? pages.length + 1 : undefined,
+      enabled: !!searchParams,
+    });
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -41,6 +46,10 @@ const Posts = () => {
     dispatch(onToggle());
   };
 
+  const allPosts = useMemo(() => {
+    return data?.pages.flatMap((page) => page.posts) || [];
+  }, [data]);
+
   return (
     <div className='posts'>
       <div className='posts__container'>
@@ -48,7 +57,13 @@ const Posts = () => {
         <div className='posts__wrapper'>
           <div className='posts__box'>
             <PostClient isOpen={isOpen} ref={ref} />
-            <PostItems posts={posts} isLoading={isPending} error={error} />
+            <PostItems
+              posts={allPosts}
+              isLoading={isFetching}
+              error={error}
+              fetchNextPage={fetchNextPage}
+              hasNextPage={hasNextPage}
+            />
             <div className='posts__box--btn'>
               <ToggleButton
                 label='Filter'

@@ -3,12 +3,9 @@ import { formatDistanceToNow } from 'date-fns';
 
 import Image from '../Image';
 
+import * as commentModal from '../../features/commentModal/commentModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import {
-  onOpen,
-  setCommentId,
-  setPostId,
-} from '../../features/replyCommentModal/replyCommentModalSlice';
+import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
 import { excerpts } from '../../utils';
 import { ProfileCommentProps } from '../../types';
@@ -30,9 +27,9 @@ const ProfileComment = ({
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(onOpen());
-    dispatch(setCommentId(commentId));
-    dispatch(setPostId(postId));
+    dispatch(replyCommentModal.setPostId(postId));
+    dispatch(replyCommentModal.onOpen());
+    dispatch(replyCommentModal.setCommentId(commentId));
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -46,6 +43,24 @@ const ProfileComment = ({
     if (more) {
       setMore(false);
     }
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(commentModal.setPostId(postId));
+    dispatch(commentModal.onOpen());
+    dispatch(commentModal.setCommentId(commentId));
+  };
+
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(replyCommentModal.setContent(content));
+    dispatch(replyCommentModal.onOpen());
+    dispatch(replyCommentModal.setPostId(postId));
+    dispatch(replyCommentModal.setIsEditing());
+    dispatch(replyCommentModal.setCommentId(commentId));
   };
 
   const replyBtnClasses = useMemo(() => {
@@ -96,6 +111,7 @@ const ProfileComment = ({
                 .replace('about ', '')
                 .replace('less than a minute', '1m')
                 .replace('minutes', 'min')
+                .replace('hour', 'h')
                 .replace('days', 'd')
                 .replace('months', 'm')}
             </time>
@@ -138,7 +154,11 @@ const ProfileComment = ({
             </p>
           </div>
           <div className={actionClasses}>
-            <button type='button' className='profile-comment__actions--update'>
+            <button
+              type='button'
+              onClick={handleUpdate}
+              className='profile-comment__actions--update'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -154,7 +174,11 @@ const ProfileComment = ({
                 />
               </svg>
             </button>
-            <button type='button' className='profile-comment__actions--remove'>
+            <button
+              type='button'
+              onClick={handleDelete}
+              className='profile-comment__actions--remove'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'

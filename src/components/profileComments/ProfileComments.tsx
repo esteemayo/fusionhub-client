@@ -29,10 +29,10 @@ const ProfileComments = ({
         </div>
       ) : error ? (
         <EmptyMessage
-          title='Unable to load articles'
+          title='Unable to load comments'
           subtitle={
             error.message ||
-            'There was a problem fetching articles. Please try refreshing the page or check your internet connection.'
+            'There was a problem fetching comments. Please try refreshing the page or check your internet connection.'
           }
           center
         />

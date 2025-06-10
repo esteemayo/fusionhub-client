@@ -208,6 +208,12 @@ export interface PostItemsProps {
   posts: PostType[] | [];
   isLoading: boolean;
   error: Error | null;
+  hasNextPage: boolean;
+  fetchNextPage: (
+    options?: FetchNextPageOptions
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
+  >;
 }
 
 export interface FeedProps {
@@ -370,6 +376,11 @@ export interface ProfileDetailsProps {
   createdAt: string;
 }
 
+export interface ProfileFeaturesProps {
+  query: string | null;
+  userId: string;
+}
+
 export interface ProfileArticlesProps {
   posts: PostType[];
   title: string;
@@ -423,6 +434,8 @@ export interface ProfileRepliesProps {
 export interface ProfileReplyProps {
   _id: string;
   content: string;
+  comment: string;
+  post: string;
   author: AuthorType;
   createdAt: string;
 }

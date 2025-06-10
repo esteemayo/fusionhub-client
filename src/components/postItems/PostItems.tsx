@@ -1,3 +1,5 @@
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 import ErrorState from '../errorState/ErrorState';
 import Card from '../card/Card';
 import CardSkeleton from '../cardSkeleton/CardSkeleton';
@@ -6,7 +8,13 @@ import { PostItemsProps } from '../../types';
 
 import './PostItems.scss';
 
-const PostItems = ({ posts, isLoading, error }: PostItemsProps) => {
+const PostItems = ({
+  posts,
+  isLoading,
+  error,
+  fetchNextPage,
+  hasNextPage,
+}: PostItemsProps) => {
   return (
     <section className='post-items'>
       {posts?.length < 1 && !isLoading ? (
@@ -33,9 +41,23 @@ const PostItems = ({ posts, isLoading, error }: PostItemsProps) => {
               center
             />
           ) : (
-            posts?.map((post) => {
-              return <Card key={post._id} {...post} />;
-            })
+            <InfiniteScroll
+              dataLength={posts.length}
+              next={fetchNextPage}
+              hasMore={!!hasNextPage}
+              loader={Array.from(Array(3)).map((_, index) => {
+                return <CardSkeleton key={index} />;
+              })}
+              endMessage={
+                <span className='post-items__container--message'>
+                  There are no more posts to display.
+                </span>
+              }
+            >
+              {posts?.map((post) => {
+                return <Card key={post._id} {...post} />;
+              })}
+            </InfiniteScroll>
           )}
         </div>
       )}

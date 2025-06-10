@@ -104,5 +104,140 @@
     @media screen and (min-width: 125em) {
       gap: 4rem;
     }
+
+    .infinite-scroll-component {
+      width: 100%;
+
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8rem;
+
+      @media screen and (max-width: 93.75em) {
+        gap: 5rem;
+      }
+
+      @include bp.xxl {
+        gap: 1rem;
+        row-gap: 2rem;
+      }
+
+      @media screen and (max-width: 81.25em) {
+        gap: 4rem;
+      }
+
+      @media screen and (max-width: 76.25em) {
+        gap: 2rem;
+        row-gap: 2.5rem;
+      }
+
+      @include bp.lg {
+        gap: 6rem;
+      }
+
+      @media screen and (max-width: 59.375em) {
+        gap: 3rem;
+        row-gap: 3.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        row-gap: 4rem;
+      }
+
+      @include bp.md {
+        row-gap: 3rem;
+      }
+
+      @media screen and (max-width: 43.75em) {
+        column-gap: 2rem;
+      }
+
+      @media screen and (max-width: 41.875em) {
+        gap: 5rem;
+      }
+
+      @media screen and (max-width: 38.75em) {
+        row-gap: 6rem;
+      }
+
+      @media screen and (max-width: 37.5em) {
+        gap: 4rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        gap: 3rem;
+      }
+
+      @media screen and (max-width: 31.25em) {
+        gap: 3rem;
+      }
+
+      @include bp.sm {
+        row-gap: 3.5rem;
+      }
+
+      @media screen and (max-width: 28.125em) {
+        row-gap: 4rem;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        row-gap: 3rem;
+      }
+
+      @media screen and (max-width: 24.375em) {
+        gap: 2rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        gap: 3rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        gap: 2rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        gap: 4rem;
+        row-gap: 5rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        gap: 4rem;
+      }
+    }
+
+    &--message {
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.35rem;
+      color: vars.$clr-gray-light-3;
+      line-height: 1.4;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.4rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.45rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 1.85rem;
+      }
+    }
   }
 }

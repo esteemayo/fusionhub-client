@@ -17,7 +17,7 @@ const ProfileReplies = ({
 }: ProfileRepliesProps) => {
   return (
     <div className='profile-replies'>
-      {(replies ?? [])?.length < 1 && isLoading ? (
+      {(replies ?? [])?.length < 1 && !isLoading ? (
         <EmptyMessage
           title='empty replies'
           subtitle='something went wrong!'
@@ -29,10 +29,10 @@ const ProfileReplies = ({
         </div>
       ) : error ? (
         <EmptyMessage
-          title='Unable to load articles'
+          title='Unable to load replies'
           subtitle={
             error.message ||
-            'There was a problem fetching articles. Please try refreshing the page or check your internet connection.'
+            'There was a problem fetching replies. Please try refreshing the page or check your internet connection.'
           }
           center
         />

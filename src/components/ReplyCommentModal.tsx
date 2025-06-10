@@ -7,34 +7,60 @@ import { useComment } from '../hooks/useComment';
 import { useReply } from '../hooks/useReply';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
-import {
-  onClose,
-  reset,
-} from '../features/replyCommentModal/replyCommentModalSlice';
+import * as replyCommentModal from '../features/replyCommentModal/replyCommentModalSlice';
 
 const ReplyCommentModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, commentId, postId } = useAppSelector((state) => ({
-    ...state.replyCommentModal,
-  }));
+  const { isOpen, isEditing, content, commentId, postId, replyId } =
+    useAppSelector((state) => ({
+      ...state.replyCommentModal,
+    }));
 
-  const { commentMutation } = useComment(postId);
-  const { replyMutation } = useReply(postId, commentId);
+  const { commentMutation, updateMutation } = useComment(postId);
+  const { replyMutation, updateReplyMutation } = useReply(postId, commentId);
 
-  const [content, setContent] = useState('');
+  const [comment, setComment] = useState('');
 
   const handleClose = () => {
-    dispatch(onClose());
+    dispatch(replyCommentModal.onClose());
   };
 
   const handleSubmit = () => {
     if (!postId) return;
 
+    if (isEditing) {
+      if (replyId) {
+        return updateReplyMutation.mutate(
+          { content: comment, replyId },
+          {
+            onSuccess: () => {
+              setComment('');
+              handleClose();
+            },
+          }
+        );
+      }
+
+      if (commentId) {
+        return updateMutation.mutate(
+          { content: comment, commentId },
+          {
+            onSuccess: () => {
+              setComment('');
+              handleClose();
+            },
+          }
+        );
+      }
+
+      return;
+    }
+
     const mutation = commentId ? replyMutation : commentMutation;
 
-    mutation.mutate(content, {
+    mutation.mutate(comment, {
       onSuccess: () => {
-        setContent('');
+        setComment('');
         handleClose();
       },
     });
@@ -54,19 +80,32 @@ const ReplyCommentModal = () => {
       : 'Write your thoughts here... Share your opinion or feedback about the post.';
   }, [commentId]);
 
+  const isLoading = useMemo(() => {
+    return (
+      commentMutation.isPending ||
+      replyMutation.isPending ||
+      updateMutation.isPending ||
+      updateReplyMutation.isPending
+    );
+  }, [commentMutation, replyMutation, updateMutation, updateReplyMutation]);
+
+  useEffect(() => {
+    if (content) setComment(content);
+  }, [content]);
+
   useEffect(() => {
     if (isOpen) {
       return () => {
-        dispatch(reset());
+        dispatch(replyCommentModal.reset());
       };
     }
   }, [dispatch, isOpen]);
 
   const bodyContent: JSX.Element | undefined = (
     <ReplyCommentTextarea
-      value={content}
+      value={comment}
       placeholder={placeholder}
-      onChange={setContent}
+      onChange={setComment}
     />
   );
 
@@ -75,8 +114,8 @@ const ReplyCommentModal = () => {
       isOpen={isOpen}
       title={titleLabel}
       type='cancel'
-      isLoading={commentMutation.isPending || replyMutation.isPending}
-      disabled={commentMutation.isPending || replyMutation.isPending}
+      isLoading={isLoading}
+      disabled={isLoading}
       actionLabel={actionLabel}
       secondaryActionLabel='Cancel'
       body={bodyContent}

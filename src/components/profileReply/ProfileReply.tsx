@@ -1,15 +1,26 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 import Image from '../Image';
 
-import { ProfileReplyProps } from '../../types';
+import * as commentModal from '../../features/commentModal/commentModalSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
+
 import { excerpts } from '../../utils';
-import { useAppSelector } from '../../hooks/hooks';
+import { ProfileReplyProps } from '../../types';
 
 import './ProfileReply.scss';
 
-const ProfileReply = ({ author, content, createdAt }: ProfileReplyProps) => {
+const ProfileReply = ({
+  _id: replyId,
+  author,
+  content,
+  comment: commentId,
+  post: postId,
+  createdAt,
+}: ProfileReplyProps) => {
+  const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const [more, setMore] = useState(false);
@@ -25,6 +36,26 @@ const ProfileReply = ({ author, content, createdAt }: ProfileReplyProps) => {
     if (more) {
       setMore(false);
     }
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(commentModal.setReplyId(replyId));
+    dispatch(commentModal.onOpen());
+    dispatch(commentModal.setCommentId(commentId));
+    dispatch(commentModal.setPostId(postId));
+  };
+
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(replyCommentModal.setContent(content));
+    dispatch(replyCommentModal.onOpen());
+    dispatch(replyCommentModal.setReplyId(replyId));
+    dispatch(replyCommentModal.setIsEditing());
+    dispatch(replyCommentModal.setCommentId(commentId));
+    dispatch(replyCommentModal.setPostId(postId));
   };
 
   const contentLabel = useMemo(() => {
@@ -69,6 +100,7 @@ const ProfileReply = ({ author, content, createdAt }: ProfileReplyProps) => {
                 .replace('about ', '')
                 .replace('less than a minute', '1m')
                 .replace('minutes', 'min')
+                .replace('hour', 'h')
                 .replace('days', 'd')
                 .replace('months', 'm')}
             </time>
@@ -90,7 +122,11 @@ const ProfileReply = ({ author, content, createdAt }: ProfileReplyProps) => {
             </p>
           </div>
           <div className={actionClasses}>
-            <button type='button' className='profile-reply__actions--update'>
+            <button
+              type='button'
+              onClick={handleUpdate}
+              className='profile-reply__actions--update'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -106,7 +142,11 @@ const ProfileReply = ({ author, content, createdAt }: ProfileReplyProps) => {
                 />
               </svg>
             </button>
-            <button type='button' className='profile-reply__actions--remove'>
+            <button
+              type='button'
+              onClick={handleDelete}
+              className='profile-reply__actions--remove'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
