@@ -36,7 +36,6 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
       <div className='post-detail-action__container'>
         <div className='post-detail-action__wrapper'>
           <PostInfo
-            name={post?.author.name}
             username={post?.author.username}
             authorId={post?.author._id}
             userId={currentUser?.details._id}

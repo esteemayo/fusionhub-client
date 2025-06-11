@@ -3,7 +3,7 @@
 
 .hero {
   width: 100%;
-  height: 40vw;
+  height: 30vw;
   background-image: linear-gradient(
       to right bottom,
       rgba(vars.$clr-black, 0.85),
@@ -12,6 +12,7 @@
     url('https://ik.imagekit.io/devayo/dafault-post.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-color: rgba(vars.$clr-tertiary-blue, 0.5);
 
   display: flex;
@@ -20,51 +21,55 @@
   justify-content: center;
 
   @include bp.xxl {
-    height: 43vw;
+    height: 33vw;
+  }
+
+  @media screen and (max-width: 76.25em) {
+    height: 35vw;
   }
 
   @media screen and (max-width: 68.75em) {
-    height: 45vw;
+    height: 37vw;
   }
 
   @include bp.lg {
-    height: 47vw;
+    height: 40vw;
   }
 
   @media screen and (max-width: 59.375em) {
-    height: 50vw;
+    height: 43vw;
   }
 
   @media screen and (max-width: 56.25em) {
-    height: 52vw;
+    height: 47vw;
   }
 
   @media screen and (max-width: 51.25em) {
-    height: 55vw;
+    height: 50vw;
   }
 
   @include bp.md {
-    height: 57vw;
+    height: 53vw;
   }
 
   @media screen and (max-width: 43.75em) {
-    height: 60vw;
+    height: 55vw;
   }
 
   @media screen and (max-width: 40.625em) {
-    height: 62vw;
+    height: 57vw;
   }
 
   @media screen and (max-width: 37.5em) {
-    height: 65vw;
+    height: 60vw;
   }
 
   @media screen and (max-width: 34.375em) {
-    height: 67vw;
+    height: 63vw;
   }
 
   @media screen and (max-width: 31.25em) {
-    height: 70vw;
+    height: 65vw;
   }
 
   @include bp.sm {
@@ -103,8 +108,16 @@
     height: 93vw;
   }
 
+  @media screen and (min-width: 106.25em) {
+    height: 32vw;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    height: 35vw;
+  }
+
   @media screen and (min-width: 125em) {
-    height: 43vw;
+    height: 37vw;
   }
 
   &__breadCrumbs {
@@ -179,7 +192,7 @@
 
   &__heading {
     display: inline-block;
-    width: 60%;
+    width: 65%;
     text-align: center;
     text-rendering: optimizeLegibility;
     font-weight: 600;
@@ -204,35 +217,33 @@
       font-size: 2.8rem;
     }
 
-    @media screen and (max-width: 34.375em) {
-      font-size: 2.6rem;
-    }
-
     @include bp.sm {
       width: 85%;
-      font-size: 2.4rem;
     }
 
     @media screen and (max-width: 26.875em) {
       width: 87%;
     }
 
+    @media screen and (max-width: 25em) {
+      font-size: 2.6rem;
+    }
+
     @media screen and (max-width: 24.375em) {
       width: 90%;
-      font-size: 2.2rem;
     }
 
     @media screen and (max-width: 23.4375em) {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
 
     @media screen and (max-width: 21.5em) {
-      font-size: 1.85rem;
+      font-size: 2.35rem;
     }
 
     @media screen and (max-width: 18.75em) {
       width: 100%;
-      font-size: var(--default-font-size);
+      font-size: 2.2rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -246,6 +257,138 @@
     @media screen and (min-width: 125em) {
       width: 70%;
       font-size: 3.7rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    margin-top: 1rem;
+
+    &--time,
+    &--author {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      color: vars.$clr-white;
+
+      svg {
+        width: 2.25rem;
+        height: 2.25rem;
+        color: currentColor;
+        stroke-width: 2px;
+
+        @media screen and (max-width: 56.25em) {
+          width: 2.35rem;
+          height: 2.35rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.45rem;
+          height: 2.45rem;
+        }
+
+        @media screen and (max-width: 43.75em) {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+
+        @media screen and (max-width: 37.5em) {
+          width: 2.35rem;
+          height: 2.35rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 2.05rem;
+          height: 2.05rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 2.35rem;
+          height: 2.35rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.55rem;
+          height: 2.55rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3.25rem;
+          height: 3.25rem;
+        }
+      }
+
+      time,
+      span {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: inherit;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.7rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.9rem;
+        }
+
+        @media screen and (max-width: 37.5em) {
+          font-size: 2rem;
+        }
+
+        @include bp.sm {
+          font-size: 1.8rem;
+        }
+
+        @media screen and (max-width: 25em) {
+          font-size: 1.7rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.65rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.7rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.9rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 2.25rem;
+        }
+      }
+    }
+
+    &--time {
+      time {
+        font-variant: tabular-nums;
+      }
+    }
+
+    &--author {
+      span {
+        text-transform: capitalize;
+      }
     }
   }
 }

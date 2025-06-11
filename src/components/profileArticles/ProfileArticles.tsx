@@ -27,7 +27,7 @@ const ProfileArticles = ({
         </div>
       ) : error ? (
         <EmptyMessage
-          title='Unable to load articles'
+          title='Unable to Load Articles'
           subtitle={
             error.message ||
             'There was a problem fetching articles. Please try refreshing the page or check your internet connection.'

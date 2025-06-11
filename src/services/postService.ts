@@ -8,7 +8,6 @@ const postUrl = (postId: string) => `${apiEndpoint}/${postId}`;
 
 export const getPosts = (pageParam: number, searchParams: URLSearchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
-  console.log(searchParamsObj);
 
   return http.get(apiEndpoint, {
     params: {

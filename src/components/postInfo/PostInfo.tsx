@@ -1,18 +1,12 @@
-import { format } from 'timeago.js';
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
 import { PostInfoProps } from '../../types';
 
 import './PostInfo.scss';
 
-const PostInfo = ({
-  name,
-  username,
-  authorId,
-  userId,
-  createdAt,
-}: PostInfoProps) => {
+const PostInfo = ({ username, authorId, userId, createdAt }: PostInfoProps) => {
   const url = useMemo(() => {
     return authorId === userId
       ? `/accounts/profile`
@@ -37,7 +31,7 @@ const PostInfo = ({
           />
         </svg>
         <Link to={url}>
-          <span>{name}</span>
+          <span>{username}</span>
         </Link>
       </div>
       <div className='post-info__date'>
@@ -55,7 +49,17 @@ const PostInfo = ({
             d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
           />
         </svg>
-        <time dateTime={createdAt}>{format(createdAt)}</time>
+        <time dateTime={createdAt}>
+          {formatDistanceToNow(new Date(createdAt), {
+            addSuffix: false,
+            includeSeconds: false,
+          })
+            .replace('about ', '')
+            .replace('less than a minute', '1m')
+            .replace('minutes', 'min')
+            .replace('hour', 'h')
+            .replace('days', 'd')}
+        </time>
       </div>
     </div>
   );

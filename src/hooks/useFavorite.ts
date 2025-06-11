@@ -22,14 +22,14 @@ export const useFavorite: IFavourite = (post, currentUser) => {
   const likeMutation = useMutation({
     mutationFn: () => createLikePost(post._id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['post', 'posts', post.slug] });
+      queryClient.invalidateQueries({ queryKey: ['post', post.slug] });
     },
   });
 
   const disLikeMutation = useMutation({
     mutationFn: () => createDislikePost(post._id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['post', 'posts', post.slug] });
+      queryClient.invalidateQueries({ queryKey: ['post', post.slug] });
     },
   });
 

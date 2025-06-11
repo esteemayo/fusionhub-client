@@ -19,8 +19,8 @@ const ProfileComments = ({
     <div className='profile-comments'>
       {(comments ?? [])?.length < 1 && !isLoading ? (
         <EmptyMessage
-          title='empty replies'
-          subtitle='something went wrong!'
+          title='No Comments Yet'
+          subtitle="It looks like there aren't any comments here yet. Be the first to start the conversation or check back later to see what others are saying."
           center
         />
       ) : isLoading ? (
@@ -29,10 +29,10 @@ const ProfileComments = ({
         </div>
       ) : error ? (
         <EmptyMessage
-          title='Unable to load comments'
+          title='Unable to Load Comments'
           subtitle={
             error.message ||
-            'There was a problem fetching comments. Please try refreshing the page or check your internet connection.'
+            'We encountered a problem while fetching comments. Please check your internet connection or try refreshing the page.'
           }
           center
         />
@@ -48,7 +48,9 @@ const ProfileComments = ({
           }
           endMessage={
             <span className='profile-comments__message'>
-              There are no more comments to display.
+              🎉 You've reached the end of the comments. Thanks for reading and
+              engaging! If you have something to add, feel free to leave a
+              comment.
             </span>
           }
         >

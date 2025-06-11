@@ -28,57 +28,62 @@ const ReplyCommentModal = () => {
   const handleSubmit = () => {
     if (!postId) return;
 
+    const onSuccess = () => {
+      setComment('');
+      handleClose();
+    };
+
     if (isEditing) {
       if (replyId) {
-        return updateReplyMutation.mutate(
+        updateReplyMutation.mutate(
           { content: comment, replyId },
-          {
-            onSuccess: () => {
-              setComment('');
-              handleClose();
-            },
-          }
+          { onSuccess }
         );
+
+        return;
       }
 
       if (commentId) {
-        return updateMutation.mutate(
-          { content: comment, commentId },
-          {
-            onSuccess: () => {
-              setComment('');
-              handleClose();
-            },
-          }
-        );
+        updateMutation.mutate({ content: comment, commentId }, { onSuccess });
+        return;
       }
 
       return;
     }
 
     const mutation = commentId ? replyMutation : commentMutation;
-
-    mutation.mutate(comment, {
-      onSuccess: () => {
-        setComment('');
-        handleClose();
-      },
-    });
+    mutation.mutate(comment, { onSuccess });
   };
 
   const titleLabel = useMemo(() => {
-    return postId ? (commentId ? 'Reply comment' : 'Comment on post') : '';
-  }, [commentId, postId]);
+    if (!postId) return '';
+
+    if (isEditing) {
+      return replyId ? 'Update reply' : 'Update comment';
+    }
+
+    return commentId ? 'Reply comment' : 'Comment on post';
+  }, [commentId, postId, isEditing, replyId]);
 
   const actionLabel = useMemo(() => {
-    return postId ? (commentId ? 'Submit Reply' : 'Submit Comment') : '';
-  }, [commentId, postId]);
+    if (!postId) return '';
+
+    if (isEditing) {
+      return replyId ? 'Update Reply' : 'Update Comment';
+    }
+
+    return commentId ? 'Submit Reply' : 'Submit Comment';
+  }, [commentId, postId, isEditing, replyId]);
 
   const placeholder = useMemo(() => {
+    if (isEditing) {
+      return replyId ? 'Update your reply...' : 'Update your comment...';
+    }
+
     return commentId
-      ? 'Write your reply here...'
-      : 'Write your thoughts here... Share your opinion or feedback about the post.';
-  }, [commentId]);
+      ? 'Add a reply...'
+      : 'Share your thoughts about this post...';
+  }, [commentId, isEditing, replyId]);
 
   const isLoading = useMemo(() => {
     return (
@@ -87,7 +92,12 @@ const ReplyCommentModal = () => {
       updateMutation.isPending ||
       updateReplyMutation.isPending
     );
-  }, [commentMutation, replyMutation, updateMutation, updateReplyMutation]);
+  }, [
+    commentMutation.isPending,
+    replyMutation.isPending,
+    updateMutation.isPending,
+    updateReplyMutation.isPending,
+  ]);
 
   useEffect(() => {
     if (content) setComment(content);

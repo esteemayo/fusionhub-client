@@ -73,7 +73,13 @@ const PostDetails = () => {
       {isPending ? (
         <HeroSkeleton />
       ) : (
-        <Hero title={data?.title} img={data?.img} slug={data?.slug} />
+        <Hero
+          title={data?.title}
+          img={data?.img}
+          slug={data?.slug}
+          author={data?.author}
+          createdAt={data?.createdAt}
+        />
       )}
       <div className='post-details__container'>
         <PostContent isLoading={isPending} post={data} />

@@ -19,8 +19,8 @@ const ProfileReplies = ({
     <div className='profile-replies'>
       {(replies ?? [])?.length < 1 && !isLoading ? (
         <EmptyMessage
-          title='empty replies'
-          subtitle='something went wrong!'
+          title='No Replies Yet'
+          subtitle='You haven’t replied to any posts yet. Once you start engaging in conversations, your replies will appear here. Explore posts and join the discussion to see your activity!'
           center
         />
       ) : isLoading ? (
@@ -47,9 +47,21 @@ const ProfileReplies = ({
             </div>
           }
           endMessage={
-            <span className='profile-replies__message'>
-              There are no more replies to display.
-            </span>
+            <div className='profile-replies__end-message'>
+              <span
+                className='profile-replies__icon'
+                role='img'
+                aria-label='End of replies'
+              >
+                🎉
+              </span>
+              <span className='profile-replies__message'>
+                You’ve reached the end!
+                <br />
+                There are no more replies to show. Keep engaging with posts to
+                see your future replies here.
+              </span>
+            </div>
           }
         >
           {replies.map((reply) => {

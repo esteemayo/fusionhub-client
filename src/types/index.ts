@@ -556,6 +556,8 @@ export interface HeroProps {
   title: string;
   img?: string;
   slug: string;
+  author: AuthorType;
+  createdAt: string;
 }
 
 export interface PostContentProps {
@@ -698,7 +700,6 @@ export interface PostDetailActionProps {
 }
 
 export interface PostInfoProps {
-  name: string;
   username: string;
   authorId: string;
   userId: string | undefined;

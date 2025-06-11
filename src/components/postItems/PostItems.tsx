@@ -50,7 +50,9 @@ const PostItems = ({
               })}
               endMessage={
                 <span className='post-items__container--message'>
-                  There are no more posts to display.
+                  You've reached the end! <br />
+                  You've seen all available posts. Check back later for new
+                  content.
                 </span>
               }
             >

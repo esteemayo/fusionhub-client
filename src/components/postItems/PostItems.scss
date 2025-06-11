@@ -10,7 +10,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
     gap: 8rem;
 
     @media screen and (max-width: 93.75em) {
@@ -111,7 +110,6 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
       gap: 8rem;
 
       @media screen and (max-width: 93.75em) {
