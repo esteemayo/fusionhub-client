@@ -21,14 +21,60 @@ export const useFavorite: IFavourite = (post, currentUser) => {
 
   const likeMutation = useMutation({
     mutationFn: () => createLikePost(post._id),
-    onSuccess: () => {
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['post', post.slug] });
+
+      const previousPost = queryClient.getQueryData(['post', post.slug]);
+
+      queryClient.setQueryData(
+        ['post', post.slug],
+        (old: typeof post | undefined) => {
+          if (!old) return old;
+          return {
+            ...old,
+            likes: [...old.likes, currentUser?.details._id],
+          };
+        }
+      );
+
+      return { previousPost };
+    },
+    onError: (_err, _variables, context) => {
+      if (context?.previousPost) {
+        queryClient.setQueryData(['post', post.slug], context.previousPost);
+      }
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['post', post.slug] });
     },
   });
 
   const disLikeMutation = useMutation({
     mutationFn: () => createDislikePost(post._id),
-    onSuccess: () => {
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['post', post.slug] });
+
+      const previousPost = queryClient.getQueryData(['post', post.slug]);
+
+      queryClient.setQueryData(
+        ['post', post.slug],
+        (old: typeof post | undefined) => {
+          if (!old) return old;
+          return {
+            ...old,
+            dislikes: [...old.dislikes, currentUser?.details._id],
+          };
+        }
+      );
+
+      return { previousPost };
+    },
+    onError: (_err, _variables, context) => {
+      if (context?.previousPost) {
+        queryClient.setQueryData(['post', post.slug], context.previousPost);
+      }
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['post', post.slug] });
     },
   });

@@ -5,6 +5,7 @@ import Card from '../card/Card';
 import CardSkeleton from '../cardSkeleton/CardSkeleton';
 
 import { PostItemsProps } from '../../types';
+import { useQueryParams } from '../../utils';
 
 import './PostItems.scss';
 
@@ -15,9 +16,14 @@ const PostItems = ({
   fetchNextPage,
   hasNextPage,
 }: PostItemsProps) => {
+  const query = useQueryParams();
+  const searchQuery = query.get('search');
+
+  console.log(searchQuery);
+
   return (
     <section className='post-items'>
-      {posts?.length < 1 && !isLoading ? (
+      {(posts ?? [])?.length < 1 && !isLoading ? (
         <ErrorState
           title='No posts available'
           subtitle='It seems there are no posts to display at the moment. Please check back later or try refreshing the page.'
@@ -26,11 +32,7 @@ const PostItems = ({
         />
       ) : (
         <div className='post-items__container'>
-          {isLoading ? (
-            Array.from(Array(3)).map((_, index) => {
-              return <CardSkeleton key={index} />;
-            })
-          ) : error ? (
+          {error ? (
             <ErrorState
               title='Error loading posts'
               subtitle={
@@ -40,6 +42,10 @@ const PostItems = ({
               imgSrc='/towing.svg'
               center
             />
+          ) : isLoading ? (
+            Array.from(Array(3)).map((_, index) => {
+              return <CardSkeleton key={index} />;
+            })
           ) : (
             <InfiniteScroll
               dataLength={posts.length}

@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
-import { formatDistanceToNow } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 import { PostInfoProps } from '../../types';
 
@@ -12,6 +11,33 @@ const PostInfo = ({ username, authorId, userId, createdAt }: PostInfoProps) => {
       ? `/accounts/profile`
       : `/accounts/profile?username=${username}`;
   }, [authorId, userId, username]);
+
+  const formattedDate = useMemo(() => {
+    const date = new Date(createdAt);
+    const now = new Date();
+    const diff = (now.getTime() - date.getTime()) / 1000;
+
+    if (diff < 60) {
+      return '1m';
+    } else if (diff < 3600) {
+      return `${Math.floor(diff / 60)}m`;
+    } else if (diff < 86400) {
+      return `${Math.floor(diff / 3600)}h`;
+    } else if (diff < 2592000) {
+      return `${Math.floor(diff / 86400)}d`;
+    } else if (diff < 31536000) {
+      return date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      });
+    } else {
+      return date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      });
+    }
+  }, [createdAt]);
 
   return (
     <div className='post-info'>
@@ -49,17 +75,7 @@ const PostInfo = ({ username, authorId, userId, createdAt }: PostInfoProps) => {
             d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
           />
         </svg>
-        <time dateTime={createdAt}>
-          {formatDistanceToNow(new Date(createdAt), {
-            addSuffix: false,
-            includeSeconds: false,
-          })
-            .replace('about ', '')
-            .replace('less than a minute', '1m')
-            .replace('minutes', 'min')
-            .replace('hour', 'h')
-            .replace('days', 'd')}
-        </time>
+        <time dateTime={createdAt}>{formattedDate}</time>
       </div>
     </div>
   );

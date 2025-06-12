@@ -478,6 +478,14 @@ export interface ToggleButtonProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ISearch {
+  (): {
+    setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  };
+}
+
 export interface ILogout {
   (isOpen?: boolean, onClose?: () => Action): {
     btnLabel: string;

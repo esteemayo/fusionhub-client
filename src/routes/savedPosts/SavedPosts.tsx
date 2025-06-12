@@ -19,7 +19,7 @@ const SavedPosts = () => {
         />
       </div>
       <div className='saved-posts__wrapper'>
-        {savedPosts?.length < 1 ? (
+        {(savedPosts ?? [])?.length < 1 && !isPending ? (
           <EmptyPosts
             title='No saved posts yet'
             subtitle="You haven't saved any posts yet. Start exploring content and save posts you find interesting to view them here later."

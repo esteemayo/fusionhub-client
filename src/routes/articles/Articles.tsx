@@ -29,7 +29,7 @@ const Articles = () => {
         />
       </div>
       <div className='articles__wrapper'>
-        {data?.length < 1 ? (
+        {(data ?? [])?.length < 1 && !isPending ? (
           <EmptyPosts
             title='No posts yet'
             subtitle="It looks like you haven't written any posts yet. Start sharing your stories with the world!"

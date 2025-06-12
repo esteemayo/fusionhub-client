@@ -3,7 +3,7 @@ import { useSearch } from '../../../hooks/useSearch';
 import './Search.scss';
 
 const Search = () => {
-  const { handleSubmit } = useSearch();
+  const { setSearchQuery, handleSubmit } = useSearch();
 
   return (
     <section className='search'>
@@ -15,6 +15,7 @@ const Search = () => {
             name='search'
             id='search'
             placeholder='Search posts...'
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button type='submit'>
             <svg

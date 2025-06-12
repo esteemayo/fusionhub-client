@@ -27,6 +27,8 @@
     font-weight: 700;
     font-size: 1.4rem;
     color: vars.$clr-gray-light-3;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.5rem;
@@ -56,17 +58,8 @@
       font-size: 1.9rem;
     }
 
-    &--link {
-      &:link,
-      &:visited {
-        font-weight: inherit;
-        font-size: inherit;
-        transition: all 300ms ease-in-out;
-      }
-
-      &:hover {
-        color: vars.$clr-pink-light;
-      }
+    &:hover {
+      color: vars.$clr-pink-light;
     }
   }
 

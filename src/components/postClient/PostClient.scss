@@ -50,6 +50,7 @@
 
     @include bp.md {
       width: 40rem;
+      height: fit-content;
       padding: 3rem;
       background-color: vars.$clr-black;
     }

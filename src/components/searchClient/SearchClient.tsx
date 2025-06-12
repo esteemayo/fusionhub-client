@@ -3,7 +3,7 @@ import { useSearch } from '../../hooks/useSearch';
 import './SearchClient.scss';
 
 const Client = () => {
-  const { handleSubmit } = useSearch();
+  const { setSearchQuery, handleSubmit } = useSearch();
 
   return (
     <section className='search-client'>
@@ -14,6 +14,7 @@ const Client = () => {
             name='search'
             placeholder='Search posts...'
             className='search-client__form--input'
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <svg
             xmlns='http://www.w3.org/2000/svg'

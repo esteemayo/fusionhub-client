@@ -21,7 +21,7 @@ const PostLists = ({ isLoading, error, posts }: PostListProps) => {
         />
       ) : (
         posts.map((post) => {
-          return <Card key={post.id} {...post} />;
+          return <Card key={post._id} {...post} />;
         })
       )}
     </div>

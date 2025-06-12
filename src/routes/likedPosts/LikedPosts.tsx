@@ -29,7 +29,7 @@ const LikedPosts = () => {
         />
       </div>
       <div className='liked-posts__wrapper'>
-        {data?.length < 1 ? (
+        {(data ?? [])?.length < 1 && !isPending ? (
           <EmptyPosts
             title='No liked posts found'
             subtitle="You haven't liked any posts yet. Explore stories and articles that resonate with you, and click the like button to save them here!"

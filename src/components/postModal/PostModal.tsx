@@ -1,15 +1,14 @@
 import { toast } from 'react-toastify';
 import { z } from 'zod';
-import { useMemo, useState } from 'react';
-
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useMemo, useState, useCallback } from 'react';
 import ReactQuill from 'react-quill-new';
 import {
-  FieldValues,
-  SubmitHandler,
   useForm,
   UseFormRegister,
+  FieldValues,
+  SubmitHandler,
 } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import PostImage from '../PostImage';
 import Modal from '../modal/Modal';
@@ -28,18 +27,18 @@ const enum STEPS {
   IMAGE = 1,
 }
 
+type FormData = z.infer<typeof postSchema>;
+
 const PostModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.postModal }));
+  const { isOpen } = useAppSelector((state) => state.postModal);
 
-  const [file, setFile] = useState<File | undefined>();
-  const [step, setStep] = useState(STEPS.DESC);
+  const [isLoading, setIsLoading] = useState(false);
+  const [file, setFile] = useState<File>();
   const [description, setDescription] = useState<ReactQuill.Value | undefined>(
     ''
   );
-  const [isLoading, setIsLoading] = useState(false);
-
-  type FormData = z.infer<typeof postSchema>;
+  const [step, setStep] = useState(STEPS.DESC);
 
   const {
     register,
@@ -50,105 +49,91 @@ const PostModal = () => {
     resolver: zodResolver(postSchema),
   });
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const file = (target.files as FileList)[0];
 
     setFile(file);
-  };
+  }, []);
 
-  const onBack = () => {
+  const onBack = useCallback(() => {
     setStep((value) => {
       return value - 1;
     });
-  };
+  }, []);
 
-  const onNext = () => {
+  const onNext = useCallback(() => {
     setStep((value) => {
       return value + 1;
     });
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(onClose());
-  };
+  }, [dispatch]);
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setDescription('');
     setFile(undefined);
-  };
+  }, []);
 
-  const onSubmitHandler: SubmitHandler<FormData> = (data) => {
-    if (step !== STEPS.IMAGE) {
-      return onNext();
-    }
+  const onSubmitHandler: SubmitHandler<FormData> = useCallback(
+    (data) => {
+      if (step !== STEPS.IMAGE) {
+        onNext();
+        return;
+      }
 
-    setIsLoading(true);
+      setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
 
-      console.log({
-        ...data,
-        tags: data.tags.split(','),
-        description,
-        image: file?.name,
-      });
+        console.log({
+          ...data,
+          tags: data.tags.split(','),
+          description,
+          image: file?.name,
+        });
 
-      toast.success('Post created!');
-
-      reset();
-      handleClear();
-      handleClose();
-      setStep(STEPS.DESC);
-    }, 3000);
-  };
+        toast.success('Post created!');
+        reset();
+        handleClear();
+        handleClose();
+        setStep(STEPS.DESC);
+      }, 3000);
+    },
+    [step, description, file, reset, handleClear, handleClose, onNext]
+  );
 
   const actionLabel = useMemo(() => {
-    if (step !== STEPS.IMAGE) {
-      return 'Next';
-    }
-
-    return 'Submit';
+    return step === STEPS.IMAGE ? 'Submit' : 'Next';
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
-    if (step === STEPS.IMAGE) {
-      return 'Prev';
-    }
-
-    return undefined;
+    return step === STEPS.IMAGE ? 'Prev' : undefined;
   }, [step]);
 
   const secondaryAction = useMemo(() => {
-    if (step !== STEPS.DESC) {
-      return onBack;
-    }
+    return step !== STEPS.DESC ? onBack : undefined;
+  }, [onBack, step]);
 
-    return undefined;
-  }, [step]);
-
-  let bodyContent: React.JSX.Element | undefined;
-
-  bodyContent = (
-    <PostDescription
-      value={description}
-      register={register as unknown as UseFormRegister<FieldValues>}
-      errors={errors}
-      onChangeDesc={setDescription}
-    />
-  );
-
-  if (step === STEPS.IMAGE) {
-    bodyContent = (
+  const bodyContent =
+    step === STEPS.IMAGE ? (
       <PostImage
         options={categoryOptions}
         register={register as unknown as UseFormRegister<FieldValues>}
         errors={errors}
         onChangeFile={handleFile}
       />
+    ) : (
+      <PostDescription
+        value={description}
+        register={register as unknown as UseFormRegister<FieldValues>}
+        errors={errors}
+        onChangeDesc={setDescription}
+      />
     );
-  }
 
   return (
     <Modal

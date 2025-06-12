@@ -29,7 +29,7 @@ const DislikedPosts = () => {
         />
       </div>
       <div className='disliked-posts__wrapper'>
-        {data?.length < 1 ? (
+        {(data ?? [])?.length < 1 && !isPending ? (
           <EmptyPosts
             title='No disliked posts found'
             subtitle="You haven't disliked any posts yet. Explore content and mark posts you don't prefer to see them here."
