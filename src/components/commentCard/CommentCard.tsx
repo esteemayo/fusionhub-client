@@ -195,7 +195,7 @@ const CommentCard = ({
               <time dateTime={createdAt} className='comment-card__date--time'>
                 {format(createdAt)}
               </time>
-              {isUpdated && authorId !== (userId as string) && (
+              {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span className='comment-card__date--status'>updated</span>
               )}
             </div>

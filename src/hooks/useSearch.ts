@@ -11,7 +11,8 @@ export const useSearch: ISearch = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const query = e.target.value;
+    const target = e.target as HTMLInputElement;
+    const query = target.value.trim();
 
     if (pathname === '/posts') {
       setSearchParams({
@@ -25,7 +26,11 @@ export const useSearch: ISearch = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(`/posts?search=${searchQuery}`);
+
+    if (searchQuery) {
+      navigate(`/posts?search=${searchQuery}`);
+      setSearchQuery('');
+    }
   };
 
   return {

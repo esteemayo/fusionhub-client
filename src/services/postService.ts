@@ -6,12 +6,12 @@ const postURI = (link: string) => `${apiEndpoint}/${link}`;
 
 const postUrl = (postId: string) => `${apiEndpoint}/${postId}`;
 
-export const getPosts = (pageParam: number, searchParams: URLSearchParams) => {
+export const getPosts = (page: number, searchParams: URLSearchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
 
   return http.get(apiEndpoint, {
     params: {
-      page: pageParam,
+      page,
       limit: 6,
       ...searchParamsObj,
     },
@@ -20,9 +20,9 @@ export const getPosts = (pageParam: number, searchParams: URLSearchParams) => {
 
 export const getUserPosts = () => http.get(postURI('my-posts'));
 
-export const getFeaturedPosts = () => http.get(postURI('featured-posts'));
-
 export const getRandomPosts = () => http.get(postURI('random-posts'));
+
+export const getFeaturedPosts = () => http.get(postURI('featured-posts'));
 
 export const getRecentPosts = () => http.get(postURI('recent-posts'));
 
@@ -33,26 +33,26 @@ export const getTrendingPosts = () => http.get(postURI('trends'));
 export const getRelatedPosts = (tags: Array<string>) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
-export const getPostsByUser = (userId: string, pageParam: number) =>
+export const getPostsByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/user/${userId}/posts`, {
     params: {
-      page: pageParam,
+      page,
       limit: 6,
     },
   });
 
-export const getPostsLikedByUser = (userId: string, pageParam: number) =>
+export const getPostsLikedByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/user/${userId}/liked-posts`, {
     params: {
-      page: pageParam,
+      page,
       limit: 6,
     },
   });
 
-export const getPostsDislikedByUser = (userId: string, pageParam: number) =>
+export const getPostsDislikedByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/user/${userId}/disliked-posts`, {
     params: {
-      page: pageParam,
+      page,
       limit: 6,
     },
   });

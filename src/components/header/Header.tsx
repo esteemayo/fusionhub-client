@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { PostItemType } from '../../types';
+import { HeaderProps } from '../../types';
 
 import './Header.scss';
 
@@ -9,14 +9,21 @@ interface IWrapper {
   img: string;
 }
 
-const Header = ({ posts }: { posts: PostItemType }) => {
-  const [firstItem, lastItem] = posts;
+const Header = ({ posts }: HeaderProps) => {
+  const [firstItem, lastItem] = posts ? posts : [];
+
+  const imageUrl = (url: string) => {
+    return `https://ik.imagekit.io/devayo${url}`;
+  };
 
   return (
     <header className='header'>
       <div className='header__container'>
         <div className='header__wrapper'>
-          <ImageWrapper img={firstItem.img} className='header__wrapper--left'>
+          <ImageWrapper
+            img={imageUrl(firstItem.img)}
+            className='header__wrapper--left'
+          >
             <div className='header__info'>
               <span className='header__info--category'>
                 {firstItem.category}
@@ -30,7 +37,10 @@ const Header = ({ posts }: { posts: PostItemType }) => {
               </Link>
             </div>
           </ImageWrapper>
-          <ImageWrapper img={lastItem.img} className='header__wrapper--right'>
+          <ImageWrapper
+            img={imageUrl(lastItem.img)}
+            className='header__wrapper--right'
+          >
             <div className='header__info small'>
               <span className='header__info--category small'>
                 {lastItem.category}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import RecentPosts from '../../components/recentPosts/RecentPosts';
 import Header from '../../components/header/Header';
@@ -6,21 +6,37 @@ import SearchClient from '../../components/searchClient/SearchClient';
 import Features from '../../components/features/Features';
 import HeaderSkeleton from '../../components/headerSkeleton/HeaderSkeleton';
 
-import { randomPostItems } from '../../data';
+import { PostType } from '../../types';
+import { getRandomPosts } from '../../services/postService';
 
 import './Home.scss';
 
-const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const fetchRandomPosts = async () => {
+  const { data } = await getRandomPosts();
+  return data;
+};
 
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+const Home = () => {
+  const { isPending, error, data } = useQuery<PostType[] | undefined>({
+    queryKey: ['randomPosts'],
+    queryFn: () => fetchRandomPosts(),
+  });
 
   return (
     <div className='home'>
       <div className='home__container'>
-        {isLoading ? <HeaderSkeleton /> : <Header posts={randomPostItems} />}
+        {(data ?? [])?.length < 1 && !isPending ? null : isPending ? (
+          error ? (
+            <span>
+              {(error as { message: string })?.message ||
+                'Something went wrong!'}
+            </span>
+          ) : (
+            <HeaderSkeleton />
+          )
+        ) : (
+          <Header posts={data} />
+        )}
         <SearchClient />
         <Features />
         <RecentPosts />

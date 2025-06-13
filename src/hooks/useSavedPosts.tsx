@@ -1,7 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 
 import { ISavedPosts, PostType } from '../types';
 import { useAppSelector } from './hooks';
@@ -19,7 +18,6 @@ const createSavePost = async (postId: string) => {
 
 export const useSavedPosts: ISavedPosts = (postId) => {
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
@@ -55,7 +53,7 @@ export const useSavedPosts: ISavedPosts = (postId) => {
 
   const handleSave = () => {
     if (!currentUser) {
-      return navigate('/login');
+      return null;
     }
 
     saveMutation.mutate();

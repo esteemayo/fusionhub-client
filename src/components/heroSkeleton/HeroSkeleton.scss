@@ -7,54 +7,58 @@
 
   &__header {
     width: 100% !important;
-    height: 40vw !important;
+    height: 30vw !important;
 
     @include bp.xxl {
-      height: 43vw !important;
+      height: 33vw !important;
+    }
+
+    @media screen and (max-width: 76.25em) {
+      height: 35vw !important;
     }
 
     @media screen and (max-width: 68.75em) {
-      height: 45vw !important;
+      height: 37vw !important;
     }
 
     @include bp.lg {
-      height: 47vw !important;
+      height: 40vw !important;
     }
 
     @media screen and (max-width: 59.375em) {
-      height: 50vw !important;
+      height: 43vw !important;
     }
 
     @media screen and (max-width: 56.25em) {
-      height: 52vw !important;
+      height: 47vw !important;
     }
 
     @media screen and (max-width: 51.25em) {
-      height: 55vw !important;
+      height: 50vw !important;
     }
 
     @include bp.md {
-      height: 57vw !important;
+      height: 53vw !important;
     }
 
     @media screen and (max-width: 43.75em) {
-      height: 60vw !important;
+      height: 55vw !important;
     }
 
     @media screen and (max-width: 40.625em) {
-      height: 62vw !important;
+      height: 57vw !important;
     }
 
     @media screen and (max-width: 37.5em) {
-      height: 65vw !important;
+      height: 60vw !important;
     }
 
     @media screen and (max-width: 34.375em) {
-      height: 67vw !important;
+      height: 63vw !important;
     }
 
     @media screen and (max-width: 31.25em) {
-      height: 70vw !important;
+      height: 65vw !important;
     }
 
     @include bp.sm {

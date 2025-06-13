@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 import { CategoryItemProps } from '../../types';
 
 import './CategoryItem.scss';
 
 const CategoryItem = ({ category, count }: CategoryItemProps) => {
+  const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleCategory = () => {
@@ -28,9 +29,15 @@ const CategoryItem = ({ category, count }: CategoryItemProps) => {
 
   return (
     <article className='category-item'>
-      <span className='category-item__label' onClick={handleCategory}>
-        {category}
-      </span>
+      {pathname === '/posts' ? (
+        <span className='category-item__label' onClick={handleCategory}>
+          {category}
+        </span>
+      ) : (
+        <Link to={`/posts?category=${category}`}>
+          <span className='category-item__label'>{category}</span>
+        </Link>
+      )}
       <span className='category-item__total'>({formattedCount})</span>
     </article>
   );

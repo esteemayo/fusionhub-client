@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -16,7 +15,6 @@ const createDislikePost = async (postId: string) => {
 };
 
 export const useFavorite: IFavourite = (post, currentUser) => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const likeMutation = useMutation({
@@ -81,7 +79,7 @@ export const useFavorite: IFavourite = (post, currentUser) => {
 
   const handleLike = () => {
     if (!currentUser) {
-      return navigate('/login');
+      return null;
     }
 
     likeMutation.mutate();
@@ -89,7 +87,7 @@ export const useFavorite: IFavourite = (post, currentUser) => {
 
   const handleDislike = () => {
     if (!currentUser) {
-      return navigate('/login');
+      return null;
     }
 
     disLikeMutation.mutate();

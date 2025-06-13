@@ -106,7 +106,7 @@ const Reply = ({
         <div className='reply__content'>
           <div className='reply__content--time'>
             <time dateTime={createdAt}>{format(createdAt)}</time>
-            {hasUpdated && author._id !== userId && (
+            {currentUser && hasUpdated && author._id !== userId && (
               <span className='reply__content--time'>updated</span>
             )}
           </div>

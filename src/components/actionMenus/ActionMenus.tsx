@@ -86,7 +86,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
 
   const handleFeature = () => {
     if (!currentUser) {
-      return navigate('/login');
+      return null;
     }
 
     featureMutation.mutate();
@@ -102,7 +102,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     }
 
     if (!currentUser) {
-      return navigate('/login');
+      return null;
     }
 
     dispatch(onOpen());
@@ -110,7 +110,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
 
   const handleDelete = () => {
     if (!currentUser) {
-      return navigate('/login');
+      return null;
     }
 
     deleteMutation.mutate();
@@ -166,23 +166,27 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
             </svg>
           </ActionMenu>
         )}
-        {isPending
-          ? 'loading...'
-          : error
-          ? 'saved post fetching failed'
-          : currentUser?.role !== 'admin' && (
-              <ActionMenu
-                label='Save post'
+        {isPending ? (
+          <span className='action-menus__container--loader'>loading...</span>
+        ) : error ? (
+          <span className='action-menus__container--message'>
+            {error.message || 'Saved post fetching failed'}
+          </span>
+        ) : (
+          currentUser?.role !== 'admin' && (
+            <ActionMenu
+              label='Save post'
+              isLoading={saveMutation.isPending}
+              onAction={handleSave}
+            >
+              <SaveIcon
                 isLoading={saveMutation.isPending}
-                onAction={handleSave}
-              >
-                <SaveIcon
-                  isLoading={saveMutation.isPending}
-                  hasSaved={isSaved}
-                  className='action-menus__btn--svg'
-                />
-              </ActionMenu>
-            )}
+                hasSaved={isSaved}
+                className='action-menus__btn--svg'
+              />
+            </ActionMenu>
+          )
+        )}
         <ActionMenu label='Share post' onAction={handleShare}>
           <svg
             xmlns='http://www.w3.org/2000/svg'

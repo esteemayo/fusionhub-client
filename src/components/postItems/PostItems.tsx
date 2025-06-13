@@ -19,20 +19,31 @@ const PostItems = ({
   const query = useQueryParams();
   const searchQuery = query.get('search');
 
-  console.log(searchQuery);
-
   return (
     <section className='post-items'>
       {(posts ?? [])?.length < 1 && !isLoading ? (
-        <ErrorState
-          title='No posts available'
-          subtitle='It seems there are no posts to display at the moment. Please check back later or try refreshing the page.'
-          imgSrc='/under-construction.svg'
-          center
-        />
+        searchQuery ? (
+          <ErrorState
+            title='No posts found'
+            subtitle={`We couldn't find any matches for ${searchQuery}`}
+            imgSrc='/under-construction.svg'
+            center
+          />
+        ) : (
+          <ErrorState
+            title='No posts available'
+            subtitle='It seems there are no posts to display at the moment. Please check back later or try refreshing the page.'
+            imgSrc='/under-construction.svg'
+            center
+          />
+        )
       ) : (
         <div className='post-items__container'>
-          {error ? (
+          {isLoading ? (
+            Array.from(Array(3)).map((_, index) => {
+              return <CardSkeleton key={index} />;
+            })
+          ) : error ? (
             <ErrorState
               title='Error loading posts'
               subtitle={
@@ -42,10 +53,6 @@ const PostItems = ({
               imgSrc='/towing.svg'
               center
             />
-          ) : isLoading ? (
-            Array.from(Array(3)).map((_, index) => {
-              return <CardSkeleton key={index} />;
-            })
           ) : (
             <InfiniteScroll
               dataLength={posts.length}

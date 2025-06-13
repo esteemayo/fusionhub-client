@@ -516,6 +516,10 @@ export interface IFavourite {
   };
 }
 
+export interface HeaderProps {
+  posts: PostType[] | undefined;
+}
+
 export interface FeatureProps {
   img?: string;
   desc: string;
