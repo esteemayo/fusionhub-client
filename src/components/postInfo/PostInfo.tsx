@@ -2,42 +2,18 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PostInfoProps } from '../../types';
+import { useDate } from '../../hooks/useDate';
 
 import './PostInfo.scss';
 
 const PostInfo = ({ username, authorId, userId, createdAt }: PostInfoProps) => {
+  const { formattedDate } = useDate(createdAt);
+
   const url = useMemo(() => {
     return authorId === userId
       ? `/accounts/profile`
       : `/accounts/profile?username=${username}`;
   }, [authorId, userId, username]);
-
-  const formattedDate = useMemo(() => {
-    const date = new Date(createdAt);
-    const now = new Date();
-    const diff = (now.getTime() - date.getTime()) / 1000;
-
-    if (diff < 60) {
-      return '1m';
-    } else if (diff < 3600) {
-      return `${Math.floor(diff / 60)}m`;
-    } else if (diff < 86400) {
-      return `${Math.floor(diff / 3600)}h`;
-    } else if (diff < 2592000) {
-      return `${Math.floor(diff / 86400)}d`;
-    } else if (diff < 31536000) {
-      return date.toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-      });
-    } else {
-      return date.toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      });
-    }
-  }, [createdAt]);
 
   return (
     <div className='post-info'>

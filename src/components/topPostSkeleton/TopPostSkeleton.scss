@@ -31,6 +31,10 @@
       @media screen and (min-width: 125em) {
         height: 4.5rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
   }
 
@@ -105,6 +109,10 @@
 
       @media screen and (min-width: 125em) {
         height: 2.25rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }
@@ -184,6 +192,10 @@
       @media screen and (min-width: 125em) {
         height: 1.85rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--space {
@@ -201,6 +213,10 @@
 
       @media screen and (min-width: 125em) {
         height: 1.85rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }

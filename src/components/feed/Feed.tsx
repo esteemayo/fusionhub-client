@@ -1,13 +1,15 @@
-import { format } from 'timeago.js';
 import { Link } from 'react-router-dom';
 
 import Image from '../Image';
 
 import { FeedProps } from '../../types';
+import { useDate } from '../../hooks/useDate';
 
 import './Feed.scss';
 
 const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
+  const { formattedDate } = useDate(createdAt);
+
   return (
     <article className='feed'>
       <div className='feed__wrapper'>
@@ -40,7 +42,7 @@ const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
               d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
             />
           </svg>
-          <span>{format(createdAt)}</span>
+          <span>{formattedDate}</span>
         </time>
       </div>
     </article>

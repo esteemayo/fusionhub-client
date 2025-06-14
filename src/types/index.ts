@@ -516,6 +516,12 @@ export interface IFavourite {
   };
 }
 
+export interface IDate {
+  (dateTime: string): {
+    formattedDate: string;
+  };
+}
+
 export interface HeaderProps {
   posts: PostType[] | undefined;
 }
@@ -701,6 +707,7 @@ export interface ReplyFormProps {
 export interface CommentFormProps {
   value: string;
   isLoading?: boolean;
+  isPending?: boolean;
   comments: CommentType[];
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;

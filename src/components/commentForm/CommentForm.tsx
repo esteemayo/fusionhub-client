@@ -11,6 +11,7 @@ import './CommentForm.scss';
 const CommentForm = ({
   value,
   isLoading,
+  isPending,
   comments,
   onChange,
   onSubmit,
@@ -29,6 +30,10 @@ const CommentForm = ({
       ? 'comment-form__form show'
       : 'comment-form__form hide';
   }, [hasCommented]);
+
+  if (isPending) {
+    return null;
+  }
 
   return (
     <div className='comment-form'>

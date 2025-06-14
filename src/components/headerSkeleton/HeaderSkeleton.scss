@@ -260,6 +260,10 @@
     &--right {
       border-radius: 2rem;
       overflow: hidden;
+
+      &::after {
+        border-radius: 2rem;
+      }
     }
 
     &--left {

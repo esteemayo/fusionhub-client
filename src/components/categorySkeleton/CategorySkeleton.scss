@@ -68,6 +68,10 @@
       width: 19rem !important;
       height: 2rem !important;
     }
+
+    &::after {
+      border-radius: 0.5rem;
+    }
   }
 
   &__total {
@@ -96,6 +100,10 @@
 
     @media screen and (min-width: 125em) {
       height: 2rem !important;
+    }
+
+    &::after {
+      border-radius: 0.5rem;
     }
   }
 }

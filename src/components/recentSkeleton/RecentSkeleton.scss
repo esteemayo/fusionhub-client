@@ -6,6 +6,10 @@
   border-radius: 0.5rem;
   overflow: hidden;
 
+  &::after {
+    border-radius: 0.5rem;
+  }
+
   @media screen and (max-width: 93.75em) {
     width: 27.56rem;
   }
@@ -81,6 +85,10 @@
 
     display: flex;
     gap: 2rem;
+
+    &::after {
+      border-radius: 0;
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid vars.$clr-secondary-blue;
@@ -194,6 +202,10 @@
 
       @media screen and (max-width: 31.25em) {
         border-radius: 0.5rem;
+
+        &::after {
+          border-radius: 0.5rem;
+        }
       }
     }
   }
@@ -288,6 +300,10 @@
       @media screen and (min-width: 125em) {
         height: 2.5rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--desc,
@@ -305,6 +321,10 @@
 
       @media screen and (min-width: 125em) {
         height: 1.8rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
 
@@ -349,6 +369,10 @@
 
       @media screen and (min-width: 125em) {
         height: 1.8rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
 

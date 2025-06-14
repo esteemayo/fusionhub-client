@@ -58,6 +58,10 @@
     width: 48.5rem;
   }
 
+  &::after {
+    border-radius: 1rem;
+  }
+
   &__container {
     width: 40rem;
     width: 100%;
@@ -141,6 +145,10 @@
       @media screen and (min-width: 125em) {
         width: 8rem !important;
         height: 8rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }
@@ -239,6 +247,10 @@
         width: 13.5rem !important;
         height: 3rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
   }
 
@@ -315,6 +327,10 @@
         width: 3.25rem !important;
         height: 3rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
   }
 
@@ -374,6 +390,10 @@
       @media screen and (min-width: 125em) {
         width: 44.5rem !important;
         height: 3rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
 
@@ -444,12 +464,20 @@
           width: 18rem !important;
         }
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--link {
       width: 10rem !important;
       height: 4rem !important;
       border-radius: 10rem;
+
+      &::after {
+        border-radius: 10rem;
+      }
 
       @media screen and (max-width: 56.25em) {
         width: 11rem !important;
@@ -472,6 +500,10 @@
       @media screen and (max-width: 17.5em) {
         height: 1.5rem !important;
         border-radius: 0.5rem;
+
+        &::after {
+          border-radius: 0.5rem;
+        }
       }
 
       @media screen and (min-width: 106.25em) {

@@ -72,5 +72,9 @@
       width: 9.65rem !important;
       height: 4.5rem !important;
     }
+
+    &::after {
+      border-radius: 0.5rem;
+    }
   }
 }

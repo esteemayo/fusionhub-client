@@ -7,6 +7,10 @@
   border-radius: 1rem;
   overflow: hidden;
 
+  &::after {
+    border-radius: 1rem;
+  }
+
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -107,6 +111,10 @@
         width: 13rem !important;
         height: 13rem !important;
         border-radius: 1rem !important;
+
+        &::after {
+          border-radius: 1rem !important;
+        }
       }
 
       @include bp.sm {
@@ -373,12 +381,20 @@
         width: 28rem !important;
         height: 2.5rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--link {
       width: 8.5rem !important;
       height: 2.85rem !important;
       border-radius: 10rem;
+
+      &::after {
+        border-radius: 10rem;
+      }
 
       @media screen and (max-width: 56.25em) {
         width: 9rem !important;
@@ -406,6 +422,10 @@
         width: 8rem !important;
         height: 1.25rem !important;
         border-radius: 0.5rem;
+
+        &::after {
+          border-radius: 0.5rem;
+        }
       }
 
       @media screen and (min-width: 106.25em) {

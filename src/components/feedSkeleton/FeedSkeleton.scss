@@ -42,6 +42,10 @@
       width: 100% !important;
       height: 100% !important;
       border-radius: 3px;
+
+      &::after {
+        border-radius: 3px;
+      }
     }
   }
 
@@ -121,6 +125,10 @@
         width: 19rem !important;
         height: 2rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--sub {
@@ -191,6 +199,10 @@
       @media screen and (min-width: 125em) {
         width: 16rem !important;
         height: 2rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }
@@ -303,6 +315,10 @@
 
       @media screen and (min-width: 125em) {
         width: 9rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }

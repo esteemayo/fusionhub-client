@@ -48,6 +48,10 @@
       width: 3rem !important;
       height: 3rem !important;
     }
+
+    &::after {
+      border-radius: 0.5rem;
+    }
   }
 
   &__label {
@@ -81,6 +85,10 @@
     @media screen and (min-width: 125em) {
       width: 20rem !important;
       height: 3rem !important;
+    }
+
+    &::after {
+      border-radius: 0.5rem;
     }
   }
 }

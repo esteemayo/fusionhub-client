@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { format } from 'timeago.js';
 import { useMemo, useState } from 'react';
 
 import Image from '../Image';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useDate } from '../../hooks/useDate';
 import {
   onOpen,
   setPostId,
@@ -27,15 +27,23 @@ const Reply = ({
   onUpdate,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
+
+  const { formattedDate } = useDate(createdAt);
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const [readMore, setReadMore] = useState(false);
+  const [isMore, setIsMore] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setReadMore((value) => {
+    setIsMore((value) => {
       return !value;
     });
+  };
+
+  const handleCollapse = () => {
+    if (isMore) {
+      setIsMore(false);
+    }
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,8 +64,8 @@ const Reply = ({
   }, [createdAt, updatedAt]);
 
   const contentLabel = useMemo(() => {
-    return readMore && content.length > 150 ? content : excerpts(content, 150);
-  }, [content, readMore]);
+    return isMore && content.length > 150 ? content : excerpts(content, 150);
+  }, [content, isMore]);
 
   const btnClasses = useMemo(() => {
     return content.length > 150
@@ -66,8 +74,8 @@ const Reply = ({
   }, [content]);
 
   const btnLabel = useMemo(() => {
-    return `Read ${readMore ? 'less' : 'more'}`;
-  }, [readMore]);
+    return isMore ? undefined : 'more';
+  }, [isMore]);
 
   const userId = useMemo(() => {
     return currentUser?.details._id;
@@ -105,7 +113,7 @@ const Reply = ({
         </div>
         <div className='reply__content'>
           <div className='reply__content--time'>
-            <time dateTime={createdAt}>{format(createdAt)}</time>
+            <time dateTime={createdAt}>{formattedDate}</time>
             {currentUser && hasUpdated && author._id !== userId && (
               <span className='reply__content--time'>updated</span>
             )}
@@ -113,7 +121,7 @@ const Reply = ({
           <h6 className='reply__content--username'>
             <Link to={url}>{author.name}</Link>
           </h6>
-          <p className='reply__content--text'>
+          <p onClick={handleCollapse} className='reply__content--text'>
             {contentLabel}
             <button type='button' className={btnClasses} onClick={handleClick}>
               {btnLabel}

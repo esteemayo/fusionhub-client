@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
-import { format } from 'timeago.js';
-import { useMemo, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useMemo, useRef, useState } from 'react';
 
 import Replies from '../replies/Replies';
 import Image from '../Image';
 import ReplyForm from '../replyForm/ReplyForm';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { useReply } from '../../hooks/useReply';
+import { useDate } from '../../hooks/useDate';
 import {
   setCommentId,
   setPostId,
 } from '../../features/commentModal/commentModalSlice';
+import { useReply } from '../../hooks/useReply';
 
 import { excerpts } from '../../utils';
 import { CommentCardProps } from '../../types';
@@ -38,6 +38,7 @@ const CommentCard = ({
   const dispatch = useAppDispatch();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { formattedDate } = useDate(createdAt);
   const { data, replyMutation, updateReplyMutation } = useReply(
     postId,
     commentId
@@ -45,11 +46,17 @@ const CommentCard = ({
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState('');
-  const [readMore, setReadMore] = useState(false);
   const [replyId, setReplyId] = useState('');
+  const [value, setValue] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMore, setIsMore] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+
+  const handleCollapse = () => {
+    if (isMore) {
+      setIsMore(false);
+    }
+  };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);
@@ -85,7 +92,7 @@ const CommentCard = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setReadMore((value) => {
+    setIsMore((value) => {
       return !value;
     });
   };
@@ -138,8 +145,8 @@ const CommentCard = ({
   }, [createdAt, updatedAt]);
 
   const contentLabel = useMemo(() => {
-    return readMore && content?.length > 200 ? content : excerpts(content, 200);
-  }, [content, readMore]);
+    return isMore && content?.length > 200 ? content : excerpts(content, 200);
+  }, [content, isMore]);
 
   const btnClasses = useMemo(() => {
     return content?.length > 200
@@ -148,8 +155,8 @@ const CommentCard = ({
   }, [content]);
 
   const btnLabel = useMemo(() => {
-    return `Read ${readMore ? 'less' : 'more'}`;
-  }, [readMore]);
+    return isMore ? undefined : 'more';
+  }, [isMore]);
 
   const isAdmin = useMemo(() => {
     return currentUser?.role === 'admin';
@@ -193,7 +200,7 @@ const CommentCard = ({
           <div className='comment-card__box'>
             <div className='comment-card__date'>
               <time dateTime={createdAt} className='comment-card__date--time'>
-                {format(createdAt)}
+                {formattedDate}
               </time>
               {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span className='comment-card__date--status'>updated</span>
@@ -224,7 +231,11 @@ const CommentCard = ({
           <h5 className='comment-card__details--username'>
             <Link to={url}>{author.name}</Link>
           </h5>
-          <p onDoubleClick={handleCopy} className='comment-card__details--desc'>
+          <p
+            onClick={handleCollapse}
+            onDoubleClick={handleCopy}
+            className='comment-card__details--desc'
+          >
             {contentLabel}
             <button type='button' onClick={handleClick} className={btnClasses}>
               {btnLabel}

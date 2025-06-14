@@ -6,6 +6,10 @@
   border-radius: 0.5rem;
   overflow: hidden;
 
+  &::after {
+    border-radius: 0.5rem;
+  }
+
   @media screen and (max-width: 81.25em) {
     width: 23rem;
   }
@@ -40,6 +44,10 @@
 
   @include bp.sm {
     border-radius: 0;
+
+    &::after {
+      border-radius: 0;
+    }
 
     &:not(:last-child) {
       padding-bottom: 2rem;
@@ -125,6 +133,10 @@
         width: 15rem !important;
         height: 12rem !important;
         border-radius: 0.5rem;
+
+        &::after {
+          border-radius: 0.5rem;
+        }
       }
 
       @media screen and (max-width: 25em) {

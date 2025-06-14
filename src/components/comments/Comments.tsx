@@ -104,6 +104,7 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
         <CommentForm
           value={value}
           isLoading={commentMutation.isPending}
+          isPending={isPending}
           comments={data!}
           onChange={setValue}
           onSubmit={handleSubmit}

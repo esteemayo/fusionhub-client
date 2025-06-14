@@ -158,6 +158,10 @@
         width: 9rem !important;
         height: 3rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
   }
 
@@ -187,6 +191,10 @@
 
       @media screen and (min-width: 125em) {
         height: 3rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
 

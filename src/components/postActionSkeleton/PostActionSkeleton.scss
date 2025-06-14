@@ -6,6 +6,10 @@
   padding: 3rem;
   border-radius: 3px;
 
+  &::after {
+    border-radius: 3px;
+  }
+
   @media screen and (max-width: 81.25em) {
     padding: 2rem;
   }
@@ -119,6 +123,10 @@
         width: 2.5rem !important;
         height: 2.5rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--label {
@@ -155,6 +163,10 @@
 
       @media screen and (min-width: 125em) {
         width: 12rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }
@@ -252,6 +264,10 @@
         width: 3.2rem !important;
         height: 3.2rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
   }
 
@@ -319,6 +335,10 @@
         width: 3.2rem !important;
         height: 3.2rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--label {
@@ -348,6 +368,10 @@
       @media screen and (min-width: 125em) {
         width: 3rem !important;
         height: 2rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }
@@ -416,6 +440,10 @@
         width: 3.2rem !important;
         height: 3.2rem !important;
       }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
     }
 
     &--label {
@@ -445,6 +473,10 @@
       @media screen and (min-width: 125em) {
         width: 3rem !important;
         height: 2rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
       }
     }
   }

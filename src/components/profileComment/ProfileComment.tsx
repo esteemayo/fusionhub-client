@@ -22,7 +22,7 @@ const ProfileComment = ({
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const [more, setMore] = useState(false);
+  const [isMore, setIsMore] = useState(false);
 
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -34,14 +34,14 @@ const ProfileComment = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setMore((value) => {
+    setIsMore((value) => {
       return !value;
     });
   };
 
   const handleCollapse = () => {
-    if (more) {
-      setMore(false);
+    if (isMore) {
+      setIsMore(false);
     }
   };
 
@@ -70,8 +70,8 @@ const ProfileComment = ({
   }, [currentUser]);
 
   const contentLabel = useMemo(() => {
-    return more && content.length > 200 ? content : excerpts(content, 200);
-  }, [content, more]);
+    return isMore && content.length > 200 ? content : excerpts(content, 200);
+  }, [content, isMore]);
 
   const btnClasses = useMemo(() => {
     return content.length > 200
@@ -80,8 +80,8 @@ const ProfileComment = ({
   }, [content]);
 
   const btnLabel = useMemo(() => {
-    return more ? undefined : 'more';
-  }, [more]);
+    return isMore ? undefined : 'more';
+  }, [isMore]);
 
   const actionClasses = useMemo(() => {
     return currentUser?.role === 'admin'
