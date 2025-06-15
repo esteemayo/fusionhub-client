@@ -19,6 +19,24 @@ const HeroSkeleton = () => {
           <Skeleton width={800} className='hero-skeleton__heading--main' />
           <Skeleton width={500} className='hero-skeleton__heading--sub' />
         </div>
+        <div className='hero-skeleton__wrapper'>
+          <div className='hero-skeleton__box'>
+            <Skeleton
+              width={22.5}
+              height={22.5}
+              className='hero-skeleton__box--icon'
+            />
+            <Skeleton width={120} className='hero-skeleton__box--time' />
+          </div>
+          <div className='hero-skeleton__box'>
+            <Skeleton
+              width={22.5}
+              height={22.5}
+              className='hero-skeleton__box--icon'
+            />
+            <Skeleton width={120} className='hero-skeleton__box--author' />
+          </div>
+        </div>
       </div>
     </header>
   );

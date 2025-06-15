@@ -43,7 +43,13 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
             />
           </svg>
           <time dateTime={createdAt}>
-            {new Date(createdAt).toLocaleDateString()}
+            {new Date(createdAt).toLocaleString('de-DE', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
           </time>
         </div>
         <div className='hero__wrapper--author'>

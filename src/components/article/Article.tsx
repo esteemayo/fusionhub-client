@@ -1,43 +1,57 @@
-import parse from 'html-react-parser';
+import { useNavigate } from 'react-router-dom';
 import millify from 'millify';
 import { formatDistanceToNow } from 'date-fns';
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import parse from 'html-react-parser';
 
 import LikeIcon from '../LikeIcon';
 import Image from '../Image';
 import DislikeIcon from '../DislikeIcon';
 import SaveIcon from '../SaveIcon';
 
-import { useSavedPosts } from '../../hooks/useSavedPosts';
-import { useFavorite } from '../../hooks/useFavorite';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useSavedPosts } from '../../hooks/useSavedPosts';
+import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
 import { ArticleProps } from '../../types';
 import { excerpts } from '../../utils';
-import {
-  onOpen,
-  setPostId,
-} from '../../features/replyCommentModal/replyCommentModalSlice';
+import { dislikePost, likePost } from '../../services/postService';
 
 import './Article.scss';
 
-const Article = ({ post }: ArticleProps) => {
-  const navigate = useNavigate();
+const createLikePost = async (postId: string) => {
+  const { data } = await likePost(postId);
+  return data;
+};
+
+const createDislikePost = async (postId: string) => {
+  const { data } = await dislikePost(postId);
+  return data;
+};
+
+const Article = ({ post, userId, queryKey }: ArticleProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const { isSaved, saveMutation, handleSave } = useSavedPosts(post._id);
 
-  const {
-    isLiked,
-    isDisliked,
-    likeMutation,
-    disLikeMutation,
-    handleLike,
-    handleDislike,
-  } = useFavorite(post, currentUser!);
+  const likeMutation = useMutation({
+    mutationFn: () => createLikePost(post._id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
+    },
+  });
+
+  const disLikeMutation = useMutation({
+    mutationFn: () => createDislikePost(post._id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
+    },
+  });
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -47,13 +61,37 @@ const Article = ({ post }: ArticleProps) => {
   const handleComment = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(onOpen());
-    dispatch(setPostId(post._id));
+    dispatch(replyCommentModal.onOpen());
+    dispatch(replyCommentModal.setPostId(post._id));
+  };
+
+  const handleLike = () => {
+    if (!currentUser) {
+      return null;
+    }
+
+    likeMutation.mutate();
+  };
+
+  const handleDislike = () => {
+    if (!currentUser) {
+      return null;
+    }
+
+    disLikeMutation.mutate();
   };
 
   const parsedDesc = useMemo(() => {
     return parse(excerpts(String(post.desc), 250));
   }, [post.desc]);
+
+  const isLiked = useMemo(() => {
+    return !!post.likes.some((id) => id === currentUser?.details._id);
+  }, [post, currentUser?.details._id]);
+
+  const isDisliked = useMemo(() => {
+    return !!post.dislikes.some((id) => id === currentUser?.details._id);
+  }, [post, currentUser?.details._id]);
 
   return (
     <article className='article'>

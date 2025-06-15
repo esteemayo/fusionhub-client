@@ -10,6 +10,8 @@ import './ProfileArticles.scss';
 
 const ProfileArticles = ({
   posts,
+  userId,
+  queryKey,
   title,
   subtitle,
   isLoading,
@@ -51,7 +53,14 @@ const ProfileArticles = ({
           }
         >
           {posts.map((post) => {
-            return <Article key={post._id} post={post} />;
+            return (
+              <Article
+                key={post._id}
+                post={post}
+                userId={userId}
+                queryKey={queryKey}
+              />
+            );
           })}
         </InfiniteScroll>
       )}

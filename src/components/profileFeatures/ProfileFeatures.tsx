@@ -149,6 +149,8 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     articles: (
       <ProfileArticles
         posts={allArticles as PostType[]}
+        userId={userId}
+        queryKey='articles'
         title='No articles yet'
         subtitle="This user hasn't published any articles. Check back later or explore other profiles!"
         isLoading={isFetchingArticles}
@@ -169,6 +171,8 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     likes: (
       <ProfileArticles
         posts={allLikes as PostType[]}
+        userId={userId}
+        queryKey='likes'
         title='No liked articles yet'
         subtitle="This user hasn't liked any articles. Check back later or explore other profiles!"
         isLoading={isFetchingLikes}
@@ -189,6 +193,8 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     dislikes: (
       <ProfileArticles
         posts={allDislikes as PostType[]}
+        userId={userId}
+        queryKey='dislikes'
         title='No dislike articles yet'
         subtitle="This user hasn't disliked any articles. Check back later or explore other profiles!"
         isLoading={isFetchingDislikes}

@@ -298,4 +298,105 @@
       }
     }
   }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    margin-top: 1rem;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--icon {
+      width: 2.25rem !important;
+      height: 2.25rem !important;
+      border-radius: 0.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 3rem !important;
+        height: 3rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 3rem !important;
+        height: 3rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 4rem !important;
+        height: 4rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
+    }
+
+    &--time,
+    &--author {
+      width: 12rem !important;
+      border-radius: 0.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        width: 13rem !important;
+        height: 2rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 14rem !important;
+        height: 2.25rem !important;
+      }
+
+      @include bp.sm {
+        width: 13rem !important;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 10rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 8rem !important;
+        height: 1.8rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 12.5rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 13rem !important;
+        height: 2rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 15rem !important;
+        height: 3rem !important;
+      }
+
+      &::after {
+        border-radius: 0.5rem;
+      }
+    }
+  }
 }

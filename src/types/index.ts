@@ -383,6 +383,8 @@ export interface ProfileFeaturesProps {
 
 export interface ProfileArticlesProps {
   posts: PostType[];
+  userId: string;
+  queryKey: 'articles' | 'likes' | 'dislikes';
   title: string;
   subtitle: string;
   isLoading: boolean;
@@ -397,6 +399,8 @@ export interface ProfileArticlesProps {
 
 export interface ArticleProps {
   post: PostType;
+  userId: string;
+  queryKey: 'articles' | 'likes' | 'dislikes';
 }
 
 export interface ProfileCommentsProps {
