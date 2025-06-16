@@ -22,7 +22,7 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     data,
     commentUsers,
     commentMutation,
-    updateMutation,
+    updateCommentMutation,
   } = useComment(postId);
 
   const ref = useRef<HTMLTextAreaElement>(null);
@@ -61,7 +61,7 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
 
     if (isEditing && commentId) {
       if (value) {
-        updateMutation.mutate(
+        updateCommentMutation.mutate(
           { content, commentId },
           {
             onSuccess: () => {

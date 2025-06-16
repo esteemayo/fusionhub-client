@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import logger from './logService';
+import { authKey, removeStorage } from '../utils';
 
 const devEnv = import.meta.env.MODE !== 'production';
 const { VITE_DEV_URL_ENDPOINT, VITE_PROD_URL_ENDPOINT } = import.meta.env;
@@ -25,6 +26,10 @@ authFetch.interceptors.response.use(null, (error) => {
   if (!expectedError) {
     toast.error('An unexpected error occurred');
     logger.log(error);
+  }
+
+  if (error.response && error.response.status === 401) {
+    removeStorage(authKey);
   }
 
   return Promise.reject(error);

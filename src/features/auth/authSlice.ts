@@ -1,7 +1,6 @@
-import { jwtDecode } from 'jwt-decode';
+import { toast } from 'react-toastify';
 import Cookie from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 import * as authAPI from '../../services/authService';
 import * as userAPI from '../../services/userService';
@@ -24,8 +23,8 @@ import {
   UpdateUserDataType,
 } from '../../types';
 
-const token = Cookie.get(cookieName);
 const user: CurrentUserType = getStorage(authKey);
+const tokenExpiration = user?.details.tokenExpiration;
 
 const initialState: AuthState = {
   user: user ?? null,
@@ -36,15 +35,13 @@ const initialState: AuthState = {
   message: '',
 };
 
-if (token) {
-  const decodedToken = jwtDecode(token) as CurrentUserType & { exp: number };
-  const expiryTime = new Date().getTime();
+if (tokenExpiration) {
+  const expiryTime = new Date();
 
-  if (decodedToken.exp * 1000 < expiryTime) {
+  if (tokenExpiration && new Date(tokenExpiration) < expiryTime) {
     removeStorage(authKey);
-    Cookie.remove(cookieName);
-
     initialState.user = null;
+    window.location.assign('/login');
   }
 }
 
@@ -249,6 +246,9 @@ const authSlice = createSlice({
       state.isSuccess = false;
       state.message = '';
     },
+    resetUser: (state) => {
+      state.user = null;
+    },
   },
   extraReducers(builder) {
     builder
@@ -272,18 +272,8 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-
-        const { details, ...rest } = payload;
-        const { token, ...others } = details;
-
-        const newPayload = {
-          details: { ...others },
-          ...rest,
-        };
-
-        state.user = newPayload;
-        setStorage(authKey, newPayload);
-        Cookie.set(cookieName, token);
+        state.user = payload;
+        setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
@@ -298,18 +288,8 @@ const authSlice = createSlice({
       })
       .addCase(googleLoginUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-
-        const { details, ...rest } = payload;
-        const { token, ...others } = details;
-
-        const newPayload = {
-          details: { ...others },
-          ...rest,
-        };
-
-        state.user = newPayload;
-        setStorage(authKey, newPayload);
-        Cookie.set(cookieName, token);
+        state.user = payload;
+        setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(googleLoginUser.rejected, (state, { payload }) => {
@@ -340,17 +320,8 @@ const authSlice = createSlice({
       .addCase(updateUserPassword.fulfilled, (state, { payload }) => {
         state.isLoading = false;
 
-        const { details, ...rest } = payload;
-        const { token, ...others } = details;
-
-        const newPayload = {
-          details: { ...others },
-          ...rest,
-        };
-
-        state.user = newPayload;
-        setStorage(authKey, newPayload);
-        Cookie.set(cookieName, token);
+        state.user = payload;
+        setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(updateUserPassword.rejected, (state, { payload }) => {
@@ -364,18 +335,8 @@ const authSlice = createSlice({
       })
       .addCase(updateUserData.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-
-        const { details, ...rest } = payload;
-        const { token, ...others } = details;
-
-        const newPayload = {
-          details: { ...others },
-          ...rest,
-        };
-
-        state.user = newPayload;
-        setStorage(authKey, newPayload);
-        Cookie.set(cookieName, token);
+        state.user = payload;
+        setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(updateUserData.rejected, (state, { payload }) => {
@@ -391,7 +352,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         removeStorage(authKey);
-        Cookie.remove(cookieName);
+        // Cookie.remove(cookieName);
         state.isSuccess = true;
       })
       .addCase(deleteAccount.rejected, (state, { payload }) => {
@@ -405,18 +366,8 @@ const authSlice = createSlice({
       })
       .addCase(removeAvatar.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-
-        const { details, ...rest } = payload;
-        const { token, ...others } = details;
-
-        const newPayload = {
-          details: { ...others },
-          ...rest,
-        };
-
-        state.user = newPayload;
-        setStorage(authKey, newPayload);
-        Cookie.set(cookieName, token);
+        state.user = payload;
+        setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(removeAvatar.rejected, (state, { payload }) => {
@@ -430,18 +381,8 @@ const authSlice = createSlice({
       })
       .addCase(removeBanner.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-
-        const { details, ...rest } = payload;
-        const { token, ...others } = details;
-
-        const newPayload = {
-          details: { ...others },
-          ...rest,
-        };
-
-        state.user = newPayload;
-        setStorage(authKey, newPayload);
-        Cookie.set(cookieName, token);
+        state.user = payload;
+        setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(removeBanner.rejected, (state, { payload }) => {
@@ -453,6 +394,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetState } = authSlice.actions;
+export const { resetState, resetUser } = authSlice.actions;
 
 export default authSlice.reducer;

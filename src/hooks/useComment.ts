@@ -71,7 +71,7 @@ export const useComment: IComment = (postId) => {
     },
   });
 
-  const updateMutation = useMutation({
+  const updateCommentMutation = useMutation({
     mutationFn: ({
       content,
       commentId,
@@ -98,7 +98,7 @@ export const useComment: IComment = (postId) => {
     },
   });
 
-  const deleteMutation = useMutation({
+  const deleteCommentMutation = useMutation({
     mutationFn: (commentId: string) => removeComment(commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments'] });
@@ -127,7 +127,7 @@ export const useComment: IComment = (postId) => {
     data,
     commentUsers,
     commentMutation,
-    updateMutation,
-    deleteMutation,
+    updateCommentMutation,
+    deleteCommentMutation,
   };
 };

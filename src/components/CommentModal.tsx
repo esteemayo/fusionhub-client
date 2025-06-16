@@ -15,7 +15,7 @@ const CommentModal = () => {
     ...state.commentModal,
   }));
 
-  const { deleteMutation } = useComment(postId);
+  const { deleteCommentMutation } = useComment(postId);
   const { deleteReplyMutation } = useReply(postId, commentId);
 
   const handleClose = () => {
@@ -25,7 +25,7 @@ const CommentModal = () => {
   const handleClick = () => {
     if (!postId) return;
 
-    const mutation = replyId ? deleteReplyMutation : deleteMutation;
+    const mutation = replyId ? deleteReplyMutation : deleteCommentMutation;
     const id = replyId || commentId;
 
     mutation.mutate(id, {
@@ -51,6 +51,10 @@ const CommentModal = () => {
       : '';
   }, [postId, replyId]);
 
+  const isLoading = useMemo(() => {
+    return deleteCommentMutation.isPending || deleteReplyMutation.isPending;
+  }, [deleteCommentMutation.isPending, deleteReplyMutation.isPending]);
+
   useEffect(() => {
     if (isOpen) {
       return () => {
@@ -68,8 +72,8 @@ const CommentModal = () => {
       isOpen={isOpen}
       title={titleLabel}
       type='cancel'
-      isLoading={deleteMutation.isPending || deleteReplyMutation.isPending}
-      disabled={deleteMutation.isPending || deleteReplyMutation.isPending}
+      isLoading={isLoading}
+      disabled={isLoading}
       actionLabel='Confirm Delete'
       secondaryActionLabel='Cancel Deletion'
       body={bodyContent}

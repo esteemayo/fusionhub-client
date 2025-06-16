@@ -16,7 +16,7 @@ const ReplyCommentModal = () => {
       ...state.replyCommentModal,
     }));
 
-  const { commentMutation, updateMutation } = useComment(postId);
+  const { commentMutation, updateCommentMutation } = useComment(postId);
   const { replyMutation, updateReplyMutation } = useReply(postId, commentId);
 
   const [comment, setComment] = useState('');
@@ -44,7 +44,10 @@ const ReplyCommentModal = () => {
       }
 
       if (commentId) {
-        updateMutation.mutate({ content: comment, commentId }, { onSuccess });
+        updateCommentMutation.mutate(
+          { content: comment, commentId },
+          { onSuccess }
+        );
         return;
       }
 
@@ -89,13 +92,13 @@ const ReplyCommentModal = () => {
     return (
       commentMutation.isPending ||
       replyMutation.isPending ||
-      updateMutation.isPending ||
+      updateCommentMutation.isPending ||
       updateReplyMutation.isPending
     );
   }, [
     commentMutation.isPending,
     replyMutation.isPending,
-    updateMutation.isPending,
+    updateCommentMutation.isPending,
     updateReplyMutation.isPending,
   ]);
 

@@ -627,7 +627,7 @@ export interface IComment {
     data: CommentType[] | undefined;
     commentUsers: CommentImageType[] | undefined;
     commentMutation: UseMutationResult<unknown, unknown, string, unknown>;
-    updateMutation: UseMutationResult<
+    updateCommentMutation: UseMutationResult<
       unknown,
       unknown,
       {
@@ -636,7 +636,7 @@ export interface IComment {
       },
       unknown
     >;
-    deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    deleteCommentMutation: UseMutationResult<unknown, unknown, string, unknown>;
   };
 }
 
@@ -891,6 +891,7 @@ export type UserDetailType = {
   image?: string;
   banner?: string;
   savedPosts: string[];
+  tokenExpiration: number;
   fromGoogle: boolean;
   isActive: boolean;
   createdAt: string;

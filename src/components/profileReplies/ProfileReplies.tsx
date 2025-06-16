@@ -29,7 +29,7 @@ const ProfileReplies = ({
         </div>
       ) : error ? (
         <EmptyMessage
-          title='Unable to load replies'
+          title='Unable to Load Replies'
           subtitle={
             error.message ||
             'There was a problem fetching replies. Please try refreshing the page or check your internet connection.'

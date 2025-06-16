@@ -10,12 +10,13 @@ import PostItems from '../../components/postItems/PostItems';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onToggle } from '../../features/postsMenu/postsMenuSlice';
 
+import { PostsType } from '../../types';
 import { getPosts } from '../../services/postService';
 
 import './Posts.scss';
 
-const fetchPosts = async (pageParam: number, searchParams: URLSearchParams) => {
-  const { data } = await getPosts(pageParam, searchParams);
+const fetchPosts = async (page: number, searchParams: URLSearchParams) => {
+  const { data } = await getPosts(page, searchParams);
   return data;
 };
 
@@ -26,9 +27,10 @@ const Posts = () => {
   const { isOpen } = useAppSelector((state) => ({ ...state.postsMenu }));
 
   const { isFetching, error, fetchNextPage, hasNextPage, data } =
-    useInfiniteQuery({
+    useInfiniteQuery<PostsType>({
       queryKey: ['posts', searchParams.toString()],
-      queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam, searchParams),
+      queryFn: ({ pageParam = 1 }) =>
+        fetchPosts(pageParam as number, searchParams),
       initialPageParam: 1,
       getNextPageParam: (lastPage, pages) =>
         lastPage.hasMore ? pages.length + 1 : undefined,
