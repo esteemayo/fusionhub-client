@@ -68,6 +68,7 @@
     }
 
     option {
+      text-transform: capitalize;
       font-size: inherit;
       background-color: vars.$clr-primary-blue;
       color: currentColor;

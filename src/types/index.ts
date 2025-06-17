@@ -141,7 +141,7 @@ export interface SelectProps
   disabled?: boolean;
   required?: boolean;
   validate?: boolean;
-  options: CategoryOptionType;
+  options: CategoriesType | undefined;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
@@ -256,6 +256,13 @@ export interface FilterItemProps {
   label: string;
 }
 
+export type CategoriesType = {
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}[];
+
 export type CategoryItemType = {
   category: string;
   count: number;
@@ -301,7 +308,7 @@ export interface PostDescriptionProps {
 }
 
 export interface PostImageProps {
-  options: CategoryOptionType;
+  options: CategoriesType | undefined;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;

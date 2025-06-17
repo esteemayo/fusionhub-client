@@ -16,7 +16,7 @@ const fetchCountByCategory = async () => {
 
 const Categories = () => {
   const { isPending, error, data } = useQuery<CategoryItemType[]>({
-    queryKey: ['categories'],
+    queryKey: ['categoryCount'],
     queryFn: () => fetchCountByCategory(),
   });
 

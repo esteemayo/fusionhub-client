@@ -1,26 +1,50 @@
-import { toast } from 'react-toastify';
-import { z } from 'zod';
-import { useMemo, useState, useCallback } from 'react';
 import ReactQuill from 'react-quill-new';
+import { z } from 'zod';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import parse from 'html-react-parser';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+// import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useForm,
   UseFormRegister,
   FieldValues,
   SubmitHandler,
 } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 import PostImage from '../PostImage';
 import Modal from '../modal/Modal';
 import PostDescription from '../PostDescription';
 
-import { onClose } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { onClose, resetState } from '../../features/postModal/postModalSlice';
 
-import { categoryOptions } from '../../data/formData';
+import { getCategories } from '../../services/categoryService';
+import { createPost, updatePost } from '../../services/postService';
+
+import { CategoriesType } from '../../types';
 import { postSchema } from '../../validations/postSchema';
 
 import './PostModal.scss';
+
+const fetchCategories = async () => {
+  const { data } = await getCategories();
+  return data;
+};
+
+const createpost = async <T extends object>(post: T) => {
+  const { data } = await createPost(post);
+  return data;
+};
+
+const editPost = async <T extends object, U extends string>(
+  post: T,
+  postId: U
+) => {
+  const { data } = await updatePost(post, postId);
+  return data;
+};
 
 const enum STEPS {
   DESC = 0,
@@ -31,22 +55,79 @@ type FormData = z.infer<typeof postSchema>;
 
 const PostModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => state.postModal);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [file, setFile] = useState<File>();
-  const [description, setDescription] = useState<ReactQuill.Value | undefined>(
-    ''
-  );
+  const { isOpen, post, postId } = useAppSelector((state) => ({
+    ...state.postModal,
+  }));
+
+  const [searchParams] = useSearchParams();
+
+  const { data } = useQuery<CategoriesType>({
+    queryKey: ['categories'],
+    queryFn: () => fetchCategories(),
+    enabled: !!isOpen,
+  });
+
+  const createMutation = useMutation({
+    mutationFn: (post: object) => createpost(post),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['posts', searchParams.toString()],
+      });
+      toast.success('Post created!');
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: (post: object) => editPost(post, postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['post', post?.slug],
+      });
+      toast.success('Post updated!');
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
   const [step, setStep] = useState(STEPS.DESC);
+  const [file, setFile] = useState<File>();
+  const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<FormData>({
-    resolver: zodResolver(postSchema),
+    // resolver: zodResolver(postSchema),
   });
 
   const handleFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,12 +149,23 @@ const PostModal = () => {
     });
   }, []);
 
+  const setCustomValue = useCallback(
+    (name: keyof FormData, value: string) => {
+      setValue(name, value, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+    },
+    [setValue]
+  );
+
   const handleClose = useCallback(() => {
     dispatch(onClose());
   }, [dispatch]);
 
   const handleClear = useCallback(() => {
-    setDescription('');
+    setDesc('');
     setFile(undefined);
   }, []);
 
@@ -84,31 +176,56 @@ const PostModal = () => {
         return;
       }
 
-      setIsLoading(true);
+      const post = {
+        ...data,
+        tags: data.tags.split(','),
+        desc,
+      };
 
-      setTimeout(() => {
-        setIsLoading(false);
+      if (file) {
+        console.log(file.name);
+        return;
+      }
 
-        console.log({
-          ...data,
-          tags: data.tags.split(','),
-          description,
-          image: file?.name,
+      if (postId) {
+        updateMutation.mutate(post, {
+          onSuccess: () => {
+            reset();
+            handleClear();
+            handleClose();
+            setStep(STEPS.DESC);
+          },
         });
-
-        toast.success('Post created!');
-        reset();
-        handleClear();
-        handleClose();
-        setStep(STEPS.DESC);
-      }, 3000);
+      } else {
+        createMutation.mutate(post, {
+          onSuccess: () => {
+            reset();
+            handleClear();
+            handleClose();
+            setStep(STEPS.DESC);
+            navigate('/posts');
+          },
+        });
+      }
     },
-    [step, description, file, reset, handleClear, handleClose, onNext]
+    [
+      createMutation,
+      desc,
+      file,
+      reset,
+      handleClear,
+      handleClose,
+      navigate,
+      onNext,
+      step,
+      postId,
+      updateMutation,
+    ]
   );
 
   const actionLabel = useMemo(() => {
-    return step === STEPS.IMAGE ? 'Submit' : 'Next';
-  }, [step]);
+    return step === STEPS.IMAGE ? (postId ? 'Update' : 'Submit') : 'Next';
+  }, [postId, step]);
 
   const secondaryActionLabel = useMemo(() => {
     return step === STEPS.IMAGE ? 'Prev' : undefined;
@@ -118,27 +235,54 @@ const PostModal = () => {
     return step !== STEPS.DESC ? onBack : undefined;
   }, [onBack, step]);
 
+  const titleLabel = useMemo(() => {
+    return postId ? 'Update post' : 'Tell us your story';
+  }, [postId]);
+
+  const isLoading = useMemo(() => {
+    return createMutation.isPending || updateMutation.isPending;
+  }, [createMutation.isPending, updateMutation.isPending]);
+
+  useEffect(() => {
+    if (post) {
+      setCustomValue('title', post.title);
+      setCustomValue('tags', post.tags.join(','));
+      setCustomValue('category', post.category);
+
+      const parsedDesc = parse(String(post.desc)).toString();
+      setDesc(parsedDesc);
+    }
+  }, [post, setCustomValue]);
+
+  useEffect(() => {
+    if (isOpen) {
+      return () => {
+        dispatch(resetState());
+      };
+    }
+  }, [dispatch, isOpen]);
+
   const bodyContent =
     step === STEPS.IMAGE ? (
       <PostImage
-        options={categoryOptions}
+        options={data}
         register={register as unknown as UseFormRegister<FieldValues>}
         errors={errors}
         onChangeFile={handleFile}
       />
     ) : (
       <PostDescription
-        value={description}
+        value={desc}
         register={register as unknown as UseFormRegister<FieldValues>}
         errors={errors}
-        onChangeDesc={setDescription}
+        onChangeDesc={setDesc}
       />
     );
 
   return (
     <Modal
       isOpen={isOpen}
-      title='Tell us your story'
+      title={titleLabel}
       isLoading={isLoading}
       disabled={isLoading}
       actionLabel={actionLabel}

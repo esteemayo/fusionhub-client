@@ -25,8 +25,7 @@ const Select = ({
         className='select__control'
       >
         <option value=''>Category</option>
-        {options?.map((option) => {
-          const { id, name } = option;
+        {options?.map(({ _id: id, name }) => {
           return (
             <option key={id} value={name}>
               {name}

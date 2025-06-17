@@ -130,22 +130,34 @@ export const filters: FilterType = [
 export const categoryOptions: CategoryOptionType = [
   {
     id: '1',
-    name: 'Travel',
+    name: 'general',
   },
   {
     id: '2',
-    name: 'Lifestyle',
+    name: 'lifestyle',
   },
   {
     id: '3',
-    name: 'Creativity',
+    name: 'technology',
   },
   {
     id: '4',
-    name: 'Adventures',
+    name: 'music',
   },
   {
     id: '5',
-    name: 'Technology',
+    name: 'fashion',
+  },
+  {
+    id: '6',
+    name: 'travel',
+  },
+  {
+    id: '7',
+    name: 'sport',
+  },
+  {
+    id: '8',
+    name: 'adventure',
   },
 ];
