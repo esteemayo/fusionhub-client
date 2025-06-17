@@ -20,7 +20,7 @@ const PostLists = ({ isLoading, error, posts }: PostListProps) => {
           imgSrc='/private-files.svg'
         />
       ) : (
-        posts.map((post) => {
+        posts?.map((post) => {
           return <Card key={post._id} {...post} />;
         })
       )}

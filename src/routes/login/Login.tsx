@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 import { z } from 'zod';
-import { Link, useNavigate } from 'react-router-dom';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import {
@@ -10,6 +8,7 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import AuthLink from '../../components/authLink/AuthLink';
 import Input from '../../components/input/Input';
@@ -26,8 +25,6 @@ import { useQueryParams } from '../../utils';
 import './Login.scss';
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
   const { isError, isLoading, isSuccess, message, user } = useAppSelector(
     (state) => ({
@@ -62,13 +59,13 @@ const Login = () => {
 
     if (isSuccess && user) {
       reset();
-      navigate('/');
+      window.location.assign('/');
     }
 
     return () => {
       dispatch(resetState());
     };
-  }, [dispatch, isError, isSuccess, message, navigate, reset, user]);
+  }, [dispatch, isError, isSuccess, message, reset, user]);
 
   return (
     <section className='login'>

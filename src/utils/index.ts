@@ -2,8 +2,6 @@ import { useLocation } from 'react-router-dom';
 
 export const authKey = 'access_token';
 
-export const cookieName = 'auth_token';
-
 export const excerpts = (str: string, count: number) => {
   if (typeof str === 'string' && str.length > count) {
     str = str.substring(0, count).concat('...');

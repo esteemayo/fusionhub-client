@@ -331,7 +331,7 @@ export interface SpinnerProps {
 export interface PostListProps {
   isLoading: boolean;
   error: Error | null;
-  posts: PostType[];
+  posts: PostType[] | undefined;
 }
 
 export interface AccountHeadingProps {
@@ -503,7 +503,7 @@ export interface ISavedPosts {
     isPending: boolean;
     isSaved: boolean;
     error: Error | null;
-    savedPosts: PostType[];
+    savedPosts: PostType[] | undefined;
     saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
     handleSave(): void;
   };

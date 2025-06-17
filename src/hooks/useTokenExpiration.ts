@@ -14,9 +14,9 @@ export const useTokenExpiration = (checkInterval = 60000) => {
       const user: CurrentUserType = getStorage(authKey);
       const tokenExpiration = user?.details.tokenExpiration;
 
-      const expiryTime = new Date();
+      const expiryTime = new Date().getTime();
 
-      if (tokenExpiration && new Date(tokenExpiration) < expiryTime) {
+      if (tokenExpiration && tokenExpiration * 1000 < expiryTime) {
         removeStorage(authKey);
         dispatch(resetUser());
 

@@ -4,6 +4,7 @@ import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
+import { PostType } from '../../types';
 import { getUserPosts } from '../../services/postService';
 
 import './Articles.scss';
@@ -14,7 +15,7 @@ const fetchUserPosts = async () => {
 };
 
 const Articles = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<PostType[]>({
     queryKey: ['userPosts'],
     queryFn: () => fetchUserPosts(),
   });

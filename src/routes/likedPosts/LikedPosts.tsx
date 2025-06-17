@@ -4,6 +4,7 @@ import EmptyPosts from '../../components/emptyPosts/EmptyPosts';
 import PostList from '../../components/postList/PostList';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
+import { PostType } from '../../types';
 import { getLikedPosts } from '../../services/postService';
 
 import './LikedPosts.scss';
@@ -14,7 +15,7 @@ const fetchLikedPosts = async () => {
 };
 
 const LikedPosts = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<PostType[]>({
     queryKey: ['likedPosts'],
     queryFn: () => fetchLikedPosts(),
   });

@@ -22,8 +22,6 @@ const Home = () => {
     queryFn: () => fetchRandomPosts(),
   });
 
-  console.log(document.cookie);
-
   return (
     <div className='home'>
       <div className='home__container'>

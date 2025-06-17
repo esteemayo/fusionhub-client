@@ -1,17 +1,10 @@
 import { toast } from 'react-toastify';
-import Cookie from 'js-cookie';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import * as authAPI from '../../services/authService';
 import * as userAPI from '../../services/userService';
 
-import {
-  authKey,
-  cookieName,
-  getStorage,
-  removeStorage,
-  setStorage,
-} from '../../utils';
+import { authKey, getStorage, removeStorage, setStorage } from '../../utils';
 
 import {
   AuthCrendentialType,
@@ -24,7 +17,6 @@ import {
 } from '../../types';
 
 const user: CurrentUserType = getStorage(authKey);
-const tokenExpiration = user?.details.tokenExpiration;
 
 const initialState: AuthState = {
   user: user ?? null,
@@ -34,16 +26,6 @@ const initialState: AuthState = {
   isSuccess: false,
   message: '',
 };
-
-if (tokenExpiration) {
-  const expiryTime = new Date();
-
-  if (tokenExpiration && new Date(tokenExpiration) < expiryTime) {
-    removeStorage(authKey);
-    initialState.user = null;
-    window.location.assign('/login');
-  }
-}
 
 export const registerUser = createAsyncThunk(
   'auth/register',
@@ -305,7 +287,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         removeStorage(authKey);
-        Cookie.remove(cookieName);
         state.isSuccess = true;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
@@ -352,7 +333,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         removeStorage(authKey);
-        // Cookie.remove(cookieName);
         state.isSuccess = true;
       })
       .addCase(deleteAccount.rejected, (state, { payload }) => {
