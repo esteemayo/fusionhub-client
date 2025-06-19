@@ -25,9 +25,12 @@ const Header = ({ posts }: HeaderProps) => {
             className='header__wrapper--left'
           >
             <div className='header__info'>
-              <span className='header__info--category'>
-                {firstItem.category}
-              </span>
+              <Link
+                to={`/posts?category=${firstItem.category}`}
+                className='header__info--category'
+              >
+                <span>{firstItem.category}</span>
+              </Link>
               <h1 className='header__info--heading'>{firstItem.title}</h1>
               <Link
                 to={`/posts/${firstItem.slug}`}
@@ -42,9 +45,12 @@ const Header = ({ posts }: HeaderProps) => {
             className='header__wrapper--right'
           >
             <div className='header__info small'>
-              <span className='header__info--category small'>
-                {lastItem.category}
-              </span>
+              <Link
+                to={`/posts?category=${lastItem.category}`}
+                className='header__info--category small'
+              >
+                <span>{lastItem.category}</span>
+              </Link>
               <h2 className='header__info--heading small'>{lastItem.title}</h2>
               <Link
                 to={`/posts/${lastItem.slug}`}

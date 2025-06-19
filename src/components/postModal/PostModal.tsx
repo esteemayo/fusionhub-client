@@ -1,11 +1,11 @@
-import ReactQuill from 'react-quill-new';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+// import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import parse from 'html-react-parser';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-// import { zodResolver } from '@hookform/resolvers/zod';
+import ReactQuill from 'react-quill-new';
 import {
   useForm,
   UseFormRegister,
@@ -58,11 +58,10 @@ const PostModal = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { isOpen, post, postId } = useAppSelector((state) => ({
     ...state.postModal,
   }));
-
-  const [searchParams] = useSearchParams();
 
   const { data } = useQuery<CategoriesType>({
     queryKey: ['categories'],
@@ -74,7 +73,7 @@ const PostModal = () => {
     mutationFn: (post: object) => createpost(post),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['posts', searchParams.toString()],
+        queryKey: ['posts'],
       });
       toast.success('Post created!');
     },
@@ -97,7 +96,7 @@ const PostModal = () => {
     mutationFn: (post: object) => editPost(post, postId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['post', post?.slug],
+        queryKey: ['posts'],
       });
       toast.success('Post updated!');
     },
@@ -169,12 +168,22 @@ const PostModal = () => {
     setFile(undefined);
   }, []);
 
+  const handleReset = useCallback(() => {
+    reset();
+    handleClear();
+    handleClose();
+    setStep(STEPS.DESC);
+    navigate('/posts');
+  }, [handleClear, handleClose, navigate, reset]);
+
   const onSubmitHandler: SubmitHandler<FormData> = useCallback(
     (data) => {
       if (step !== STEPS.IMAGE) {
         onNext();
         return;
       }
+
+      if (!currentUser) return;
 
       const post = {
         ...data,
@@ -190,32 +199,23 @@ const PostModal = () => {
       if (postId) {
         updateMutation.mutate(post, {
           onSuccess: () => {
-            reset();
-            handleClear();
-            handleClose();
-            setStep(STEPS.DESC);
+            handleReset();
           },
         });
       } else {
         createMutation.mutate(post, {
           onSuccess: () => {
-            reset();
-            handleClear();
-            handleClose();
-            setStep(STEPS.DESC);
-            navigate('/posts');
+            handleReset();
           },
         });
       }
     },
     [
       createMutation,
+      currentUser,
       desc,
       file,
-      reset,
-      handleClear,
-      handleClose,
-      navigate,
+      handleReset,
       onNext,
       step,
       postId,

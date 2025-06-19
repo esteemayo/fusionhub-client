@@ -32,7 +32,9 @@ const RelatedPost = ({
             {title}
           </Link>
           <div className='related-post__footer--category'>
-            <span>{category}</span>
+            <Link to={`/posts?category=${category}`}>
+              <span>{category}</span>
+            </Link>
             <time dateTime={createdAt}>{format(createdAt)}</time>
           </div>
         </div>

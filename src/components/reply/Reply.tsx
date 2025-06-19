@@ -48,11 +48,16 @@ const Reply = ({
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (!currentUser) return;
+
     onUpdate(content, replyId);
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (!currentUser) return;
 
     dispatch(onOpen());
     dispatch(setPostId(postId));

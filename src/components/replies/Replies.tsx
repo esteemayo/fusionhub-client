@@ -7,7 +7,7 @@ import { RepliesProps } from '../../types';
 import './Replies.scss';
 
 const Replies = ({ replies, postAuthorId, onUpdate }: RepliesProps) => {
-  const [isShow, setIsShow] = useState(false);
+  const [isShow, setIsShow] = useState(true);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

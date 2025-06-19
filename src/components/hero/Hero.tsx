@@ -49,6 +49,7 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
               year: 'numeric',
               hour: '2-digit',
               minute: '2-digit',
+              hour12: true,
             })}
           </time>
         </div>

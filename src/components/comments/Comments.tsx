@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
 
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useComment } from '../../hooks/useComment';
 
 import { CommentsProps } from '../../types';
@@ -13,6 +13,7 @@ import './Comments.scss';
 
 const Comments = ({ postId, postAuthorId }: CommentsProps) => {
   const dispatch = useAppDispatch();
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const {
     isPending,
@@ -58,6 +59,8 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     const form = new FormData(target);
 
     const content = form.get('content') as string;
+
+    if (!currentUser) return;
 
     if (isEditing && commentId) {
       if (value) {

@@ -6,13 +6,14 @@ import Replies from '../replies/Replies';
 import Image from '../Image';
 import ReplyForm from '../replyForm/ReplyForm';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useReply } from '../../hooks/useReply';
 import { useDate } from '../../hooks/useDate';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
 import {
   setCommentId,
   setPostId,
 } from '../../features/commentModal/commentModalSlice';
-import { useReply } from '../../hooks/useReply';
 
 import { excerpts } from '../../utils';
 import { CommentCardProps } from '../../types';
@@ -66,6 +67,9 @@ const CommentCard = ({
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (!currentUser) return;
+
     setIsOpen((value) => {
       return !value;
     });
@@ -85,6 +89,8 @@ const CommentCard = ({
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
+    if (!currentUser) return;
+
     setIsOpen(false);
     if (isEditing) setIsEditing(false);
     if (value.trim() !== '') setValue('');
@@ -100,12 +106,16 @@ const CommentCard = ({
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
+    if (!currentUser) return;
+
     onUpdate?.(commentId);
     onChange(content);
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (!currentUser) return;
 
     onOpen();
     dispatch(setCommentId(commentId));
@@ -114,6 +124,8 @@ const CommentCard = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!currentUser) return;
 
     if (value.trim() !== '') {
       if (isEditing) {
@@ -143,6 +155,12 @@ const CommentCard = ({
   const isUpdated = useMemo(() => {
     return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
   }, [createdAt, updatedAt]);
+
+  const replyBtnClasses = useMemo(() => {
+    return currentUser
+      ? 'comment-card__box--reply show'
+      : 'comment-card__box--reply hide';
+  }, [currentUser]);
 
   const contentLabel = useMemo(() => {
     return isMore && content?.length > 200 ? content : excerpts(content, 200);
@@ -208,7 +226,7 @@ const CommentCard = ({
             </div>
             <button
               type='button'
-              className='comment-card__box--reply'
+              className={replyBtnClasses}
               onClick={handleToggle}
             >
               <svg

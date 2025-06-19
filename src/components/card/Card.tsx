@@ -1,6 +1,6 @@
 import parse from 'html-react-parser';
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { format } from 'timeago.js';
 
 import Image from '../Image';
@@ -11,6 +11,19 @@ import { CardProps } from '../../types';
 import './Card.scss';
 
 const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
+  const { pathname } = useLocation();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleClick = () => {
+    if (searchParams.get('category') !== category) {
+      setSearchParams({
+        ...Object.fromEntries(searchParams.entries()),
+        category,
+      });
+    }
+  };
+
   const parsedDesc = useMemo(() => {
     return parse(String(excerpts(desc, 60)));
   }, [desc]);
@@ -35,7 +48,15 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
           <p className='card__box--desc'>{parse(String(parsedDesc))}</p>
         </div>
         <div className='card__container'>
-          <span className='card__container--category'>{category}</span>
+          {pathname === '/posts' ? (
+            <span className='card__container--category' onClick={handleClick}>
+              {category}
+            </span>
+          ) : (
+            <Link to={`/posts?category=${category}`}>
+              <span className='card__container--category'>{category}</span>
+            </Link>
+          )}
           <time dateTime={createdAt} className='card__container--time'>
             {format(createdAt)}
           </time>
