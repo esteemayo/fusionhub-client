@@ -33,6 +33,8 @@ import { registerUser, resetState } from '../../features/auth/authSlice';
 
 import './Register.scss';
 
+type FormData = z.infer<typeof registerSchema>;
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -44,8 +46,6 @@ const Register = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [phone, setPhone] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
-
-  type FormData = z.infer<typeof registerSchema>;
 
   const {
     register,

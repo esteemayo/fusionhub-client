@@ -18,15 +18,13 @@ const RelatedPost = ({
     <article className='related-post'>
       <div className='related-post__container'>
         <div className='related-post__container--overlay'>&nbsp;</div>
-        {img && (
-          <Image
-            src={img}
-            width={250}
-            height={150}
-            alt='image'
-            className='related-post__container--img'
-          />
-        )}
+        <Image
+          src={img ?? '/dafault.jpg'}
+          width={250}
+          height={150}
+          alt='image'
+          className='related-post__container--img'
+        />
         <div className='related-post__footer'>
           <Link to={`/posts/${slug}`} className='related-post__footer--link'>
             {title}

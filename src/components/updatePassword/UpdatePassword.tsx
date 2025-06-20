@@ -22,13 +22,13 @@ import { passwordSchema } from '../../validations/passwordSchema';
 
 import './UpdatePassword.scss';
 
+type FormData = z.infer<typeof passwordSchema>;
+
 const UpdatePassword = () => {
   const dispatch = useAppDispatch();
   const { isError, isLoading, isSuccess, message, user } = useAppSelector(
     (state) => ({ ...state.auth })
   );
-
-  type FormData = z.infer<typeof passwordSchema>;
 
   const {
     register,

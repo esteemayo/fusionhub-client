@@ -27,10 +27,14 @@ const Home = () => {
       <div className='home__container'>
         {(data ?? [])?.length < 1 && !isPending ? null : isPending ? (
           error ? (
-            <span>
-              {(error as { message: string })?.message ||
-                'Something went wrong!'}
-            </span>
+            <div className='home__error'>
+              <h2>Oops! Unable to load posts.</h2>
+              <p>
+                {typeof error === 'object' && error && 'message' in error
+                  ? (error as { message: string }).message
+                  : 'An unexpected error occurred while fetching posts. Please try refreshing the page or check your internet connection.'}
+              </p>
+            </div>
           ) : (
             <HeaderSkeleton />
           )

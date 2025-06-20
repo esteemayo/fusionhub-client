@@ -6,6 +6,7 @@ import { PostDescriptionProps } from '../types';
 const PostDescription = ({
   value,
   register,
+  error,
   errors,
   onChangeDesc,
 }: PostDescriptionProps) => {
@@ -23,6 +24,7 @@ const PostDescription = ({
         label='Description'
         value={value}
         onChange={onChangeDesc}
+        error={error}
         validate
       />
     </>

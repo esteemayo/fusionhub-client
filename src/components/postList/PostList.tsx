@@ -15,8 +15,12 @@ const PostLists = ({ isLoading, error, posts }: PostListProps) => {
         })
       ) : error ? (
         <ErrorState
-          title='Something went wrong!'
-          subtitle={error.message}
+          title='Unable to load posts'
+          subtitle={
+            error.message
+              ? `We couldn't fetch the posts at this time. Error: ${error.message}. Please check your internet connection or try again later.`
+              : "We couldn't fetch the posts at this time. Please check your internet connection or try again later."
+          }
           imgSrc='/private-files.svg'
         />
       ) : (

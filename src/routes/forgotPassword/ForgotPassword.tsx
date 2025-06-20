@@ -17,10 +17,10 @@ import { forgotSchema } from '../../validations/forgotSchema';
 
 import './ForgotPassword.scss';
 
+type FormData = z.infer<typeof forgotSchema>;
+
 const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
-
-  type FormData = z.infer<typeof forgotSchema>;
 
   const {
     register,

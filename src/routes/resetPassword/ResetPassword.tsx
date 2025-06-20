@@ -17,12 +17,12 @@ import { resetSchema } from '../../validations/resetSchema';
 
 import './ResetPassword.scss';
 
+type FormData = z.infer<typeof resetSchema>;
+
 const ResetPassword = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  type FormData = z.infer<typeof resetSchema>;
 
   const {
     register,

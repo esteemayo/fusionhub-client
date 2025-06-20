@@ -33,7 +33,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
       <div className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>
         <Image
-          src={img ?? '/default-post.jpg'}
+          src={img ?? '/dafault-post.jpg'}
           alt='post'
           width={300}
           height={250}

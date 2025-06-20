@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
-// import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import parse from 'html-react-parser';
@@ -50,8 +50,6 @@ const enum STEPS {
   DESC = 0,
   IMAGE = 1,
 }
-
-type FormData = z.infer<typeof postSchema>;
 
 const PostModal = () => {
   const dispatch = useAppDispatch();
@@ -116,18 +114,37 @@ const PostModal = () => {
   });
 
   const [step, setStep] = useState(STEPS.DESC);
-  const [file, setFile] = useState<File>();
   const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
+  const [file, setFile] = useState<File>();
+
+  const descStepSchema = postSchema.pick({ title: true });
+  const imageStepSchema = postSchema.pick({ tags: true, category: true });
+
+  type DescStepFormData = z.infer<typeof descStepSchema>;
+  type ImageStepFormData = z.infer<typeof imageStepSchema>;
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    setValue,
-  } = useForm<FormData>({
-    // resolver: zodResolver(postSchema),
+    register: registerDesc,
+    handleSubmit: handleSubmitDesc,
+    formState: { errors: errorsDesc },
+    reset: resetDesc,
+    setValue: setValueDesc,
+    watch: watchDesc,
+  } = useForm<DescStepFormData>({
+    resolver: zodResolver(descStepSchema),
   });
+
+  const {
+    register: registerImage,
+    handleSubmit: handleSubmitImage,
+    formState: { errors: errorsImage },
+    reset: resetImage,
+    setValue: setValueImage,
+  } = useForm<ImageStepFormData>({
+    resolver: zodResolver(imageStepSchema),
+  });
+
+  const title = watchDesc('title');
 
   const handleFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -148,15 +165,26 @@ const PostModal = () => {
     });
   }, []);
 
-  const setCustomValue = useCallback(
-    (name: keyof FormData, value: string) => {
-      setValue(name, value, {
+  const setCustomDescValue = useCallback(
+    (name: keyof DescStepFormData, value: string) => {
+      setValueDesc(name, value, {
         shouldDirty: true,
         shouldTouch: true,
         shouldValidate: true,
       });
     },
-    [setValue]
+    [setValueDesc]
+  );
+
+  const setCustomImageValue = useCallback(
+    (name: keyof ImageStepFormData, value: string) => {
+      setValueImage(name, value, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+    },
+    [setValueImage]
   );
 
   const handleClose = useCallback(() => {
@@ -169,14 +197,15 @@ const PostModal = () => {
   }, []);
 
   const handleReset = useCallback(() => {
-    reset();
+    resetDesc();
+    resetImage();
     handleClear();
     handleClose();
     setStep(STEPS.DESC);
     navigate('/posts');
-  }, [handleClear, handleClose, navigate, reset]);
+  }, [handleClear, handleClose, navigate, resetDesc, resetImage]);
 
-  const onSubmitHandler: SubmitHandler<FormData> = useCallback(
+  const onSubmitDesc: SubmitHandler<DescStepFormData> = useCallback(
     (data) => {
       if (step !== STEPS.IMAGE) {
         onNext();
@@ -185,30 +214,34 @@ const PostModal = () => {
 
       if (!currentUser) return;
 
-      const post = {
+      setCustomDescValue('title', data.title);
+      onNext();
+    },
+    [currentUser, onNext, setCustomDescValue, step]
+  );
+
+  const onSubmitImage: SubmitHandler<ImageStepFormData> = useCallback(
+    (data) => {
+      if (!currentUser) return;
+
+      const postPayload = {
         ...data,
+        title,
+        category: data.category === '' ? 'general' : data.category,
         tags: data.tags.split(','),
         desc,
       };
 
       if (file) {
+        //TODO: Handle file upload logic here
         console.log(file.name);
         return;
       }
 
-      if (postId) {
-        updateMutation.mutate(post, {
-          onSuccess: () => {
-            handleReset();
-          },
-        });
-      } else {
-        createMutation.mutate(post, {
-          onSuccess: () => {
-            handleReset();
-          },
-        });
-      }
+      const mutation = postId ? updateMutation : createMutation;
+      mutation.mutate(postPayload, {
+        onSuccess: handleReset,
+      });
     },
     [
       createMutation,
@@ -216,12 +249,17 @@ const PostModal = () => {
       desc,
       file,
       handleReset,
-      onNext,
-      step,
       postId,
+      title,
       updateMutation,
     ]
   );
+
+  const handleModalSubmit = useMemo(() => {
+    return step === STEPS.IMAGE
+      ? handleSubmitImage(onSubmitImage)
+      : handleSubmitDesc(onSubmitDesc);
+  }, [handleSubmitDesc, handleSubmitImage, onSubmitDesc, onSubmitImage, step]);
 
   const actionLabel = useMemo(() => {
     return step === STEPS.IMAGE ? (postId ? 'Update' : 'Submit') : 'Next';
@@ -236,7 +274,7 @@ const PostModal = () => {
   }, [onBack, step]);
 
   const titleLabel = useMemo(() => {
-    return postId ? 'Update post' : 'Tell us your story';
+    return postId ? 'Update Post Details' : 'Tell Us Your Story';
   }, [postId]);
 
   const isLoading = useMemo(() => {
@@ -245,14 +283,14 @@ const PostModal = () => {
 
   useEffect(() => {
     if (post) {
-      setCustomValue('title', post.title);
-      setCustomValue('tags', post.tags.join(','));
-      setCustomValue('category', post.category);
+      setCustomDescValue('title', post?.title);
+      setCustomImageValue('tags', post?.tags.join(','));
+      setCustomImageValue('category', post?.category);
 
-      const parsedDesc = parse(String(post.desc)).toString();
+      const parsedDesc = parse(String(post?.desc)).toString();
       setDesc(parsedDesc);
     }
-  }, [post, setCustomValue]);
+  }, [post, setCustomDescValue, setCustomImageValue]);
 
   useEffect(() => {
     if (isOpen) {
@@ -262,19 +300,19 @@ const PostModal = () => {
     }
   }, [dispatch, isOpen]);
 
-  const bodyContent =
+  const bodyContent: JSX.Element | undefined =
     step === STEPS.IMAGE ? (
       <PostImage
         options={data}
-        register={register as unknown as UseFormRegister<FieldValues>}
-        errors={errors}
+        register={registerImage as unknown as UseFormRegister<FieldValues>}
+        errors={errorsImage}
         onChangeFile={handleFile}
       />
     ) : (
       <PostDescription
         value={desc}
-        register={register as unknown as UseFormRegister<FieldValues>}
-        errors={errors}
+        register={registerDesc as unknown as UseFormRegister<FieldValues>}
+        errors={errorsDesc}
         onChangeDesc={setDesc}
       />
     );
@@ -289,7 +327,7 @@ const PostModal = () => {
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}
       onClose={handleClose}
-      onSubmit={handleSubmit(onSubmitHandler)}
+      onSubmit={handleModalSubmit}
       secondaryAction={secondaryAction}
     />
   );

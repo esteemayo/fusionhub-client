@@ -298,6 +298,7 @@ export interface PostMenuButtonProps {
 export interface PostDescriptionProps {
   value: ReactQuill.Value | undefined;
   register: UseFormRegister<FieldValues>;
+  error?: string;
   errors: FieldErrors;
   onChangeDesc?(
     value: ReactQuill.Value | undefined,

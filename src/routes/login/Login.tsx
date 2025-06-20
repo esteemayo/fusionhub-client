@@ -24,6 +24,8 @@ import { useQueryParams } from '../../utils';
 
 import './Login.scss';
 
+type FormData = z.infer<typeof loginSchema>;
+
 const Login = () => {
   const dispatch = useAppDispatch();
   const { isError, isLoading, isSuccess, message, user } = useAppSelector(
@@ -34,8 +36,6 @@ const Login = () => {
 
   const query = useQueryParams();
   const name = query.get('name');
-
-  type FormData = z.infer<typeof loginSchema>;
 
   const {
     register,
