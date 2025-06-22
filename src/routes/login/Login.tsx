@@ -59,7 +59,7 @@ const Login = () => {
 
     if (isSuccess && user) {
       reset();
-      window.location.assign('/');
+      window.location.reload();
     }
 
     return () => {

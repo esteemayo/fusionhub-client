@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Value } from 'react-phone-number-input';
 
 import ProfileData from '../../components/profileData/ProfileData';
 import Spinner from '../../components/Spinner';
@@ -83,6 +84,7 @@ const ProfileSettings = () => {
               name={data?.name as string}
               email={data?.email as string}
               username={data?.username as string}
+              phone={data?.phone as Value}
               dateOfBirth={data?.dateOfBirth as unknown as Date | null}
               country={data?.country as unknown as CountrySelectType}
               bio={data?.bio as string}

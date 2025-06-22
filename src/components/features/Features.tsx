@@ -7,7 +7,7 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import FeatureSkeleton from '../featureSkeleton/FeatureSkeleton';
 import FeatureCardSkeleton from '../featureCardSkeleton/FeatureCardSkeleton';
 
-import { PostType } from '../../types';
+import { FeatureType } from '../../types';
 import { getFeaturedPosts } from '../../services/postService';
 
 import './Features.scss';
@@ -18,7 +18,7 @@ const fetchFeaturedPosts = async () => {
 };
 
 const Features = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<FeatureType[]>({
     queryKey: ['featuredPosts'],
     queryFn: () => fetchFeaturedPosts(),
   });
@@ -63,7 +63,7 @@ const Features = () => {
                 ? Array.from(new Array(4)).map((_, index) => {
                     return <FeatureCardSkeleton key={index} />;
                   })
-                : otherPosts?.map((post: PostType) => {
+                : otherPosts?.map((post) => {
                     return (
                       <FeatureCard
                         key={post._id}

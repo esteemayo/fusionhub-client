@@ -345,33 +345,35 @@
     }
 
     &--desc {
-      font-size: 1.4rem;
-      word-wrap: break-word;
-      color: vars.$clr-gray-light-1;
-      hyphens: auto;
+      & > * {
+        font-size: 1.4rem;
+        word-wrap: break-word;
+        color: vars.$clr-gray-light-1;
+        hyphens: auto;
 
-      @media screen and (max-width: 56.25em) {
-        font-size: 1.5rem;
-      }
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
+        }
 
-      @media screen and (max-width: 51.25em) {
-        font-size: var(--default-font-size);
-      }
+        @media screen and (max-width: 51.25em) {
+          font-size: var(--default-font-size);
+        }
 
-      @media screen and (max-width: 18.75em) {
-        font-size: 1.5rem;
-      }
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.5rem;
+        }
 
-      @media screen and (min-width: 106.25em) {
-        font-size: 1.5rem;
-      }
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.5rem;
+        }
 
-      @media screen and (min-width: 112.5em) {
-        font-size: var(--default-font-size);
-      }
+        @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
+        }
 
-      @media screen and (min-width: 125em) {
-        font-size: 2.1rem;
+        @media screen and (min-width: 125em) {
+          font-size: 2.1rem;
+        }
       }
     }
 

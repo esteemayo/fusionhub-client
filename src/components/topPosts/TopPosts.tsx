@@ -4,7 +4,7 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import TopPost from '../topPost/TopPost';
 import TopPostSkeleton from '../topPostSkeleton/TopPostSkeleton';
 
-import { PostType } from '../../types';
+import { TopPostsType } from '../../types';
 import { getTopPosts } from '../../services/postService';
 
 import './TopPosts.scss';
@@ -15,7 +15,7 @@ const fetchTopPosts = async () => {
 };
 
 const TopPosts = () => {
-  const { isPending, error, data } = useQuery<PostType[]>({
+  const { isPending, error, data } = useQuery<TopPostsType[]>({
     queryKey: ['topPosts'],
     queryFn: () => fetchTopPosts(),
   });

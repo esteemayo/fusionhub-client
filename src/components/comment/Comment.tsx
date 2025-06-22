@@ -3,8 +3,10 @@ import { useMemo } from 'react';
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import CommentCard from '../commentCard/CommentCard';
 import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
+import EmptyMessage from '../emptyMessage/EmptyMessage';
 
 import Image from '../Image';
+import Spinner from '../Spinner';
 
 import { CommentProps } from '../../types';
 import { useAppSelector } from '../../hooks/hooks';
@@ -13,14 +15,17 @@ import './Comment.scss';
 
 const Comment = ({
   postAuthorId,
+  isPending,
+  isPendingUser,
   isLoading,
-  isLoadingUser,
   error,
   errorUser,
   comments,
   commentUsers,
+  commentToShow,
   mutation,
   onChange,
+  onClick,
   onUpdate,
   onOpen,
 }: CommentProps) => {
@@ -30,33 +35,31 @@ const Comment = ({
     return (comments ?? [])?.length > 1 ? 'Comments' : 'Comment';
   }, [comments]);
 
+  const wrapperClasses = useMemo(() => {
+    return !isPending && commentToShow < (comments ?? [])?.length
+      ? 'comment__wrapper show'
+      : 'comment__wrapper hide';
+  }, [commentToShow, comments, isPending]);
+
   return (
     <div className='comment'>
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
-        {(commentUsers ?? [])?.length < 1 && !isLoadingUser ? (
-          <div className='comment__user--empty'>
-            <span>No users found.</span>
-            {/* <span>
-              It seems there are no users associated with these comments yet.
-            </span> */}
-          </div>
+        {(commentUsers ?? [])?.length < 1 && !isPendingUser ? (
+          <EmptyMessage title='No users found.' />
         ) : (
           <figure className='comment__user'>
-            {isLoadingUser ? (
+            {isPendingUser ? (
               Array.from(new Array(3)).map((_, index) => {
                 return <CommentUserSkeleton key={index} />;
               })
             ) : errorUser ? (
-              <div className='comment__user--error'>
-                <span>
-                  An error occurred while loading the comment users. Please try
-                  again later or contact support if the issue persists.
-                </span>
-                <span>{errorUser?.message}</span>
-              </div>
+              <EmptyMessage
+                title='An error occurred while loading the comment users. Please try again later or contact support if the issue persists.'
+                subtitle={errorUser?.message}
+              />
             ) : (
-              commentUsers.map((user) => {
+              commentUsers?.slice(0, 5).map((user) => {
                 const { _id: id, image } = user;
                 return (
                   <Image
@@ -73,23 +76,20 @@ const Comment = ({
           </figure>
         )}
       </div>
-      {(comments ?? [])?.length < 1 && !isLoading ? (
-        <div className='comment__no-comments'>
-          <span>No comments yet.</span>
-          <span>Be the first to share your thoughts!</span>
-        </div>
-      ) : isLoading ? (
+      {(comments ?? [])?.length < 1 && !isPending ? (
+        <EmptyMessage
+          title='No comments yet.'
+          subtitle='Be the first to share your thoughts!'
+        />
+      ) : isPending ? (
         Array.from(new Array(3)).map((_, index) => {
           return <CommentSkeleton key={index} />;
         })
       ) : error ? (
-        <div className='comment__error'>
-          <span>
-            An error occurred while loading the comments. Please try again later
-            or contact support if the issue persists.
-          </span>
-          <span>{error.message}</span>
-        </div>
+        <EmptyMessage
+          title='An error occurred while loading the comments. Please try again later or contact support if the issue persists.'
+          subtitle={error.message}
+        />
       ) : (
         <>
           {mutation.isPending && (
@@ -116,7 +116,7 @@ const Comment = ({
               onOpen={onOpen}
             />
           )}
-          {comments?.map((comment) => {
+          {comments?.slice(0, commentToShow).map((comment) => {
             return (
               <CommentCard
                 key={comment._id}
@@ -130,6 +130,15 @@ const Comment = ({
           })}
         </>
       )}
+      <div className={wrapperClasses}>
+        <button
+          type='button'
+          onClick={onClick}
+          className='comment__wrapper--btn'
+        >
+          {isLoading ? <Spinner size={15} /> : 'More comments'}
+        </button>
+      </div>
     </div>
   );
 };

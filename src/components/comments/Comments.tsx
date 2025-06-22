@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
@@ -28,9 +28,26 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const [commentId, setCommentId] = useState('');
+  const [comments, setComments] = useState(data);
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [commentId, setCommentId] = useState('');
+  const [commentToShow, setCommentToShow] = useState(5);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setCommentToShow((value) => {
+        return value + 5;
+      });
+
+      setIsLoading(false);
+    }, 1000);
+  };
 
   const handleUpdate = (commentId: string) => {
     const current = ref.current;
@@ -88,19 +105,28 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     }
   };
 
+  useEffect(() => {
+    if (data) {
+      setComments(data);
+    }
+  }, [data]);
+
   return (
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
           postAuthorId={postAuthorId}
-          isLoading={isPending}
-          isLoadingUser={isPendingUser}
+          isPending={isPending}
+          isPendingUser={isPendingUser}
+          isLoading={isLoading}
           error={error}
           errorUser={errorUser}
-          comments={data!}
-          commentUsers={commentUsers!}
+          comments={comments}
+          commentUsers={commentUsers}
+          commentToShow={commentToShow}
           mutation={commentMutation}
           onChange={setValue}
+          onClick={handleClick}
           onUpdate={handleUpdate}
           onOpen={handleOpen}
         />
@@ -108,7 +134,7 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
           value={value}
           isLoading={commentMutation.isPending}
           isPending={isPending}
-          comments={data!}
+          comments={comments!}
           onChange={setValue}
           onSubmit={handleSubmit}
           ref={ref}

@@ -208,4 +208,121 @@
       line-height: inherit;
     }
   }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem 0;
+    position: relative;
+
+    &.show {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    &--btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      outline: 0;
+      width: 13rem;
+      height: 3.5rem;
+      padding: 0.5rem 1rem;
+      text-transform: initial;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background-color: transparent;
+      color: vars.$clr-gray-light-3;
+      border: 2px solid currentColor;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      @media screen and (max-width: 56.25em) {
+        width: 14rem;
+        height: 3.6rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 15rem;
+        height: 3.7rem;
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 14rem;
+        height: 3.6rem;
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 15rem;
+        height: 3.7rem;
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 17rem;
+        height: 4rem;
+        padding: 0.5rem 1.25rem;
+        font-size: 1.8rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 20rem;
+        height: 6rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 2.15rem;
+      }
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
+
+      span {
+        @media screen and (max-width: 56.25em) {
+          width: 2rem !important;
+          height: 2rem !important;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.125rem !important;
+          height: 2.125rem !important;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 2rem !important;
+          height: 2rem !important;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 2rem !important;
+          height: 2rem !important;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.5rem !important;
+          height: 2.5rem !important;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3rem !important;
+          height: 3rem !important;
+        }
+      }
+    }
+  }
 }

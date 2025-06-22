@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { z } from 'zod';
 import { Value } from 'react-phone-number-input';
-import parse from 'html-react-parser';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import parse from 'html-react-parser';
+import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
   FieldValues,
@@ -59,22 +59,18 @@ const ProfileData = ({
     setValue,
   } = useForm<FormData>({
     resolver: zodResolver(profileSchema),
-    defaultValues: {
-      name: name || '',
-      username: username || '',
-      email: email || '',
-      bio: bio || '',
-      country: country || '',
-    },
   });
 
-  const setCustomValue = (name: keyof FormData, value: string) => {
-    setValue(name, value, {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: true,
-    });
-  };
+  const setCustomValue = useCallback(
+    (name: keyof FormData, value: string | CountrySelectType) => {
+      setValue(name, value, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+    },
+    [setValue]
+  );
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const userData = {
@@ -99,19 +95,27 @@ const ProfileData = ({
   }, [dispatch, isError, message]);
 
   useEffect(() => {
-    if (about) {
-      const parsedText = parse(String(about)) as ReactQuill.Value;
-      setAboutMe(parsedText || '');
-    }
+    setCustomValue('name', name);
+    setCustomValue('email', email);
+    setCustomValue('username', username);
+    setCustomValue('country', country);
+    setCustomValue('bio', bio);
 
-    if (dateOfBirth) {
-      setStartDate(dateOfBirth || null);
-    }
-
-    if (phone) {
-      setTelephone(phone || undefined);
-    }
-  }, [about, dateOfBirth, phone]);
+    const parsedText = parse(String(about)) as ReactQuill.Value;
+    setAboutMe(parsedText);
+    setStartDate(dateOfBirth || null);
+    setTelephone(phone);
+  }, [
+    about,
+    bio,
+    country,
+    dateOfBirth,
+    email,
+    name,
+    phone,
+    setCustomValue,
+    username,
+  ]);
 
   return (
     <div className='profile-data'>

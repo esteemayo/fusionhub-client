@@ -238,7 +238,6 @@ export interface TopPostProps {
   title: string;
   slug: string;
   tags: string[];
-  category: string;
   createdAt: string;
   index: number;
 }
@@ -535,7 +534,7 @@ export interface IDate {
 }
 
 export interface HeaderProps {
-  posts: PostType[] | undefined;
+  posts: RandomPostType[] | undefined;
 }
 
 export interface FeatureProps {
@@ -543,7 +542,7 @@ export interface FeatureProps {
   desc: string;
   title: string;
   slug: string;
-  comments?: CommentType[];
+  comments: CommentType[];
   createdAt: string;
 }
 
@@ -551,7 +550,7 @@ export interface FeatureCardProps {
   img?: string;
   title: string;
   slug: string;
-  comments?: CommentType[];
+  comments: CommentType[];
   createdAt: string;
 }
 
@@ -669,14 +668,17 @@ export interface IReply {
 
 export interface CommentProps {
   postAuthorId: string;
+  isPending: boolean;
+  isPendingUser: boolean;
   isLoading: boolean;
-  isLoadingUser: boolean;
   error: Error | null;
   errorUser: Error | null;
-  comments: CommentType[];
-  commentUsers: CommentImageType[];
+  comments: CommentType[] | undefined;
+  commentUsers: CommentImageType[] | undefined;
+  commentToShow: number;
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate?(commentId: string): void;
   onOpen(): void;
 }
@@ -851,6 +853,32 @@ export type PostType = {
   comments: CommentType[];
   createdAt: string;
   updatedAt: string;
+};
+
+export type RandomPostType = {
+  _id: string;
+  title: string;
+  category: string;
+  img: string;
+  slug: string;
+};
+
+export type FeatureType = {
+  _id: string;
+  title: string;
+  desc: string;
+  img: string;
+  slug: string;
+  comments: CommentType[];
+  createdAt: string;
+};
+
+export type TopPostsType = {
+  _id: string;
+  title: string;
+  tags: string[];
+  slug: string;
+  createdAt: string;
 };
 
 type AuthorType = {
