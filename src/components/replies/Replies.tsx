@@ -6,7 +6,14 @@ import { RepliesProps } from '../../types';
 
 import './Replies.scss';
 
-const Replies = ({ replies, postAuthorId, onUpdate }: RepliesProps) => {
+const Replies = ({
+  replies,
+  postAuthorId,
+  replyToShow,
+  isLoading,
+  onUpdate,
+  onClick,
+}: RepliesProps) => {
   const [isShow, setIsShow] = useState(true);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -19,6 +26,12 @@ const Replies = ({ replies, postAuthorId, onUpdate }: RepliesProps) => {
   const wrapperClasses = useMemo(() => {
     return isShow ? 'replies__wrapper show' : 'replies__wrapper hide';
   }, [isShow]);
+
+  const boxClasses = useMemo(() => {
+    return !isLoading && replyToShow < (replies ?? [])?.length
+      ? 'replies__box show'
+      : 'replies__box hide';
+  }, [isLoading, replies, replyToShow]);
 
   if ((replies ?? [])?.length < 1) {
     return null;
@@ -66,7 +79,7 @@ const Replies = ({ replies, postAuthorId, onUpdate }: RepliesProps) => {
           )}
         </button>
         <div className={wrapperClasses}>
-          {replies?.map((reply) => {
+          {replies?.slice(0, replyToShow).map((reply) => {
             return (
               <Reply
                 key={reply._id}
@@ -76,6 +89,15 @@ const Replies = ({ replies, postAuthorId, onUpdate }: RepliesProps) => {
               />
             );
           })}
+          <div className={boxClasses}>
+            <button
+              type='button'
+              onClick={onClick}
+              className='replies__box--btn'
+            >
+              {isLoading ? 'Loading...' : 'Show more replies'}
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,17 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import bannerModalReducer from './bannerModal/bannerModalSlice';
-import authReducer from './auth/authSlice';
-import updateModalReducer from './updateModal/updateModalSlice';
-import sidebarReducer from './sidebar/sidebarSlice';
 import accountMenuReducer from './accountMenu/accountMenuSlice';
-import postsMenuReducer from './postsMenu/postsMenuSlice';
+import authReducer from './auth/authSlice';
+import bannerModalReducer from './bannerModal/bannerModalSlice';
+import sidebarReducer from './sidebar/sidebarSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
-import postModalReducer from './postModal/postModalSlice';
+import postsMenuReducer from './postsMenu/postsMenuSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
+import postModalReducer from './postModal/postModalSlice';
+import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 import imageModalReducer from './imageModal/imageModalSlice';
 import replyCommentModalReducer from './replyCommentModal/replyCommentModalSlice';
-import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -23,7 +22,6 @@ export const store = configureStore({
     accountModal: accountModalReducer,
     accountMenu: accountMenuReducer,
     commentModal: commentModalReducer,
-    updateModal: updateModalReducer,
     bannerModal: bannerModalReducer,
     imageModal: imageModalReducer,
     replyCommentModal: replyCommentModalReducer,

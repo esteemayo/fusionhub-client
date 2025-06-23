@@ -6,7 +6,6 @@ import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 
 import Image from '../Image';
-import Spinner from '../Spinner';
 
 import { CommentProps } from '../../types';
 import { useAppSelector } from '../../hooks/hooks';
@@ -46,7 +45,7 @@ const Comment = ({
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
         {(commentUsers ?? [])?.length < 1 && !isPendingUser ? (
-          <EmptyMessage title='No users found.' />
+          <EmptyMessage title='No users found.' type='comment' />
         ) : (
           <figure className='comment__user'>
             {isPendingUser ? (
@@ -54,10 +53,7 @@ const Comment = ({
                 return <CommentUserSkeleton key={index} />;
               })
             ) : errorUser ? (
-              <EmptyMessage
-                title='An error occurred while loading the comment users. Please try again later or contact support if the issue persists.'
-                subtitle={errorUser?.message}
-              />
+              <EmptyMessage title='Failed to load comment users.' />
             ) : (
               commentUsers?.slice(0, 5).map((user) => {
                 const { _id: id, image } = user;
@@ -136,7 +132,7 @@ const Comment = ({
           onClick={onClick}
           className='comment__wrapper--btn'
         >
-          {isLoading ? <Spinner size={15} /> : 'More comments'}
+          {isLoading ? 'Loading...' : 'Show more comments'}
         </button>
       </div>
     </div>

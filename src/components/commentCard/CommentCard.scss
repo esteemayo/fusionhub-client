@@ -9,6 +9,10 @@
 
   &:not(:last-of-type) {
     border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+    @include bp.sm {
+      border-color: vars.$clr-secondary-blue;
+    }
   }
 
   &__container {

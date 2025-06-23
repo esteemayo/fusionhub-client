@@ -81,6 +81,7 @@ export interface EmptyMessageProps {
   title: string;
   subtitle?: string;
   center?: boolean;
+  type?: 'comment';
 }
 
 export interface LabelProps {
@@ -694,7 +695,10 @@ export interface CommentCardProps {
 export interface RepliesProps {
   postAuthorId: string;
   replies?: ReplyType[];
+  replyToShow: number;
+  isLoading: boolean;
   onUpdate(content: string, replyId: string): void;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyProps {

@@ -47,11 +47,12 @@ const ProfileComments = ({
             </div>
           }
           endMessage={
-            <span className='profile-comments__message'>
-              🎉 You've reached the end of the comments. Thanks for reading and
-              engaging! If you have something to add, feel free to leave a
-              comment.
-            </span>
+            null
+            // <span className='profile-comments__message'>
+            //   🎉 You've reached the end of the comments. Thanks for reading and
+            //   engaging! If you have something to add, feel free to leave a
+            //   comment.
+            // </span>
           }
         >
           {comments.map((comment) => {

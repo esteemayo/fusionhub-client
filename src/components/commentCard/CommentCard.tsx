@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Replies from '../replies/Replies';
-import Image from '../Image';
 import ReplyForm from '../replyForm/ReplyForm';
+
+import Image from '../Image';
 
 import { useReply } from '../../hooks/useReply';
 import { useDate } from '../../hooks/useDate';
@@ -47,11 +48,14 @@ const CommentCard = ({
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const [replyId, setReplyId] = useState('');
+  const [replies, setReplies] = useState(data);
   const [value, setValue] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMore, setIsMore] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [replyId, setReplyId] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [replyToShow, setReplyToShow] = useState(3);
+  const [isMore, setIsMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCollapse = () => {
     if (isMore) {
@@ -152,6 +156,20 @@ const CommentCard = ({
     }
   };
 
+  const handleMoreReplies = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setReplyToShow((value) => {
+        return value + 3;
+      });
+
+      setIsLoading(false);
+    }, 1000);
+  };
+
   const isUpdated = useMemo(() => {
     return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
   }, [createdAt, updatedAt]);
@@ -199,6 +217,12 @@ const CommentCard = ({
       ? 'comment-card__btn show'
       : 'comment-card__btn hide';
   }, [authorId, isAdmin, postAuthorId, userId]);
+
+  useEffect(() => {
+    if (data) {
+      setReplies(data);
+    }
+  }, [data]);
 
   return (
     <article className='comment-card'>
@@ -304,8 +328,11 @@ const CommentCard = ({
         </button>
       </div>
       <Replies
-        replies={data}
+        replies={replies}
         postAuthorId={postAuthorId}
+        replyToShow={replyToShow}
+        isLoading={isLoading}
+        onClick={handleMoreReplies}
         onUpdate={handleUpdateReply}
       />
       <ReplyForm

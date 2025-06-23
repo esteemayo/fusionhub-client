@@ -47,21 +47,22 @@ const ProfileReplies = ({
             </div>
           }
           endMessage={
-            <div className='profile-replies__end-message'>
-              <span
-                className='profile-replies__icon'
-                role='img'
-                aria-label='End of replies'
-              >
-                🎉
-              </span>
-              <span className='profile-replies__message'>
-                You’ve reached the end!
-                <br />
-                There are no more replies to show. Keep engaging with posts to
-                see your future replies here.
-              </span>
-            </div>
+            null
+            // <div className='profile-replies__end-message'>
+            //   <span
+            //     className='profile-replies__icon'
+            //     role='img'
+            //     aria-label='End of replies'
+            //   >
+            //     🎉
+            //   </span>
+            //   <span className='profile-replies__message'>
+            //     You’ve reached the end!
+            //     <br />
+            //     There are no more replies to show. Keep engaging with posts to
+            //     see your future replies here.
+            //   </span>
+            // </div>
           }
         >
           {replies.map((reply) => {

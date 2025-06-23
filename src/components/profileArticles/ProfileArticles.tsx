@@ -47,9 +47,10 @@ const ProfileArticles = ({
             </div>
           }
           endMessage={
-            <span className='profile-articles__message'>
-              There are no more articles to display.
-            </span>
+            null
+            // <span className='profile-articles__message'>
+            //   There are no more articles to display.
+            // </span>
           }
         >
           {posts.map((post) => {

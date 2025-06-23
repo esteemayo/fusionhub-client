@@ -1,22 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
 import millify from 'millify';
-import { formatDistanceToNow } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import parse from 'html-react-parser';
 
 import LikeIcon from '../LikeIcon';
 import Image from '../Image';
 import DislikeIcon from '../DislikeIcon';
 import SaveIcon from '../SaveIcon';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useSavedPosts } from '../../hooks/useSavedPosts';
+import { useDate } from '../../hooks/useDate';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
+import { dislikePost, likePost } from '../../services/postService';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
-import { ArticleProps } from '../../types';
 import { excerpts } from '../../utils';
-import { dislikePost, likePost } from '../../services/postService';
+import { ArticleProps } from '../../types';
 
 import './Article.scss';
 
@@ -37,6 +38,7 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
+  const { formattedDate } = useDate(post.createdAt);
   const { isSaved, saveMutation, handleSave } = useSavedPosts(post._id);
 
   const likeMutation = useMutation({
@@ -127,16 +129,7 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
             </div>
             <span className='article__profile--dot'>•</span>
             <time dateTime={post.createdAt} className='article__profile--time'>
-              {formatDistanceToNow(new Date(post.createdAt), {
-                addSuffix: false,
-                includeSeconds: false,
-              })
-                .replace('about ', '')
-                .replace('less than a minute', '1m')
-                .replace('minutes', 'min')
-                .replace('hour', 'h')
-                .replace('days', 'd')
-                .replace('months', 'm')}
+              {formattedDate}
             </time>
           </div>
           <div className='article__desc'>

@@ -5,8 +5,14 @@
   display: flex;
   flex-direction: column;
 
-  &:not(:last-child) {
+  &:not(:last-child):not(:has(+ :not(.reply))) {
+    padding-bottom: 2rem;
     margin-bottom: 2rem;
+    border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+    @include bp.sm {
+      border-color: vars.$clr-secondary-blue;
+    }
   }
 
   &__container {

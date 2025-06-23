@@ -17,6 +17,20 @@
     text-align: center;
   }
 
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+
+    @media screen and (max-width: 26.875em) {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+    }
+  }
+
   @media screen and (max-width: 56.25em) {
     font-size: 1.45rem;
   }

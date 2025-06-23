@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
-import { formatDistanceToNow } from 'date-fns';
 
 import Image from '../Image';
 
-import * as commentModal from '../../features/commentModal/commentModalSlice';
+import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
+import * as commentModal from '../../features/commentModal/commentModalSlice';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
 import { excerpts } from '../../utils';
@@ -20,6 +21,8 @@ const ProfileComment = ({
   createdAt,
 }: ProfileCommentProps) => {
   const dispatch = useAppDispatch();
+
+  const { formattedDate } = useDate(createdAt);
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const [isMore, setIsMore] = useState(false);
@@ -104,16 +107,7 @@ const ProfileComment = ({
         <div className='profile-comment__wrapper'>
           <div className='profile-comment__box'>
             <time dateTime={createdAt} className='profile-comment__box--time'>
-              {formatDistanceToNow(new Date(createdAt), {
-                addSuffix: false,
-                includeSeconds: false,
-              })
-                .replace('about ', '')
-                .replace('less than a minute', '1m')
-                .replace('minutes', 'min')
-                .replace('hour', 'h')
-                .replace('days', 'd')
-                .replace('months', 'm')}
+              {formattedDate}
             </time>
             <button
               type='button'
