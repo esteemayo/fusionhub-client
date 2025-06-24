@@ -319,56 +319,58 @@
     }
 
     &--desc {
-      text-rendering: optimizeLegibility;
-      font-weight: 500;
-      font-size: 1.5rem;
-      word-wrap: break-word;
-      color: currentColor;
-      hyphens: auto;
-      line-height: 1.12;
-
-      @media screen and (max-width: 56.25em) {
-        font-size: var(--default-font-size);
-      }
-
-      @media screen and (max-width: 51.25em) {
-        font-size: 1.7rem;
-      }
-
-      @media screen and (max-width: 34.375em) {
-        font-size: var(--default-font-size);
-      }
-
-      @media screen and (max-width: 31.25em) {
-        font-size: 1.8rem;
-      }
-
-      @media screen and (max-width: 25em) {
-        font-size: 1.65rem;
-      }
-
-      @media screen and (max-width: 23.75em) {
-        font-size: var(--default-font-size);
-      }
-
-      @media screen and (max-width: 22.5em) {
+      & > * {
+        text-rendering: optimizeLegibility;
+        font-weight: 500;
         font-size: 1.5rem;
-      }
+        word-wrap: break-word;
+        color: currentColor;
+        hyphens: auto;
+        line-height: 1.12;
 
-      @media screen and (max-width: 21.5em) {
-        font-size: 1.4rem;
-      }
+        @media screen and (max-width: 56.25em) {
+          font-size: var(--default-font-size);
+        }
 
-      @media screen and (min-width: 106.25em) {
-        font-size: 1.55rem;
-      }
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.7rem;
+        }
 
-      @media screen and (min-width: 112.5em) {
-        font-size: 1.65rem;
-      }
+        @media screen and (max-width: 34.375em) {
+          font-size: var(--default-font-size);
+        }
 
-      @media screen and (min-width: 125em) {
-        font-size: 2rem;
+        @media screen and (max-width: 31.25em) {
+          font-size: 1.8rem;
+        }
+
+        @media screen and (max-width: 25em) {
+          font-size: 1.65rem;
+        }
+
+        @media screen and (max-width: 23.75em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.55rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.65rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 2rem;
+        }
       }
     }
   }

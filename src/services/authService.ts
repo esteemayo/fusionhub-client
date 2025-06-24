@@ -20,12 +20,12 @@ export const login = <T extends AuthCrendentialType>(credentials: T) =>
   http.post(authUrl('login'), credentials);
 
 export const googleLogin = (email: string) =>
-  http.post(authUrl('google-login'), email);
+  http.post(authUrl('google-login'), { email });
 
 export const logout = () => http.post(authUrl('logout'));
 
 export const forgotPassword = (email: string) =>
-  http.post(authUrl('forgot-password'), email);
+  http.post(authUrl('forgot-password'), { email });
 
 export const resetPassword = <T extends ResetPasswordType, U extends string>(
   credentials: T,

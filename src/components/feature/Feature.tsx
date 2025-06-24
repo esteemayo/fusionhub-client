@@ -29,15 +29,13 @@ const Feature = ({
   return (
     <article className='feature'>
       <div className='feature__cover'>
-        {img && (
-          <Image
-            src={img}
-            width={450}
-            height={300}
-            alt='image'
-            className='feature__cover--img'
-          />
-        )}
+        <Image
+          src={img ?? 'dafault-post.jpg'}
+          width={450}
+          height={300}
+          alt='image'
+          className='feature__cover--img'
+        />
         <div className='feature__calendar'>
           <div className='feature__calendar--wrap'>
             <span>{formatDay(createdAt)}</span>

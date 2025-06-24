@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
-import { toast } from 'react-toastify';
-
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
@@ -13,14 +12,40 @@ import {
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 
+import { forgotPassword } from '../../services/authService';
 import { forgotSchema } from '../../validations/forgotSchema';
 
 import './ForgotPassword.scss';
 
+const forgot = async (email: string) => {
+  const { data } = await forgotPassword(email);
+  return data;
+};
+
 type FormData = z.infer<typeof forgotSchema>;
 
 const ForgotPassword = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const mutation = useMutation({
+    mutationFn: (email: string) => forgot(email),
+    onSuccess: () => {
+      toast.success(
+        'A password reset link has been sent to your email address.'
+      );
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
 
   const {
     register,
@@ -32,16 +57,11 @@ const ForgotPassword = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-
-      console.log(data);
-      toast.success('Token sent to email');
-
-      reset();
-    }, 1500);
+    mutation.mutate(data.email, {
+      onSuccess: () => {
+        reset();
+      },
+    });
   };
 
   return (
@@ -63,14 +83,15 @@ const ForgotPassword = () => {
               placeholder='Email address'
               register={register as unknown as UseFormRegister<FieldValues>}
               errors={errors}
+              disabled={mutation.isPending}
               autoFocus
             />
             <div className='forgot-password__form--button'>
               <Button
                 type='submit'
                 label='Reset your password'
-                isLoading={isLoading}
-                disabled={isLoading}
+                isLoading={mutation.isPending}
+                disabled={mutation.isPending}
                 color='primary'
               />
             </div>

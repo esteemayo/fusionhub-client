@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
 import { HeaderProps } from '../../types';
@@ -10,7 +11,7 @@ interface IWrapper {
 }
 
 const Header = ({ posts }: HeaderProps) => {
-  const [firstItem, lastItem] = posts ? posts : [];
+  const [firstItem, lastItem] = useMemo(() => (posts ? posts : []), [posts]);
 
   const imageUrl = (url: string) => {
     return `https://ik.imagekit.io/devayo${url}`;

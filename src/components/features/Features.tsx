@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import FeatureCard from '../featureCard/FeatureCard';
@@ -23,7 +24,7 @@ const Features = () => {
     queryFn: () => fetchFeaturedPosts(),
   });
 
-  const [firstPost, ...otherPosts] = data ? data : [];
+  const [firstPost, ...otherPosts] = useMemo(() => (data ? data : []), [data]);
 
   return (
     <section className='features'>

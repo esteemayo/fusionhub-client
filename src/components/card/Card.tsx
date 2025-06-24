@@ -25,7 +25,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
   };
 
   const parsedDesc = useMemo(() => {
-    return parse(String(excerpts(desc, 60)));
+    return parse(String(excerpts(desc, 60))).toString();
   }, [desc]);
 
   return (
@@ -45,7 +45,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
           <h3 className='card__box--title'>
             <Link to={`/posts/${slug}`}>{title}</Link>
           </h3>
-          <p className='card__box--desc'>{parse(String(parsedDesc))}</p>
+          <div className='card__box--desc'>{parse(parsedDesc)}</div>
         </div>
         <div className='card__container'>
           {pathname === '/posts' ? (

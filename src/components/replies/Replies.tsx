@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Reply from '../reply/Reply';
 
@@ -14,6 +14,7 @@ const Replies = ({
   onUpdate,
   onClick,
 }: RepliesProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [isShow, setIsShow] = useState(true);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,6 +33,21 @@ const Replies = ({
       ? 'replies__box show'
       : 'replies__box hide';
   }, [isLoading, replies, replyToShow]);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    let minHeight = '';
+    const count = replies?.length ?? 0;
+
+    if (count === 2) minHeight = '160px';
+    else if (count === 3) minHeight = '280px';
+    else if (count === 4) minHeight = '420px';
+    else if (count > 4) minHeight = '520px';
+
+    element.style.minHeight = minHeight;
+  }, [replies]);
 
   if ((replies ?? [])?.length < 1) {
     return null;
@@ -78,7 +94,7 @@ const Replies = ({
             </svg>
           )}
         </button>
-        <div className={wrapperClasses}>
+        <div className={wrapperClasses} ref={ref}>
           {replies?.slice(0, replyToShow).map((reply) => {
             return (
               <Reply

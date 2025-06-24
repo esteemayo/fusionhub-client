@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   FieldValues,
@@ -8,6 +8,7 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
@@ -15,14 +16,48 @@ import Button from '../../components/button/Button';
 import { resetInputs } from '../../data/formData';
 import { resetSchema } from '../../validations/resetSchema';
 
+import { ResetPasswordType } from '../../types';
+import { resetPassword } from '../../services/authService';
+
 import './ResetPassword.scss';
+
+const passwordReset = async <T extends ResetPasswordType, U extends string>(
+  credentials: T,
+  token: U
+) => {
+  const { data } = await resetPassword(credentials, token);
+  return data;
+};
 
 type FormData = z.infer<typeof resetSchema>;
 
 const ResetPassword = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const token = pathname.split('/').pop() as string;
 
-  const [isLoading, setIsLoading] = useState(false);
+  const mutation = useMutation({
+    mutationFn: (credentials: ResetPasswordType) =>
+      passwordReset(credentials, token),
+    onSuccess: () => {
+      toast.success(
+        'Your password has been reset successfully. You can now log in with your new password.'
+      );
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
 
   const {
     register,
@@ -34,25 +69,13 @@ const ResetPassword = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-
-      console.log(data);
-      toast.success('password reset successfully!');
-
-      reset();
-    }, 1500);
+    mutation.mutate(data, {
+      onSuccess: () => {
+        reset();
+        navigate('/login');
+      },
+    });
   };
-
-  useEffect(() => {
-    const current = inputRef.current;
-
-    if (current) {
-      current.focus();
-    }
-  }, []);
 
   return (
     <div className='reset-password'>
@@ -77,6 +100,7 @@ const ResetPassword = () => {
                   placeholder={placeholder}
                   register={register as unknown as UseFormRegister<FieldValues>}
                   errors={errors}
+                  disabled={mutation.isPending}
                   autoFocus={name === 'password'}
                   validate
                 />
@@ -86,8 +110,8 @@ const ResetPassword = () => {
               <Button
                 type='submit'
                 label='Reset your password'
-                isLoading={isLoading}
-                disabled={isLoading}
+                isLoading={mutation.isPending}
+                disabled={mutation.isPending}
                 color='primary'
               />
             </div>

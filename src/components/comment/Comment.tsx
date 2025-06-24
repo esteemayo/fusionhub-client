@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useId, useMemo } from 'react';
 
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import CommentCard from '../commentCard/CommentCard';
@@ -28,6 +28,7 @@ const Comment = ({
   onUpdate,
   onOpen,
 }: CommentProps) => {
+  const id = useId();
   const { user } = useAppSelector((state) => ({ ...state.auth }));
 
   const commentHeading = useMemo(() => {
@@ -55,11 +56,13 @@ const Comment = ({
             ) : errorUser ? (
               <EmptyMessage title='Failed to load comment users.' />
             ) : (
-              commentUsers?.slice(0, 5).map((user) => {
-                const { _id: id, image } = user;
+              commentUsers?.slice(0, 5).map((user, index) => {
+                const { _id: userId, image } = user;
+                const uniqueUserId = `${id}-${userId}-${index}`;
+
                 return (
                   <Image
-                    key={id}
+                    key={uniqueUserId}
                     src={image}
                     width={50}
                     height={50}

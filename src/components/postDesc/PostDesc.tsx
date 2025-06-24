@@ -16,7 +16,7 @@ const PostDesc = ({ post, isLoading }: PostDescProps) => {
   };
 
   const parsedDesc = useMemo(() => {
-    return parse(String(post?.desc));
+    return parse(String(post?.desc)).toString();
   }, [post?.desc]);
 
   return (
@@ -26,7 +26,7 @@ const PostDesc = ({ post, isLoading }: PostDescProps) => {
       </h2>
       <div className='post-desc__box--desc'>
         <div onDoubleClick={handleCopy}>
-          {isLoading ? <Skeleton count={15} /> : parse(String(parsedDesc))}
+          {isLoading ? <Skeleton count={15} /> : parse(parsedDesc)}
         </div>
       </div>
     </div>
