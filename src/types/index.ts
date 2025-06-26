@@ -381,6 +381,7 @@ export interface ProfileDetailsProps {
   bio: string;
   country: string;
   dateOfBirth?: string;
+  role: 'admin' | 'user';
   createdAt: string;
 }
 
@@ -934,6 +935,27 @@ export type UserDetailType = {
   tokenExpiration: number;
   fromGoogle: boolean;
   isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UserType = {
+  _id: string;
+  name: string;
+  username: string;
+  email: string;
+  phone?: string;
+  dateOfBirth?: string;
+  country: string;
+  bio: string;
+  about?: string;
+  image?: string;
+  banner?: string;
+  savedPosts: string[];
+  tokenExpiration: number;
+  fromGoogle: boolean;
+  isActive: boolean;
+  role: 'admin' | 'user';
   createdAt: string;
   updatedAt: string;
 };

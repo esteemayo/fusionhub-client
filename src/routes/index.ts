@@ -14,12 +14,14 @@ import LikedPosts from './likedPosts/LikedPosts';
 import NotFound from './notFound/NotFound';
 import ForgotPassword from './forgotPassword/ForgotPassword';
 import Register from './register/Register';
-import PasswordSettings from './passwordSettings/PasswordSettings';
 import ResetPassword from './resetPassword/ResetPassword';
+import Categories from './categories/Categories';
+import PasswordSettings from './passwordSettings/PasswordSettings';
 
 export {
   About,
   Articles,
+  Categories,
   Contact,
   DislikedPosts,
   ForgotPassword,

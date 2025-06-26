@@ -3,12 +3,14 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from '../components/layouts/MainLayout';
 import AccountLayout from '../components/layouts/accountLayout/AccountLayout';
 
+import PrivateRoute from './PrivateRoute';
 import AuthRoute from './AuthRoute';
 import ProtectedRoute from './ProtectedRoute';
 
 import {
   About,
   Articles,
+  Categories,
   Contact,
   DislikedPosts,
   ForgotPassword,
@@ -101,6 +103,14 @@ export const router = createBrowserRouter([
               <AuthRoute>
                 <DislikedPosts />
               </AuthRoute>
+            ),
+          },
+          {
+            path: 'categories',
+            element: (
+              <PrivateRoute>
+                <Categories />
+              </PrivateRoute>
             ),
           },
         ],

@@ -3,11 +3,11 @@ import { useEffect, useMemo, useState } from 'react';
 
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useLogout } from '../../hooks/useLogout';
-import { onClose } from '../../features/accountMenu/accountMenuSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { accountMenus } from '../../data';
+import { onClose } from '../../features/accountMenu/accountMenuSlice';
 
 import './AccountMenu.scss';
 
@@ -35,6 +35,9 @@ const AccountMenu = ({ query }: { query: string | null }) => {
     return isOpen ? 'account-menu show' : 'account-menu hide';
   }, [isOpen]);
 
+  const restMenus = accountMenus.slice(0, -1);
+  const lastMenu = accountMenus[accountMenus.length - 1];
+
   useEffect(() => {
     setIsActive(path);
   }, [path]);
@@ -48,7 +51,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
       <div className='account-menu__container'>
         <div className='account-menu__wrapper'>
           <ul className='account-menu__list'>
-            {accountMenus.map((menu) => {
+            {restMenus.map((menu) => {
               return (
                 <AccountMenuItem
                   key={menu.id}
@@ -59,6 +62,17 @@ const AccountMenu = ({ query }: { query: string | null }) => {
                 />
               );
             })}
+            {currentUser && currentUser.role === 'admin' && (
+              <AccountMenuItem
+                id={lastMenu.id}
+                url={lastMenu.url}
+                icon={lastMenu.icon}
+                label={lastMenu.label}
+                isOpen={isOpen}
+                activeMenu={isActive}
+                onAction={handleClick}
+              />
+            )}
           </ul>
         </div>
         <div className='account-menu__box'>
