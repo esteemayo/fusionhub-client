@@ -4,7 +4,7 @@ import SearchClient from '../../components/searchClient/SearchClient';
 import RecentPosts from '../../components/recentPosts/RecentPosts';
 
 import './Home.scss';
-
+// Web Share API
 const Home = () => {
   return (
     <div className='home'>

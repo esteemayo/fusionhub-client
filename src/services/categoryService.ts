@@ -9,13 +9,13 @@ export const getCategories = () => http.get(apiEndpoint);
 export const getCategory = (categoryId: string) =>
   http.get(categoryUrl(categoryId));
 
-export const createCategory = (category: string) =>
-  http.post(apiEndpoint, category);
+export const createCategory = (name: string) =>
+  http.post(apiEndpoint, { name });
 
 export const updateCategory = <T extends string, U extends string>(
-  category: T,
+  name: T,
   categoryId: U
-) => http.patch(categoryUrl(categoryId), category);
+) => http.patch(categoryUrl(categoryId), { name });
 
 export const deleteCategory = (categoryId: string) =>
   http.delete(categoryUrl(categoryId));

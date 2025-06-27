@@ -52,7 +52,6 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      gap: 2rem;
 
       padding-bottom: 3rem;
       margin-bottom: 3rem;
@@ -82,12 +81,32 @@
           }
         }
       }
+    }
+
+    &--actions {
+      width: 50%;
+
+      display: flex;
+      align-items: center;
+      gap: 1rem;
 
       .btn {
-        width: 50%;
+        width: 100%;
+        transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out,
+          min-height 0.5s ease-in-out, z-index 0.5s ease-in-out;
 
-        @media screen and (max-width: 37.5em) {
-          width: 100%;
+        &.show {
+          display: flex;
+          visibility: visible;
+          opacity: 1;
+          z-index: 1000;
+        }
+
+        &.hide {
+          display: none;
+          visibility: hidden;
+          opacity: 0;
+          z-index: -1;
         }
       }
     }
@@ -103,7 +122,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
     gap: 3rem;
 
     list-style: none;
@@ -131,6 +149,14 @@
     @media screen and (min-width: 125em) {
       gap: 4.5rem;
     }
+  }
+
+  &__spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 20rem;
   }
 
   &__item {

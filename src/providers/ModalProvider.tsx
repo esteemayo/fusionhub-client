@@ -1,9 +1,10 @@
 import AccountModal from '../components/AccountModal';
 import ImageModal from '../components/ImageModal';
-import PostModal from '../components/postModal/PostModal';
+import CategoryModal from '../components/CategoryModal';
 import BannerModal from '../components/BannerModal';
-import ReplyCommentModal from '../components/ReplyCommentModal';
+import PostModal from '../components/postModal/PostModal';
 import CommentModal from '../components/CommentModal';
+import ReplyCommentModal from '../components/ReplyCommentModal';
 
 const ModalProvider = () => {
   return (
@@ -14,6 +15,7 @@ const ModalProvider = () => {
       <BannerModal />
       <ImageModal />
       <ReplyCommentModal />
+      <CategoryModal />
     </>
   );
 };

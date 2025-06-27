@@ -7,13 +7,19 @@ import { useAppSelector } from '../hooks/hooks';
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  if (currentUser && currentUser.role === 'admin') {
-    return children;
-  } else if (currentUser && currentUser.role === 'user') {
-    return <Navigate to='/accounts/profile' />;
-  } else {
+  if (!currentUser) {
     return <LoadingToRedirect />;
   }
+
+  if (currentUser.role === 'admin') {
+    return children;
+  }
+
+  if (currentUser.role === 'user') {
+    return <Navigate to='/accounts/profile' />;
+  }
+
+  return <Navigate to='/' />;
 };
 
 export default PrivateRoute;

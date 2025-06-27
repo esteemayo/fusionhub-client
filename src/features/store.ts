@@ -11,6 +11,7 @@ import postModalReducer from './postModal/postModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 import imageModalReducer from './imageModal/imageModalSlice';
 import replyCommentModalReducer from './replyCommentModal/replyCommentModalSlice';
+import categoryModalReducer from './categoryModal/categoryModalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     bannerModal: bannerModalReducer,
     imageModal: imageModalReducer,
     replyCommentModal: replyCommentModalReducer,
+    categoryModal: categoryModalReducer,
   },
 });
 

@@ -78,13 +78,6 @@ export const resetInputs: ResetInputType = [
 
 export const passwordInputs: PasswordInputType = [
   {
-    id: 'passwordConfirm',
-    name: 'passwordConfirm',
-    type: 'password',
-    label: 'Confirm New Password',
-    placeholder: 'Re-enter your new password to confirm',
-  },
-  {
     id: 'passwordCurrent',
     name: 'passwordCurrent',
     type: 'password',
@@ -97,6 +90,13 @@ export const passwordInputs: PasswordInputType = [
     type: 'password',
     label: 'New Password',
     placeholder: 'Enter a new password',
+  },
+  {
+    id: 'passwordConfirm',
+    name: 'passwordConfirm',
+    type: 'password',
+    label: 'Confirm New Password',
+    placeholder: 'Re-enter your new password to confirm',
   },
 ];
 

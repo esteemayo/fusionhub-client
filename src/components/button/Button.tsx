@@ -12,13 +12,14 @@ const Button = ({
   isLoading,
   disabled,
   color,
+  className,
   onClick,
 }: ButtonProps) => {
   return (
     <button
       type={type}
       disabled={!!disabled}
-      className={`btn ${color}`}
+      className={`btn ${color} ${className}`}
       onClick={onClick}
     >
       {icon && !isLoading && (
