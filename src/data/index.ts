@@ -12,7 +12,7 @@ import { BiLogoTiktok } from 'react-icons/bi';
 import {
   aboutItemType,
   AccountMenuType,
-  CategoryType,
+  CategoryItemsType,
   CommentsType,
   CommentUserType,
   ContactInfoItemType,
@@ -449,7 +449,7 @@ export const comments: CommentsType = [
   },
 ];
 
-export const categoryItems: CategoryType = [
+export const categoryItems: CategoryItemsType = [
   {
     id: '1',
     name: 'lifestyle',

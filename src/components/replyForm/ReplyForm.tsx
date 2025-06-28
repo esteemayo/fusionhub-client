@@ -29,19 +29,19 @@ const ReplyForm = ({
       />
       <div className='reply-form__actions'>
         <button
-          type='submit'
-          className='reply-form__actions--submit'
-          disabled={isLoading}
-        >
-          {isLoading ? 'Submitting...' : 'Submit Reply'}
-        </button>
-        <button
           type='button'
           className='reply-form__actions--cancel'
           onClick={onCancel}
           disabled={isLoading}
         >
           Cancel
+        </button>
+        <button
+          type='submit'
+          className='reply-form__actions--submit'
+          disabled={isLoading}
+        >
+          {isLoading ? 'Submitting...' : 'Submit Reply'}
         </button>
       </div>
     </form>

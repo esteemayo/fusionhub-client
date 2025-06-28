@@ -44,10 +44,10 @@ const Replies = ({
     if (count === 2) minHeight = '160px';
     else if (count === 3) minHeight = '280px';
     else if (count === 4) minHeight = '420px';
-    else if (count > 4) minHeight = '520px';
+    else if (count > 4 && replyToShow > 4) minHeight = '600px';
 
     element.style.minHeight = minHeight;
-  }, [replies]);
+  }, [replies?.length, replyToShow]);
 
   if ((replies ?? [])?.length < 1) {
     return null;

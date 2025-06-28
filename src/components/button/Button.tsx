@@ -19,7 +19,7 @@ const Button = ({
     <button
       type={type}
       disabled={!!disabled}
-      className={`btn ${color} ${className}`}
+      className={`btn ${color} ${className ?? ''}`}
       onClick={onClick}
     >
       {icon && !isLoading && (

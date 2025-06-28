@@ -257,22 +257,24 @@ export interface FilterItemProps {
   label: string;
 }
 
-export type CategoriesType = {
+export type CategoryType = {
   _id: string;
   name: string;
   createdAt: string;
   updatedAt: string;
-}[];
+};
+
+export type CategoriesType = CategoryType[];
 
 export type CategoryItemType = {
   category: string;
   count: number;
 };
 
-export type CategoryItemProps = CategoryItemType;
+export type CategoryProps = CategoryItemType;
 
 export type TagProps = {
-  _id: string;
+  tag: string;
   count: number;
 };
 
@@ -492,6 +494,86 @@ export interface ToggleButtonProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface CategoryFormProps {
+  isLoading: boolean;
+  updateMutation: UseMutationResult<
+    unknown,
+    unknown,
+    {
+      name: string;
+      categoryId: string;
+    },
+    unknown
+  >;
+  label: string;
+  cancelBtnClasses: 'show' | 'hide';
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface CategoryItemsProps {
+  categories: CategoriesType | undefined;
+  isPending: boolean;
+  error: Error | null;
+  categoryId: string | null;
+  isEditing: boolean;
+  currentUser: CurrentUserType | null;
+  updateMutation: UseMutationResult<
+    unknown,
+    unknown,
+    {
+      name: string;
+      categoryId: string;
+    },
+    unknown
+  >;
+  onUpdate(
+    e: React.MouseEvent<HTMLButtonElement>,
+    category: {
+      _id: string;
+      name: string;
+    }
+  ): void;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>, categoryId: string): void;
+}
+
+export interface CategoryItemProps {
+  category: CategoryType;
+  categoryId: string | null;
+  isEditing: boolean;
+  currentUser: CurrentUserType | null;
+  isLoading: boolean;
+  onEdit(
+    e: React.MouseEvent<HTMLButtonElement>,
+    category: {
+      _id: string;
+      name: string;
+    }
+  ): void;
+  onRemove(e: React.MouseEvent<HTMLButtonElement>, categoryId: string): void;
+}
+
+export interface ICategory {
+  (): {
+    isPending: boolean;
+    error: Error | null;
+    data: CategoriesType | undefined;
+    categoryMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    updateMutation: UseMutationResult<
+      unknown,
+      unknown,
+      {
+        name: string;
+        categoryId: string;
+      },
+      unknown
+    >;
+    deleteMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  };
+}
+
 export interface ISearch {
   (): {
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
@@ -671,9 +753,11 @@ export interface IReply {
 
 export interface CommentProps {
   postAuthorId: string;
+  commentId: string;
   isPending: boolean;
   isPendingUser: boolean;
   isLoading: boolean;
+  isEditing: boolean;
   error: Error | null;
   errorUser: Error | null;
   comments: CommentType[] | undefined;
@@ -688,6 +772,8 @@ export interface CommentProps {
 
 export interface CommentCardProps {
   postAuthorId: string;
+  editId: string;
+  editing: boolean;
   comment: CommentType;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onUpdate?(commentId: string): void;
@@ -726,10 +812,13 @@ export interface ReplyFormProps {
 
 export interface CommentFormProps {
   value: string;
+  commentId: string;
   isLoading?: boolean;
   isPending?: boolean;
+  isEditing: boolean;
   comments: CommentType[];
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
   ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
 }
@@ -1032,7 +1121,7 @@ export type CommentsType = {
   updatedAt: string;
 }[];
 
-export type CategoryType = {
+export type CategoryItemsType = {
   id: string;
   name: string;
   total: number;

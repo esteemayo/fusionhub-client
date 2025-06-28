@@ -1,0 +1,95 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding: 1rem 0.5rem;
+  color: vars.$clr-gray-light-1;
+  line-height: 1.2;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+    @include bp.md {
+      border-color: vars.$clr-secondary-blue;
+    }
+  }
+
+  &__label {
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: vars.$clr-gray-light-3;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      font-size: 1.35rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.9rem;
+    }
+
+    &:hover {
+      color: vars.$clr-pink-light;
+    }
+  }
+
+  &__total {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: vars.$clr-gray-light-1;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.3rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.2rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.3rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.7rem;
+    }
+  }
+}

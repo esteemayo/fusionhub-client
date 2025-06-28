@@ -147,8 +147,8 @@
     align-items: center;
     gap: 1rem;
 
-    &--submit,
-    &--cancel {
+    &--cancel,
+    &--submit {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -206,12 +206,12 @@
       }
     }
 
-    &--submit {
-      background-color: rgba(vars.$clr-success, 0.5);
-    }
-
     &--cancel {
       background-color: rgba(vars.$clr-danger, 0.5);
+    }
+
+    &--submit {
+      background-color: rgba(vars.$clr-success, 0.5);
     }
   }
 }

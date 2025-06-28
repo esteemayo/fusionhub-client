@@ -68,6 +68,11 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     setIsEditing(false);
   };
 
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    handleClear();
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -116,9 +121,11 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
       <div className='comments__container'>
         <Comment
           postAuthorId={postAuthorId}
+          commentId={commentId}
           isPending={isPending}
           isPendingUser={isPendingUser}
           isLoading={isLoading}
+          isEditing={isEditing}
           error={error}
           errorUser={errorUser}
           comments={comments}
@@ -132,10 +139,13 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
         />
         <CommentForm
           value={value}
+          commentId={commentId}
           isLoading={commentMutation.isPending}
           isPending={isPending}
+          isEditing={isEditing}
           comments={comments!}
           onChange={setValue}
+          onCancel={handleCancel}
           onSubmit={handleSubmit}
           ref={ref}
         />

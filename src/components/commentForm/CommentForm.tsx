@@ -10,10 +10,13 @@ import './CommentForm.scss';
 
 const CommentForm = ({
   value,
+  commentId,
   isLoading,
   isPending,
+  isEditing,
   comments,
   onChange,
+  onCancel,
   onSubmit,
   ref,
 }: CommentFormProps) => {
@@ -30,6 +33,14 @@ const CommentForm = ({
       ? 'comment-form__form show'
       : 'comment-form__form hide';
   }, [hasCommented]);
+
+  const cancelBtnClasses = useMemo(() => {
+    return isEditing && commentId ? 'show' : 'hide';
+  }, [commentId, isEditing]);
+
+  const btnLabel = useMemo(() => {
+    return `${isEditing && commentId ? 'Update' : 'Post'} Comment`;
+  }, [commentId, isEditing]);
 
   if (isPending) {
     return null;
@@ -69,13 +80,22 @@ const CommentForm = ({
               className='comment-form__textarea'
               onChange={(e) => onChange(e.target.value)}
             />
-            <Button
-              type='submit'
-              label='Post Comment'
-              color='primary'
-              isLoading={isLoading}
-              disabled={isLoading}
-            />
+            <div className='comment-form__actions'>
+              <Button
+                type='button'
+                label='Cancel'
+                color='dark'
+                onClick={onCancel}
+                className={cancelBtnClasses}
+              />
+              <Button
+                type='submit'
+                label={btnLabel}
+                color='primary'
+                isLoading={isLoading}
+                disabled={isLoading}
+              />
+            </div>
           </form>
         </>
       )}

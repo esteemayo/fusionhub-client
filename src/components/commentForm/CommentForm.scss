@@ -209,4 +209,29 @@
       }
     }
   }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .btn {
+      transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out,
+        min-height 0.5s ease-in-out, z-index 0.5s ease-in-out;
+
+      &.show {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+      }
+
+      &.hide {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+  }
 }

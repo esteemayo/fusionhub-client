@@ -44,9 +44,9 @@ const Tags = () => {
                 }
               />
             ) : (
-              data?.map((tag) => {
-                const { _id: id, count } = tag;
-                return <TagItem key={id} label={id} count={count} />;
+              data?.map((item) => {
+                const { tag, count } = item;
+                return <TagItem key={tag} label={tag} count={count} />;
               })
             )}
           </div>

@@ -32,7 +32,7 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
               subtitle='It seems there are no posts related to the current topic. Check back later or explore other topics to find more content.'
             />
           ) : isPending ? (
-            Array.from(Array(3)).map((_, index) => {
+            Array.from(Array(4)).map((_, index) => {
               return <RelatedSkeleton key={index} />;
             })
           ) : error ? (

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
-import CategoryItem from '../categoryItem/CategoryItem';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
+import Category from '../category/Category';
 import CategorySkeleton from '../categorySkeleton/CategorySkeleton';
 
 import { CategoryItemType } from '../../types';
@@ -45,7 +45,7 @@ const Categories = () => {
           data
             ?.filter((item) => item.count !== 0)
             .map((item) => {
-              return <CategoryItem key={item.category} {...item} />;
+              return <Category key={item.category} {...item} />;
             })
         )}
       </div>

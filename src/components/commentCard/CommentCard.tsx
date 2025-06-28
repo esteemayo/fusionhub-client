@@ -11,18 +11,16 @@ import { useReply } from '../../hooks/useReply';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import {
-  setCommentId,
-  setPostId,
-} from '../../features/commentModal/commentModalSlice';
-
-import { excerpts } from '../../utils';
 import { CommentCardProps } from '../../types';
+import { excerpts } from '../../utils';
+import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import './CommentCard.scss';
 
 const CommentCard = ({
   postAuthorId,
+  editId,
+  editing,
   comment,
   onChange,
   onUpdate,
@@ -122,8 +120,8 @@ const CommentCard = ({
     if (!currentUser) return;
 
     onOpen();
-    dispatch(setCommentId(commentId));
-    dispatch(setPostId(postId));
+    dispatch(commentModal.setCommentId(commentId));
+    dispatch(commentModal.setPostId(postId));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -218,6 +216,10 @@ const CommentCard = ({
       : 'comment-card__btn hide';
   }, [authorId, isAdmin, postAuthorId, userId]);
 
+  const isDisabled = useMemo(() => {
+    return editing && editId === commentId;
+  }, [commentId, editId, editing]);
+
   useEffect(() => {
     if (data) {
       setReplies(data);
@@ -252,6 +254,7 @@ const CommentCard = ({
               type='button'
               className={replyBtnClasses}
               onClick={handleToggle}
+              disabled={isDisabled}
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -290,6 +293,7 @@ const CommentCard = ({
           type='button'
           className='comment-card__btn--edit'
           onClick={handleUpdate}
+          disabled={isDisabled || isOpen}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -310,6 +314,7 @@ const CommentCard = ({
           type='button'
           className='comment-card__btn--delete'
           onClick={handleDelete}
+          disabled={isDisabled || isOpen}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

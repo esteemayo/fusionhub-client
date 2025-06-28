@@ -14,9 +14,11 @@ import './Comment.scss';
 
 const Comment = ({
   postAuthorId,
+  commentId,
   isPending,
   isPendingUser,
   isLoading,
+  isEditing,
   error,
   errorUser,
   comments,
@@ -94,6 +96,8 @@ const Comment = ({
           {mutation.isPending && (
             <CommentCard
               postAuthorId={postAuthorId}
+              editId={commentId}
+              editing={isEditing}
               comment={{
                 _id: new Date().getTime().toString(),
                 content: `${
@@ -120,6 +124,8 @@ const Comment = ({
               <CommentCard
                 key={comment._id}
                 postAuthorId={postAuthorId}
+                editId={commentId}
+                editing={isEditing}
                 comment={comment}
                 onChange={onChange}
                 onUpdate={onUpdate}
