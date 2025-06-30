@@ -98,6 +98,14 @@
       vars.$clr-orange-light 95%
     );
     background-attachment: fixed;
+
+    @media screen and (max-width: 18.75em) {
+      width: 3px;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 0.725rem;
+    }
   }
 
   &__wrapper {

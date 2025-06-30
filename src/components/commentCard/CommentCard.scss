@@ -90,6 +90,12 @@
   &__details {
     width: 100%;
 
+    &--info {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
     &--username,
     &--desc {
       font-size: 1.45rem;

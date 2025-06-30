@@ -250,6 +250,12 @@
       width: 50rem;
     }
 
+    &--info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     &--name {
       text-transform: capitalize;
       font-weight: 600;

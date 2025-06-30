@@ -6,14 +6,21 @@ import { useDate } from '../../hooks/useDate';
 
 import './PostInfo.scss';
 
-const PostInfo = ({ username, authorId, userId, createdAt }: PostInfoProps) => {
+const PostInfo = ({
+  username,
+  authorId,
+  currentUser,
+  createdAt,
+}: PostInfoProps) => {
   const { formattedDate } = useDate(createdAt);
 
   const url = useMemo(() => {
-    return authorId === userId
-      ? `/accounts/profile`
-      : `/accounts/profile?username=${username}`;
-  }, [authorId, userId, username]);
+    return currentUser
+      ? authorId === currentUser.details._id
+        ? `/accounts/profile`
+        : `/accounts/profile?username=${username}`
+      : `/posts?author=${username}`;
+  }, [authorId, currentUser, username]);
 
   return (
     <div className='post-info'>

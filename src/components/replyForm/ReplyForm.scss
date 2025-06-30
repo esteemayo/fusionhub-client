@@ -29,7 +29,7 @@
     display: inline-block;
     outline: 0;
     width: 50%;
-    height: 6rem;
+    height: 8rem;
     padding: 1rem;
     font-family: inherit;
     font-weight: 600;
@@ -43,13 +43,13 @@
 
     @media screen and (max-width: 56.25em) {
       width: 55%;
-      height: 6.2rem;
+      height: 8.2rem;
       font-size: 1.5rem;
     }
 
     @media screen and (max-width: 51.25em) {
       width: 57%;
-      height: 6.4rem;
+      height: 8.4rem;
       font-size: var(--default-font-size);
     }
 
@@ -59,7 +59,7 @@
 
     @media screen and (max-width: 34.375em) {
       width: 70%;
-      height: 6.8rem;
+      height: 8.8rem;
       font-size: 1.7rem;
     }
 
@@ -77,25 +77,25 @@
     }
 
     @media screen and (max-width: 17.5em) {
-      height: 6.2rem;
+      height: 8.2rem;
       font-size: 1.5rem;
     }
 
     @media screen and (min-width: 106.25em) {
       width: 55%;
-      height: 6.4rem;
+      height: 8.4rem;
       font-size: var(--default-font-size);
     }
 
     @media screen and (min-width: 112.5em) {
       width: 57%;
-      height: 6.8rem;
+      height: 9rem;
       font-size: 1.8rem;
     }
 
     @media screen and (min-width: 125em) {
       width: 60%;
-      height: 9rem;
+      height: 11rem;
       font-size: 2.15rem;
     }
 

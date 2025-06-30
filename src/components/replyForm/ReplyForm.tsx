@@ -6,8 +6,10 @@ import './ReplyForm.scss';
 
 const ReplyForm = ({
   content,
+  replyId,
   isOpen,
   isLoading,
+  isEditing,
   onChange,
   onCancel,
   onSubmit,
@@ -16,6 +18,16 @@ const ReplyForm = ({
   const formClasses = useMemo(() => {
     return isOpen ? 'reply-form show' : 'reply-form hide';
   }, [isOpen]);
+
+  const btnLabel = useMemo(() => {
+    return isEditing && replyId
+      ? isLoading
+        ? 'Updating...'
+        : 'Update Reply'
+      : isLoading
+      ? 'Submitting...'
+      : 'Submit Reply';
+  }, [isEditing, isLoading, replyId]);
 
   return (
     <form className={formClasses} onSubmit={onSubmit}>
@@ -41,7 +53,7 @@ const ReplyForm = ({
           className='reply-form__actions--submit'
           disabled={isLoading}
         >
-          {isLoading ? 'Submitting...' : 'Submit Reply'}
+          {btnLabel}
         </button>
       </div>
     </form>

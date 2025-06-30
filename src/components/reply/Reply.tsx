@@ -2,17 +2,14 @@ import { Link } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 
 import Image from '../Image';
+import Badge from '../badge/Badge';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useDate } from '../../hooks/useDate';
-import {
-  onOpen,
-  setPostId,
-  setReplyId,
-} from '../../features/commentModal/commentModalSlice';
+import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { ReplyProps } from '../../types';
+import { ReplyProps, RoleType } from '../../types';
 
 import './Reply.scss';
 
@@ -24,6 +21,7 @@ const Reply = ({
   createdAt,
   updatedAt,
   postAuthorId,
+  isDisabled,
   onUpdate,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
@@ -59,9 +57,9 @@ const Reply = ({
 
     if (!currentUser) return;
 
-    dispatch(onOpen());
-    dispatch(setPostId(postId));
-    dispatch(setReplyId(replyId));
+    dispatch(commentModal.onOpen());
+    dispatch(commentModal.setPostId(postId));
+    dispatch(commentModal.setReplyId(replyId));
   };
 
   const hasUpdated = useMemo(() => {
@@ -91,10 +89,12 @@ const Reply = ({
   }, [currentUser]);
 
   const url = useMemo(() => {
-    return userId === author._id
-      ? '/accounts/profile'
-      : `/accounts/profile?username=${author.username}`;
-  }, [author, userId]);
+    return currentUser
+      ? userId === author._id
+        ? '/accounts/profile'
+        : `/accounts/profile?username=${author.username}`
+      : `/posts?author=${author.username}`;
+  }, [author, currentUser, userId]);
 
   const actionBtnClasses = useMemo(() => {
     return author._id === userId || postAuthorId === userId || isAdmin
@@ -120,12 +120,15 @@ const Reply = ({
           <div className='reply__content--time'>
             <time dateTime={createdAt}>{formattedDate}</time>
             {currentUser && hasUpdated && author._id !== userId && (
-              <span className='reply__content--time'>updated</span>
+              <span>updated</span>
             )}
           </div>
-          <h6 className='reply__content--username'>
-            <Link to={url}>{author.name}</Link>
-          </h6>
+          <div className='reply__content--user'>
+            <h6 className='reply__content--username'>
+              <Link to={url}>{author.name}</Link>
+            </h6>
+            <Badge role={author.role as RoleType} />
+          </div>
           <p onClick={handleCollapse} className='reply__content--text'>
             {contentLabel}
             <button type='button' className={btnClasses} onClick={handleClick}>
@@ -139,6 +142,7 @@ const Reply = ({
           type='button'
           className='reply__btn--update'
           onClick={handleUpdate}
+          disabled={isDisabled}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -159,6 +163,7 @@ const Reply = ({
           type='button'
           className='reply__btn--remove'
           onClick={handleDelete}
+          disabled={isDisabled}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

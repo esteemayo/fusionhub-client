@@ -7,10 +7,12 @@ import { RepliesProps } from '../../types';
 import './Replies.scss';
 
 const Replies = ({
+  replyId,
   replies,
   postAuthorId,
   replyToShow,
   isLoading,
+  isEditing,
   onUpdate,
   onClick,
 }: RepliesProps) => {
@@ -34,17 +36,22 @@ const Replies = ({
       : 'replies__box hide';
   }, [isLoading, replies, replyToShow]);
 
+  const isDisabled = useMemo(() => {
+    const shouldDisable = isEditing && replyId;
+    return !!shouldDisable;
+  }, [isEditing, replyId]);
+
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
 
     let minHeight = '';
-    const count = replies?.length ?? 0;
+    const replyCount = replies?.length ?? 0;
 
-    if (count === 2) minHeight = '160px';
-    else if (count === 3) minHeight = '280px';
-    else if (count === 4) minHeight = '420px';
-    else if (count > 4 && replyToShow > 4) minHeight = '600px';
+    if (replyCount === 2) minHeight = '160px';
+    else if (replyCount === 3) minHeight = '280px';
+    else if (replyCount === 4) minHeight = '420px';
+    else if (replyCount > 4 && replyToShow > 4) minHeight = '600px';
 
     element.style.minHeight = minHeight;
   }, [replies?.length, replyToShow]);
@@ -101,6 +108,7 @@ const Replies = ({
                 key={reply._id}
                 {...reply}
                 postAuthorId={postAuthorId}
+                isDisabled={isDisabled}
                 onUpdate={onUpdate}
               />
             );

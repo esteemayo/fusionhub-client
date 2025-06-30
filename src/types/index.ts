@@ -384,7 +384,7 @@ export interface ProfileDetailsProps {
   bio: string;
   country: string;
   dateOfBirth?: string;
-  role: 'admin' | 'user';
+  role: RoleType;
   createdAt: string;
 }
 
@@ -460,6 +460,7 @@ export interface ProfileImageProps {
   name: string;
   bio: string;
   image?: string;
+  role: RoleType;
   ref: React.LegacyRef<HTMLInputElement>;
   file: File | undefined;
   onOpen(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -781,10 +782,12 @@ export interface CommentCardProps {
 }
 
 export interface RepliesProps {
+  replyId: string;
   postAuthorId: string;
   replies?: ReplyType[];
   replyToShow: number;
   isLoading: boolean;
+  isEditing: boolean;
   onUpdate(content: string, replyId: string): void;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -795,6 +798,7 @@ export interface ReplyProps {
   post: string;
   author: AuthorType;
   postAuthorId: string;
+  isDisabled: boolean;
   createdAt: string;
   updatedAt: string;
   onUpdate(content: string, replyId: string): void;
@@ -802,8 +806,10 @@ export interface ReplyProps {
 
 export interface ReplyFormProps {
   content: string;
+  replyId: string;
   isOpen: boolean;
   isLoading: boolean;
+  isEditing: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
@@ -830,7 +836,7 @@ export interface PostDetailActionProps {
 export interface PostInfoProps {
   username: string;
   authorId: string;
-  userId: string | undefined;
+  currentUser: CurrentUserType | null;
   createdAt: string;
 }
 
@@ -902,7 +908,7 @@ export interface RegisterInputs {
 
 export interface CurrentUserType {
   details: UserDetailType;
-  role: 'admin' | 'user';
+  role: RoleType;
 }
 
 export interface AuthState {
@@ -976,11 +982,14 @@ export type TopPostsType = {
   createdAt: string;
 };
 
+export type RoleType = 'admin' | 'user';
+
 type AuthorType = {
   _id: string;
   name: string;
   username: string;
   image?: string;
+  role?: RoleType;
 };
 
 export type CommentType = {
@@ -1045,7 +1054,7 @@ export type UserType = {
   tokenExpiration: number;
   fromGoogle: boolean;
   isActive: boolean;
-  role: 'admin' | 'user';
+  role: RoleType;
   createdAt: string;
   updatedAt: string;
 };

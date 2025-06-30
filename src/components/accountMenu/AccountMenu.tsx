@@ -35,7 +35,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
     return isOpen ? 'account-menu show' : 'account-menu hide';
   }, [isOpen]);
 
-  const restMenus = accountMenus.slice(0, -1);
+  const menus = accountMenus.slice(0, -1);
   const lastMenu = accountMenus[accountMenus.length - 1];
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
       <div className='account-menu__container'>
         <div className='account-menu__wrapper'>
           <ul className='account-menu__list'>
-            {restMenus.map((menu) => {
+            {menus.map((menu) => {
               return (
                 <AccountMenuItem
                   key={menu.id}

@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
 
+import { RoleType } from '../../types';
+
 import './Badge.scss';
 
-const Badge = ({ role }: { role: 'admin' | 'user' }) => {
+const Badge = ({ role }: { role: RoleType }) => {
   const badgeClasses = useMemo(() => {
     return role === 'admin' ? 'badge show' : 'badge hide';
   }, [role]);

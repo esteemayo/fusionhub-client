@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import Image from '../Image';
+import Badge from '../badge/Badge';
 
 import { excerpts } from '../../utils';
 import { ProfileImageProps } from '../../types';
@@ -11,6 +12,7 @@ const ProfileImage = ({
   name,
   bio,
   image,
+  role,
   ref,
   file,
   onOpen,
@@ -28,11 +30,11 @@ const ProfileImage = ({
   };
 
   const formattedTexts = useMemo(() => {
-    return showMore && bio?.length > 100 ? bio : excerpts(bio, 100);
+    return showMore && bio?.length > 120 ? bio : excerpts(bio, 120);
   }, [bio, showMore]);
 
   const btnClasses = useMemo(() => {
-    return bio?.length > 100
+    return bio?.length > 120
       ? 'profile-image__details--btn show'
       : 'profile-image__details--btn hide';
   }, [bio]);
@@ -95,7 +97,10 @@ const ProfileImage = ({
             </div>
           </div>
           <div className='profile-image__details'>
-            <span className='profile-image__details--name'>{name}</span>
+            <div className='profile-image__details--info'>
+              <span className='profile-image__details--name'>{name}</span>
+              <Badge role={role} />
+            </div>
             <span className='profile-image__details--bio'>
               {formattedTexts}
             </span>

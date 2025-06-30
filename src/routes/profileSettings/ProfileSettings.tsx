@@ -11,7 +11,7 @@ import { useProfile } from '../../hooks/useProfile';
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
 
-import { CountrySelectType } from '../../types';
+import { CountrySelectType, RoleType } from '../../types';
 
 import './ProfileSettings.scss';
 
@@ -73,6 +73,7 @@ const ProfileSettings = () => {
               name={data?.name as string}
               bio={data?.bio as string}
               image={data?.image}
+              role={data?.role as RoleType}
               ref={inputRef}
               file={file}
               onOpen={handleOpen}

@@ -161,6 +161,12 @@
       }
     }
 
+    &--user {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
     &--username,
     &--text {
       font-size: 1.35rem;

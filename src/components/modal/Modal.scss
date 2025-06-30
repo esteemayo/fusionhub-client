@@ -39,6 +39,7 @@
     background-color: vars.$clr-primary-blue;
     border: 2px solid vars.$clr-tertiary-blue;
     border-radius: 1rem;
+    overflow: hidden;
 
     position: relative;
 
@@ -338,48 +339,42 @@
   }
 
   &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     position: absolute;
-    top: -2.25rem;
-    right: -2.25rem;
+    top: 0.25rem;
+    right: 0.25rem;
 
     @media screen and (max-width: 56.25em) {
-      top: -2.375rem;
-      right: -2.375rem;
+      top: 0.35rem;
+      right: 0.35rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      top: -2.5rem;
-      right: -2.5rem;
+      top: 0.4rem;
+      right: 0.4rem;
     }
 
-    @media screen and (max-width: 21.5em) {
-      top: -2.25rem;
-      right: -2.25rem;
-    }
-
-    @media screen and (max-width: 18.75em) {
-      top: -2.125rem;
-      right: -2.125rem;
-    }
-
-    @media screen and (max-width: 17.5em) {
-      top: -2rem;
-      right: -2rem;
+    @media screen and (max-width: 25em) {
+      top: 0;
+      right: 0;
     }
 
     @media screen and (min-width: 106.25em) {
-      top: -2.5rem;
-      right: -2.5rem;
+      top: 0.35rem;
+      right: 0.35rem;
     }
 
     @media screen and (min-width: 112.5em) {
-      top: -2.75rem;
-      right: -2.75rem;
+      top: 0.45rem;
+      right: 0.45rem;
     }
 
     @media screen and (min-width: 125em) {
-      top: -3.5rem;
-      right: -3.5rem;
+      top: 0.55rem;
+      right: 0.55rem;
     }
 
     &--btn {
@@ -389,51 +384,50 @@
 
       border: 0;
       outline: 0;
-      width: 4.5rem;
-      height: 4.5rem;
-      background-color: vars.$clr-tertiary-blue;
+      width: 3.25rem;
+      height: 3.25rem;
+      background-color: transparent;
       color: currentColor;
-      border-radius: 50%;
+      border-radius: 0.5rem;
       cursor: pointer;
+      transition: all 300ms ease-in-out;
 
       @media screen and (max-width: 56.25em) {
-        width: 4.75rem;
-        height: 4.75rem;
+        width: 3.75rem;
+        height: 3.75rem;
       }
 
       @media screen and (max-width: 51.25em) {
-        width: 5rem;
-        height: 5rem;
-      }
-
-      @media screen and (max-width: 21.5em) {
-        width: 4.5rem;
-        height: 4.5rem;
-      }
-
-      @media screen and (max-width: 18.75em) {
-        width: 4.25rem;
-        height: 4.25rem;
-      }
-
-      @media screen and (max-width: 17.5em) {
         width: 4rem;
         height: 4rem;
       }
 
+      @media screen and (max-width: 25em) {
+        width: fit-content;
+        height: fit-content;
+      }
+
       @media screen and (min-width: 106.25em) {
-        width: 5rem;
-        height: 5rem;
+        width: 3.75rem;
+        height: 3.75rem;
       }
 
       @media screen and (min-width: 112.5em) {
-        width: 5.5rem;
-        height: 5.5rem;
+        width: 4.25rem;
+        height: 4.25rem;
       }
 
       @media screen and (min-width: 125em) {
-        width: 7rem;
-        height: 7rem;
+        width: 5.25rem;
+        height: 5.25rem;
+      }
+
+      &:hover {
+        background-color: vars.$clr-tertiary-blue;
+
+        @media screen and (max-width: 25em) {
+          background-color: transparent;
+        }
       }
 
       svg {

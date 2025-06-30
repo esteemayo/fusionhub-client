@@ -6,6 +6,7 @@ import Replies from '../replies/Replies';
 import ReplyForm from '../replyForm/ReplyForm';
 
 import Image from '../Image';
+import Badge from '../badge/Badge';
 
 import { useReply } from '../../hooks/useReply';
 import { useDate } from '../../hooks/useDate';
@@ -71,6 +72,8 @@ const CommentCard = ({
     e.stopPropagation();
 
     if (!currentUser) return;
+
+    if (isEditing && replyId) return;
 
     setIsOpen((value) => {
       return !value;
@@ -205,10 +208,12 @@ const CommentCard = ({
   }, [author]);
 
   const url = useMemo(() => {
-    return userId === author._id
-      ? '/accounts/profile'
-      : `/accounts/profile?username=${author.username}`;
-  }, [author, userId]);
+    return currentUser
+      ? userId === author._id
+        ? '/accounts/profile'
+        : `/accounts/profile?username=${author.username}`
+      : `/posts?author=${author.username}`;
+  }, [author, currentUser, userId]);
 
   const actionBtnClasses = useMemo(() => {
     return userId === authorId || userId === postAuthorId || isAdmin
@@ -219,6 +224,10 @@ const CommentCard = ({
   const isDisabled = useMemo(() => {
     return editing && editId === commentId;
   }, [commentId, editId, editing]);
+
+  const isPending = useMemo(() => {
+    return replyMutation.isPending || updateReplyMutation.isPending;
+  }, [replyMutation.isPending, updateReplyMutation.isPending]);
 
   useEffect(() => {
     if (data) {
@@ -273,9 +282,12 @@ const CommentCard = ({
               <span>Reply</span>
             </button>
           </div>
-          <h5 className='comment-card__details--username'>
-            <Link to={url}>{author.name}</Link>
-          </h5>
+          <div className='comment-card__details--info'>
+            <h5 className='comment-card__details--username'>
+              <Link to={url}>{author.name}</Link>
+            </h5>
+            <Badge role={author.role!} />
+          </div>
           <p
             onClick={handleCollapse}
             onDoubleClick={handleCopy}
@@ -333,17 +345,21 @@ const CommentCard = ({
         </button>
       </div>
       <Replies
+        replyId={replyId}
         replies={replies}
         postAuthorId={postAuthorId}
         replyToShow={replyToShow}
         isLoading={isLoading}
+        isEditing={isEditing}
         onClick={handleMoreReplies}
         onUpdate={handleUpdateReply}
       />
       <ReplyForm
         content={value}
+        replyId={replyId}
         isOpen={isOpen}
-        isLoading={replyMutation.isPending}
+        isLoading={isPending}
+        isEditing={isEditing}
         onChange={setValue}
         onCancel={handleCancel}
         onSubmit={handleSubmit}
