@@ -14,7 +14,7 @@
     color: vars.$clr-gray-light-1;
     cursor: pointer;
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding: 0.8rem 1.25rem;
       background-color: vars.$clr-secondary-blue !important;
       border-radius: 10rem;

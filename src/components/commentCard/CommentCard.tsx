@@ -286,7 +286,7 @@ const CommentCard = ({
             <h5 className='comment-card__details--username'>
               <Link to={url}>{author.name}</Link>
             </h5>
-            <Badge role={author.role!} />
+            <Badge role={author.role} />
           </div>
           <p
             onClick={handleCollapse}

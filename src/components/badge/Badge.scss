@@ -2,48 +2,43 @@
 @use '../../styles/variables.scss' as vars;
 
 .badge {
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   color: vars.$clr-twitter-blue;
 
   @media screen and (max-width: 56.25em) {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   @media screen and (max-width: 51.25em) {
-    width: 2.35rem;
-    height: 2.35rem;
-  }
-
-  @include bp.sm {
-    width: 2.3rem;
-    height: 2.3rem;
-  }
-
-  @media screen and (max-width: 21.5em) {
     width: 2rem;
     height: 2rem;
   }
 
+  @media screen and (max-width: 21.5em) {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
   @media screen and (max-width: 17.5em) {
-    width: 1.95rem;
-    height: 1.95rem;
+    width: 1.65rem;
+    height: 1.65rem;
   }
 
   @media screen and (min-width: 106.25em) {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   @media screen and (min-width: 112.5em) {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   @media screen and (min-width: 125em) {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   &.show {

@@ -1,8 +1,8 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import EmptyMessage from '../emptyMessage/EmptyMessage';
-import Spinner from '../Spinner';
 import ProfileReply from '../profileReply/ProfileReply';
+import ProfileSpinner from '../profileSpinner/ProfileSpinner';
 
 import { ProfileRepliesProps } from '../../types';
 
@@ -24,9 +24,7 @@ const ProfileReplies = ({
           center
         />
       ) : isLoading ? (
-        <div className='profile-replies__spinner'>
-          <Spinner size={30} />
-        </div>
+        <ProfileSpinner />
       ) : error ? (
         <EmptyMessage
           title='Unable to Load Replies'
@@ -41,11 +39,7 @@ const ProfileReplies = ({
           dataLength={replies.length}
           next={fetchNextPage}
           hasMore={hasNextPage}
-          loader={
-            <div className='profile-replies__spinner'>
-              <Spinner size={30} />
-            </div>
-          }
+          loader={<ProfileSpinner />}
           endMessage={
             null
             // <div className='profile-replies__end-message'>

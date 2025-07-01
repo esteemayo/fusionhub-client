@@ -9,7 +9,7 @@ import { useDate } from '../../hooks/useDate';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { ReplyProps, RoleType } from '../../types';
+import { ReplyProps } from '../../types';
 
 import './Reply.scss';
 
@@ -127,7 +127,7 @@ const Reply = ({
             <h6 className='reply__content--username'>
               <Link to={url}>{author.name}</Link>
             </h6>
-            <Badge role={author.role as RoleType} />
+            <Badge role={author.role} />
           </div>
           <p onClick={handleCollapse} className='reply__content--text'>
             {contentLabel}

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import Image from '../Image';
+import Badge from '../badge/Badge';
 
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -132,7 +133,10 @@ const ProfileComment = ({
             </button>
           </div>
           <div className='profile-comment__info'>
-            <span className='profile-comment__info--name'>{author.name}</span>
+            <div className='profile-comment__info--author'>
+              <span className='profile-comment__info--name'>{author.name}</span>
+              <Badge role={author.role} />
+            </div>
             <p
               className='profile-comment__info--content'
               onClick={handleCollapse}

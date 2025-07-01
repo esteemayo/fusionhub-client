@@ -1,8 +1,8 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import Article from '../article/Article';
-import Spinner from '../Spinner';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
+import Article from '../article/Article';
+import ProfileSpinner from '../profileSpinner/ProfileSpinner';
 
 import { ProfileArticlesProps } from '../../types';
 
@@ -24,9 +24,7 @@ const ProfileArticles = ({
       {(posts ?? [])?.length < 1 && !isLoading ? (
         <EmptyMessage title={title} subtitle={subtitle} center />
       ) : isLoading ? (
-        <div className='profile-articles__spinner'>
-          <Spinner size={30} />
-        </div>
+        <ProfileSpinner />
       ) : error ? (
         <EmptyMessage
           title='Unable to Load Articles'
@@ -41,11 +39,7 @@ const ProfileArticles = ({
           dataLength={posts.length}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
-          loader={
-            <div className='profile-articles__spinner'>
-              <Spinner size={30} />
-            </div>
-          }
+          loader={<ProfileSpinner />}
           endMessage={
             null
             // <span className='profile-articles__message'>

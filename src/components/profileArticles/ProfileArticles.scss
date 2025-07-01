@@ -4,15 +4,6 @@
 .profile-articles {
   width: 100%;
 
-  &__spinner {
-    width: 100%;
-    min-height: 20vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   &__message {
     font-weight: 600;
     font-size: 1.35rem;

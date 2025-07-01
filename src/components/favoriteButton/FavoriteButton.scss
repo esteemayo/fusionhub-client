@@ -11,10 +11,6 @@
   }
 
   @media screen and (max-width: 31.25em) {
-    gap: 2rem;
-  }
-
-  @include bp.sm {
     gap: 1rem;
 
     padding: 0.8rem 1.25rem;
@@ -37,7 +33,7 @@
     color: vars.$clr-gray-light-1;
     cursor: pointer;
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       &:first-child {
         &::after {
           content: '|';

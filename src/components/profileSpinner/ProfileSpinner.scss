@@ -1,0 +1,75 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.profile-spinner {
+  width: 100%;
+  min-height: 25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 56.25em) {
+    min-height: 26rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    min-height: 27rem;
+  }
+
+  @include bp.sm {
+    min-height: 25rem;
+  }
+
+  @media screen and (max-width: 21.5em) {
+    min-height: 23rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    min-height: 20rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    min-height: 26rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    min-height: 28rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    min-height: 30rem;
+  }
+
+  span {
+    @media screen and (max-width: 56.25em) {
+      width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 3.5rem !important;
+      height: 3.5rem !important;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 4.25rem !important;
+      height: 4.25rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 5rem !important;
+      height: 5rem !important;
+    }
+  }
+}

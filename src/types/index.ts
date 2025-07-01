@@ -989,7 +989,7 @@ type AuthorType = {
   name: string;
   username: string;
   image?: string;
-  role?: RoleType;
+  role: RoleType;
 };
 
 export type CommentType = {

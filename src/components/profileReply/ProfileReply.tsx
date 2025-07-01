@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import Image from '../Image';
+import Badge from '../badge/Badge';
 
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -100,7 +101,10 @@ const ProfileReply = ({
             </time>
           </div>
           <div className='profile-reply__info'>
-            <span className='profile-reply__info--name'>{author.name}</span>
+            <div className='profile-reply__info--author'>
+              <span className='profile-reply__info--name'>{author.name}</span>
+              <Badge role={author.role} />
+            </div>
             <p
               className='profile-reply__info--content'
               onClick={handleCollapse}

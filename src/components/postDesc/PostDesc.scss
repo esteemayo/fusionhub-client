@@ -16,7 +16,7 @@
       padding: 2rem 1.5rem;
     }
 
-    @include bp.sm {
+    @media screen and (max-width: 31.25em) {
       padding: 0;
       padding-bottom: 3rem;
       background-color: transparent;
@@ -32,6 +32,8 @@
     }
 
     &--heading {
+      text-transform: initial;
+      text-rendering: optimizeLegibility;
       font-weight: 600;
       font-size: 2.15rem;
       word-wrap: break-word;

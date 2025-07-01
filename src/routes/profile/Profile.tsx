@@ -72,7 +72,7 @@ const UserProfile = () => {
           />
         ) : isLoading ? (
           <div className='profile__wrapper--loader'>
-            <Spinner size={40} />
+            <Spinner size={30} />
           </div>
         ) : errorObj ? (
           <ErrorState

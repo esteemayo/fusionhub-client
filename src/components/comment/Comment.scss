@@ -14,7 +14,7 @@
     padding: 2rem 1.5rem;
   }
 
-  @include bp.sm {
+  @media screen and (max-width: 31.25em) {
     padding: 3rem 0;
     background-color: transparent;
     border-top: 1px solid vars.$clr-secondary-blue;
@@ -28,6 +28,8 @@
   }
 
   &__heading {
+    text-transform: capitalize;
+    text-rendering: optimizeLegibility;
     font-weight: 600;
     font-size: 1.5rem;
     color: inherit;

@@ -255,6 +255,16 @@ const PostModal = () => {
     ]
   );
 
+  const sortedData = useMemo(() => {
+    if (!data) return data;
+
+    if (Array.isArray(data)) {
+      return [...data].sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    return data;
+  }, [data]);
+
   const handleModalSubmit = useMemo(() => {
     return step === STEPS.IMAGE
       ? handleSubmitImage(onSubmitImage)
@@ -303,7 +313,7 @@ const PostModal = () => {
   const bodyContent: JSX.Element | undefined =
     step === STEPS.IMAGE ? (
       <PostImage
-        options={data}
+        options={sortedData}
         register={registerImage as unknown as UseFormRegister<FieldValues>}
         errors={errorsImage}
         onChangeFile={handleFile}

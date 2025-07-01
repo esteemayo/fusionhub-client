@@ -1,14 +1,14 @@
-import { toast } from 'react-toastify';
+import parse from 'html-react-parser';
 import millify from 'millify';
 import { useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import parse from 'html-react-parser';
 
-import LikeIcon from '../LikeIcon';
+import Badge from '../badge/Badge';
 import Image from '../Image';
-import DislikeIcon from '../DislikeIcon';
+import LikeIcon from '../LikeIcon';
 import SaveIcon from '../SaveIcon';
+import DislikeIcon from '../DislikeIcon';
 
 import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useDate } from '../../hooks/useDate';
@@ -45,168 +45,14 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
   const likeMutation = useMutation({
     mutationFn: () => createLikePost(post._id),
     onSuccess: () => {
-      queryClient.setQueryData([queryKey, userId], (oldData: unknown) => {
-        if (!oldData) return oldData;
-        if (
-          typeof oldData === 'object' &&
-          oldData !== null &&
-          'pages' in oldData &&
-          Array.isArray((oldData as { pages: unknown[] }).pages)
-        ) {
-          return {
-            ...(oldData as { pages: { data: (typeof post)[] }[] }),
-            pages: (
-              oldData as { pages: { data: (typeof post)[] }[] }
-            ).pages.map((page) => ({
-              ...page,
-              data: (page as { data: (typeof post)[] }).data.map((item) =>
-                item._id === post._id
-                  ? {
-                      ...item,
-                      likeCount: item.likeCount + 1,
-                      likes: [...item.likes, currentUser?.details._id],
-                      dislikes: item.dislikes.filter(
-                        (id: string) => id !== currentUser?.details._id
-                      ),
-                      dislikeCount: item.dislikes.includes(
-                        currentUser?.details._id ?? ''
-                      )
-                        ? item.dislikeCount - 1
-                        : item.dislikeCount,
-                    }
-                  : item
-              ),
-            })),
-          };
-        }
-        if (
-          typeof oldData === 'object' &&
-          oldData !== null &&
-          '_id' in oldData &&
-          (oldData as { _id: string })._id === post._id
-        ) {
-          const singlePost = oldData as {
-            likeCount: number;
-            likes: string[];
-            dislikes: string[];
-            dislikeCount: number;
-            _id: string;
-            [key: string]: unknown;
-          };
-
-          return {
-            ...singlePost,
-            likeCount: singlePost.likeCount + 1,
-            likes: [...singlePost.likes, currentUser?.details._id],
-            dislikes: singlePost.dislikes.filter(
-              (id: string) => id !== currentUser?.details._id
-            ),
-            dislikeCount: singlePost.dislikes.includes(
-              currentUser?.details._id ?? ''
-            )
-              ? singlePost.dislikeCount - 1
-              : singlePost.dislikeCount,
-          };
-        }
-        return oldData;
-      });
       queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
-    },
-    onError: (error: unknown) => {
-      if (
-        error instanceof Error &&
-        (error as { response?: { data?: string } })?.response?.data
-      ) {
-        const errorMessage = (
-          error as unknown as { response: { data: string } }
-        ).response.data;
-        toast.error(errorMessage);
-      } else {
-        toast.error('An error occurred while liking the post');
-      }
     },
   });
 
   const disLikeMutation = useMutation({
     mutationFn: () => createDislikePost(post._id),
     onSuccess: () => {
-      queryClient.setQueryData([queryKey, userId], (oldData: unknown) => {
-        if (!oldData) return oldData;
-        if (
-          typeof oldData === 'object' &&
-          oldData !== null &&
-          'pages' in oldData &&
-          Array.isArray((oldData as { pages: unknown[] }).pages)
-        ) {
-          return {
-            ...(oldData as { pages: { data: (typeof post)[] }[] }),
-            pages: (
-              oldData as { pages: { data: (typeof post)[] }[] }
-            ).pages.map((page) => ({
-              ...page,
-              data: (page as { data: (typeof post)[] }).data.map((item) =>
-                item._id === post._id
-                  ? {
-                      ...item,
-                      dislikeCount: item.dislikeCount + 1,
-                      dislikes: [...item.dislikes, currentUser?.details._id],
-                      likes: item.likes.filter(
-                        (id: string) => id !== currentUser?.details._id
-                      ),
-                      likeCount: item.likes.includes(
-                        currentUser?.details._id ?? ''
-                      )
-                        ? item.likeCount - 1
-                        : item.likeCount,
-                    }
-                  : item
-              ),
-            })),
-          };
-        }
-        if (
-          typeof oldData === 'object' &&
-          oldData !== null &&
-          '_id' in oldData &&
-          (oldData as { _id: string })._id === post._id
-        ) {
-          const singlePost = oldData as {
-            likeCount: number;
-            likes: string[];
-            dislikes: string[];
-            dislikeCount: number;
-            _id: string;
-            [key: string]: unknown;
-          };
-
-          return {
-            ...singlePost,
-            dislikeCount: singlePost.dislikeCount + 1,
-            dislikes: [...singlePost.dislikes, currentUser?.details._id],
-            likes: singlePost.likes.filter(
-              (id: string) => id !== currentUser?.details._id
-            ),
-            likeCount: singlePost.likes.includes(currentUser?.details._id ?? '')
-              ? singlePost.likeCount - 1
-              : singlePost.likeCount,
-          };
-        }
-        return oldData;
-      });
       queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
-    },
-    onError: (error: unknown) => {
-      if (
-        error instanceof Error &&
-        (error as { response?: { data?: string } })?.response?.data
-      ) {
-        const errorMessage = (
-          error as unknown as { response: { data: string } }
-        ).response.data;
-        toast.error(errorMessage);
-      } else {
-        toast.error('An error occurred while disliking the post');
-      }
     },
   });
 
@@ -265,6 +111,7 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
         <div className='article__wrapper'>
           <div className='article__profile'>
             <span className='article__profile--name'>{post.author.name}</span>
+            <Badge role={post.author.role} />
             <div className='article__profile--username'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
