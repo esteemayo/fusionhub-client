@@ -58,6 +58,9 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
             <PostComment comments={post?.comments} />
           </div>
           <Share
+            title={post?.title}
+            desc={post?.desc}
+            slug={post?.slug}
             isSaved={isSaved}
             currentUser={currentUser!}
             saveMutation={saveMutation}

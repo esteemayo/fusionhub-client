@@ -1,6 +1,22 @@
-const ShareButton = () => {
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+
+import { ShareButtonProps } from '../types';
+import { useWebShare } from '../hooks/useWebShare';
+
+const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
+  const shareUrl = `${window.location.origin}/posts/${slug}`;
+
+  const { error, share } = useWebShare(title, desc, shareUrl);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
   return (
-    <button type='button'>
+    <button type='button' onClick={share}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='none'

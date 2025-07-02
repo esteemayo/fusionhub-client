@@ -598,7 +598,7 @@ export interface ISavedPosts {
     error: Error | null;
     savedPosts: PostType[] | undefined;
     saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
-    handleSave(): void;
+    handleSave(e: React.MouseEvent<HTMLButtonElement>): void;
   };
 }
 
@@ -610,6 +610,13 @@ export interface IFavourite {
     disLikeMutation: UseMutationResult<unknown, unknown, void, unknown>;
     handleLike(): void;
     handleDislike(): void;
+  };
+}
+
+export interface IWebShare {
+  (title: string, desc: string, url: string): {
+    error: string | null;
+    share(): Promise<void>;
   };
 }
 
@@ -692,7 +699,7 @@ export interface ActionMenusProps {
 export interface ActionMenuProps {
   label: string;
   isLoading?: boolean;
-  onAction(): void;
+  onAction(e: React.MouseEvent<HTMLButtonElement>): void;
   children: React.ReactNode;
 }
 
@@ -866,17 +873,26 @@ export interface DislikeButtonProps {
 }
 
 export interface ShareProps {
+  title: string;
+  desc: string;
+  slug: string;
   isSaved: boolean;
   currentUser: CurrentUserType;
   saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
-  onClick(): void;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface SavePostProps {
   hasSaved: boolean;
   isLoading: boolean;
   currentUser: CurrentUserType;
-  onSave(): void;
+  onSave(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ShareButtonProps {
+  title: string;
+  desc: string;
+  slug: string;
 }
 
 export interface SaveIconProps {

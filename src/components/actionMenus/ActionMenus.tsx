@@ -10,6 +10,7 @@ import { onOpen, setPost } from '../../features/postModal/postModalSlice';
 import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import { useSavedPosts } from '../../hooks/useSavedPosts';
+import { useWebShare } from '../../hooks/useWebShare';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { ActionMenusProps } from '../../types';
@@ -34,6 +35,12 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
+
+  const { error: shareError, share } = useWebShare(
+    post?.title || '',
+    post?.desc || '',
+    window.location.href
+  );
 
   const postId = useMemo(() => {
     return post?._id;
@@ -84,7 +91,9 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     },
   });
 
-  const handleFeature = () => {
+  const handleFeature = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
     if (!currentUser) {
       return null;
     }
@@ -92,11 +101,20 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     featureMutation.mutate();
   };
 
-  const handleShare = () => {
-    console.log('post shared!');
+  const handleShare = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (shareError) {
+      toast.error(shareError);
+      return;
+    }
+
+    share();
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
     if (isOpen) {
       dispatch(onClose());
     }
@@ -109,7 +127,9 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     dispatch(setPost(post));
   };
 
-  const handleDelete = () => {
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
     if (!currentUser) {
       return null;
     }

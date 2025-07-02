@@ -7,8 +7,8 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 
 import Image from '../Image';
 
-import { CommentProps } from '../../types';
 import { useAppSelector } from '../../hooks/hooks';
+import { CommentProps, RoleType } from '../../types';
 
 import './Comment.scss';
 
@@ -110,6 +110,7 @@ const Comment = ({
                   name: user?.details.name as string,
                   username: user?.details.username as string,
                   image: user?.details.image as string,
+                  role: user?.role as RoleType,
                 },
                 createdAt: new Date().toString(),
                 updatedAt: new Date().toString(),

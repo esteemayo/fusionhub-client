@@ -19,19 +19,24 @@ const ProfileImage = ({
   onChange,
   onUpload,
 }: ProfileImageProps) => {
-  const [showMore, setShowMore] = useState(false);
+  const [isMore, setIsMore] = useState(false);
+
+  const handleCollapse = () => {
+    if (!isMore) return;
+    setIsMore(false);
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    setShowMore((value) => {
+    setIsMore((value) => {
       return !value;
     });
   };
 
   const formattedTexts = useMemo(() => {
-    return showMore && bio?.length > 120 ? bio : excerpts(bio, 120);
-  }, [bio, showMore]);
+    return isMore && bio?.length > 120 ? bio : excerpts(bio, 120);
+  }, [bio, isMore]);
 
   const btnClasses = useMemo(() => {
     return bio?.length > 120
@@ -40,8 +45,8 @@ const ProfileImage = ({
   }, [bio]);
 
   const btnLabel = useMemo(() => {
-    return `Show ${showMore ? 'less' : 'more'}`;
-  }, [showMore]);
+    return isMore ? undefined : 'more';
+  }, [isMore]);
 
   return (
     <div className='profile-image'>
@@ -101,12 +106,19 @@ const ProfileImage = ({
               <span className='profile-image__details--name'>{name}</span>
               <Badge role={role} />
             </div>
-            <span className='profile-image__details--bio'>
+            <span
+              onClick={handleCollapse}
+              className='profile-image__details--bio'
+            >
               {formattedTexts}
+              <button
+                type='button'
+                onClick={handleClick}
+                className={btnClasses}
+              >
+                {btnLabel}
+              </button>
             </span>
-            <button type='button' className={btnClasses} onClick={handleClick}>
-              {btnLabel}
-            </button>
           </div>
         </div>
       </div>

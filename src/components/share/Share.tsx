@@ -5,7 +5,15 @@ import { ShareProps } from '../../types';
 
 import './Share.scss';
 
-const Share = ({ isSaved, currentUser, saveMutation, onClick }: ShareProps) => {
+const Share = ({
+  title,
+  desc,
+  slug,
+  isSaved,
+  currentUser,
+  saveMutation,
+  onClick,
+}: ShareProps) => {
   return (
     <div className='share'>
       <SavePost
@@ -14,7 +22,7 @@ const Share = ({ isSaved, currentUser, saveMutation, onClick }: ShareProps) => {
         currentUser={currentUser}
         onSave={onClick}
       />
-      <ShareButton />
+      <ShareButton title={title} desc={desc} slug={slug} />
     </div>
   );
 };

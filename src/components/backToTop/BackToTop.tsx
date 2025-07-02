@@ -1,17 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 
 import './BackToTop.scss';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
-
-  window.onscroll = () => {
-    setIsVisible(() => {
-      return window.scrollY > 700 ? true : false;
-    });
-
-    return window.onscroll === null;
-  };
 
   const handleScroll = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -25,6 +17,18 @@ const BackToTop = () => {
   const scrollClasses = useMemo(() => {
     return isVisible ? 'scroll show' : 'scroll hide';
   }, [isVisible]);
+
+  useEffect(() => {
+    const handleWindowScroll = () => {
+      setIsVisible(window.scrollY > 700);
+    };
+
+    window.addEventListener('scroll', handleWindowScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleWindowScroll);
+    };
+  }, []);
 
   return (
     <div className={scrollClasses}>
