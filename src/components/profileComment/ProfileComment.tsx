@@ -18,7 +18,7 @@ const ProfileComment = ({
   _id: commentId,
   author,
   content,
-  post: postId,
+  post,
   createdAt,
 }: ProfileCommentProps) => {
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ const ProfileComment = ({
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(replyCommentModal.setPostId(postId));
+    dispatch(replyCommentModal.setPostId(post._id));
     dispatch(replyCommentModal.onOpen());
     dispatch(replyCommentModal.setCommentId(commentId));
   };
@@ -52,7 +52,7 @@ const ProfileComment = ({
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(commentModal.setPostId(postId));
+    dispatch(commentModal.setPostId(post._id));
     dispatch(commentModal.onOpen());
     dispatch(commentModal.setCommentId(commentId));
   };
@@ -62,13 +62,13 @@ const ProfileComment = ({
 
     dispatch(replyCommentModal.setContent(content));
     dispatch(replyCommentModal.onOpen());
-    dispatch(replyCommentModal.setPostId(postId));
+    dispatch(replyCommentModal.setPostId(post._id));
     dispatch(replyCommentModal.setIsEditing());
     dispatch(replyCommentModal.setCommentId(commentId));
   };
 
   const replyBtnClasses = useMemo(() => {
-    return currentUser?.role !== 'admin'
+    return currentUser
       ? 'profile-comment__box--reply-btn show'
       : 'profile-comment__box--reply-btn hide';
   }, [currentUser]);
@@ -87,11 +87,37 @@ const ProfileComment = ({
     return isMore ? undefined : 'more';
   }, [isMore]);
 
+  const isAdmin = useMemo(() => {
+    return currentUser?.role === 'admin';
+  }, [currentUser?.role]);
+
+  const userId = useMemo(() => {
+    return currentUser?.details._id;
+  }, [currentUser?.details._id]);
+
+  const isCommentAuthor = useMemo(() => {
+    return author._id === userId;
+  }, [author._id, userId]);
+
   const actionClasses = useMemo(() => {
-    return currentUser?.role === 'admin'
-      ? 'profile-comment__actions show'
-      : 'profile-comment__actions hide';
-  }, [currentUser]);
+    if (!currentUser) {
+      return 'profile-comment__actions hide';
+    }
+
+    if (isAdmin) {
+      if (isCommentAuthor) {
+        return 'profile-comment__actions show';
+      }
+
+      if (author.role === 'admin') {
+        return 'profile-comment__actions hide';
+      }
+
+      return 'profile-comment__actions show';
+    }
+
+    return 'profile-comment__actions hide';
+  }, [author.role, currentUser, isAdmin, isCommentAuthor]);
 
   return (
     <article className='profile-comment'>

@@ -18,8 +18,8 @@ const ProfileReply = ({
   _id: replyId,
   author,
   content,
-  comment: commentId,
-  post: postId,
+  comment,
+  post,
   createdAt,
 }: ProfileReplyProps) => {
   const dispatch = useAppDispatch();
@@ -47,8 +47,8 @@ const ProfileReply = ({
 
     dispatch(commentModal.setReplyId(replyId));
     dispatch(commentModal.onOpen());
-    dispatch(commentModal.setCommentId(commentId));
-    dispatch(commentModal.setPostId(postId));
+    dispatch(commentModal.setCommentId(comment._id));
+    dispatch(commentModal.setPostId(post._id));
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,8 +58,8 @@ const ProfileReply = ({
     dispatch(replyCommentModal.onOpen());
     dispatch(replyCommentModal.setReplyId(replyId));
     dispatch(replyCommentModal.setIsEditing());
-    dispatch(replyCommentModal.setCommentId(commentId));
-    dispatch(replyCommentModal.setPostId(postId));
+    dispatch(replyCommentModal.setCommentId(comment._id));
+    dispatch(replyCommentModal.setPostId(post._id));
   };
 
   const contentLabel = useMemo(() => {
@@ -76,11 +76,52 @@ const ProfileReply = ({
     return isMore ? undefined : 'more';
   }, [isMore]);
 
+  const isAdmin = useMemo(() => {
+    return currentUser?.role === 'admin';
+  }, [currentUser?.role]);
+
+  const userId = useMemo(() => {
+    return currentUser?.details._id;
+  }, [currentUser?.details._id]);
+
+  const isReplyAuthor = useMemo(() => {
+    return author._id === userId;
+  }, [author._id, userId]);
+
+  const isCommentAuthor = useMemo(() => {
+    return comment.author._id === userId;
+  }, [comment.author._id, userId]);
+
+  const isPostAuthor = useMemo(() => {
+    return post.author._id === userId;
+  }, [post.author._id, userId]);
+
   const actionClasses = useMemo(() => {
-    return currentUser?.role === 'admin'
-      ? 'profile-reply__actions show'
-      : 'profile-reply__actions hide';
-  }, [currentUser]);
+    if (!currentUser) {
+      return 'profile-reply__actions hide';
+    }
+
+    if (isAdmin) {
+      if (isReplyAuthor || isCommentAuthor || isPostAuthor) {
+        return 'profile-reply__actions show';
+      }
+
+      if (author.role === 'admin') {
+        return 'profile-reply__actions hide';
+      }
+
+      return 'profile-reply__actions show';
+    }
+
+    return 'profile-reply__actions hide';
+  }, [
+    author.role,
+    currentUser,
+    isAdmin,
+    isCommentAuthor,
+    isPostAuthor,
+    isReplyAuthor,
+  ]);
 
   return (
     <article className='profile-reply'>

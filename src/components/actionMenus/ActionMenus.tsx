@@ -153,6 +153,30 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     return !!post?.isFeatured;
   }, [post]);
 
+  const authorizationCheck = useMemo(() => {
+    if (!currentUser) {
+      return false;
+    }
+
+    if (isAdmin) {
+      if (authorId === userId) {
+        return true;
+      }
+
+      if (post?.author.role === 'admin') {
+        return false;
+      }
+
+      return true;
+    }
+
+    if (authorId === userId) {
+      return true;
+    }
+
+    return false;
+  }, [authorId, currentUser, isAdmin, post?.author.role, userId]);
+
   return (
     <section className='action-menus'>
       <div className='action-menus__container'>
@@ -224,7 +248,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
             />
           </svg>
         </ActionMenu>
-        {(userId === authorId || isAdmin) && (
+        {authorizationCheck && (
           <ActionMenu label='Update post' onAction={handleUpdate}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -242,7 +266,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
             </svg>
           </ActionMenu>
         )}
-        {(userId === authorId || isAdmin) && (
+        {authorizationCheck && (
           <ActionMenu
             label='Delete post'
             isLoading={deleteMutation.isPending}

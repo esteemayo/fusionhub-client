@@ -2,11 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { IWebShare } from '../types';
 
-export const useWebShare: IWebShare = (
-  title: string,
-  desc: string,
-  url: string
-) => {
+export const useWebShare: IWebShare = (title, desc, url) => {
   const [error, setError] = useState<string | null>(null);
 
   const share = useCallback(async () => {

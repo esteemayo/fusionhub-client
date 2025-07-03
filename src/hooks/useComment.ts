@@ -34,7 +34,7 @@ const removeComment = async (commentId: string) => {
 export const useComment: IComment = (postId) => {
   const queryClient = useQueryClient();
 
-  const { isPending, error, data } = useQuery<CommentType[]>({
+  const { isPending, error, data, refetch } = useQuery<CommentType[]>({
     queryKey: ['comments', postId],
     queryFn: () => fetchPostComments(postId),
     enabled: !!postId,
@@ -44,6 +44,7 @@ export const useComment: IComment = (postId) => {
     isPending: isPendingUser,
     error: errorUser,
     data: commentUsers,
+    refetch: refetchCommentUsers,
   } = useQuery<CommentImageType[]>({
     queryKey: ['commentUsers', postId],
     queryFn: () => fetchPostComentUsers(postId),
@@ -126,6 +127,8 @@ export const useComment: IComment = (postId) => {
     errorUser,
     data,
     commentUsers,
+    refetch,
+    refetchCommentUsers,
     commentMutation,
     updateCommentMutation,
     deleteCommentMutation,

@@ -19,7 +19,6 @@ import * as commentModal from '../../features/commentModal/commentModalSlice';
 import './CommentCard.scss';
 
 const CommentCard = ({
-  postAuthorId,
   editId,
   editing,
   comment,
@@ -31,7 +30,7 @@ const CommentCard = ({
     _id: commentId,
     author,
     content,
-    post: postId,
+    post,
     createdAt,
     updatedAt,
   } = comment;
@@ -41,7 +40,7 @@ const CommentCard = ({
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { formattedDate } = useDate(createdAt);
   const { data, replyMutation, updateReplyMutation } = useReply(
-    postId,
+    post._id,
     commentId
   );
 
@@ -124,7 +123,7 @@ const CommentCard = ({
 
     onOpen();
     dispatch(commentModal.setCommentId(commentId));
-    dispatch(commentModal.setPostId(postId));
+    dispatch(commentModal.setPostId(post._id));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -207,6 +206,18 @@ const CommentCard = ({
     return author._id;
   }, [author]);
 
+  const postAuthorId = useMemo(() => {
+    return post.author._id;
+  }, [post.author._id]);
+
+  const isCommentAuthor = useMemo(() => {
+    return author._id === userId;
+  }, [author._id, userId]);
+
+  const isPostAuthor = useMemo(() => {
+    return postAuthorId === userId;
+  }, [postAuthorId, userId]);
+
   const url = useMemo(() => {
     return currentUser
       ? userId === author._id
@@ -216,10 +227,40 @@ const CommentCard = ({
   }, [author, currentUser, userId]);
 
   const actionBtnClasses = useMemo(() => {
-    return userId === authorId || userId === postAuthorId || isAdmin
-      ? 'comment-card__btn show'
-      : 'comment-card__btn hide';
-  }, [authorId, isAdmin, postAuthorId, userId]);
+    if (!currentUser) {
+      return 'comment-card__btn hide';
+    }
+
+    if (isAdmin) {
+      if (isCommentAuthor) {
+        return 'comment-card__btn show';
+      }
+
+      if (author.role === 'admin') {
+        return 'comment-card__btn hide';
+      }
+
+      return 'comment-card__btn show';
+    }
+
+    if (
+      isCommentAuthor ||
+      isPostAuthor ||
+      (post.author.role === 'admin' && isCommentAuthor) ||
+      (post.author.role === 'admin' && isPostAuthor)
+    ) {
+      return 'comment-card__btn show';
+    }
+
+    return 'comment-card__btn hide';
+  }, [
+    author.role,
+    currentUser,
+    isAdmin,
+    isCommentAuthor,
+    isPostAuthor,
+    post.author.role,
+  ]);
 
   const isDisabled = useMemo(() => {
     return editing && editId === commentId;
@@ -350,7 +391,6 @@ const CommentCard = ({
       <Replies
         replyId={replyId}
         replies={replies}
-        postAuthorId={postAuthorId}
         replyToShow={replyToShow}
         isLoading={isLoading}
         isEditing={isEditing}

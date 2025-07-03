@@ -16,11 +16,11 @@ import './Reply.scss';
 const Reply = ({
   _id: replyId,
   author,
-  post: postId,
+  comment,
+  post,
   content,
   createdAt,
   updatedAt,
-  postAuthorId,
   isDisabled,
   onUpdate,
 }: ReplyProps) => {
@@ -58,7 +58,7 @@ const Reply = ({
     if (!currentUser) return;
 
     dispatch(commentModal.onOpen());
-    dispatch(commentModal.setPostId(postId));
+    dispatch(commentModal.setPostId(post._id));
     dispatch(commentModal.setReplyId(replyId));
   };
 
@@ -96,11 +96,58 @@ const Reply = ({
       : `/posts?author=${author.username}`;
   }, [author, currentUser, userId]);
 
+  const isReplyAuthor = useMemo(() => {
+    return author._id === userId;
+  }, [author._id, userId]);
+
+  const isCommentAuthor = useMemo(() => {
+    return comment.author._id === userId;
+  }, [comment.author._id, userId]);
+
+  const isPostAuthor = useMemo(() => {
+    return post.author._id === userId;
+  }, [post.author._id, userId]);
+
   const actionBtnClasses = useMemo(() => {
-    return author._id === userId || postAuthorId === userId || isAdmin
-      ? 'reply__btn show'
-      : 'reply__btn hide';
-  }, [author, isAdmin, postAuthorId, userId]);
+    if (!currentUser) {
+      return 'reply__btn hide';
+    }
+
+    if (isAdmin) {
+      if (isReplyAuthor) {
+        return 'reply__btn show';
+      }
+
+      if (author.role === 'admin') {
+        return 'reply__btn hide';
+      }
+
+      return 'reply__btn show';
+    }
+
+    if (
+      isReplyAuthor ||
+      isCommentAuthor ||
+      isPostAuthor ||
+      (post.author.role === 'admin' && isCommentAuthor) ||
+      (post.author.role === 'admin' && isPostAuthor) ||
+      (comment.author.role === 'admin' && isCommentAuthor) ||
+      (comment.author.role === 'admin' && isPostAuthor)
+    ) {
+      return 'reply__btn show';
+    }
+
+    return 'reply__btn hide';
+  }, [
+    author.role,
+    comment.author.role,
+    currentUser,
+    isAdmin,
+    isCommentAuthor,
+    isPostAuthor,
+    isReplyAuthor,
+    post.author.role,
+  ]);
 
   return (
     <div className='reply'>

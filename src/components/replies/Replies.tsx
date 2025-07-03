@@ -9,7 +9,6 @@ import './Replies.scss';
 const Replies = ({
   replyId,
   replies,
-  postAuthorId,
   replyToShow,
   isLoading,
   isEditing,
@@ -107,7 +106,6 @@ const Replies = ({
               <Reply
                 key={reply._id}
                 {...reply}
-                postAuthorId={postAuthorId}
                 isDisabled={isDisabled}
                 onUpdate={onUpdate}
               />

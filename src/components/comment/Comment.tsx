@@ -8,12 +8,11 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import Image from '../Image';
 
 import { useAppSelector } from '../../hooks/hooks';
-import { CommentProps, RoleType } from '../../types';
+import { CommentProps, PostTypeWithAuthor, RoleType } from '../../types';
 
 import './Comment.scss';
 
 const Comment = ({
-  postAuthorId,
   commentId,
   isPending,
   isPendingUser,
@@ -95,7 +94,6 @@ const Comment = ({
         <>
           {mutation.isPending && (
             <CommentCard
-              postAuthorId={postAuthorId}
               editId={commentId}
               editing={isEditing}
               comment={{
@@ -103,8 +101,7 @@ const Comment = ({
                 content: `${
                   (mutation.variables as unknown as { content: string }).content
                 } (Sending...)`,
-                post: (mutation.variables as unknown as { postId: string })
-                  .postId,
+                post: mutation.variables as unknown as PostTypeWithAuthor,
                 author: {
                   _id: user?.details._id as string,
                   name: user?.details.name as string,
@@ -124,7 +121,6 @@ const Comment = ({
             return (
               <CommentCard
                 key={comment._id}
-                postAuthorId={postAuthorId}
                 editId={commentId}
                 editing={isEditing}
                 comment={comment}

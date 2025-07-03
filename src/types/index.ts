@@ -8,6 +8,8 @@ import {
   FetchNextPageOptions,
   InfiniteData,
   InfiniteQueryObserverResult,
+  QueryObserverResult,
+  RefetchOptions,
   UseMutationResult,
 } from '@tanstack/react-query';
 
@@ -430,7 +432,7 @@ export interface ProfileCommentsProps {
 export interface ProfileCommentProps {
   _id: string;
   content: string;
-  post: string;
+  post: PostTypeWithAuthor;
   author: AuthorType;
   createdAt: string;
 }
@@ -450,8 +452,8 @@ export interface ProfileRepliesProps {
 export interface ProfileReplyProps {
   _id: string;
   content: string;
-  comment: string;
-  post: string;
+  comment: CommentType;
+  post: PostTypeWithAuthor;
   author: AuthorType;
   createdAt: string;
 }
@@ -715,7 +717,6 @@ export interface RelatedTagsProps {
 
 export interface CommentsProps {
   postId: string;
-  postAuthorId: string;
 }
 
 export interface IComment {
@@ -726,6 +727,12 @@ export interface IComment {
     errorUser: Error | null;
     data: CommentType[] | undefined;
     commentUsers: CommentImageType[] | undefined;
+    refetch: (
+      options?: RefetchOptions
+    ) => Promise<QueryObserverResult<CommentType[], Error>>;
+    refetchCommentUsers: (
+      options?: RefetchOptions
+    ) => Promise<QueryObserverResult<CommentImageType[], Error>>;
     commentMutation: UseMutationResult<unknown, unknown, string, unknown>;
     updateCommentMutation: UseMutationResult<
       unknown,
@@ -760,7 +767,6 @@ export interface IReply {
 }
 
 export interface CommentProps {
-  postAuthorId: string;
   commentId: string;
   isPending: boolean;
   isPendingUser: boolean;
@@ -779,7 +785,6 @@ export interface CommentProps {
 }
 
 export interface CommentCardProps {
-  postAuthorId: string;
   editId: string;
   editing: boolean;
   comment: CommentType;
@@ -790,7 +795,6 @@ export interface CommentCardProps {
 
 export interface RepliesProps {
   replyId: string;
-  postAuthorId: string;
   replies?: ReplyType[];
   replyToShow: number;
   isLoading: boolean;
@@ -802,9 +806,9 @@ export interface RepliesProps {
 export interface ReplyProps {
   _id: string;
   content: string;
-  post: string;
+  comment: CommentType;
+  post: PostTypeWithAuthor;
   author: AuthorType;
-  postAuthorId: string;
   isDisabled: boolean;
   createdAt: string;
   updatedAt: string;
@@ -1008,10 +1012,15 @@ type AuthorType = {
   role: RoleType;
 };
 
+export type PostTypeWithAuthor = {
+  _id: string;
+  author: AuthorType;
+};
+
 export type CommentType = {
   _id: string;
   content: string;
-  post: string;
+  post: PostTypeWithAuthor;
   author: AuthorType;
   replies?: ReplyType[];
   createdAt: string;
@@ -1021,8 +1030,8 @@ export type CommentType = {
 export type ReplyType = {
   _id: string;
   content: string;
-  comment: string;
-  post: string;
+  comment: CommentType;
+  post: PostTypeWithAuthor;
   author: AuthorType;
   createdAt: string;
   updatedAt: string;

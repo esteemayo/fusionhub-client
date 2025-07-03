@@ -11,7 +11,7 @@ import { onOpen } from '../../features/commentModal/commentModalSlice';
 
 import './Comments.scss';
 
-const Comments = ({ postId, postAuthorId }: CommentsProps) => {
+const Comments = ({ postId }: CommentsProps) => {
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
@@ -22,6 +22,8 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     errorUser,
     data,
     commentUsers,
+    refetch,
+    refetchCommentUsers,
     commentMutation,
     updateCommentMutation,
   } = useComment(postId);
@@ -116,11 +118,15 @@ const Comments = ({ postId, postAuthorId }: CommentsProps) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    refetch();
+    refetchCommentUsers();
+  }, [refetch, refetchCommentUsers]);
+
   return (
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
-          postAuthorId={postAuthorId}
           commentId={commentId}
           isPending={isPending}
           isPendingUser={isPendingUser}

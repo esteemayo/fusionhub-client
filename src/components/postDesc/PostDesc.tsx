@@ -9,8 +9,25 @@ import './PostDesc.scss';
 
 const PostDesc = ({ post, isLoading }: PostDescProps) => {
   const handleCopy = () => {
-    const parsedText = parse(String(post?.desc));
-    navigator.clipboard.writeText(parsedText as string);
+    const parsedText = parse(String(post?.desc)).toString();
+    const parsedElement = parse(parsedText);
+
+    let children = null;
+
+    if (Array.isArray(parsedElement)) {
+      children = parsedElement.map(
+        (child: React.ReactElement<{ children?: React.ReactNode }>) =>
+          child.props?.children
+      );
+    } else if (
+      parsedElement &&
+      typeof parsedElement === 'object' &&
+      'props' in parsedElement
+    ) {
+      children = parsedElement.props.children;
+    }
+
+    navigator.clipboard.writeText(children as string);
     toast.success('Copied to clipboard');
     return;
   };

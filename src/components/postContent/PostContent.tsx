@@ -11,7 +11,7 @@ const PostContent = ({ post, isLoading }: PostContentProps) => {
     <div className='post-content'>
       <PostDetail isLoading={isLoading} post={post} />
       <RelatedTags isLoading={isLoading} tags={post?.tags} />
-      <Comments postId={post?._id} postAuthorId={post?.author._id} />
+      <Comments postId={post?._id} />
     </div>
   );
 };
