@@ -13,15 +13,13 @@ const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
   return (
     <article className='feed'>
       <div className='feed__wrapper'>
-        {img && (
-          <Image
-            src={img}
-            alt='image'
-            width={65}
-            height={65}
-            className='feed__wrapper--img'
-          />
-        )}
+        <Image
+          src={img ?? '/dafault-post.jpg'}
+          alt='image'
+          width={65}
+          height={65}
+          className='feed__wrapper--img'
+        />
       </div>
       <div className='feed__box'>
         <h3 className='feed__box--title'>

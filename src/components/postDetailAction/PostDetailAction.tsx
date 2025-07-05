@@ -60,6 +60,7 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
           <Share
             title={post?.title}
             desc={post?.desc}
+            savedCount={post?.savedCount}
             slug={post?.slug}
             isSaved={isSaved}
             currentUser={currentUser!}

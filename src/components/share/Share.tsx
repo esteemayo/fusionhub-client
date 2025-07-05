@@ -8,6 +8,7 @@ import './Share.scss';
 const Share = ({
   title,
   desc,
+  savedCount,
   slug,
   isSaved,
   currentUser,
@@ -17,6 +18,7 @@ const Share = ({
   return (
     <div className='share'>
       <SavePost
+        count={savedCount}
         hasSaved={isSaved}
         isLoading={saveMutation.isPending}
         currentUser={currentUser}

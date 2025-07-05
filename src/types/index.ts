@@ -879,6 +879,7 @@ export interface DislikeButtonProps {
 export interface ShareProps {
   title: string;
   desc: string;
+  savedCount: number;
   slug: string;
   isSaved: boolean;
   currentUser: CurrentUserType;
@@ -887,6 +888,7 @@ export interface ShareProps {
 }
 
 export interface SavePostProps {
+  count: number;
   hasSaved: boolean;
   isLoading: boolean;
   currentUser: CurrentUserType;
@@ -970,6 +972,8 @@ export type PostType = {
   tags: string[];
   views: number;
   author: AuthorType;
+  savedBy: string[];
+  savedCount: number;
   slug: string;
   comments: CommentType[];
   createdAt: string;
