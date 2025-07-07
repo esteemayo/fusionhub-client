@@ -6,11 +6,11 @@ const commentUrl = (commentId: string) => `${apiEndpoint}/${commentId}`;
 
 export const getComments = () => http.get(apiEndpoint);
 
-export const getCommentsByUser = (userId: string, pageParam: number) =>
+export const getCommentsByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/user/${userId}/comments`, {
     params: {
-      page: pageParam,
-      limit: 6,
+      page,
+      limit: 10,
     },
   });
 
@@ -22,6 +22,9 @@ export const createComment = (content: string) =>
 
 export const updateComment = (content: string, commentId: string) =>
   http.patch(commentUrl(commentId), { content });
+
+export const likeComment = (commentId: string) =>
+  http.patch(`${commentUrl(commentId)}/like`);
 
 export const deleteComment = (commentId: string) =>
   http.delete(commentUrl(commentId));

@@ -14,11 +14,13 @@ import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { dislikePost, likePost } from '../../services/postService';
+import * as deleteModal from '../../features/deleteModal/deleteModalSlice';
+import * as postModal from '../../features/postModal/postModalSlice';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
-import { excerpts } from '../../utils';
 import { ArticleProps } from '../../types';
+import { excerpts } from '../../utils';
+import { dislikePost, likePost } from '../../services/postService';
 
 import './Article.scss';
 
@@ -82,6 +84,23 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
     }
 
     disLikeMutation.mutate();
+  };
+
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(postModal.setPost(post));
+    dispatch(postModal.onOpen());
+    dispatch(postModal.setPostQueryKey(queryKey));
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+
+    dispatch(deleteModal.setQueryKey(queryKey));
+    dispatch(deleteModal.setDeletePostId(post._id));
   };
 
   const parsedDesc = useMemo(() => {
@@ -235,7 +254,11 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
               </div>
             </div>
             <div className={actionBtnClasses}>
-              <button type='button' className='article__actions--update'>
+              <button
+                type='button'
+                onClick={handleUpdate}
+                className='article__actions--update'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -251,7 +274,11 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
                   />
                 </svg>
               </button>
-              <button type='button' className='article__actions--remove'>
+              <button
+                type='button'
+                onClick={handleDelete}
+                className='article__actions--remove'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'

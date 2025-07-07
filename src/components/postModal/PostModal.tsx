@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import parse from 'html-react-parser';
@@ -52,12 +52,13 @@ const enum STEPS {
 }
 
 const PostModal = () => {
-  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const dispatch = useAppDispatch();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
-  const { isOpen, post, postId } = useAppSelector((state) => ({
+  const { isOpen, post, postId, queryKey } = useAppSelector((state) => ({
     ...state.postModal,
   }));
 
@@ -71,7 +72,7 @@ const PostModal = () => {
     mutationFn: (post: object) => createpost(post),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['posts'],
+        queryKey: [queryKey],
       });
       toast.success('Post created!');
     },
@@ -94,7 +95,7 @@ const PostModal = () => {
     mutationFn: (post: object) => editPost(post, postId),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['posts'],
+        queryKey: [queryKey],
       });
       toast.success('Post updated!');
     },
@@ -202,8 +203,12 @@ const PostModal = () => {
     handleClear();
     handleClose();
     setStep(STEPS.DESC);
-    navigate('/posts');
-  }, [handleClear, handleClose, navigate, resetDesc, resetImage]);
+
+    if (pathname.includes('posts')) {
+      navigate('/posts');
+      return;
+    }
+  }, [handleClear, handleClose, navigate, pathname, resetDesc, resetImage]);
 
   const onSubmitDesc: SubmitHandler<DescStepFormData> = useCallback(
     (data) => {

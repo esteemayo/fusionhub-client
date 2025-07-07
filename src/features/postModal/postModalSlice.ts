@@ -6,12 +6,14 @@ interface PostModalState {
   isOpen: boolean;
   post: PostType | null;
   postId: string;
+  queryKey: 'posts' | 'articles' | 'likes' | 'dislikes';
 }
 
 const initialState: PostModalState = {
   isOpen: false,
   post: null,
   postId: '',
+  queryKey: 'posts',
 };
 
 const postModalSlice = createSlice({
@@ -29,9 +31,13 @@ const postModalSlice = createSlice({
       state.post = payload;
       state.postId = payload._id;
     },
+    setPostQueryKey: (state, { payload }) => {
+      state.queryKey = payload;
+    },
   },
 });
 
-export const { onClose, onOpen, resetState, setPost } = postModalSlice.actions;
+export const { onClose, onOpen, resetState, setPost, setPostQueryKey } =
+  postModalSlice.actions;
 
 export default postModalSlice.reducer;

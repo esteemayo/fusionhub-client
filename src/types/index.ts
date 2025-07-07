@@ -615,6 +615,14 @@ export interface IFavourite {
   };
 }
 
+export interface ILikeComment {
+  (comment: CommentType, postId: string): {
+    isLiked: boolean;
+    handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
+    likeCommentMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  };
+}
+
 export interface IWebShare {
   (title: string, desc: string, url: string): {
     error: string | null;
@@ -791,6 +799,13 @@ export interface CommentCardProps {
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onUpdate?(commentId: string): void;
   onOpen(): void;
+}
+
+export interface HeartButtonProps {
+  count: number;
+  isLiked: boolean;
+  isLoading: boolean;
+  onLike(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface RepliesProps {
@@ -1027,6 +1042,8 @@ export type CommentType = {
   post: PostTypeWithAuthor;
   author: AuthorType;
   replies?: ReplyType[];
+  likes: string[];
+  likeCount: number;
   createdAt: string;
   updatedAt: string;
 };

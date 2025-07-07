@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import SaveIcon from '../SaveIcon';
 import ActionMenu from '../actionMenu/ActionMenu';
 
-import { onOpen, setPost } from '../../features/postModal/postModalSlice';
+import * as postModal from '../../features/postModal/postModalSlice';
 import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import { useSavedPosts } from '../../hooks/useSavedPosts';
@@ -123,8 +123,9 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
       return null;
     }
 
-    dispatch(onOpen());
-    dispatch(setPost(post));
+    dispatch(postModal.setPost(post));
+    dispatch(postModal.onOpen());
+    dispatch(postModal.setPostQueryKey('posts'));
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {

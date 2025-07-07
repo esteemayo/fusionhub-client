@@ -1,0 +1,116 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.heart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+
+  border: 0;
+  outline: 0;
+  width: fit-content;
+  height: 2.25rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  color: vars.$clr-gray-light-3;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+
+  &.show {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:hover {
+    background-color: rgba(vars.$clr-twitter-red, 0.25);
+  }
+
+  &:disabled {
+    opacity: 0.75;
+    cursor: default;
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: currentColor;
+    stroke-width: 2px;
+
+    @media screen and (max-width: 56.25em) {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 1.9rem;
+      height: 1.9rem;
+    }
+
+    @include bp.sm {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 1.9rem;
+      height: 1.9rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    font-size: 1.125rem;
+    font-variant: tabular-nums;
+    color: currentColor;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.225rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.325rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.2rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.225rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.325rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.625rem;
+    }
+  }
+}
