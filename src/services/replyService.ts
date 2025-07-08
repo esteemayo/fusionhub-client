@@ -22,4 +22,7 @@ export const createReply = <T extends object>(reply: T) =>
 export const updateReply = (content: string, replyId: string) =>
   http.patch(replyUrl(replyId), { content });
 
+export const likeReply = (replyId: string) =>
+  http.patch(`${replyUrl(replyId)}/like`);
+
 export const deleteReply = (replyId: string) => http.delete(replyUrl(replyId));

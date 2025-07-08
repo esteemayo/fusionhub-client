@@ -1,0 +1,87 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.reply-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8rem;
+
+  padding-top: 1rem;
+  position: relative;
+
+  &.show {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &__update,
+  &__remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  }
+
+  &__update {
+    color: vars.$clr-success;
+  }
+
+  &__remove {
+    color: vars.$clr-danger;
+  }
+}

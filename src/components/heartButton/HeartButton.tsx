@@ -1,23 +1,29 @@
 import millify from 'millify';
+import { useMemo } from 'react';
 
 import { HeartButtonProps } from '../../types';
 
 import './HeartButton.scss';
 
 const HeartButton = ({
+  size,
   count,
-  isLiked,
+  hasLiked,
   isLoading,
   onLike,
 }: HeartButtonProps) => {
+  const heartBtnClasses = useMemo(() => {
+    return size === 'sm' ? 'heart-button small' : 'heart-button';
+  }, [size]);
+
   return (
     <button
       type='button'
       onClick={onLike}
-      className='heart-button'
+      className={heartBtnClasses}
       disabled={isLoading}
     >
-      {isLiked ? (
+      {hasLiked ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

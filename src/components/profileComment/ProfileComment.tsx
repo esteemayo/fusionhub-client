@@ -96,8 +96,8 @@ const ProfileComment = ({
   }, [currentUser?.details._id]);
 
   const isCommentAuthor = useMemo(() => {
-    return author._id === userId;
-  }, [author._id, userId]);
+    return author?._id === userId;
+  }, [author?._id, userId]);
 
   const actionClasses = useMemo(() => {
     if (!currentUser) {
@@ -109,7 +109,7 @@ const ProfileComment = ({
         return 'profile-comment__actions show';
       }
 
-      if (author.role === 'admin') {
+      if (author?.role === 'admin') {
         return 'profile-comment__actions hide';
       }
 
@@ -117,7 +117,7 @@ const ProfileComment = ({
     }
 
     return 'profile-comment__actions hide';
-  }, [author.role, currentUser, isAdmin, isCommentAuthor]);
+  }, [author?.role, currentUser, isAdmin, isCommentAuthor]);
 
   return (
     <article className='profile-comment'>

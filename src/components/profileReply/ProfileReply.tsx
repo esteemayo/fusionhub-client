@@ -85,16 +85,16 @@ const ProfileReply = ({
   }, [currentUser?.details._id]);
 
   const isReplyAuthor = useMemo(() => {
-    return author._id === userId;
-  }, [author._id, userId]);
+    return author?._id === userId;
+  }, [author?._id, userId]);
 
   const isCommentAuthor = useMemo(() => {
-    return comment.author._id === userId;
-  }, [comment.author._id, userId]);
+    return comment?.author._id === userId;
+  }, [comment?.author._id, userId]);
 
   const isPostAuthor = useMemo(() => {
-    return post.author._id === userId;
-  }, [post.author._id, userId]);
+    return post?.author._id === userId;
+  }, [post?.author._id, userId]);
 
   const actionClasses = useMemo(() => {
     if (!currentUser) {

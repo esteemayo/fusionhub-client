@@ -105,7 +105,7 @@ const Replies = ({
             return (
               <Reply
                 key={reply._id}
-                {...reply}
+                reply={reply}
                 isDisabled={isDisabled}
                 onUpdate={onUpdate}
               />

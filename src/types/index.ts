@@ -618,8 +618,16 @@ export interface IFavourite {
 export interface ILikeComment {
   (comment: CommentType, postId: string): {
     isLiked: boolean;
-    handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
     likeCommentMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
+  };
+}
+
+export interface ILikeReply {
+  (reply: ReplyType, commentId: string): {
+    isLiked: boolean;
+    likeReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
   };
 }
 
@@ -801,9 +809,23 @@ export interface CommentCardProps {
   onOpen(): void;
 }
 
+export interface CommentActionProps {
+  authorRole: RoleType;
+  currentUser: CurrentUserType | null;
+  postAuthorRole: RoleType;
+  isAdmin: boolean;
+  isCommentAuthor: boolean;
+  isPostAuthor: boolean;
+  isOpen: boolean;
+  isDisabled: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface HeartButtonProps {
+  size?: 'sm';
   count: number;
-  isLiked: boolean;
+  hasLiked: boolean;
   isLoading: boolean;
   onLike(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -819,15 +841,23 @@ export interface RepliesProps {
 }
 
 export interface ReplyProps {
-  _id: string;
-  content: string;
-  comment: CommentType;
-  post: PostTypeWithAuthor;
-  author: AuthorType;
+  reply: ReplyType;
   isDisabled: boolean;
-  createdAt: string;
-  updatedAt: string;
   onUpdate(content: string, replyId: string): void;
+}
+
+export interface ReplyActionProps {
+  authorRole: RoleType;
+  commentAuthorRole: RoleType;
+  currentUser: CurrentUserType | null;
+  postAuthorRole: RoleType;
+  isAdmin: boolean;
+  isCommentAuthor: boolean;
+  isPostAuthor: boolean;
+  isReplyAuthor: boolean;
+  isDisabled: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyFormProps {
@@ -1054,6 +1084,8 @@ export type ReplyType = {
   comment: CommentType;
   post: PostTypeWithAuthor;
   author: AuthorType;
+  likes: string[];
+  likeCount: number;
   createdAt: string;
   updatedAt: string;
 };

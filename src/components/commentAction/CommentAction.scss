@@ -1,0 +1,87 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.comment-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8rem;
+
+  padding-top: 1rem;
+  position: relative;
+
+  &.show {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &__edit,
+  &__delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: default;
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+
+  &__edit {
+    color: vars.$clr-success;
+  }
+
+  &__delete {
+    color: vars.$clr-danger;
+  }
+}

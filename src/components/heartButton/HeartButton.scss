@@ -83,6 +83,44 @@
     }
   }
 
+  &.small {
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 1.4rem;
+        height: 1.4rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  }
+
   span {
     font-weight: 500;
     font-size: 1.125rem;
