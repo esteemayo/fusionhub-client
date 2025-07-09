@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import Follow from '../follow/Follow';
 import Tags from '../tags/Tags';
-import Categories from '../categories/Categories';
+import Categories from '../categoryLists/CategoryLists';
 import Feeds from '../feeds/Feeds';
 import ActionMenus from '../actionMenus/ActionMenus';
 

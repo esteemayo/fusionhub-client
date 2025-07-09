@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import TopPosts from '../topPosts/TopPosts';
 import Filter from '../filter/Filter';
-import Categories from '../categories/Categories';
+import Categories from '../categoryLists/CategoryLists';
 import Search from '../search/Search';
 
 import { PostClientProps } from '../../types';

@@ -7,23 +7,23 @@ import CategorySkeleton from '../categorySkeleton/CategorySkeleton';
 import { CategoryItemType } from '../../types';
 import { getCountByCategory } from '../../services/postService';
 
-import './Categories.scss';
+import './CategoryLists.scss';
 
 const fetchCountByCategory = async () => {
   const { data } = await getCountByCategory();
   return data;
 };
 
-const Categories = () => {
+const CategoryLists = () => {
   const { isPending, error, data } = useQuery<CategoryItemType[]>({
     queryKey: ['categoryCount'],
     queryFn: () => fetchCountByCategory(),
   });
 
   return (
-    <section className='categories'>
-      <div className='categories__container'>
-        <h2 className='categories__container--heading'>Categories</h2>
+    <section className='category-lists'>
+      <div className='category-lists__container'>
+        <h2 className='category-lists__container--heading'>Categories</h2>
         {(data ?? [])?.length < 1 && !isPending ? (
           <EmptyMessage
             title='No categories found'
@@ -53,4 +53,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default CategoryLists;

@@ -34,7 +34,7 @@ export const getRelatedPosts = (tags: Array<string>) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
 export const getPostsByUser = (userId: string, page: number) =>
-  http.get(`${apiEndpoint}/user/${userId}/posts`, {
+  http.get(`${apiEndpoint}/${userId}/user`, {
     params: {
       page,
       limit: 6,

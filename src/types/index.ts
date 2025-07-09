@@ -434,6 +434,8 @@ export interface ProfileCommentProps {
   content: string;
   post: PostTypeWithAuthor;
   author: AuthorType;
+  likeCount: number;
+  likes: string[];
   createdAt: string;
 }
 
@@ -455,6 +457,8 @@ export interface ProfileReplyProps {
   comment: CommentType;
   post: PostTypeWithAuthor;
   author: AuthorType;
+  likeCount: number;
+  likes: string[];
   createdAt: string;
 }
 
@@ -1072,8 +1076,8 @@ export type CommentType = {
   post: PostTypeWithAuthor;
   author: AuthorType;
   replies?: ReplyType[];
-  likes: string[];
   likeCount: number;
+  likes: string[];
   createdAt: string;
   updatedAt: string;
 };
@@ -1084,8 +1088,8 @@ export type ReplyType = {
   comment: CommentType;
   post: PostTypeWithAuthor;
   author: AuthorType;
-  likes: string[];
   likeCount: number;
+  likes: string[];
   createdAt: string;
   updatedAt: string;
 };

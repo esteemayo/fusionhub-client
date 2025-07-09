@@ -7,7 +7,7 @@ const commentUrl = (commentId: string) => `${apiEndpoint}/${commentId}`;
 export const getComments = () => http.get(apiEndpoint);
 
 export const getCommentsByUser = (userId: string, page: number) =>
-  http.get(`${apiEndpoint}/user/${userId}/comments`, {
+  http.get(`${apiEndpoint}/${userId}/user`, {
     params: {
       page,
       limit: 10,

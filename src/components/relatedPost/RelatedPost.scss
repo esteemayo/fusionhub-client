@@ -43,14 +43,14 @@
     background-color: transparent;
     border-radius: 0;
 
-    &:not(:last-child) {
+    &:not(:last-of-type) {
       padding-bottom: 2rem;
       border-bottom: 1px solid vars.$clr-secondary-blue;
     }
   }
 
   @media screen and (max-width: 21.5em) {
-    &:not(:last-child) {
+    &:not(:last-of-type) {
       padding-bottom: 1.5rem;
     }
   }

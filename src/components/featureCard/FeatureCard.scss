@@ -24,7 +24,7 @@
     padding: 3px;
   }
 
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     margin-bottom: 2rem;
   }
 

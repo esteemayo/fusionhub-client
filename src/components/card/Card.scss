@@ -62,14 +62,14 @@
 
   @media screen and (max-width: 31.25em) {
     width: 100%;
-    padding-bottom: 3rem;
     background-color: transparent;
     border-radius: 0;
 
     display: flex;
     gap: 2rem;
 
-    &:not(:last-child) {
+    &:not(:last-of-type) {
+      padding-bottom: 3rem;
       border-bottom: 1px solid vars.$clr-secondary-blue;
     }
   }

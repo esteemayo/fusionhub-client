@@ -26,6 +26,7 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     comment,
     post,
     content,
+    likeCount,
     createdAt,
     updatedAt,
   } = reply;
@@ -159,7 +160,7 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
       <div className='reply__actions'>
         <HeartButton
           size='sm'
-          count={reply.likeCount}
+          count={likeCount}
           hasLiked={isLiked}
           isLoading={likeReplyMutation.isPending}
           onLike={handleLike}

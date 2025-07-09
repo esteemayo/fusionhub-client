@@ -7,7 +7,7 @@ const replyUrl = (replyId: string) => `${apiEndpoint}/${replyId}`;
 export const getReplies = () => http.get(apiEndpoint);
 
 export const getRepliesByUser = (userId: string, page: number) =>
-  http.get(`${apiEndpoint}/user/${userId}/replies`, {
+  http.get(`${apiEndpoint}/${userId}/user`, {
     params: {
       page,
       limit: 10,
