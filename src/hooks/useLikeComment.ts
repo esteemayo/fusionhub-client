@@ -12,7 +12,7 @@ const createLikeComment = async (commentId: string) => {
   return data;
 };
 
-export const useLikeComment: ILikeComment = (comment, postId) => {
+export const useLikeComment: ILikeComment = (commentId, likes, queryKey) => {
   const queryClient = useQueryClient();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
@@ -20,7 +20,7 @@ export const useLikeComment: ILikeComment = (comment, postId) => {
   const likeCommentMutation = useMutation({
     mutationFn: createLikeComment,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', postId] });
+      queryClient.invalidateQueries({ queryKey });
     },
     onError: (error: unknown) => {
       if (
@@ -41,7 +41,7 @@ export const useLikeComment: ILikeComment = (comment, postId) => {
     e.stopPropagation();
 
     if (!currentUser) return;
-    likeCommentMutation.mutate(comment._id);
+    likeCommentMutation.mutate(commentId);
   };
 
   const userId = useMemo(() => {
@@ -49,8 +49,8 @@ export const useLikeComment: ILikeComment = (comment, postId) => {
   }, [currentUser?.details._id]);
 
   const isLiked = useMemo(() => {
-    return !!comment.likes.some((like) => like === userId) || false;
-  }, [comment.likes, userId]);
+    return !!likes.some((like) => like === userId) || false;
+  }, [likes, userId]);
 
   return {
     isLiked,

@@ -14,12 +14,12 @@ import CommentAction from '../commentAction/CommentAction';
 import { useReply } from '../../hooks/useReply';
 import { useLikeComment } from '../../hooks/useLikeComment';
 
-import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-
-import { CommentCardProps } from '../../types';
-import { excerpts } from '../../utils';
+import { useDate } from '../../hooks/useDate';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
+
+import { excerpts } from '../../utils';
+import { CommentCardProps, ReplyType } from '../../types';
 
 import './CommentCard.scss';
 
@@ -36,6 +36,7 @@ const CommentCard = ({
     author,
     content,
     post,
+    likes,
     likeCount,
     createdAt,
     updatedAt,
@@ -50,25 +51,28 @@ const CommentCard = ({
     return post._id;
   }, [post._id]);
 
+  const queryKey = ['comments', postId];
+
   const { data, replyMutation, updateReplyMutation } = useReply(
     postId,
     commentId
   );
 
   const { isLiked, handleLike, likeCommentMutation } = useLikeComment(
-    comment,
-    postId
+    commentId,
+    likes,
+    queryKey
   );
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const [replies, setReplies] = useState(data);
+  const [replyId, setReplyId] = useState('');
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [replyId, setReplyId] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [replyToShow, setReplyToShow] = useState(3);
   const [isMore, setIsMore] = useState(false);
+  const [replies, setReplies] = useState<ReplyType[] | [] | undefined>();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCollapse = () => {
@@ -251,9 +255,13 @@ const CommentCard = ({
   }, [replyMutation.isPending, updateReplyMutation.isPending]);
 
   useEffect(() => {
-    if (data) {
-      setReplies(data);
-    }
+    if (!data) return;
+
+    const sortedData = data.sort((a, b) =>
+      a.createdAt.localeCompare(b.createdAt)
+    );
+
+    setReplies(sortedData);
   }, [data]);
 
   return (

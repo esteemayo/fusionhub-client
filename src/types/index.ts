@@ -434,8 +434,8 @@ export interface ProfileCommentProps {
   content: string;
   post: PostTypeWithAuthor;
   author: AuthorType;
-  likeCount: number;
   likes: string[];
+  likeCount: number;
   createdAt: string;
 }
 
@@ -457,9 +457,21 @@ export interface ProfileReplyProps {
   comment: CommentType;
   post: PostTypeWithAuthor;
   author: AuthorType;
-  likeCount: number;
   likes: string[];
+  likeCount: number;
   createdAt: string;
+}
+
+export interface ProfileActionProps {
+  type?: 'comment' | 'reply';
+  authorRole: RoleType;
+  currentUser: CurrentUserType | null;
+  isAdmin: boolean;
+  isCommentAuthor: boolean;
+  isPostAuthor: boolean;
+  isReplyAuthor?: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ProfileImageProps {
@@ -620,7 +632,7 @@ export interface IFavourite {
 }
 
 export interface ILikeComment {
-  (comment: CommentType, postId: string): {
+  (commentId: string, likes: string[], queryKey: readonly unknown[]): {
     isLiked: boolean;
     likeCommentMutation: UseMutationResult<unknown, unknown, string, unknown>;
     handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -628,7 +640,7 @@ export interface ILikeComment {
 }
 
 export interface ILikeReply {
-  (reply: ReplyType, commentId: string): {
+  (replyId: string, likes: string[], queryKey: readonly unknown[]): {
     isLiked: boolean;
     likeReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
     handleLike(e: React.MouseEvent<HTMLButtonElement>): void;

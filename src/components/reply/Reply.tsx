@@ -26,6 +26,7 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     comment,
     post,
     content,
+    likes,
     likeCount,
     createdAt,
     updatedAt,
@@ -38,9 +39,12 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     return comment._id;
   }, [comment._id]);
 
+  const queryKey = ['replies', commentId];
+
   const { isLiked, likeReplyMutation, handleLike } = useLikeReply(
-    reply,
-    commentId
+    replyId,
+    likes,
+    queryKey
   );
 
   const [isMore, setIsMore] = useState(false);
