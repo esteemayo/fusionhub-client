@@ -12,7 +12,7 @@ export const getPosts = (page: number, searchParams: URLSearchParams) => {
   return http.get(apiEndpoint, {
     params: {
       page,
-      limit: 6,
+      limit: 10,
       ...searchParamsObj,
     },
   });
@@ -37,7 +37,7 @@ export const getPostsByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/${userId}/user`, {
     params: {
       page,
-      limit: 6,
+      limit: 10,
     },
   });
 
@@ -45,7 +45,7 @@ export const getPostsLikedByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/user/${userId}/liked-posts`, {
     params: {
       page,
-      limit: 6,
+      limit: 10,
     },
   });
 
@@ -53,7 +53,7 @@ export const getPostsDislikedByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/user/${userId}/disliked-posts`, {
     params: {
       page,
-      limit: 6,
+      limit: 10,
     },
   });
 

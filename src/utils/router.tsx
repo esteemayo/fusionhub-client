@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
         element: <Posts />,
       },
       {
-        path: 'posts/:slug',
+        path: 'post/:slug',
         element: <PostDetails />,
       },
       {

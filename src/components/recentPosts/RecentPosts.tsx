@@ -17,7 +17,7 @@ const fetchRecentPosts = async () => {
 };
 
 const RecentPosts = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data } = useQuery<PostType[] | undefined>({
     queryKey: ['recentPosts'],
     queryFn: () => fetchRecentPosts(),
   });
@@ -54,7 +54,7 @@ const RecentPosts = () => {
                 center
               />
             ) : (
-              data?.slice(0, 8).map((post: PostType) => {
+              data?.slice(0, 8).map((post) => {
                 return <Card key={post._id} {...post} />;
               })
             )}

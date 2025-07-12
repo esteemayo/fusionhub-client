@@ -204,7 +204,7 @@ const PostModal = () => {
     handleClose();
     setStep(STEPS.DESC);
 
-    if (pathname.includes('posts')) {
+    if (pathname.includes('post')) {
       navigate('/posts');
       return;
     }

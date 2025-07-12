@@ -43,7 +43,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
       <div className='card__footer'>
         <div className='card__box'>
           <h3 className='card__box--title'>
-            <Link to={`/posts/${slug}`}>{title}</Link>
+            <Link to={`/post/${slug}`}>{title}</Link>
           </h3>
           <div className='card__box--desc'>{parse(parsedDesc)}</div>
         </div>

@@ -50,7 +50,7 @@ const Replies = ({
     if (replyCount === 2) minHeight = '160px';
     else if (replyCount === 3) minHeight = '280px';
     else if (replyCount === 4) minHeight = '420px';
-    else if (replyCount > 4 && replyToShow > 4) minHeight = '600px';
+    else if (replyCount > 4 && replyToShow > 4) minHeight = '580px';
 
     element.style.minHeight = minHeight;
   }, [replies?.length, replyToShow]);

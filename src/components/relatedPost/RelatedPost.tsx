@@ -19,14 +19,14 @@ const RelatedPost = ({
       <div className='related-post__container'>
         <div className='related-post__container--overlay'>&nbsp;</div>
         <Image
-          src={img ?? '/dafault.jpg'}
+          src={img ?? '/dafault-post.jpg'}
           width={250}
           height={150}
           alt='image'
           className='related-post__container--img'
         />
         <div className='related-post__footer'>
-          <Link to={`/posts/${slug}`} className='related-post__footer--link'>
+          <Link to={`/post/${slug}`} className='related-post__footer--link'>
             {title}
           </Link>
           <div className='related-post__footer--category'>
