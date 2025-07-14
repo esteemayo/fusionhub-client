@@ -1,13 +1,14 @@
 import parse from 'html-react-parser';
 import millify from 'millify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import Badge from '../badge/Badge';
-import Image from '../Image';
 import LikeIcon from '../LikeIcon';
+import Image from '../Image';
 import SaveIcon from '../SaveIcon';
+
+import Badge from '../badge/Badge';
 import DislikeIcon from '../DislikeIcon';
 
 import { useSavedPosts } from '../../hooks/useSavedPosts';
@@ -131,6 +132,12 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
     return postAuthorId === currentUserId;
   }, [postAuthorId, currentUserId]);
 
+  const url = useMemo(() => {
+    return postAuthorId === currentUserId
+      ? '#'
+      : `/accounts/profile?username=${post.author.username}`;
+  }, [currentUserId, post.author.username, postAuthorId]);
+
   const actionBtnClasses = useMemo(() => {
     if (!currentUser) {
       return 'article__actions--edit-remove hide';
@@ -154,7 +161,7 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
   return (
     <article className='article'>
       <div className='article__container'>
-        <div className='article__cover'>
+        <Link to={url} className='article__cover'>
           <Image
             src={post.author.image ?? '/user-default.jpg'}
             width={60}
@@ -162,27 +169,31 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
             alt='avatar'
             className='article__cover--img'
           />
-        </div>
+        </Link>
         <div className='article__wrapper'>
           <div className='article__profile'>
-            <span className='article__profile--name'>{post.author.name}</span>
+            <Link to={url}>
+              <span className='article__profile--name'>{post.author.name}</span>
+            </Link>
             <Badge role={post.author.role} />
             <div className='article__profile--username'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='size-6'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25'
-                />
-              </svg>
-              <span>{post.author.username}</span>
+              <Link to={url}>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='size-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25'
+                  />
+                </svg>
+                <span>{post.author.username}</span>
+              </Link>
             </div>
             <span className='article__profile--dot'>•</span>
             <time dateTime={post.createdAt} className='article__profile--time'>

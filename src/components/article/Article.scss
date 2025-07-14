@@ -59,7 +59,12 @@
     &--username {
       display: flex;
       align-items: center;
-      gap: 1px;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+      }
 
       svg {
         width: 1.5rem;

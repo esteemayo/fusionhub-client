@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
+import { IProfile, UserType } from '../types';
 import { useAppSelector } from './hooks';
-import { UserType } from '../types';
 import { getCurrentUser, getUserByUsername } from '../services/userService';
 
 const fetchCurrentUser = async () => {
@@ -14,7 +14,7 @@ const fetchUserByUsername = async (username: string) => {
   return data;
 };
 
-export const useProfile = (username?: string) => {
+export const useProfile: IProfile = (username) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const { isPending, error, data, refetch } = useQuery<UserType>({
@@ -27,6 +27,7 @@ export const useProfile = (username?: string) => {
     isPending: isPendingUser,
     error: errorUser,
     data: userData,
+    refetch: refetchUser,
   } = useQuery<UserType>({
     queryKey: ['user'],
     queryFn: () => fetchUserByUsername(username as string),
@@ -41,5 +42,6 @@ export const useProfile = (username?: string) => {
     data,
     userData,
     refetch,
+    refetchUser,
   };
 };

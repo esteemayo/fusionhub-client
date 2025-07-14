@@ -647,6 +647,23 @@ export interface ILikeReply {
   };
 }
 
+export interface IProfile {
+  (username?: string): {
+    isPending: boolean;
+    isPendingUser: boolean;
+    error: Error | null;
+    errorUser: Error | null;
+    data: UserType | undefined;
+    userData: UserType | undefined;
+    refetch(
+      options?: RefetchOptions
+    ): Promise<QueryObserverResult<UserType, Error>>;
+    refetchUser(
+      options?: RefetchOptions
+    ): Promise<QueryObserverResult<UserType, Error>>;
+  };
+}
+
 export interface IWebShare {
   (title: string, desc: string, url: string): {
     error: string | null;

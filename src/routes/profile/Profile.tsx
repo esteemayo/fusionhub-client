@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import AboutProfile from '../../components/aboutProfile/AboutProfile';
 import Spinner from '../../components/Spinner';
@@ -9,6 +9,7 @@ import ErrorState from '../../components/errorState/ErrorState';
 import ProfileFeatures from '../../components/profileFeatures/ProfileFeatures';
 
 import { useQueryParams } from '../../utils';
+import { UserType } from '../../types';
 import { useProfile } from '../../hooks/useProfile';
 
 import './Profile.scss';
@@ -17,11 +18,20 @@ const UserProfile = () => {
   const query = useQueryParams();
   const username = query.get('username');
 
-  const { isPending, isPendingUser, error, errorUser, data, userData } =
-    useProfile(username!);
+  const {
+    isPending,
+    isPendingUser,
+    error,
+    errorUser,
+    data,
+    userData,
+    refetch,
+    refetchUser,
+  } = useProfile(username!);
 
-  const [file, setFile] = useState<File>();
   const [cover, setCover] = useState<File>();
+  const [file, setFile] = useState<File>();
+  const [user, setUser] = useState<UserType | undefined>();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -37,10 +47,6 @@ const UserProfile = () => {
     setCover(file);
   };
 
-  const userObj = useMemo(() => {
-    return username ? userData : data;
-  }, [data, userData, username]);
-
   const isLoading = useMemo(() => {
     return username ? isPendingUser : isPending;
   }, [isPending, isPendingUser, username]);
@@ -48,6 +54,16 @@ const UserProfile = () => {
   const errorObj = useMemo(() => {
     return username ? errorUser : error;
   }, [error, errorUser, username]);
+
+  useEffect(() => {
+    if (username) {
+      setUser(userData);
+      refetchUser();
+    } else {
+      setUser(data);
+      refetch();
+    }
+  }, [data, refetch, refetchUser, userData, username]);
 
   return (
     <div className='profile'>
@@ -63,7 +79,7 @@ const UserProfile = () => {
         />
       </div>
       <div className='profile__wrapper'>
-        {!userObj && !isLoading ? (
+        {!user && !isLoading ? (
           <ErrorState
             title='Unable to load profile data'
             subtitle='An error occurred while fetching your profile details. Please try again later or contact support if the issue persists.'
@@ -81,7 +97,7 @@ const UserProfile = () => {
             imgSrc='/page-eaten.svg'
             center
           />
-        ) : userObj && Object.keys(userObj).length === 0 ? (
+        ) : user && Object.keys(user).length === 0 ? (
           <ErrorState
             title='Profile data unavailable'
             subtitle='Your profile information appears to be empty. Please update your profile or reach out to support for assistance.'
@@ -93,13 +109,13 @@ const UserProfile = () => {
               file={file}
               cover={cover}
               query={username}
-              image={userObj?.image}
-              banner={userObj?.banner}
+              image={user?.image}
+              banner={user?.banner}
               onChangeFile={handleFileChange}
               onChangeCover={handleCoverChange}
             />
-            <ProfileDetails {...userObj!} />
-            <AboutProfile about={userObj?.about as string} />
+            <ProfileDetails {...user!} />
+            <AboutProfile about={user?.about as string} />
             <ProfileFeatures
               query={username}
               userId={userData?._id as string}
