@@ -1,0 +1,51 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.search-form {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(vars.$clr-secondary-blue, 0.5);
+  backdrop-filter: blur(1rem);
+  border: 0.5px solid vars.$clr-tertiary-blue;
+  border-radius: 1rem;
+  position: relative;
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    font-family: inherit;
+    font-size: 1.8rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    color: vars.$clr-white;
+    position: inherit;
+    z-index: 20;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &::placeholder {
+      text-transform: initial;
+      font-weight: 600;
+      font-size: var(--default-font-size);
+      color: inherit;
+    }
+  }
+
+  svg {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 2.5rem;
+    height: 2.5rem;
+    color: currentColor;
+    stroke-width: 2px;
+    z-index: 10;
+  }
+}

@@ -513,6 +513,11 @@ export interface ToggleButtonProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface SearchBarProps {
+  isOpen: boolean;
+  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface CategoryFormProps {
   isLoading: boolean;
   updateMutation: UseMutationResult<

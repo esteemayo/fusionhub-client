@@ -1,0 +1,99 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.search-bar {
+  display: none;
+
+  width: 100%;
+  height: 5rem;
+  background-color: vars.$clr-secondary-blue;
+  border-bottom: 2px solid vars.$clr-tertiary-blue;
+  // border-bottom: 2px solid vars.$clr-black;
+
+  @media screen and (max-width: 34.375em) {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    @media screen and (max-width: 34.375em) {
+      width: 55rem;
+    }
+
+    @media screen and (max-width: 33.75em) {
+      width: 54rem;
+    }
+
+    @media screen and (max-width: 31.5em) {
+      width: 50rem;
+    }
+
+    @include bp.sm {
+      width: 48rem;
+    }
+
+    @media screen and (max-width: 28.125em) {
+      width: 45rem;
+    }
+
+    @media screen and (max-width: 26.875em) {
+      width: 43rem;
+    }
+
+    @media screen and (max-width: 26.25em) {
+      width: 42rem;
+    }
+
+    @media screen and (max-width: 25em) {
+      width: 40rem;
+    }
+
+    @media screen and (max-width: 24.375em) {
+      width: 39rem;
+    }
+
+    @media screen and (max-width: 23.75em) {
+      width: 38rem;
+    }
+
+    @media screen and (max-width: 23.4375em) {
+      width: 37.5rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      width: 36rem;
+    }
+
+    @media screen and (max-width: 21.5em) {
+      width: 34rem;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 32rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 30rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 28rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+  }
+}
