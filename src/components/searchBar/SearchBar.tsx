@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import SearchBarForm from '../searchBarForm/SearchBarForm';
 import ToggleButton from '../toggleButton/ToggleButton';
+import SearchBarForm from '../searchBarForm/SearchBarForm';
 
 import { SearchBarProps } from '../../types';
 

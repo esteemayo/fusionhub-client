@@ -34,7 +34,7 @@ const Header = ({ posts }: HeaderProps) => {
               </Link>
               <h1 className='header__info--heading'>{firstItem.title}</h1>
               <Link
-                to={`/posts/${firstItem.slug}`}
+                to={`/post/${firstItem.slug}`}
                 className='header__info--link'
               >
                 Read more
@@ -54,7 +54,7 @@ const Header = ({ posts }: HeaderProps) => {
               </Link>
               <h2 className='header__info--heading small'>{lastItem.title}</h2>
               <Link
-                to={`/posts/${lastItem.slug}`}
+                to={`/post/${lastItem.slug}`}
                 className='header__info--link small'
               >
                 Read more
