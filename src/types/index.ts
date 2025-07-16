@@ -600,6 +600,7 @@ export interface ICategory {
 
 export interface ISearch {
   (): {
+    searchQuery: string;
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;

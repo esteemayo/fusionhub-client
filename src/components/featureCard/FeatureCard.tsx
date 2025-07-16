@@ -66,7 +66,7 @@ const FeatureCard = ({
           </div>
           <div className='feature-card__detail'>
             <h5 className='feature-card__detail--heading'>{title}</h5>
-            <Link to={`/posts/${slug}`} className='feature-card__detail--link'>
+            <Link to={`/post/${slug}`} className='feature-card__detail--link'>
               Read more
             </Link>
           </div>

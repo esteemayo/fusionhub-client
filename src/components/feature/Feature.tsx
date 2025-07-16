@@ -83,7 +83,7 @@ const Feature = ({
         <div className='feature__box'>
           <h4 className='feature__box--heading'>{title}</h4>
           <div className='feature__box--desc'>{parse(parsedDesc)}</div>
-          <Link to={`/posts/${slug}`} className='feature__box--link'>
+          <Link to={`/post/${slug}`} className='feature__box--link'>
             Read more
           </Link>
         </div>

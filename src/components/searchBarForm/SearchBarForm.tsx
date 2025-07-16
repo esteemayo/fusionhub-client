@@ -1,19 +1,19 @@
-import './SearchForm.scss';
+import { useSearch } from '../../hooks/useSearch';
 
-const SearchForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('form submitted!');
-  };
+import './SearchBarForm.scss';
+
+const SearchBarForm = () => {
+  const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
 
   return (
-    <form className='search-form' onSubmit={handleSubmit}>
+    <form className='search-bar-form' onSubmit={handleSubmit}>
       <input
         type='text'
         name='search'
-        id='search'
+        value={searchQuery}
         placeholder='Search posts...'
-        className='search-form__input'
+        className='search-bar-form__input'
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -33,4 +33,4 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+export default SearchBarForm;

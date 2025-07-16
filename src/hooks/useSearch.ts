@@ -34,6 +34,7 @@ export const useSearch: ISearch = () => {
   };
 
   return {
+    searchQuery,
     setSearchQuery,
     handleSubmit,
     handleKeyPress,

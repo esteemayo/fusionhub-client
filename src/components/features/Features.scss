@@ -26,6 +26,10 @@
       padding: 4rem 0 5rem;
     }
 
+    @media screen and (max-width: 34.375em) {
+      padding-top: 10rem;
+    }
+
     @media screen and (max-width: 26.875em) {
       width: 43rem;
     }

@@ -31,7 +31,7 @@ const TopPost = ({ index, slug, title, tags, createdAt }: TopPostProps) => {
       <div className='top-post__container'>
         <span className='top-post__container--number'>{index + 1}</span>
         <div className='top-post__wrapper'>
-          <Link to={`/posts/${slug}`} className='top-post__wrapper--title'>
+          <Link to={`/post/${slug}`} className='top-post__wrapper--title'>
             <span>{title}</span>
           </Link>
           <div className='top-post__box'>

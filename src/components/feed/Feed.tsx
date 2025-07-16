@@ -23,7 +23,7 @@ const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
       </div>
       <div className='feed__box'>
         <h3 className='feed__box--title'>
-          <Link to={`/posts/${slug}`}>{title}</Link>
+          <Link to={`/post/${slug}`}>{title}</Link>
         </h3>
         <time dateTime={createdAt} className='feed__box--date'>
           <svg
