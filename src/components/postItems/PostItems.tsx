@@ -25,7 +25,7 @@ const PostItems = ({
         searchQuery ? (
           <ErrorState
             title='No posts found'
-            subtitle={`We couldn't find any matches for ${searchQuery}`}
+            subtitle={`We couldn't find any matches for "${searchQuery}"`}
             imgSrc='/under-construction.svg'
             center
           />

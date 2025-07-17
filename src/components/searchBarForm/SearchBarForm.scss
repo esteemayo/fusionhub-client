@@ -6,8 +6,6 @@
   height: 100%;
   background-color: rgba(vars.$clr-secondary-blue, 0.25);
   backdrop-filter: blur(1px);
-  border: 0.5px solid vars.$clr-tertiary-blue;
-  border-radius: 1rem;
   position: relative;
 
   &__input {

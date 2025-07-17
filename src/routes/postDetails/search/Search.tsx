@@ -3,7 +3,7 @@ import { useSearch } from '../../../hooks/useSearch';
 import './Search.scss';
 
 const Search = () => {
-  const { setSearchQuery, handleSubmit } = useSearch();
+  const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
 
   return (
     <section className='search'>
@@ -13,7 +13,7 @@ const Search = () => {
           <input
             type='search'
             name='search'
-            id='search'
+            value={searchQuery}
             placeholder='Search posts...'
             onChange={(e) => setSearchQuery(e.target.value)}
           />

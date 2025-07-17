@@ -98,6 +98,18 @@
           background-color: vars.$clr-secondary-blue;
         }
 
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.7rem;
+        }
+
+        @include bp.sm {
+          font-size: 1.8rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          font-size: 1.65rem;
+        }
+
         @media screen and (max-width: 18.75em) {
           font-size: 1.55rem;
         }
@@ -138,8 +150,12 @@
             font-size: 1.7rem;
           }
 
-          @media screen and (max-width: 17.5em) {
-            font-size: 1.5rem;
+          @include bp.sm {
+            font-size: 1.8rem;
+          }
+
+          @media screen and (max-width: 18.75em) {
+            font-size: 1.65rem;
           }
 
           @media screen and (min-width: 106.25em) {

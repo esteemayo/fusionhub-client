@@ -1,11 +1,13 @@
-import parse from 'html-react-parser';
-import { useMemo } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 import { format } from 'timeago.js';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 import Image from '../Image';
 
 import { excerpts } from '../../utils';
+import { useDate } from '../../hooks/useDate';
+
 import { CardProps } from '../../types';
 
 import './Card.scss';
@@ -14,6 +16,13 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
   const { pathname } = useLocation();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const { formattedDate } = useDate(createdAt);
+
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+
+  const handleScreen = () => {
+    setScreenSize(window.innerWidth);
+  };
 
   const handleClick = () => {
     if (searchParams.get('category') !== category) {
@@ -27,6 +36,18 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
   const parsedDesc = useMemo(() => {
     return parse(String(excerpts(desc, 60))).toString();
   }, [desc]);
+
+  const formattedTime = useMemo(() => {
+    return screenSize <= 480 ? formattedDate : format(createdAt);
+  }, [createdAt, formattedDate, screenSize]);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleScreen);
+
+    return () => {
+      window.removeEventListener('resize', handleScreen);
+    };
+  }, []);
 
   return (
     <article className='card'>
@@ -58,7 +79,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
             </Link>
           )}
           <time dateTime={createdAt} className='card__container--time'>
-            {format(createdAt)}
+            {formattedTime}
           </time>
         </div>
       </div>
