@@ -10,6 +10,10 @@
 
   list-style: none;
 
+  @media screen and (max-width: 34.375em) {
+    column-gap: 5rem;
+  }
+
   @media screen and (min-width: 106.25em) {
     gap: 2.25rem;
   }

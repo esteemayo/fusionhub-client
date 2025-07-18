@@ -11,7 +11,7 @@ const Search = () => {
         <h2 className='search__container--heading'>Search</h2>
         <form className='search__container--form' onSubmit={handleSubmit}>
           <input
-            type='search'
+            type='text'
             name='search'
             value={searchQuery}
             placeholder='Search posts...'

@@ -1,4 +1,4 @@
-import { useId, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import CommentCard from '../commentCard/CommentCard';
@@ -29,12 +29,24 @@ const Comment = ({
   onUpdate,
   onOpen,
 }: CommentProps) => {
-  const id = useId();
   const { user } = useAppSelector((state) => ({ ...state.auth }));
 
   const commentHeading = useMemo(() => {
     return (comments ?? [])?.length > 1 ? 'Comments' : 'Comment';
   }, [comments]);
+
+  const uniqueCommentUsers = useMemo(() => {
+    const seenIds = new Set();
+
+    return commentUsers?.filter((user) => {
+      if (seenIds.has(user._id)) {
+        return false;
+      }
+
+      seenIds.add(user._id);
+      return true;
+    });
+  }, [commentUsers]);
 
   const wrapperClasses = useMemo(() => {
     return !isPending && commentToShow < (comments ?? [])?.length
@@ -57,13 +69,12 @@ const Comment = ({
             ) : errorUser ? (
               <EmptyMessage title='Failed to load comment users.' />
             ) : (
-              commentUsers?.slice(0, 5).map((user, index) => {
+              uniqueCommentUsers?.slice(0, 5).map((user) => {
                 const { _id: userId, image } = user;
-                const uniqueUserId = `${id}-${userId}-${index}`;
 
                 return (
                   <Image
-                    key={uniqueUserId}
+                    key={userId}
                     src={image}
                     width={50}
                     height={50}
@@ -109,6 +120,8 @@ const Comment = ({
                   image: user?.details.image as string,
                   role: user?.role as RoleType,
                 },
+                likes: [],
+                likeCount: 0,
                 createdAt: new Date().toString(),
                 updatedAt: new Date().toString(),
               }}

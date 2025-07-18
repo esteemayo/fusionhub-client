@@ -1132,7 +1132,9 @@ export type ReplyType = {
 export type CommentImageType = {
   _id: string;
   name: string;
+  username: string;
   image: string;
+  role: RoleType;
 };
 
 export type UserDetailType = {

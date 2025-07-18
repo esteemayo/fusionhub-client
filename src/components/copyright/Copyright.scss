@@ -16,6 +16,18 @@
       font-size: 1.4rem;
     }
 
+    @media screen and (max-width: 34.375em) {
+      font-size: 1.5rem;
+    }
+
+    @include bp.sm {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.55rem;
+    }
+
     @media screen and (min-width: 106.25em) {
       font-size: 1.4rem;
     }
