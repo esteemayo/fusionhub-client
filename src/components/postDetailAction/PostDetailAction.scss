@@ -56,6 +56,10 @@
       border-top: 1px solid vars.$clr-tertiary-blue;
     }
 
+    @media screen and (max-width: 17.5em) {
+      gap: 0;
+    }
+
     &--actions {
       display: flex;
       align-items: center;

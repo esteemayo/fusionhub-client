@@ -267,6 +267,12 @@
 
     margin-top: 1rem;
 
+    @media screen and (max-width: 18.75em) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
     &--time,
     &--author {
       display: flex;

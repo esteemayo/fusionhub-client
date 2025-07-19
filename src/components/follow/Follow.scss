@@ -84,11 +84,16 @@
       gap: 1rem;
 
       @media screen and (max-width: 34.375em) {
-        gap: 2.5rem;
+        column-gap: 2.65rem;
+        row-gap: 2rem;
       }
 
       @include bp.sm {
         gap: 2rem;
+      }
+
+      @media screen and (max-width: 28.125em) {
+        column-gap: 3.65rem;
       }
 
       @media screen and (min-width: 125em) {

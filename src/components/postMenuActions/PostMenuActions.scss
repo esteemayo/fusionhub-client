@@ -35,7 +35,7 @@
     }
   }
 
-  @media screen and (max-width: 26.875em) {
+  @include bp.sm {
     width: 100%;
   }
 
@@ -52,7 +52,7 @@
       border-bottom-left-radius: 0.5rem;
     }
 
-    @media screen and (max-width: 26.875em) {
+    @include bp.sm {
       width: 100%;
     }
 
