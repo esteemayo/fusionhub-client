@@ -139,49 +139,59 @@ img {
 
 .ql-editor {
   font-family: 'Nunito Sans', sans-serif;
-  font-weight: 600;
-  font-size: 1.45rem;
   width: 100%;
   height: 12rem !important;
   padding: 1.6rem !important;
+  font-weight: 600;
+  font-size: 1.45rem;
   background-color: transparent;
   color: vars.$clr-white;
   cursor: text;
   transition: all 300ms ease-in-out;
 
   @media screen and (max-width: 56.25em) {
-    font-size: 1.55rem;
     height: 12.2rem !important;
+    font-size: 1.55rem;
   }
 
   @media screen and (max-width: 51.25em) {
-    font-size: 1.65rem;
     height: 12.4rem !important;
+    font-size: 1.65rem;
   }
 
   @media screen and (max-width: 34.375em) {
-    font-size: 1.75rem;
-    height: 13rem;
+    height: 13rem !important;
+    font-size: 1.85rem;
   }
 
-  @media screen and (max-width: 17.5em) {
-    font-size: 1.55rem;
-    height: 12.5rem !important;
+  @include bp.sm {
+    height: 14rem !important;
+    font-size: 1.95rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    height: 13.7rem !important;
+    font-size: 1.8rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    height: 13.5rem !important;
+    font-size: 1.7rem;
   }
 
   @media screen and (min-width: 106.25em) {
-    font-size: 1.65rem;
     height: 12.6rem !important;
+    font-size: 1.65rem;
   }
 
   @media screen and (min-width: 112.5em) {
-    font-size: 1.85rem;
     height: 13.9rem !important;
+    font-size: 1.85rem;
   }
 
   @media screen and (min-width: 125em) {
-    font-size: 2.2rem;
     height: 16.2rem !important;
+    font-size: 2.2rem;
   }
 
   &:focus {
@@ -204,11 +214,19 @@ img {
   }
 
   @media screen and (max-width: 34.375em) {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
   }
 
-  @media screen and (max-width: 17.5em) {
-    font-size: 1.55rem;
+  @include bp.sm {
+    font-size: 1.95rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    font-size: 1.8rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    font-size: 1.7rem;
   }
 
   @media screen and (min-width: 106.25em) {
@@ -254,12 +272,12 @@ img {
   .PhoneInputInput {
     display: inline-block;
     outline: 0;
-    font-family: inherit;
-    font-weight: 600;
-    font-size: 1.45rem;
     width: 100%;
     height: 5.6rem;
     padding: 1.6rem;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.45rem;
     background-color: transparent;
     color: vars.$clr-white;
     border: 2px solid vars.$clr-secondary-blue;
@@ -267,38 +285,48 @@ img {
     transition: all 300ms ease-in-out;
 
     @media screen and (max-width: 56.25em) {
-      font-size: 1.55rem;
       height: 5.7rem;
+      font-size: 1.55rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      font-size: 1.65rem;
       height: 5.8rem;
+      font-size: 1.65rem;
     }
 
     @media screen and (max-width: 34.375em) {
-      font-size: 1.75rem;
       height: 6rem;
+      font-size: 1.85rem;
     }
 
-    @media screen and (max-width: 17.5em) {
-      font-size: 1.55rem;
-      height: 5.7rem;
+    @include bp.sm {
+      height: 6.5rem;
+      font-size: 1.95rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      height: 6.35rem;
+      font-size: 1.8rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 6.25rem;
+      font-size: 1.7rem;
     }
 
     @media screen and (min-width: 106.25em) {
-      font-size: 1.65rem;
       height: 5.8rem;
+      font-size: 1.65rem;
     }
 
     @media screen and (min-width: 112.5em) {
-      font-size: 1.85rem;
       height: 6rem;
+      font-size: 1.85rem;
     }
 
     @media screen and (min-width: 125em) {
-      font-size: 2.2rem;
       height: 8rem;
+      font-size: 2.2rem;
     }
 
     &:focus {
@@ -319,11 +347,19 @@ img {
       }
 
       @media screen and (max-width: 34.375em) {
-        font-size: 1.75rem;
+        font-size: 1.85rem;
       }
 
-      @media screen and (max-width: 17.5em) {
-        font-size: 1.55rem;
+      @include bp.sm {
+        font-size: 1.95rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.8rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.7rem;
       }
 
       @media screen and (min-width: 106.25em) {

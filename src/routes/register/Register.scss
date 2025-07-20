@@ -152,12 +152,21 @@
         font-size: 3.2rem;
       }
 
-      @media screen and (max-width: 18.75em) {
-        line-height: 1.8em;
+      @media screen and (max-width: 34.375em) {
+        font-size: 3.3rem;
       }
 
-      @media screen and (max-width: 17.5em) {
-        font-size: 3.1rem;
+      @include bp.sm {
+        font-size: 3.4rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 3.25rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 3.15rem;
+        line-height: 1.8em;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -184,8 +193,20 @@
         font-size: 1.55rem;
       }
 
-      @media screen and (max-width: 17.5em) {
-        font-size: 1.45rem;
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.65rem;
+      }
+
+      @include bp.sm {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: var(--default-font-size);
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.5rem;
       }
 
       @media screen and (min-width: 106.25em) {

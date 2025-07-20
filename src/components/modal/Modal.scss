@@ -249,10 +249,10 @@
 
       border: 0;
       outline: 0;
-      font-weight: 700;
-      font-size: 1.4rem;
       width: 50%;
       height: 4.6rem;
+      font-weight: 700;
+      font-size: 1.4rem;
       color: inherit;
       border-radius: 0.5rem;
       cursor: pointer;
@@ -267,9 +267,24 @@
         font-size: var(--default-font-size);
       }
 
-      @media screen and (max-width: 17.5em) {
-        height: 4.7rem;
-        font-size: 1.5rem;
+      @media screen and (max-width: 34.375em) {
+        height: 5rem;
+        font-size: 1.7rem;
+      }
+
+      @include bp.sm {
+        height: 5.5rem;
+        font-size: 1.8rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        height: 5.35rem;
+        font-size: 1.65rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        height: 5.25em;
+        font-size: 1.55rem;
       }
 
       @media screen and (min-width: 106.25em) {

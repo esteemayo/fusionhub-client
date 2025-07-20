@@ -81,7 +81,15 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        gap: 1.85rem;
+      }
+
+      @include bp.md {
+        column-gap: 3.3rem;
+      }
 
       @media screen and (max-width: 34.375em) {
         column-gap: 2.65rem;
@@ -89,11 +97,35 @@
       }
 
       @include bp.sm {
-        gap: 2rem;
+        column-gap: 2.125rem;
       }
 
       @media screen and (max-width: 28.125em) {
         column-gap: 3.65rem;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        column-gap: 3rem;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        column-gap: 2.65rem;
+      }
+
+      @media screen and (max-width: 25em) {
+        gap: 2rem;
+      }
+
+      @media screen and (max-width: 24.375em) {
+        justify-content: space-between;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        column-gap: 2.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        gap: 2rem;
       }
 
       @media screen and (min-width: 125em) {
