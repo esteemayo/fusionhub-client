@@ -1,12 +1,20 @@
+import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { useSearch } from '../../hooks/useSearch';
 
 import './SearchBarForm.scss';
 
 const SearchBarForm = () => {
+  const { pathname } = useLocation();
   const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
 
+  const searchBarFormClasses = useMemo(() => {
+    return pathname === '/' ? 'search-bar-form show' : 'search-bar-form hide';
+  }, [pathname]);
+
   return (
-    <form className='search-bar-form' onSubmit={handleSubmit}>
+    <form className={searchBarFormClasses} onSubmit={handleSubmit}>
       <input
         type='text'
         name='search'

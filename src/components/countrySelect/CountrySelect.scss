@@ -30,7 +30,7 @@
     // padding: 1.6rem;
     background-color: vars.$clr-primary-blue !important;
     color: vars.$clr-white !important;
-    border: 2px solid vars.$clr-secondary-blue !important;
+    border: 2px solid vars.$clr-tertiary-blue !important;
     border-radius: 0.5rem !important;
     transition: all 300ms ease-in-out;
 
@@ -114,7 +114,7 @@
     }
 
     &:focus {
-      background-color: vars.$clr-secondary-blue !important;
+      background-color: rgba(vars.$clr-secondary-blue, 0.5) !important;
     }
 
     &::placeholder {

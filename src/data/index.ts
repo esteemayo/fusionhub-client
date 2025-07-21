@@ -775,21 +775,21 @@ export const aboutItems: aboutItemType = [
 export const teamItems: TeamType = [
   {
     id: 1,
-    img: '/team-1.png',
+    img: '/img/team-1.png',
     name: 'Tim kamerer',
     role: 'Technical director',
     socials: [FaGooglePlusG, FaInstagram, FaLinkedinIn],
   },
   {
     id: 2,
-    img: '/team-2.png',
+    img: '/img/team-2.png',
     name: 'Lindsay perlen',
     role: 'Senior producer',
     socials: [FaFacebookF, FaXTwitter, FaYoutube],
   },
   {
     id: 3,
-    img: '/team-3.png',
+    img: '/img/team-3.png',
     name: 'John brown',
     role: 'Software developer',
     socials: [FaGithub, FaXTwitter, FaTiktok],

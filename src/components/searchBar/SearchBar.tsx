@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom';
 import { useMemo, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
 import ToggleButton from '../toggleButton/ToggleButton';
 import SearchBarForm from '../searchBarForm/SearchBarForm';
@@ -9,8 +9,6 @@ import { SearchBarProps } from '../../types';
 import './SearchBar.scss';
 
 const SearchBar = ({ isOpen, onToggle }: SearchBarProps) => {
-  const { pathname } = useLocation();
-
   const [isScrolled, setIsScrolled] = useState(false);
 
   window.onscroll = () => {
@@ -19,10 +17,8 @@ const SearchBar = ({ isOpen, onToggle }: SearchBarProps) => {
   };
 
   const searchBarClasses = useMemo(() => {
-    return pathname === '/' && isScrolled && !isOpen
-      ? 'search-bar show'
-      : 'search-bar hide';
-  }, [isOpen, isScrolled, pathname]);
+    return isScrolled && !isOpen ? 'search-bar show' : 'search-bar hide';
+  }, [isOpen, isScrolled]);
 
   return (
     <div className={searchBarClasses}>

@@ -24,7 +24,7 @@
     font-size: 1.45rem;
     background-color: transparent;
     color: vars.$clr-white;
-    border: 2px solid vars.$clr-secondary-blue;
+    border: 2px solid vars.$clr-tertiary-blue;
     border-radius: 0.5rem;
     transition: all 300ms ease-in-out;
 
@@ -74,7 +74,7 @@
     }
 
     &:focus {
-      background-color: vars.$clr-secondary-blue;
+      background-color: rgba(vars.$clr-secondary-blue, 0.5);
     }
 
     &::placeholder {

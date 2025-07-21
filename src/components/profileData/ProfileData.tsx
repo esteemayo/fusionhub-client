@@ -31,6 +31,8 @@ import { CountrySelectType, ProfileDataProps } from '../../types';
 
 import './ProfileData.scss';
 
+type FormData = z.infer<typeof profileSchema>;
+
 const ProfileData = ({
   name,
   email,
@@ -49,8 +51,6 @@ const ProfileData = ({
   const [telephone, setTelephone] = useState<Value | undefined>();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [aboutMe, setAboutMe] = useState<ReactQuill.Value | undefined>('');
-
-  type FormData = z.infer<typeof profileSchema>;
 
   const {
     register,

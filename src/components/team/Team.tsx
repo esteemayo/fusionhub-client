@@ -12,7 +12,7 @@ const Team = () => {
           <h3 className='team__wrapper--heading'>
             We're a multidisciplinary team of strategists, designers,
             developers, writers, directors and producers united by our
-            pioneering spirit
+            pioneering spirit.
           </h3>
         </div>
         <div className='team__box'>

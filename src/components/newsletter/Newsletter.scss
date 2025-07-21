@@ -54,15 +54,15 @@
       margin-top: 3rem;
     }
 
-    .input {
-      &__control {
-        border-color: vars.$clr-tertiary-blue;
+    // .input {
+    //   &__control {
+    //     border-color: vars.$clr-tertiary-blue;
 
-        &:focus {
-          background-color: rgba(vars.$clr-secondary-blue, 0.5);
-          backdrop-filter: blur(3px);
-        }
-      }
-    }
+    //     &:focus {
+    //       background-color: rgba(vars.$clr-secondary-blue, 0.5);
+    //       backdrop-filter: blur(3px);
+    //     }
+    //   }
+    // }
   }
 }

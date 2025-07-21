@@ -22,20 +22,20 @@
         background-color: vars.$clr-primary-blue;
         border-color: vars.$clr-primary-blue;
 
-        @media screen and (max-width: 37.5em) {
+        @include bp.md {
           width: 100%;
         }
 
         @media screen and (max-width: 31.25em) {
-          border-color: vars.$clr-secondary-blue;
+          border-color: vars.$clr-tertiary-blue;
         }
 
         &:focus {
-          background-color: vars.$clr-tertiary-blue;
+          background-color: rgba(vars.$clr-tertiary-blue, 0.5);
           border-color: vars.$clr-tertiary-blue;
 
           @media screen and (max-width: 31.25em) {
-            background-color: vars.$clr-secondary-blue;
+            background-color: rgba(vars.$clr-secondary-blue, 0.5);
           }
         }
       }
@@ -48,6 +48,10 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+
+    @include bp.md {
+      width: 100%;
+    }
 
     .btn {
       width: 100%;

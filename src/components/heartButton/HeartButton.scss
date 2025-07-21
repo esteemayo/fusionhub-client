@@ -63,8 +63,8 @@
     }
 
     @media screen and (max-width: 18.75em) {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.75rem;
+      height: 1.75rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -100,8 +100,8 @@
       }
 
       @media screen and (max-width: 18.75em) {
-        width: 1.4rem;
-        height: 1.4rem;
+        width: 1.65rem;
+        height: 1.65rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -135,8 +135,20 @@
       font-size: 1.325rem;
     }
 
+    @media screen and (max-width: 34.375em) {
+      font-size: 1.425rem;
+    }
+
+    @include bp.sm {
+      font-size: 1.525rem;
+    }
+
     @media screen and (max-width: 22.5em) {
-      font-size: 1.2rem;
+      font-size: 1.375rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.275rem;
     }
 
     @media screen and (min-width: 106.25em) {

@@ -113,7 +113,7 @@ const Categories = () => {
   };
 
   const btnLabel = useMemo(() => {
-    return `${isEditing && categoryId ? 'Update' : 'Add'} Category`;
+    return `${isEditing && categoryId ? 'Update' : 'Add Category'}`;
   }, [categoryId, isEditing]);
 
   const isLoading = useMemo(() => {

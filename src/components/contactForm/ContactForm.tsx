@@ -1,5 +1,14 @@
-import { useState } from 'react';
 import { Value } from 'react-phone-number-input';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import Textarea from '../textarea/Textarea';
 import Input from '../input/Input';
@@ -7,13 +16,34 @@ import PhoneNumber from '../phoneNumber/PhoneNumber';
 import Button from '../button/Button';
 import ContactHeading from '../contactHeading/ContactHeading';
 
+import { contactSchema } from '../../validations/contactSchema';
+
 import './ContactForm.scss';
 
-const ContactForm = () => {
-  const [value, setValue] = useState<Value | undefined>();
+type FormData = z.infer<typeof contactSchema>;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const ContactForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [phone, setPhone] = useState<Value | undefined>();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      console.log({ ...data, phone });
+      toast.success('Message sent!');
+      setIsLoading(false);
+      reset();
+    }, 1500);
   };
 
   return (
@@ -25,20 +55,50 @@ const ContactForm = () => {
           text='sm'
           type='md'
         />
-        <form onSubmit={handleSubmit} className='contact-form__wrapper'>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className='contact-form__wrapper'
+        >
           <div className='contact-form__wrapper--email'>
-            <Input type='email' name='email' placeholder='Email address' />
+            <Input
+              type='email'
+              name='email'
+              placeholder='Email address'
+              register={register as unknown as UseFormRegister<FieldValues>}
+              errors={errors}
+            />
             <PhoneNumber
-              value={value}
+              value={phone}
               placeholder='Phone number'
-              onChange={setValue}
+              onChange={setPhone}
             />
           </div>
-          <Input name='name' placeholder='Name' />
-          <Input name='subject' placeholder='Subject' />
-          <Textarea name='message' placeholder='Message' />
+          <Input
+            name='name'
+            placeholder='Name'
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+          />
+          <Input
+            name='subject'
+            placeholder='Subject'
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+          />
+          <Textarea
+            name='message'
+            placeholder='Message'
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+          />
           <div className='contact-form__wrapper--btn'>
-            <Button type='submit' label='Send Message' color='primary' />
+            <Button
+              type='submit'
+              label='Send Message'
+              color='primary'
+              isLoading={isLoading}
+              disabled={isLoading}
+            />
           </div>
         </form>
       </div>
