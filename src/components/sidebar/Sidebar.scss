@@ -130,6 +130,7 @@
   }
 
   &__account {
+    flex: 2;
     display: flex;
     align-items: center;
     gap: 1.25rem;
@@ -152,37 +153,48 @@
     }
   }
 
-  &__logout-btn {
+  &__logout {
+    flex: 1;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: flex-end;
 
-    border: 0;
-    outline: 0;
-    width: 10rem;
-    height: 4rem;
-    padding: 0.5rem;
-    background-color: vars.$clr-tertiary-blue;
-    color: vars.$clr-white;
-    border-radius: 0.5rem;
-    cursor: pointer;
+    &--btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
 
-    span {
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: currentColor;
-    }
+      border: 0;
+      outline: 0;
+      width: max-content;
+      height: 4rem;
+      padding: 0.5rem 1rem;
+      background-color: vars.$clr-tertiary-blue;
+      color: vars.$clr-white;
+      border-radius: 0.5rem;
+      cursor: pointer;
 
-    svg {
-      width: 2rem;
-      height: 2rem;
-      stroke-width: 2px;
-    }
+      span {
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: currentColor;
+        white-space: nowrap;
+        overflow: hidden;
+      }
 
-    &:disabled {
-      opacity: 0.75;
-      cursor: default;
+      svg {
+        width: 2rem;
+        height: 2rem;
+        stroke-width: 2px;
+      }
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
     }
   }
 

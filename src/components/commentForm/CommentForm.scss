@@ -146,7 +146,7 @@
       font-size: 1.45rem;
       background-color: vars.$clr-primary-blue;
       color: vars.$clr-white;
-      border: 2px solid vars.$clr-secondary-blue;
+      border: 2px solid transparent;
       border-radius: 0.5rem;
       resize: none;
       transition: all 300ms ease-in-out;
@@ -166,10 +166,14 @@
         font-size: 1.85rem;
       }
 
+      @media screen and (max-width: 31.25em) {
+        background-color: transparent;
+        border-color: vars.$clr-tertiary-blue;
+      }
+
       @include bp.sm {
         height: 13rem;
         font-size: 1.95rem;
-        background-color: transparent;
       }
 
       @media screen and (max-width: 22.5em) {
@@ -198,10 +202,11 @@
       }
 
       &:focus {
-        background-color: vars.$clr-tertiary-blue;
+        background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+        border-color: vars.$clr-tertiary-blue;
 
         @include bp.sm {
-          background-color: vars.$clr-secondary-blue;
+          background-color: rgba(vars.$clr-secondary-blue, 0.5);
         }
       }
 

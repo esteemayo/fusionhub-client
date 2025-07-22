@@ -27,18 +27,18 @@
 
       input {
         background-color: vars.$clr-primary-blue;
-        border-color: vars.$clr-primary-blue !important;
+        border-color: vars.$clr-primary-blue;
 
         @media screen and (max-width: 31.25em) {
-          border-color: vars.$clr-secondary-blue !important;
+          border-color: vars.$clr-tertiary-blue;
         }
 
         &:focus {
-          background-color: vars.$clr-tertiary-blue;
-          border-color: vars.$clr-tertiary-blue !important;
+          background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+          border-color: vars.$clr-tertiary-blue;
 
           @media screen and (max-width: 31.25em) {
-            background-color: vars.$clr-secondary-blue;
+            background-color: rgba(vars.$clr-secondary-blue, 0.5);
           }
         }
       }
@@ -52,7 +52,7 @@
           background-color: vars.$clr-primary-blue;
 
           @media screen and (max-width: 31.25em) {
-            background-color: vars.$clr-secondary-blue;
+            background-color: vars.$clr-tertiary-blue;
           }
         }
 
@@ -65,7 +65,7 @@
           }
 
           &:focus {
-            background-color: vars.$clr-tertiary-blue;
+            background-color: rgba(vars.$clr-tertiary-blue, 0.5);
             border-color: vars.$clr-tertiary-blue;
 
             @media screen and (max-width: 31.25em) {
@@ -87,15 +87,15 @@
               border-color: vars.$clr-primary-blue;
 
               @media screen and (max-width: 31.25em) {
-                border-color: vars.$clr-secondary-blue;
+                border-color: vars.$clr-tertiary-blue;
               }
 
               &:focus {
-                background-color: vars.$clr-tertiary-blue;
+                background-color: rgba(vars.$clr-tertiary-blue, 0.5);
                 border-color: vars.$clr-tertiary-blue;
 
                 @media screen and (max-width: 31.25em) {
-                  background-color: vars.$clr-secondary-blue;
+                  background-color: rgba(vars.$clr-secondary-blue, 0.5);
                 }
               }
             }
@@ -104,6 +104,42 @@
       }
 
       .country-select {
+        &__control {
+          background-color: vars.$clr-primary-blue !important;
+          border-color: vars.$clr-primary-blue !important;
+
+          @media screen and (max-width: 31.25em) {
+            border-color: vars.$clr-tertiary-blue !important;
+          }
+
+          &:focus {
+            background-color: rgba(vars.$clr-tertiary-blue, 0.5) !important;
+            border-color: vars.$clr-tertiary-blue !important;
+
+            @media screen and (max-width: 31.25em) {
+              background-color: rgba(vars.$clr-secondary-blue, 0.5) !important;
+            }
+          }
+
+          .css-1u9des2-indicatorSeparator {
+            background-color: vars.$clr-secondary-blue !important;
+
+            @media screen and (max-width: 31.25em) {
+              background-color: vars.$clr-tertiary-blue !important;
+            }
+          }
+
+          .css-tj5bde-Svg {
+            fill: vars.$clr-secondary-blue !important;
+            stroke: vars.$clr-secondary-blue !important;
+
+            @media screen and (max-width: 31.25em) {
+              fill: vars.$clr-tertiary-blue !important;
+              stroke: vars.$clr-tertiary-blue !important;
+            }
+          }
+        }
+
         @media screen and (max-width: 37.5em) {
           margin-bottom: 2rem;
         }
@@ -115,13 +151,18 @@
 
       textarea {
         background-color: vars.$clr-primary-blue;
+        border-color: vars.$clr-primary-blue;
+
+        @media screen and (max-width: 31.25em) {
+          border-color: vars.$clr-tertiary-blue;
+        }
 
         &:focus {
-          background-color: vars.$clr-tertiary-blue;
+          background-color: rgba(vars.$clr-tertiary-blue, 0.5);
           border-color: vars.$clr-tertiary-blue;
 
           @media screen and (max-width: 31.25em) {
-            background-color: vars.$clr-secondary-blue;
+            background-color: rgba(vars.$clr-secondary-blue, 0.5);
           }
         }
       }
@@ -134,7 +175,7 @@
             border: 2px solid transparent !important;
 
             @media screen and (max-width: 31.25em) {
-              border-color: vars.$clr-secondary-blue !important;
+              border-color: vars.$clr-tertiary-blue !important;
             }
           }
 
@@ -148,11 +189,11 @@
 
           .ql-editor {
             &:focus {
-              background-color: vars.$clr-tertiary-blue;
+              background-color: rgba(vars.$clr-tertiary-blue, 0.5);
               border-color: vars.$clr-tertiary-blue !important;
 
               @media screen and (max-width: 31.25em) {
-                background-color: vars.$clr-secondary-blue;
+                background-color: rgba(vars.$clr-secondary-blue, 0.5);
               }
             }
           }

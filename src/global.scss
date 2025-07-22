@@ -378,7 +378,17 @@ img {
 }
 
 .css-1u9des2-indicatorSeparator {
+  width: 2px !important;
   background-color: vars.$clr-tertiary-blue !important;
+}
+
+.css-tj5bde-Svg {
+  stroke-width: 0.5px !important;
+
+  @media screen and (max-width: 31.25em) {
+    fill: vars.$clr-tertiary-blue !important;
+    stroke: vars.$clr-tertiary-blue !important;
+  }
 }
 
 .css-1xc3v61-indicatorContainer {
