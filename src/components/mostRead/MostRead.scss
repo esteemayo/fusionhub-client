@@ -1,0 +1,78 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.most-read {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+
+    background-color: vars.$clr-secondary-blue;
+    padding: 3rem;
+    border-radius: 3px;
+
+    @media screen and (max-width: 81.25em) {
+      padding: 2rem;
+    }
+
+    @include bp.md {
+      padding: 3rem;
+      background-color: vars.$clr-primary-blue;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      padding: 2rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      padding: 1.5rem;
+    }
+
+    &--heading {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 600;
+      font-size: 1.65rem;
+      color: inherit;
+      line-height: 1.3;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.95rem;
+      }
+
+      @include bp.sm {
+        font-size: 2.05rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.85rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        font-size: 2.2rem;
+      }
+    }
+  }
+}

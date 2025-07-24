@@ -246,6 +246,13 @@ export interface TopPostProps {
   index: number;
 }
 
+export interface MostReadItemProps {
+  _id: string;
+  title: string;
+  views: number;
+  slug: string;
+}
+
 export interface AuthLinkProps {
   url: string;
   label: string;
@@ -1089,6 +1096,13 @@ export type TopPostsType = {
   slug: string;
   createdAt: string;
 };
+
+export type MostReadPostType = {
+  _id: string;
+  title: string;
+  views: number;
+  slug: string;
+}[];
 
 export type RoleType = 'admin' | 'user';
 

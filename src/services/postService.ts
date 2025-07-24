@@ -28,6 +28,8 @@ export const getRecentPosts = () => http.get(postURI('recent-posts'));
 
 export const getTopPosts = () => http.get(postURI('top-posts'));
 
+export const getMostReadPosts = () => http.get(postURI('most-read'));
+
 export const getTrendingPosts = () => http.get(postURI('trends'));
 
 export const getRelatedPosts = (tags: Array<string>) =>

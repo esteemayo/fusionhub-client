@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 
-import TopPosts from '../topPosts/TopPosts';
+import MostRead from '../mostRead/MostRead';
 import Filter from '../filter/Filter';
-import Categories from '../categoryLists/CategoryLists';
+import TopPosts from '../topPosts/TopPosts';
 import Search from '../search/Search';
+import Categories from '../categoryLists/CategoryLists';
 
 import { PostClientProps } from '../../types';
 
@@ -21,6 +22,7 @@ const PostClient = ({ isOpen, ref }: PostClientProps) => {
         <Filter />
         <Categories />
         <TopPosts />
+        <MostRead />
       </div>
     </aside>
   );
