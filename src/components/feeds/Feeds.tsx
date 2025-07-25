@@ -17,7 +17,7 @@ const fetchTrendingPosts = async () => {
 const Feeds = ({ postId }: { postId: string }) => {
   const { isPending, error, data } = useQuery<PostType[]>({
     queryKey: ['trends'],
-    queryFn: () => fetchTrendingPosts(),
+    queryFn: fetchTrendingPosts,
   });
 
   return (

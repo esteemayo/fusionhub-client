@@ -17,7 +17,7 @@ const fetchTopPosts = async () => {
 const TopPosts = () => {
   const { isPending, error, data } = useQuery<TopPostsType[]>({
     queryKey: ['topPosts'],
-    queryFn: () => fetchTopPosts(),
+    queryFn: fetchTopPosts,
   });
 
   return (

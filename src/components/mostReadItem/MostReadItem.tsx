@@ -7,9 +7,9 @@ import './MostReadItem.scss';
 const MostReadItem = ({ slug, title, views }: MostReadItemProps) => {
   return (
     <article className='most-read-item'>
-      <Link to={`/post/${slug}`} className='most-read-item__title'>
-        {title} {''}
-        <span className='most-read-item__views'>
+      <Link to={`/post/${slug}`} className='most-read-item__link'>
+        <span className='most-read-item__link--title'>{title}</span> {''}
+        <span className='most-read-item__link--views'>
           ({views.toLocaleString()} views)
         </span>
       </Link>

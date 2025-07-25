@@ -1,0 +1,207 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.most-read-skeleton {
+  .react-loading-skeleton {
+    --base-color: #021124 !important;
+
+    @include bp.md {
+      --base-color: #152233 !important;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    line-height: 1.2;
+
+    @include bp.md {
+      line-height: 1.4;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      line-height: 1.3;
+    }
+
+    @media screen and (min-width: 125em) {
+      line-height: 1.4;
+    }
+
+    &--title,
+    &--views {
+      border-radius: 0.5rem;
+
+      &::after {
+        border-radius: 0.5rem;
+      }
+    }
+
+    &--title {
+      width: 26.5rem !important;
+      height: 1.5rem !important;
+
+      @media screen and (max-width: 93.75em) {
+        width: 24.25rem !important;
+      }
+
+      @include bp.xxl {
+        width: 22.25rem !important;
+      }
+
+      @media screen and (max-width: 81.25em) {
+        width: 22.75rem !important;
+      }
+
+      @media screen and (max-width: 76.25em) {
+        width: 20.85rem !important;
+      }
+
+      @include bp.xxl {
+        width: 22.75rem !important;
+      }
+
+      @media screen and (max-width: 68.75em) {
+        width: 20.85rem !important;
+      }
+
+      @include bp.lg {
+        width: 26.056rem !important;
+      }
+
+      @media screen and (max-width: 59.375em) {
+        width: 24.5rem !important;
+      }
+
+      @media screen and (max-width: 56.25em) {
+        width: 24.5rem !important;
+        height: 1.7rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 23rem !important;
+        height: 1.9rem !important;
+      }
+
+      @include bp.md {
+        width: 28rem !important;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        height: 2rem !important;
+      }
+
+      @include bp.sm {
+        width: 36rem !important;
+        height: 2.1rem !important;
+      }
+
+      @media screen and (max-width: 28.125em) {
+        width: 33rem !important;
+      }
+
+      @media screen and (max-width: 26.875em) {
+        width: 31rem !important;
+      }
+
+      @media screen and (max-width: 26.25em) {
+        width: 30rem !important;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 28rem !important;
+      }
+
+      @media screen and (max-width: 24.375em) {
+        width: 27rem !important;
+      }
+
+      @media screen and (max-width: 23.75em) {
+        width: 26rem !important;
+      }
+
+      @media screen and (max-width: 23.4375em) {
+        width: 25.5rem !important;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 28rem !important;
+        height: 1.95rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 26rem !important;
+      }
+
+      @media screen and (max-width: 20em) {
+        width: 24rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 22rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 1.7rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 1.9rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 28rem !important;
+        height: 2.1rem !important;
+      }
+    }
+
+    &--views {
+      width: 10rem !important;
+      height: 1.3rem !important;
+
+      @media screen and (max-width: 56.25em) {
+        height: 1.5rem !important;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 1.7rem !important;
+      }
+
+      @include bp.md {
+        width: 13rem !important;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        height: 1.8rem !important;
+      }
+
+      @include bp.sm {
+        width: 15rem !important;
+        height: 1.9rem !important;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 12rem !important;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 10rem !important;
+        height: 1.75rem !important;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 1.5rem !important;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 13rem !important;
+        height: 1.7rem !important;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 15rem !important;
+        height: 1.9rem !important;
+      }
+    }
+  }
+}

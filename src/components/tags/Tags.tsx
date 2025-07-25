@@ -17,7 +17,7 @@ const fetchTags = async () => {
 const Tags = () => {
   const { isPending, error, data } = useQuery<TagProps[]>({
     queryKey: ['tags'],
-    queryFn: () => fetchTags(),
+    queryFn: fetchTags,
   });
 
   return (

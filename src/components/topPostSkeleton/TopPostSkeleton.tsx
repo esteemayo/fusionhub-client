@@ -14,24 +14,24 @@ const TopPostSkeleton = () => {
         <div className='top-post-skeleton__wrapper'>
           <Skeleton
             count={2}
-            width={230}
+            width={235}
             height={15}
             className='top-post-skeleton__wrapper--title'
           />
           <div className='top-post-skeleton__box'>
             <Skeleton
-              width={100}
-              height={12}
+              width={102.5}
+              height={13}
               className='top-post-skeleton__box--category'
             />
             <Skeleton
               width={25}
-              height={12}
+              height={13}
               className='top-post-skeleton__box--space'
             />
             <Skeleton
-              width={100}
-              height={12}
+              width={102.5}
+              height={13}
               className='top-post-skeleton__box--time'
             />
           </div>

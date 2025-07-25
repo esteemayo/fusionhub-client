@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 import MostReadItem from '../mostReadItem/MostReadItem';
+import MostReadSkeleton from '../mostReadSkeleton/MostReadSkeleton';
 
 import { MostReadPostType } from '../../types';
 import { getMostReadPosts } from '../../services/postService';
@@ -29,13 +30,15 @@ const MostRead = () => {
             subtitle='Currently, there are no most read posts to display. Please check back later for the latest updates.'
           />
         ) : isPending ? (
-          'loading'
+          Array.from(new Array(3)).map((_, index) => {
+            return <MostReadSkeleton key={index} />;
+          })
         ) : error ? (
           <EmptyMessage
             title='Unable to load most read posts'
             subtitle={
               error.message ||
-              'An error occurred while fetching the most read posts. Please try again later or contact support if the issue persists.'
+              'An error occurred while fetching most read posts. Please try again later or contact support if the issue persists.'
             }
           />
         ) : (

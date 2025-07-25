@@ -55,7 +55,7 @@
       background-color: vars.$clr-black;
     }
 
-    @media screen and (max-width: 26.875em) {
+    @include bp.sm {
       width: 100%;
     }
 
