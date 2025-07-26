@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 import Category from '../category/Category';
-import CategorySkeleton from '../categorySkeleton/CategorySkeleton';
+import CategoryListSkeleton from '../categoryListSkeleton/CategoryListSkeleton';
 
 import { CategoryItemType } from '../../types';
 import { getCountByCategory } from '../../services/postService';
@@ -31,7 +31,7 @@ const CategoryLists = () => {
           />
         ) : isPending ? (
           Array.from(new Array(3)).map((_, index) => {
-            return <CategorySkeleton key={index} />;
+            return <CategoryListSkeleton key={index} />;
           })
         ) : error ? (
           <EmptyMessage

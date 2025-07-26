@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.category-skeleton {
+.category-list-skeleton {
   width: 100%;
 
   display: flex;
@@ -11,8 +11,45 @@
   .react-loading-skeleton {
     --base-color: #021124 !important;
 
-    @include bp.sm {
+    @include bp.md {
       --base-color: #152233 !important;
+    }
+  }
+
+  &__label,
+  &__total {
+    height: 1.5rem !important;
+
+    @media screen and (max-width: 56.25em) {
+      height: 1.7rem !important;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 1.9rem !important;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      height: 2rem !important;
+    }
+
+    @include bp.sm {
+      height: 2.1rem !important;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      height: 1.95rem !important;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      height: 1.7rem !important;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 1.9rem !important;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 2.1rem !important;
     }
   }
 
