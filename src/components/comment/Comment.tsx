@@ -69,20 +69,27 @@ const Comment = ({
             ) : errorUser ? (
               <EmptyMessage title='Failed to load comment users.' />
             ) : (
-              uniqueCommentUsers?.slice(0, 5).map((user) => {
-                const { _id: userId, image } = user;
+              <>
+                {uniqueCommentUsers?.slice(0, 5).map((user) => {
+                  const { _id: userId, image } = user;
 
-                return (
-                  <Image
-                    key={userId}
-                    src={image}
-                    width={50}
-                    height={50}
-                    alt='avatar'
-                    className='comment__user--img'
-                  />
-                );
-              })
+                  return (
+                    <Image
+                      key={userId}
+                      src={image}
+                      width={50}
+                      height={50}
+                      alt='avatar'
+                      className='comment__user--img'
+                    />
+                  );
+                })}
+                <div className='comment__user--default'>
+                  {uniqueCommentUsers && uniqueCommentUsers.length > 5 && (
+                    <span>{uniqueCommentUsers.length - 5}+</span>
+                  )}
+                </div>
+              </>
             )}
           </figure>
         )}

@@ -691,7 +691,7 @@ export interface IDate {
 }
 
 export interface HeaderProps {
-  posts: RandomPostType[] | undefined;
+  posts: RandomPostType | undefined;
 }
 
 export interface FeatureProps {
@@ -1077,7 +1077,7 @@ export type RandomPostType = {
   category: string;
   img: string;
   slug: string;
-};
+}[];
 
 export type FeatureType = {
   _id: string;
@@ -1087,7 +1087,7 @@ export type FeatureType = {
   slug: string;
   comments: CommentType[];
   createdAt: string;
-};
+}[];
 
 export type TopPostsType = {
   _id: string;
@@ -1095,13 +1095,35 @@ export type TopPostsType = {
   tags: string[];
   slug: string;
   createdAt: string;
-};
+}[];
 
 export type MostReadPostType = {
   _id: string;
   title: string;
   views: number;
   slug: string;
+}[];
+
+export type FeedType = {
+  _id: string;
+  title: string;
+  desc: string;
+  category: string;
+  img: string;
+  isFeatured: boolean;
+  likes: string[];
+  dislikes: string[];
+  likeCount: number;
+  dislikeCount: number;
+  tags: string[];
+  views: number;
+  author: AuthorType;
+  savedBy: string[];
+  savedCount: number;
+  slug: string;
+  comments: CommentType[];
+  createdAt: string;
+  updatedAt: string;
 }[];
 
 export type RoleType = 'admin' | 'user';

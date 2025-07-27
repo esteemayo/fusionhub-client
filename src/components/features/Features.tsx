@@ -19,9 +19,9 @@ const fetchFeaturedPosts = async () => {
 };
 
 const Features = () => {
-  const { isPending, error, data } = useQuery<FeatureType[]>({
+  const { isPending, error, data } = useQuery<FeatureType | undefined>({
     queryKey: ['featuredPosts'],
-    queryFn: () => fetchFeaturedPosts(),
+    queryFn: fetchFeaturedPosts,
   });
 
   const [firstPost, ...otherPosts] = useMemo(() => (data ? data : []), [data]);

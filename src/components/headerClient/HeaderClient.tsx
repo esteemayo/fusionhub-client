@@ -15,9 +15,9 @@ const fetchRandomPosts = async () => {
 };
 
 const HeaderClient = () => {
-  const { isPending, error, data } = useQuery<RandomPostType[]>({
+  const { isPending, error, data } = useQuery<RandomPostType | undefined>({
     queryKey: ['randomPosts'],
-    queryFn: () => fetchRandomPosts(),
+    queryFn: fetchRandomPosts,
   });
 
   return (

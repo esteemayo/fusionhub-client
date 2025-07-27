@@ -86,7 +86,6 @@
       height: 5rem;
       display: inline-block;
       object-fit: cover;
-      border: 2.5px solid vars.$clr-secondary-blue;
       border-radius: 50%;
 
       @media screen and (max-width: 22.5em) {
@@ -113,6 +112,47 @@
 
         @media screen and (max-width: 17.5em) {
           margin-right: -0.65rem;
+        }
+      }
+    }
+
+    &--default {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 5rem;
+      height: 5rem;
+      background-color: rgba(vars.$clr-secondary-blue, 0.25);
+      backdrop-filter: blur(1rem);
+      border-radius: 50%;
+
+      @media screen and (max-width: 22.5em) {
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      span {
+        font-weight: 700;
+        font-size: 1.7rem;
+        color: vars.$clr-white;
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.55rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.45rem;
         }
       }
     }

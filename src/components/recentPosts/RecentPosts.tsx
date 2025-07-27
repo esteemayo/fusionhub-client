@@ -19,7 +19,7 @@ const fetchRecentPosts = async () => {
 const RecentPosts = () => {
   const { isPending, error, data } = useQuery<PostType[] | undefined>({
     queryKey: ['recentPosts'],
-    queryFn: () => fetchRecentPosts(),
+    queryFn: fetchRecentPosts,
   });
 
   const boxClasses = useMemo(() => {
