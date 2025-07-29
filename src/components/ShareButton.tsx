@@ -5,7 +5,7 @@ import { ShareButtonProps } from '../types';
 import { useWebShare } from '../hooks/useWebShare';
 
 const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
-  const shareUrl = `${window.location.origin}/posts/${slug}`;
+  const shareUrl = `${window.location.origin}/post/${slug}`;
 
   const { error, share } = useWebShare(title, desc, shareUrl);
 

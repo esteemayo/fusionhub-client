@@ -70,7 +70,7 @@ const Comment = ({
               <EmptyMessage title='Failed to load comment users.' />
             ) : (
               <>
-                {uniqueCommentUsers?.slice(0, 5).map((user) => {
+                {uniqueCommentUsers?.slice(0, 3).map((user) => {
                   const { _id: userId, image } = user;
 
                   return (
@@ -85,8 +85,8 @@ const Comment = ({
                   );
                 })}
                 <div className='comment__user--default'>
-                  {uniqueCommentUsers && uniqueCommentUsers.length > 5 && (
-                    <span>{uniqueCommentUsers.length - 5}+</span>
+                  {uniqueCommentUsers && uniqueCommentUsers.length > 3 && (
+                    <span>{uniqueCommentUsers.length - 3}+</span>
                   )}
                 </div>
               </>

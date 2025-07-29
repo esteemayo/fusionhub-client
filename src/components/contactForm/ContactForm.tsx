@@ -1,30 +1,68 @@
 import { Value } from 'react-phone-number-input';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import ReactQuill from 'react-quill-new';
 
-import Textarea from '../textarea/Textarea';
+import TextQuill from '../textQuill/TextQuill';
 import Input from '../input/Input';
 import PhoneNumber from '../phoneNumber/PhoneNumber';
 import Button from '../button/Button';
 import ContactHeading from '../contactHeading/ContactHeading';
 
+import { createContact } from '../../services/contactService';
 import { contactSchema } from '../../validations/contactSchema';
 
 import './ContactForm.scss';
 
+const createNewContact = async <T extends object>(contact: T) => {
+  const { data } = await createContact(contact);
+  return data;
+};
+
 type FormData = z.infer<typeof contactSchema>;
 
+type ContactFormError = {
+  message?: string;
+  phone?: string;
+};
+
 const ContactForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const contactMutation = useMutation({
+    mutationFn: (contact: object) => createNewContact(contact),
+    onSuccess: () => {
+      toast.success(
+        'Thank you for reaching out! Your message has been sent successfully. We will get back to you soon.'
+      );
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error(
+          'An error occurred while sending your message. Please try again.'
+        );
+      }
+    },
+  });
+
+  const [error, setError] = useState<ContactFormError>({});
   const [phone, setPhone] = useState<Value | undefined>();
+  const [message, setMessage] = useState<ReactQuill.Value | undefined>('');
 
   const {
     register,
@@ -35,15 +73,58 @@ const ContactForm = () => {
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    setIsLoading(true);
+  const handlePhoneChange = (value: Value | undefined) => {
+    if (!value || value === undefined) {
+      setError((prev) => ({ ...prev, phone: '' }));
+      setPhone(value);
+    }
 
-    setTimeout(() => {
-      console.log({ ...data, phone });
-      toast.success('Message sent!');
-      setIsLoading(false);
-      reset();
-    }, 1500);
+    setPhone(value);
+  };
+
+  const handleChangeMessage = (value: ReactQuill.Value | undefined) => {
+    if (
+      (typeof message === 'string' && message.trim() !== '') ||
+      message !== undefined
+    ) {
+      setError((prev) => ({ ...prev, message: '' }));
+      setMessage(value);
+    }
+
+    setMessage(value);
+  };
+
+  const handleClear = () => {
+    reset();
+    setPhone(undefined);
+    setMessage('');
+  };
+
+  const validateInputs = () => {
+    const errors: ContactFormError = {};
+
+    if (!phone || phone === undefined) {
+      errors.phone = 'Please enter your phone number';
+    }
+
+    if (
+      (typeof message === 'string' && message.trim() === '') ||
+      message === undefined
+    ) {
+      errors.message = 'Please enter your message before submitting';
+    }
+
+    setError(errors);
+  };
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    const contact = { ...data, message, phone };
+
+    validateInputs();
+
+    contactMutation.mutate(contact, {
+      onSuccess: handleClear,
+    });
   };
 
   return (
@@ -70,7 +151,8 @@ const ContactForm = () => {
             <PhoneNumber
               value={phone}
               placeholder='Phone number'
-              onChange={setPhone}
+              onChange={(value) => handlePhoneChange(value)}
+              error={error.phone}
             />
           </div>
           <Input
@@ -85,19 +167,20 @@ const ContactForm = () => {
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
           />
-          <Textarea
-            name='message'
+          <TextQuill
+            id='message'
+            value={message}
             placeholder='Message'
-            register={register as unknown as UseFormRegister<FieldValues>}
-            errors={errors}
+            onChange={(value) => handleChangeMessage(value)}
+            error={error.message}
           />
           <div className='contact-form__wrapper--btn'>
             <Button
               type='submit'
               label='Send Message'
               color='primary'
-              isLoading={isLoading}
-              disabled={isLoading}
+              isLoading={contactMutation.isPending}
+              disabled={contactMutation.isPending}
             />
           </div>
         </form>

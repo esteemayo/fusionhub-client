@@ -47,10 +47,26 @@
 
     &--btn {
       button {
-        width: fit-content;
+        width: 20rem;
 
-        @include bp.sm {
+        @media screen and (max-width: 56.25em) {
+          width: 21rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 22rem;
+        }
+
+        @include bp.md {
           width: 100%;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 22rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 25rem;
         }
       }
     }

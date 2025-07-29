@@ -41,16 +41,5 @@ export const contactSchema = z
       .max(50, {
         message: 'Your subject cannot be more than 50 characters long',
       }),
-    message: z
-      .string({
-        required_error: 'Please provide message of the email',
-        invalid_type_error: 'Message must be a string',
-      })
-      .min(10, {
-        message: 'Your message cannot be less than 10 characters long',
-      })
-      .max(1024, {
-        message: 'Your message cannot be more than 1024 characters long',
-      }),
   })
   .required();
