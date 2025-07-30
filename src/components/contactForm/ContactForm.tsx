@@ -18,8 +18,11 @@ import PhoneNumber from '../phoneNumber/PhoneNumber';
 import Button from '../button/Button';
 import ContactHeading from '../contactHeading/ContactHeading';
 
-import { createContact } from '../../services/contactService';
 import { contactSchema } from '../../validations/contactSchema';
+import { validateContactInputs } from '../../validations/contact';
+
+import { ContactFormError } from '../../types';
+import { createContact } from '../../services/contactService';
 
 import './ContactForm.scss';
 
@@ -29,11 +32,6 @@ const createNewContact = async <T extends object>(contact: T) => {
 };
 
 type FormData = z.infer<typeof contactSchema>;
-
-type ContactFormError = {
-  message?: string;
-  phone?: string;
-};
 
 const ContactForm = () => {
   const contactMutation = useMutation({
@@ -100,27 +98,12 @@ const ContactForm = () => {
     setMessage('');
   };
 
-  const validateInputs = () => {
-    const errors: ContactFormError = {};
-
-    if (!phone || phone === undefined) {
-      errors.phone = 'Please enter your phone number';
-    }
-
-    if (
-      (typeof message === 'string' && message.trim() === '') ||
-      message === undefined
-    ) {
-      errors.message = 'Please enter your message before submitting';
-    }
-
-    setError(errors);
-  };
-
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const contact = { ...data, message, phone };
+    const inputs = { message, phone };
+    const contact = { ...data, ...inputs };
 
-    validateInputs();
+    const errors = validateContactInputs(inputs);
+    if (Object.keys(errors).length > 0) setError(errors);
 
     contactMutation.mutate(contact, {
       onSuccess: handleClear,

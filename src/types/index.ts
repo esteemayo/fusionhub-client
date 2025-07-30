@@ -312,12 +312,7 @@ export interface PostDescriptionProps {
   register: UseFormRegister<FieldValues>;
   error?: string;
   errors: FieldErrors;
-  onChangeDesc?(
-    value: ReactQuill.Value | undefined,
-    delta: DeltaStatic,
-    source: EmitterSource,
-    editor: ReactQuill.UnprivilegedEditor
-  ): void;
+  onChangeDesc(value: ReactQuill.Value | undefined): void;
 }
 
 export interface PostImageProps {
@@ -1456,3 +1451,17 @@ export type ProfileMenuItems = {
   id: string;
   label: string;
 }[];
+
+export type PostErrorType = {
+  desc?: string;
+};
+
+export type ContactFormData = {
+  message: ReactQuill.Value | undefined;
+  phone: Value | undefined;
+};
+
+export type ContactFormError = {
+  message?: string;
+  phone?: string;
+};

@@ -23,7 +23,7 @@ const PostDescription = ({
       <TextQuill
         label='Description'
         value={value}
-        onChange={onChangeDesc}
+        onChange={(value) => onChangeDesc(value)}
         error={error}
         validate
       />

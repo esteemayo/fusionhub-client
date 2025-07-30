@@ -7,6 +7,6 @@ export const postSchema = z
       .string()
       .min(1, { message: 'A product must have at least one tag' })
       .toLowerCase(),
-    category: z.string(),
+    category: z.string().toLowerCase(),
   })
   .required();

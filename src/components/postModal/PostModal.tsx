@@ -23,8 +23,10 @@ import { onClose, resetState } from '../../features/postModal/postModalSlice';
 import { getCategories } from '../../services/categoryService';
 import { createPost, updatePost } from '../../services/postService';
 
-import { CategoriesType } from '../../types';
 import { postSchema } from '../../validations/postSchema';
+import { validateDescInput } from '../../validations/post';
+
+import { CategoriesType, PostErrorType } from '../../types';
 
 import './PostModal.scss';
 
@@ -64,7 +66,7 @@ const PostModal = () => {
 
   const { data } = useQuery<CategoriesType>({
     queryKey: ['categories'],
-    queryFn: () => fetchCategories(),
+    queryFn: fetchCategories,
     enabled: !!isOpen,
   });
 
@@ -114,15 +116,28 @@ const PostModal = () => {
     },
   });
 
-  const [step, setStep] = useState(STEPS.DESC);
-  const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
+  const [error, setError] = useState<PostErrorType>({});
   const [file, setFile] = useState<File>();
+  const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
+  const [step, setStep] = useState(STEPS.DESC);
 
   const descStepSchema = postSchema.pick({ title: true });
   const imageStepSchema = postSchema.pick({ tags: true, category: true });
 
   type DescStepFormData = z.infer<typeof descStepSchema>;
   type ImageStepFormData = z.infer<typeof imageStepSchema>;
+
+  const handleChangeDesc = (value: ReactQuill.Value | undefined) => {
+    if (
+      (typeof desc === 'string' && desc.trim() !== '') ||
+      desc !== undefined
+    ) {
+      setDesc(value);
+      setError((prev) => ({ ...prev, desc: '' }));
+    }
+
+    setDesc(value);
+  };
 
   const {
     register: registerDesc,
@@ -204,7 +219,7 @@ const PostModal = () => {
     handleClose();
     setStep(STEPS.DESC);
 
-    if (pathname.includes('post')) {
+    if (pathname === '/' || pathname.includes('post')) {
       navigate('/posts');
       return;
     }
@@ -228,6 +243,9 @@ const PostModal = () => {
   const onSubmitImage: SubmitHandler<ImageStepFormData> = useCallback(
     (data) => {
       if (!currentUser) return;
+
+      const errors = validateDescInput(desc);
+      if (Object.keys(errors).length > 0) setError(errors);
 
       const postPayload = {
         ...data,
@@ -327,8 +345,9 @@ const PostModal = () => {
       <PostDescription
         value={desc}
         register={registerDesc as unknown as UseFormRegister<FieldValues>}
+        error={error.desc}
         errors={errorsDesc}
-        onChangeDesc={setDesc}
+        onChangeDesc={handleChangeDesc}
       />
     );
 

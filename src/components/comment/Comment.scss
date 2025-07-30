@@ -144,6 +144,20 @@
         height: 4rem;
       }
 
+      &.show {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+      }
+
+      &.hide {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+      }
+
       span {
         font-weight: 700;
         font-size: 1.7rem;

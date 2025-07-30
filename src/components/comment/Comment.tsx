@@ -48,6 +48,12 @@ const Comment = ({
     });
   }, [commentUsers]);
 
+  const defaultImgClasses = useMemo(() => {
+    return uniqueCommentUsers && uniqueCommentUsers.length > 3
+      ? 'comment__user--default show'
+      : 'comment__user--default hide';
+  }, [uniqueCommentUsers]);
+
   const wrapperClasses = useMemo(() => {
     return !isPending && commentToShow < (comments ?? [])?.length
       ? 'comment__wrapper show'
@@ -84,10 +90,10 @@ const Comment = ({
                     />
                   );
                 })}
-                <div className='comment__user--default'>
-                  {uniqueCommentUsers && uniqueCommentUsers.length > 3 && (
-                    <span>{uniqueCommentUsers.length - 3}+</span>
-                  )}
+                <div className={defaultImgClasses}>
+                  <span>
+                    {uniqueCommentUsers && uniqueCommentUsers.length - 3}+
+                  </span>
                 </div>
               </>
             )}
