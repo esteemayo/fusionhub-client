@@ -8,6 +8,7 @@ const PostDescription = ({
   register,
   error,
   errors,
+  isLoading,
   onChangeDesc,
 }: PostDescriptionProps) => {
   return (
@@ -18,6 +19,7 @@ const PostDescription = ({
         placeholder='Title'
         register={register}
         errors={errors}
+        disabled={isLoading}
         validate
       />
       <TextQuill

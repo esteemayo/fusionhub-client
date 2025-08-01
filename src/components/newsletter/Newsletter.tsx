@@ -1,7 +1,7 @@
-import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
@@ -14,13 +14,37 @@ import Input from '../input/Input';
 import ContactHeading from '../contactHeading/ContactHeading';
 
 import { newsletterSchema } from '../../validations/newsletterSchema';
+import { subscribeToNewsLetter } from '../../services/newsletterService';
 
 import './Newsletter.scss';
+
+const subscribe = async (email: string) => {
+  const { data } = await subscribeToNewsLetter(email);
+  return data;
+};
 
 type FormData = z.infer<typeof newsletterSchema>;
 
 const Newsletter = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const newsletterMutation = useMutation({
+    mutationFn: subscribe,
+    onSuccess: () => {
+      toast.success('Successfully subscribed to our newsletter!');
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error(`Subscription failed: ${(error as Error).message}`);
+      }
+    },
+  });
 
   const {
     register,
@@ -32,14 +56,9 @@ const Newsletter = () => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      console.log(data);
-      toast.success('Successfully subscribed to our newsletter!');
-      setIsLoading(false);
-      reset();
-    }, 1500);
+    newsletterMutation.mutate(data.email, {
+      onSuccess: () => reset,
+    });
   };
 
   return (
@@ -57,14 +76,15 @@ const Newsletter = () => {
             placeholder='Email address'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={newsletterMutation.isPending}
           />
           <div className='newsletter__wrapper--btn'>
             <Button
               type='submit'
               label='Submit'
               color='dark'
-              isLoading={isLoading}
-              disabled={isLoading}
+              isLoading={newsletterMutation.isPending}
+              disabled={newsletterMutation.isPending}
             />
           </div>
         </form>

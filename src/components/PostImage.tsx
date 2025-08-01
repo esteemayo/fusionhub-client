@@ -8,6 +8,7 @@ const PostImage = ({
   options,
   register,
   errors,
+  isLoading,
   onChangeFile,
 }: PostImageProps) => {
   return (
@@ -18,6 +19,7 @@ const PostImage = ({
         placeholder='Separate tags by commas'
         register={register}
         errors={errors}
+        disabled={isLoading}
         validate
       />
       <Select
@@ -26,6 +28,7 @@ const PostImage = ({
         options={options}
         register={register}
         errors={errors}
+        disabled={isLoading}
         validate
       />
       <FileInput
@@ -33,6 +36,7 @@ const PostImage = ({
         label='Image'
         accept='image/*'
         onChange={onChangeFile}
+        disabled={isLoading}
       />
     </>
   );

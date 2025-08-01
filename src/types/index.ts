@@ -312,6 +312,7 @@ export interface PostDescriptionProps {
   register: UseFormRegister<FieldValues>;
   error?: string;
   errors: FieldErrors;
+  isLoading?: boolean;
   onChangeDesc(value: ReactQuill.Value | undefined): void;
 }
 
@@ -319,6 +320,7 @@ export interface PostImageProps {
   options: CategoriesType | undefined;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  isLoading?: boolean;
   onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 

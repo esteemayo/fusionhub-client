@@ -339,6 +339,7 @@ const PostModal = () => {
         options={sortedData}
         register={registerImage as unknown as UseFormRegister<FieldValues>}
         errors={errorsImage}
+        isLoading={isLoading}
         onChangeFile={handleFile}
       />
     ) : (
@@ -347,6 +348,7 @@ const PostModal = () => {
         register={registerDesc as unknown as UseFormRegister<FieldValues>}
         error={error.desc}
         errors={errorsDesc}
+        isLoading={isLoading}
         onChangeDesc={handleChangeDesc}
       />
     );

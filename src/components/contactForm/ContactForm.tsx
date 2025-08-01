@@ -72,6 +72,8 @@ const ContactForm = () => {
   });
 
   const handlePhoneChange = (value: Value | undefined) => {
+    if (contactMutation.isPending) return;
+
     if (!value || value === undefined) {
       setError((prev) => ({ ...prev, phone: '' }));
       setPhone(value);
@@ -81,6 +83,8 @@ const ContactForm = () => {
   };
 
   const handleChangeMessage = (value: ReactQuill.Value | undefined) => {
+    if (contactMutation.isPending) return;
+
     if (
       (typeof message === 'string' && message.trim() !== '') ||
       message !== undefined
@@ -130,6 +134,7 @@ const ContactForm = () => {
               placeholder='Email address'
               register={register as unknown as UseFormRegister<FieldValues>}
               errors={errors}
+              disabled={contactMutation.isPending}
             />
             <PhoneNumber
               value={phone}
@@ -143,12 +148,14 @@ const ContactForm = () => {
             placeholder='Name'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={contactMutation.isPending}
           />
           <Input
             name='subject'
             placeholder='Subject'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            disabled={contactMutation.isPending}
           />
           <TextQuill
             id='message'
