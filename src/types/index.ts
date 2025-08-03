@@ -89,8 +89,11 @@ export interface EmptyMessageProps {
 export interface LabelProps {
   id?: string;
   label?: string;
+  isShow?: boolean;
+  isPassword?: boolean;
   validate?: boolean;
   onClick?(): void;
+  onAction?(): void;
 }
 
 export interface InputProps
@@ -102,8 +105,11 @@ export interface InputProps
   disabled?: boolean;
   required?: boolean;
   validate?: boolean;
+  isShow?: boolean;
+  isPassword?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onAction?(): void;
   onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 

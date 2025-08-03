@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
@@ -36,6 +36,14 @@ const Login = () => {
 
   const query = useQueryParams();
   const name = query.get('name');
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleToggle = () => {
+    setShowPassword((value) => {
+      return !value;
+    });
+  };
 
   const {
     register,
@@ -85,12 +93,21 @@ const Login = () => {
                 <Input
                   key={id}
                   name={name}
-                  type={type}
+                  type={
+                    type === 'password'
+                      ? showPassword
+                        ? 'text'
+                        : 'password'
+                      : type
+                  }
                   label={label}
                   placeholder={placeholder}
                   register={register as unknown as UseFormRegister<FieldValues>}
                   errors={errors}
+                  onAction={handleToggle}
                   disabled={isLoading}
+                  isShow={showPassword}
+                  isPassword={type === 'password'}
                   autoFocus={name === 'identifier'}
                   validate
                 />

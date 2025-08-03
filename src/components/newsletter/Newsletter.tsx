@@ -57,7 +57,7 @@ const Newsletter = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     newsletterMutation.mutate(data.email, {
-      onSuccess: () => reset,
+      onSuccess: () => reset(),
     });
   };
 

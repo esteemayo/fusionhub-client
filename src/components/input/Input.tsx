@@ -10,13 +10,23 @@ const Input = ({
   type = 'text',
   label,
   validate,
+  isShow,
+  isPassword,
   errors,
   register,
+  onAction,
   ...rest
 }: InputProps) => {
   return (
     <div className='input'>
-      <Label id={name} label={label} validate={validate} />
+      <Label
+        id={name}
+        label={label}
+        validate={validate}
+        isShow={isShow}
+        isPassword={isPassword}
+        onAction={onAction}
+      />
       <input
         {...rest}
         {...register(name)}
