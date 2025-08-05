@@ -96,6 +96,12 @@ export interface LabelProps {
   onAction?(): void;
 }
 
+export interface PasswordToggleProps {
+  isShow?: boolean;
+  isPassword?: boolean;
+  onClick?(): void;
+}
+
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;

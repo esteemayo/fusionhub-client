@@ -1,5 +1,7 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
@@ -8,7 +10,6 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
 
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
@@ -59,6 +60,17 @@ const ResetPassword = () => {
     },
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+  const handlePasswordToggle = () => {
+    setShowPassword((value) => !value);
+  };
+
+  const handlePasswordConfirmToggle = () => {
+    setShowPasswordConfirm((value) => !value);
+  };
+
   const {
     register,
     handleSubmit,
@@ -94,14 +106,33 @@ const ResetPassword = () => {
               return (
                 <Input
                   key={id}
-                  type={type}
+                  type={
+                    name === 'password'
+                      ? showPassword
+                        ? 'text'
+                        : type
+                      : name === 'passwordConfirm'
+                      ? showPasswordConfirm
+                        ? 'text'
+                        : type
+                      : type
+                  }
                   name={name}
                   label={label}
                   placeholder={placeholder}
                   register={register as unknown as UseFormRegister<FieldValues>}
                   errors={errors}
+                  onAction={
+                    name === 'password'
+                      ? handlePasswordToggle
+                      : handlePasswordConfirmToggle
+                  }
                   disabled={mutation.isPending}
+                  isShow={
+                    name === 'password' ? showPassword : showPasswordConfirm
+                  }
                   autoFocus={name === 'password'}
+                  isPassword
                   validate
                 />
               );

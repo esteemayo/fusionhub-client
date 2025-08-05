@@ -46,6 +46,20 @@ const Register = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [phone, setPhone] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((value) => {
+      return !value;
+    });
+  };
+
+  const handleTogglePasswordConfirm = () => {
+    setShowPasswordConfirm((value) => {
+      return !value;
+    });
+  };
 
   const {
     register,
@@ -102,6 +116,9 @@ const Register = () => {
     };
   }, [dispatch, isError, isSuccess, message, name, navigate, reset]);
 
+  const inputs = registerInputs.slice(0, -2);
+  const passwordInputs = registerInputs.slice(-2);
+
   return (
     <section className='register'>
       <div className='register__container'>
@@ -112,7 +129,7 @@ const Register = () => {
           </p>
           <form className='register__form' onSubmit={handleSubmit(onSubmit)}>
             <div className='register__form--box'>
-              {registerInputs.map((input) => {
+              {inputs.map((input) => {
                 const { id, name, type, label, placeholder } = input;
                 return (
                   <Input
@@ -127,6 +144,43 @@ const Register = () => {
                     errors={errors}
                     disabled={isLoading}
                     autoFocus={name === 'name'}
+                    validate
+                  />
+                );
+              })}
+              {passwordInputs.map((input) => {
+                const { id, name, type, label, placeholder } = input;
+                return (
+                  <Input
+                    key={id}
+                    name={name}
+                    type={
+                      name === 'password'
+                        ? showPassword
+                          ? 'text'
+                          : type
+                        : name === 'passwordConfirm'
+                        ? showPasswordConfirm
+                          ? 'text'
+                          : type
+                        : type
+                    }
+                    label={label}
+                    register={
+                      register as unknown as UseFormRegister<FieldValues>
+                    }
+                    placeholder={placeholder}
+                    errors={errors}
+                    onAction={
+                      name === 'password'
+                        ? handleTogglePassword
+                        : handleTogglePasswordConfirm
+                    }
+                    disabled={isLoading}
+                    isShow={
+                      name === 'password' ? showPassword : showPasswordConfirm
+                    }
+                    isPassword
                     validate
                   />
                 );

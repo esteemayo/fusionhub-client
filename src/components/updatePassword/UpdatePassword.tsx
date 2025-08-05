@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   FieldValues,
   SubmitHandler,
@@ -28,6 +28,22 @@ const UpdatePassword = () => {
   const { isError, isLoading, isSuccess, message, user } = useAppSelector(
     (state) => ({ ...state.auth })
   );
+
+  const [showPasswordCurrent, setShowPasswordCurrent] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+  const handleTogglePasswordCurrent = () => {
+    setShowPasswordCurrent((value) => !value);
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword((value) => !value);
+  };
+
+  const handleTogglePasswordConfirm = () => {
+    setShowPasswordConfirm((value) => !value);
+  };
 
   const {
     register,
@@ -77,7 +93,17 @@ const UpdatePassword = () => {
                 return (
                   <Input
                     key={id}
-                    type={type}
+                    type={
+                      name === 'passwordCurrent'
+                        ? showPasswordCurrent
+                          ? 'text'
+                          : type
+                        : name === 'password'
+                        ? showPassword
+                          ? 'text'
+                          : type
+                        : type
+                    }
                     name={name}
                     label={label}
                     placeholder={placeholder}
@@ -85,8 +111,19 @@ const UpdatePassword = () => {
                       register as unknown as UseFormRegister<FieldValues>
                     }
                     errors={errors}
+                    onAction={
+                      name === 'passwordCurrent'
+                        ? handleTogglePasswordCurrent
+                        : handleTogglePassword
+                    }
                     disabled={isLoading}
                     autoFocus={name === 'passwordCurrent'}
+                    isShow={
+                      name === 'passwordCurrent'
+                        ? showPasswordCurrent
+                        : showPassword
+                    }
+                    isPassword
                     validate
                   />
                 );
@@ -94,13 +131,16 @@ const UpdatePassword = () => {
             </div>
             <div className='update-password__form--confirm'>
               <Input
-                type={input.type}
+                type={showPasswordConfirm ? 'text' : input.type}
                 name={input.name}
                 label={input.label}
                 placeholder={input.placeholder}
                 register={register as unknown as UseFormRegister<FieldValues>}
                 errors={errors}
+                onAction={handleTogglePasswordConfirm}
                 disabled={isLoading}
+                isShow={showPasswordConfirm}
+                isPassword
                 validate
               />
             </div>

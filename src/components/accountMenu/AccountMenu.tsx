@@ -35,12 +35,12 @@ const AccountMenu = ({ query }: { query: string | null }) => {
     return isOpen ? 'account-menu show' : 'account-menu hide';
   }, [isOpen]);
 
-  const menus = accountMenus.slice(0, -1);
-  const lastMenu = accountMenus[accountMenus.length - 1];
-
   useEffect(() => {
     setIsActive(path);
   }, [path]);
+
+  const menus = accountMenus.slice(0, -1);
+  const lastMenu = accountMenus[accountMenus.length - 1];
 
   if (!currentUser || query) {
     return null;
