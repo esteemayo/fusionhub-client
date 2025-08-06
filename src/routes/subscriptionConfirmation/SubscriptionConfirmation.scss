@@ -1,0 +1,39 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.subscription-confirmation {
+  width: 100%;
+  min-height: 85vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 25%;
+    padding: 3rem 2.5rem;
+    background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+    border: 2px solid vars.$clr-tertiary-blue;
+    border-radius: 1rem;
+    color: vars.$clr-white;
+  }
+
+  &__title {
+    display: inline-block;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: currentColor;
+    line-height: 1.2;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    color: currentColor;
+  }
+}

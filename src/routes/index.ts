@@ -6,6 +6,7 @@ import PostDetails from './postDetails/PostDetails';
 import Login from './login/Login';
 import DislikedPosts from './dislikedPosts/DislikedPosts';
 import Posts from './posts/Posts';
+import UnsubscribeConfirmation from './unsubscribeConfirmation/UnsubscribeConfirmation';
 import ProfileSettings from './profileSettings/ProfileSettings';
 
 import SavedPosts from './savedPosts/SavedPosts';
@@ -16,6 +17,7 @@ import ForgotPassword from './forgotPassword/ForgotPassword';
 import Register from './register/Register';
 import ResetPassword from './resetPassword/ResetPassword';
 import Categories from './categories/Categories';
+import SubscriptionConfirmation from './subscriptionConfirmation/SubscriptionConfirmation';
 import PasswordSettings from './passwordSettings/PasswordSettings';
 
 export {
@@ -37,4 +39,6 @@ export {
   Register,
   ResetPassword,
   SavedPosts,
+  SubscriptionConfirmation,
+  UnsubscribeConfirmation,
 };

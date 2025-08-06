@@ -26,6 +26,8 @@ import {
   Register,
   ResetPassword,
   SavedPosts,
+  SubscriptionConfirmation,
+  UnsubscribeConfirmation,
 } from '../routes';
 
 export const router = createBrowserRouter([
@@ -154,6 +156,14 @@ export const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />,
+      },
+      {
+        path: 'subscribe/confirm',
+        element: <SubscriptionConfirmation />,
+      },
+      {
+        path: 'unsubscribe/confirm',
+        element: <UnsubscribeConfirmation />,
       },
       {
         path: '*',
