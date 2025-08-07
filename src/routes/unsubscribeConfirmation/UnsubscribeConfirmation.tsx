@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
+import Lottie from 'lottie-react';
 import { useQuery } from '@tanstack/react-query';
 
 import { useQueryParams } from '../../utils';
 import { confirmUnSubscription } from '../../services/newsletterService';
+
+import errorAnimation from '../../animations/errorAnimation.json';
+import successAnimation from '../../animations/successAnimation.json';
 
 import './UnsubscribeConfirmation.scss';
 
@@ -39,20 +43,38 @@ const UnsubscribeConfirmation = () => {
         )}
         {isSuccess && data && (
           <div className='unsubscribe-confirmation__success'>
-            <h1 className='unsubscribe-confirmation__success--title'>
-              You've been unsubscribed
-            </h1>
+            <div className='unsubscribe-confirmation__success--wrapper'>
+              <h1 className='unsubscribe-confirmation__success--title'>
+                You've been unsubscribed
+              </h1>
+              <Lottie
+                animationData={successAnimation}
+                loop={true}
+                style={{ width: '5rem', height: '5rem' }}
+                className=''
+              />
+            </div>
             <p className='unsubscribe-confirmation__success--message'>
               We're sorry to see you go. You will no longer receive our
               newsletters.
             </p>
+            <Link to='/' className='unsubscribe-confirmation__success--btn'>
+              Back to Home
+            </Link>
           </div>
         )}
         {isError && error && (
           <div className='unsubscribe-confirmation__error'>
-            <h1 className='unsubscribe-confirmation__error--title'>
-              Unsubscribe failed
-            </h1>
+            <div className='unsubscribe-confirmation__success--wrapper'>
+              <h1 className='unsubscribe-confirmation__error--title'>
+                Unsubscribe failed
+              </h1>
+              <Lottie
+                animationData={errorAnimation}
+                loop={true}
+                style={{ width: '5rem', height: '5rem' }}
+              />
+            </div>
             <p className='unsubscribe-confirmation__error--message'>
               The unsubscribe link may be invalid or expired.
             </p>

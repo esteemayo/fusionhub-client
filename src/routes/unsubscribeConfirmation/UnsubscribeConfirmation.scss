@@ -118,6 +118,12 @@
 
   &__success,
   &__error {
+    &--wrapper {
+      display: flex;
+      align-items: center;
+      margin-left: -0.5rem;
+    }
+
     &--title {
       font-weight: 600;
       font-size: 2rem;
@@ -204,12 +210,6 @@
         font-size: 1.95rem;
       }
     }
-  }
-
-  &__error {
-    &--title {
-      text-transform: capitalize;
-    }
 
     &--btn {
       display: inline-block;
@@ -226,6 +226,12 @@
         opacity: 0.75;
         cursor: default;
       }
+    }
+  }
+
+  &__error {
+    &--title {
+      text-transform: capitalize;
     }
   }
 }

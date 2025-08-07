@@ -60,6 +60,32 @@ button {
   font-family: inherit;
 }
 
+input,
+select,
+textarea {
+  &:-webkit-autofill {
+    &:hover,
+    &:focus,
+    &:active {
+      appearance: none !important;
+      background-image: none !important;
+      background-color: transparent !important;
+      color: inherit !important;
+      transition: background-color 300ms ease-in-out 0s;
+    }
+  }
+}
+
+input {
+  &:-internal-autofill-selected {
+    appearance: none !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    transition: background-color 300ms ease-in-out 0s;
+  }
+}
+
 textarea {
   &::-webkit-scrollbar {
     width: 0.6rem;
