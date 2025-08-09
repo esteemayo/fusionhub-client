@@ -17,8 +17,9 @@ import ForgotPassword from './forgotPassword/ForgotPassword';
 import Register from './register/Register';
 import ResetPassword from './resetPassword/ResetPassword';
 import Categories from './categories/Categories';
-import SubscriptionConfirmation from './subscriptionConfirmation/SubscriptionConfirmation';
+import NewsletterUnsubscribe from './newsletterUnsubscribe/NewsletterUnsubscribe';
 import PasswordSettings from './passwordSettings/PasswordSettings';
+import SubscriptionConfirmation from './subscriptionConfirmation/SubscriptionConfirmation';
 
 export {
   About,
@@ -30,6 +31,7 @@ export {
   Home,
   LikedPosts,
   Login,
+  NewsletterUnsubscribe,
   NotFound,
   PasswordSettings,
   Posts,

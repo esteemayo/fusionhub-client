@@ -17,6 +17,7 @@ import {
   Home,
   LikedPosts,
   Login,
+  NewsletterUnsubscribe,
   NotFound,
   PasswordSettings,
   Posts,
@@ -156,6 +157,10 @@ export const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />,
+      },
+      {
+        path: 'newsletter/unsubscribe',
+        element: <NewsletterUnsubscribe />,
       },
       {
         path: 'subscribe/confirm',

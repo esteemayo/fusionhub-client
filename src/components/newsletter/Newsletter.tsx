@@ -29,7 +29,7 @@ const Newsletter = () => {
   const newsletterMutation = useMutation({
     mutationFn: subscribe,
     onSuccess: () => {
-      toast.success('Successfully subscribed to our newsletter!');
+      toast.success('Successfully sent subscription confirmation email.');
     },
     onError: (error: unknown) => {
       if (

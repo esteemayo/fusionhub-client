@@ -2,7 +2,13 @@ import React, { HTMLInputTypeAttribute } from 'react';
 import { Action } from 'redux';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { IconType } from 'react-icons/lib';
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import {
+  FieldErrors,
+  FieldValues,
+  SubmitHandler,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from 'react-hook-form';
 import { Value } from 'react-phone-number-input';
 import {
   FetchNextPageOptions,
@@ -733,6 +739,23 @@ export interface ContactHeadingProps {
   subtitle: string;
   text?: 'sm';
   type: 'lg' | 'md' | 'sm';
+}
+
+export interface UnsubscribeFormProps {
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  isLoading: boolean;
+  onSubmit: SubmitHandler<{
+    email: string;
+  }>;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      email: string;
+    },
+    {
+      email: string;
+    }
+  >;
 }
 
 export interface AboutItemProps {
