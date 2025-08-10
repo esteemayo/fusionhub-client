@@ -1,15 +1,23 @@
+import { SearchProps } from '../../../types';
 import { useSearch } from '../../../hooks/useSearch';
 
 import './Search.scss';
 
-const Search = () => {
+const Search = ({ onClose }: SearchProps) => {
   const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
+
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    handleSubmit(e);
+    onClose?.();
+  };
 
   return (
     <section className='search'>
       <div className='search__container'>
         <h2 className='search__container--heading'>Search</h2>
-        <form className='search__container--form' onSubmit={handleSubmit}>
+        <form className='search__container--form' onSubmit={onSubmitHandler}>
           <input
             type='text'
             name='search'

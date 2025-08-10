@@ -4,7 +4,7 @@ import TagSkeleton from '../tagSkeleton/TagSkeleton';
 import TagItem from '../tagItem/TagItem';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 
-import { TagProps } from '../../types';
+import { TagProps, TagsProps } from '../../types';
 import { getTags } from '../../services/postService';
 
 import './Tags.scss';
@@ -14,7 +14,7 @@ const fetchTags = async () => {
   return data;
 };
 
-const Tags = () => {
+const Tags = ({ onClose }: TagsProps) => {
   const { isPending, error, data } = useQuery<TagProps[]>({
     queryKey: ['tags'],
     queryFn: fetchTags,
@@ -46,7 +46,14 @@ const Tags = () => {
             ) : (
               data?.map((item) => {
                 const { tag, count } = item;
-                return <TagItem key={tag} label={tag} count={count} />;
+                return (
+                  <TagItem
+                    key={tag}
+                    label={tag}
+                    count={count}
+                    onClose={onClose}
+                  />
+                );
               })
             )}
           </div>

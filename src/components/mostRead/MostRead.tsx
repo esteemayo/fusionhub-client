@@ -4,8 +4,8 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import MostReadItem from '../mostReadItem/MostReadItem';
 import MostReadSkeleton from '../mostReadSkeleton/MostReadSkeleton';
 
-import { MostReadPostType } from '../../types';
 import { getMostReadPosts } from '../../services/postService';
+import { MostReadPostType, MostReadProps } from '../../types';
 
 import './MostRead.scss';
 
@@ -14,7 +14,7 @@ const fetchMostReadPosts = async () => {
   return data;
 };
 
-const MostRead = () => {
+const MostRead = ({ onClose }: MostReadProps) => {
   const { isPending, error, data } = useQuery<MostReadPostType | undefined>({
     queryKey: ['mostReadPosts'],
     queryFn: fetchMostReadPosts,
@@ -43,7 +43,7 @@ const MostRead = () => {
           />
         ) : (
           data?.map((post) => {
-            return <MostReadItem key={post._id} {...post} />;
+            return <MostReadItem key={post._id} {...post} onClose={onClose} />;
           })
         )}
       </div>

@@ -4,8 +4,8 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import TopPost from '../topPost/TopPost';
 import TopPostSkeleton from '../topPostSkeleton/TopPostSkeleton';
 
-import { TopPostsType } from '../../types';
 import { getTopPosts } from '../../services/postService';
+import { TopPostsProps, TopPostsType } from '../../types';
 
 import './TopPosts.scss';
 
@@ -14,7 +14,7 @@ const fetchTopPosts = async () => {
   return data;
 };
 
-const TopPosts = () => {
+const TopPosts = ({ onClose }: TopPostsProps) => {
   const { isPending, error, data } = useQuery<TopPostsType | undefined>({
     queryKey: ['topPosts'],
     queryFn: fetchTopPosts,
@@ -43,7 +43,14 @@ const TopPosts = () => {
           />
         ) : (
           data?.map((post, index: number) => {
-            return <TopPost key={post._id} index={index} {...post} />;
+            return (
+              <TopPost
+                key={post._id}
+                index={index}
+                {...post}
+                onClose={onClose}
+              />
+            );
           })
         )}
       </div>

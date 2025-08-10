@@ -4,10 +4,14 @@ import { MostReadItemProps } from '../../types';
 
 import './MostReadItem.scss';
 
-const MostReadItem = ({ slug, title, views }: MostReadItemProps) => {
+const MostReadItem = ({ slug, title, views, onClose }: MostReadItemProps) => {
   return (
     <article className='most-read-item'>
-      <Link to={`/post/${slug}`} className='most-read-item__link'>
+      <Link
+        to={`/post/${slug}`}
+        onClick={onClose}
+        className='most-read-item__link'
+      >
         <span className='most-read-item__link--title'>{title}</span> {''}
         <span className='most-read-item__link--views'>
           ({views.toLocaleString()} views)

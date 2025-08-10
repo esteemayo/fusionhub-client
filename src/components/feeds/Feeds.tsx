@@ -4,7 +4,7 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import Feed from '../feed/Feed';
 import FeedSkeleton from '../feedSkeleton/FeedSkeleton';
 
-import { FeedType } from '../../types';
+import { FeedsProps, FeedType } from '../../types';
 import { getTrendingPosts } from '../../services/postService';
 
 import './Feeds.scss';
@@ -14,7 +14,7 @@ const fetchTrendingPosts = async () => {
   return data;
 };
 
-const Feeds = ({ postId }: { postId: string }) => {
+const Feeds = ({ postId, onClose }: FeedsProps) => {
   const { isPending, error, data } = useQuery<FeedType | undefined>({
     queryKey: ['trends'],
     queryFn: fetchTrendingPosts,
@@ -45,7 +45,7 @@ const Feeds = ({ postId }: { postId: string }) => {
           data
             ?.filter((item) => item._id !== postId)
             .map((feed) => {
-              return <Feed key={feed._id} {...feed} />;
+              return <Feed key={feed._id} {...feed} onClose={onClose} />;
             })
         )}
       </div>

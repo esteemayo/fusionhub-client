@@ -305,6 +305,11 @@
     gap: 1.5rem;
 
     margin-top: 1rem;
+
+    @include bp.sm {
+      flex-direction: column-reverse;
+      gap: 0.5rem;
+    }
   }
 
   &__box {

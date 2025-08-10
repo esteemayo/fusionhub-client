@@ -1,11 +1,15 @@
 import { useMemo } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
-import { CategoryProps } from '../../types';
+import { CategoryListItemProps } from '../../types';
 
-import './Category.scss';
+import './CategoryListItem.scss';
 
-const Category = ({ category, count }: CategoryProps) => {
+const CategoryListItem = ({
+  category,
+  count,
+  onClose,
+}: CategoryListItemProps) => {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -16,6 +20,8 @@ const Category = ({ category, count }: CategoryProps) => {
         category,
       });
     }
+
+    onClose?.();
   };
 
   const formattedCount = useMemo(() => {
@@ -28,19 +34,19 @@ const Category = ({ category, count }: CategoryProps) => {
   }, [count]);
 
   return (
-    <article className='category'>
+    <article className='category-list-item'>
       {pathname === '/posts' ? (
-        <span className='category__label' onClick={handleCategory}>
+        <span className='category-list-item__label' onClick={handleCategory}>
           {category}
         </span>
       ) : (
-        <Link to={`/posts?category=${category}`}>
-          <span className='category__label'>{category}</span>
+        <Link to={`/posts?category=${category}`} onClick={onClose}>
+          <span className='category-list-item__label'>{category}</span>
         </Link>
       )}
-      <span className='category__total'>({formattedCount})</span>
+      <span className='category-list-item__total'>({formattedCount})</span>
     </article>
   );
 };
 
-export default Category;
+export default CategoryListItem;

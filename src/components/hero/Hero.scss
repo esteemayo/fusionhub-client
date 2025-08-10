@@ -267,9 +267,8 @@
 
     margin-top: 1rem;
 
-    @media screen and (max-width: 18.75em) {
+    @include bp.sm {
       flex-direction: column-reverse;
-      align-items: flex-start;
       gap: 0.5rem;
     }
 

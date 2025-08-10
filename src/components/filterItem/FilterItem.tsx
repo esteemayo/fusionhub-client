@@ -4,7 +4,7 @@ import { FilterItemProps } from '../../types';
 
 import './FilterItem.scss';
 
-const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
+const FilterItem = ({ id, name, value, label, onClose }: FilterItemProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChange = ({
@@ -18,6 +18,8 @@ const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
         [name]: value,
       });
     }
+
+    onClose?.();
   };
 
   return (
@@ -25,9 +27,9 @@ const FilterItem = ({ id, name, value, label }: FilterItemProps) => {
       <div className='filter-item__container'>
         <div className='filter-item__group'>
           <input
-            type='radio'
-            name={name}
             id={id}
+            name={name}
+            type='radio'
             value={value}
             onChange={handleChange}
             className='filter-item__group--control'

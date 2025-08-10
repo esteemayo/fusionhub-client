@@ -8,11 +8,22 @@ import ActionMenus from '../actionMenus/ActionMenus';
 
 import Search from '../../routes/postDetails/search/Search';
 
+import { useAppDispatch } from '../../hooks/hooks';
+import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
+
 import { PostMenuActionsProps } from '../../types';
 
 import './PostMenuActions.scss';
 
 const PostMenuActions = ({ isOpen, post }: PostMenuActionsProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleClose = () => {
+    if (isOpen) {
+      dispatch(onClose());
+    }
+  };
+
   const postMenuActionsClasses = useMemo(() => {
     return isOpen ? 'post-menu-actions show' : 'post-menu-actions hide';
   }, [isOpen]);
@@ -20,12 +31,12 @@ const PostMenuActions = ({ isOpen, post }: PostMenuActionsProps) => {
   return (
     <aside className={postMenuActionsClasses}>
       <div className='post-menu-actions__container'>
-        <Search />
+        <Search onClose={handleClose} />
         <ActionMenus post={post} />
-        <Categories />
-        <Feeds postId={post?._id} />
-        <Tags />
-        <Follow />
+        <Categories onClose={handleClose} />
+        <Feeds postId={post?._id} onClose={handleClose} />
+        <Tags onClose={handleClose} />
+        <Follow onClose={handleClose} />
       </div>
     </aside>
   );

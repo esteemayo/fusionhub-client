@@ -6,7 +6,14 @@ import { formatDate } from '../../utils/formatDate';
 
 import './TopPost.scss';
 
-const TopPost = ({ index, slug, title, tags, createdAt }: TopPostProps) => {
+const TopPost = ({
+  index,
+  slug,
+  title,
+  tags,
+  createdAt,
+  onClose,
+}: TopPostProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleTagChange = (tag: string) => {
@@ -31,7 +38,11 @@ const TopPost = ({ index, slug, title, tags, createdAt }: TopPostProps) => {
       <div className='top-post__container'>
         <span className='top-post__container--number'>{index + 1}</span>
         <div className='top-post__wrapper'>
-          <Link to={`/post/${slug}`} className='top-post__wrapper--title'>
+          <Link
+            to={`/post/${slug}`}
+            onClick={onClose}
+            className='top-post__wrapper--title'
+          >
             <span>{title}</span>
           </Link>
           <div className='top-post__box'>

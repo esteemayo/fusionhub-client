@@ -7,7 +7,7 @@ import { useDate } from '../../hooks/useDate';
 
 import './Feed.scss';
 
-const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
+const Feed = ({ img, title, slug, createdAt, onClose }: FeedProps) => {
   const { formattedDate } = useDate(createdAt);
 
   return (
@@ -23,7 +23,9 @@ const Feed = ({ img, title, slug, createdAt }: FeedProps) => {
       </div>
       <div className='feed__box'>
         <h3 className='feed__box--title'>
-          <Link to={`/post/${slug}`}>{title}</Link>
+          <Link to={`/post/${slug}`} onClick={onClose}>
+            {title}
+          </Link>
         </h3>
         <time dateTime={createdAt} className='feed__box--date'>
           <svg

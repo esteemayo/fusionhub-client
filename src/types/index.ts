@@ -238,12 +238,18 @@ export interface PostItemsProps {
   >;
 }
 
+export interface FeedsProps {
+  postId: string;
+  onClose(): void;
+}
+
 export interface FeedProps {
   _id: string;
   img: string;
   title: string;
   slug: string;
   createdAt: string;
+  onClose(): void;
 }
 
 export interface RelatedPostProps {
@@ -255,6 +261,10 @@ export interface RelatedPostProps {
   createdAt: string;
 }
 
+export interface TopPostsProps {
+  onClose(): void;
+}
+
 export interface TopPostProps {
   _id: string;
   title: string;
@@ -262,6 +272,11 @@ export interface TopPostProps {
   tags: string[];
   createdAt: string;
   index: number;
+  onClose(): void;
+}
+
+export interface MostReadProps {
+  onClose(): void;
 }
 
 export interface MostReadItemProps {
@@ -269,6 +284,7 @@ export interface MostReadItemProps {
   title: string;
   views: number;
   slug: string;
+  onClose(): void;
 }
 
 export interface AuthLinkProps {
@@ -277,11 +293,16 @@ export interface AuthLinkProps {
   urlLabel: string;
 }
 
+export interface FilterProps {
+  onClose(): void;
+}
+
 export interface FilterItemProps {
   id: string;
   name: string;
   value: string;
   label: string;
+  onClose(): void;
 }
 
 export type CategoryType = {
@@ -298,16 +319,33 @@ export type CategoryItemType = {
   count: number;
 };
 
-export type CategoryProps = CategoryItemType;
+export interface CategoryListsProps {
+  onClose(): void;
+}
+
+type CategoryListItemAction = {
+  onClose(): void;
+};
+
+export type CategoryListItemProps = CategoryItemType & CategoryListItemAction;
 
 export type TagProps = {
   tag: string;
   count: number;
 };
 
+export interface TagsProps {
+  onClose(): void;
+}
+
 export interface TagItemProps {
   label: string;
   count?: number;
+  onClose?(): void;
+}
+
+export interface FollowProps {
+  onClose(): void;
 }
 
 export interface CardProps {
@@ -786,6 +824,10 @@ export interface PostContentProps {
 export interface PostMenuActionsProps {
   isOpen: boolean;
   post: PostType;
+}
+
+export interface SearchProps {
+  onClose(): void;
 }
 
 export interface ActionMenusProps {

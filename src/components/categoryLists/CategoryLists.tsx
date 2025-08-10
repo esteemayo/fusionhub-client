@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
+import CategoryListItem from '../categoryListItem/CategoryListItem';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
-import Category from '../category/Category';
 import CategoryListSkeleton from '../categoryListSkeleton/CategoryListSkeleton';
 
-import { CategoryItemType } from '../../types';
 import { getCountByCategory } from '../../services/postService';
+import { CategoryItemType, CategoryListsProps } from '../../types';
 
 import './CategoryLists.scss';
 
@@ -14,7 +14,7 @@ const fetchCountByCategory = async () => {
   return data;
 };
 
-const CategoryLists = () => {
+const CategoryLists = ({ onClose }: CategoryListsProps) => {
   const { isPending, error, data } = useQuery<CategoryItemType[]>({
     queryKey: ['categoryCount'],
     queryFn: fetchCountByCategory,
@@ -45,7 +45,13 @@ const CategoryLists = () => {
           data
             ?.filter((item) => item.count !== 0)
             .map((item) => {
-              return <Category key={item.category} {...item} />;
+              return (
+                <CategoryListItem
+                  key={item.category}
+                  {...item}
+                  onClose={onClose}
+                />
+              );
             })
         )}
       </div>
