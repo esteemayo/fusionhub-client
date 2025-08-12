@@ -210,6 +210,30 @@
       background-color: vars.$clr-tertiary-blue;
       color: vars.$clr-white;
       border-radius: 2px;
+      overflow: hidden;
+
+      &.active {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 0.5rem;
+          height: 100%;
+          background-image: linear-gradient(
+            0,
+            vars.$clr-pink-dark-1 0%,
+            vars.$clr-pink-dark-2 20%,
+            vars.$clr-orange-dark 40%,
+            vars.$clr-pink-light 60%,
+            vars.$clr-orange-dark 85%,
+            vars.$clr-orange-light 95%
+          );
+          background-attachment: fixed;
+        }
+      }
 
       span {
         text-transform: uppercase;

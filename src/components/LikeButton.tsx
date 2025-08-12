@@ -1,3 +1,5 @@
+import millify from 'millify';
+
 import LikeIcon from './LikeIcon';
 
 import { LikeButtonProps } from '../types';
@@ -11,7 +13,7 @@ const LikeButton = ({
   return (
     <button type='button' onClick={onAction} disabled={isLoading}>
       <LikeIcon liked={hasLiked} />
-      <span>{count}</span>
+      <span>{millify(count)}</span>
     </button>
   );
 };

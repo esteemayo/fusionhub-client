@@ -1,3 +1,5 @@
+import millify from 'millify';
+
 import DislikeIcon from './DislikeIcon';
 
 import { DislikeButtonProps } from '../types';
@@ -11,7 +13,7 @@ const DislikeButton = ({
   return (
     <button type='button' onClick={onAction} disabled={isLoading}>
       <DislikeIcon disliked={hasDisliked} />
-      <span>{count}</span>
+      <span>{millify(count)}</span>
     </button>
   );
 };

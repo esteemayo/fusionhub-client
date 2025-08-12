@@ -1,3 +1,4 @@
+import millify from 'millify';
 import { useMemo } from 'react';
 
 import SaveIcon from './SaveIcon';
@@ -18,7 +19,7 @@ const SavePost = ({
   return (
     <button type='button' onClick={onSave} disabled={isLoading || isAdmin}>
       <SaveIcon isLoading={isLoading} hasSaved={hasSaved} />
-      <span>{count}</span>
+      <span>{millify(count)}</span>
     </button>
   );
 };

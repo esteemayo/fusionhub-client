@@ -118,6 +118,11 @@ img {
   }
 }
 
+.fade-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .quill {
   width: 100%;
   border-radius: 0.5rem !important;
