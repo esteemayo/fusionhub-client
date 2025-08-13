@@ -62,33 +62,33 @@
       }
 
       @include bp.sm {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-
-      @media screen and (max-width: 26.875em) {
-        width: 2.35rem;
-        height: 2.35rem;
-      }
-
-      @media screen and (max-width: 22.5em) {
-        width: 2.25rem;
-        height: 2.25rem;
-      }
-
-      @media screen and (max-width: 21.5em) {
         width: 2.15rem;
         height: 2.15rem;
       }
 
+      @media screen and (max-width: 26.875em) {
+        width: 2.05rem;
+        height: 2.05rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 1.95rem;
+        height: 1.95rem;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
       @media screen and (max-width: 18.75em) {
-        width: 2rem;
-        height: 2rem;
+        width: 1.75rem;
+        height: 1.75rem;
       }
 
       @media screen and (max-width: 17.5em) {
-        width: 1.6rem;
-        height: 1.6rem;
+        width: 1.65rem;
+        height: 1.65rem;
       }
 
       @media screen and (min-width: 106.25em) {

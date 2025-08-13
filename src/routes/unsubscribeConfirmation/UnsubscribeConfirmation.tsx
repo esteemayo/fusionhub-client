@@ -56,7 +56,7 @@ const UnsubscribeConfirmation = () => {
             </h1>
             <Lottie
               animationData={successAnimation}
-              loop={true}
+              loop={false}
               className='unsubscribe-confirmation__success--animation'
             />
           </div>
@@ -75,7 +75,7 @@ const UnsubscribeConfirmation = () => {
             </h1>
             <Lottie
               animationData={errorAnimation}
-              loop={true}
+              loop={false}
               className='unsubscribe-confirmation__error--animation'
             />
           </div>

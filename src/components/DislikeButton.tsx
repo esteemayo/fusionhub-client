@@ -13,7 +13,7 @@ const DislikeButton = ({
   return (
     <button type='button' onClick={onAction} disabled={isLoading}>
       <DislikeIcon disliked={hasDisliked} />
-      <span>{millify(count)}</span>
+      {count > 0 && <span>{millify(count)}</span>}
     </button>
   );
 };

@@ -24,7 +24,7 @@ const PostViews = ({ views }: { views: number }) => {
           d='M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'
         />
       </svg>
-      <span>{millify(views)} views</span>
+      {views > 0 && <span>{millify(views)} views</span>}
     </div>
   );
 };

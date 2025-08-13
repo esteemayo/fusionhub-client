@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import CommentCard from '../commentCard/CommentCard';
@@ -8,7 +9,12 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import Image from '../Image';
 
 import { useAppSelector } from '../../hooks/hooks';
-import { CommentProps, PostTypeWithAuthor, RoleType } from '../../types';
+import {
+  CommentImageType,
+  CommentProps,
+  PostTypeWithAuthor,
+  RoleType,
+} from '../../types';
 
 import './Comment.scss';
 
@@ -29,7 +35,15 @@ const Comment = ({
   onUpdate,
   onOpen,
 }: CommentProps) => {
-  const { user } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const url = (user: CommentImageType) => {
+    return currentUser
+      ? currentUser.details._id === user._id
+        ? '/accounts/profile'
+        : `/accounts/profile?username=${user.username}`
+      : `/posts?author=${user.username}`;
+  };
 
   const commentHeading = useMemo(() => {
     return (comments ?? [])?.length > 1 ? 'Comments' : 'Comment';
@@ -80,14 +94,15 @@ const Comment = ({
                   const { _id: userId, image } = user;
 
                   return (
-                    <Image
-                      key={userId}
-                      src={image}
-                      width={50}
-                      height={50}
-                      alt='avatar'
-                      className='comment__user--img'
-                    />
+                    <Link key={userId} to={url(user)}>
+                      <Image
+                        src={image}
+                        width={50}
+                        height={50}
+                        alt='avatar'
+                        className='comment__user--img'
+                      />
+                    </Link>
                   );
                 })}
                 <div className={defaultImgClasses}>
@@ -127,11 +142,11 @@ const Comment = ({
                 } (Sending...)`,
                 post: mutation.variables as unknown as PostTypeWithAuthor,
                 author: {
-                  _id: user?.details._id as string,
-                  name: user?.details.name as string,
-                  username: user?.details.username as string,
-                  image: user?.details.image as string,
-                  role: user?.role as RoleType,
+                  _id: currentUser?.details._id as string,
+                  name: currentUser?.details.name as string,
+                  username: currentUser?.details.username as string,
+                  image: currentUser?.details.image as string,
+                  role: currentUser?.role as RoleType,
                 },
                 likes: [],
                 likeCount: 0,

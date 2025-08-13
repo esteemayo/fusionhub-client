@@ -26,9 +26,19 @@
       object-fit: cover;
       border-radius: 50%;
 
+      @media screen and (max-width: 28.125em) {
+        width: 5rem;
+        height: 5rem;
+      }
+
       @media screen and (max-width: 26.875em) {
         width: 4rem;
         height: 4rem;
+      }
+
+      @media screen and (max-width: 25em) {
+        width: 3.75rem;
+        height: 3.75rem;
       }
 
       @media screen and (max-width: 21.5em) {
@@ -71,8 +81,20 @@
         font-size: 1.5rem;
       }
 
+      @media screen and (max-width: 34.375em) {
+        font-size: var(--default-font-size);
+      }
+
+      @include bp.sm {
+        font-size: 1.7rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.55rem;
+      }
+
       @media screen and (max-width: 18.75em) {
-        font-size: 1.3rem;
+        font-size: 1.45rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -176,8 +198,20 @@
           font-size: 1.5rem;
         }
 
+        @media screen and (max-width: 34.375em) {
+          font-size: var(--default-font-size);
+        }
+
+        @include bp.sm {
+          font-size: 1.7rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.55rem;
+        }
+
         @media screen and (max-width: 18.75em) {
-          font-size: 1.3rem;
+          font-size: 1.45rem;
         }
 
         @media screen and (min-width: 106.25em) {
@@ -213,15 +247,23 @@
       }
 
       @media screen and (max-width: 51.25em) {
-        font-size: var(--default-font-size);
+        font-size: 1.7rem;
       }
 
-      @media screen and (max-width: 21.5em) {
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.8rem;
+      }
+
+      @include bp.sm {
+        font-size: 1.9rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.75rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
         font-size: 1.65rem;
-      }
-
-      @media screen and (max-width: 17.5em) {
-        font-size: var(--default-font-size);
       }
 
       @media screen and (min-width: 106.25em) {
@@ -250,12 +292,20 @@
         font-size: var(--default-font-size);
       }
 
-      @media screen and (max-width: 21.5em) {
-        font-size: 1.55rem;
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.7rem;
       }
 
-      @media screen and (max-width: 17.5em) {
-        font-size: 1.5rem;
+      @include bp.sm {
+        font-size: 1.8rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.65rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.55rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -283,16 +333,28 @@
       cursor: pointer;
       position: relative;
 
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.4rem;
+      }
+
       @media screen and (max-width: 51.25em) {
         font-size: 1.5rem;
       }
 
-      @media screen and (max-width: 21.5em) {
-        font-size: 1.45rem;
+      @media screen and (max-width: 34.375em) {
+        font-size: var(--default-font-size);
       }
 
-      @media screen and (max-width: 17.5em) {
-        font-size: 1.4rem;
+      @include bp.sm {
+        font-size: 1.7rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.45rem;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -332,6 +394,7 @@
 
   &__wrap {
     width: 100%;
+    margin-top: 1rem;
 
     display: flex;
     align-items: baseline;

@@ -19,7 +19,7 @@ const SavePost = ({
   return (
     <button type='button' onClick={onSave} disabled={isLoading || isAdmin}>
       <SaveIcon isLoading={isLoading} hasSaved={hasSaved} />
-      <span>{millify(count)}</span>
+      {count > 0 && <span>{millify(count)}</span>}
     </button>
   );
 };

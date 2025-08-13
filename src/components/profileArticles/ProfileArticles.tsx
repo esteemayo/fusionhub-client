@@ -40,12 +40,7 @@ const ProfileArticles = ({
           next={fetchNextPage}
           hasMore={!!hasNextPage}
           loader={<ProfileSpinner />}
-          endMessage={
-            null
-            // <span className='profile-articles__message'>
-            //   There are no more articles to display.
-            // </span>
-          }
+          endMessage={null}
         >
           {posts.map((post) => {
             return (

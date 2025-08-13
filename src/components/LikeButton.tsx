@@ -13,7 +13,7 @@ const LikeButton = ({
   return (
     <button type='button' onClick={onAction} disabled={isLoading}>
       <LikeIcon liked={hasLiked} />
-      <span>{millify(count)}</span>
+      {count > 0 && <span>{millify(count)}</span>}
     </button>
   );
 };

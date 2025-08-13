@@ -56,7 +56,7 @@ const SubscriptionConfirmation = () => {
             </h1>
             <Lottie
               animationData={successAnimation}
-              loop={true}
+              loop={false}
               className='subscription-confirmation__success--animation'
             />
           </div>
@@ -78,7 +78,7 @@ const SubscriptionConfirmation = () => {
             </h1>
             <Lottie
               animationData={errorAnimation}
-              loop={true}
+              loop={false}
               className='subscription-confirmation__error--animation'
             />
           </div>

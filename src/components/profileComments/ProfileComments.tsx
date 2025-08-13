@@ -40,14 +40,7 @@ const ProfileComments = ({
           next={fetchNextPage}
           hasMore={!!hasNextPage}
           loader={<ProfileSpinner />}
-          endMessage={
-            null
-            // <span className='profile-comments__message'>
-            //   🎉 You've reached the end of the comments. Thanks for reading and
-            //   engaging! If you have something to add, feel free to leave a
-            //   comment.
-            // </span>
-          }
+          endMessage={null}
         >
           {comments.map((comment) => {
             return <ProfileComment key={comment._id} {...comment} />;

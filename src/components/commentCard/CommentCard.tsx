@@ -227,8 +227,8 @@ const CommentCard = ({
   }, [author?._id]);
 
   const postAuthorId = useMemo(() => {
-    return post?.author._id;
-  }, [post?.author._id]);
+    return post?.author?._id;
+  }, [post?.author?._id]);
 
   const isCommentAuthor = useMemo(() => {
     return author?._id === userId;
@@ -344,7 +344,7 @@ const CommentCard = ({
         <CommentAction
           authorRole={author.role}
           currentUser={currentUser}
-          postAuthorRole={post.author.role}
+          postAuthorRole={post?.author?.role}
           isAdmin={isAdmin}
           isCommentAuthor={isCommentAuthor}
           isPostAuthor={isPostAuthor}

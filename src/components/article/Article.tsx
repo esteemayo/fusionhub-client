@@ -227,7 +227,9 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
                       d='M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z'
                     />
                   </svg>
-                  <span>{millify(post.comments.length)}</span>
+                  {post.comments.length > 0 && (
+                    <span>{millify(post.comments.length)}</span>
+                  )}
                 </button>
               </div>
               <div className='article__actions--likes'>
@@ -237,7 +239,7 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
                   disabled={likeMutation.isPending}
                 >
                   <LikeIcon liked={isLiked} />
-                  <span>{millify(post.likeCount)}</span>
+                  {post.likeCount > 0 && <span>{millify(post.likeCount)}</span>}
                 </button>
               </div>
               <div className='article__actions--dislikes'>
@@ -247,7 +249,9 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
                   disabled={disLikeMutation.isPending}
                 >
                   <DislikeIcon disliked={isDisliked} />
-                  <span>{millify(post.dislikeCount)}</span>
+                  {post.dislikeCount > 0 && (
+                    <span>{millify(post.dislikeCount)}</span>
+                  )}
                 </button>
               </div>
               <div className='article__actions--saved-post'>
@@ -260,7 +264,7 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
                     isLoading={saveMutation.isPending}
                     hasSaved={isSaved}
                   />
-                  <span>{post.savedCount}</span>
+                  {post.savedCount > 0 && <span>{post.savedCount}</span>}
                 </button>
               </div>
             </div>

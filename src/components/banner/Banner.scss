@@ -4,7 +4,6 @@
 .banner {
   width: 100%;
   height: 17rem;
-  // background-image: url('https://ik.imagekit.io/devayo/post-2.jpeg');
   background-color: rgba(vars.$clr-black, 0.2);
   background-size: cover;
   background-position: center;
@@ -309,24 +308,19 @@
       height: 5rem;
     }
 
-    @media screen and (max-width: 34.375em) {
-      width: 5.25rem;
-      height: 5.25rem;
-    }
-
     @include bp.sm {
-      width: 5.35rem;
-      height: 5.35rem;
+      width: 4.75rem;
+      height: 4.75rem;
     }
 
     @media screen and (max-width: 22.5em) {
-      width: 5.2rem;
-      height: 5.2rem;
+      width: 4.6rem;
+      height: 4.6rem;
     }
 
     @media screen and (max-width: 18.75em) {
-      width: 5.1rem;
-      height: 5.1rem;
+      width: 4.5rem;
+      height: 4.5rem;
     }
 
     @media screen and (min-width: 106.25em) {
@@ -364,24 +358,19 @@
         height: 2rem;
       }
 
-      @media screen and (max-width: 34.375em) {
-        width: 2.1rem;
-        height: 2.1rem;
-      }
-
       @include bp.sm {
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 1.85rem;
+        height: 1.85rem;
       }
 
       @media screen and (max-width: 22.5em) {
-        width: 2.05rem;
-        height: 2.05rem;
+        width: 1.7rem;
+        height: 1.7rem;
       }
 
       @media screen and (max-width: 18.75em) {
-        width: 1.9rem;
-        height: 1.9rem;
+        width: 1.6rem;
+        height: 1.6rem;
       }
 
       @media screen and (min-width: 106.25em) {
