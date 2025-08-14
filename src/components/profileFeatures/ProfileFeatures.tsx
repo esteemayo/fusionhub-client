@@ -1,5 +1,7 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+
+import Tabs from '../tabs/Tabs';
 
 import ProfileArticles from '../profileArticles/ProfileArticles';
 import ProfileReplies from '../profileReplies/ProfileReplies';
@@ -9,7 +11,6 @@ import { getRepliesByUser } from '../../services/replyService';
 import * as postAPI from '../../services/postService';
 import { getCommentsByUser } from '../../services/commentService';
 
-import { profileMenus } from '../../data';
 import {
   CommentType,
   PostType,
@@ -25,8 +26,6 @@ const createFetcher =
     fn(userId, pageParam).then((res) => res.data);
 
 const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
-  const [isSelected, setIsSelected] = useState('articles');
-
   type FeatureKey = 'articles' | 'comments' | 'likes' | 'replies' | 'dislikes';
 
   const fetchers: Record<
@@ -95,22 +94,6 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     data: dislikesData,
   } = useFeatureQuery('dislikes');
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-      e.stopPropagation();
-      setIsSelected(id);
-    },
-    []
-  );
-
-  const btnClasses = useCallback(
-    (id: string) =>
-      isSelected === id
-        ? 'profile-features__buttons--btn active'
-        : 'profile-features__buttons--btn',
-    [isSelected]
-  );
-
   const profileClasses = useMemo(
     () => (query ? 'profile-features show' : 'profile-features hide'),
     [query]
@@ -143,6 +126,11 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
   const allDislikes = useMemo(
     () => extract(dislikesData, 'posts'),
     [dislikesData]
+  );
+
+  const tabs = useMemo(
+    () => ['articles', 'comments', 'likes', 'replies', 'dislikes'],
+    []
   );
 
   const featureContent: Record<string, JSX.Element> = {
@@ -208,23 +196,11 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
   return (
     <section className={profileClasses}>
       <div className='profile-features__container'>
-        <div className='profile-features__wrapper'>
-          <div className='profile-features__buttons'>
-            {profileMenus.map(({ id, label }) => (
-              <button
-                key={id}
-                type='button'
-                className={btnClasses(id)}
-                onClick={(e) => handleClick(e, id)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className='profile-features__box'>
-          {featureContent[isSelected]}
-        </div>
+        <Tabs
+          tabs={tabs}
+          defaultValue='articles'
+          renderContent={(tab) => featureContent[tab]}
+        />
       </div>
     </section>
   );

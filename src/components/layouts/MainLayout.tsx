@@ -16,7 +16,7 @@ import ErrorBoundary from '../errors/ErrorBoundary';
 
 const MainLayout = () => {
   return (
-    <main id='page-content' className='fade-wrapper'>
+    <main>
       <SkeletonProvider>
         <ScrollToTop />
         <Navbar />
@@ -24,7 +24,9 @@ const MainLayout = () => {
         <ToasterProvider />
         <ModalProvider />
         <ErrorBoundary>
-          <Outlet />
+          <div id='page-content' className='fade-wrapper'>
+            <Outlet />
+          </div>
         </ErrorBoundary>
         <Footer />
         <AddPost />

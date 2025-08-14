@@ -455,6 +455,13 @@ export interface ProfileFeaturesProps {
   userId: string;
 }
 
+export interface TabsProps {
+  tabs: string[];
+  defaultValue?: string;
+  onChange?(tab: string): void;
+  renderContent?(tab: string): React.ReactNode;
+}
+
 export interface ProfileArticlesProps {
   posts: PostType[];
   userId: string;

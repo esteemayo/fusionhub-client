@@ -1,3 +1,4 @@
+@use '../src/styles/animation.scss' as anim;
 @use '../src/styles/responsive.scss' as bp;
 @use '../src/styles/variables.scss' as vars;
 
@@ -121,6 +122,10 @@ img {
 .fade-wrapper {
   opacity: 1;
   transform: translateY(0);
+}
+
+.fade-in {
+  animation: fadeInZoom 0.4s ease;
 }
 
 .quill {
