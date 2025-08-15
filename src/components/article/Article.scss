@@ -13,7 +13,7 @@
     align-items: flex-start;
     gap: 1.25rem;
 
-    @media screen and (max-width: 20em) {
+    @media screen and (max-width: 21.5em) {
       gap: 1rem;
     }
   }
@@ -255,34 +255,34 @@
     }
 
     &--dot {
-      font-size: 1rem;
+      font-size: 0.65rem;
 
       @media screen and (max-width: 56.25em) {
-        font-size: 1.2rem;
+        font-size: 0.75rem;
       }
 
       @media screen and (max-width: 51.25em) {
-        font-size: 1.3rem;
+        font-size: 0.85rem;
       }
 
       @media screen and (max-width: 21.5em) {
-        font-size: 1.35rem;
+        font-size: 0.7rem;
       }
 
       @media screen and (max-width: 17.5em) {
-        font-size: 1.2rem;
+        font-size: 0.6rem;
       }
 
       @media screen and (min-width: 106.25em) {
-        font-size: 1.2rem;
+        font-size: 0.75rem;
       }
 
       @media screen and (min-width: 112.5em) {
-        font-size: 1.3rem;
+        font-size: 0.85rem;
       }
 
       @media screen and (min-width: 125em) {
-        font-size: var(--default-font-size);
+        font-size: 1rem;
       }
     }
 

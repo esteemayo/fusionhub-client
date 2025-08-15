@@ -6,6 +6,7 @@ import './Tabs.scss';
 
 const Tabs = ({ tabs, defaultValue, onChange, renderContent }: TabsProps) => {
   const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const [activeTab, setActiveTab] = useState(defaultValue || tabs[0]);
   const [fadeKey, setFadeKey] = useState(0);
@@ -38,12 +39,19 @@ const Tabs = ({ tabs, defaultValue, onChange, renderContent }: TabsProps) => {
         transition:
           'left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
       });
+
+      if (containerRef.current) {
+        containerRef.current.scrollTo({
+          left: activeTabElement.offsetLeft - 20,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [activeTab, tabs]);
 
   return (
     <div className='tabs'>
-      <div className='tabs__container'>
+      <div ref={containerRef} className='tabs__container scrollable-tabs'>
         {tabs.map((tab, index) => (
           <button
             key={tab}
@@ -59,8 +67,8 @@ const Tabs = ({ tabs, defaultValue, onChange, renderContent }: TabsProps) => {
           &nbsp;
         </span>
       </div>
-      <div key={fadeKey} className='tabs__content fade-in'>
-        {renderContent ? renderContent(activeTab) : <p>{activeTab}</p>}
+      <div key={fadeKey} className='tabs__content fade-in-zoom'>
+        {renderContent ? renderContent(activeTab) : <p>{activeTab} content</p>}
       </div>
     </div>
   );
