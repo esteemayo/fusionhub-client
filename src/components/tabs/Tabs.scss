@@ -9,7 +9,7 @@
 
     position: relative;
     padding: 0.5rem 0;
-    border-bottom: 2px solid vars.$clr-gray-light-3;
+    border-bottom: 2px solid vars.$clr-gray-light-1;
 
     @include bp.md {
       justify-content: flex-start;
@@ -36,6 +36,7 @@
     &.scrollable-tabs {
       @include bp.md {
         overflow-x: auto;
+        overflow: visible;
         scrollbar-width: none;
 
         &::-webkit-scrollbar {
@@ -55,7 +56,7 @@
     font-size: 1.5rem;
     padding-bottom: 0.5rem;
     background-color: transparent;
-    color: vars.$clr-gray-light-3;
+    color: vars.$clr-gray-light-1;
     cursor: pointer;
     transition: color 0.3s ease;
     position: relative;

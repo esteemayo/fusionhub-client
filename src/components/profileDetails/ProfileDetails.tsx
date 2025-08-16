@@ -114,34 +114,36 @@ const ProfileDetails = ({
           </svg>
           <span>{country}</span>
         </div>
-        <div className='profile-details__wrap--box'>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 400 400'
-            stroke='currentColor'
-            width='800'
-            height='800'
-          >
-            <path
-              d='M149.16 81.999c21.928-23.51 64.493-23.51 90.987-9.226 15.255 8.225 27.863 19.016 36.854 34.023 11.792 19.681 16.618 37.904 12.093 60.552C264.771 289.147 110 256.561 110 147.743c0-20.778 5.161-39.455 21.882-52.478m42.872 190.252c18.557-2.4 46.598-5.046 59.358-3.371m4.046 7.493c-6.105 13.174-4.345 28.673-9.443 41.82m-8.093 4.119c-11.866-.684-23.287 1.348-35.075 1.348m-14.84-47.287c5.085 14.583 14.839 28.688 14.839 44.518'
+        {dateOfBirth && (
+          <div className='profile-details__wrap--box'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 400 400'
               stroke='currentColor'
-              stroke-opacity='.9'
-              stroke-width='16'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-            />
-            <path
-              d='M234.423 237.025c11.297 13.465-5.009 41.371-22.617 33.792-17.02-7.33-6.096-26.51 6.958-27.965m-107.416-77.325c15.82 39.134 36.679 77.796 59.357 113.32m120.066-107.923c-18.012 37.246-30.637 77.853-51.263 113.319'
-              stroke='currentColor'
-              stroke-opacity='.9'
-              stroke-width='16'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-            />
-          </svg>
-          {dateOfBirth && <span>Born {formattedDateOfBirth}</span>}
-        </div>
+              width='800'
+              height='800'
+            >
+              <path
+                d='M149.16 81.999c21.928-23.51 64.493-23.51 90.987-9.226 15.255 8.225 27.863 19.016 36.854 34.023 11.792 19.681 16.618 37.904 12.093 60.552C264.771 289.147 110 256.561 110 147.743c0-20.778 5.161-39.455 21.882-52.478m42.872 190.252c18.557-2.4 46.598-5.046 59.358-3.371m4.046 7.493c-6.105 13.174-4.345 28.673-9.443 41.82m-8.093 4.119c-11.866-.684-23.287 1.348-35.075 1.348m-14.84-47.287c5.085 14.583 14.839 28.688 14.839 44.518'
+                stroke='currentColor'
+                stroke-opacity='.9'
+                stroke-width='16'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+              <path
+                d='M234.423 237.025c11.297 13.465-5.009 41.371-22.617 33.792-17.02-7.33-6.096-26.51 6.958-27.965m-107.416-77.325c15.82 39.134 36.679 77.796 59.357 113.32m120.066-107.923c-18.012 37.246-30.637 77.853-51.263 113.319'
+                stroke='currentColor'
+                stroke-opacity='.9'
+                stroke-width='16'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+            </svg>
+            <span>Born {formattedDateOfBirth}</span>
+          </div>
+        )}
         <div className='profile-details__wrap--box'>
           <svg
             xmlns='http://www.w3.org/2000/svg'

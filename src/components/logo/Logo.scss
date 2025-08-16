@@ -30,9 +30,9 @@
 
   &__icon {
     display: inline-block;
-    width: 20rem;
+    width: 13rem;
     height: 5rem;
-    object-fit: cover;
+    object-fit: contain;
     background-color: transparent;
   }
 }

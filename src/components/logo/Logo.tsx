@@ -15,7 +15,7 @@ const Logo = ({ isOpen, onClose }: LogoProps) => {
   return (
     <Link to='/' className={logoClasses} onClick={onClose}>
       <Image
-        src='/logo.svg'
+        src='/fusion-hub-logo-4.svg'
         width={200}
         height={50}
         alt='logo'
