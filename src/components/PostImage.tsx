@@ -1,6 +1,6 @@
 import Select from './select/Select';
 import Input from './input/Input';
-import FileInput from './fileInput/FileInput';
+import Upload from './upload/Upload';
 
 import { PostImageProps } from '../types';
 
@@ -9,7 +9,8 @@ const PostImage = ({
   register,
   errors,
   isLoading,
-  onChangeFile,
+  setData,
+  setProgress,
 }: PostImageProps) => {
   return (
     <>
@@ -31,12 +32,12 @@ const PostImage = ({
         disabled={isLoading}
         validate
       />
-      <FileInput
-        name='file'
+      <Upload
+        id='image'
+        type='image'
         label='Image'
-        accept='image/*'
-        onChange={onChangeFile}
-        disabled={isLoading}
+        setData={setData}
+        setProgress={setProgress}
       />
     </>
   );

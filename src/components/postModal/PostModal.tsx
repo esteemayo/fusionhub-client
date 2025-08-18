@@ -116,10 +116,11 @@ const PostModal = () => {
     },
   });
 
-  const [error, setError] = useState<PostErrorType>({});
-  const [file, setFile] = useState<File>();
-  const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
   const [step, setStep] = useState(STEPS.DESC);
+  const [image, setImage] = useState('');
+  const [error, setError] = useState<PostErrorType>({});
+  const [progress, setProgress] = useState(0);
+  const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
 
   const descStepSchema = postSchema.pick({ title: true });
   const imageStepSchema = postSchema.pick({ tags: true, category: true });
@@ -162,13 +163,6 @@ const PostModal = () => {
 
   const title = watchDesc('title');
 
-  const handleFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const file = (target.files as FileList)[0];
-
-    setFile(file);
-  }, []);
-
   const onBack = useCallback(() => {
     setStep((value) => {
       return value - 1;
@@ -209,7 +203,6 @@ const PostModal = () => {
 
   const handleClear = useCallback(() => {
     setDesc('');
-    setFile(undefined);
   }, []);
 
   const handleReset = useCallback(() => {
@@ -255,9 +248,10 @@ const PostModal = () => {
         desc,
       };
 
-      if (file) {
+      if (image) {
         //TODO: Handle file upload logic here
-        console.log(file.name);
+        console.log(image);
+        console.log(progress);
         return;
       }
 
@@ -270,9 +264,10 @@ const PostModal = () => {
       createMutation,
       currentUser,
       desc,
-      file,
       handleReset,
+      image,
       postId,
+      progress,
       title,
       updateMutation,
     ]
@@ -340,7 +335,8 @@ const PostModal = () => {
         register={registerImage as unknown as UseFormRegister<FieldValues>}
         errors={errorsImage}
         isLoading={isLoading}
-        onChangeFile={handleFile}
+        setData={setImage}
+        setProgress={setProgress}
       />
     ) : (
       <PostDescription

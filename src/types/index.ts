@@ -377,7 +377,8 @@ export interface PostImageProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   isLoading?: boolean;
-  onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
+  setData: React.Dispatch<React.SetStateAction<string>>;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ModalProps {
@@ -769,6 +770,15 @@ export interface FeatureCardProps {
   slug: string;
   comments: CommentType[];
   createdAt: string;
+}
+
+export interface UploadProps {
+  id?: string;
+  type: string;
+  label?: string;
+  setData: React.Dispatch<React.SetStateAction<string>>;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
+  children?: React.ReactNode;
 }
 
 export interface ContactInfoItemProps {
