@@ -1,6 +1,7 @@
-import { useMemo, useRef } from 'react';
+import { mergeRefs } from 'react-merge-refs';
 import { toast } from 'react-toastify';
 import { IKContext, IKUpload } from 'imagekitio-react';
+import { useMemo, useRef } from 'react';
 
 import Label from '../label/Label';
 
@@ -21,7 +22,7 @@ const urlEndpoint = VITE_IMAGEKIT_URL_ENDPOINT;
 
 const baseUrl = devEnv ? VITE_DEV_URL_ENDPOINT : VITE_PROD_URL_ENDPOINT;
 
-const apiEndpoint = `${baseUrl}/api/v1/uploads/auth`;
+const apiEndpoint = `${baseUrl}/uploads/auth`;
 
 const authenticator = async () => {
   try {
@@ -34,6 +35,7 @@ const authenticator = async () => {
     }
 
     const data = await response.json();
+    console.log(data);
     const { signature, expire, token, publicKey } = data;
     return { signature, expire, token, publicKey };
   } catch (error: unknown) {
@@ -43,8 +45,10 @@ const authenticator = async () => {
 
 const Upload = ({
   id,
-  type,
+  type = 'image',
   label,
+  disabled,
+  inputRef,
   setData,
   setProgress,
   children,
@@ -90,8 +94,9 @@ const Upload = ({
           onError={onError}
           onSuccess={onSuccess}
           onUploadProgress={onProgressUpload}
-          ref={ref}
+          ref={mergeRefs([ref, inputRef])}
           accept={`${type}/*`}
+          disabled={disabled}
           className='upload__control'
         />
       </div>

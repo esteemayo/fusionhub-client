@@ -155,7 +155,7 @@
       bottom: -8.5rem;
     }
 
-    &--label {
+    &--image {
       display: inline-block;
       width: 12rem;
       height: 12rem;
@@ -217,13 +217,6 @@
       display: inline-block;
       object-fit: cover;
       border-radius: 50%;
-    }
-
-    &--input {
-      display: none;
-      visibility: hidden;
-      opacity: 0;
-      z-index: -1;
     }
   }
 
@@ -391,7 +384,7 @@
   }
 
   &__cover {
-    &--label {
+    &--image {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -402,10 +395,6 @@
       position: relative;
       z-index: 1000;
       cursor: pointer;
-    }
-
-    &--input {
-      display: none;
     }
   }
 

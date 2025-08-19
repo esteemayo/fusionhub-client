@@ -19,25 +19,21 @@ const ProfileSettings = () => {
   const dispatch = useAppDispatch();
   const { isPending, error, data } = useProfile();
 
+  const [progress, setProgress] = useState(0);
+  const [image, setImage] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<File>();
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onOpen());
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const file = (target.files as FileList)[0];
-
-    setFile(file);
-  };
-
   const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     inputRef?.current?.click();
   };
+
+  console.log({ progress, image });
 
   return (
     <div className='profile-settings'>
@@ -75,9 +71,9 @@ const ProfileSettings = () => {
               image={data?.image}
               role={data?.role as RoleType}
               ref={inputRef}
-              file={file}
+              setData={setImage}
+              setProgress={setProgress}
               onOpen={handleOpen}
-              onChange={handleChange}
               onUpload={handleUpload}
             />
             <hr />

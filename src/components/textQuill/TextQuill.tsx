@@ -16,6 +16,7 @@ const TextQuill = ({
   placeholder,
   validate,
   error,
+  readOnly,
   onChange,
 }: TextQuillProps) => {
   const ref = useRef<ReactQuill | null>(null);
@@ -32,6 +33,7 @@ const TextQuill = ({
         value={value}
         placeholder={placeholder}
         onChange={onChange}
+        readOnly={readOnly}
         ref={ref}
       />
       {error && <ErrorMessage message={error} />}

@@ -29,23 +29,11 @@ const UserProfile = () => {
     refetchUser,
   } = useProfile(username!);
 
-  const [cover, setCover] = useState<File>();
-  const [file, setFile] = useState<File>();
+  const [progress, setProgress] = useState(0);
+  const [image, setImage] = useState('');
+  const [advancement, setAdvancement] = useState(0);
+  const [cover, setCover] = useState('');
   const [user, setUser] = useState<UserType | undefined>();
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const file = (target.files as FileList)[0];
-
-    setFile(file);
-  };
-
-  const handleCoverChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const file = (target.files as FileList)[0];
-
-    setCover(file);
-  };
 
   const isLoading = useMemo(() => {
     return username ? isPendingUser : isPending;
@@ -64,6 +52,9 @@ const UserProfile = () => {
       refetch();
     }
   }, [data, refetch, refetchUser, userData, username]);
+
+  console.log({ advancement, cover });
+  console.log({ image, progress });
 
   return (
     <div className='profile'>
@@ -106,13 +97,13 @@ const UserProfile = () => {
         ) : (
           <>
             <Banner
-              file={file}
-              cover={cover}
               query={username}
               image={user?.image}
               banner={user?.banner}
-              onChangeFile={handleFileChange}
-              onChangeCover={handleCoverChange}
+              setCoverData={setCover}
+              setImageData={setImage}
+              setCoverProgress={setAdvancement}
+              setImageProgress={setProgress}
             />
             <ProfileDetails {...user!} />
             <AboutProfile about={user?.about as string} />

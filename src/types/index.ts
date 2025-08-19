@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute } from 'react';
+import React, { HTMLInputTypeAttribute, Ref } from 'react';
 import { Action } from 'redux';
 import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { IconType } from 'react-icons/lib';
@@ -186,6 +186,7 @@ export interface TextQuillProps {
   placeholder?: string;
   validate?: boolean;
   error?: string;
+  readOnly?: boolean;
   onChange?(
     value: ReactQuill.Value | undefined,
     delta: DeltaStatic,
@@ -433,10 +434,10 @@ export interface BannerProps {
   image?: string;
   banner?: string;
   query: string | null;
-  file: File | undefined;
-  cover: File | undefined;
-  onChangeFile(e: React.ChangeEvent<HTMLInputElement>): void;
-  onChangeCover(e: React.ChangeEvent<HTMLInputElement>): void;
+  setCoverData: React.Dispatch<React.SetStateAction<string>>;
+  setImageData: React.Dispatch<React.SetStateAction<string>>;
+  setCoverProgress: React.Dispatch<React.SetStateAction<number>>;
+  setImageProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ProfileDetailsProps {
@@ -547,10 +548,10 @@ export interface ProfileImageProps {
   bio: string;
   image?: string;
   role: RoleType;
-  ref: React.LegacyRef<HTMLInputElement>;
-  file: File | undefined;
+  ref: Ref<HTMLInputElement> | undefined;
+  setData: React.Dispatch<React.SetStateAction<string>>;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
   onOpen(e: React.MouseEvent<HTMLButtonElement>): void;
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -774,8 +775,10 @@ export interface FeatureCardProps {
 
 export interface UploadProps {
   id?: string;
-  type: string;
+  type?: string;
   label?: string;
+  disabled?: boolean;
+  inputRef?: Ref<HTMLInputElement> | undefined;
   setData: React.Dispatch<React.SetStateAction<string>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   children?: React.ReactNode;

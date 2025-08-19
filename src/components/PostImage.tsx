@@ -34,8 +34,8 @@ const PostImage = ({
       />
       <Upload
         id='image'
-        type='image'
         label='Image'
+        disabled={isLoading}
         setData={setData}
         setProgress={setProgress}
       />

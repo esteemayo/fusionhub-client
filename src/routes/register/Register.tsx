@@ -12,7 +12,7 @@ import {
 } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import FileInput from '../../components/fileInput/FileInput';
+import Upload from '../../components/upload/Upload';
 import Input from '../../components/input/Input';
 import PhoneNumber from '../../components/phoneNumber/PhoneNumber';
 
@@ -43,8 +43,10 @@ const Register = () => {
     (state) => ({ ...state.auth })
   );
 
-  const [startDate, setStartDate] = useState<Date | null>(null);
   const [phone, setPhone] = useState<Value | undefined>();
+  const [image, setImage] = useState('');
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [progress, setProgress] = useState(0);
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
@@ -95,7 +97,12 @@ const Register = () => {
       phone,
       dateOfBirth: startDate,
       country: data.country?.label,
+      image: image?.filePath || undefined,
     };
+
+    // if (image) {
+    //   userData.image = image?.filePath;
+    // }
 
     dispatch(registerUser(userData));
   };
@@ -118,6 +125,8 @@ const Register = () => {
 
   const inputs = registerInputs.slice(0, -2);
   const passwordInputs = registerInputs.slice(-2);
+
+  console.log({ image, progress });
 
   return (
     <section className='register'>
@@ -221,13 +230,20 @@ const Register = () => {
                 value={about}
                 placeholder='Write something about yourself'
                 onChange={setAbout}
+                readOnly={isLoading}
               />
-              <FileInput name='file' label='Image' accept='image/*' />
+              <Upload
+                id='image'
+                label='Image'
+                disabled={isLoading}
+                setData={setImage}
+                setProgress={setProgress}
+              />
             </div>
             <FormButton
               label='Register'
-              loading={isLoading}
-              disabled={isLoading}
+              loading={isLoading || (0 < progress && progress < 100)}
+              disabled={isLoading || (0 < progress && progress < 100)}
             />
           </form>
           <AuthLink
