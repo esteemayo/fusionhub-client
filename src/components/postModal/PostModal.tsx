@@ -12,6 +12,7 @@ import {
   FieldValues,
   SubmitHandler,
 } from 'react-hook-form';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 
 import PostImage from '../PostImage';
 import Modal from '../modal/Modal';
@@ -116,10 +117,10 @@ const PostModal = () => {
     },
   });
 
-  const [step, setStep] = useState(STEPS.DESC);
-  const [image, setImage] = useState('');
   const [error, setError] = useState<PostErrorType>({});
   const [progress, setProgress] = useState(0);
+  const [image, setImage] = useState<UploadResponse | undefined>();
+  const [step, setStep] = useState(STEPS.DESC);
   const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
 
   const descStepSchema = postSchema.pick({ title: true });

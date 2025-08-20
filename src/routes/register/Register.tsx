@@ -1,9 +1,9 @@
-import { toast } from 'react-toastify';
-import { z } from 'zod';
 import { Value } from 'react-phone-number-input';
-import { useEffect, useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
+import { useEffect, useMemo, useState } from 'react';
 import ReactQuill from 'react-quill-new';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   FieldValues,
   SubmitHandler,
@@ -12,28 +12,16 @@ import {
 } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import Upload from '../../components/upload/Upload';
-import Input from '../../components/input/Input';
-import PhoneNumber from '../../components/phoneNumber/PhoneNumber';
-
-import TextQuill from '../../components/textQuill/TextQuill';
-import Textarea from '../../components/textarea/Textarea';
-import CountrySelect from '../../components/countrySelect/CountrySelect';
-
-import DateInput from '../../components/dateInput/DateInput';
 import AuthLink from '../../components/authLink/AuthLink';
-import FormButton from '../../components/formButton/FormButton';
+import RegisterForm from '../../components/registerForm/RegisterForm';
 
-import { registerInputs } from '../../data/formData';
-import { CountrySelectType } from '../../types';
+import { CountrySelectType, RegisterFormData } from '../../types';
 import { registerSchema } from '../../validations/registerSchema';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { registerUser, resetState } from '../../features/auth/authSlice';
 
 import './Register.scss';
-
-type FormData = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -43,25 +31,11 @@ const Register = () => {
     (state) => ({ ...state.auth })
   );
 
-  const [phone, setPhone] = useState<Value | undefined>();
-  const [image, setImage] = useState('');
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [progress, setProgress] = useState(0);
+  const [image, setImage] = useState<UploadResponse | undefined>();
+  const [phone, setPhone] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
-  const handleTogglePassword = () => {
-    setShowPassword((value) => {
-      return !value;
-    });
-  };
-
-  const handleTogglePasswordConfirm = () => {
-    setShowPasswordConfirm((value) => {
-      return !value;
-    });
-  };
 
   const {
     register,
@@ -69,12 +43,12 @@ const Register = () => {
     formState: { errors },
     setValue,
     reset,
-  } = useForm<FormData>({
+  } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
 
   const setCustomValue = (
-    name: keyof FormData,
+    name: keyof RegisterFormData,
     value: CountrySelectType | string
   ) => {
     setValue(name, value, {
@@ -90,7 +64,7 @@ const Register = () => {
     setStartDate(null);
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<RegisterFormData> = (data) => {
     const userData = {
       ...data,
       about,
@@ -100,12 +74,12 @@ const Register = () => {
       image: image?.filePath || undefined,
     };
 
-    // if (image) {
-    //   userData.image = image?.filePath;
-    // }
-
     dispatch(registerUser(userData));
   };
+
+  const loading = useMemo(() => {
+    return isLoading || (0 < progress && progress < 100);
+  }, [isLoading, progress]);
 
   useEffect(() => {
     if (isError) {
@@ -123,11 +97,6 @@ const Register = () => {
     };
   }, [dispatch, isError, isSuccess, message, name, navigate, reset]);
 
-  const inputs = registerInputs.slice(0, -2);
-  const passwordInputs = registerInputs.slice(-2);
-
-  console.log({ image, progress });
-
   return (
     <section className='register'>
       <div className='register__container'>
@@ -136,116 +105,23 @@ const Register = () => {
           <p className='register__wrapper--text'>
             Welcome! Please enter your details.
           </p>
-          <form className='register__form' onSubmit={handleSubmit(onSubmit)}>
-            <div className='register__form--box'>
-              {inputs.map((input) => {
-                const { id, name, type, label, placeholder } = input;
-                return (
-                  <Input
-                    key={id}
-                    name={name}
-                    type={type}
-                    label={label}
-                    register={
-                      register as unknown as UseFormRegister<FieldValues>
-                    }
-                    placeholder={placeholder}
-                    errors={errors}
-                    disabled={isLoading}
-                    autoFocus={name === 'name'}
-                    validate
-                  />
-                );
-              })}
-              {passwordInputs.map((input) => {
-                const { id, name, type, label, placeholder } = input;
-                return (
-                  <Input
-                    key={id}
-                    name={name}
-                    type={
-                      name === 'password'
-                        ? showPassword
-                          ? 'text'
-                          : type
-                        : name === 'passwordConfirm'
-                        ? showPasswordConfirm
-                          ? 'text'
-                          : type
-                        : type
-                    }
-                    label={label}
-                    register={
-                      register as unknown as UseFormRegister<FieldValues>
-                    }
-                    placeholder={placeholder}
-                    errors={errors}
-                    onAction={
-                      name === 'password'
-                        ? handleTogglePassword
-                        : handleTogglePasswordConfirm
-                    }
-                    disabled={isLoading}
-                    isShow={
-                      name === 'password' ? showPassword : showPasswordConfirm
-                    }
-                    isPassword
-                    validate
-                  />
-                );
-              })}
-              <DateInput
-                label='Date of Birth'
-                startDate={startDate}
-                placeholder='Select your date of birth'
-                onChange={setStartDate}
-              />
-              <PhoneNumber
-                label='Mobile Number'
-                value={phone}
-                placeholder='e.g. +1 234 567 8900'
-                onChange={setPhone}
-              />
-              <CountrySelect
-                name='country'
-                label='Country'
-                placeholder='Choose your country'
-                onChange={setCustomValue}
-                register={register as unknown as UseFormRegister<FieldValues>}
-                errors={errors}
-                validate
-              />
-              <Textarea
-                name='bio'
-                label='Biography'
-                placeholder='Tell us a little about yourself'
-                register={register as unknown as UseFormRegister<FieldValues>}
-                errors={errors}
-                disabled={isLoading}
-                validate
-              />
-              <TextQuill
-                id='about'
-                label='About Me'
-                value={about}
-                placeholder='Write something about yourself'
-                onChange={setAbout}
-                readOnly={isLoading}
-              />
-              <Upload
-                id='image'
-                label='Image'
-                disabled={isLoading}
-                setData={setImage}
-                setProgress={setProgress}
-              />
-            </div>
-            <FormButton
-              label='Register'
-              loading={isLoading || (0 < progress && progress < 100)}
-              disabled={isLoading || (0 < progress && progress < 100)}
-            />
-          </form>
+          <RegisterForm
+            about={about}
+            phone={phone}
+            startDate={startDate}
+            loading={loading}
+            isLoading={isLoading}
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+            onChangeAbout={setAbout}
+            onChangePhone={setPhone}
+            onChangeStartDate={setStartDate}
+            onChangeImage={setImage}
+            onChangeProgress={setProgress}
+            onChangeValue={setCustomValue}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+          />
           <AuthLink
             url='login'
             label='Already have an account?'

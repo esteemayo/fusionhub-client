@@ -2,6 +2,7 @@ import { mergeRefs } from 'react-merge-refs';
 import { toast } from 'react-toastify';
 import { IKContext, IKUpload } from 'imagekitio-react';
 import { useMemo, useRef } from 'react';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 
 import Label from '../label/Label';
 
@@ -35,7 +36,6 @@ const authenticator = async () => {
     }
 
     const data = await response.json();
-    console.log(data);
     const { signature, expire, token, publicKey } = data;
     return { signature, expire, token, publicKey };
   } catch (error: unknown) {
@@ -48,19 +48,19 @@ const Upload = ({
   type = 'image',
   label,
   disabled,
-  inputRef,
+  ref,
   setData,
   setProgress,
   children,
 }: UploadProps) => {
-  const ref = useRef<HTMLInputElement | null>(null);
+  const localRef = useRef<HTMLInputElement | null>(null);
 
   const onError = (err: unknown) => {
     console.log(err);
     toast.error('Image upload failed!');
   };
 
-  const onSuccess = (res) => {
+  const onSuccess = (res: UploadResponse) => {
     console.log(res);
     setData(res);
   };
@@ -73,7 +73,7 @@ const Upload = ({
   };
 
   const handleClick = () => {
-    ref.current?.click();
+    localRef.current?.click();
   };
 
   const uploadClasses = useMemo(() => {
@@ -94,7 +94,7 @@ const Upload = ({
           onError={onError}
           onSuccess={onSuccess}
           onUploadProgress={onProgressUpload}
-          ref={mergeRefs([ref, inputRef])}
+          ref={mergeRefs([localRef, ref])}
           accept={`${type}/*`}
           disabled={disabled}
           className='upload__control'

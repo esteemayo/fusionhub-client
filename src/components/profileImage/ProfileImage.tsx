@@ -62,11 +62,7 @@ const ProfileImage = ({
               className='profile-image__image--avatar'
             />
             <div className='profile-image__upload'>
-              <Upload
-                inputRef={ref}
-                setData={setData}
-                setProgress={setProgress}
-              >
+              <Upload ref={ref} setData={setData} setProgress={setProgress}>
                 <button type='button' className='profile-image__upload--btn'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'

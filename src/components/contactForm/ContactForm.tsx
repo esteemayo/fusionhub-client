@@ -163,6 +163,7 @@ const ContactForm = () => {
             placeholder='Message'
             onChange={(value) => handleChangeMessage(value)}
             error={error.message}
+            readOnly={contactMutation.isPending}
           />
           <div className='contact-form__wrapper--btn'>
             <Button

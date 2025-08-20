@@ -1,6 +1,8 @@
+import { Value } from 'react-phone-number-input';
+import { z } from 'zod';
 import React, { HTMLInputTypeAttribute, Ref } from 'react';
 import { Action } from 'redux';
-import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 import { IconType } from 'react-icons/lib';
 import {
   FieldErrors,
@@ -9,7 +11,7 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from 'react-hook-form';
-import { Value } from 'react-phone-number-input';
+import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import {
   FetchNextPageOptions,
   InfiniteData,
@@ -18,6 +20,8 @@ import {
   RefetchOptions,
   UseMutationResult,
 } from '@tanstack/react-query';
+
+import { registerSchema } from '../validations/registerSchema';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -222,6 +226,66 @@ export interface FormButtonProps {
   disabled?: boolean;
 }
 
+export type RegisterFormData = z.infer<typeof registerSchema>;
+
+export interface RegisterFormProps {
+  about: ReactQuill.Value | undefined;
+  phone: Value | undefined;
+  startDate: Date | null;
+  loading?: boolean;
+  isLoading?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  onChangeAbout: React.Dispatch<
+    React.SetStateAction<ReactQuill.Value | undefined>
+  >;
+  onChangePhone: React.Dispatch<React.SetStateAction<Value | undefined>>;
+  onChangeStartDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  onChangeImage: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeValue(
+    name: keyof RegisterFormData,
+    value: CountrySelectType | string
+  ): void;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      email: string;
+      password: string;
+      name: string;
+      username: string;
+      passwordConfirm: string;
+      bio: string;
+      country: {
+        label: string;
+      };
+    },
+    {
+      email: string;
+      password: string;
+      name: string;
+      username: string;
+      passwordConfirm: string;
+      bio: string;
+      country: {
+        label: string;
+      };
+    }
+  >;
+  onSubmit: SubmitHandler<{
+    email: string;
+    password: string;
+    name: string;
+    username: string;
+    passwordConfirm: string;
+    bio: string;
+    country: {
+      label: string;
+    };
+  }>;
+}
+
 export interface PostClientProps {
   isOpen: boolean;
   ref: React.LegacyRef<HTMLInputElement> | undefined;
@@ -378,7 +442,7 @@ export interface PostImageProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   isLoading?: boolean;
-  setData: React.Dispatch<React.SetStateAction<string>>;
+  setData: React.Dispatch<React.SetStateAction<UploadResponse | undefined>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -434,8 +498,12 @@ export interface BannerProps {
   image?: string;
   banner?: string;
   query: string | null;
-  setCoverData: React.Dispatch<React.SetStateAction<string>>;
-  setImageData: React.Dispatch<React.SetStateAction<string>>;
+  setCoverData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  setImageData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
   setCoverProgress: React.Dispatch<React.SetStateAction<number>>;
   setImageProgress: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -549,7 +617,7 @@ export interface ProfileImageProps {
   image?: string;
   role: RoleType;
   ref: Ref<HTMLInputElement> | undefined;
-  setData: React.Dispatch<React.SetStateAction<string>>;
+  setData: React.Dispatch<React.SetStateAction<UploadResponse | undefined>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   onOpen(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -778,8 +846,8 @@ export interface UploadProps {
   type?: string;
   label?: string;
   disabled?: boolean;
-  inputRef?: Ref<HTMLInputElement> | undefined;
-  setData: React.Dispatch<React.SetStateAction<string>>;
+  ref?: Ref<HTMLInputElement> | undefined;
+  setData: React.Dispatch<React.SetStateAction<UploadResponse | undefined>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   children?: React.ReactNode;
 }
@@ -1515,8 +1583,8 @@ export type RegisterUserType = {
   country?: string;
   bio?: string;
   about?: ReactQuill.Value;
-  image?: File;
-  banner?: File;
+  image?: string;
+  banner?: string;
 };
 
 export type AuthCrendentialType = {

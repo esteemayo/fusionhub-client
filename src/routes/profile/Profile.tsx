@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 
 import AboutProfile from '../../components/aboutProfile/AboutProfile';
 import Spinner from '../../components/Spinner';
@@ -29,11 +30,11 @@ const UserProfile = () => {
     refetchUser,
   } = useProfile(username!);
 
-  const [progress, setProgress] = useState(0);
-  const [image, setImage] = useState('');
-  const [advancement, setAdvancement] = useState(0);
-  const [cover, setCover] = useState('');
   const [user, setUser] = useState<UserType | undefined>();
+  const [progress, setProgress] = useState(0);
+  const [cover, setCover] = useState<UploadResponse | undefined>();
+  const [advancement, setAdvancement] = useState(0);
+  const [image, setImage] = useState<UploadResponse | undefined>();
 
   const isLoading = useMemo(() => {
     return username ? isPendingUser : isPending;

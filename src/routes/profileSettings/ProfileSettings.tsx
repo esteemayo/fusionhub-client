@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
 import { Value } from 'react-phone-number-input';
+import { useRef, useState } from 'react';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 
 import ProfileData from '../../components/profileData/ProfileData';
 import Spinner from '../../components/Spinner';
@@ -19,9 +20,10 @@ const ProfileSettings = () => {
   const dispatch = useAppDispatch();
   const { isPending, error, data } = useProfile();
 
-  const [progress, setProgress] = useState(0);
-  const [image, setImage] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [progress, setProgress] = useState(0);
+  const [image, setImage] = useState<UploadResponse | undefined>();
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
