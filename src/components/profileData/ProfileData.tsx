@@ -201,7 +201,6 @@ const ProfileData = ({
         <Button
           type='submit'
           label='Save Changes'
-          color='primary'
           isLoading={isLoading}
           disabled={isLoading}
         />

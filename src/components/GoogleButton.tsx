@@ -1,8 +1,24 @@
 import Button from './button/Button';
 
-const GoogleButton = () => {
+import { GoogleButtonProps } from '../types';
+
+const GoogleButton = ({
+  icon,
+  label,
+  color = 'outline',
+  isLoading,
+  disabled,
+  onClick,
+}: GoogleButtonProps) => {
   return (
-    <Button icon='/google.png' label='Sign in with Google' color='outline' />
+    <Button
+      icon={icon}
+      label={label}
+      color={color}
+      onClick={onClick}
+      isLoading={isLoading}
+      disabled={disabled}
+    />
   );
 };
 

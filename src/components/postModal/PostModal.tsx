@@ -27,7 +27,7 @@ import { createPost, updatePost } from '../../services/postService';
 import { postSchema } from '../../validations/postSchema';
 import { validateDescInput } from '../../validations/post';
 
-import { CategoriesType, PostErrorType } from '../../types';
+import { CategoriesType, PostErrorType, PostPayloadType } from '../../types';
 
 import './PostModal.scss';
 
@@ -241,7 +241,7 @@ const PostModal = () => {
       const errors = validateDescInput(desc);
       if (Object.keys(errors).length > 0) setError(errors);
 
-      const postPayload = {
+      const postPayload: PostPayloadType = {
         ...data,
         title,
         category: data.category === '' ? 'general' : data.category,
@@ -250,9 +250,7 @@ const PostModal = () => {
       };
 
       if (image) {
-        //TODO: Handle file upload logic here
-        console.log(image);
-        console.log(progress);
+        postPayload.img = image?.filePath;
         return;
       }
 
@@ -268,7 +266,6 @@ const PostModal = () => {
       handleReset,
       image,
       postId,
-      progress,
       title,
       updateMutation,
     ]
@@ -310,6 +307,10 @@ const PostModal = () => {
     return createMutation.isPending || updateMutation.isPending;
   }, [createMutation.isPending, updateMutation.isPending]);
 
+  const isDisabled = useMemo(() => {
+    return isLoading || (0 < progress && progress < 100);
+  }, [isLoading, progress]);
+
   useEffect(() => {
     if (post) {
       setCustomDescValue('title', post?.title);
@@ -333,11 +334,12 @@ const PostModal = () => {
     step === STEPS.IMAGE ? (
       <PostImage
         options={sortedData}
+        progress={progress}
         register={registerImage as unknown as UseFormRegister<FieldValues>}
         errors={errorsImage}
         isLoading={isLoading}
-        setData={setImage}
-        setProgress={setProgress}
+        onChangeData={setImage}
+        onChangeProgress={setProgress}
       />
     ) : (
       <PostDescription
@@ -355,7 +357,7 @@ const PostModal = () => {
       isOpen={isOpen}
       title={titleLabel}
       isLoading={isLoading}
-      disabled={isLoading}
+      disabled={isDisabled}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       body={bodyContent}

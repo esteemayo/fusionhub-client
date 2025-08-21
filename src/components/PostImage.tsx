@@ -1,16 +1,19 @@
-import Select from './select/Select';
 import Input from './input/Input';
+import Select from './select/Select';
+
 import Upload from './upload/Upload';
+import ProgressBar from './progressBar/ProgressBar';
 
 import { PostImageProps } from '../types';
 
 const PostImage = ({
   options,
+  progress,
   register,
   errors,
   isLoading,
-  setData,
-  setProgress,
+  onChangeData,
+  onChangeProgress,
 }: PostImageProps) => {
   return (
     <>
@@ -35,10 +38,11 @@ const PostImage = ({
       <Upload
         id='image'
         label='Image'
-        disabled={isLoading}
-        setData={setData}
-        setProgress={setProgress}
+        disabled={isLoading || (0 < progress && progress < 100)}
+        setData={onChangeData}
+        setProgress={onChangeProgress}
       />
+      {0 < progress && progress < 100 && <ProgressBar progress={progress} />}
     </>
   );
 };

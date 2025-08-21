@@ -169,7 +169,6 @@ const ContactForm = () => {
             <Button
               type='submit'
               label='Send Message'
-              color='primary'
               isLoading={contactMutation.isPending}
               disabled={contactMutation.isPending}
             />

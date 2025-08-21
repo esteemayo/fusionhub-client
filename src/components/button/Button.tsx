@@ -9,16 +9,16 @@ const Button = ({
   icon,
   label,
   type = 'button',
+  color = 'primary',
   isLoading,
   disabled,
-  color,
   className,
   onClick,
 }: ButtonProps) => {
   return (
     <button
       type={type}
-      disabled={!!disabled}
+      disabled={disabled}
       className={`btn ${color} ${className ?? ''}`}
       onClick={onClick}
     >

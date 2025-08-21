@@ -147,7 +147,6 @@ const UpdatePassword = () => {
             <Button
               type='submit'
               label='Update Changes'
-              color='primary'
               isLoading={isLoading}
               disabled={isLoading}
             />

@@ -1,9 +1,9 @@
 import { Value } from 'react-phone-number-input';
 import { toast } from 'react-toastify';
-import { useEffect, useMemo, useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import ReactQuill from 'react-quill-new';
 import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 import {
   FieldValues,
   SubmitHandler,
@@ -77,10 +77,6 @@ const Register = () => {
     dispatch(registerUser(userData));
   };
 
-  const loading = useMemo(() => {
-    return isLoading || (0 < progress && progress < 100);
-  }, [isLoading, progress]);
-
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -108,8 +104,8 @@ const Register = () => {
           <RegisterForm
             about={about}
             phone={phone}
+            progress={progress}
             startDate={startDate}
-            loading={loading}
             isLoading={isLoading}
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}

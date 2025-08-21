@@ -213,10 +213,19 @@ export interface ButtonProps
   label: string;
   icon?: string;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  color?: 'dark' | 'primary' | 'outline';
   isLoading?: boolean;
   disabled?: boolean;
-  color: 'dark' | 'primary' | 'outline';
   className?: string;
+  onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface GoogleButtonProps {
+  icon?: string;
+  label: string;
+  color?: 'dark' | 'primary' | 'outline';
+  isLoading?: boolean;
+  disabled?: boolean;
   onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -231,8 +240,8 @@ export type RegisterFormData = z.infer<typeof registerSchema>;
 export interface RegisterFormProps {
   about: ReactQuill.Value | undefined;
   phone: Value | undefined;
+  progress: number;
   startDate: Date | null;
-  loading?: boolean;
   isLoading?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
@@ -428,6 +437,14 @@ export interface PostMenuButtonProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export type PostPayloadType = {
+  title: string;
+  category: string;
+  tags: string[];
+  desc: ReactQuill.Value | undefined;
+  img?: string;
+};
+
 export interface PostDescriptionProps {
   value: ReactQuill.Value | undefined;
   register: UseFormRegister<FieldValues>;
@@ -439,11 +456,14 @@ export interface PostDescriptionProps {
 
 export interface PostImageProps {
   options: CategoriesType | undefined;
+  progress: number;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   isLoading?: boolean;
-  setData: React.Dispatch<React.SetStateAction<UploadResponse | undefined>>;
-  setProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ModalProps {
@@ -1604,14 +1624,16 @@ export type UpdatePasswordType = {
 };
 
 export type UpdateUserDataType = {
-  name: string;
-  username: string;
-  email: string;
+  name?: string;
+  username?: string;
+  email?: string;
   phone?: Value;
   dateOfBirth?: Date | null;
-  country: CountrySelectType | string;
-  bio: string;
+  country?: CountrySelectType | string;
+  bio?: string;
   about?: ReactQuill.Value;
+  image?: string;
+  banner?: string;
 };
 
 export type ProfileMenuItems = {

@@ -9,13 +9,18 @@ import ProfileDetails from '../../components/profileDetails/ProfileDetails';
 import ErrorState from '../../components/errorState/ErrorState';
 import ProfileFeatures from '../../components/profileFeatures/ProfileFeatures';
 
-import { useQueryParams } from '../../utils';
-import { UserType } from '../../types';
+import { useAppDispatch } from '../../hooks/hooks';
 import { useProfile } from '../../hooks/useProfile';
 
+import { UserType } from '../../types';
+import { useQueryParams } from '../../utils';
+
 import './Profile.scss';
+import { updateUserData } from '../../features/auth/authSlice';
 
 const UserProfile = () => {
+  const dispatch = useAppDispatch();
+
   const query = useQueryParams();
   const username = query.get('username');
 
@@ -53,6 +58,26 @@ const UserProfile = () => {
       refetch();
     }
   }, [data, refetch, refetchUser, userData, username]);
+
+  useEffect(() => {
+    if (image) {
+      const payload = {
+        image: image.filePath,
+      };
+
+      dispatch(updateUserData(payload));
+    }
+  }, [dispatch, image]);
+
+  useEffect(() => {
+    if (cover) {
+      const payload = {
+        banner: cover.filePath,
+      };
+
+      dispatch(updateUserData(payload));
+    }
+  }, [cover, dispatch]);
 
   console.log({ advancement, cover });
   console.log({ image, progress });

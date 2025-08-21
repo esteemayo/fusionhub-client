@@ -92,7 +92,6 @@ const ForgotPassword = () => {
                 label='Reset your password'
                 isLoading={mutation.isPending}
                 disabled={mutation.isPending}
-                color='primary'
               />
             </div>
           </form>

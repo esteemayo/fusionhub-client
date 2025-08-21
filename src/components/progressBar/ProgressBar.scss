@@ -1,0 +1,30 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.progress-bar {
+  width: 100%;
+  height: 1.4rem;
+  background-color: #e0e0e0;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  &__fill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 500;
+    font-size: 1.15rem;
+    height: 100%;
+    background-image: linear-gradient(90deg, #4facfe, #00f2fe);
+    background-image: linear-gradient(
+      90deg,
+      vars.$clr-twitter-red,
+      vars.$clr-pink-light,
+      vars.$clr-pink-dark-1,
+      vars.$clr-orange-dark,
+      vars.$clr-orange-light
+    );
+    transition: all 0.3s ease;
+  }
+}

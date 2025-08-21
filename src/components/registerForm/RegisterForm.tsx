@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import Upload from '../upload/Upload';
 import Input from '../input/Input';
 import PhoneNumber from './../phoneNumber/PhoneNumber';
 
-import DateInput from '../dateInput/DateInput';
 import FormButton from '../formButton/FormButton';
+import DateInput from '../dateInput/DateInput';
+import ProgressBar from '../progressBar/ProgressBar';
 
 import TextQuill from '../textQuill/TextQuill';
 import Textarea from '../textarea/Textarea';
@@ -19,8 +20,8 @@ import './RegisterForm.scss';
 const RegisterForm = ({
   about,
   phone,
+  progress,
   startDate,
-  loading,
   isLoading,
   register,
   errors,
@@ -47,6 +48,10 @@ const RegisterForm = ({
       return !value;
     });
   };
+
+  const isDisabled = useMemo(() => {
+    return isLoading || (0 < progress && progress < 100);
+  }, [isLoading, progress]);
 
   const inputs = registerInputs.slice(0, -2);
   const passwordInputs = registerInputs.slice(-2);
@@ -145,12 +150,13 @@ const RegisterForm = ({
         <Upload
           id='image'
           label='Image'
-          disabled={loading}
+          disabled={isDisabled}
           setData={onChangeImage}
           setProgress={onChangeProgress}
         />
+        {0 < progress && progress < 100 && <ProgressBar progress={progress} />}
       </div>
-      <FormButton label='Register' loading={loading} disabled={loading} />
+      <FormButton label='Register' loading={isLoading} disabled={isDisabled} />
     </form>
   );
 };

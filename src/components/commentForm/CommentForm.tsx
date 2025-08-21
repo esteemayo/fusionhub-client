@@ -91,7 +91,6 @@ const CommentForm = ({
               <Button
                 type='submit'
                 label={btnLabel}
-                color='primary'
                 isLoading={isLoading}
                 disabled={isLoading}
               />

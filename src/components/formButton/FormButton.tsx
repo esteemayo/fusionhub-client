@@ -11,11 +11,14 @@ const FormButton = ({ label, loading, disabled }: FormButtonProps) => {
       <Button
         type='submit'
         label={label}
-        isLoading={!!loading}
-        disabled={!!disabled}
-        color='primary'
+        isLoading={loading}
+        disabled={disabled}
       />
-      <GoogleButton />
+      <GoogleButton
+        icon='/google.png'
+        label='Sign in with Google'
+        disabled={disabled}
+      />
     </div>
   );
 };
