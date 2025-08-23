@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 
 import AboutProfile from '../../components/aboutProfile/AboutProfile';
@@ -9,14 +10,14 @@ import ProfileDetails from '../../components/profileDetails/ProfileDetails';
 import ErrorState from '../../components/errorState/ErrorState';
 import ProfileFeatures from '../../components/profileFeatures/ProfileFeatures';
 
-import { useAppDispatch } from '../../hooks/hooks';
 import { useProfile } from '../../hooks/useProfile';
+import { useAppDispatch } from '../../hooks/hooks';
+import { updateUserData } from '../../features/auth/authSlice';
 
 import { UserType } from '../../types';
 import { useQueryParams } from '../../utils';
 
 import './Profile.scss';
-import { updateUserData } from '../../features/auth/authSlice';
 
 const UserProfile = () => {
   const dispatch = useAppDispatch();
@@ -60,27 +61,50 @@ const UserProfile = () => {
   }, [data, refetch, refetchUser, userData, username]);
 
   useEffect(() => {
-    if (image) {
+    if (!image && progress !== 100) return;
+
+    if (image && progress === 100) {
       const payload = {
         image: image.filePath,
       };
 
-      dispatch(updateUserData(payload));
+      dispatch(updateUserData(payload))
+        .then(() => {
+          toast.success('Profile image updated successfully!');
+          refetch();
+        })
+        .catch(() => {
+          toast.error('Failed to update profile image. Please try again.');
+        })
+        .finally(() => {
+          setProgress(0);
+          setImage(undefined);
+        });
     }
-  }, [dispatch, image]);
+  }, [dispatch, image, progress, refetch]);
 
   useEffect(() => {
-    if (cover) {
+    if (!cover && advancement !== 100) return;
+
+    if (cover && advancement === 100) {
       const payload = {
         banner: cover.filePath,
       };
 
-      dispatch(updateUserData(payload));
+      dispatch(updateUserData(payload))
+        .then(() => {
+          toast.success('Banner updated successfully!');
+          refetch();
+        })
+        .catch(() => {
+          toast.error('Failed to update banner. Please try again.');
+        })
+        .finally(() => {
+          setAdvancement(0);
+          setCover(undefined);
+        });
     }
-  }, [cover, dispatch]);
-
-  console.log({ advancement, cover });
-  console.log({ image, progress });
+  }, [advancement, cover, dispatch, refetch]);
 
   return (
     <div className='profile'>

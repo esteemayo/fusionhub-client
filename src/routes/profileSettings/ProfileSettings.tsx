@@ -1,6 +1,7 @@
-import { Value } from 'react-phone-number-input';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
+import { Value } from 'react-phone-number-input';
 
 import ProfileData from '../../components/profileData/ProfileData';
 import Spinner from '../../components/Spinner';
@@ -8,8 +9,10 @@ import ProfileImage from '../../components/profileImage/ProfileImage';
 import ErrorState from '../../components/errorState/ErrorState';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 
-import { useProfile } from '../../hooks/useProfile';
 import { useAppDispatch } from '../../hooks/hooks';
+import { useProfile } from '../../hooks/useProfile';
+
+import { updateUserData } from '../../features/auth/authSlice';
 import { onOpen } from '../../features/imageModal/imageModalSlice';
 
 import { CountrySelectType, RoleType } from '../../types';
@@ -18,7 +21,7 @@ import './ProfileSettings.scss';
 
 const ProfileSettings = () => {
   const dispatch = useAppDispatch();
-  const { isPending, error, data } = useProfile();
+  const { isPending, error, data, refetch } = useProfile();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,7 +38,30 @@ const ProfileSettings = () => {
     inputRef?.current?.click();
   };
 
-  console.log({ progress, image });
+  useEffect(() => {
+    if (!image && progress !== 100) return;
+
+    if (image && progress === 100) {
+      const payload = {
+        image: image.filePath,
+      };
+
+      dispatch(updateUserData(payload))
+        .then(() => {
+          toast.success('Profile image updated successfully!');
+          refetch();
+        })
+        .catch(() => {
+          toast.error(
+            'Failed to update profile image. Please try again later.'
+          );
+        })
+        .finally(() => {
+          setProgress(0);
+          setImage(undefined);
+        });
+    }
+  }, [dispatch, image, progress, refetch]);
 
   return (
     <div className='profile-settings'>

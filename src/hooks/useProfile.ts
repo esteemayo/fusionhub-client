@@ -19,7 +19,7 @@ export const useProfile: IProfile = (username) => {
 
   const { isPending, error, data, refetch } = useQuery<UserType>({
     queryKey: ['currentUser'],
-    queryFn: () => fetchCurrentUser(),
+    queryFn: fetchCurrentUser,
     enabled: !!currentUser,
   });
 

@@ -32,7 +32,7 @@ export const useCategory: ICategory = () => {
 
   const { isPending, error, data } = useQuery<CategoriesType>({
     queryKey: ['categories'],
-    queryFn: () => fetchCategories(),
+    queryFn: fetchCategories,
   });
 
   const categoryMutation = useMutation({

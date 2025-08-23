@@ -64,17 +64,28 @@ const Register = () => {
     setStartDate(null);
   };
 
-  const onSubmit: SubmitHandler<RegisterFormData> = (data) => {
-    const userData = {
-      ...data,
-      about,
-      phone,
-      dateOfBirth: startDate,
-      country: data.country?.label,
-      image: image?.filePath || undefined,
-    };
+  const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
+    try {
+      let imageUrl: string | undefined;
 
-    dispatch(registerUser(userData));
+      if (image && progress === 100) {
+        imageUrl = image.filePath || undefined;
+      }
+
+      const userData = {
+        ...data,
+        about,
+        phone,
+        dateOfBirth: startDate,
+        country: data.country?.label,
+        image: imageUrl,
+      };
+
+      await dispatch(registerUser(userData));
+    } catch (err: unknown) {
+      console.log(err);
+      toast.error('Failed to register user. Please try again.');
+    }
   };
 
   useEffect(() => {
@@ -82,16 +93,32 @@ const Register = () => {
       toast.error(message);
     }
 
+    if (image && progress === 100) {
+      toast.success('Image uploaded successfully!');
+      setProgress(0);
+      setImage(undefined);
+    }
+
     if (isSuccess && name) {
       reset();
       handleClear();
-      navigate(`/login?name=${name}`);
+      navigate(`/login?name=${encodeURIComponent(name)}`);
     }
 
     return () => {
       dispatch(resetState());
     };
-  }, [dispatch, isError, isSuccess, message, name, navigate, reset]);
+  }, [
+    dispatch,
+    isError,
+    image,
+    isSuccess,
+    message,
+    name,
+    navigate,
+    progress,
+    reset,
+  ]);
 
   return (
     <section className='register'>

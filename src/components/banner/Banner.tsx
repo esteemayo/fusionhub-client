@@ -32,12 +32,9 @@ const Banner = ({
   };
 
   const coverImg = useMemo(() => {
-    return banner ? banner : 'https://ik.imagekit.io/devayo/banner-1.jpg';
-    // return cover
-    //   ? URL.createObjectURL(cover as Blob | MediaSource)
-    //   : banner
-    //   ? banner
-    //   : 'https://ik.imagekit.io/devayo/banner-1.jpg';
+    const imageUrl = (image: string) => `https://ik.imagekit.io/devayo${image}`;
+
+    return banner ? imageUrl(banner) : imageUrl('/banner-1.jpg');
   }, [banner]);
 
   const wrapperClasses = useMemo(() => {

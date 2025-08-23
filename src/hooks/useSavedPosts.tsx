@@ -27,7 +27,7 @@ export const useSavedPosts: ISavedPosts = (postId) => {
     data: savedPosts,
   } = useQuery<PostType[]>({
     queryKey: ['savedPosts'],
-    queryFn: () => fetchSavedPosts(),
+    queryFn: fetchSavedPosts,
     enabled: !!currentUser,
   });
 
