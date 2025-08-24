@@ -119,8 +119,12 @@ const PostModal = () => {
 
   const [error, setError] = useState<PostErrorType>({});
   const [progress, setProgress] = useState(0);
-  const [image, setImage] = useState<UploadResponse | undefined>();
+  const [img, setImg] = useState<UploadResponse | undefined>();
   const [step, setStep] = useState(STEPS.DESC);
+  const [image, setImage] = useState<UploadResponse | undefined>();
+  const [imgProgress, setImgProgress] = useState(0);
+  const [video, setVideo] = useState<UploadResponse | undefined>();
+  const [videoProgress, setVideoProgress] = useState(0);
   const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
 
   const descStepSchema = postSchema.pick({ title: true });
@@ -241,18 +245,20 @@ const PostModal = () => {
       const errors = validateDescInput(desc);
       if (Object.keys(errors).length > 0) setError(errors);
 
+      let imageUrl: string | undefined;
+
+      if (image && progress === 100) {
+        imageUrl = image.filePath || undefined;
+      }
+
       const postPayload: PostPayloadType = {
         ...data,
         title,
         category: data.category === '' ? 'general' : data.category,
         tags: data.tags.split(','),
         desc,
+        img: imageUrl,
       };
-
-      if (image) {
-        postPayload.img = image?.filePath;
-        return;
-      }
 
       const mutation = postId ? updateMutation : createMutation;
       mutation.mutate(postPayload, {
@@ -266,6 +272,7 @@ const PostModal = () => {
       handleReset,
       image,
       postId,
+      progress,
       title,
       updateMutation,
     ]
@@ -323,6 +330,39 @@ const PostModal = () => {
   }, [post, setCustomDescValue, setCustomImageValue]);
 
   useEffect(() => {
+    if (image && progress === 100) {
+      setProgress(0);
+      setImage(undefined);
+    }
+  }, [image, progress]);
+
+  useEffect(() => {
+    if (img) {
+      setDesc((prev) => {
+        return `
+          ${prev}
+          <p>
+            <img src='${img.url}' />
+          </p>
+        `;
+      });
+    }
+  }, [img]);
+
+  useEffect(() => {
+    if (video) {
+      setDesc((prev) => {
+        return `
+          ${prev}
+          <p>
+            <iframe src='${video.url}' />
+          </p>
+        `;
+      });
+    }
+  }, [video]);
+
+  useEffect(() => {
     if (isOpen) {
       return () => {
         dispatch(resetState());
@@ -344,11 +384,17 @@ const PostModal = () => {
     ) : (
       <PostDescription
         value={desc}
+        imageProgress={imgProgress}
+        videoProgress={videoProgress}
         register={registerDesc as unknown as UseFormRegister<FieldValues>}
         error={error.desc}
         errors={errorsDesc}
         isLoading={isLoading}
         onChangeDesc={handleChangeDesc}
+        onChangeImageData={setImg}
+        onChangeVideoData={setVideo}
+        onChangeImageProgress={setImgProgress}
+        onChangeVideoProgress={setVideoProgress}
       />
     );
 

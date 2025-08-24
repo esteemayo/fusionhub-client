@@ -35,6 +35,8 @@ const ProfileSettings = () => {
 
   const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (0 < progress && progress < 100) return;
     inputRef?.current?.click();
   };
 
@@ -97,10 +99,11 @@ const ProfileSettings = () => {
               name={data?.name as string}
               bio={data?.bio as string}
               image={data?.image}
+              progress={progress}
               role={data?.role as RoleType}
               ref={inputRef}
-              setData={setImage}
-              setProgress={setProgress}
+              onChangeImage={setImage}
+              onChangeProgress={setProgress}
               onOpen={handleOpen}
               onUpload={handleUpload}
             />

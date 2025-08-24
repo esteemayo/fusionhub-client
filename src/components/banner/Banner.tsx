@@ -19,10 +19,12 @@ const Banner = ({
   query,
   image,
   banner,
-  setCoverData,
-  setImageData,
-  setCoverProgress,
-  setImageProgress,
+  progress,
+  advancement,
+  onChangeCoverData,
+  onChangeImageData,
+  onChangeCoverProgress,
+  onChangeImageProgress,
 }: BannerProps) => {
   const dispatch = useAppDispatch();
 
@@ -45,12 +47,18 @@ const Banner = ({
     return banner ? 'banner__btn show' : 'banner__btn hide';
   }, [banner]);
 
+  const isDisabled = useMemo(() => {
+    return (
+      (0 < progress && progress < 100) || (0 < advancement && advancement < 100)
+    );
+  }, [advancement, progress]);
+
   return (
     <Container cover={coverImg} className='banner'>
       <Upload
-        disabled={!!query}
-        setData={setImageData}
-        setProgress={setImageProgress}
+        disabled={(0 < progress && progress < 100) || !!query}
+        setData={onChangeImageData}
+        setProgress={onChangeImageProgress}
       >
         <div className='banner__user'>
           <div className={`banner__user--image ${!!query && 'disabled'}`}>
@@ -65,7 +73,11 @@ const Banner = ({
         </div>
       </Upload>
       <div className={wrapperClasses}>
-        <Upload setData={setCoverData} setProgress={setCoverProgress}>
+        <Upload
+          disabled={0 < advancement && advancement < 100}
+          setData={onChangeCoverData}
+          setProgress={onChangeCoverProgress}
+        >
           <div className='banner__cover'>
             <div className='banner__cover--image'>
               <svg
@@ -85,7 +97,12 @@ const Banner = ({
             </div>
           </div>
         </Upload>
-        <button type='button' className={btnClasses} onClick={handleClick}>
+        <button
+          type='button'
+          className={btnClasses}
+          onClick={handleClick}
+          disabled={isDisabled}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

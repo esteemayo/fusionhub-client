@@ -150,10 +150,12 @@ const UserProfile = () => {
               query={username}
               image={user?.image}
               banner={user?.banner}
-              setCoverData={setCover}
-              setImageData={setImage}
-              setCoverProgress={setAdvancement}
-              setImageProgress={setProgress}
+              progress={progress}
+              advancement={advancement}
+              onChangeCoverData={setCover}
+              onChangeImageData={setImage}
+              onChangeCoverProgress={setAdvancement}
+              onChangeImageProgress={setProgress}
             />
             <ProfileDetails {...user!} />
             <AboutProfile about={user?.about as string} />

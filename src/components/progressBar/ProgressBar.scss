@@ -5,8 +5,45 @@
   width: 100%;
   height: 0.8rem;
   background-color: #e0e0e0;
+  backface-visibility: hidden;
   border-radius: 1rem;
   overflow: hidden;
+
+  @media screen and (max-width: 56.25em) {
+    height: 0.9rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    height: 1rem;
+  }
+
+  @media screen and (max-width: 34.375em) {
+    height: 1.1rem;
+  }
+
+  @include bp.sm {
+    height: 1.2rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    height: 1rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    height: 0.9rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    height: 0.9rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    height: 1rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    height: 1.2rem;
+  }
 
   &__fill {
     display: flex;

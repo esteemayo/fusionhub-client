@@ -1,15 +1,21 @@
 import Input from './input/Input';
-import TextQuill from './textQuill/TextQuill';
+import PostTextBox from './postTextBox/PostTextBox';
 
 import { PostDescriptionProps } from '../types';
 
 const PostDescription = ({
   value,
+  imageProgress,
+  videoProgress,
   register,
   error,
   errors,
   isLoading,
   onChangeDesc,
+  onChangeImageData,
+  onChangeVideoData,
+  onChangeImageProgress,
+  onChangeVideoProgress,
 }: PostDescriptionProps) => {
   return (
     <>
@@ -22,12 +28,17 @@ const PostDescription = ({
         disabled={isLoading}
         validate
       />
-      <TextQuill
+      <PostTextBox
         label='Description'
         value={value}
-        onChange={(value) => onChangeDesc(value)}
+        imageProgress={imageProgress}
+        videoProgress={videoProgress}
         error={error}
-        validate
+        onChangeDesc={onChangeDesc}
+        onChangeImageData={onChangeImageData}
+        onChangeVideoData={onChangeVideoData}
+        onChangeImageProgress={onChangeImageProgress}
+        onChangeVideoProgress={onChangeVideoProgress}
       />
     </>
   );

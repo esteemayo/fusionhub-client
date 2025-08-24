@@ -447,11 +447,38 @@ export type PostPayloadType = {
 
 export interface PostDescriptionProps {
   value: ReactQuill.Value | undefined;
+  imageProgress: number;
+  videoProgress: number;
   register: UseFormRegister<FieldValues>;
   error?: string;
   errors: FieldErrors;
   isLoading?: boolean;
   onChangeDesc(value: ReactQuill.Value | undefined): void;
+  onChangeImageData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeVideoData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeImageProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeVideoProgress: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface PostTextBoxProps {
+  label: string;
+  value: ReactQuill.Value | undefined;
+  imageProgress: number;
+  videoProgress: number;
+  error?: string;
+  onChangeDesc(value: ReactQuill.Value | undefined): void;
+  onChangeImageData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeVideoData: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeImageProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeVideoProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface PostImageProps {
@@ -518,14 +545,16 @@ export interface BannerProps {
   image?: string;
   banner?: string;
   query: string | null;
-  setCoverData: React.Dispatch<
+  progress: number;
+  advancement: number;
+  onChangeCoverData: React.Dispatch<
     React.SetStateAction<UploadResponse | undefined>
   >;
-  setImageData: React.Dispatch<
+  onChangeImageData: React.Dispatch<
     React.SetStateAction<UploadResponse | undefined>
   >;
-  setCoverProgress: React.Dispatch<React.SetStateAction<number>>;
-  setImageProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeCoverProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeImageProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface ProfileDetailsProps {
@@ -635,10 +664,13 @@ export interface ProfileImageProps {
   name: string;
   bio: string;
   image?: string;
+  progress: number;
   role: RoleType;
   ref: Ref<HTMLInputElement> | undefined;
-  setData: React.Dispatch<React.SetStateAction<UploadResponse | undefined>>;
-  setProgress: React.Dispatch<React.SetStateAction<number>>;
+  onChangeImage: React.Dispatch<
+    React.SetStateAction<UploadResponse | undefined>
+  >;
+  onChangeProgress: React.Dispatch<React.SetStateAction<number>>;
   onOpen(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpload(e: React.MouseEvent<HTMLButtonElement>): void;
 }

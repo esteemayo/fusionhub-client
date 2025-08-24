@@ -13,10 +13,11 @@ const ProfileImage = ({
   name,
   bio,
   image,
+  progress,
   role,
   ref,
-  setData,
-  setProgress,
+  onChangeImage,
+  onChangeProgress,
   onOpen,
   onUpload,
 }: ProfileImageProps) => {
@@ -34,6 +35,10 @@ const ProfileImage = ({
       return !value;
     });
   };
+
+  const isDisabled = useMemo(() => {
+    return 0 < progress && progress < 100;
+  }, [progress]);
 
   const formattedTexts = useMemo(() => {
     return isMore && bio?.length > 120 ? bio : excerpts(bio, 120);
@@ -62,7 +67,12 @@ const ProfileImage = ({
               className='profile-image__image--avatar'
             />
             <div className='profile-image__upload'>
-              <Upload ref={ref} setData={setData} setProgress={setProgress}>
+              <Upload
+                ref={ref}
+                disabled={isDisabled}
+                setData={onChangeImage}
+                setProgress={onChangeProgress}
+              >
                 <button type='button' className='profile-image__upload--btn'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -113,6 +123,7 @@ const ProfileImage = ({
           type='button'
           className='profile-image__buttons--upload'
           onClick={onUpload}
+          disabled={isDisabled}
         >
           Upload
         </button>
@@ -120,6 +131,7 @@ const ProfileImage = ({
           type='button'
           className='profile-image__buttons--remove'
           onClick={onOpen}
+          disabled={isDisabled}
         >
           Remove
         </button>
