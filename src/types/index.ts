@@ -226,7 +226,6 @@ export interface GoogleButtonProps {
   color?: 'dark' | 'primary' | 'outline';
   isLoading?: boolean;
   disabled?: boolean;
-  onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface FormButtonProps {
