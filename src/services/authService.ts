@@ -19,8 +19,8 @@ export const register = <T extends RegisterUserType>(userData: T) =>
 export const login = <T extends AuthCrendentialType>(credentials: T) =>
   http.post(authUrl('login'), credentials);
 
-export const googleLogin = (email: string) =>
-  http.post(authUrl('google-login'), { email });
+export const googleLogin = <T extends object>(credentials: T) =>
+  http.post(authUrl('google-login'), credentials);
 
 export const logout = () => http.post(authUrl('logout'));
 

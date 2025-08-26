@@ -22,6 +22,7 @@ const initialState: AuthState = {
   user: user ?? null,
   name: '',
   isLoading: false,
+  isPending: false,
   isError: false,
   isSuccess: false,
   message: '',
@@ -71,9 +72,9 @@ export const loginUser = createAsyncThunk(
 
 export const googleLoginUser = createAsyncThunk(
   'auth/google',
-  async (email: string, { rejectWithValue }) => {
+  async (credentials: object, { rejectWithValue }) => {
     try {
-      const { data } = await authAPI.googleLogin(email);
+      const { data } = await authAPI.googleLogin({ ...credentials });
       toast.success('You have successfully logged in with Google!');
       return data;
     } catch (err: unknown) {
@@ -266,16 +267,16 @@ const authSlice = createSlice({
         state.user = null;
       })
       .addCase(googleLoginUser.pending, (state) => {
-        state.isLoading = true;
+        state.isPending = true;
       })
       .addCase(googleLoginUser.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.isPending = false;
         state.user = payload;
         setStorage(authKey, payload);
         state.isSuccess = true;
       })
       .addCase(googleLoginUser.rejected, (state, { payload }) => {
-        state.isLoading = false;
+        state.isPending = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = (payload as { message: string }).message;

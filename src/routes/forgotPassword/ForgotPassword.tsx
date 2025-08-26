@@ -9,8 +9,7 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
-import Input from '../../components/input/Input';
-import Button from '../../components/button/Button';
+import ForgotPasswordForm from '../../components/forgotPasswordForm/ForgotPasswordForm';
 
 import { forgotPassword } from '../../services/authService';
 import { forgotSchema } from '../../validations/forgotSchema';
@@ -72,29 +71,13 @@ const ForgotPassword = () => {
           <p className='forgot-password__wrapper--text'>
             Please enter your email address.
           </p>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className='forgot-password__form'
-          >
-            <Input
-              type='email'
-              name='email'
-              label='Email Address'
-              placeholder='Email address'
-              register={register as unknown as UseFormRegister<FieldValues>}
-              errors={errors}
-              disabled={mutation.isPending}
-              autoFocus
-            />
-            <div className='forgot-password__form--button'>
-              <Button
-                type='submit'
-                label='Reset your password'
-                isLoading={mutation.isPending}
-                disabled={mutation.isPending}
-              />
-            </div>
-          </form>
+          <ForgotPasswordForm
+            isLoading={mutation.isPending}
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+          />
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  const { isError, isLoading, isSuccess, message, name } = useAppSelector(
+  const { isError, isLoading, isSuccess, message, name, user } = useAppSelector(
     (state) => ({ ...state.auth })
   );
 
@@ -105,6 +105,10 @@ const Register = () => {
       navigate(`/login?name=${encodeURIComponent(name)}`);
     }
 
+    if (isSuccess && user) {
+      window.location.reload();
+    }
+
     return () => {
       dispatch(resetState());
     };
@@ -118,6 +122,7 @@ const Register = () => {
     navigate,
     progress,
     reset,
+    user,
   ]);
 
   return (

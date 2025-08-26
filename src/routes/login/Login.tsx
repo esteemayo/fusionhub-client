@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 
 import AuthLink from '../../components/authLink/AuthLink';
-import Input from '../../components/input/Input';
-import FormButton from '../../components/formButton/FormButton';
+import LoginForm from '../../components/loginForm/LoginForm';
 
-import { loginInputs } from '../../data/formData';
 import { loginSchema } from '../../validations/loginSchema';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -36,14 +33,6 @@ const Login = () => {
 
   const query = useQueryParams();
   const name = query.get('name');
-
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleToggle = () => {
-    setShowPassword((value) => {
-      return !value;
-    });
-  };
 
   const {
     register,
@@ -86,42 +75,13 @@ const Login = () => {
           <p className='login__wrapper--text'>
             Welcome {!name && 'back'}! Please enter your details.
           </p>
-          <form className='login__form' onSubmit={handleSubmit(onSubmit)}>
-            {loginInputs.map((input) => {
-              const { id, name, type, label, placeholder } = input;
-              return (
-                <Input
-                  key={id}
-                  name={name}
-                  type={
-                    type === 'password'
-                      ? showPassword
-                        ? 'text'
-                        : 'password'
-                      : type
-                  }
-                  label={label}
-                  placeholder={placeholder}
-                  register={register as unknown as UseFormRegister<FieldValues>}
-                  errors={errors}
-                  onAction={handleToggle}
-                  disabled={isLoading}
-                  isShow={showPassword}
-                  isPassword={type === 'password'}
-                  autoFocus={name === 'identifier'}
-                  validate
-                />
-              );
-            })}
-            <div className='login__form--forgot'>
-              <Link to='/forgot-password'>Forgot password?</Link>
-            </div>
-            <FormButton
-              label='Login'
-              loading={isLoading}
-              disabled={isLoading}
-            />
-          </form>
+          <LoginForm
+            isLoading={isLoading}
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+          />
           <AuthLink
             url='register'
             label={`Don't have an account?`}

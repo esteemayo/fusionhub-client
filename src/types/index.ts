@@ -224,7 +224,6 @@ export interface GoogleButtonProps {
   icon?: string;
   label: string;
   color?: 'dark' | 'primary' | 'outline';
-  isLoading?: boolean;
   disabled?: boolean;
 }
 
@@ -232,6 +231,26 @@ export interface FormButtonProps {
   label: string;
   loading?: boolean;
   disabled?: boolean;
+}
+
+export interface LoginFormProps {
+  isLoading?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      password: string;
+      identifier: string;
+    },
+    {
+      password: string;
+      identifier: string;
+    }
+  >;
+  onSubmit: SubmitHandler<{
+    password: string;
+    identifier: string;
+  }>;
 }
 
 export type RegisterFormData = z.infer<typeof registerSchema>;
@@ -291,6 +310,43 @@ export interface RegisterFormProps {
     country: {
       label: string;
     };
+  }>;
+}
+
+export interface ForgotPasswordFormProps {
+  isLoading?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      email: string;
+    },
+    {
+      email: string;
+    }
+  >;
+  onSubmit: SubmitHandler<{
+    email: string;
+  }>;
+}
+
+export interface ResetPasswordFormProps {
+  isLoading?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      password: string;
+      passwordConfirm: string;
+    },
+    {
+      password: string;
+      passwordConfirm: string;
+    }
+  >;
+  onSubmit: SubmitHandler<{
+    password: string;
+    passwordConfirm: string;
   }>;
 }
 
@@ -1241,6 +1297,7 @@ export interface AuthState {
   user: CurrentUserType | null;
   name?: string;
   isLoading: boolean;
+  isPending: boolean;
   isError: boolean;
   isSuccess: boolean;
   message: string;
