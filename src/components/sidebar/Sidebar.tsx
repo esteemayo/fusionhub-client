@@ -6,6 +6,7 @@ import Logo from '../logo/Logo';
 import ToggleButton from '../toggleButton/ToggleButton';
 
 import Image from '../Image';
+import GoogleImage from '../GoogleImage';
 
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -73,13 +74,23 @@ const Sidebar = () => {
                   className='sidebar__account'
                   onClick={handleClose}
                 >
-                  <Image
-                    src={currentUser.details.image ?? '/user-default.jpg'}
-                    width={70}
-                    height={70}
-                    alt='avatar'
-                    className='sidebar__account--avatar'
-                  />
+                  {currentUser.details.fromGoogle &&
+                  currentUser.details.image?.startsWith('https') ? (
+                    <GoogleImage
+                      src={currentUser.details.image ?? '/user-default.jpg'}
+                      width={70}
+                      height={70}
+                      className='sidebar__account--avatar'
+                    />
+                  ) : (
+                    <Image
+                      src={currentUser.details.image ?? '/user-default.jpg'}
+                      width={70}
+                      height={70}
+                      alt='avatar'
+                      className='sidebar__account--avatar'
+                    />
+                  )}
                   <span className='sidebar__account--name'>
                     {currentUser.details.name}
                   </span>

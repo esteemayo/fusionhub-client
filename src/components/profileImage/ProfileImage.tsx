@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 
-import Badge from '../badge/Badge';
 import Image from '../Image';
+import GoogleImage from '../GoogleImage';
+
+import Badge from '../badge/Badge';
 import Upload from '../upload/Upload';
 
 import { excerpts } from '../../utils';
@@ -13,6 +15,7 @@ const ProfileImage = ({
   name,
   bio,
   image,
+  isFromGoogle,
   progress,
   role,
   ref,
@@ -59,13 +62,22 @@ const ProfileImage = ({
       <div className='profile-image__container'>
         <div className='profile-image__user'>
           <div className='profile-image__image'>
-            <Image
-              src={image ?? '/user-default.jpg'}
-              width={120}
-              height={120}
-              alt='avatar'
-              className='profile-image__image--avatar'
-            />
+            {isFromGoogle && image?.startsWith('https') ? (
+              <GoogleImage
+                src={image ?? '/user-default.jpg'}
+                width={120}
+                height={120}
+                className='profile-image__image--avatar'
+              />
+            ) : (
+              <Image
+                src={image ?? '/user-default.jpg'}
+                width={120}
+                height={120}
+                alt='avatar'
+                className='profile-image__image--avatar'
+              />
+            )}
             <div className='profile-image__upload'>
               <Upload
                 ref={ref}

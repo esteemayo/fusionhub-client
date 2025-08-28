@@ -57,6 +57,14 @@ export interface ImageProps {
   className?: string;
 }
 
+export interface GoogleImageProps {
+  alt?: string;
+  src: string;
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+}
+
 export interface HeadingProps {
   title: string;
   subtitle: string;
@@ -599,6 +607,7 @@ export interface AccountMenuItemProps {
 export interface BannerProps {
   image?: string;
   banner?: string;
+  isFromGoogle?: boolean;
   query: string | null;
   progress: number;
   advancement: number;
@@ -719,6 +728,7 @@ export interface ProfileImageProps {
   name: string;
   bio: string;
   image?: string;
+  isFromGoogle?: boolean;
   progress: number;
   role: RoleType;
   ref: Ref<HTMLInputElement> | undefined;
@@ -1404,6 +1414,7 @@ type AuthorType = {
   username: string;
   image?: string;
   role: RoleType;
+  fromGoogle?: boolean;
 };
 
 export type PostTypeWithAuthor = {
@@ -1458,6 +1469,7 @@ export type UserDetailType = {
   savedPosts: string[];
   tokenExpiration: number;
   fromGoogle: boolean;
+  providerId?: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -1478,6 +1490,7 @@ export type UserType = {
   savedPosts: string[];
   tokenExpiration: number;
   fromGoogle: boolean;
+  providerId?: string;
   isActive: boolean;
   role: RoleType;
   createdAt: string;

@@ -40,6 +40,7 @@ const GoogleButton = ({
           email: user.email,
           image: user.photoURL,
           phone: user.phoneNumber,
+          providerId: user.providerId,
         };
 
         dispatch(googleLoginUser(newUser));

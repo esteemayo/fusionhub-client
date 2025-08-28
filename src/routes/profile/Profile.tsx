@@ -150,6 +150,7 @@ const UserProfile = () => {
               query={username}
               image={user?.image}
               banner={user?.banner}
+              isFromGoogle={user?.fromGoogle}
               progress={progress}
               advancement={advancement}
               onChangeCoverData={setCover}

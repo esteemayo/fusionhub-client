@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
-import Image from '../Image';
 import Upload from '../upload/Upload';
+import Image from '../Image';
+import GoogleImage from '../GoogleImage';
 
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/bannerModal/bannerModalSlice';
@@ -19,6 +20,7 @@ const Banner = ({
   query,
   image,
   banner,
+  isFromGoogle,
   progress,
   advancement,
   onChangeCoverData,
@@ -62,13 +64,22 @@ const Banner = ({
       >
         <div className='banner__user'>
           <div className={`banner__user--image ${!!query && 'disabled'}`}>
-            <Image
-              src={image ?? '/user-default.jpg'}
-              width={120}
-              height={120}
-              alt='avatar'
-              className='banner__user--avatar'
-            />
+            {isFromGoogle && image?.startsWith('https') ? (
+              <GoogleImage
+                src={image ?? '/user-default.jpg'}
+                width={120}
+                height={120}
+                className='banner__user--avatar'
+              />
+            ) : (
+              <Image
+                src={image ?? '/user-default.jpg'}
+                width={120}
+                height={120}
+                alt='avatar'
+                className='banner__user--avatar'
+              />
+            )}
           </div>
         </div>
       </Upload>

@@ -1,10 +1,11 @@
 import UserMenu from '../userMenu/UserMenu';
 import Logo from '../logo/Logo';
-import ToggleButton from '../toggleButton/ToggleButton';
+import SearchBar from '../searchBar/SearchBar';
 import NavItem from '../navItem/NavItem';
+import ToggleButton from '../toggleButton/ToggleButton';
 
 import Image from '../Image';
-import SearchBar from '../searchBar/SearchBar';
+import GoogleImage from '../GoogleImage';
 
 import { onToggle } from '../../features/sidebar/sidebarSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -41,13 +42,23 @@ const Navbar = () => {
             })}
             <div className='navbar__accounts'>
               <div className='navbar__account'>
-                <Image
-                  src={currentUser?.details?.image ?? '/user-default.jpg'}
-                  width={32.5}
-                  height={32.5}
-                  alt='avatar'
-                  className='navbar__account--avatar'
-                />
+                {currentUser?.details.fromGoogle &&
+                currentUser.details.image?.startsWith('https') ? (
+                  <GoogleImage
+                    src={currentUser.details.image ?? '/user-default.jpg'}
+                    width={32.5}
+                    height={32.5}
+                    className='navbar__account--avatar'
+                  />
+                ) : (
+                  <Image
+                    src={currentUser?.details?.image ?? '/user-default.jpg'}
+                    width={32.5}
+                    height={32.5}
+                    alt='avatar'
+                    className='navbar__account--avatar'
+                  />
+                )}
               </div>
               <UserMenu />
             </div>

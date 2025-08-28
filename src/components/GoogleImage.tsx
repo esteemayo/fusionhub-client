@@ -1,20 +1,20 @@
 import { IKContext, IKImage } from 'imagekitio-react';
 
-import { ImageProps } from '../types';
+import { GoogleImageProps } from '../types';
 
 const urlEndpoint = import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT;
 
-const Image = ({
-  alt = 'image',
+const GoogleImage = ({
   src,
   width,
   height,
+  alt = 'avatar',
   className,
-}: ImageProps) => {
+}: GoogleImageProps) => {
   return (
     <IKContext urlEndpoint={urlEndpoint}>
       <IKImage
-        path={src}
+        src={src}
         width={width}
         height={height}
         loading='lazy'
@@ -27,4 +27,4 @@ const Image = ({
   );
 };
 
-export default Image;
+export default GoogleImage;

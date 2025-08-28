@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 
-import Image from '../Image';
 import Badge from '../badge/Badge';
+import Image from '../Image';
+import GoogleImage from '../GoogleImage';
 
 import HeartButton from '../heartButton/HeartButton';
 import ReplyAction from '../replyAction/ReplyAction';
@@ -131,13 +132,22 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
       <div className='reply__container'>
         <div className='reply__author'>
           <Link to={url}>
-            <Image
-              src={author.image ?? '/user-default.jpg'}
-              width={40}
-              height={40}
-              alt='avatar'
-              className='reply__author--img'
-            />
+            {author.fromGoogle && author.image?.startsWith('https') ? (
+              <GoogleImage
+                src={author.image ?? '/user-default.jpg'}
+                width={40}
+                height={40}
+                className='reply__author--img'
+              />
+            ) : (
+              <Image
+                src={author.image ?? '/user-default.jpg'}
+                width={40}
+                height={40}
+                alt='avatar'
+                className='reply__author--img'
+              />
+            )}
           </Link>
         </div>
         <div className='reply__content'>

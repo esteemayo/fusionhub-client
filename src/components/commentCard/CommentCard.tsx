@@ -5,8 +5,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Replies from '../replies/Replies';
 import ReplyForm from '../replyForm/ReplyForm';
 
-import Image from '../Image';
 import Badge from '../badge/Badge';
+import Image from '../Image';
+import GoogleImage from '../GoogleImage';
 
 import HeartButton from '../heartButton/HeartButton';
 import CommentAction from '../commentAction/CommentAction';
@@ -269,13 +270,22 @@ const CommentCard = ({
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link to={url}>
-            <Image
-              src={author.image ?? '/user-default.jpg'}
-              width={80}
-              height={80}
-              alt='avatar'
-              className='comment-card__user--img'
-            />
+            {author.fromGoogle && author.image?.startsWith('https') ? (
+              <GoogleImage
+                src={author.image ?? '/user-default.jpg'}
+                width={80}
+                height={80}
+                className='comment-card__user--img'
+              />
+            ) : (
+              <Image
+                src={author.image ?? '/user-default.jpg'}
+                width={80}
+                height={80}
+                alt='avatar'
+                className='comment-card__user--img'
+              />
+            )}
           </Link>
         </div>
         <div className='comment-card__details'>
