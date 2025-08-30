@@ -21,6 +21,7 @@ import {
   UseMutationResult,
 } from '@tanstack/react-query';
 
+import { profileSchema } from '../validations/profileSchema';
 import { registerSchema } from '../validations/registerSchema';
 
 export interface LogoProps {
@@ -353,6 +354,87 @@ export interface ResetPasswordFormProps {
     }
   >;
   onSubmit: SubmitHandler<{
+    password: string;
+    passwordConfirm: string;
+  }>;
+}
+
+export type ProfileDataFormData = z.infer<typeof profileSchema>;
+
+export interface ProfileDataFormProps {
+  about: ReactQuill.Value | undefined;
+  dateOfBirth: Date | null | undefined;
+  startDate: Date | null;
+  phone: Value | undefined;
+  isLoading?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  onChangeAbout: React.Dispatch<
+    React.SetStateAction<ReactQuill.Value | undefined>
+  >;
+  onChangeCustom(
+    name: keyof ProfileDataFormData,
+    value: string | CountrySelectType
+  ): void;
+  onChangeDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  onChangePhone: React.Dispatch<React.SetStateAction<Value | undefined>>;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      email: string;
+      name: string;
+      username: string;
+      bio: string;
+      country: {
+        label: string;
+      };
+    },
+    {
+      email: string;
+      name: string;
+      username: string;
+      bio: string;
+      country: {
+        label: string;
+      };
+    }
+  >;
+  onSubmit: SubmitHandler<{
+    name: string;
+    username: string;
+    email: string;
+    bio: string;
+    country: {
+      label: string;
+    };
+  }>;
+}
+
+export interface UpdatePasswordFormProps {
+  input: PasswordInput;
+  inputs: PasswordInput[];
+  showPassword: boolean;
+  showPasswordConfirm: boolean;
+  showPasswordCurrent: boolean;
+  isLoading?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  onTogglePassword(): void;
+  onTogglePasswordConfirm(): void;
+  onTogglePasswordCurrent(): void;
+  handleSubmit: UseFormHandleSubmit<
+    {
+      password: string;
+      passwordConfirm: string;
+      passwordCurrent: string;
+    },
+    {
+      password: string;
+      passwordConfirm: string;
+      passwordCurrent: string;
+    }
+  >;
+  onSubmit: SubmitHandler<{
+    passwordCurrent: string;
     password: string;
     passwordConfirm: string;
   }>;
@@ -1625,13 +1707,15 @@ export type ResetInputType = {
   placeholder: string;
 }[];
 
-export type PasswordInputType = {
+type PasswordInput = {
   id: string;
   name: string;
   type: HTMLInputTypeAttribute;
   label: string;
   placeholder: string;
-}[];
+};
+
+export type PasswordInputType = PasswordInput[];
 
 export type FilterType = {
   id: string;

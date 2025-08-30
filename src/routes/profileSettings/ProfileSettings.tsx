@@ -99,6 +99,7 @@ const ProfileSettings = () => {
               name={data?.name as string}
               bio={data?.bio as string}
               image={data?.image}
+              isFromGoogle={data?.fromGoogle}
               progress={progress}
               role={data?.role as RoleType}
               ref={inputRef}

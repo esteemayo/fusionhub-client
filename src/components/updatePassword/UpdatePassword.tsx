@@ -1,7 +1,7 @@
-import { toast } from 'react-toastify';
+import { useEffect, useMemo, useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
@@ -9,9 +9,8 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
-import Button from '../button/Button';
-import Input from '../input/Input';
 import AccountHeader from '../accountHeader/AccountHeader';
+import UpdatePasswordForm from '../updatePasswordForm/UpdatePasswordForm';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { resetState, updateUserPassword } from '../../features/auth/authSlice';
@@ -58,6 +57,12 @@ const UpdatePassword = () => {
     dispatch(updateUserPassword(data));
   };
 
+  const updatePasswordClasses = useMemo(() => {
+    return user?.details.fromGoogle && user.details.providerId
+      ? 'update-password hide'
+      : 'update-password show';
+  }, [user]);
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -76,81 +81,28 @@ const UpdatePassword = () => {
   const input = passwordInputs[passwordInputs.length - 1];
 
   return (
-    <section className='update-password'>
+    <section className={updatePasswordClasses}>
       <div className='update-password__container'>
         <AccountHeader
           title='Change password'
           subtitle='Your new password must be different from the previous used passwords'
         />
         <div className='update-password__wrapper'>
-          <form
-            className='update-password__form'
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div className='update-password__form--inputs'>
-              {inputs.map((input) => {
-                const { id, name, type, label, placeholder } = input;
-                return (
-                  <Input
-                    key={id}
-                    type={
-                      name === 'passwordCurrent'
-                        ? showPasswordCurrent
-                          ? 'text'
-                          : type
-                        : name === 'password'
-                        ? showPassword
-                          ? 'text'
-                          : type
-                        : type
-                    }
-                    name={name}
-                    label={label}
-                    placeholder={placeholder}
-                    register={
-                      register as unknown as UseFormRegister<FieldValues>
-                    }
-                    errors={errors}
-                    onAction={
-                      name === 'passwordCurrent'
-                        ? handleTogglePasswordCurrent
-                        : handleTogglePassword
-                    }
-                    disabled={isLoading}
-                    autoFocus={name === 'passwordCurrent'}
-                    isShow={
-                      name === 'passwordCurrent'
-                        ? showPasswordCurrent
-                        : showPassword
-                    }
-                    isPassword
-                    validate
-                  />
-                );
-              })}
-            </div>
-            <div className='update-password__form--confirm'>
-              <Input
-                type={showPasswordConfirm ? 'text' : input.type}
-                name={input.name}
-                label={input.label}
-                placeholder={input.placeholder}
-                register={register as unknown as UseFormRegister<FieldValues>}
-                errors={errors}
-                onAction={handleTogglePasswordConfirm}
-                disabled={isLoading}
-                isShow={showPasswordConfirm}
-                isPassword
-                validate
-              />
-            </div>
-            <Button
-              type='submit'
-              label='Update Changes'
-              isLoading={isLoading}
-              disabled={isLoading}
-            />
-          </form>
+          <UpdatePasswordForm
+            input={input}
+            inputs={inputs}
+            showPassword={showPassword}
+            showPasswordConfirm={showPasswordConfirm}
+            showPasswordCurrent={showPasswordCurrent}
+            isLoading={isLoading}
+            register={register as unknown as UseFormRegister<FieldValues>}
+            errors={errors}
+            onTogglePassword={handleTogglePassword}
+            onTogglePasswordConfirm={handleTogglePasswordConfirm}
+            onTogglePasswordCurrent={handleTogglePasswordCurrent}
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+          />
         </div>
       </div>
     </section>
