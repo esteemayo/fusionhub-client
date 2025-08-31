@@ -45,8 +45,8 @@ const CommentCard = ({
 
   const dispatch = useAppDispatch();
 
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { formattedDate } = useDate(createdAt);
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const postId = useMemo(() => {
     return post._id;
@@ -295,7 +295,7 @@ const CommentCard = ({
                 {formattedDate}
               </time>
               {currentUser && isUpdated && authorId !== (userId as string) && (
-                <span className='comment-card__date--status'>updated</span>
+                <span className='comment-card__date--status'>(Edited)</span>
               )}
             </div>
             <div>

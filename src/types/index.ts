@@ -1193,6 +1193,7 @@ export interface CommentProps {
   commentId: string;
   isPending: boolean;
   isPendingUser: boolean;
+  isOpen: boolean;
   isLoading: boolean;
   isEditing: boolean;
   error: Error | null;
@@ -1205,6 +1206,8 @@ export interface CommentProps {
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate?(commentId: string): void;
   onOpen(): void;
+  onClose(): void;
+  onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
 }
 
 export interface CommentCardProps {

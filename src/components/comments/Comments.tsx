@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
@@ -36,6 +36,19 @@ const Comments = ({ postId }: CommentsProps) => {
   const [commentId, setCommentId] = useState('');
   const [commentToShow, setCommentToShow] = useState(5);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
+    e.stopPropagation();
+
+    setIsOpen((value) => {
+      return !value;
+    });
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -130,6 +143,7 @@ const Comments = ({ postId }: CommentsProps) => {
           commentId={commentId}
           isPending={isPending}
           isPendingUser={isPendingUser}
+          isOpen={isOpen}
           isLoading={isLoading}
           isEditing={isEditing}
           error={error}
@@ -142,6 +156,8 @@ const Comments = ({ postId }: CommentsProps) => {
           onClick={handleClick}
           onUpdate={handleUpdate}
           onOpen={handleOpen}
+          onClose={handleClose}
+          onToggle={handleToggle}
         />
         <CommentForm
           value={value}

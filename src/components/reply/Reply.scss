@@ -161,15 +161,10 @@
       }
 
       span {
-        text-transform: lowercase;
-        padding: 0 0.5rem;
-        background-color: rgba(vars.$clr-success, 0.2);
-        color: vars.$clr-white;
-        border-radius: 0.25rem;
-
-        @media screen and (min-width: 112.5em) {
-          padding: 0.125rem 0.75rem;
-        }
+        text-transform: capitalize;
+        font-weight: 400;
+        font-style: italic;
+        color: vars.$clr-gray-light-1;
       }
     }
 

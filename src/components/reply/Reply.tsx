@@ -154,7 +154,7 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
           <div className='reply__content--time'>
             <time dateTime={createdAt}>{formattedDate}</time>
             {currentUser && hasUpdated && author._id !== userId && (
-              <span>updated</span>
+              <span>(Edited)</span>
             )}
           </div>
           <div className='reply__content--user'>
