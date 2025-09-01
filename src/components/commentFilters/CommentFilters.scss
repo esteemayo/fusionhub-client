@@ -1,0 +1,144 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.comment-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid vars.$clr-gray-light-2;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__count {
+    display: flex;
+    align-items: center;
+
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    font-variant: tabular-nums;
+    color: vars.$clr-gray-light-1;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: var(--default-font-size);
+    }
+
+    @include bp.sm {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.45rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.9rem;
+    }
+
+    &::after {
+      display: none;
+
+      @media screen and (max-width: 26.875em) {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        height: 1.25rem;
+        background-color: vars.$clr-gray-light-2;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &__total {
+    display: none;
+
+    @media screen and (max-width: 26.875em) {
+      display: flex;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 1.4rem;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: var(--default-font-size);
+    }
+
+    @include bp.sm {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.45rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.9rem;
+    }
+
+    &--label {
+      color: vars.$clr-gray-light-1;
+    }
+  }
+
+  &__options {
+    color: vars.$clr-white;
+    cursor: pointer;
+    position: relative;
+
+    &--value {
+      text-transform: capitalize;
+      font-weight: 600;
+      color: currentColor;
+    }
+  }
+}

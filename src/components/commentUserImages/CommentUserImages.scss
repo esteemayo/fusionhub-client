@@ -1,0 +1,69 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.comment-user-images {
+  &__container {
+    display: none;
+
+    @media screen and (max-width: 26.875em) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__default {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(vars.$clr-secondary-blue, 0.25);
+    backdrop-filter: blur(1rem);
+    border: 2.5px solid vars.$clr-primary-blue;
+    border-radius: 50%;
+
+    @media screen and (max-width: 22.5em) {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 4.25rem;
+      height: 4.25rem;
+    }
+
+    @media screen and (max-width: 17.5em) {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &.show {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
+
+    span {
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: vars.$clr-white;
+
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.55rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.45rem;
+      }
+    }
+  }
+}

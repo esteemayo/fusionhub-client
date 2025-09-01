@@ -1210,6 +1210,33 @@ export interface CommentProps {
   onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
 }
 
+export interface CommentUserImagesProps {
+  url(user: CommentImageType): string;
+  users: CommentImageType[] | undefined;
+  totalUsers: CommentImageType[] | undefined;
+  isLoading: boolean;
+  error: Error | null;
+}
+
+export interface CommentUserImageProps {
+  id: string;
+  url: string;
+  src: string;
+}
+
+export interface CommentFiltersProps {
+  isOpen: boolean;
+  totalComments?: number;
+  totalCommentUsers?: number;
+  onClose(): void;
+  onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
+}
+
+export interface CommentFilterProps {
+  isOpen: boolean;
+  onClose(): void;
+}
+
 export interface CommentCardProps {
   editId: string;
   editing: boolean;

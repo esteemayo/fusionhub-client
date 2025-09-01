@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+
+import CommentUsers from '../commentUsers/CommentUsers';
+import CommentCard from '../commentCard/CommentCard';
+import CommentFilters from '../commentFilters/CommentFilters';
 
 import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
-import CommentCard from '../commentCard/CommentCard';
-import CommentUserSkeleton from '../commentUserSkeleton/CommentUserSkeleton';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
-
-import Image from '../Image';
+import CommentUserImages from '../commentUserImages/CommentUserImages';
 
 import { useAppSelector } from '../../hooks/hooks';
 import {
@@ -65,16 +65,6 @@ const Comment = ({
     });
   }, [commentUsers]);
 
-  const defaultImgClasses = useMemo(() => {
-    return uniqueCommentUsers && uniqueCommentUsers.length > 3
-      ? 'comment__user--default show'
-      : 'comment__user--default hide';
-  }, [uniqueCommentUsers]);
-
-  const listClasses = useMemo(() => {
-    return isOpen ? 'comment__list show' : 'comment__list hide';
-  }, [isOpen]);
-
   const wrapperClasses = useMemo(() => {
     return !isPending && commentToShow < (comments ?? [])?.length
       ? 'comment__wrapper show'
@@ -87,97 +77,24 @@ const Comment = ({
         <h4 className='comment__heading'>{commentHeading}</h4>
         <div className='comment__users'>
           <div className='comment__total'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-              className='size-6'
-            >
-              <path
-                fillRule='evenodd'
-                d='M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z'
-                clipRule='evenodd'
-              />
-            </svg>
-            <span>{uniqueCommentUsers?.length}</span>
+            <CommentUsers total={uniqueCommentUsers?.length} />
           </div>
-          {(commentUsers ?? [])?.length < 1 && !isPendingUser ? (
-            <EmptyMessage title='No users found.' type='comment' />
-          ) : (
-            <figure className='comment__user'>
-              {isPendingUser ? (
-                Array.from(new Array(3)).map((_, index) => {
-                  return <CommentUserSkeleton key={index} />;
-                })
-              ) : errorUser ? (
-                <EmptyMessage title='Failed to load comment users.' />
-              ) : (
-                <>
-                  {uniqueCommentUsers?.slice(0, 3).map((user) => {
-                    const { _id: userId, image } = user;
-                    return (
-                      <Link key={userId} to={url(user)}>
-                        <Image
-                          src={image}
-                          width={50}
-                          height={50}
-                          alt='avatar'
-                          className='comment__user--img'
-                        />
-                      </Link>
-                    );
-                  })}
-                  <div className={defaultImgClasses}>
-                    <span>
-                      {uniqueCommentUsers && uniqueCommentUsers.length - 3}+
-                    </span>
-                  </div>
-                </>
-              )}
-            </figure>
-          )}
+          <CommentUserImages
+            url={url}
+            users={commentUsers}
+            totalUsers={uniqueCommentUsers}
+            isLoading={isPendingUser}
+            error={errorUser}
+          />
         </div>
       </div>
-      <div className='comment__wrap'>
-        <div className='comment__box'>
-          <span className='comment__box--count'>
-            {comments?.length} comments
-          </span>
-          <div className='comment__box--total'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-              className='size-6'
-              width={15}
-            >
-              <path
-                fillRule='evenodd'
-                d='M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z'
-                clipRule='evenodd'
-              />
-            </svg>
-            <span>{uniqueCommentUsers?.length}</span>
-          </div>
-        </div>
-        <div className='comment__filter'>
-          <span className='comment__filter--label'>Sort by</span>
-          <div className='comment__filter--input'>
-            <span onClick={onToggle}>Best</span>
-            <ul className={listClasses}>
-              <li className='comment__list--item' onClick={onClose}>
-                <span>Best</span>
-              </li>
-              <li className='comment__list--item' onClick={onClose}>
-                <span>Newest</span>
-              </li>
-              <li className='comment__list--item' onClick={onClose}>
-                <span>Oldest</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <CommentFilters
+        isOpen={isOpen}
+        totalComments={comments?.length}
+        totalCommentUsers={uniqueCommentUsers?.length}
+        onClose={onClose}
+        onToggle={onToggle}
+      />
       {(comments ?? [])?.length < 1 && !isPending ? (
         <EmptyMessage
           title='No comments yet.'
