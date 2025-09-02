@@ -8,7 +8,7 @@
 
   list-style: none;
   position: absolute;
-  top: 2rem;
+  top: 2.25rem;
   right: 0;
   width: 17rem;
   max-width: 17rem;
@@ -16,8 +16,64 @@
   background-color: rgba(vars.$clr-secondary-blue, 0.5);
   background-color: transparent;
   backdrop-filter: blur(3px);
-  border: 2px solid vars.$clr-tertiary-blue;
+  border: 1px solid vars.$clr-gray-light-1;
   border-radius: 0.5rem;
+
+  @media screen and (max-width: 56.25em) {
+    top: 2.575rem;
+    width: 18rem;
+    max-width: 18rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    width: 19rem;
+    max-width: 19rem;
+  }
+
+  @media screen and (max-width: 37.5em) {
+    top: 2.875rem;
+  }
+
+  @media screen and (max-width: 34.375em) {
+    width: 20rem;
+    max-width: 20rem;
+  }
+
+  @include bp.sm {
+    top: 3.2rem;
+    width: 21rem;
+    max-width: 21rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    top: 2.925rem;
+    width: 19.5rem;
+    max-width: 19.5rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    top: 2.75rem;
+    width: 18rem;
+    max-width: 18rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    top: 2.625rem;
+    width: 19rem;
+    max-width: 19rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    top: 2.65rem;
+    width: 20rem;
+    max-width: 20rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    top: 3.1rem;
+    width: 23rem;
+    max-width: 23rem;
+  }
 
   &.show {
     display: flex;
@@ -38,13 +94,60 @@
     display: block;
     width: 0;
     height: 0;
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-    border-bottom: 0.5rem solid vars.$clr-tertiary-blue;
+    border-left: 0.65rem solid transparent;
+    border-right: 0.65rem solid transparent;
+    border-bottom: 0.65rem solid vars.$clr-gray-light-1;
     position: absolute;
-    top: -0.75rem;
-    left: 90%;
-    transform: translateX(-90%);
+    top: -0.65rem;
+    left: 80%;
+    transform: translateX(-80%);
+
+    @media screen and (max-width: 57.5em) {
+      top: -0.75rem;
+    }
+
+    @media screen and (max-width: 57em) {
+      top: -0.7rem;
+    }
+
+    @media screen and (max-width: 56.25em) {
+      top: -0.8rem;
+      border-left-width: 0.75rem;
+      border-right-width: 0.75rem;
+      border-bottom-width: 0.75rem;
+    }
+
+    @include bp.sm {
+      top: -1.125rem;
+      border-left-width: 1rem;
+      border-right-width: 1rem;
+      border-bottom-width: 1rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      top: -1rem;
+      border-left-width: 0.85rem;
+      border-right-width: 0.85rem;
+      border-bottom-width: 0.9rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      border-left-width: 0.7rem;
+      border-right-width: 0.7rem;
+      border-bottom-width: 0.675rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      border-left-width: 0.75rem;
+      border-right-width: 0.75rem;
+      border-bottom-width: 0.7rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      border-left-width: 0.85rem;
+      border-right-width: 0.85rem;
+      border-bottom-width: 0.725rem;
+    }
   }
 
   &__item {
@@ -54,8 +157,45 @@
     height: 3.5rem;
     cursor: pointer;
 
+    @media screen and (max-width: 56.25em) {
+      height: 3.8rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 4.1rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      height: 4.3rem;
+    }
+
+    @include bp.sm {
+      height: 4.5rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      height: 4.35rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 4.25rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      height: 3.8rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 4.25rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 5rem;
+    }
+
     &:not(:last-child) {
       border-bottom: 1px solid vars.$clr-tertiary-blue;
+      border-bottom: 1px solid vars.$clr-gray-light-1;
     }
 
     &--label {

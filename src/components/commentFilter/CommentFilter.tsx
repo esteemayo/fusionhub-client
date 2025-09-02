@@ -5,12 +5,12 @@ import { CommentFilterProps } from '../../types';
 import './CommentFilter.scss';
 
 const CommentFilter = ({ isOpen, onClose }: CommentFilterProps) => {
-  const listClasses = useMemo(() => {
+  const commentFilterClasses = useMemo(() => {
     return isOpen ? 'comment-filter show' : 'comment-filter hide';
   }, [isOpen]);
 
   return (
-    <ul className={listClasses}>
+    <ul className={commentFilterClasses}>
       <li className='comment-filter__item' onClick={onClose}>
         <span className='comment-filter__item--label'>Best</span>
       </li>
