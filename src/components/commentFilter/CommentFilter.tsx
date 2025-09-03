@@ -1,25 +1,34 @@
 import { useMemo } from 'react';
 
+import CommentFilterItem from '../commentFilterItem/CommentFilterItem';
+
 import { CommentFilterProps } from '../../types';
+import { commentFilters } from '../../data/formData';
 
 import './CommentFilter.scss';
 
-const CommentFilter = ({ isOpen, onClose }: CommentFilterProps) => {
+const CommentFilter = ({ isOpen, onClose, onSort }: CommentFilterProps) => {
+  const handleSort = (value: 'best' | 'newest' | 'oldest') => {
+    onSort(value);
+    onClose();
+  };
+
   const commentFilterClasses = useMemo(() => {
     return isOpen ? 'comment-filter show' : 'comment-filter hide';
   }, [isOpen]);
 
   return (
     <ul className={commentFilterClasses}>
-      <li className='comment-filter__item' onClick={onClose}>
-        <span className='comment-filter__item--label'>Best</span>
-      </li>
-      <li className='comment-filter__item' onClick={onClose}>
-        <span className='comment-filter__item--label'>Newest</span>
-      </li>
-      <li className='comment-filter__item' onClick={onClose}>
-        <span className='comment-filter__item--label'>Oldest</span>
-      </li>
+      {commentFilters.map((filter) => {
+        const { id, label } = filter;
+        return (
+          <CommentFilterItem
+            key={id}
+            value={label}
+            onAction={() => handleSort(id)}
+          />
+        );
+      })}
     </ul>
   );
 };

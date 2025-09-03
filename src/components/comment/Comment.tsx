@@ -19,6 +19,7 @@ import {
 import './Comment.scss';
 
 const Comment = ({
+  sort,
   commentId,
   isPending,
   isPendingUser,
@@ -37,8 +38,17 @@ const Comment = ({
   onOpen,
   onClose,
   onToggle,
+  onSort,
 }: CommentProps) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const closeFilterHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as Element;
+
+    if (!target.classList.contains('comment-filter')) {
+      onClose();
+    }
+  };
 
   const url = (user: CommentImageType) => {
     return currentUser
@@ -72,7 +82,7 @@ const Comment = ({
   }, [commentToShow, comments, isPending]);
 
   return (
-    <div className='comment'>
+    <div onClick={closeFilterHandler} className='comment'>
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
         <div className='comment__users'>
@@ -89,11 +99,13 @@ const Comment = ({
         </div>
       </div>
       <CommentFilters
+        sort={sort}
         isOpen={isOpen}
         totalComments={comments?.length}
         totalCommentUsers={uniqueCommentUsers?.length}
         onClose={onClose}
         onToggle={onToggle}
+        onSort={onSort}
       />
       {(comments ?? [])?.length < 1 && !isPending ? (
         <EmptyMessage

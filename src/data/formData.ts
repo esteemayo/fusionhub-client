@@ -1,5 +1,6 @@
 import {
   CategoryOptionType,
+  CommentFiltersType,
   FilterType,
   LoginInputType,
   PasswordInputType,
@@ -159,5 +160,20 @@ export const categoryOptions: CategoryOptionType = [
   {
     id: '8',
     name: 'adventure',
+  },
+];
+
+export const commentFilters: CommentFiltersType = [
+  {
+    id: 'best',
+    label: 'Best',
+  },
+  {
+    id: 'newest',
+    label: 'Newest',
+  },
+  {
+    id: 'oldest',
+    label: 'Oldest',
   },
 ];

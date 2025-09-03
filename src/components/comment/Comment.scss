@@ -172,52 +172,70 @@
 
       outline: 0;
       border: 0;
-      text-transform: initial;
+      text-transform: capitalize;
       font-weight: 700;
       font-size: 1.4rem;
-      background-color: transparent;
+      width: fit-content;
+      height: 3.6rem;
+      padding: 2rem 1.25rem;
+      background-color: vars.$clr-pink-dark-1;
       color: vars.$clr-gray-light-3;
+      border-radius: 0.5rem;
       cursor: pointer;
-      transition: all 300ms ease-in-out;
 
       @media screen and (max-width: 56.25em) {
+        height: 3.7rem;
+        padding: 2.25rem 1.5rem;
         font-size: 1.5rem;
       }
 
       @media screen and (max-width: 51.25em) {
+        height: 3.8rem;
+        padding: 2.5rem 1.75rem;
         font-size: var(--default-font-size);
       }
 
       @media screen and (max-width: 34.375em) {
+        width: 100%;
+        height: 3.9rem;
+        padding: 2.65rem 1.75rem;
         font-size: 1.7rem;
       }
 
       @include bp.sm {
+        height: 4rem;
+        padding: 2.75rem 1.75rem;
         font-size: 1.8rem;
       }
 
       @media screen and (max-width: 22.5em) {
+        height: 3.85rem;
+        padding: 2.6rem 1.6rem;
         font-size: 1.65rem;
       }
 
       @media screen and (max-width: 18.75em) {
+        height: 3.75rem;
+        padding: 2.5rem 1.5rem;
         font-size: 1.55rem;
       }
 
       @media screen and (min-width: 106.25em) {
+        height: 3.7rem;
+        padding: 2.25rem 1.5rem;
         font-size: var(--default-font-size);
       }
 
       @media screen and (min-width: 112.5em) {
+        height: 3.8rem;
+        padding: 2.5rem 1.75rem;
         font-size: 1.8rem;
       }
 
       @media screen and (min-width: 125em) {
+        height: 4rem;
+        padding: 3rem 2rem;
         font-size: 2.15rem;
-      }
-
-      &:hover {
-        border-bottom: 1px solid currentColor;
       }
 
       &:disabled {

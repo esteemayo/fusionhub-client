@@ -1190,6 +1190,7 @@ export interface IReply {
 }
 
 export interface CommentProps {
+  sort: 'best' | 'newest' | 'oldest';
   commentId: string;
   isPending: boolean;
   isPendingUser: boolean;
@@ -1208,6 +1209,7 @@ export interface CommentProps {
   onOpen(): void;
   onClose(): void;
   onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
+  onSort: React.Dispatch<React.SetStateAction<'best' | 'newest' | 'oldest'>>;
 }
 
 export interface CommentUserImagesProps {
@@ -1225,16 +1227,24 @@ export interface CommentUserImageProps {
 }
 
 export interface CommentFiltersProps {
+  sort: 'best' | 'newest' | 'oldest';
   isOpen: boolean;
   totalComments?: number;
   totalCommentUsers?: number;
   onClose(): void;
   onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
+  onSort: React.Dispatch<React.SetStateAction<'best' | 'newest' | 'oldest'>>;
 }
 
 export interface CommentFilterProps {
   isOpen: boolean;
   onClose(): void;
+  onSort: React.Dispatch<React.SetStateAction<'best' | 'newest' | 'oldest'>>;
+}
+
+export interface CommentFilterItemProps {
+  value: string;
+  onAction(): void;
 }
 
 export interface CommentCardProps {
@@ -1869,3 +1879,8 @@ export type ContactFormError = {
   message?: string;
   phone?: string;
 };
+
+export type CommentFiltersType = {
+  id: 'best' | 'newest' | 'oldest';
+  label: string;
+}[];

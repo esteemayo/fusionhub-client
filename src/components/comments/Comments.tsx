@@ -33,10 +33,11 @@ const Comments = ({ postId }: CommentsProps) => {
   const [comments, setComments] = useState(data);
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [commentId, setCommentId] = useState('');
-  const [commentToShow, setCommentToShow] = useState(5);
-  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [commentToShow, setCommentToShow] = useState(5);
+  const [commentId, setCommentId] = useState('');
+  const [sort, setSort] = useState<'best' | 'newest' | 'oldest'>('best');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
@@ -132,14 +133,47 @@ const Comments = ({ postId }: CommentsProps) => {
   }, [data]);
 
   useEffect(() => {
-    refetch();
-    refetchCommentUsers();
-  }, [refetch, refetchCommentUsers]);
+    if (postId) {
+      refetch();
+      refetchCommentUsers();
+    }
+  }, [postId, refetch, refetchCommentUsers]);
+
+  useEffect(() => {
+    if (sort === 'best') {
+      setComments((value) => {
+        return (
+          [...(value ?? [])].sort((a, b) => b.likeCount - a.likeCount) && [
+            ...(value ?? []),
+          ]
+        );
+      });
+    }
+
+    if (sort === 'newest') {
+      setComments((value) => {
+        return [...(value ?? [])].sort(
+          (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+    }
+
+    if (sort === 'oldest') {
+      setComments((value) => {
+        return [...(value ?? [])].sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+        );
+      });
+    }
+  }, [sort]);
 
   return (
     <section className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
+          sort={sort}
           commentId={commentId}
           isPending={isPending}
           isPendingUser={isPendingUser}
@@ -158,6 +192,7 @@ const Comments = ({ postId }: CommentsProps) => {
           onOpen={handleOpen}
           onClose={handleClose}
           onToggle={handleToggle}
+          onSort={setSort}
         />
         <CommentForm
           value={value}

@@ -91,19 +91,19 @@
       @media screen and (min-width: 106.25em) {
         height: 3.7rem;
         padding: 2.25rem 1.5rem;
-        font-size: 1.5rem;
+        font-size: var(--default-font-size);
       }
 
       @media screen and (min-width: 112.5em) {
         height: 3.8rem;
         padding: 2.5rem 1.75rem;
-        font-size: var(--default-font-size);
+        font-size: 1.8rem;
       }
 
       @media screen and (min-width: 125em) {
         height: 4rem;
         padding: 3rem 2rem;
-        font-size: 2rem;
+        font-size: 2.15rem;
       }
 
       &:disabled {

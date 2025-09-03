@@ -135,13 +135,15 @@
   }
 
   &__options {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-
     color: vars.$clr-white;
     cursor: pointer;
     position: relative;
+  }
+
+  &__wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 
     &--value {
       text-transform: capitalize;
