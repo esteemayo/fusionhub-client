@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
-import Upload from '../upload/Upload';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
+
+import Upload from '../upload/Upload';
+import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/bannerModal/bannerModalSlice';
@@ -57,6 +59,11 @@ const Banner = ({
 
   return (
     <Container cover={coverImg} className='banner'>
+      {0 < advancement && advancement < 100 && (
+        <div className='banner__loader'>
+          <UploadProgressCircle progress={advancement} />
+        </div>
+      )}
       <Upload
         disabled={(0 < progress && progress < 100) || !!query}
         setData={onChangeImageData}
@@ -79,6 +86,11 @@ const Banner = ({
                 alt='avatar'
                 className='banner__user--avatar'
               />
+            )}
+            {0 < progress && progress < 100 && (
+              <div className='banner__loader avatar'>
+                <UploadProgressCircle progress={progress} />
+              </div>
             )}
           </div>
         </div>

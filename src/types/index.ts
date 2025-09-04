@@ -943,6 +943,14 @@ export interface ISearch {
   };
 }
 
+export interface ISortedComments {
+  (comment: CommentType[] | undefined): {
+    sort: sortType;
+    setSort: React.Dispatch<React.SetStateAction<sortType>>;
+    sortedComments: CommentType[];
+  };
+}
+
 export interface ILogout {
   (isOpen?: boolean, onClose?: () => Action): {
     btnLabel: string;
@@ -1189,8 +1197,10 @@ export interface IReply {
   };
 }
 
+export type sortType = 'best' | 'newest' | 'oldest';
+
 export interface CommentProps {
-  sort: 'best' | 'newest' | 'oldest';
+  sort: sortType;
   commentId: string;
   isPending: boolean;
   isPendingUser: boolean;
@@ -1199,7 +1209,7 @@ export interface CommentProps {
   isEditing: boolean;
   error: Error | null;
   errorUser: Error | null;
-  comments: CommentType[] | undefined;
+  comments: CommentType[];
   commentUsers: CommentImageType[] | undefined;
   commentToShow: number;
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
@@ -1209,7 +1219,7 @@ export interface CommentProps {
   onOpen(): void;
   onClose(): void;
   onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
-  onSort: React.Dispatch<React.SetStateAction<'best' | 'newest' | 'oldest'>>;
+  onSort: React.Dispatch<React.SetStateAction<sortType>>;
 }
 
 export interface CommentUserImagesProps {
@@ -1227,19 +1237,19 @@ export interface CommentUserImageProps {
 }
 
 export interface CommentFiltersProps {
-  sort: 'best' | 'newest' | 'oldest';
+  sort: sortType;
   isOpen: boolean;
   totalComments?: number;
   totalCommentUsers?: number;
   onClose(): void;
   onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
-  onSort: React.Dispatch<React.SetStateAction<'best' | 'newest' | 'oldest'>>;
+  onSort: React.Dispatch<React.SetStateAction<sortType>>;
 }
 
 export interface CommentFilterProps {
   isOpen: boolean;
   onClose(): void;
-  onSort: React.Dispatch<React.SetStateAction<'best' | 'newest' | 'oldest'>>;
+  onSort: React.Dispatch<React.SetStateAction<sortType>>;
 }
 
 export interface CommentFilterItemProps {
@@ -1881,6 +1891,6 @@ export type ContactFormError = {
 };
 
 export type CommentFiltersType = {
-  id: 'best' | 'newest' | 'oldest';
+  id: sortType;
   label: string;
 }[];

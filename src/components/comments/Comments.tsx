@@ -3,8 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useSortedComments } from '../../hooks/useSortedComments';
 import { useComment } from '../../hooks/useComment';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { CommentsProps } from '../../types';
 import { onOpen } from '../../features/commentModal/commentModalSlice';
@@ -34,10 +35,11 @@ const Comments = ({ postId }: CommentsProps) => {
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [commentToShow, setCommentToShow] = useState(5);
-  const [commentId, setCommentId] = useState('');
-  const [sort, setSort] = useState<'best' | 'newest' | 'oldest'>('best');
   const [isLoading, setIsLoading] = useState(false);
+  const [commentId, setCommentId] = useState('');
+  const [commentToShow, setCommentToShow] = useState(5);
+
+  const { sort, setSort, sortedComments } = useSortedComments(comments);
 
   const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
@@ -127,10 +129,10 @@ const Comments = ({ postId }: CommentsProps) => {
   };
 
   useEffect(() => {
-    if (data) {
+    if (data || postId) {
       setComments(data);
     }
-  }, [data]);
+  }, [data, postId]);
 
   useEffect(() => {
     if (postId) {
@@ -138,36 +140,6 @@ const Comments = ({ postId }: CommentsProps) => {
       refetchCommentUsers();
     }
   }, [postId, refetch, refetchCommentUsers]);
-
-  useEffect(() => {
-    if (sort === 'best') {
-      setComments((value) => {
-        return (
-          [...(value ?? [])].sort((a, b) => b.likeCount - a.likeCount) && [
-            ...(value ?? []),
-          ]
-        );
-      });
-    }
-
-    if (sort === 'newest') {
-      setComments((value) => {
-        return [...(value ?? [])].sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-      });
-    }
-
-    if (sort === 'oldest') {
-      setComments((value) => {
-        return [...(value ?? [])].sort(
-          (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        );
-      });
-    }
-  }, [sort]);
 
   return (
     <section className='comments' id='comments'>
@@ -182,7 +154,7 @@ const Comments = ({ postId }: CommentsProps) => {
           isEditing={isEditing}
           error={error}
           errorUser={errorUser}
-          comments={comments}
+          comments={sortedComments}
           commentUsers={commentUsers}
           commentToShow={commentToShow}
           mutation={commentMutation}

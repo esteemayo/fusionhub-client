@@ -63,6 +63,23 @@
     margin-bottom: 10rem;
   }
 
+  &__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(vars.$clr-black, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.avatar {
+      border-radius: 50%;
+    }
+  }
+
   &__user {
     display: flex;
     align-items: center;
@@ -160,6 +177,7 @@
       width: 12rem;
       height: 12rem;
       cursor: pointer;
+      position: relative;
 
       &.disabled {
         cursor: default;

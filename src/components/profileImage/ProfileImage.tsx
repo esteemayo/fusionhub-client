@@ -10,6 +10,7 @@ import { excerpts } from '../../utils';
 import { ProfileImageProps } from '../../types';
 
 import './ProfileImage.scss';
+import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 const ProfileImage = ({
   name,
@@ -77,6 +78,11 @@ const ProfileImage = ({
                 alt='avatar'
                 className='profile-image__image--avatar'
               />
+            )}
+            {0 < progress && progress < 100 && (
+              <div className='profile-image__progress'>
+                <UploadProgressCircle progress={progress} />
+              </div>
             )}
             <div className='profile-image__upload'>
               <Upload

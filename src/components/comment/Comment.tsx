@@ -107,7 +107,7 @@ const Comment = ({
         onToggle={onToggle}
         onSort={onSort}
       />
-      {(comments ?? [])?.length < 1 && !isPending ? (
+      {comments?.length < 1 && !isPending ? (
         <EmptyMessage
           title='No comments yet.'
           subtitle='Be the first to share your thoughts!'

@@ -29,6 +29,7 @@
     "lottie-react": "^2.4.1",
     "millify": "^6.1.0",
     "react": "19.0.0-rc-66855b96-20241106",
+    "react-circular-progressbar": "^2.2.0",
     "react-datepicker": "^8.1.0",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-hook-form": "^7.56.1",
