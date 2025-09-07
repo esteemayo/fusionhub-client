@@ -2,12 +2,19 @@ import { toast } from 'react-toastify';
 import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { ISavedPosts, PostType } from '../types';
-import { useAppSelector } from './hooks';
+import { getSavedPostsCount } from '../services/postService';
 import { getSavedPosts, savePost } from '../services/userService';
+
+import { useAppSelector } from './hooks';
+import { ISavedPosts, PostType } from '../types';
 
 const fetchSavedPosts = async () => {
   const { data } = await getSavedPosts();
+  return data;
+};
+
+const fetchSavedPostsCount = async (postId: string) => {
+  const { data } = await getSavedPostsCount(postId);
   return data;
 };
 
@@ -29,6 +36,16 @@ export const useSavedPosts: ISavedPosts = (postId) => {
     queryKey: ['savedPosts'],
     queryFn: fetchSavedPosts,
     enabled: !!currentUser,
+  });
+
+  const {
+    isPending: isPendingSavedCount,
+    error: errorSavedCount,
+    data: savedPostsCount,
+  } = useQuery({
+    queryKey: ['savedPosts'],
+    queryFn: () => fetchSavedPostsCount(postId as string),
+    enabled: !!postId,
   });
 
   const saveMutation = useMutation({
@@ -70,9 +87,12 @@ export const useSavedPosts: ISavedPosts = (postId) => {
 
   return {
     isPending,
+    isPendingSavedCount,
     isSaved,
     error,
+    errorSavedCount,
     savedPosts,
+    savedPostsCount,
     saveMutation,
     handleSave,
   };

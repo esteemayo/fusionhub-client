@@ -6,6 +6,11 @@ import * as replyAPI from '../services/replyService';
 
 import { IReply, ReplyType } from '../types';
 
+const fetchRepliesOnComment = async (commentId: string) => {
+  const { data } = await replyAPI.getRepliesOnComment(commentId);
+  return data;
+};
+
 const fetchPostCommentReplies = async (postId: string, commentId: string) => {
   const { data } = await postAPI.getPostCommentReplies(postId, commentId);
   return data;
@@ -39,9 +44,15 @@ export const useReply: IReply = (postId, commentId) => {
 
   const { isPending, error, data } = useQuery<ReplyType[] | [] | undefined>({
     queryKey: ['replies', commentId],
-    queryFn: () => fetchPostCommentReplies(postId, commentId),
+    queryFn: () => fetchRepliesOnComment(commentId),
     enabled: !!commentId,
   });
+
+  // const { isPending, error, data } = useQuery<ReplyType[] | [] | undefined>({
+  //   queryKey: ['replies', commentId],
+  //   queryFn: () => fetchPostCommentReplies(postId, commentId),
+  //   enabled: !!commentId,
+  // });
 
   const replyMutation = useMutation({
     mutationFn: (content: string) => createReply(content, postId, commentId),

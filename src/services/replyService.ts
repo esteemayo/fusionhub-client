@@ -6,6 +6,9 @@ const replyUrl = (replyId: string) => `${apiEndpoint}/${replyId}`;
 
 export const getReplies = () => http.get(apiEndpoint);
 
+export const getRepliesOnComment = (commentId: string) =>
+  http.get(`${apiEndpoint}/${commentId}/comment`);
+
 export const getRepliesByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/${userId}/user`, {
     params: {

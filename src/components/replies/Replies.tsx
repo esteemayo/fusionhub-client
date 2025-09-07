@@ -8,7 +8,7 @@ import './Replies.scss';
 
 const Replies = ({
   replyId,
-  replies,
+  replyLists,
   replyToShow,
   isLoading,
   isEditing,
@@ -30,10 +30,10 @@ const Replies = ({
   }, [isShow]);
 
   const boxClasses = useMemo(() => {
-    return !isLoading && replyToShow < (replies ?? [])?.length
+    return !isLoading && replyToShow < (replyLists ?? [])?.length
       ? 'replies__box show'
       : 'replies__box hide';
-  }, [isLoading, replies, replyToShow]);
+  }, [isLoading, replyLists, replyToShow]);
 
   const isDisabled = useMemo(() => {
     const shouldDisable = isEditing && replyId;
@@ -45,7 +45,7 @@ const Replies = ({
     if (!element) return;
 
     let minHeight = '';
-    const replyCount = replies?.length ?? 0;
+    const replyCount = replyLists?.length ?? 0;
 
     if (replyCount === 2) minHeight = '160px';
     else if (replyCount === 3) minHeight = '280px';
@@ -53,9 +53,9 @@ const Replies = ({
     else if (replyCount > 4 && replyToShow > 4) minHeight = '580px';
 
     element.style.minHeight = minHeight;
-  }, [replies?.length, replyToShow]);
+  }, [replyLists?.length, replyToShow]);
 
-  if ((replies ?? [])?.length < 1) {
+  if ((replyLists ?? [])?.length < 1) {
     return null;
   }
 
@@ -67,7 +67,7 @@ const Replies = ({
           className='replies__container--btn'
           onClick={handleToggle}
         >
-          Replies ({replies?.length})
+          Replies ({replyLists?.length})
           {isShow ? (
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -101,7 +101,7 @@ const Replies = ({
           )}
         </button>
         <div className={wrapperClasses} ref={ref}>
-          {replies?.slice(0, replyToShow).map((reply) => {
+          {replyLists?.slice(0, replyToShow).map((reply) => {
             return (
               <Reply
                 key={reply._id}

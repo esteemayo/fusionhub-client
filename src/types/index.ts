@@ -962,9 +962,12 @@ export interface ILogout {
 export interface ISavedPosts {
   (postId?: string): {
     isPending: boolean;
+    isPendingSavedCount: boolean;
     isSaved: boolean;
     error: Error | null;
+    errorSavedCount: Error | null;
     savedPosts: PostType[] | undefined;
+    savedPostsCount: number;
     saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
     handleSave(e: React.MouseEvent<HTMLButtonElement>): void;
   };
@@ -1289,7 +1292,7 @@ export interface HeartButtonProps {
 
 export interface RepliesProps {
   replyId: string;
-  replies?: ReplyType[];
+  replyLists?: ReplyType[];
   replyToShow: number;
   isLoading: boolean;
   isEditing: boolean;
@@ -1572,6 +1575,8 @@ export type ReplyType = {
   comment: CommentType;
   post: PostTypeWithAuthor;
   author: AuthorType;
+  parentReply: string | null;
+  replies: ReplyType[] | [];
   likeCount: number;
   likes: string[];
   createdAt: string;

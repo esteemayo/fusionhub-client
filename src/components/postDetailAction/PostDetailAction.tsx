@@ -21,7 +21,8 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { isSaved, saveMutation, handleSave } = useSavedPosts(postId);
+  const { isSaved, savedPostsCount, saveMutation, handleSave } =
+    useSavedPosts(postId);
   const {
     isLiked,
     isDisliked,

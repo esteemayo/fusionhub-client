@@ -27,6 +27,8 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     comment,
     post,
     content,
+    parentReply,
+    replies,
     likes,
     likeCount,
     createdAt,
@@ -81,6 +83,10 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     dispatch(commentModal.setReplyId(replyId));
   };
 
+  const replyClasses = useMemo(() => {
+    return parentReply ? 'reply nested' : 'reply';
+  }, [parentReply]);
+
   const hasUpdated = useMemo(() => {
     return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
   }, [createdAt, updatedAt]);
@@ -120,80 +126,96 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
   }, [author?._id, userId]);
 
   const isCommentAuthor = useMemo(() => {
-    return comment?.author._id === userId;
-  }, [comment?.author._id, userId]);
+    return comment?.author?._id === userId;
+  }, [comment?.author?._id, userId]);
 
   const isPostAuthor = useMemo(() => {
-    return post?.author._id === userId;
-  }, [post?.author._id, userId]);
+    return post?.author?._id === userId;
+  }, [post?.author?._id, userId]);
 
   return (
-    <div className='reply'>
-      <div className='reply__container'>
-        <div className='reply__author'>
-          <Link to={url}>
-            {author.fromGoogle && author.image?.startsWith('https') ? (
-              <GoogleImage
-                src={author.image ?? '/user-default.jpg'}
-                width={40}
-                height={40}
-                className='reply__author--img'
-              />
-            ) : (
-              <Image
-                src={author.image ?? '/user-default.jpg'}
-                width={40}
-                height={40}
-                alt='avatar'
-                className='reply__author--img'
-              />
-            )}
-          </Link>
+    <>
+      <div className={replyClasses}>
+        <div className='reply__container'>
+          <div className='reply__author'>
+            <Link to={url}>
+              {author.fromGoogle && author.image?.startsWith('https') ? (
+                <GoogleImage
+                  src={author.image ?? '/user-default.jpg'}
+                  width={40}
+                  height={40}
+                  className='reply__author--img'
+                />
+              ) : (
+                <Image
+                  src={author.image ?? '/user-default.jpg'}
+                  width={40}
+                  height={40}
+                  alt='avatar'
+                  className='reply__author--img'
+                />
+              )}
+            </Link>
+          </div>
+          <div className='reply__content'>
+            <div className='reply__content--time'>
+              <time dateTime={createdAt}>{formattedDate}</time>
+              {currentUser && hasUpdated && author._id !== userId && (
+                <span>(Edited)</span>
+              )}
+            </div>
+            <div className='reply__content--user'>
+              <h6 className='reply__content--username'>
+                <Link to={url}>{author.name}</Link>
+              </h6>
+              <Badge role={author.role} />
+            </div>
+            <p onClick={handleCollapse} className='reply__content--text'>
+              {contentLabel}
+              <button
+                type='button'
+                className={btnClasses}
+                onClick={handleClick}
+              >
+                {btnLabel}
+              </button>
+            </p>
+          </div>
         </div>
-        <div className='reply__content'>
-          <div className='reply__content--time'>
-            <time dateTime={createdAt}>{formattedDate}</time>
-            {currentUser && hasUpdated && author._id !== userId && (
-              <span>(Edited)</span>
-            )}
-          </div>
-          <div className='reply__content--user'>
-            <h6 className='reply__content--username'>
-              <Link to={url}>{author.name}</Link>
-            </h6>
-            <Badge role={author.role} />
-          </div>
-          <p onClick={handleCollapse} className='reply__content--text'>
-            {contentLabel}
-            <button type='button' className={btnClasses} onClick={handleClick}>
-              {btnLabel}
-            </button>
-          </p>
+        <div className='reply__actions'>
+          <HeartButton
+            size='sm'
+            count={likeCount}
+            hasLiked={isLiked}
+            isLoading={likeReplyMutation.isPending}
+            onLike={handleLike}
+          />
+          <ReplyAction
+            authorRole={author.role}
+            commentAuthorRole={comment.author.role}
+            currentUser={currentUser}
+            postAuthorRole={post.author.role}
+            isAdmin={isAdmin}
+            isCommentAuthor={isCommentAuthor}
+            isPostAuthor={isPostAuthor}
+            isReplyAuthor={isReplyAuthor}
+            isDisabled={isDisabled}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         </div>
       </div>
-      <div className='reply__actions'>
-        <HeartButton
-          size='sm'
-          count={likeCount}
-          hasLiked={isLiked}
-          isLoading={likeReplyMutation.isPending}
-          onLike={handleLike}
-        />
-        <ReplyAction
-          authorRole={author.role}
-          commentAuthorRole={comment.author.role}
-          currentUser={currentUser}
-          postAuthorRole={post.author.role}
-          isAdmin={isAdmin}
-          isCommentAuthor={isCommentAuthor}
-          isPostAuthor={isPostAuthor}
-          isReplyAuthor={isReplyAuthor}
-          isDisabled={isDisabled}
-          onDelete={handleDelete}
-          onUpdate={handleUpdate}
-        />
-      </div>
-    </div>
+      {replies?.map((reply) => {
+        return (
+          <Reply
+            key={reply._id}
+            reply={reply}
+            isDisabled={isDisabled}
+            onUpdate={onUpdate}
+          />
+        );
+      })}
+    </>
   );
 };
 

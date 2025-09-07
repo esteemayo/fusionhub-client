@@ -35,6 +35,9 @@ export const getTrendingPosts = () => http.get(postURI('trends'));
 export const getRelatedPosts = (tags: Array<string>) =>
   http.get(`${apiEndpoint}/related-posts?tags=${tags}`);
 
+export const getSavedPostsCount = (postId: string) =>
+  http.get(`${apiEndpoint}/${postId}/saved-count`);
+
 export const getPostsByUser = (userId: string, page: number) =>
   http.get(`${apiEndpoint}/${userId}/user`, {
     params: {

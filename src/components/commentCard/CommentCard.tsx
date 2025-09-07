@@ -366,7 +366,7 @@ const CommentCard = ({
       </div>
       <Replies
         replyId={replyId}
-        replies={replies}
+        replyLists={replies}
         replyToShow={replyToShow}
         isLoading={isLoading}
         isEditing={isEditing}

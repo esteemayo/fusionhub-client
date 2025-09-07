@@ -5,6 +5,10 @@
   display: flex;
   flex-direction: column;
 
+  &.nested {
+    margin-left: 2rem;
+  }
+
   &:not(:last-child):not(:has(+ :not(.reply))) {
     padding-bottom: 2rem;
     margin-bottom: 2rem;
