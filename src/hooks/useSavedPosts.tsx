@@ -42,14 +42,15 @@ export const useSavedPosts: ISavedPosts = (postId) => {
     isPending: isPendingSavedCount,
     error: errorSavedCount,
     data: savedPostsCount,
-  } = useQuery({
-    queryKey: ['savedPosts'],
+    refetch,
+  } = useQuery<number | undefined>({
+    queryKey: ['savedPostsCount', postId],
     queryFn: () => fetchSavedPostsCount(postId as string),
     enabled: !!postId,
   });
 
   const saveMutation = useMutation({
-    mutationFn: () => createSavePost(postId as string),
+    mutationFn: createSavePost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['savedPosts'] });
     },
@@ -75,12 +76,15 @@ export const useSavedPosts: ISavedPosts = (postId) => {
       return null;
     }
 
-    saveMutation.mutate();
+    saveMutation.mutate(postId as string, {
+      onSuccess: refetch,
+    });
   };
 
   const isSaved = useMemo(() => {
     const isSavedPost =
-      savedPosts?.some((post) => post._id === (postId as string)) || false;
+      (savedPosts ?? [])?.some((post) => post._id === (postId as string)) ||
+      false;
 
     return !!isSavedPost;
   }, [postId, savedPosts]);

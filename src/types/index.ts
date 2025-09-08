@@ -967,9 +967,9 @@ export interface ISavedPosts {
     error: Error | null;
     errorSavedCount: Error | null;
     savedPosts: PostType[] | undefined;
-    savedPostsCount: number;
-    saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
-    handleSave(e: React.MouseEvent<HTMLButtonElement>): void;
+    savedPostsCount: number | undefined;
+    saveMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    handleSave(e: React.MouseEvent<HTMLButtonElement>): null | undefined;
   };
 }
 
@@ -1388,7 +1388,7 @@ export interface ShareProps {
   slug: string;
   isSaved: boolean;
   currentUser: CurrentUserType;
-  saveMutation: UseMutationResult<unknown, unknown, void, unknown>;
+  saveMutation: UseMutationResult<unknown, unknown, string, unknown>;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

@@ -11,10 +11,10 @@ const fetchRepliesOnComment = async (commentId: string) => {
   return data;
 };
 
-const fetchPostCommentReplies = async (postId: string, commentId: string) => {
-  const { data } = await postAPI.getPostCommentReplies(postId, commentId);
-  return data;
-};
+// const fetchPostCommentReplies = async (postId: string, commentId: string) => {
+//   const { data } = await postAPI.getPostCommentReplies(postId, commentId);
+//   return data;
+// };
 
 const createReply = async (
   content: string,

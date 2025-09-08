@@ -49,7 +49,7 @@ export const useLikeReply: ILikeReply = (replyId, likes, queryKey) => {
   }, [currentUser?.details._id]);
 
   const isLiked = useMemo(() => {
-    return !!likes?.some((like) => like === userId) || false;
+    return !!(likes ?? [])?.some((like) => like === userId) || false;
   }, [likes, userId]);
 
   return {
