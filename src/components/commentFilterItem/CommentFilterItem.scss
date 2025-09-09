@@ -46,7 +46,6 @@
 
   &:not(:last-child) {
     border-bottom: 1px solid vars.$clr-tertiary-blue;
-    border-bottom: 1px solid vars.$clr-gray-light-1;
   }
 
   &__label {

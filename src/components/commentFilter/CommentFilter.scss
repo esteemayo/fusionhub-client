@@ -16,7 +16,7 @@
   background-color: rgba(vars.$clr-secondary-blue, 0.5);
   background-color: transparent;
   backdrop-filter: blur(3px);
-  border: 1px solid vars.$clr-gray-light-1;
+  border: 1px solid vars.$clr-tertiary-blue;
   border-radius: 0.5rem;
 
   @media screen and (max-width: 56.25em) {
@@ -98,7 +98,7 @@
     height: 0;
     border-left: 0.65rem solid transparent;
     border-right: 0.65rem solid transparent;
-    border-bottom: 0.65rem solid vars.$clr-gray-light-1;
+    border-bottom: 0.65rem solid vars.$clr-tertiary-blue;
     position: absolute;
     top: -0.65rem;
     left: 80%;

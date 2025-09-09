@@ -25,6 +25,14 @@ const Replies = ({
     });
   };
 
+  const btnLabel = useMemo(() => {
+    const replies = replyLists ?? [];
+
+    return isShow
+      ? 'Collapse thread'
+      : `View ${replies?.length} ${replies?.length > 1 ? 'replies' : 'reply'}`;
+  }, [isShow, replyLists]);
+
   const wrapperClasses = useMemo(() => {
     return isShow ? 'replies__wrapper show' : 'replies__wrapper hide';
   }, [isShow]);
@@ -67,20 +75,18 @@ const Replies = ({
           className='replies__container--btn'
           onClick={handleToggle}
         >
-          Replies ({replyLists?.length})
+          {btnLabel}
           {isShow ? (
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              fill='none'
               viewBox='0 0 24 24'
-              strokeWidth='1.5'
-              stroke='currentColor'
+              fill='currentColor'
               className='size-6'
             >
               <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='m19.5 8.25-7.5 7.5-7.5-7.5'
+                fillRule='evenodd'
+                d='M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z'
+                clipRule='evenodd'
               />
             </svg>
           ) : (
@@ -95,7 +101,7 @@ const Replies = ({
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
-                d='m8.25 4.5 7.5 7.5-7.5 7.5'
+                d='m19.5 8.25-7.5 7.5-7.5-7.5'
               />
             </svg>
           )}

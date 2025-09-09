@@ -15,26 +15,31 @@
   }
 
   &__img {
-    width: 5rem;
-    height: 5rem;
+    width: 3.25rem;
+    height: 3.25rem;
     display: inline-block;
     object-fit: cover;
     border: 2.5px solid vars.$clr-primary-blue;
     border-radius: 50%;
 
-    @media screen and (max-width: 22.5em) {
-      width: 4.5rem;
-      height: 4.5rem;
+    @media screen and (max-width: 21.5em) {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 2.75rem;
+      height: 2.75rem;
     }
 
     @media screen and (max-width: 18.75em) {
-      width: 4.25rem;
-      height: 4.25rem;
+      width: 2.5rem;
+      height: 2.5rem;
     }
 
     @media screen and (max-width: 17.5em) {
-      width: 4rem;
-      height: 4rem;
+      width: 2.25rem;
+      height: 2.25rem;
     }
   }
 }
