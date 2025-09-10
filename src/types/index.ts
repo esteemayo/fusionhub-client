@@ -1282,6 +1282,20 @@ export interface CommentActionProps {
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface CommentActionMenuProps {
+  authorRole: RoleType;
+  currentUser: CurrentUserType | null;
+  postAuthorRole: RoleType;
+  isAdmin: boolean;
+  isCommentAuthor: boolean;
+  isPostAuthor: boolean;
+  isOpen: boolean;
+  isShow: boolean;
+  isDisabled: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface HeartButtonProps {
   size?: 'sm';
   count: number;
