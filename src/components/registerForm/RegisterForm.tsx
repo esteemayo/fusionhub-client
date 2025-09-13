@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import Upload from '../upload/Upload';
 import Input from '../input/Input';
@@ -23,6 +23,8 @@ const RegisterForm = ({
   progress,
   startDate,
   isLoading,
+  showPassword,
+  showPasswordConfirm,
   register,
   errors,
   onChangeAbout,
@@ -31,24 +33,11 @@ const RegisterForm = ({
   onChangeImage,
   onChangeProgress,
   onChangeValue,
+  onTogglePassword,
+  onTogglePasswordConfirm,
   handleSubmit,
   onSubmit,
 }: RegisterFormProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
-  const handleTogglePassword = () => {
-    setShowPassword((value) => {
-      return !value;
-    });
-  };
-
-  const handleTogglePasswordConfirm = () => {
-    setShowPasswordConfirm((value) => {
-      return !value;
-    });
-  };
-
   const isDisabled = useMemo(() => {
     return isLoading || (0 < progress && progress < 100);
   }, [isLoading, progress]);
@@ -98,9 +87,7 @@ const RegisterForm = ({
               placeholder={placeholder}
               errors={errors}
               onAction={
-                name === 'password'
-                  ? handleTogglePassword
-                  : handleTogglePasswordConfirm
+                name === 'password' ? onTogglePassword : onTogglePasswordConfirm
               }
               disabled={isLoading}
               isShow={name === 'password' ? showPassword : showPasswordConfirm}

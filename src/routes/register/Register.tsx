@@ -36,6 +36,20 @@ const Register = () => {
   const [image, setImage] = useState<UploadResponse | undefined>();
   const [phone, setPhone] = useState<Value | undefined>();
   const [about, setAbout] = useState<ReactQuill.Value | undefined>('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((value) => {
+      return !value;
+    });
+  };
+
+  const handleTogglePasswordConfirm = () => {
+    setShowPasswordConfirm((value) => {
+      return !value;
+    });
+  };
 
   const {
     register,
@@ -139,6 +153,8 @@ const Register = () => {
             progress={progress}
             startDate={startDate}
             isLoading={isLoading}
+            showPassword={showPassword}
+            showPasswordConfirm={showPasswordConfirm}
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             onChangeAbout={setAbout}
@@ -147,6 +163,8 @@ const Register = () => {
             onChangeImage={setImage}
             onChangeProgress={setProgress}
             onChangeValue={setCustomValue}
+            onTogglePassword={handleTogglePassword}
+            onTogglePasswordConfirm={handleTogglePasswordConfirm}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
           />

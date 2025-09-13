@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Input from '../input/Input';
 import Button from '../button/Button';
 
@@ -10,22 +8,15 @@ import './ResetPasswordForm.scss';
 
 const ResetPasswordForm = ({
   isLoading,
+  showPassword,
+  showPasswordConfirm,
   register,
   errors,
+  onTogglePassword,
+  onTogglePasswordConfirm,
   handleSubmit,
   onSubmit,
 }: ResetPasswordFormProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
-  const handlePasswordToggle = () => {
-    setShowPassword((value) => !value);
-  };
-
-  const handlePasswordConfirmToggle = () => {
-    setShowPasswordConfirm((value) => !value);
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='reset-password-form'>
       {resetInputs.map((input) => {
@@ -50,9 +41,7 @@ const ResetPasswordForm = ({
             register={register}
             errors={errors}
             onAction={
-              name === 'password'
-                ? handlePasswordToggle
-                : handlePasswordConfirmToggle
+              name === 'password' ? onTogglePassword : onTogglePasswordConfirm
             }
             disabled={isLoading}
             isShow={name === 'password' ? showPassword : showPasswordConfirm}

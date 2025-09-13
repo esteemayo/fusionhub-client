@@ -1,5 +1,7 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
@@ -8,7 +10,6 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
 
 import ResetPasswordForm from '../../components/resetPasswordForm/ResetPasswordForm';
 
@@ -57,6 +58,17 @@ const ResetPassword = () => {
     },
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
+  const handlePasswordToggle = () => {
+    setShowPassword((value) => !value);
+  };
+
+  const handlePasswordConfirmToggle = () => {
+    setShowPasswordConfirm((value) => !value);
+  };
+
   const {
     register,
     handleSubmit,
@@ -85,8 +97,12 @@ const ResetPassword = () => {
           </p>
           <ResetPasswordForm
             isLoading={mutation.isPending}
+            showPassword={showPassword}
+            showPasswordConfirm={showPasswordConfirm}
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            onTogglePassword={handlePasswordToggle}
+            onTogglePasswordConfirm={handlePasswordConfirmToggle}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
           />

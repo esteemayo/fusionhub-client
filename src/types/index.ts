@@ -244,8 +244,10 @@ export interface FormButtonProps {
 
 export interface LoginFormProps {
   isLoading?: boolean;
+  showPassword: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onToggle(): void;
   handleSubmit: UseFormHandleSubmit<
     {
       password: string;
@@ -270,6 +272,8 @@ export interface RegisterFormProps {
   progress: number;
   startDate: Date | null;
   isLoading?: boolean;
+  showPassword: boolean;
+  showPasswordConfirm: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   onChangeAbout: React.Dispatch<
@@ -285,6 +289,8 @@ export interface RegisterFormProps {
     name: keyof RegisterFormData,
     value: CountrySelectType | string
   ): void;
+  onTogglePassword(): void;
+  onTogglePasswordConfirm(): void;
   handleSubmit: UseFormHandleSubmit<
     {
       email: string;
@@ -341,8 +347,12 @@ export interface ForgotPasswordFormProps {
 
 export interface ResetPasswordFormProps {
   isLoading?: boolean;
+  showPassword: boolean;
+  showPasswordConfirm: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onTogglePassword(): void;
+  onTogglePasswordConfirm(): void;
   handleSubmit: UseFormHandleSubmit<
     {
       password: string;

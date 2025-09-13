@@ -1,7 +1,7 @@
-import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
@@ -33,6 +33,14 @@ const Login = () => {
 
   const query = useQueryParams();
   const name = query.get('name');
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleToggle = () => {
+    setShowPassword((value) => {
+      return !value;
+    });
+  };
 
   const {
     register,
@@ -77,14 +85,16 @@ const Login = () => {
           </p>
           <LoginForm
             isLoading={isLoading}
+            showPassword={showPassword}
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
+            onToggle={handleToggle}
             handleSubmit={handleSubmit}
             onSubmit={onSubmit}
           />
           <AuthLink
             url='register'
-            label={`Don't have an account?`}
+            label="Don't have an account?"
             urlLabel='Sign up for free'
           />
         </div>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Input from '../input/Input';
@@ -11,19 +10,13 @@ import './LoginForm.scss';
 
 const LoginForm = ({
   isLoading,
+  showPassword,
   register,
   errors,
+  onToggle,
   handleSubmit,
   onSubmit,
 }: LoginFormProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleToggle = () => {
-    setShowPassword((value) => {
-      return !value;
-    });
-  };
-
   return (
     <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
       {loginInputs.map((input) => {
@@ -39,7 +32,7 @@ const LoginForm = ({
             placeholder={placeholder}
             register={register}
             errors={errors}
-            onAction={handleToggle}
+            onAction={onToggle}
             disabled={isLoading}
             isShow={showPassword}
             isPassword={type === 'password'}
