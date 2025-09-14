@@ -9,7 +9,6 @@ import Badge from '../badge/Badge';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import CommentAction from '../commentAction/CommentAction';
 import HeartButton from '../heartButton/HeartButton';
 import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
 
@@ -257,6 +256,12 @@ const CommentCard = ({
       : `/posts?author=${author?.username}`;
   }, [author?._id, author?.username, currentUser, userId]);
 
+  const actionBtnClasses = useMemo(() => {
+    return !currentUser
+      ? 'comment-card__actions--btn hide'
+      : 'comment-card__actions--btn show';
+  }, [currentUser]);
+
   const isDisabled = useMemo(() => {
     return editing && editId === commentId;
   }, [commentId, editId, editing]);
@@ -362,9 +367,9 @@ const CommentCard = ({
           onLike={handleLike}
         />
         <button
-          onClick={toggleActionHandler}
           type='button'
-          className='comment-card__actions--btn'
+          onClick={toggleActionHandler}
+          className={actionBtnClasses}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -388,18 +393,6 @@ const CommentCard = ({
           isPostAuthor={isPostAuthor}
           isOpen={isOpen}
           isShow={isShow}
-          isDisabled={isDisabled}
-          onDelete={handleDelete}
-          onUpdate={handleUpdate}
-        />
-        <CommentAction
-          authorRole={author.role}
-          currentUser={currentUser}
-          postAuthorRole={post?.author?.role}
-          isAdmin={isAdmin}
-          isCommentAuthor={isCommentAuthor}
-          isPostAuthor={isPostAuthor}
-          isOpen={isOpen}
           isDisabled={isDisabled}
           onDelete={handleDelete}
           onUpdate={handleUpdate}

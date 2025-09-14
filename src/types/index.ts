@@ -1306,6 +1306,25 @@ export interface CommentActionMenuProps {
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface CommentActionMenuListProps {
+  authorRole: RoleType;
+  currentUser: CurrentUserType | null;
+  postAuthorRole: RoleType;
+  isAdmin: boolean;
+  isCommentAuthor: boolean;
+  isPostAuthor: boolean;
+  isDisabled: boolean;
+  isOpen: boolean;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface CommentActionMenuListItemProps {
+  label: string;
+  disabled?: boolean;
+  onAction(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface HeartButtonProps {
   size?: 'sm';
   count: number;
