@@ -1279,19 +1279,6 @@ export interface CommentCardProps {
   onOpen(): void;
 }
 
-export interface CommentActionProps {
-  authorRole: RoleType;
-  currentUser: CurrentUserType | null;
-  postAuthorRole: RoleType;
-  isAdmin: boolean;
-  isCommentAuthor: boolean;
-  isPostAuthor: boolean;
-  isOpen: boolean;
-  isDisabled: boolean;
-  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
-}
-
 export interface CommentActionMenuProps {
   authorRole: RoleType;
   currentUser: CurrentUserType | null;
@@ -1302,6 +1289,7 @@ export interface CommentActionMenuProps {
   isOpen: boolean;
   isShow: boolean;
   isDisabled: boolean;
+  onClose(e: React.MouseEvent<HTMLButtonElement>): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -1315,8 +1303,9 @@ export interface CommentActionMenuListProps {
   isPostAuthor: boolean;
   isDisabled: boolean;
   isOpen: boolean;
-  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClose(e: React.MouseEvent<HTMLButtonElement>): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListItemProps {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
@@ -7,8 +7,9 @@ import { useSortedComments } from '../../hooks/useSortedComments';
 import { useComment } from '../../hooks/useComment';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { CommentsProps } from '../../types';
 import { onOpen } from '../../features/commentModal/commentModalSlice';
+
+import { CommentsProps } from '../../types';
 
 import './Comments.scss';
 
@@ -49,8 +50,25 @@ const Comments = ({ postId }: CommentsProps) => {
     });
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsOpen(false);
+  }, []);
+
+  const handleEscape = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
+  const closeFilterHandler = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as Element;
+
+    if (!target.classList.contains('comment-filter')) {
+      handleClose();
+    }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -141,8 +159,16 @@ const Comments = ({ postId }: CommentsProps) => {
     }
   }, [postId, refetch, refetchCommentUsers]);
 
+  useEffect(() => {
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [handleEscape]);
+
   return (
-    <section className='comments' id='comments'>
+    <section onClick={closeFilterHandler} className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
           sort={sort}

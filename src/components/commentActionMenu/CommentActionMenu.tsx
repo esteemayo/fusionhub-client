@@ -16,6 +16,7 @@ const CommentActionMenu = ({
   isOpen,
   isShow,
   isDisabled,
+  onClose,
   onDelete,
   onUpdate,
 }: CommentActionMenuProps) => {
@@ -34,8 +35,9 @@ const CommentActionMenu = ({
         isPostAuthor={isPostAuthor}
         isDisabled={isDisabled}
         isOpen={isOpen}
-        onUpdate={onUpdate}
+        onClose={onClose}
         onDelete={onDelete}
+        onUpdate={onUpdate}
       />
     </aside>
   );

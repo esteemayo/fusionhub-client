@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Replies from '../replies/Replies';
 import ReplyForm from '../replyForm/ReplyForm';
@@ -85,6 +85,25 @@ const CommentCard = ({
     });
   };
 
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsShow(false);
+  };
+
+  const handleEscape = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
+    }
+  }, []);
+
+  const closeHandler = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as Element;
+
+    if (!target.classList.contains('comment-action-menu')) {
+      handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
+    }
+  };
+
   const handleCollapse = () => {
     if (isMore) {
       setIsMore(false);
@@ -93,7 +112,7 @@ const CommentCard = ({
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);
-    toast.success('Copied');
+    toast.success('Copied to clipboard');
     return;
   };
 
@@ -280,8 +299,16 @@ const CommentCard = ({
     setReplies(sortedData);
   }, [data]);
 
+  useEffect(() => {
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [handleEscape]);
+
   return (
-    <article className='comment-card'>
+    <article className='comment-card' onClick={closeHandler}>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link to={url}>
@@ -394,6 +421,7 @@ const CommentCard = ({
           isOpen={isOpen}
           isShow={isShow}
           isDisabled={isDisabled}
+          onClose={handleClose}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
         />

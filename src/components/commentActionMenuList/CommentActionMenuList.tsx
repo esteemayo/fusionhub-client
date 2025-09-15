@@ -15,9 +15,38 @@ const CommentActionMenuList = ({
   isPostAuthor,
   isDisabled,
   isOpen,
-  onUpdate,
+  onClose,
   onDelete,
+  onUpdate,
 }: CommentActionMenuListProps) => {
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    onUpdate(e);
+    onClose(e);
+  };
+
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    onDelete(e);
+    onClose(e);
+  };
+
+  const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('reported');
+    onClose(e);
+  };
+
+  const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('muted');
+    onClose(e);
+  };
+
   const actionBtnClasses = useMemo(() => {
     if (!currentUser) {
       return 'comment-action-menu-list__actions hide';
@@ -71,24 +100,18 @@ const CommentActionMenuList = ({
       <div className={actionBtnClasses}>
         <CommentActionMenuListItem
           label='Edit'
-          onAction={onUpdate}
+          onAction={handleUpdate}
           disabled={isDisabled || isOpen}
         />
         <CommentActionMenuListItem
           label='Delete'
-          onAction={onDelete}
+          onAction={handleDelete}
           disabled={isDisabled || isOpen}
         />
       </div>
       <div className={reportBtnClasses}>
-        <CommentActionMenuListItem
-          label='Report'
-          onAction={() => console.log('reported')}
-        />
-        <CommentActionMenuListItem
-          label='Mute'
-          onAction={() => console.log('muted')}
-        />
+        <CommentActionMenuListItem label='Report' onAction={handleReport} />
+        <CommentActionMenuListItem label='Mute' onAction={handleMute} />
       </div>
     </ul>
   );

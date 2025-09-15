@@ -3,22 +3,27 @@
 
 .coment-user-skeleton {
   &__img {
-    width: 5rem !important;
-    height: 5rem !important;
+    width: 3.25rem !important;
+    height: 3.25rem !important;
 
-    @media screen and (max-width: 22.5em) {
-      width: 4.5rem !important;
-      height: 4.5rem !important;
+    @media screen and (max-width: 21.5em) {
+      width: 3rem !important;
+      height: 3rem !important;
+    }
+
+    @media screen and (max-width: 20em) {
+      width: 2.75rem !important;
+      height: 2.75rem !important;
     }
 
     @media screen and (max-width: 18.75em) {
-      width: 4.25rem !important;
-      height: 4.25rem !important;
+      width: 2.5rem !important;
+      height: 2.5rem !important;
     }
 
     @media screen and (max-width: 17.5em) {
-      width: 4rem !important;
-      height: 4rem !important;
+      width: 2.25rem !important;
+      height: 2.25rem !important;
     }
 
     &::after {
@@ -26,18 +31,14 @@
     }
 
     &:not(:last-child) {
-      margin-left: -2.5rem;
+      margin-left: -1rem;
 
       @media screen and (max-width: 22.5em) {
-        margin-left: -2.25rem;
-      }
-
-      @media screen and (max-width: 18.75em) {
-        margin-left: -2.125rem;
+        margin-left: -0.75rem;
       }
 
       @media screen and (max-width: 17.5em) {
-        margin-left: -2rem;
+        margin-left: -0.65rem;
       }
     }
   }

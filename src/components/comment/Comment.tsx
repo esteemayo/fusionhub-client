@@ -42,14 +42,6 @@ const Comment = ({
 }: CommentProps) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const closeFilterHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as Element;
-
-    if (!target.classList.contains('comment-filter')) {
-      onClose();
-    }
-  };
-
   const url = (user: CommentImageType) => {
     return currentUser
       ? currentUser.details._id === user._id
@@ -82,7 +74,7 @@ const Comment = ({
   }, [commentToShow, comments, isPending]);
 
   return (
-    <div onClick={closeFilterHandler} className='comment'>
+    <div className='comment'>
       <div className='comment__container'>
         <h4 className='comment__heading'>{commentHeading}</h4>
         <div className='comment__users'>
