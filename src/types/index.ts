@@ -1215,6 +1215,7 @@ export type sortType = 'best' | 'newest' | 'oldest';
 export interface CommentProps {
   sort: sortType;
   commentId: string;
+  activeCardId: string | null;
   isPending: boolean;
   isPendingUser: boolean;
   isOpen: boolean;
@@ -1227,6 +1228,7 @@ export interface CommentProps {
   commentToShow: number;
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate?(commentId: string): void;
   onOpen(): void;
@@ -1273,8 +1275,10 @@ export interface CommentFilterItemProps {
 export interface CommentCardProps {
   editId: string;
   editing: boolean;
+  activeCardId: string | null;
   comment: CommentType;
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onUpdate?(commentId: string): void;
   onOpen(): void;
 }
@@ -1336,6 +1340,21 @@ export interface ReplyProps {
   reply: ReplyType;
   isDisabled: boolean;
   onUpdate(content: string, replyId: string): void;
+}
+
+export interface ReplyMenuProps {
+  authorRole: RoleType;
+  commentAuthorRole: RoleType;
+  currentUser: CurrentUserType | null;
+  postAuthorRole: RoleType;
+  isAdmin: boolean;
+  isCommentAuthor: boolean;
+  isOpen: boolean;
+  isPostAuthor: boolean;
+  isReplyAuthor: boolean;
+  isDisabled: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyActionProps {

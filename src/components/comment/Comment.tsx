@@ -21,6 +21,7 @@ import './Comment.scss';
 const Comment = ({
   sort,
   commentId,
+  activeCardId,
   isPending,
   isPendingUser,
   isOpen,
@@ -33,6 +34,7 @@ const Comment = ({
   commentToShow,
   mutation,
   onChange,
+  onChangeActiveCardId,
   onClick,
   onUpdate,
   onOpen,
@@ -119,6 +121,7 @@ const Comment = ({
             <CommentCard
               editId={commentId}
               editing={isEditing}
+              activeCardId={activeCardId}
               comment={{
                 _id: new Date().getTime().toString(),
                 content: `${
@@ -138,6 +141,7 @@ const Comment = ({
                 updatedAt: new Date().toString(),
               }}
               onChange={onChange}
+              onChangeActiveCardId={onChangeActiveCardId}
               onUpdate={onUpdate}
               onOpen={onOpen}
             />
@@ -148,8 +152,10 @@ const Comment = ({
                 key={comment._id}
                 editId={commentId}
                 editing={isEditing}
+                activeCardId={activeCardId}
                 comment={comment}
                 onChange={onChange}
+                onChangeActiveCardId={onChangeActiveCardId}
                 onUpdate={onUpdate}
                 onOpen={onOpen}
               />

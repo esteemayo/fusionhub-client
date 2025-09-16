@@ -1,0 +1,220 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.reply-menu {
+  position: absolute;
+  top: 2.25rem;
+  right: 0;
+  width: 17rem;
+  max-width: 17rem;
+  padding: 0.5rem;
+  background-color: transparent;
+  backdrop-filter: blur(3px);
+  border: 1px solid vars.$clr-tertiary-blue;
+  border-radius: 0.5rem;
+
+  @media screen and (max-width: 56.25em) {
+    top: 2.575rem;
+    width: 18rem;
+    max-width: 18rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    width: 19rem;
+    max-width: 19rem;
+  }
+
+  @media screen and (max-width: 34.375em) {
+    width: 20rem;
+    max-width: 20rem;
+  }
+
+  @include bp.sm {
+    width: 21rem;
+    max-width: 21rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    width: 19.5rem;
+    max-width: 19.5rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    top: 2.3rem;
+    width: 18rem;
+    max-width: 18rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    top: 2.5rem;
+    width: 19rem;
+    max-width: 19rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    top: 2.65rem;
+    width: 20rem;
+    max-width: 20rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    top: 3.65rem;
+    width: 23rem;
+    max-width: 23rem;
+  }
+
+  &.show {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+    z-index: 2000;
+    transition: all 0.3s ease-in;
+  }
+
+  &.hide {
+    transform: scale(0);
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.3s ease-out;
+  }
+
+  &__list {
+    list-style: none;
+
+    &--actions,
+    &--reports {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      &.show {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+      }
+
+      &.hide {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+
+    &--item {
+      display: flex;
+      align-items: center;
+
+      height: 3.5rem;
+
+      @media screen and (max-width: 56.25em) {
+        height: 3.8rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        height: 4.1rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        height: 4.3rem;
+      }
+
+      @include bp.sm {
+        height: 4.5rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        height: 4.35rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        height: 4.25rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        height: 3.8rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        height: 4.25rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        height: 5rem;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid vars.$clr-tertiary-blue;
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+
+        border: 0;
+        outline: 0;
+        width: 100%;
+        height: 100%;
+        text-transform: capitalize;
+        font-weight: 400;
+        font-size: 1.4rem;
+        padding: 1px 0.5rem;
+        background-color: transparent;
+        color: inherit;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3ms ease-in-out;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          font-size: var(--default-font-size);
+        }
+
+        @include bp.sm {
+          font-size: 1.7rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.55rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.9rem;
+        }
+
+        &:hover {
+          background-color: vars.$clr-tertiary-blue;
+        }
+
+        &:disabled {
+          opacity: 0.75;
+          cursor: default;
+        }
+      }
+    }
+  }
+}

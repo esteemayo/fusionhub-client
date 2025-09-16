@@ -305,9 +305,83 @@
   &__actions {
     width: 100%;
     margin-top: 1rem;
+    position: relative;
 
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+
+    &--btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      color: vars.$clr-gray-light-3;
+      cursor: pointer;
+      position: relative;
+
+      &.show {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+      }
+
+      &.hide {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+      }
+
+      svg {
+        width: 1.85rem;
+        height: 1.85rem;
+        fill: currentColor;
+
+        @media screen and (max-width: 56.25em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.05rem;
+          height: 2.05rem;
+        }
+
+        @include bp.sm {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          width: 1.85rem;
+          height: 1.85rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.1rem;
+          height: 2.1rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3.1rem;
+          height: 3.1rem;
+        }
+      }
+    }
   }
 }

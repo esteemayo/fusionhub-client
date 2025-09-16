@@ -27,7 +27,9 @@ import './CommentCard.scss';
 const CommentCard = ({
   editId,
   editing,
+  activeCardId,
   comment,
+  onChangeActiveCardId,
   onChange,
   onUpdate,
   onOpen,
@@ -81,7 +83,13 @@ const CommentCard = ({
     e.stopPropagation();
 
     setIsShow((value) => {
-      return !value;
+      if (value) {
+        onChangeActiveCardId(null);
+        return false;
+      } else {
+        onChangeActiveCardId(commentId);
+        return true;
+      }
     });
   };
 
@@ -95,14 +103,6 @@ const CommentCard = ({
       handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
     }
   }, []);
-
-  const closeHandler = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as Element;
-
-    if (!target.classList.contains('comment-action-menu')) {
-      handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
-    }
-  };
 
   const handleCollapse = () => {
     if (isMore) {
@@ -307,8 +307,12 @@ const CommentCard = ({
     };
   }, [handleEscape]);
 
+  useEffect(() => {
+    setIsShow(activeCardId === commentId);
+  }, [activeCardId, commentId]);
+
   return (
-    <article className='comment-card' onClick={closeHandler}>
+    <article className='comment-card'>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link to={url}>

@@ -88,12 +88,12 @@ const CommentActionMenuList = ({
       return 'comment-action-menu-list__reports hide';
     }
 
-    if (isCommentAuthor) {
+    if (isCommentAuthor || isAdmin) {
       return 'comment-action-menu-list__reports hide';
     }
 
     return 'comment-action-menu-list__reports show';
-  }, [currentUser, isCommentAuthor]);
+  }, [currentUser, isAdmin, isCommentAuthor]);
 
   return (
     <ul className='comment-action-menu-list'>

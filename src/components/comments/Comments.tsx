@@ -32,13 +32,14 @@ const Comments = ({ postId }: CommentsProps) => {
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const [comments, setComments] = useState(data);
-  const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [commentId, setCommentId] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const [commentToShow, setCommentToShow] = useState(5);
+  const [comments, setComments] = useState(data);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  const [commentId, setCommentId] = useState('');
 
   const { sort, setSort, sortedComments } = useSortedComments(comments);
 
@@ -69,6 +70,16 @@ const Comments = ({ postId }: CommentsProps) => {
     if (!target.classList.contains('comment-filter')) {
       handleClose();
     }
+  };
+
+  const handleActiveCard = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    setActiveCardId(null);
+  };
+
+  const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
+    closeFilterHandler(e);
+    handleActiveCard(e);
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -168,11 +179,12 @@ const Comments = ({ postId }: CommentsProps) => {
   }, [handleEscape]);
 
   return (
-    <section onClick={closeFilterHandler} className='comments' id='comments'>
+    <section onClick={onClickHandler} className='comments' id='comments'>
       <div className='comments__container'>
         <Comment
           sort={sort}
           commentId={commentId}
+          activeCardId={activeCardId}
           isPending={isPending}
           isPendingUser={isPendingUser}
           isOpen={isOpen}
@@ -185,6 +197,7 @@ const Comments = ({ postId }: CommentsProps) => {
           commentToShow={commentToShow}
           mutation={commentMutation}
           onChange={setValue}
+          onChangeActiveCardId={setActiveCardId}
           onClick={handleClick}
           onUpdate={handleUpdate}
           onOpen={handleOpen}

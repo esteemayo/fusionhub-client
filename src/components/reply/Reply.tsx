@@ -5,8 +5,8 @@ import Badge from '../badge/Badge';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
+import ReplyMenu from '../replyMenu/ReplyMenu';
 import HeartButton from '../heartButton/HeartButton';
-import ReplyAction from '../replyAction/ReplyAction';
 
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
@@ -51,6 +51,7 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
   );
 
   const [isMore, setIsMore] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -63,6 +64,14 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     if (isMore) {
       setIsMore(false);
     }
+  };
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsOpen((value) => {
+      return !value;
+    });
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -133,6 +142,12 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
     return post?.author?._id === userId;
   }, [post?.author?._id, userId]);
 
+  const actionBtnClasses = useMemo(() => {
+    return !currentUser
+      ? 'reply__actions--btn hide'
+      : 'reply__actions--btn show';
+  }, [currentUser]);
+
   return (
     <>
       <div className={replyClasses}>
@@ -190,13 +205,32 @@ const Reply = ({ reply, isDisabled, onUpdate }: ReplyProps) => {
             isLoading={likeReplyMutation.isPending}
             onLike={handleLike}
           />
-          <ReplyAction
+          <button
+            type='button'
+            onClick={handleToggle}
+            className={actionBtnClasses}
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 24 24'
+              fill='currentColor'
+              className='size-6'
+            >
+              <path
+                fillRule='evenodd'
+                d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
+                clipRule='evenodd'
+              />
+            </svg>
+          </button>
+          <ReplyMenu
             authorRole={author.role}
             commentAuthorRole={comment.author.role}
             currentUser={currentUser}
             postAuthorRole={post.author.role}
             isAdmin={isAdmin}
             isCommentAuthor={isCommentAuthor}
+            isOpen={isOpen}
             isPostAuthor={isPostAuthor}
             isReplyAuthor={isReplyAuthor}
             isDisabled={isDisabled}

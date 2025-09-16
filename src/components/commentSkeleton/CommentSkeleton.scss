@@ -24,12 +24,18 @@
     align-items: flex-start;
     gap: 3rem;
 
+    background-color: orangered;
+
     @media screen and (max-width: 81.25em) {
       gap: 2rem;
     }
 
+    @media screen and (max-width: 37.5em) {
+      gap: 1.5rem;
+    }
+
     @media screen and (max-width: 26.875em) {
-      gap: 0;
+      gap: 0.8rem;
     }
   }
 
@@ -53,13 +59,39 @@
         height: 8.25rem !important;
       }
 
-      @include bp.sm {
+      @media screen and (max-width: 31.25em) {
         width: 8rem !important;
         height: 8rem !important;
       }
 
+      @include bp.sm {
+        width: 7rem !important;
+        height: 7rem !important;
+      }
+
       @media screen and (max-width: 26.875em) {
-        display: none;
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+      }
+
+      @media screen and (max-width: 21.5em) {
+        width: 3.25rem !important;
+        height: 3.25rem !important;
+      }
+
+      @media screen and (max-width: 20em) {
+        width: 3rem !important;
+        height: 3rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 2.75rem !important;
+        height: 2.75rem !important;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
       }
 
       @media screen and (min-width: 106.25em) {
@@ -180,59 +212,59 @@
       }
 
       @media screen and (max-width: 31.25em) {
-        width: 40rem !important;
+        width: 40.5rem !important;
       }
 
       @include bp.sm {
-        width: 38rem !important;
+        width: 39.5rem !important;
       }
 
       @media screen and (max-width: 28.125em) {
-        width: 35rem !important;
+        width: 36.5rem !important;
       }
 
       @media screen and (max-width: 26.875em) {
-        width: 43rem !important;
+        width: 38.65rem !important;
       }
 
       @media screen and (max-width: 26.25em) {
-        width: 42rem !important;
+        width: 37.65rem !important;
       }
 
       @media screen and (max-width: 25em) {
-        width: 40rem !important;
+        width: 35.65rem !important;
       }
 
       @media screen and (max-width: 24.375em) {
-        width: 39rem !important;
+        width: 34.65rem !important;
       }
 
       @media screen and (max-width: 23.75em) {
-        width: 38rem !important;
+        width: 33.65rem !important;
       }
 
       @media screen and (max-width: 23.4375em) {
-        width: 37.5rem !important;
+        width: 33.25rem !important;
       }
 
       @media screen and (max-width: 22.5em) {
-        width: 36rem !important;
+        width: 31.65rem !important;
       }
 
       @media screen and (max-width: 21.5em) {
-        width: 34rem !important;
-      }
-
-      @media screen and (max-width: 20em) {
-        width: 32rem !important;
-      }
-
-      @media screen and (max-width: 18.75em) {
         width: 30rem !important;
       }
 
+      @media screen and (max-width: 20em) {
+        width: 28.15rem !important;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 26.4rem !important;
+      }
+
       @media screen and (max-width: 17.5em) {
-        width: 28rem !important;
+        width: 24.65rem !important;
       }
 
       @media screen and (min-width: 112.5em) {
