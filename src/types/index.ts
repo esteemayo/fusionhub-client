@@ -1328,17 +1328,21 @@ export interface HeartButtonProps {
 
 export interface RepliesProps {
   replyId: string;
+  activeCardId: string | null;
   replyLists?: ReplyType[];
   replyToShow: number;
   isLoading: boolean;
   isEditing: boolean;
+  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onUpdate(content: string, replyId: string): void;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyProps {
   reply: ReplyType;
+  activeCardId: string | null;
   isDisabled: boolean;
+  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onUpdate(content: string, replyId: string): void;
 }
 
@@ -1357,7 +1361,7 @@ export interface ReplyMenuProps {
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-export interface ReplyActionProps {
+export interface ReplyMenuListProps {
   authorRole: RoleType;
   commentAuthorRole: RoleType;
   currentUser: CurrentUserType | null;
@@ -1369,6 +1373,12 @@ export interface ReplyActionProps {
   isDisabled: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ReplyMenuListItemProps {
+  label: string;
+  disabled?: boolean;
+  onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyFormProps {

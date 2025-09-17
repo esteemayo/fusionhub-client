@@ -8,10 +8,12 @@ import './Replies.scss';
 
 const Replies = ({
   replyId,
+  activeCardId,
   replyLists,
   replyToShow,
   isLoading,
   isEditing,
+  onChangeActiveCardId,
   onUpdate,
   onClick,
 }: RepliesProps) => {
@@ -112,7 +114,9 @@ const Replies = ({
               <Reply
                 key={reply._id}
                 reply={reply}
+                activeCardId={activeCardId}
                 isDisabled={isDisabled}
+                onChangeActiveCardId={onChangeActiveCardId}
                 onUpdate={onUpdate}
               />
             );

@@ -1,0 +1,100 @@
+import { useMemo } from 'react';
+
+import ReplyMenuListItem from '../replyMenuListItem/ReplyMenuListItem';
+
+import { ReplyMenuListProps } from '../../types';
+
+import './ReplyMenuList.scss';
+
+const ReplyMenuList = ({
+  authorRole,
+  commentAuthorRole,
+  currentUser,
+  postAuthorRole,
+  isAdmin,
+  isCommentAuthor,
+  isPostAuthor,
+  isReplyAuthor,
+  isDisabled,
+  onDelete,
+  onUpdate,
+}: ReplyMenuListProps) => {
+  const actionBtnClasses = useMemo(() => {
+    if (!currentUser) {
+      return 'reply-menu-list__actions hide';
+    }
+
+    if (isAdmin) {
+      if (isReplyAuthor) {
+        return 'reply-menu-list__actions show';
+      }
+
+      if (authorRole === 'admin') {
+        return 'reply-menu-list__actions hide';
+      }
+
+      return 'reply-menu-list__actions show';
+    }
+
+    if (
+      isReplyAuthor ||
+      isCommentAuthor ||
+      isPostAuthor ||
+      (postAuthorRole === 'admin' && isCommentAuthor) ||
+      (postAuthorRole === 'admin' && isPostAuthor) ||
+      (commentAuthorRole === 'admin' && isCommentAuthor) ||
+      (commentAuthorRole === 'admin' && isPostAuthor)
+    ) {
+      return 'reply-menu-list__actions show';
+    }
+
+    return 'reply-menu-list__actions hide';
+  }, [
+    authorRole,
+    commentAuthorRole,
+    currentUser,
+    isAdmin,
+    isCommentAuthor,
+    isPostAuthor,
+    isReplyAuthor,
+    postAuthorRole,
+  ]);
+
+  const reportClasses = useMemo(() => {
+    if (!currentUser) {
+      return 'reply-menu-list__reports hide';
+    }
+
+    if (isReplyAuthor || isAdmin) {
+      return 'reply-menu-list__reports hide';
+    }
+
+    return 'reply-menu-list__reports show';
+  }, [currentUser, isAdmin, isReplyAuthor]);
+
+  return (
+    <ul className='reply-menu-list'>
+      <div className={actionBtnClasses}>
+        <ReplyMenuListItem
+          label='Edit'
+          disabled={isDisabled}
+          onAction={onUpdate}
+        />
+        <ReplyMenuListItem
+          label='Delete'
+          disabled={isDisabled}
+          onAction={onDelete}
+        />
+      </div>
+      <div className={reportClasses}>
+        <ReplyMenuListItem
+          label='Report'
+          onAction={() => console.log('reported')}
+        />
+        <ReplyMenuListItem label='Mute' onAction={() => console.log('muted')} />
+      </div>
+    </ul>
+  );
+};
+
+export default ReplyMenuList;

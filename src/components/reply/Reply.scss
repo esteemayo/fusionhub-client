@@ -112,66 +112,6 @@
     flex-direction: column;
     gap: 0.5rem;
 
-    &--time {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      time,
-      span {
-        text-rendering: optimizeLegibility;
-        font-weight: 600;
-        font-size: 1.25rem;
-
-        @media screen and (max-width: 56.25em) {
-          font-size: 1.35rem;
-        }
-
-        @media screen and (max-width: 51.25em) {
-          font-size: 1.45rem;
-        }
-
-        @media screen and (max-width: 34.375em) {
-          font-size: 1.55rem;
-        }
-
-        @include bp.sm {
-          font-size: 1.65rem;
-        }
-
-        @media screen and (max-width: 22.5em) {
-          font-size: 1.5rem;
-        }
-
-        @media screen and (max-width: 18.75em) {
-          font-size: 1.4rem;
-        }
-
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.35rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          font-size: 1.45rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: 1.85rem;
-        }
-      }
-
-      time {
-        color: vars.$clr-gray-light-3;
-      }
-
-      span {
-        text-transform: capitalize;
-        font-weight: 400;
-        font-style: italic;
-        color: vars.$clr-gray-light-1;
-      }
-    }
-
     &--user {
       display: flex;
       align-items: center;
@@ -298,6 +238,196 @@
       &:disabled {
         opacity: 0.75;
         cursor: default;
+      }
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--time {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      time,
+      span {
+        text-rendering: optimizeLegibility;
+        font-weight: 600;
+        font-size: 1.25rem;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.55rem;
+        }
+
+        @include bp.sm {
+          font-size: 1.65rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.85rem;
+        }
+      }
+
+      time {
+        color: vars.$clr-gray-light-3;
+      }
+
+      span {
+        text-transform: capitalize;
+        font-weight: 400;
+        font-style: italic;
+        color: vars.$clr-gray-light-1;
+      }
+    }
+
+    &--reply-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      border: 0;
+      outline: 0;
+      text-transform: capitalize;
+      background-color: transparent;
+      color: currentColor;
+      cursor: pointer;
+      position: relative;
+
+      &.show {
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        z-index: 1000;
+      }
+
+      &.hide {
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+      }
+
+      svg {
+        width: 1.35rem;
+        height: 1.35rem;
+        color: currentColor;
+        stroke: currentColor;
+
+        @media screen and (max-width: 56.25em) {
+          width: 1.45rem;
+          height: 1.45rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 1.55rem;
+          height: 1.55rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
+
+        @include bp.sm {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 1.4rem;
+          height: 1.4rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 1.45rem;
+          height: 1.45rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 2.05rem;
+          height: 2.05rem;
+        }
+      }
+
+      span {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: inherit;
+
+        @media screen and (max-width: 56.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          font-size: 1.5rem;
+        }
+
+        @include bp.sm {
+          font-size: var(--default-font-size);
+        }
+
+        @media screen and (max-width: 22.5em) {
+          font-size: 1.45rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          font-size: 1.35rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          font-size: 1.3rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          font-size: 1.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          font-size: 1.8rem;
+        }
       }
     }
   }

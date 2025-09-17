@@ -432,10 +432,12 @@ const CommentCard = ({
       </div>
       <Replies
         replyId={replyId}
+        activeCardId={activeCardId}
         replyLists={replies}
         replyToShow={replyToShow}
         isLoading={isLoading}
         isEditing={isEditing}
+        onChangeActiveCardId={onChangeActiveCardId}
         onClick={handleMoreReplies}
         onUpdate={handleUpdateReply}
       />
