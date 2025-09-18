@@ -1341,6 +1341,7 @@ export interface RepliesProps {
 export interface ReplyProps {
   reply: ReplyType;
   activeCardId: string | null;
+  maxRows?: number;
   isDisabled: boolean;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onUpdate(content: string, replyId: string): void;
@@ -1353,7 +1354,7 @@ export interface ReplyMenuProps {
   postAuthorRole: RoleType;
   isAdmin: boolean;
   isCommentAuthor: boolean;
-  isOpen: boolean;
+  isShow: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
   isDisabled: boolean;
@@ -1382,6 +1383,17 @@ export interface ReplyMenuListItemProps {
 }
 
 export interface ReplyFormProps {
+  isOpen: boolean;
+  content: string;
+  onInput(): void;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
+  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
+}
+
+export interface ReplyCommentFormProps {
   content: string;
   replyId: string;
   isOpen: boolean;

@@ -5,56 +5,53 @@ import { ReplyFormProps } from '../../types';
 import './ReplyForm.scss';
 
 const ReplyForm = ({
-  content,
-  replyId,
   isOpen,
-  isLoading,
-  isEditing,
+  content,
+  onInput,
   onChange,
+  onKeyDown,
   onCancel,
   onSubmit,
   ref,
 }: ReplyFormProps) => {
-  const formClasses = useMemo(() => {
+  const replyFormClasses = useMemo(() => {
     return isOpen ? 'reply-form show' : 'reply-form hide';
   }, [isOpen]);
 
-  const btnLabel = useMemo(() => {
-    return isEditing && replyId
-      ? isLoading
-        ? 'Updating...'
-        : 'Update Reply'
-      : isLoading
-      ? 'Submitting...'
-      : 'Submit Reply';
-  }, [isEditing, isLoading, replyId]);
-
   return (
-    <form className={formClasses} onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={replyFormClasses}>
       <textarea
+        ref={ref}
+        id='content'
+        name='content'
         value={content}
         placeholder='Write your reply here...'
         className='reply-form__textarea'
-        rows={3}
+        rows={2}
+        onInput={onInput}
         onChange={(e) => onChange(e.target.value)}
-        ref={ref}
+        onKeyDown={onKeyDown}
+        aria-label='Write your reply here...'
       />
-      <div className='reply-form__actions'>
+      <div className='reply-form__btn'>
         <button
           type='button'
-          className='reply-form__actions--cancel'
           onClick={onCancel}
-          disabled={isLoading}
+          className='reply-form__btn--cancel'
         >
           Cancel
         </button>
         <button
           type='submit'
-          className='reply-form__actions--submit'
-          disabled={isLoading}
+          disabled={!content.trim()}
+          aria-disabled={!content.trim()}
+          className='reply-form__btn--submit'
         >
-          {btnLabel}
+          Submit reply
         </button>
+      </div>
+      <div className='reply-form__hint'>
+        Press <kbd>Ctrl</kbd>/<kbd>↺</kbd> + <kbd>Enter</kbd> to post
       </div>
     </form>
   );

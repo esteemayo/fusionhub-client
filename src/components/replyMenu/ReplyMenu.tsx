@@ -13,7 +13,7 @@ const ReplyMenu = ({
   postAuthorRole,
   isAdmin,
   isCommentAuthor,
-  isOpen,
+  isShow,
   isPostAuthor,
   isReplyAuthor,
   isDisabled,
@@ -21,8 +21,8 @@ const ReplyMenu = ({
   onUpdate,
 }: ReplyMenuProps) => {
   const replyMenuClasses = useMemo(() => {
-    return isOpen ? 'reply-menu show' : 'reply-menu hide';
-  }, [isOpen]);
+    return isShow ? 'reply-menu show' : 'reply-menu hide';
+  }, [isShow]);
 
   return (
     <aside className={replyMenuClasses}>
