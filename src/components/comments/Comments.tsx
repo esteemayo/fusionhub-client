@@ -120,10 +120,10 @@ const Comments = ({ postId }: CommentsProps) => {
     handleClear();
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
 
-    const target = e.target as HTMLFormElement;
+    const target = e?.target as HTMLFormElement;
 
     const form = new FormData(target);
 
@@ -154,6 +154,12 @@ const Comments = ({ postId }: CommentsProps) => {
           if (value) setValue('');
         },
       });
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      handleSubmit();
     }
   };
 
@@ -213,6 +219,7 @@ const Comments = ({ postId }: CommentsProps) => {
           isEditing={isEditing}
           comments={comments!}
           onChange={setValue}
+          onKeyDown={handleKeyDown}
           onCancel={handleCancel}
           onSubmit={handleSubmit}
           ref={ref}

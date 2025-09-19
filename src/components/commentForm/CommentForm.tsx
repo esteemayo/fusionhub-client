@@ -16,6 +16,7 @@ const CommentForm = ({
   isEditing,
   comments,
   onChange,
+  onKeyDown,
   onCancel,
   onSubmit,
   ref,
@@ -79,6 +80,8 @@ const CommentForm = ({
               rows={5}
               className='comment-form__textarea'
               onChange={(e) => onChange(e.target.value)}
+              onKeyDown={onKeyDown}
+              aria-label='Write your thoughts here... Share your opinion or feedback about the post.'
             />
             <div className='comment-form__actions'>
               <Button

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { ReplyFormProps } from '../../types';
 
@@ -14,9 +14,27 @@ const ReplyForm = ({
   onSubmit,
   ref,
 }: ReplyFormProps) => {
+  const [showHint, setShowHint] = useState(false);
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setShowHint((value) => {
+      return !value;
+    });
+  };
+
   const replyFormClasses = useMemo(() => {
     return isOpen ? 'reply-form show' : 'reply-form hide';
   }, [isOpen]);
+
+  const hintClasses = useMemo(() => {
+    return showHint ? 'reply-form__hint show' : 'reply-form__hint hide';
+  }, [showHint]);
+
+  const toggleBtnClasses = useMemo(() => {
+    return showHint ? 'reply-form__toggle show' : 'reply-form__toggle hide';
+  }, [showHint]);
 
   return (
     <form onSubmit={onSubmit} className={replyFormClasses}>
@@ -50,8 +68,31 @@ const ReplyForm = ({
           Submit reply
         </button>
       </div>
-      <div className='reply-form__hint'>
-        Press <kbd>Ctrl</kbd>/<kbd>↺</kbd> + <kbd>Enter</kbd> to post
+      <div className='reply-form__hint-bar'>
+        <div className={hintClasses}>
+          Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to post
+        </div>
+        <button
+          type='button'
+          onClick={handleToggle}
+          aria-label={showHint ? 'Hide reply hint' : 'Show reply hint'}
+          className={toggleBtnClasses}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth={1.5}
+            stroke='currentColor'
+            className='size-6'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z'
+            />
+          </svg>
+        </button>
       </div>
     </form>
   );

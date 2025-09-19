@@ -1400,6 +1400,7 @@ export interface ReplyCommentFormProps {
   isLoading: boolean;
   isEditing: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
   ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
@@ -1413,6 +1414,7 @@ export interface CommentFormProps {
   isEditing: boolean;
   comments: CommentType[];
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
   ref: React.LegacyRef<HTMLTextAreaElement> | undefined;

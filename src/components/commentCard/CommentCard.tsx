@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import Replies from '../replies/Replies';
 import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
@@ -67,7 +73,7 @@ const CommentCard = ({
     queryKey
   );
 
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [replyId, setReplyId] = useState('');
   const [value, setValue] = useState('');
@@ -135,7 +141,7 @@ const CommentCard = ({
     setIsOpen(true);
     setIsEditing(true);
 
-    const current = ref.current;
+    const current = textareaRef.current;
     current?.focus();
   };
 
@@ -175,8 +181,8 @@ const CommentCard = ({
     dispatch(commentModal.setPostId(post._id));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
 
     if (!currentUser) return;
 
@@ -202,6 +208,12 @@ const CommentCard = ({
           },
         });
       }
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      handleSubmit();
     }
   };
 
@@ -430,6 +442,18 @@ const CommentCard = ({
           onUpdate={handleUpdate}
         />
       </div>
+      <ReplyCommentForm
+        content={value}
+        replyId={replyId}
+        isOpen={isOpen}
+        isLoading={isPending}
+        isEditing={isEditing}
+        onChange={setValue}
+        onKeyDown={handleKeyDown}
+        onCancel={handleCancel}
+        onSubmit={handleSubmit}
+        ref={textareaRef}
+      />
       <Replies
         replyId={replyId}
         activeCardId={activeCardId}
@@ -440,17 +464,6 @@ const CommentCard = ({
         onChangeActiveCardId={onChangeActiveCardId}
         onClick={handleMoreReplies}
         onUpdate={handleUpdateReply}
-      />
-      <ReplyCommentForm
-        content={value}
-        replyId={replyId}
-        isOpen={isOpen}
-        isLoading={isPending}
-        isEditing={isEditing}
-        onChange={setValue}
-        onCancel={handleCancel}
-        onSubmit={handleSubmit}
-        ref={ref}
       />
     </article>
   );
