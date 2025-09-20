@@ -6,7 +6,10 @@ import './ReplyForm.scss';
 
 const ReplyForm = ({
   isOpen,
+  isEditing,
   content,
+  editId,
+  isLoading,
   onInput,
   onChange,
   onKeyDown,
@@ -28,6 +31,22 @@ const ReplyForm = ({
     return isOpen ? 'reply-form show' : 'reply-form hide';
   }, [isOpen]);
 
+  const placeholder = useMemo(() => {
+    return isEditing && editId
+      ? 'Update your reply here...'
+      : 'Write your reply here...';
+  }, [editId, isEditing]);
+
+  const btnLabel = useMemo(() => {
+    return isEditing && editId
+      ? isLoading
+        ? 'Updating...'
+        : 'Update reply'
+      : isLoading
+      ? 'Submitting...'
+      : 'Submit reply';
+  }, [editId, isEditing, isLoading]);
+
   const hintClasses = useMemo(() => {
     return showHint ? 'reply-form__hint show' : 'reply-form__hint hide';
   }, [showHint]);
@@ -42,30 +61,32 @@ const ReplyForm = ({
         ref={ref}
         id='content'
         name='content'
-        value={content}
-        placeholder='Write your reply here...'
+        value={content || ''}
+        placeholder={placeholder}
         className='reply-form__textarea'
         rows={2}
         onInput={onInput}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={onKeyDown}
-        aria-label='Write your reply here...'
+        aria-label={placeholder}
       />
       <div className='reply-form__btn'>
         <button
           type='button'
           onClick={onCancel}
+          disabled={isLoading}
+          aria-disabled={isLoading}
           className='reply-form__btn--cancel'
         >
           Cancel
         </button>
         <button
           type='submit'
-          disabled={!content.trim()}
-          aria-disabled={!content.trim()}
+          disabled={!content.trim() || isLoading}
+          aria-disabled={!content.trim() || isLoading}
           className='reply-form__btn--submit'
         >
-          Submit reply
+          {btnLabel}
         </button>
       </div>
       <div className='reply-form__hint-bar'>

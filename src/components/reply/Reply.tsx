@@ -23,9 +23,7 @@ const Reply = ({
   reply,
   activeCardId,
   maxRows,
-  isDisabled,
   onChangeActiveCardId,
-  onUpdate,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
 
@@ -64,7 +62,9 @@ const Reply = ({
 
   const [isMore, setIsMore] = useState(false);
   const [value, setValue] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -82,6 +82,9 @@ const Reply = ({
 
   const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+
+    if (!currentUser) return;
+    if (isEditing && editId) return;
 
     setIsOpen((value) => {
       return !value;
@@ -111,7 +114,12 @@ const Reply = ({
 
     if (!currentUser) return;
 
-    onUpdate(content, replyId);
+    setIsOpen(true);
+    setIsEditing(true);
+    setEditId(replyId);
+    setValue(content);
+
+    setIsShow(false);
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -144,12 +152,23 @@ const Reply = ({
     if (!currentUser) return;
 
     setIsOpen(false);
+
+    if (isEditing && editId) {
+      setEditId(null);
+      setIsEditing(false);
+    }
+
+    if (value.trim() !== '') setValue('');
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
-    console.log(value);
+    if (isEditing && editId) {
+      console.log('Updated reply: ', value);
+    } else {
+      console.log(value);
+    }
 
     setValue('');
     setIsOpen(false);
@@ -386,7 +405,6 @@ const Reply = ({
             isShow={isShow}
             isPostAuthor={isPostAuthor}
             isReplyAuthor={isReplyAuthor}
-            isDisabled={isDisabled}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
           />
@@ -398,7 +416,10 @@ const Reply = ({
           <div ref={innerRef} className='reply__collapse--inner'>
             <ReplyForm
               isOpen={isOpen}
+              isEditing={isEditing}
               content={value}
+              editId={editId}
+              isLoading={false}
               onInput={handleInput}
               onChange={setValue}
               onKeyDown={onKeyDown}
@@ -415,9 +436,7 @@ const Reply = ({
             key={reply._id}
             reply={reply}
             activeCardId={activeCardId}
-            isDisabled={isDisabled}
             onChangeActiveCardId={onChangeActiveCardId}
-            onUpdate={onUpdate}
           />
         );
       })}

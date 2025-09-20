@@ -13,9 +13,7 @@ const CommentActionMenu = ({
   isAdmin,
   isCommentAuthor,
   isPostAuthor,
-  isOpen,
   isShow,
-  isDisabled,
   onClose,
   onDelete,
   onUpdate,
@@ -33,8 +31,6 @@ const CommentActionMenu = ({
         isAdmin={isAdmin}
         isCommentAuthor={isCommentAuthor}
         isPostAuthor={isPostAuthor}
-        isDisabled={isDisabled}
-        isOpen={isOpen}
         onClose={onClose}
         onDelete={onDelete}
         onUpdate={onUpdate}

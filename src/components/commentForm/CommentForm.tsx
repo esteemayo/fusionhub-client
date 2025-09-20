@@ -9,15 +9,10 @@ import { useAppSelector } from '../../hooks/hooks';
 import './CommentForm.scss';
 
 const CommentForm = ({
-  value,
-  commentId,
   isLoading,
   isPending,
-  isEditing,
   comments,
-  onChange,
   onKeyDown,
-  onCancel,
   onSubmit,
   ref,
 }: CommentFormProps) => {
@@ -34,14 +29,6 @@ const CommentForm = ({
       ? 'comment-form__form show'
       : 'comment-form__form hide';
   }, [hasCommented]);
-
-  const cancelBtnClasses = useMemo(() => {
-    return isEditing && commentId ? 'show' : 'hide';
-  }, [commentId, isEditing]);
-
-  const btnLabel = useMemo(() => {
-    return `${isEditing && commentId ? 'Update' : 'Post'} Comment`;
-  }, [commentId, isEditing]);
 
   if (isPending) {
     return null;
@@ -72,28 +59,19 @@ const CommentForm = ({
           )}
           <form onSubmit={onSubmit} className={formClasses}>
             <textarea
-              name='content'
-              id='content'
-              value={value || ''}
-              placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
               ref={ref}
+              id='content'
+              name='content'
+              placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
               rows={5}
               className='comment-form__textarea'
-              onChange={(e) => onChange(e.target.value)}
               onKeyDown={onKeyDown}
               aria-label='Write your thoughts here... Share your opinion or feedback about the post.'
             />
             <div className='comment-form__actions'>
               <Button
-                type='button'
-                label='Cancel'
-                color='dark'
-                onClick={onCancel}
-                className={cancelBtnClasses}
-              />
-              <Button
                 type='submit'
-                label={btnLabel}
+                label='Post Comment'
                 isLoading={isLoading}
                 disabled={isLoading}
               />

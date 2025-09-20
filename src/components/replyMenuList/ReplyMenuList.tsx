@@ -15,7 +15,6 @@ const ReplyMenuList = ({
   isCommentAuthor,
   isPostAuthor,
   isReplyAuthor,
-  isDisabled,
   onDelete,
   onUpdate,
 }: ReplyMenuListProps) => {
@@ -75,16 +74,8 @@ const ReplyMenuList = ({
   return (
     <ul className='reply-menu-list'>
       <div className={actionBtnClasses}>
-        <ReplyMenuListItem
-          label='Edit'
-          disabled={isDisabled}
-          onAction={onUpdate}
-        />
-        <ReplyMenuListItem
-          label='Delete'
-          disabled={isDisabled}
-          onAction={onDelete}
-        />
+        <ReplyMenuListItem label='Edit' onAction={onUpdate} />
+        <ReplyMenuListItem label='Delete' onAction={onDelete} />
       </div>
       <div className={reportClasses}>
         <ReplyMenuListItem

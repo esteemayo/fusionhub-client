@@ -6,7 +6,7 @@ import './ReplyCommentForm.scss';
 
 const ReplyCommentForm = ({
   content,
-  replyId,
+  editId,
   isOpen,
   isLoading,
   isEditing,
@@ -31,14 +31,20 @@ const ReplyCommentForm = ({
   }, [isOpen]);
 
   const btnLabel = useMemo(() => {
-    return isEditing && replyId
+    return isEditing && editId
       ? isLoading
         ? 'Updating...'
-        : 'Update Reply'
+        : 'Update Comment'
       : isLoading
       ? 'Submitting...'
       : 'Submit Reply';
-  }, [isEditing, isLoading, replyId]);
+  }, [editId, isEditing, isLoading]);
+
+  const placeholder = useMemo(() => {
+    return isEditing && editId
+      ? 'Update your reply here...'
+      : 'Write your reply here...';
+  }, [editId, isEditing]);
 
   const hintClasses = useMemo(() => {
     return showHint
@@ -58,13 +64,13 @@ const ReplyCommentForm = ({
         ref={ref}
         id='content'
         name='content'
-        value={content}
-        placeholder='Write your reply here...'
+        value={content || ''}
+        placeholder={placeholder}
         className='reply-comment-form__textarea'
         rows={3}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={onKeyDown}
-        aria-label='Write your reply here...'
+        aria-label={placeholder}
       />
       <div className='reply-comment-form__actions'>
         <button
@@ -72,6 +78,7 @@ const ReplyCommentForm = ({
           className='reply-comment-form__actions--cancel'
           onClick={onCancel}
           disabled={isLoading}
+          aria-disabled={isLoading}
         >
           Cancel
         </button>
@@ -79,7 +86,7 @@ const ReplyCommentForm = ({
           type='submit'
           className='reply-comment-form__actions--submit'
           disabled={!content.trim() || isLoading}
-          aria-disabled={!content.trim()}
+          aria-disabled={!content.trim() || isLoading}
         >
           {btnLabel}
         </button>

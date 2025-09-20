@@ -13,8 +13,6 @@ const CommentActionMenuList = ({
   isAdmin,
   isCommentAuthor,
   isPostAuthor,
-  isDisabled,
-  isOpen,
   onClose,
   onDelete,
   onUpdate,
@@ -22,29 +20,29 @@ const CommentActionMenuList = ({
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    onUpdate(e);
-    onClose(e);
+    onUpdate();
+    onClose();
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    onDelete(e);
-    onClose(e);
+    onDelete();
+    onClose();
   };
 
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     console.log('reported');
-    onClose(e);
+    onClose();
   };
 
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     console.log('muted');
-    onClose(e);
+    onClose();
   };
 
   const actionBtnClasses = useMemo(() => {
@@ -98,16 +96,8 @@ const CommentActionMenuList = ({
   return (
     <ul className='comment-action-menu-list'>
       <div className={actionBtnClasses}>
-        <CommentActionMenuListItem
-          label='Edit'
-          onAction={handleUpdate}
-          disabled={isDisabled || isOpen}
-        />
-        <CommentActionMenuListItem
-          label='Delete'
-          onAction={handleDelete}
-          disabled={isDisabled || isOpen}
-        />
+        <CommentActionMenuListItem label='Edit' onAction={handleUpdate} />
+        <CommentActionMenuListItem label='Delete' onAction={handleDelete} />
       </div>
       <div className={reportBtnClasses}>
         <CommentActionMenuListItem label='Report' onAction={handleReport} />

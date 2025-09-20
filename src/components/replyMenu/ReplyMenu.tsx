@@ -16,7 +16,6 @@ const ReplyMenu = ({
   isShow,
   isPostAuthor,
   isReplyAuthor,
-  isDisabled,
   onDelete,
   onUpdate,
 }: ReplyMenuProps) => {
@@ -35,7 +34,6 @@ const ReplyMenu = ({
         isCommentAuthor={isCommentAuthor}
         isPostAuthor={isPostAuthor}
         isReplyAuthor={isReplyAuthor}
-        isDisabled={isDisabled}
         onDelete={onDelete}
         onUpdate={onUpdate}
       />

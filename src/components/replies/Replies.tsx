@@ -7,14 +7,11 @@ import { RepliesProps } from '../../types';
 import './Replies.scss';
 
 const Replies = ({
-  replyId,
   activeCardId,
   replyLists,
   replyToShow,
   isLoading,
-  isEditing,
   onChangeActiveCardId,
-  onUpdate,
   onClick,
 }: RepliesProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,11 +41,6 @@ const Replies = ({
       ? 'replies__box show'
       : 'replies__box hide';
   }, [isLoading, replyLists, replyToShow]);
-
-  const isDisabled = useMemo(() => {
-    const shouldDisable = isEditing && replyId;
-    return !!shouldDisable;
-  }, [isEditing, replyId]);
 
   useEffect(() => {
     const element = ref.current;
@@ -115,9 +107,7 @@ const Replies = ({
                 key={reply._id}
                 reply={reply}
                 activeCardId={activeCardId}
-                isDisabled={isDisabled}
                 onChangeActiveCardId={onChangeActiveCardId}
-                onUpdate={onUpdate}
               />
             );
           })}

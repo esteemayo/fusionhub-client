@@ -1,23 +1,18 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Replies from '../replies/Replies';
 import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
 
-import Badge from '../badge/Badge';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
 import HeartButton from '../heartButton/HeartButton';
+import Badge from '../badge/Badge';
 import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
 
+import { useComment } from '../../hooks/useComment';
 import { useReply } from '../../hooks/useReply';
 import { useLikeComment } from '../../hooks/useLikeComment';
 
@@ -31,13 +26,9 @@ import { CommentCardProps, ReplyType } from '../../types';
 import './CommentCard.scss';
 
 const CommentCard = ({
-  editId,
-  editing,
   activeCardId,
   comment,
   onChangeActiveCardId,
-  onChange,
-  onUpdate,
   onOpen,
 }: CommentCardProps) => {
   const {
@@ -62,11 +53,8 @@ const CommentCard = ({
 
   const queryKey = ['comments', postId];
 
-  const { data, replyMutation, updateReplyMutation } = useReply(
-    postId,
-    commentId
-  );
-
+  const { data, replyMutation } = useReply(postId, commentId);
+  const { updateCommentMutation } = useComment(postId);
   const { isLiked, handleLike, likeCommentMutation } = useLikeComment(
     commentId,
     likes,
@@ -75,15 +63,15 @@ const CommentCard = ({
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const [replyId, setReplyId] = useState('');
-  const [value, setValue] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [replyToShow, setReplyToShow] = useState(3);
-  const [isMore, setIsMore] = useState(false);
-  const [replies, setReplies] = useState<ReplyType[] | [] | undefined>();
+  const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isMore, setIsMore] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
+  const [replies, setReplies] = useState<ReplyType[] | [] | undefined>();
 
   const toggleActionHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -99,16 +87,10 @@ const CommentCard = ({
     });
   };
 
-  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleClose = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
     setIsShow(false);
   };
-
-  const handleEscape = useCallback((e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
-    }
-  }, []);
 
   const handleCollapse = () => {
     if (isMore) {
@@ -126,23 +108,11 @@ const CommentCard = ({
     e.stopPropagation();
 
     if (!currentUser) return;
-
-    if (isEditing && replyId) return;
+    if (isEditing && editId) return;
 
     setIsOpen((value) => {
       return !value;
     });
-  };
-
-  const handleUpdateReply = (content: string, replyId: string) => {
-    setValue(content);
-    setReplyId(replyId);
-
-    setIsOpen(true);
-    setIsEditing(true);
-
-    const current = textareaRef.current;
-    current?.focus();
   };
 
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -151,7 +121,12 @@ const CommentCard = ({
     if (!currentUser) return;
 
     setIsOpen(false);
-    if (isEditing) setIsEditing(false);
+
+    if (isEditing && editId) {
+      setIsEditing(false);
+      setEditId(null);
+    }
+
     if (value.trim() !== '') setValue('');
   };
 
@@ -162,17 +137,20 @@ const CommentCard = ({
     });
   };
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleUpdate = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     if (!currentUser) return;
 
-    onUpdate?.(commentId);
-    onChange(content);
+    setIsOpen(true);
+    setIsEditing(true);
+    setEditId(commentId);
+
+    setValue(content);
   };
 
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleDelete = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     if (!currentUser) return;
 
@@ -187,19 +165,18 @@ const CommentCard = ({
     if (!currentUser) return;
 
     if (value.trim() !== '') {
-      if (isEditing) {
-        updateReplyMutation.mutate(
-          { content: value, replyId },
+      if (isEditing && editId) {
+        updateCommentMutation.mutate(
+          { content: value, commentId },
           {
             onSuccess: () => {
               setValue('');
               setIsOpen(false);
-              setReplyId('');
+              setEditId(null);
               setIsEditing(false);
             },
           }
         );
-        return;
       } else {
         replyMutation.mutate(value, {
           onSuccess: () => {
@@ -293,13 +270,9 @@ const CommentCard = ({
       : 'comment-card__actions--btn show';
   }, [currentUser]);
 
-  const isDisabled = useMemo(() => {
-    return editing && editId === commentId;
-  }, [commentId, editId, editing]);
-
   const isPending = useMemo(() => {
-    return replyMutation.isPending || updateReplyMutation.isPending;
-  }, [replyMutation.isPending, updateReplyMutation.isPending]);
+    return replyMutation.isPending || updateCommentMutation.isPending;
+  }, [replyMutation.isPending, updateCommentMutation.isPending]);
 
   useEffect(() => {
     if (!data) return;
@@ -312,12 +285,18 @@ const CommentCard = ({
   }, [data]);
 
   useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
+      }
+    };
+
     window.addEventListener('keydown', handleEscape);
 
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, [handleEscape]);
+  }, []);
 
   useEffect(() => {
     setIsShow(activeCardId === commentId);
@@ -361,7 +340,6 @@ const CommentCard = ({
                 type='button'
                 className={replyBtnClasses}
                 onClick={handleToggle}
-                disabled={isDisabled}
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -434,9 +412,7 @@ const CommentCard = ({
           isAdmin={isAdmin}
           isCommentAuthor={isCommentAuthor}
           isPostAuthor={isPostAuthor}
-          isOpen={isOpen}
           isShow={isShow}
-          isDisabled={isDisabled}
           onClose={handleClose}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
@@ -444,7 +420,7 @@ const CommentCard = ({
       </div>
       <ReplyCommentForm
         content={value}
-        replyId={replyId}
+        editId={editId}
         isOpen={isOpen}
         isLoading={isPending}
         isEditing={isEditing}
@@ -455,15 +431,12 @@ const CommentCard = ({
         ref={textareaRef}
       />
       <Replies
-        replyId={replyId}
         activeCardId={activeCardId}
         replyLists={replies}
         replyToShow={replyToShow}
         isLoading={isLoading}
-        isEditing={isEditing}
         onChangeActiveCardId={onChangeActiveCardId}
         onClick={handleMoreReplies}
-        onUpdate={handleUpdateReply}
       />
     </article>
   );

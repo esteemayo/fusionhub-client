@@ -27,19 +27,15 @@ const Comments = ({ postId }: CommentsProps) => {
     refetch,
     refetchCommentUsers,
     commentMutation,
-    updateCommentMutation,
   } = useComment(postId);
 
   const ref = useRef<HTMLTextAreaElement>(null);
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [commentToShow, setCommentToShow] = useState(5);
   const [comments, setComments] = useState(data);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
-  const [commentId, setCommentId] = useState('');
 
   const { sort, setSort, sortedComments } = useSortedComments(comments);
 
@@ -96,28 +92,8 @@ const Comments = ({ postId }: CommentsProps) => {
     }, 1000);
   };
 
-  const handleUpdate = (commentId: string) => {
-    const current = ref.current;
-
-    current?.focus();
-
-    setIsEditing(true);
-    setCommentId(commentId);
-  };
-
   const handleOpen = () => {
     dispatch(onOpen());
-  };
-
-  const handleClear = () => {
-    setCommentId('');
-    setValue('');
-    setIsEditing(false);
-  };
-
-  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    handleClear();
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
@@ -131,27 +107,10 @@ const Comments = ({ postId }: CommentsProps) => {
 
     if (!currentUser) return;
 
-    if (isEditing && commentId) {
-      if (value) {
-        updateCommentMutation.mutate(
-          { content, commentId },
-          {
-            onSuccess: () => {
-              target.reset();
-              handleClear();
-            },
-          }
-        );
-
-        return;
-      }
-    }
-
     if (content) {
       commentMutation.mutate(content, {
         onSuccess: () => {
           target.reset();
-          if (value) setValue('');
         },
       });
     }
@@ -189,38 +148,29 @@ const Comments = ({ postId }: CommentsProps) => {
       <div className='comments__container'>
         <Comment
           sort={sort}
-          commentId={commentId}
           activeCardId={activeCardId}
           isPending={isPending}
           isPendingUser={isPendingUser}
           isOpen={isOpen}
           isLoading={isLoading}
-          isEditing={isEditing}
           error={error}
           errorUser={errorUser}
           comments={sortedComments}
           commentUsers={commentUsers}
           commentToShow={commentToShow}
           mutation={commentMutation}
-          onChange={setValue}
           onChangeActiveCardId={setActiveCardId}
           onClick={handleClick}
-          onUpdate={handleUpdate}
           onOpen={handleOpen}
           onClose={handleClose}
           onToggle={handleToggle}
           onSort={setSort}
         />
         <CommentForm
-          value={value}
-          commentId={commentId}
           isLoading={commentMutation.isPending}
           isPending={isPending}
-          isEditing={isEditing}
           comments={comments!}
-          onChange={setValue}
           onKeyDown={handleKeyDown}
-          onCancel={handleCancel}
           onSubmit={handleSubmit}
           ref={ref}
         />

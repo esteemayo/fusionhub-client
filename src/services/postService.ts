@@ -95,6 +95,7 @@ export const createReplyOnComment = (
 ) =>
   http.post(`${apiEndpoint}/${postId}/comments/${commentId}/replies`, {
     content,
+    comment: commentId,
   });
 
 export const updatePost = <T extends object, U extends string>(

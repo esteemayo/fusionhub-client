@@ -1214,23 +1214,19 @@ export type sortType = 'best' | 'newest' | 'oldest';
 
 export interface CommentProps {
   sort: sortType;
-  commentId: string;
   activeCardId: string | null;
   isPending: boolean;
   isPendingUser: boolean;
   isOpen: boolean;
   isLoading: boolean;
-  isEditing: boolean;
   error: Error | null;
   errorUser: Error | null;
   comments: CommentType[];
   commentUsers: CommentImageType[] | undefined;
   commentToShow: number;
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate?(commentId: string): void;
   onOpen(): void;
   onClose(): void;
   onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
@@ -1273,13 +1269,9 @@ export interface CommentFilterItemProps {
 }
 
 export interface CommentCardProps {
-  editId: string;
-  editing: boolean;
   activeCardId: string | null;
   comment: CommentType;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
-  onUpdate?(commentId: string): void;
   onOpen(): void;
 }
 
@@ -1290,12 +1282,10 @@ export interface CommentActionMenuProps {
   isAdmin: boolean;
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
-  isOpen: boolean;
   isShow: boolean;
-  isDisabled: boolean;
-  onClose(e: React.MouseEvent<HTMLButtonElement>): void;
-  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListProps {
@@ -1305,16 +1295,13 @@ export interface CommentActionMenuListProps {
   isAdmin: boolean;
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
-  isDisabled: boolean;
-  isOpen: boolean;
-  onClose(e: React.MouseEvent<HTMLButtonElement>): void;
-  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListItemProps {
   label: string;
-  disabled?: boolean;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -1327,14 +1314,11 @@ export interface HeartButtonProps {
 }
 
 export interface RepliesProps {
-  replyId: string;
   activeCardId: string | null;
   replyLists?: ReplyType[];
   replyToShow: number;
   isLoading: boolean;
-  isEditing: boolean;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
-  onUpdate(content: string, replyId: string): void;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -1342,9 +1326,7 @@ export interface ReplyProps {
   reply: ReplyType;
   activeCardId: string | null;
   maxRows?: number;
-  isDisabled: boolean;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
-  onUpdate(content: string, replyId: string): void;
 }
 
 export interface ReplyMenuProps {
@@ -1357,7 +1339,6 @@ export interface ReplyMenuProps {
   isShow: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
-  isDisabled: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -1371,7 +1352,6 @@ export interface ReplyMenuListProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
-  isDisabled: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -1384,7 +1364,10 @@ export interface ReplyMenuListItemProps {
 
 export interface ReplyFormProps {
   isOpen: boolean;
+  isEditing: boolean;
   content: string;
+  editId: string | null;
+  isLoading: boolean;
   onInput(): void;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
@@ -1395,7 +1378,7 @@ export interface ReplyFormProps {
 
 export interface ReplyCommentFormProps {
   content: string;
-  replyId: string;
+  editId: string | null;
   isOpen: boolean;
   isLoading: boolean;
   isEditing: boolean;
@@ -1407,15 +1390,10 @@ export interface ReplyCommentFormProps {
 }
 
 export interface CommentFormProps {
-  value: string;
-  commentId: string;
   isLoading?: boolean;
   isPending?: boolean;
-  isEditing: boolean;
   comments: CommentType[];
-  onChange: React.Dispatch<React.SetStateAction<string>>;
   onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
-  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
   ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
 }
