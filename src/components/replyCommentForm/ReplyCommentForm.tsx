@@ -10,6 +10,7 @@ const ReplyCommentForm = ({
   isOpen,
   isLoading,
   isEditing,
+  onInput,
   onChange,
   onKeyDown,
   onCancel,
@@ -68,6 +69,7 @@ const ReplyCommentForm = ({
         placeholder={placeholder}
         className='reply-comment-form__textarea'
         rows={3}
+        onInput={onInput}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={onKeyDown}
         aria-label={placeholder}

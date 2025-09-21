@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import Image from '../Image';
 import Badge from '../badge/Badge';
 
-import HeartButton from '../heartButton/HeartButton';
+import HeartButton from '../commentLikeButton/CommentLikeButton';
 import ProfileAction from '../profileAction/ProfileAction';
 
 import { useLikeReply } from '../../hooks/useLikeReply';

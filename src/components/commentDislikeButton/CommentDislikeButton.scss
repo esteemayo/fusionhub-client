@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.heart-button {
+.comment-dislike-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
 
   &:disabled {
     opacity: 0.75;
-    cursor: default;
+    cursor: not-allowed;
   }
 
   svg {

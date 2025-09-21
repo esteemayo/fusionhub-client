@@ -1271,6 +1271,7 @@ export interface CommentFilterItemProps {
 export interface CommentCardProps {
   activeCardId: string | null;
   comment: CommentType;
+  maxRows?: number;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onOpen(): void;
 }
@@ -1305,12 +1306,20 @@ export interface CommentActionMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-export interface HeartButtonProps {
+export interface CommentLikeButtonProps {
   size?: 'sm';
   count: number;
   hasLiked: boolean;
   isLoading: boolean;
   onLike(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface CommentDislikeButtonProps {
+  size?: 'sm';
+  count: number;
+  hasDisliked: boolean;
+  isLoading: boolean;
+  onDislike(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface RepliesProps {
@@ -1339,8 +1348,9 @@ export interface ReplyMenuProps {
   isShow: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
-  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyMenuListProps {
@@ -1352,8 +1362,9 @@ export interface ReplyMenuListProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
-  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyMenuListItemProps {
@@ -1382,6 +1393,7 @@ export interface ReplyCommentFormProps {
   isOpen: boolean;
   isLoading: boolean;
   isEditing: boolean;
+  onInput(): void;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;

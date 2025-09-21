@@ -8,9 +8,11 @@ import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import HeartButton from '../heartButton/HeartButton';
 import Badge from '../badge/Badge';
 import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
+
+import CommentLikeButton from '../commentLikeButton/CommentLikeButton';
+import CommentDislikeButton from '../commentDislikeButton/CommentDislikeButton';
 
 import { useComment } from '../../hooks/useComment';
 import { useReply } from '../../hooks/useReply';
@@ -28,6 +30,7 @@ import './CommentCard.scss';
 const CommentCard = ({
   activeCardId,
   comment,
+  maxRows,
   onChangeActiveCardId,
   onOpen,
 }: CommentCardProps) => {
@@ -61,6 +64,8 @@ const CommentCard = ({
     queryKey
   );
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [replyToShow, setReplyToShow] = useState(3);
@@ -108,10 +113,19 @@ const CommentCard = ({
     e.stopPropagation();
 
     if (!currentUser) return;
-    if (isEditing && editId) return;
+
+    if (isEditing && editId) {
+      setEditId(null);
+      setIsEditing(false);
+    }
 
     setIsOpen((value) => {
-      return !value;
+      if (value) {
+        setValue('');
+        return false;
+      } else {
+        return true;
+      }
     });
   };
 
@@ -157,6 +171,20 @@ const CommentCard = ({
     onOpen();
     dispatch(commentModal.setCommentId(commentId));
     dispatch(commentModal.setPostId(post._id));
+  };
+
+  const onInput = () => {
+    const textarea = textareaRef.current!;
+
+    textarea.style.height = 'auto';
+    const lineHeight = parseInt(
+      getComputedStyle(textarea).lineHeight || '20',
+      10
+    );
+    const maxHeight = lineHeight * (maxRows || 3);
+
+    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
+    setValue(textarea.value);
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
@@ -217,6 +245,16 @@ const CommentCard = ({
       ? 'comment-card__box--reply show'
       : 'comment-card__box--reply hide';
   }, [currentUser]);
+
+  const replyBtnLabel = useMemo(() => {
+    return isEditing && editId
+      ? isOpen
+        ? 'Cancel edit'
+        : 'Reply'
+      : isOpen
+      ? 'Hide reply'
+      : 'Reply';
+  }, [editId, isEditing, isOpen]);
 
   const contentLabel = useMemo(() => {
     return isMore && content?.length > 200 ? content : excerpts(content, 200);
@@ -302,6 +340,24 @@ const CommentCard = ({
     setIsShow(activeCardId === commentId);
   }, [activeCardId, commentId]);
 
+  useEffect(() => {
+    const inner = innerRef.current;
+    const container = containerRef.current;
+
+    if (!container || !inner) return;
+
+    if (isOpen) {
+      const height = inner.scrollHeight;
+
+      container.style.maxHeight = `${height}px`;
+      setTimeout(() => textareaRef.current?.focus(), 120);
+      container.classList.remove('closed');
+    } else {
+      container.style.maxHeight = '0px';
+      container.classList.add('closed');
+    }
+  }, [isOpen, value]);
+
   return (
     <article className='comment-card'>
       <div className='comment-card__container'>
@@ -358,7 +414,7 @@ const CommentCard = ({
                     d='M14.4826 0.710819L23.3186 8.30424L23.3453 8.33094C24.1851 9.17074 24.2698 10.5407 23.29 11.3814M23.289 11.3823L14.4683 18.9625C13.8701 19.4753 12.968 19.8927 12.0942 19.4328C11.2639 18.9958 11.0258 18.0483 11.0258 17.2385V15.2064H9.84349C6.58352 15.8322 4.45041 18.793 3.04135 22.3389C2.96776 22.5522 2.86116 22.7801 2.70055 22.9761C2.54223 23.1693 2.21975 23.4586 1.73218 23.4586C1.22248 23.4586 0.893783 23.1456 0.734191 22.9203C0.577052 22.6985 0.491014 22.4466 0.440439 22.2244C0.146878 21.0463 0 19.8659 0 18.6167C0 11.8688 4.3852 6.2531 11.0258 4.76886V2.35363C11.0258 1.56469 11.2714 0.626894 12.0942 0.193849C12.9756 -0.270092 13.8781 0.156293 14.4826 0.710819M13.0426 2.10923C13.0327 2.17428 13.0258 2.2552 13.0258 2.35363V6.4396L12.1902 6.57886C6.06514 7.59972 2 12.5506 2 18.6167C2 18.9793 2.01414 19.3342 2.04243 19.6841C3.58264 16.6438 5.93899 13.8714 9.57597 13.222L9.66318 13.2064H13.0258V17.2385C13.0258 17.3631 13.0353 17.4613 13.0482 17.5365C13.0829 17.5123 13.1223 17.4821 13.1663 17.4444L21.9864 9.86459L21.9874 9.86375C21.9934 9.85865 21.9972 9.85464 21.9995 9.85188L21.9991 9.84963C21.9982 9.84534 21.9923 9.82926 21.9923 9.82926C21.9859 9.81454 17.024 5.52745 17 5.5L13.1512 2.20366L13.1371 2.19057C13.103 2.15892 13.0714 2.13201 13.0426 2.10923ZM2.40429 21.8297L2.40356 21.8278L2.40429 21.8297Z'
                   />
                 </svg>
-                <span>{isOpen ? 'Hide reply' : 'Reply'}</span>
+                <span>{replyBtnLabel}</span>
               </button>
             </div>
           </div>
@@ -381,12 +437,20 @@ const CommentCard = ({
         </div>
       </div>
       <div className='comment-card__actions'>
-        <HeartButton
-          count={likeCount}
-          hasLiked={isLiked}
-          isLoading={likeCommentMutation.isPending}
-          onLike={handleLike}
-        />
+        <div className='comment-card__actions--box'>
+          <CommentLikeButton
+            count={likeCount}
+            hasLiked={isLiked}
+            isLoading={likeCommentMutation.isPending}
+            onLike={handleLike}
+          />
+          <CommentDislikeButton
+            count={2000}
+            hasDisliked
+            isLoading={false}
+            onDislike={() => console.log('disliked')}
+          />
+        </div>
         <button
           type='button'
           onClick={toggleActionHandler}
@@ -418,18 +482,26 @@ const CommentCard = ({
           onUpdate={handleUpdate}
         />
       </div>
-      <ReplyCommentForm
-        content={value}
-        editId={editId}
-        isOpen={isOpen}
-        isLoading={isPending}
-        isEditing={isEditing}
-        onChange={setValue}
-        onKeyDown={handleKeyDown}
-        onCancel={handleCancel}
-        onSubmit={handleSubmit}
-        ref={textareaRef}
-      />
+      <div
+        ref={containerRef}
+        className={`comment-card__collapse ${isOpen ? '' : 'closed'}`}
+      >
+        <div ref={innerRef} className='comment-card__collapse--inner'>
+          <ReplyCommentForm
+            content={value}
+            editId={editId}
+            isOpen={isOpen}
+            isLoading={isPending}
+            isEditing={isEditing}
+            onInput={onInput}
+            onChange={setValue}
+            onKeyDown={handleKeyDown}
+            onCancel={handleCancel}
+            onSubmit={handleSubmit}
+            ref={textareaRef}
+          />
+        </div>
+      </div>
       <Replies
         activeCardId={activeCardId}
         replyLists={replies}
