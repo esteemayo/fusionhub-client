@@ -176,4 +176,12 @@ export const commentFilters: CommentFiltersType = [
     id: 'oldest',
     label: 'Oldest',
   },
+  {
+    id: 'mostReplies',
+    label: 'Most replies',
+  },
+  {
+    id: 'mostControversial',
+    label: 'Most controversial',
+  },
 ];

@@ -24,6 +24,7 @@ const CommentLikeButton = ({
       onClick={onLike}
       className={heartBtnClasses}
       disabled={isLoading}
+      aria-disabled={isLoading}
     >
       <LikeIcon liked={hasLiked} />
       {count > 0 && <span>{millify(count)}</span>}

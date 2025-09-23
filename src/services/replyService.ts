@@ -28,4 +28,7 @@ export const updateReply = (content: string, replyId: string) =>
 export const likeReply = (replyId: string) =>
   http.patch(`${replyUrl(replyId)}/like`);
 
+export const dislikeReply = (replyId: string) =>
+  http.patch(`${replyUrl(replyId)}/dislike`);
+
 export const deleteReply = (replyId: string) => http.delete(replyUrl(replyId));

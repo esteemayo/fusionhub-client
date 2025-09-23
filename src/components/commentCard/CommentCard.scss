@@ -530,12 +530,6 @@
         }
       }
     }
-
-    &--box {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
   }
 
   &__collapse {
@@ -546,6 +540,10 @@
     border-radius: 0.5rem;
     margin-top: 1rem;
     transition: max-height 360ms cubic-bezier(0.2, 0.85, 0.25, 0.1);
+
+    @include bp.sm {
+      background-color: rgba(vars.$clr-secondary-blue, 0.15);
+    }
 
     &.closed {
       border: 0;

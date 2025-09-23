@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 
 import CommentFilterItem from '../commentFilterItem/CommentFilterItem';
 
-import { CommentFilterProps } from '../../types';
 import { commentFilters } from '../../data/formData';
+import { CommentFilterProps, sortType } from '../../types';
 
 import './CommentFilter.scss';
 
 const CommentFilter = ({ isOpen, onClose, onSort }: CommentFilterProps) => {
-  const handleSort = (value: 'best' | 'newest' | 'oldest') => {
+  const handleSort = (value: sortType) => {
     onSort(value);
     onClose();
   };

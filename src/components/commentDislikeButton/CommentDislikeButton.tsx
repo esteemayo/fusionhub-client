@@ -26,6 +26,7 @@ const CommentDislikeButton = ({
       onClick={onDislike}
       className={dislikeBtnClasses}
       disabled={isLoading}
+      aria-disabled={isLoading}
     >
       <DislikeIcon disliked={hasDisliked} />
       {count > 0 && <span>{millify(count)}</span>}

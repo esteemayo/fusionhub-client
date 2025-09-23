@@ -8,11 +8,9 @@ import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
+import CommentAction from '../commentReplyAction/CommentReplyAction';
 import Badge from '../badge/Badge';
 import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
-
-import CommentLikeButton from '../commentLikeButton/CommentLikeButton';
-import CommentDislikeButton from '../commentDislikeButton/CommentDislikeButton';
 
 import { useComment } from '../../hooks/useComment';
 import { useReply } from '../../hooks/useReply';
@@ -40,7 +38,9 @@ const CommentCard = ({
     content,
     post,
     likes,
+    dislikes,
     likeCount,
+    dislikeCount,
     createdAt,
     updatedAt,
   } = comment;
@@ -58,11 +58,14 @@ const CommentCard = ({
 
   const { data, replyMutation } = useReply(postId, commentId);
   const { updateCommentMutation } = useComment(postId);
-  const { isLiked, handleLike, likeCommentMutation } = useLikeComment(
-    commentId,
-    likes,
-    queryKey
-  );
+  const {
+    isLiked,
+    isDisliked,
+    handleLike,
+    handleDislike,
+    likeCommentMutation,
+    dislikeCommentMutation,
+  } = useLikeComment(commentId, likes, dislikes, queryKey);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
@@ -394,8 +397,9 @@ const CommentCard = ({
             <div>
               <button
                 type='button'
-                className={replyBtnClasses}
                 onClick={handleToggle}
+                aria-label={replyBtnLabel}
+                className={replyBtnClasses}
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -430,27 +434,28 @@ const CommentCard = ({
             className='comment-card__details--desc'
           >
             {contentLabel}
-            <button type='button' onClick={handleClick} className={btnClasses}>
+            <button
+              type='button'
+              onClick={handleClick}
+              aria-label={btnLabel}
+              className={btnClasses}
+            >
               {btnLabel}
             </button>
           </p>
         </div>
       </div>
       <div className='comment-card__actions'>
-        <div className='comment-card__actions--box'>
-          <CommentLikeButton
-            count={likeCount}
-            hasLiked={isLiked}
-            isLoading={likeCommentMutation.isPending}
-            onLike={handleLike}
-          />
-          <CommentDislikeButton
-            count={2000}
-            hasDisliked
-            isLoading={false}
-            onDislike={() => console.log('disliked')}
-          />
-        </div>
+        <CommentAction
+          likeCount={likeCount}
+          dislikeCount={dislikeCount}
+          isLiked={isLiked}
+          isDisliked={isDisliked}
+          likeMutation={likeCommentMutation}
+          dislikeMutation={dislikeCommentMutation}
+          onLike={handleLike}
+          onDislike={handleDislike}
+        />
         <button
           type='button'
           onClick={toggleActionHandler}

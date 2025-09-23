@@ -98,11 +98,11 @@ export const useFavorite: IFavourite = (post, currentUser) => {
   }, [currentUser]);
 
   const isLiked = useMemo(() => {
-    return !!post.likes.some((id) => id === userId);
+    return !!(post.likes ?? []).some((id) => id === userId);
   }, [post, userId]);
 
   const isDisliked = useMemo(() => {
-    return !!post.dislikes.some((id) => id === userId);
+    return !!(post.dislikes ?? []).some((id) => id === userId);
   }, [post, userId]);
 
   return {

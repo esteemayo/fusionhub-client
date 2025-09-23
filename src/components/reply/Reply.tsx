@@ -7,9 +7,7 @@ import GoogleImage from '../GoogleImage';
 
 import ReplyForm from '../replyForm/ReplyForm';
 import ReplyMenu from '../replyMenu/ReplyMenu';
-
-import CommentLikeButton from '../commentLikeButton/CommentLikeButton';
-import CommentDislikeButton from '../commentDislikeButton/CommentDislikeButton';
+import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
@@ -38,7 +36,9 @@ const Reply = ({
     parentReply,
     replies,
     likes,
+    dislikes,
     likeCount,
+    dislikeCount,
     createdAt,
     updatedAt,
   } = reply;
@@ -52,11 +52,14 @@ const Reply = ({
 
   const queryKey = ['replies', commentId];
 
-  const { isLiked, likeReplyMutation, handleLike } = useLikeReply(
-    replyId,
-    likes,
-    queryKey
-  );
+  const {
+    isLiked,
+    isDisliked,
+    likeReplyMutation,
+    dislikeReplyMutation,
+    handleLike,
+    handleDislike,
+  } = useLikeReply(replyId, likes, dislikes, queryKey);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const innerRef = useRef<HTMLDivElement | null>(null);
@@ -120,8 +123,8 @@ const Reply = ({
     setIsShow(false);
   };
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleUpdate = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     if (!currentUser) return;
 
@@ -133,8 +136,8 @@ const Reply = ({
     setIsShow(false);
   };
 
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleDelete = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     if (!currentUser) return;
 
@@ -349,6 +352,7 @@ const Reply = ({
                 <button
                   type='button'
                   onClick={onToggleReply}
+                  aria-label={replyBtnLabel}
                   className={replyBtnClasses}
                 >
                   <svg
@@ -382,8 +386,9 @@ const Reply = ({
               {contentLabel}
               <button
                 type='button'
-                className={btnClasses}
                 onClick={handleClick}
+                aria-label={btnLabel}
+                className={btnClasses}
               >
                 {btnLabel}
               </button>
@@ -391,22 +396,17 @@ const Reply = ({
           </div>
         </div>
         <div className='reply__actions'>
-          <div className='reply__actions--box'>
-            <CommentLikeButton
-              size='sm'
-              count={likeCount}
-              hasLiked={isLiked}
-              isLoading={likeReplyMutation.isPending}
-              onLike={handleLike}
-            />
-            <CommentDislikeButton
-              size='sm'
-              count={1000}
-              hasDisliked
-              isLoading={false}
-              onDislike={() => console.log('disliked')}
-            />
-          </div>
+          <CommentReplyAction
+            size='sm'
+            likeCount={likeCount}
+            dislikeCount={dislikeCount}
+            isLiked={isLiked}
+            isDisliked={isDisliked}
+            likeMutation={likeReplyMutation}
+            dislikeMutation={dislikeReplyMutation}
+            onLike={handleLike}
+            onDislike={handleDislike}
+          />
           <button
             type='button'
             onClick={handleToggle}

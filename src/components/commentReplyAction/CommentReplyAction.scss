@@ -1,0 +1,25 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.comment-reply-action {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    &:nth-child(2) {
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 1px;
+        height: 1.25rem;
+        background-color: vars.$clr-tertiary-blue;
+        margin-left: 0.65rem;
+
+        @include bp.sm {
+          background-color: vars.$clr-secondary-blue;
+        }
+      }
+    }
+  }
+}

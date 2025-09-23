@@ -107,8 +107,8 @@
 
   &__wrapper {
     width: 100%;
+    will-change: min-height;
     padding-top: 1rem;
-    position: relative;
     transition: visibility 0.5s ease-in-out, opacity 0.5s ease-in-out,
       min-height 0.5s ease-in-out, z-index 0.5s ease-in-out;
 
@@ -117,7 +117,6 @@
       display: inline-block;
       visibility: visible;
       opacity: 1;
-      z-index: 1000;
     }
 
     &.hide {
@@ -125,7 +124,6 @@
       min-height: 0 !important;
       visibility: hidden;
       opacity: 0;
-      z-index: -1;
     }
   }
 

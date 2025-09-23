@@ -130,7 +130,9 @@ const Comment = ({
                   role: currentUser?.role as RoleType,
                 },
                 likes: [],
+                dislikes: [],
                 likeCount: 0,
+                dislikeCount: 0,
                 createdAt: new Date().toString(),
                 updatedAt: new Date().toString(),
               }}
@@ -155,6 +157,9 @@ const Comment = ({
         <button
           type='button'
           onClick={onClick}
+          disabled={isLoading}
+          aria-label={isLoading ? 'Loading...' : 'Show more comments'}
+          aria-disabled={isLoading}
           className='comment__wrapper--btn'
         >
           {isLoading ? 'Loading...' : 'Show more comments'}

@@ -26,5 +26,8 @@ export const updateComment = (content: string, commentId: string) =>
 export const likeComment = (commentId: string) =>
   http.patch(`${commentUrl(commentId)}/like`);
 
+export const dislikeComment = (commentId: string) =>
+  http.patch(`${commentUrl(commentId)}/dislike`);
+
 export const deleteComment = (commentId: string) =>
   http.delete(commentUrl(commentId));

@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import CommentUsers from '../commentUsers/CommentUsers';
 import CommentFilter from '../commentFilter/CommentFilter';
 
@@ -14,6 +16,10 @@ const CommentFilters = ({
   onToggle,
   onSort,
 }: CommentFiltersProps) => {
+  const sortType = useMemo(() => {
+    return sort.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+  }, [sort]);
+
   return (
     <div className='comment-filters'>
       <div className='comment-filters__container'>
@@ -26,7 +32,7 @@ const CommentFilters = ({
         <span className='comment-filters__wrapper--label'>Sort by</span>
         <div className='comment-filters__options'>
           <div onClick={onToggle} className='comment-filters__wrap'>
-            <span className='comment-filters__wrap--value'>{sort}</span>
+            <span className='comment-filters__wrap--value'>{sortType}</span>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 24 24'

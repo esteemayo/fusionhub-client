@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useAppSelector } from './hooks';
-import { likeReply } from '../services/replyService';
+import { dislikeReply, likeReply } from '../services/replyService';
 
 import { ILikeReply } from '../types';
 
@@ -12,13 +12,43 @@ const createLikeReply = async (replyId: string) => {
   return data;
 };
 
-export const useLikeReply: ILikeReply = (replyId, likes, queryKey) => {
+const createDislikeReply = async (replyId: string) => {
+  const { data } = await dislikeReply(replyId);
+  return data;
+};
+
+export const useLikeReply: ILikeReply = (
+  replyId,
+  likes,
+  dislikes,
+  queryKey
+) => {
   const queryClient = useQueryClient();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const likeReplyMutation = useMutation({
     mutationFn: createLikeReply,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  const dislikeReplyMutation = useMutation({
+    mutationFn: createDislikeReply,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
     },
@@ -44,6 +74,13 @@ export const useLikeReply: ILikeReply = (replyId, likes, queryKey) => {
     likeReplyMutation.mutate(replyId);
   };
 
+  const handleDislike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+    dislikeReplyMutation.mutate(replyId);
+  };
+
   const userId = useMemo(() => {
     return currentUser?.details._id;
   }, [currentUser?.details._id]);
@@ -52,9 +89,16 @@ export const useLikeReply: ILikeReply = (replyId, likes, queryKey) => {
     return !!(likes ?? [])?.some((like) => like === userId) || false;
   }, [likes, userId]);
 
+  const isDisliked = useMemo(() => {
+    return !!(dislikes ?? [])?.some((dislike) => dislike === userId) || false;
+  }, [dislikes, userId]);
+
   return {
     isLiked,
+    isDisliked,
     handleLike,
+    handleDislike,
     likeReplyMutation,
+    dislikeReplyMutation,
   };
 };

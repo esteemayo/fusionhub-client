@@ -777,7 +777,9 @@ export interface ProfileCommentProps {
   post: PostTypeWithAuthor;
   author: AuthorType;
   likes: string[];
+  dislikes: string[];
   likeCount: number;
+  dislikeCount: number;
   createdAt: string;
 }
 
@@ -800,7 +802,9 @@ export interface ProfileReplyProps {
   post: PostTypeWithAuthor;
   author: AuthorType;
   likes: string[];
+  dislikes: string[];
   likeCount: number;
+  dislikeCount: number;
   createdAt: string;
 }
 
@@ -995,18 +999,39 @@ export interface IFavourite {
 }
 
 export interface ILikeComment {
-  (commentId: string, likes: string[], queryKey: readonly unknown[]): {
+  (
+    commentId: string,
+    likes: string[],
+    dislikes: string[],
+    queryKey: readonly unknown[]
+  ): {
     isLiked: boolean;
+    isDisliked: boolean;
     likeCommentMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    dislikeCommentMutation: UseMutationResult<
+      unknown,
+      unknown,
+      string,
+      unknown
+    >;
     handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
+    handleDislike(e: React.MouseEvent<HTMLButtonElement>): void;
   };
 }
 
 export interface ILikeReply {
-  (replyId: string, likes: string[], queryKey: readonly unknown[]): {
+  (
+    replyId: string,
+    likes: string[],
+    dislikes: string[],
+    queryKey: readonly unknown[]
+  ): {
     isLiked: boolean;
+    isDisliked: boolean;
     likeReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    dislikeReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
     handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
+    handleDislike(e: React.MouseEvent<HTMLButtonElement>): void;
   };
 }
 
@@ -1210,7 +1235,12 @@ export interface IReply {
   };
 }
 
-export type sortType = 'best' | 'newest' | 'oldest';
+export type sortType =
+  | 'best'
+  | 'newest'
+  | 'oldest'
+  | 'mostReplies'
+  | 'mostControversial';
 
 export interface CommentProps {
   sort: sortType;
@@ -1306,6 +1336,18 @@ export interface CommentActionMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface CommentReplyActionProps {
+  size?: 'sm';
+  likeCount: number;
+  dislikeCount: number;
+  isLiked: boolean;
+  isDisliked: boolean;
+  likeMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  dislikeMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  onLike(e: React.MouseEvent<HTMLButtonElement>): void;
+  onDislike(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface CommentLikeButtonProps {
   size?: 'sm';
   count: number;
@@ -1320,6 +1362,10 @@ export interface CommentDislikeButtonProps {
   hasDisliked: boolean;
   isLoading: boolean;
   onDislike(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ShareCommentProps {
+  size?: 'sm';
 }
 
 export interface RepliesProps {
@@ -1628,8 +1674,10 @@ export type CommentType = {
   post: PostTypeWithAuthor;
   author: AuthorType;
   replies?: ReplyType[];
-  likeCount: number;
   likes: string[];
+  dislikes: string[];
+  likeCount: number;
+  dislikeCount: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1642,8 +1690,10 @@ export type ReplyType = {
   author: AuthorType;
   parentReply: string | null;
   replies: ReplyType[] | [];
-  likeCount: number;
   likes: string[];
+  dislikes: string[];
+  likeCount: number;
+  dislikeCount: number;
   createdAt: string;
   updatedAt: string;
 };

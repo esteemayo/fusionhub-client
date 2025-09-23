@@ -3,8 +3,8 @@ import { useMemo, useState } from 'react';
 import Image from '../Image';
 import Badge from '../badge/Badge';
 
-import HeartButton from '../commentLikeButton/CommentLikeButton';
 import ProfileAction from '../profileAction/ProfileAction';
+import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
@@ -25,7 +25,9 @@ const ProfileReply = ({
   comment,
   post,
   likes,
+  dislikes,
   likeCount,
+  dislikeCount,
   createdAt,
 }: ProfileReplyProps) => {
   const dispatch = useAppDispatch();
@@ -35,11 +37,14 @@ const ProfileReply = ({
 
   const queryKey = ['replies'];
 
-  const { isLiked, likeReplyMutation, handleLike } = useLikeReply(
-    replyId,
-    likes,
-    queryKey
-  );
+  const {
+    isLiked,
+    isDisliked,
+    likeReplyMutation,
+    dislikeReplyMutation,
+    handleLike,
+    handleDislike,
+  } = useLikeReply(replyId, likes, dislikes, queryKey);
 
   const [isMore, setIsMore] = useState(false);
 
@@ -148,11 +153,15 @@ const ProfileReply = ({
             </p>
           </div>
           <div className='profile-reply__wrap'>
-            <HeartButton
-              count={likeCount}
-              hasLiked={isLiked}
-              isLoading={likeReplyMutation.isPending}
+            <CommentReplyAction
+              likeCount={likeCount}
+              dislikeCount={dislikeCount}
+              isLiked={isLiked}
+              isDisliked={isDisliked}
+              likeMutation={likeReplyMutation}
+              dislikeMutation={dislikeReplyMutation}
               onLike={handleLike}
+              onDislike={handleDislike}
             />
             <ProfileAction
               type='reply'

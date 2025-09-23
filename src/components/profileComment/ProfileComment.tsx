@@ -3,8 +3,8 @@ import { useMemo, useState } from 'react';
 import Image from '../Image';
 import Badge from '../badge/Badge';
 
-import HeartButton from '../commentLikeButton/CommentLikeButton';
 import ProfileAction from '../profileAction/ProfileAction';
+import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeComment } from '../../hooks/useLikeComment';
 import { useDate } from '../../hooks/useDate';
@@ -24,7 +24,9 @@ const ProfileComment = ({
   content,
   post,
   likes,
+  dislikes,
   likeCount,
+  dislikeCount,
   createdAt,
 }: ProfileCommentProps) => {
   const dispatch = useAppDispatch();
@@ -34,11 +36,14 @@ const ProfileComment = ({
 
   const queryKey = ['comments'];
 
-  const { isLiked, likeCommentMutation, handleLike } = useLikeComment(
-    commentId,
-    likes,
-    queryKey
-  );
+  const {
+    isLiked,
+    isDisliked,
+    likeCommentMutation,
+    dislikeCommentMutation,
+    handleLike,
+    handleDislike,
+  } = useLikeComment(commentId, likes, dislikes, queryKey);
 
   const [isMore, setIsMore] = useState(false);
 
@@ -179,11 +184,15 @@ const ProfileComment = ({
             </p>
           </div>
           <div className='profile-comment__wrap'>
-            <HeartButton
-              count={likeCount}
-              hasLiked={isLiked}
-              isLoading={likeCommentMutation.isPending}
+            <CommentReplyAction
+              likeCount={likeCount}
+              dislikeCount={dislikeCount}
+              isLiked={isLiked}
+              isDisliked={isDisliked}
+              likeMutation={likeCommentMutation}
+              dislikeMutation={dislikeCommentMutation}
               onLike={handleLike}
+              onDislike={handleDislike}
             />
             <ProfileAction
               type='comment'

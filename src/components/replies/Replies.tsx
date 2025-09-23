@@ -115,6 +115,9 @@ const Replies = ({
             <button
               type='button'
               onClick={onClick}
+              disabled={isLoading}
+              aria-label={isLoading ? 'Loading...' : 'Show more replies'}
+              aria-disabled={isLoading}
               className='replies__box--btn'
             >
               {isLoading ? 'Loading...' : 'Show more replies'}
