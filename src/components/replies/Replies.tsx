@@ -106,6 +106,7 @@ const Replies = ({
               <Reply
                 key={reply._id}
                 reply={reply}
+                level={0}
                 activeCardId={activeCardId}
                 onChangeActiveCardId={onChangeActiveCardId}
               />

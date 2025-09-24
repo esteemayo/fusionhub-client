@@ -148,6 +148,7 @@ const UserProfile = () => {
           <>
             <Banner
               query={username}
+              username={user?.username as string}
               image={user?.image}
               banner={user?.banner}
               isFromGoogle={user?.fromGoogle}

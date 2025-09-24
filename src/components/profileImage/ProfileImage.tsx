@@ -14,6 +14,7 @@ import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 const ProfileImage = ({
   name,
+  username,
   bio,
   image,
   isFromGoogle,
@@ -68,6 +69,7 @@ const ProfileImage = ({
                 src={image ?? '/user-default.jpg'}
                 width={120}
                 height={120}
+                alt={username}
                 className='profile-image__image--avatar'
               />
             ) : (
@@ -75,7 +77,7 @@ const ProfileImage = ({
                 src={image ?? '/user-default.jpg'}
                 width={120}
                 height={120}
-                alt='avatar'
+                alt={username}
                 className='profile-image__image--avatar'
               />
             )}

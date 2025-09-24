@@ -97,6 +97,7 @@ const ProfileSettings = () => {
           <>
             <ProfileImage
               name={data?.name as string}
+              username={data?.username as string}
               bio={data?.bio as string}
               image={data?.image}
               isFromGoogle={data?.fromGoogle}

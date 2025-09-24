@@ -175,7 +175,7 @@
       text-transform: capitalize;
       font-weight: 700;
       font-size: 1.4rem;
-      width: fit-content;
+      width: 18rem;
       height: 3.6rem;
       padding: 2rem 1.25rem;
       background-color: vars.$clr-pink-dark-1;
@@ -184,12 +184,14 @@
       cursor: pointer;
 
       @media screen and (max-width: 56.25em) {
+        width: 20rem;
         height: 3.7rem;
         padding: 2.25rem 1.5rem;
         font-size: 1.5rem;
       }
 
       @media screen and (max-width: 51.25em) {
+        width: 22rem;
         height: 3.8rem;
         padding: 2.5rem 1.75rem;
         font-size: var(--default-font-size);
@@ -221,18 +223,21 @@
       }
 
       @media screen and (min-width: 106.25em) {
+        width: 20rem;
         height: 3.7rem;
         padding: 2.25rem 1.5rem;
         font-size: var(--default-font-size);
       }
 
       @media screen and (min-width: 112.5em) {
+        width: 23rem;
         height: 3.8rem;
         padding: 2.5rem 1.75rem;
         font-size: 1.8rem;
       }
 
       @media screen and (min-width: 125em) {
+        width: 30rem;
         height: 4rem;
         padding: 3rem 2rem;
         font-size: 2.15rem;
@@ -240,7 +245,7 @@
 
       &:disabled {
         opacity: 0.75;
-        cursor: default;
+        cursor: not-allowed;
       }
     }
   }

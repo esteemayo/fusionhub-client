@@ -108,7 +108,7 @@
 
     &:disabled {
       opacity: 0.75;
-      cursor: default;
+      cursor: not-allowed;
     }
   }
 }

@@ -1,15 +1,18 @@
-import parse from 'html-react-parser';
+import { useEffect, useMemo, useState } from 'react';
 import millify from 'millify';
 import { Link, useNavigate } from 'react-router-dom';
-import { useMemo } from 'react';
+import parse from 'html-react-parser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import LikeIcon from '../LikeIcon';
 import Image from '../Image';
+import GoogleImage from '../GoogleImage';
+
+import LikeIcon from '../LikeIcon';
 import SaveIcon from '../SaveIcon';
 
-import Badge from '../badge/Badge';
 import DislikeIcon from '../DislikeIcon';
+import Badge from '../badge/Badge';
+import ArticleAction from '../articleAction/ArticleAction';
 
 import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useDate } from '../../hooks/useDate';
@@ -35,7 +38,13 @@ const createDislikePost = async (postId: string) => {
   return data;
 };
 
-const Article = ({ post, userId, queryKey }: ArticleProps) => {
+const Article = ({
+  post,
+  userId,
+  activeCardId,
+  queryKey,
+  onChangeCardId,
+}: ArticleProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -58,6 +67,26 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
       queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
     },
   });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsOpen((value) => {
+      if (value) {
+        onChangeCardId(null);
+        return false;
+      } else {
+        onChangeCardId(post._id);
+        return true;
+      }
+    });
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -93,6 +122,8 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
     dispatch(postModal.setPost(post));
     dispatch(postModal.onOpen());
     dispatch(postModal.setPostQueryKey(queryKey));
+
+    handleClose();
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -102,6 +133,8 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
 
     dispatch(deleteModal.setQueryKey(queryKey));
     dispatch(deleteModal.setDeletePostId(post._id));
+
+    handleClose();
   };
 
   const parsedDesc = useMemo(() => {
@@ -109,11 +142,13 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
   }, [post.desc]);
 
   const isLiked = useMemo(() => {
-    return !!post.likes.some((id) => id === currentUser?.details._id);
+    return !!(post.likes ?? []).some((id) => id === currentUser?.details._id);
   }, [post, currentUser?.details._id]);
 
   const isDisliked = useMemo(() => {
-    return !!post.dislikes.some((id) => id === currentUser?.details._id);
+    return !!(post.dislikes ?? []).some(
+      (id) => id === currentUser?.details._id
+    );
   }, [post, currentUser?.details._id]);
 
   const isAdmin = useMemo(() => {
@@ -121,8 +156,8 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
   }, [currentUser?.role]);
 
   const postAuthorId = useMemo(() => {
-    return post.author._id;
-  }, [post.author._id]);
+    return post?.author._id;
+  }, [post?.author._id]);
 
   const currentUserId = useMemo(() => {
     return currentUser?.details._id;
@@ -138,37 +173,45 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
       : `/accounts/profile?username=${post.author.username}`;
   }, [currentUserId, post.author.username, postAuthorId]);
 
-  const actionBtnClasses = useMemo(() => {
-    if (!currentUser) {
-      return 'article__actions--edit-remove hide';
-    }
-
-    if (isAdmin) {
-      if (isPostAuthor) {
-        return 'article__actions--edit-remove show';
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
       }
+    };
 
-      if (post.author.role === 'admin') {
-        return 'article__actions--edit-remove hide';
-      }
+    window.addEventListener('keydown', handleEscape);
 
-      return 'article__actions--edit-remove show';
-    }
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
 
-    return 'article__actions--edit-remove hide';
-  }, [currentUser, isAdmin, isPostAuthor, post.author.role]);
+  useEffect(() => {
+    setIsOpen(activeCardId === post._id);
+  }, [activeCardId, post._id]);
 
   return (
     <article className='article'>
       <div className='article__container'>
         <Link to={url} className='article__cover'>
-          <Image
-            src={post.author.image ?? '/user-default.jpg'}
-            width={60}
-            height={60}
-            alt='avatar'
-            className='article__cover--img'
-          />
+          {post.author.fromGoogle && post.author.image?.startsWith('https') ? (
+            <GoogleImage
+              src={post.author.image ?? '/user-default.jpg'}
+              width={80}
+              height={80}
+              alt={post.author.username}
+              className='comment-card__user--img'
+            />
+          ) : (
+            <Image
+              src={post.author.image ?? '/user-default.jpg'}
+              width={60}
+              height={60}
+              alt={post.author.username}
+              className='article__cover--img'
+            />
+          )}
         </Link>
         <div className='article__wrapper'>
           <div className='article__profile'>
@@ -268,48 +311,16 @@ const Article = ({ post, userId, queryKey }: ArticleProps) => {
                 </button>
               </div>
             </div>
-            <div className={actionBtnClasses}>
-              <button
-                type='button'
-                onClick={handleUpdate}
-                className='article__actions--update'
-              >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125'
-                  />
-                </svg>
-              </button>
-              <button
-                type='button'
-                onClick={handleDelete}
-                className='article__actions--remove'
-              >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0'
-                  />
-                </svg>
-              </button>
-            </div>
+            <ArticleAction
+              currentUser={currentUser}
+              isAdmin={isAdmin}
+              isOpen={isOpen}
+              isPostAuthor={isPostAuthor}
+              postAuthorRole={post.author.role}
+              onDelete={handleDelete}
+              onToggle={handleToggle}
+              onUpdate={handleUpdate}
+            />
           </div>
         </div>
       </div>

@@ -371,6 +371,7 @@ const CommentCard = ({
                 src={author.image ?? '/user-default.jpg'}
                 width={80}
                 height={80}
+                alt={author.username}
                 className='comment-card__user--img'
               />
             ) : (
@@ -378,7 +379,7 @@ const CommentCard = ({
                 src={author.image ?? '/user-default.jpg'}
                 width={80}
                 height={80}
-                alt='avatar'
+                alt={author.username}
                 className='comment-card__user--img'
               />
             )}

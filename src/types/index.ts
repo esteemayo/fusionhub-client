@@ -697,6 +697,7 @@ export interface AccountMenuItemProps {
 }
 
 export interface BannerProps {
+  username: string;
   image?: string;
   banner?: string;
   isFromGoogle?: boolean;
@@ -740,12 +741,14 @@ export interface TabsProps {
 export interface ProfileArticlesProps {
   posts: PostType[];
   userId: string;
+  activeCardId: string | null;
   queryKey: 'articles' | 'likes' | 'dislikes';
   title: string;
   subtitle: string;
   isLoading: boolean;
   hasNextPage: boolean;
   error: Error | null;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   fetchNextPage: (
     options?: FetchNextPageOptions
   ) => Promise<
@@ -756,14 +759,45 @@ export interface ProfileArticlesProps {
 export interface ArticleProps {
   post: PostType;
   userId: string;
+  activeCardId: string | null;
   queryKey: 'articles' | 'likes' | 'dislikes';
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface ArticleActionProps {
+  currentUser: CurrentUserType | null;
+  isAdmin: boolean;
+  isOpen: boolean;
+  isPostAuthor: boolean;
+  postAuthorRole: RoleType;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ArticleMenuProps {
+  isOpen: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ArticleMenuListProps {
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ArticleMenuListItemProps {
+  label: string;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ProfileCommentsProps {
+  activeCardId: string | null;
   comments: CommentType[];
   isLoading: boolean;
   hasNextPage: boolean;
   error: Error | null;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   fetchNextPage: (
     options?: FetchNextPageOptions
   ) => Promise<
@@ -781,13 +815,17 @@ export interface ProfileCommentProps {
   likeCount: number;
   dislikeCount: number;
   createdAt: string;
+  activeCardId: string | null;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ProfileRepliesProps {
+  activeCardId: string | null;
   replies: ReplyType[];
   isLoading: boolean;
   hasNextPage: boolean;
   error: Error | null;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   fetchNextPage: (
     options?: FetchNextPageOptions
   ) => Promise<
@@ -806,6 +844,8 @@ export interface ProfileReplyProps {
   likeCount: number;
   dislikeCount: number;
   createdAt: string;
+  activeCardId: string | null;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ProfileActionProps {
@@ -813,15 +853,34 @@ export interface ProfileActionProps {
   authorRole: RoleType;
   currentUser: CurrentUserType | null;
   isAdmin: boolean;
+  isOpen: boolean;
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isReplyAuthor?: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ProfileMenuProps {
+  isOpen: boolean;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ProfileMenuListProps {
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ProfileMenuListItemProps {
+  label: string;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ProfileImageProps {
   name: string;
+  username: string;
   bio: string;
   image?: string;
   isFromGoogle?: boolean;
@@ -1379,6 +1438,7 @@ export interface RepliesProps {
 
 export interface ReplyProps {
   reply: ReplyType;
+  level?: number;
   activeCardId: string | null;
   maxRows?: number;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;

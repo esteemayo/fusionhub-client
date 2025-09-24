@@ -9,10 +9,12 @@ import { ProfileRepliesProps } from '../../types';
 import './ProfileReplies.scss';
 
 const ProfileReplies = ({
+  activeCardId,
   replies,
   isLoading,
   hasNextPage,
   error,
+  onChangeCardId,
   fetchNextPage,
 }: ProfileRepliesProps) => {
   return (
@@ -43,7 +45,14 @@ const ProfileReplies = ({
           endMessage={null}
         >
           {replies.map((reply) => {
-            return <ProfileReply key={reply._id} {...reply} />;
+            return (
+              <ProfileReply
+                key={reply._id}
+                {...reply}
+                activeCardId={activeCardId}
+                onChangeCardId={onChangeCardId}
+              />
+            );
           })}
         </InfiniteScroll>
       )}

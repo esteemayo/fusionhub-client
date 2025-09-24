@@ -9,10 +9,12 @@ import { ProfileCommentsProps } from '../../types';
 import './ProfileComments.scss';
 
 const ProfileComments = ({
+  activeCardId,
   comments,
   isLoading,
   hasNextPage,
   error,
+  onChangeCardId,
   fetchNextPage,
 }: ProfileCommentsProps) => {
   return (
@@ -43,7 +45,14 @@ const ProfileComments = ({
           endMessage={null}
         >
           {comments.map((comment) => {
-            return <ProfileComment key={comment._id} {...comment} />;
+            return (
+              <ProfileComment
+                key={comment._id}
+                {...comment}
+                activeCardId={activeCardId}
+                onChangeCardId={onChangeCardId}
+              />
+            );
           })}
         </InfiniteScroll>
       )}

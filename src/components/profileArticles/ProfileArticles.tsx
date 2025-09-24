@@ -11,12 +11,14 @@ import './ProfileArticles.scss';
 const ProfileArticles = ({
   posts,
   userId,
+  activeCardId,
   queryKey,
   title,
   subtitle,
   isLoading,
   hasNextPage,
   error,
+  onChangeCardId,
   fetchNextPage,
 }: ProfileArticlesProps) => {
   return (
@@ -48,7 +50,9 @@ const ProfileArticles = ({
                 key={post._id}
                 post={post}
                 userId={userId}
+                activeCardId={activeCardId}
                 queryKey={queryKey}
+                onChangeCardId={onChangeCardId}
               />
             );
           })}

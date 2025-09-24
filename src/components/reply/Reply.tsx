@@ -21,6 +21,7 @@ import './Reply.scss';
 
 const Reply = ({
   reply,
+  level,
   activeCardId,
   maxRows,
   onChangeActiveCardId,
@@ -195,8 +196,8 @@ const Reply = ({
   };
 
   const replyClasses = useMemo(() => {
-    return parentReply ? 'reply nested' : 'reply';
-  }, [parentReply]);
+    return parentReply || level !== 0 ? 'reply nested' : 'reply';
+  }, [level, parentReply]);
 
   const hasUpdated = useMemo(() => {
     return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
@@ -318,7 +319,7 @@ const Reply = ({
 
   return (
     <>
-      <div className={replyClasses}>
+      <article className={replyClasses}>
         <div className='reply__container'>
           <div className='reply__author'>
             <Link to={url}>
@@ -327,6 +328,7 @@ const Reply = ({
                   src={author.image ?? '/user-default.jpg'}
                   width={40}
                   height={40}
+                  alt={author.username}
                   className='reply__author--img'
                 />
               ) : (
@@ -334,7 +336,7 @@ const Reply = ({
                   src={author.image ?? '/user-default.jpg'}
                   width={40}
                   height={40}
-                  alt='avatar'
+                  alt={author.username}
                   className='reply__author--img'
                 />
               )}
@@ -450,7 +452,7 @@ const Reply = ({
               isEditing={isEditing}
               content={value}
               editId={editId}
-              isLoading={false}
+              isLoading={false} //TODO: change the loading state to replyMutation.isPending
               onInput={handleInput}
               onChange={setValue}
               onKeyDown={onKeyDown}
@@ -460,12 +462,13 @@ const Reply = ({
             />
           </div>
         </div>
-      </div>
+      </article>
       {replies?.map((reply) => {
         return (
           <Reply
             key={reply._id}
             reply={reply}
+            level={level! + 1}
             activeCardId={activeCardId}
             onChangeActiveCardId={onChangeActiveCardId}
           />

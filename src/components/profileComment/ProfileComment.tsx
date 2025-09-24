@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import Image from '../Image';
-import Badge from '../badge/Badge';
+import GoogleImage from '../GoogleImage';
 
 import ProfileAction from '../profileAction/ProfileAction';
+import Badge from '../badge/Badge';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeComment } from '../../hooks/useLikeComment';
@@ -28,6 +29,8 @@ const ProfileComment = ({
   likeCount,
   dislikeCount,
   createdAt,
+  activeCardId,
+  onChangeCardId,
 }: ProfileCommentProps) => {
   const dispatch = useAppDispatch();
 
@@ -46,6 +49,7 @@ const ProfileComment = ({
   } = useLikeComment(commentId, likes, dislikes, queryKey);
 
   const [isMore, setIsMore] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -68,6 +72,24 @@ const ProfileComment = ({
     }
   };
 
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsOpen((value) => {
+      if (value) {
+        onChangeCardId(null);
+        return false;
+      } else {
+        onChangeCardId(commentId);
+        return true;
+      }
+    });
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
@@ -76,6 +98,8 @@ const ProfileComment = ({
     dispatch(replyCommentModal.setPostId(post._id));
     dispatch(replyCommentModal.setIsEditing());
     dispatch(replyCommentModal.setCommentId(commentId));
+
+    handleClose();
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -84,6 +108,8 @@ const ProfileComment = ({
     dispatch(commentModal.setPostId(post._id));
     dispatch(commentModal.onOpen());
     dispatch(commentModal.setCommentId(commentId));
+
+    handleClose();
   };
 
   const replyBtnClasses = useMemo(() => {
@@ -122,17 +148,45 @@ const ProfileComment = ({
     return post?.author._id === userId;
   }, [post?.author._id, userId]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(activeCardId === commentId);
+  }, [activeCardId, commentId]);
+
   return (
     <article className='profile-comment'>
       <div className='profile-comment__container'>
         <div className='profile-comment__cover'>
-          <Image
-            src={author.image ?? '/user-default.jpg'}
-            width={60}
-            height={60}
-            alt='avatar'
-            className='profile-comment__cover--img'
-          />
+          {author.fromGoogle && author.image?.startsWith('https') ? (
+            <GoogleImage
+              src={author.image ?? '/user-default.jpg'}
+              width={80}
+              height={80}
+              alt={author.username}
+              className='comment-card__user--img'
+            />
+          ) : (
+            <Image
+              src={author.image ?? '/user-default.jpg'}
+              width={60}
+              height={60}
+              alt={author.username}
+              className='profile-comment__cover--img'
+            />
+          )}
         </div>
         <div className='profile-comment__wrapper'>
           <div className='profile-comment__box'>
@@ -199,9 +253,11 @@ const ProfileComment = ({
               authorRole={author?.role}
               currentUser={currentUser}
               isAdmin={isAdmin}
+              isOpen={isOpen}
               isCommentAuthor={isCommentAuthor}
               isPostAuthor={isPostAuthor}
               onDelete={handleDelete}
+              onToggle={handleToggle}
               onUpdate={handleUpdate}
             />
           </div>

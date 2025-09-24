@@ -20,6 +20,7 @@ interface IContainer {
 
 const Banner = ({
   query,
+  username,
   image,
   banner,
   isFromGoogle,
@@ -76,6 +77,7 @@ const Banner = ({
                 src={image ?? '/user-default.jpg'}
                 width={120}
                 height={120}
+                alt={username}
                 className='banner__user--avatar'
               />
             ) : (
@@ -83,7 +85,7 @@ const Banner = ({
                 src={image ?? '/user-default.jpg'}
                 width={120}
                 height={120}
-                alt='avatar'
+                alt={username}
                 className='banner__user--avatar'
               />
             )}

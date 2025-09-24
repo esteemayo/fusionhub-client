@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import Tabs from '../tabs/Tabs';
@@ -26,6 +26,8 @@ const createFetcher =
     fn(userId, pageParam).then((res) => res.data);
 
 const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
   type FeatureKey = 'articles' | 'comments' | 'likes' | 'replies' | 'dislikes';
 
   const fetchers: Record<
@@ -94,6 +96,11 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     data: dislikesData,
   } = useFeatureQuery('dislikes');
 
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    setActiveCardId(null);
+  };
+
   const profileClasses = useMemo(
     () => (query ? 'profile-features show' : 'profile-features hide'),
     [query]
@@ -138,21 +145,25 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
       <ProfileArticles
         posts={allArticles as PostType[]}
         userId={userId}
+        activeCardId={activeCardId}
         queryKey='articles'
         title='No Articles Yet'
         subtitle="This user hasn't published any articles. Check back later or explore other profiles!"
         isLoading={isFetchingArticles}
         hasNextPage={hasNextPageArticles}
         error={articlesError}
+        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageArticles}
       />
     ),
     comments: (
       <ProfileComments
+        activeCardId={activeCardId}
         comments={allComments as CommentType[]}
         isLoading={isFetchingComments}
         hasNextPage={hasNextPageComments}
         error={commentsError}
+        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageComments}
       />
     ),
@@ -160,21 +171,25 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
       <ProfileArticles
         posts={allLikes as PostType[]}
         userId={userId}
+        activeCardId={activeCardId}
         queryKey='likes'
         title='No Liked Articles Yet'
         subtitle="This user hasn't liked any articles. Check back later or explore other profiles!"
         isLoading={isFetchingLikes}
         hasNextPage={hasNextPageLikes}
         error={likesError}
+        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageLikes}
       />
     ),
     replies: (
       <ProfileReplies
+        activeCardId={activeCardId}
         replies={allReplies as ReplyType[]}
         isLoading={isFetchingReplies}
         hasNextPage={hasNextPageReplies}
         error={repliesError}
+        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageReplies}
       />
     ),
@@ -182,24 +197,31 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
       <ProfileArticles
         posts={allDislikes as PostType[]}
         userId={userId}
+        activeCardId={activeCardId}
         queryKey='dislikes'
         title='No Dislike Articles Yet'
         subtitle="This user hasn't disliked any articles. Check back later or explore other profiles!"
         isLoading={isFetchingDislikes}
         hasNextPage={hasNextPageDislikes}
         error={dislikesError}
+        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageDislikes}
       />
     ),
   };
 
+  const onRenderContent = (tab: string) => {
+    setActiveCardId(null);
+    return featureContent[tab];
+  };
+
   return (
-    <section className={profileClasses}>
+    <section onClick={handleClick} className={profileClasses}>
       <div className='profile-features__container'>
         <Tabs
           tabs={tabs}
           defaultValue='articles'
-          renderContent={(tab) => featureContent[tab]}
+          renderContent={(tab) => onRenderContent(tab)}
         />
       </div>
     </section>
