@@ -33,6 +33,7 @@ const Categories = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [category, setCategory] = useState('');
   const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   const {
     register,
@@ -42,6 +43,11 @@ const Categories = () => {
   } = useForm<FormData>({
     resolver: zodResolver(categorySchema),
   });
+
+  const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setActiveCardId(null);
+  };
 
   const setCustomValue = useCallback(
     (name: keyof FormData, value: string) => {
@@ -131,7 +137,7 @@ const Categories = () => {
   }, [category, categoryId, isEditing, setCustomValue]);
 
   return (
-    <div className='categories'>
+    <div onClick={onClickHandler} className='categories'>
       <div className='categories__container'>
         <AccountHeading
           title='Categories'
@@ -155,9 +161,11 @@ const Categories = () => {
           isPending={isPending}
           error={error}
           categoryId={categoryId}
+          activeCardId={activeCardId}
           isEditing={isEditing}
           currentUser={currentUser}
           updateMutation={updateMutation}
+          onChangeCardId={setActiveCardId}
           onUpdate={handleUpdate}
           onDelete={handleDelete}
         />

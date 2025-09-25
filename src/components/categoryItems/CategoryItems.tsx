@@ -13,10 +13,12 @@ const CategoryItems = ({
   isPending,
   error,
   categoryId,
+  activeCardId,
   isEditing,
   currentUser,
   updateMutation,
   onUpdate,
+  onChangeCardId,
   onDelete,
 }: CategoryItemsProps) => {
   return (
@@ -53,9 +55,11 @@ const CategoryItems = ({
                 key={category._id}
                 category={category}
                 categoryId={categoryId}
+                activeCardId={activeCardId}
                 isEditing={isEditing}
                 currentUser={currentUser}
                 isLoading={updateMutation.isPending}
+                onChangeCardId={onChangeCardId}
                 onEdit={onUpdate}
                 onRemove={onDelete}
               />

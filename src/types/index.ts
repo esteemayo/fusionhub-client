@@ -951,6 +951,7 @@ export interface CategoryItemsProps {
   isPending: boolean;
   error: Error | null;
   categoryId: string | null;
+  activeCardId: string | null;
   isEditing: boolean;
   currentUser: CurrentUserType | null;
   updateMutation: UseMutationResult<
@@ -962,6 +963,7 @@ export interface CategoryItemsProps {
     },
     unknown
   >;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onUpdate(
     e: React.MouseEvent<HTMLButtonElement>,
     category: {
@@ -975,9 +977,11 @@ export interface CategoryItemsProps {
 export interface CategoryItemProps {
   category: CategoryType;
   categoryId: string | null;
+  activeCardId: string | null;
   isEditing: boolean;
   currentUser: CurrentUserType | null;
   isLoading: boolean;
+  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onEdit(
     e: React.MouseEvent<HTMLButtonElement>,
     category: {
@@ -986,6 +990,33 @@ export interface CategoryItemProps {
     }
   ): void;
   onRemove(e: React.MouseEvent<HTMLButtonElement>, categoryId: string): void;
+}
+
+export interface CategoryActionProps {
+  isOpen: boolean;
+  isDisabled: boolean;
+  currentUser: CurrentUserType | null;
+  onRemove(e: React.MouseEvent<HTMLButtonElement>): void;
+  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface CategoryMenuProps {
+  isOpen: boolean;
+  onRemove(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface CategoryMenuListProps {
+  onRemove(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface CategoryMenuListItemProps {
+  type?: 'delete';
+  label: string;
+  children?: React.ReactNode;
+  onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ICategory {
