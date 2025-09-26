@@ -19,8 +19,10 @@ const Button = ({
     <button
       type={type}
       disabled={disabled}
-      className={`btn ${color} ${className ?? ''}`}
       onClick={onClick}
+      aria-label={label}
+      aria-disabled={disabled}
+      className={`btn ${color} ${className ?? ''}`}
     >
       {icon && !isLoading && (
         <Image src={icon} width={25} height={25} alt='logo' />

@@ -80,6 +80,7 @@ const Sidebar = () => {
                       src={currentUser.details.image ?? '/user-default.jpg'}
                       width={70}
                       height={70}
+                      alt={currentUser.details.username}
                       className='sidebar__account--avatar'
                     />
                   ) : (
@@ -87,7 +88,7 @@ const Sidebar = () => {
                       src={currentUser.details.image ?? '/user-default.jpg'}
                       width={70}
                       height={70}
-                      alt='avatar'
+                      alt={currentUser.details.username ?? 'avatar'}
                       className='sidebar__account--avatar'
                     />
                   )}
