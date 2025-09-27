@@ -75,8 +75,7 @@ const ForgotPassword = () => {
             isLoading={mutation.isPending}
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           />
         </div>
       </div>

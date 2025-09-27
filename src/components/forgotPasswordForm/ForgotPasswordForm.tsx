@@ -9,11 +9,10 @@ const ForgotPasswordForm = ({
   isLoading,
   register,
   errors,
-  handleSubmit,
   onSubmit,
 }: ForgotPasswordFormProps) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='forgot-password-form'>
+    <form onSubmit={onSubmit} className='forgot-password-form'>
       <Input
         type='email'
         name='email'

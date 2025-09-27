@@ -14,11 +14,10 @@ const ResetPasswordForm = ({
   errors,
   onTogglePassword,
   onTogglePasswordConfirm,
-  handleSubmit,
   onSubmit,
 }: ResetPasswordFormProps) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='reset-password-form'>
+    <form onSubmit={onSubmit} className='reset-password-form'>
       {resetInputs.map((input) => {
         const { id, name, type, label, placeholder } = input;
         return (

@@ -35,7 +35,6 @@ const RegisterForm = ({
   onChangeValue,
   onTogglePassword,
   onTogglePasswordConfirm,
-  handleSubmit,
   onSubmit,
 }: RegisterFormProps) => {
   const isDisabled = useMemo(() => {
@@ -46,7 +45,7 @@ const RegisterForm = ({
   const passwordInputs = registerInputs.slice(-2);
 
   return (
-    <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
+    <form className='register-form' onSubmit={onSubmit}>
       <div className='register-form__container'>
         {inputs.map((input) => {
           const { id, name, type, label, placeholder } = input;

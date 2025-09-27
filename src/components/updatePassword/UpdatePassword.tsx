@@ -100,8 +100,7 @@ const UpdatePassword = () => {
             onTogglePassword={handleTogglePassword}
             onTogglePasswordConfirm={handleTogglePasswordConfirm}
             onTogglePasswordCurrent={handleTogglePasswordCurrent}
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           />
         </div>
       </div>

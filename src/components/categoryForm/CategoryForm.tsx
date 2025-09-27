@@ -7,9 +7,9 @@ import { CategoryFormProps } from '../../types';
 import './CategoryForm.scss';
 
 const CategoryForm = ({
+  label,
   isLoading,
   updateMutation,
-  label,
   cancelBtnClasses,
   register,
   errors,

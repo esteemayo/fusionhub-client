@@ -8,9 +8,9 @@ import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import CommentAction from '../commentReplyAction/CommentReplyAction';
-import Badge from '../badge/Badge';
 import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
+import Badge from '../badge/Badge';
+import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useComment } from '../../hooks/useComment';
 import { useReply } from '../../hooks/useReply';
@@ -26,6 +26,7 @@ import { CommentCardProps, ReplyType } from '../../types';
 import './CommentCard.scss';
 
 const CommentCard = ({
+  slug,
   activeCardId,
   comment,
   maxRows,
@@ -80,6 +81,8 @@ const CommentCard = ({
   const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
   const [replies, setReplies] = useState<ReplyType[] | [] | undefined>();
+
+  const commentUrl = `${window.location.origin}/post/${slug}#comment-${commentId}`;
 
   const toggleActionHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -362,7 +365,7 @@ const CommentCard = ({
   }, [isOpen, value]);
 
   return (
-    <article className='comment-card'>
+    <article id={`comment-${commentId}`} className='comment-card'>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link to={url}>
@@ -447,7 +450,10 @@ const CommentCard = ({
         </div>
       </div>
       <div className='comment-card__actions'>
-        <CommentAction
+        <CommentReplyAction
+          url={commentUrl}
+          title='Check out this comment'
+          text={excerpts(content, 80)}
           likeCount={likeCount}
           dislikeCount={dislikeCount}
           isLiked={isLiked}
@@ -509,6 +515,7 @@ const CommentCard = ({
         </div>
       </div>
       <Replies
+        slug={slug}
         activeCardId={activeCardId}
         replyLists={replies}
         replyToShow={replyToShow}

@@ -7,7 +7,10 @@ import { CommentReplyActionProps } from '../../types';
 import './CommentReplyAction.scss';
 
 const CommentReplyAction = ({
+  url,
   size,
+  text,
+  title,
   likeCount,
   dislikeCount,
   isLiked,
@@ -33,7 +36,7 @@ const CommentReplyAction = ({
         isLoading={dislikeMutation.isPending}
         onDislike={onDislike}
       />
-      <ShareComment size={size} />
+      <ShareComment url={url} size={size} text={text} title={title} />
     </div>
   );
 };

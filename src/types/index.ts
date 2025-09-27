@@ -248,20 +248,7 @@ export interface LoginFormProps {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   onToggle(): void;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      password: string;
-      identifier: string;
-    },
-    {
-      password: string;
-      identifier: string;
-    }
-  >;
-  onSubmit: SubmitHandler<{
-    password: string;
-    identifier: string;
-  }>;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export type RegisterFormData = z.infer<typeof registerSchema>;
@@ -291,58 +278,14 @@ export interface RegisterFormProps {
   ): void;
   onTogglePassword(): void;
   onTogglePasswordConfirm(): void;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      email: string;
-      password: string;
-      name: string;
-      username: string;
-      passwordConfirm: string;
-      bio: string;
-      country: {
-        label: string;
-      };
-    },
-    {
-      email: string;
-      password: string;
-      name: string;
-      username: string;
-      passwordConfirm: string;
-      bio: string;
-      country: {
-        label: string;
-      };
-    }
-  >;
-  onSubmit: SubmitHandler<{
-    email: string;
-    password: string;
-    name: string;
-    username: string;
-    passwordConfirm: string;
-    bio: string;
-    country: {
-      label: string;
-    };
-  }>;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface ForgotPasswordFormProps {
   isLoading?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      email: string;
-    },
-    {
-      email: string;
-    }
-  >;
-  onSubmit: SubmitHandler<{
-    email: string;
-  }>;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface ResetPasswordFormProps {
@@ -353,20 +296,7 @@ export interface ResetPasswordFormProps {
   errors: FieldErrors;
   onTogglePassword(): void;
   onTogglePasswordConfirm(): void;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      password: string;
-      passwordConfirm: string;
-    },
-    {
-      password: string;
-      passwordConfirm: string;
-    }
-  >;
-  onSubmit: SubmitHandler<{
-    password: string;
-    passwordConfirm: string;
-  }>;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export type ProfileDataFormData = z.infer<typeof profileSchema>;
@@ -388,35 +318,7 @@ export interface ProfileDataFormProps {
   ): void;
   onChangeDate: React.Dispatch<React.SetStateAction<Date | null>>;
   onChangePhone: React.Dispatch<React.SetStateAction<Value | undefined>>;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      email: string;
-      name: string;
-      username: string;
-      bio: string;
-      country: {
-        label: string;
-      };
-    },
-    {
-      email: string;
-      name: string;
-      username: string;
-      bio: string;
-      country: {
-        label: string;
-      };
-    }
-  >;
-  onSubmit: SubmitHandler<{
-    name: string;
-    username: string;
-    email: string;
-    bio: string;
-    country: {
-      label: string;
-    };
-  }>;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface UpdatePasswordFormProps {
@@ -431,23 +333,7 @@ export interface UpdatePasswordFormProps {
   onTogglePassword(): void;
   onTogglePasswordConfirm(): void;
   onTogglePasswordCurrent(): void;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      password: string;
-      passwordConfirm: string;
-      passwordCurrent: string;
-    },
-    {
-      password: string;
-      passwordConfirm: string;
-      passwordCurrent: string;
-    }
-  >;
-  onSubmit: SubmitHandler<{
-    passwordCurrent: string;
-    password: string;
-    passwordConfirm: string;
-  }>;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface PostClientProps {
@@ -928,6 +814,7 @@ export interface SearchBarProps {
 }
 
 export interface CategoryFormProps {
+  label: string;
   isLoading: boolean;
   updateMutation: UseMutationResult<
     unknown,
@@ -938,7 +825,6 @@ export interface CategoryFormProps {
     },
     unknown
   >;
-  label: string;
   cancelBtnClasses: 'show' | 'hide';
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
@@ -1275,6 +1161,7 @@ export interface RelatedTagsProps {
 }
 
 export interface CommentsProps {
+  slug: string;
   postId: string;
 }
 
@@ -1334,6 +1221,7 @@ export type sortType =
 
 export interface CommentProps {
   sort: sortType;
+  slug: string;
   activeCardId: string | null;
   isPending: boolean;
   isPendingUser: boolean;
@@ -1389,6 +1277,7 @@ export interface CommentFilterItemProps {
 }
 
 export interface CommentCardProps {
+  slug: string;
   activeCardId: string | null;
   comment: CommentType;
   maxRows?: number;
@@ -1428,6 +1317,9 @@ export interface CommentActionMenuListItemProps {
 
 export interface CommentReplyActionProps {
   size?: 'sm';
+  url: string;
+  title?: string;
+  text?: string;
   likeCount: number;
   dislikeCount: number;
   isLiked: boolean;
@@ -1456,9 +1348,19 @@ export interface CommentDislikeButtonProps {
 
 export interface ShareCommentProps {
   size?: 'sm';
+  url: string;
+  title?: string;
+  text?: string;
+}
+
+export interface ShareContentProps {
+  url: string;
+  title?: string;
+  text?: string;
 }
 
 export interface RepliesProps {
+  slug: string;
   activeCardId: string | null;
   replyLists?: ReplyType[];
   replyToShow: number;
@@ -1469,6 +1371,7 @@ export interface RepliesProps {
 
 export interface ReplyProps {
   reply: ReplyType;
+  slug: string;
   level?: number;
   activeCardId: string | null;
   maxRows?: number;

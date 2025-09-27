@@ -30,10 +30,10 @@ const Categories = () => {
   const { isPending, error, data, categoryMutation, updateMutation } =
     useCategory();
 
-  const [isEditing, setIsEditing] = useState(false);
-  const [category, setCategory] = useState('');
   const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [category, setCategory] = useState('');
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const {
     register,
@@ -60,13 +60,13 @@ const Categories = () => {
     [setValue]
   );
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setValue('name', '');
 
     setCategoryId(null);
     setCategory('');
     setIsEditing(false);
-  };
+  }, [setValue]);
 
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -136,6 +136,20 @@ const Categories = () => {
     }
   }, [category, categoryId, isEditing, setCustomValue]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClear();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [handleClear]);
+
   return (
     <div onClick={onClickHandler} className='categories'>
       <div className='categories__container'>
@@ -147,9 +161,9 @@ const Categories = () => {
       </div>
       <div className='categories__wrapper'>
         <CategoryForm
+          label={btnLabel}
           isLoading={isLoading}
           updateMutation={updateMutation}
-          label={btnLabel}
           cancelBtnClasses={cancelBtnClasses}
           register={register as unknown as UseFormRegister<FieldValues>}
           errors={errors}

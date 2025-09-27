@@ -17,11 +17,10 @@ const UpdatePasswordForm = ({
   onTogglePassword,
   onTogglePasswordConfirm,
   onTogglePasswordCurrent,
-  handleSubmit,
   onSubmit,
 }: UpdatePasswordFormProps) => {
   return (
-    <form className='update-password-form' onSubmit={handleSubmit(onSubmit)}>
+    <form className='update-password-form' onSubmit={onSubmit}>
       <div className='update-password-form__inputs'>
         {inputs.map((input) => {
           const { id, name, type, label, placeholder } = input;

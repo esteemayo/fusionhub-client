@@ -20,6 +20,7 @@ import './Comment.scss';
 
 const Comment = ({
   sort,
+  slug,
   activeCardId,
   isPending,
   isPendingUser,
@@ -115,6 +116,7 @@ const Comment = ({
         <>
           {mutation.isPending && (
             <CommentCard
+              slug={slug}
               activeCardId={activeCardId}
               comment={{
                 _id: new Date().getTime().toString(),
@@ -144,6 +146,7 @@ const Comment = ({
             return (
               <CommentCard
                 key={comment._id}
+                slug={slug}
                 activeCardId={activeCardId}
                 comment={comment}
                 onChangeActiveCardId={onChangeActiveCardId}

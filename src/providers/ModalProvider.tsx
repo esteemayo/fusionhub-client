@@ -1,11 +1,12 @@
 import AccountModal from '../components/AccountModal';
-import ImageModal from '../components/ImageModal';
+import ShareModal from '../components/ShareModal';
 import CommentModal from '../components/CommentModal';
+import ImageModal from '../components/ImageModal';
+import CategoryModal from '../components/CategoryModal';
 import BannerModal from '../components/BannerModal';
 import PostModal from '../components/postModal/PostModal';
 import DeleteModal from '../components/DeleteModal';
 import ReplyCommentModal from '../components/ReplyCommentModal';
-import CategoryModal from '../components/CategoryModal';
 
 const ModalProvider = () => {
   return (
@@ -16,6 +17,7 @@ const ModalProvider = () => {
       <BannerModal />
       <ImageModal />
       <ReplyCommentModal />
+      <ShareModal />
       <CategoryModal />
       <DeleteModal />
     </>

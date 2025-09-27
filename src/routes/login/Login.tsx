@@ -89,8 +89,7 @@ const Login = () => {
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             onToggle={handleToggle}
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           />
           <AuthLink
             url='register'

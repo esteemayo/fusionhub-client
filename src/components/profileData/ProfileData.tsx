@@ -128,8 +128,7 @@ const ProfileData = ({
         onChangeCustom={setCustomValue}
         onChangeDate={setStartDate}
         onChangePhone={setTelephone}
-        handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       />
     </div>
   );

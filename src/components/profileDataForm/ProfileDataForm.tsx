@@ -24,11 +24,10 @@ const ProfileDataForm = ({
   onChangeDate,
   onChangePhone,
   onChangeCustom,
-  handleSubmit,
   onSubmit,
 }: ProfileDataFormProps) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='profile-data-form'>
+    <form onSubmit={onSubmit} className='profile-data-form'>
       <div className='profile-data-form__data'>
         <Input
           name='name'

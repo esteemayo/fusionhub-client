@@ -21,6 +21,7 @@ import './Reply.scss';
 
 const Reply = ({
   reply,
+  slug,
   level,
   activeCardId,
   maxRows,
@@ -72,6 +73,8 @@ const Reply = ({
   const [isOpen, setIsOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
+
+  const replyUrl = `${window.location.origin}/post/${slug}#reply-${replyId}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -319,7 +322,7 @@ const Reply = ({
 
   return (
     <>
-      <article className={replyClasses}>
+      <article id={`reply-${replyId}`} className={replyClasses}>
         <div className='reply__container'>
           <div className='reply__author'>
             <Link to={url}>
@@ -400,6 +403,9 @@ const Reply = ({
         <div className='reply__actions'>
           <CommentReplyAction
             size='sm'
+            url={replyUrl}
+            title='Check out this reply'
+            text={excerpts(content, 80)}
             likeCount={likeCount}
             dislikeCount={dislikeCount}
             isLiked={isLiked}
@@ -468,6 +474,7 @@ const Reply = ({
           <Reply
             key={reply._id}
             reply={reply}
+            slug={slug}
             level={level! + 1}
             activeCardId={activeCardId}
             onChangeActiveCardId={onChangeActiveCardId}

@@ -165,8 +165,7 @@ const Register = () => {
             onChangeValue={setCustomValue}
             onTogglePassword={handleTogglePassword}
             onTogglePasswordConfirm={handleTogglePasswordConfirm}
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
           />
           <AuthLink
             url='login'

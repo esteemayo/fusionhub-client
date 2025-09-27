@@ -13,7 +13,7 @@ import { CommentsProps } from '../../types';
 
 import './Comments.scss';
 
-const Comments = ({ postId }: CommentsProps) => {
+const Comments = ({ postId, slug }: CommentsProps) => {
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
@@ -148,6 +148,7 @@ const Comments = ({ postId }: CommentsProps) => {
       <div className='comments__container'>
         <Comment
           sort={sort}
+          slug={slug}
           activeCardId={activeCardId}
           isPending={isPending}
           isPendingUser={isPendingUser}

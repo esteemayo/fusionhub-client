@@ -7,6 +7,7 @@ import { RepliesProps } from '../../types';
 import './Replies.scss';
 
 const Replies = ({
+  slug,
   activeCardId,
   replyLists,
   replyToShow,
@@ -106,6 +107,7 @@ const Replies = ({
               <Reply
                 key={reply._id}
                 reply={reply}
+                slug={slug}
                 level={0}
                 activeCardId={activeCardId}
                 onChangeActiveCardId={onChangeActiveCardId}

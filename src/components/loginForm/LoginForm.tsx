@@ -14,11 +14,10 @@ const LoginForm = ({
   register,
   errors,
   onToggle,
-  handleSubmit,
   onSubmit,
 }: LoginFormProps) => {
   return (
-    <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+    <form className='login-form' onSubmit={onSubmit}>
       {loginInputs.map((input) => {
         const { id, name, type, label, placeholder } = input;
         return (
