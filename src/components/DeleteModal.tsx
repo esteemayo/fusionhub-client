@@ -62,8 +62,8 @@ const DeleteModal = () => {
       isOpen={isOpen}
       title='Confirm Deletion'
       type='cancel'
-      isLoading={false}
-      disabled={false}
+      isLoading={deletePostMutation.isPending}
+      disabled={deletePostMutation.isPending}
       actionLabel='Confirm Delete'
       secondaryActionLabel='Cancel Deletion'
       body={bodyContent}

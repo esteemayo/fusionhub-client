@@ -1,41 +1,50 @@
 import { useCallback, useState } from 'react';
 
+import { useAppDispatch } from './hooks';
+import { onOpen } from '../features/shareModal/shareModalSlice';
+
 import { IWebShare } from '../types';
 
-export const useWebShare: IWebShare = (title, desc, url) => {
+export const useWebShare: IWebShare = (title, text, url) => {
+  const dispatch = useAppDispatch();
+
   const [error, setError] = useState<string | null>(null);
 
-  const share = useCallback(async () => {
-    if (navigator.share) {
-      if (
-        navigator.canShare &&
-        !navigator.canShare({ title, text: desc, url })
-      ) {
-        setError('Cannot share this content');
-        return;
-      }
+  const handleShare = useCallback(
+    async (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
 
-      try {
-        await navigator.share({
-          title: title,
-          text: desc,
-          url: url,
-        });
-      } catch (error: unknown) {
-        setError(error instanceof Error ? error.message : String(error));
+      if (navigator.share) {
+        if (navigator.canShare && !navigator.canShare({ title, text, url })) {
+          setError('Cannot share this content');
+          return;
+        }
+
+        try {
+          await navigator.share({
+            title,
+            text,
+            url,
+          });
+        } catch (error: unknown) {
+          console.log('Error sharing:', error);
+          setError(error instanceof Error ? error.message : String(error));
+        }
+      } else {
+        const payload = {
+          url,
+          text,
+          title,
+        };
+
+        dispatch(onOpen(payload));
       }
-    } else {
-      try {
-        await navigator.clipboard.writeText(url);
-        setError('Web Share API not supported, copied to clipboard');
-      } catch {
-        setError('Failed to copy to clipboard');
-      }
-    }
-  }, [desc, title, url]);
+    },
+    [dispatch, text, title, url]
+  );
 
   return {
     error,
-    share,
+    handleShare,
   };
 };

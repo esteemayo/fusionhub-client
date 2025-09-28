@@ -2,10 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface ShareModalState {
   isOpen: boolean;
+  url: string;
+  text?: string;
+  title?: string;
 }
 
 const initialState: ShareModalState = {
   isOpen: false,
+  url: '',
+  text: '',
+  title: '',
 };
 
 const shareModalSlice = createSlice({
@@ -13,11 +19,17 @@ const shareModalSlice = createSlice({
   initialState,
   reducers: {
     resetState: () => initialState,
-    onOpen: (state) => {
+    onOpen: (state, { payload }) => {
       state.isOpen = true;
+      state.url = payload.url;
+      state.text = payload.text;
+      state.title = payload.title;
     },
     onClose: (state) => {
       state.isOpen = false;
+      state.url = '';
+      state.text = '';
+      state.title = '';
     },
   },
 });

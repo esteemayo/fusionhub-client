@@ -1,13 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { toast } from 'react-toastify';
+import parse from 'html-react-parser';
 
 import { ShareButtonProps } from '../types';
+import { excerpts } from '../utils';
 import { useWebShare } from '../hooks/useWebShare';
 
 const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
   const shareUrl = `${window.location.origin}/post/${slug}`;
 
-  const { error, share } = useWebShare(title, desc, shareUrl);
+  const parsedDesc = useMemo(() => {
+    return parse(String(desc)).toString();
+  }, [desc]);
+
+  const { error, handleShare } = useWebShare(
+    title,
+    excerpts(parsedDesc, 80),
+    shareUrl
+  );
 
   useEffect(() => {
     if (error) {
@@ -16,7 +26,7 @@ const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
   }, [error]);
 
   return (
-    <button type='button' onClick={share}>
+    <button type='button' onClick={handleShare}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         fill='currentColor'

@@ -14,6 +14,7 @@ import { useWebShare } from '../../hooks/useWebShare';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { ActionMenusProps } from '../../types';
+import { excerpts } from '../../utils';
 import { deletePost, featurePost } from '../../services/postService';
 
 import './ActionMenus.scss';
@@ -36,9 +37,9 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
-  const { error: shareError, share } = useWebShare(
+  const { error: shareError, handleShare } = useWebShare(
     post?.title || '',
-    post?.desc || '',
+    excerpts(post?.desc, 80) || '',
     window.location.href
   );
 
@@ -101,7 +102,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     featureMutation.mutate();
   };
 
-  const handleShare = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onShareHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     if (shareError) {
@@ -109,7 +110,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
       return;
     }
 
-    share();
+    handleShare(e);
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -233,7 +234,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
             </ActionMenu>
           )
         )}
-        <ActionMenu label='Share post' onAction={handleShare}>
+        <ActionMenu label='Share post' onAction={onShareHandler}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='currentColor'

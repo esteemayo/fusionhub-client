@@ -1029,9 +1029,9 @@ export interface IProfile {
 }
 
 export interface IWebShare {
-  (title: string, desc: string, url: string): {
+  (title: string | undefined, text: string | undefined, url: string): {
     error: string | null;
-    share(): Promise<void>;
+    handleShare(e: React.MouseEvent<HTMLButtonElement>): Promise<void>;
   };
 }
 
@@ -1357,6 +1357,7 @@ export interface ShareContentProps {
   url: string;
   title?: string;
   text?: string;
+  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface RepliesProps {
