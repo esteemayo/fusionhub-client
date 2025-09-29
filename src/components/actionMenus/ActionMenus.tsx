@@ -1,7 +1,8 @@
+import { useEffect, useMemo } from 'react';
+import parse from 'html-react-parser';
 import { useNavigate } from 'react-router-dom';
-import { useMemo } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import SaveIcon from '../SaveIcon';
 import ActionMenu from '../actionMenu/ActionMenu';
@@ -13,8 +14,8 @@ import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useWebShare } from '../../hooks/useWebShare';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
+import { excerpts, stripHtml } from '../../utils';
 import { ActionMenusProps } from '../../types';
-import { excerpts } from '../../utils';
 import { deletePost, featurePost } from '../../services/postService';
 
 import './ActionMenus.scss';
@@ -37,9 +38,15 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
   const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
 
+  const parsedDesc = useMemo(() => {
+    return parse(String(post?.desc)).toString();
+  }, [post?.desc]);
+
+  const text = excerpts(stripHtml(parsedDesc), 80);
+
   const { error: shareError, handleShare } = useWebShare(
     post?.title || '',
-    excerpts(post?.desc, 80) || '',
+    text || '',
     window.location.href
   );
 
@@ -104,12 +111,6 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
 
   const onShareHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-
-    if (shareError) {
-      toast.error(shareError);
-      return;
-    }
-
     handleShare(e);
   };
 
@@ -178,6 +179,12 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
 
     return false;
   }, [authorId, currentUser, isAdmin, post?.author.role, userId]);
+
+  useEffect(() => {
+    if (shareError) {
+      toast.error(shareError);
+    }
+  }, [shareError]);
 
   return (
     <section className='action-menus'>

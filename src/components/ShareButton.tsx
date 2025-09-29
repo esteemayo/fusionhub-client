@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from 'react';
 import { toast } from 'react-toastify';
 import parse from 'html-react-parser';
+import { useEffect, useMemo } from 'react';
 
+import { excerpts, stripHtml } from '../utils';
 import { ShareButtonProps } from '../types';
-import { excerpts } from '../utils';
 import { useWebShare } from '../hooks/useWebShare';
 
 const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
@@ -13,11 +13,9 @@ const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
     return parse(String(desc)).toString();
   }, [desc]);
 
-  const { error, handleShare } = useWebShare(
-    title,
-    excerpts(parsedDesc, 80),
-    shareUrl
-  );
+  const parsedText = excerpts(stripHtml(parsedDesc), 80);
+
+  const { error, handleShare } = useWebShare(title, parsedText, shareUrl);
 
   useEffect(() => {
     if (error) {

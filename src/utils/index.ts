@@ -2,6 +2,11 @@ import { useLocation } from 'react-router-dom';
 
 export const authKey = 'access_token';
 
+export const stripHtml = (html: string) => {
+  const text = new DOMParser().parseFromString(html, 'text/html');
+  return text.body.textContent || '';
+};
+
 export const excerpts = (str: string, count: number) => {
   if (typeof str === 'string' && str.length > count) {
     str = str.substring(0, count).concat('...');

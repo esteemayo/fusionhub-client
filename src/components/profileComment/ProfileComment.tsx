@@ -51,6 +51,9 @@ const ProfileComment = ({
   const [isMore, setIsMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const commentUrl = `${window.location.href}#comment-${commentId}`;
+  console.log(commentUrl);
+
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
@@ -167,7 +170,7 @@ const ProfileComment = ({
   }, [activeCardId, commentId]);
 
   return (
-    <article className='profile-comment'>
+    <article id={`comment-${commentId}`} className='profile-comment'>
       <div className='profile-comment__container'>
         <div className='profile-comment__cover'>
           {author.fromGoogle && author.image?.startsWith('https') ? (
@@ -239,6 +242,9 @@ const ProfileComment = ({
           </div>
           <div className='profile-comment__wrap'>
             <CommentReplyAction
+              url={commentUrl}
+              title='Check out this comment'
+              text={excerpts(content, 80)}
               likeCount={likeCount}
               dislikeCount={dislikeCount}
               isLiked={isLiked}

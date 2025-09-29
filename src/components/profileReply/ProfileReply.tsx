@@ -52,6 +52,8 @@ const ProfileReply = ({
   const [isMore, setIsMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const replyUrl = `${window.location.href}#reply-${replyId}`;
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsMore((value) => {
@@ -160,7 +162,7 @@ const ProfileReply = ({
   }, [activeCardId, replyId]);
 
   return (
-    <article className='profile-reply'>
+    <article id={`reply-${replyId}`} className='profile-reply'>
       <div className='profile-reply__container'>
         <div className='profile-reply__cover'>
           {author.fromGoogle && author.image?.startsWith('https') ? (
@@ -208,6 +210,9 @@ const ProfileReply = ({
           </div>
           <div className='profile-reply__wrap'>
             <CommentReplyAction
+              url={replyUrl}
+              title='Check out this reply'
+              text={excerpts(content, 80)}
               likeCount={likeCount}
               dislikeCount={dislikeCount}
               isLiked={isLiked}

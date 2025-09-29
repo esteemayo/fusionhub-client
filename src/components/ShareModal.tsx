@@ -20,8 +20,8 @@ const ShareModal = () => {
     try {
       await navigator.clipboard.writeText(url);
       toast.success('Link copied to clipboard!');
-    } catch (err: unknown) {
-      console.log('Clipboard copy failed:', err);
+    } catch (error: unknown) {
+      console.log('Clipboard copy failed:', error);
       toast.error('Could not copy this link.');
     } finally {
       handleClose();
