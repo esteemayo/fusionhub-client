@@ -624,6 +624,14 @@ export interface TabsProps {
   renderContent?(tab: string): React.ReactNode;
 }
 
+export type PositionType = 'top' | 'bottom';
+
+export interface TooltipProps {
+  isShow: boolean;
+  title: string;
+  position?: PositionType;
+}
+
 export interface ProfileArticlesProps {
   posts: PostType[];
   userId: string;

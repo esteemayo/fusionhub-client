@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
 
 import Image from '../Image';
@@ -14,10 +15,16 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
-import { excerpts } from '../../utils';
 import { ProfileCommentProps } from '../../types';
+import { excerpts } from '../../utils';
+import { getPostById } from '../../services/postService';
 
 import './ProfileComment.scss';
+
+const fetchPostById = async (postId: string) => {
+  const { data } = await getPostById(postId);
+  return data;
+};
 
 const ProfileComment = ({
   _id: commentId,
@@ -48,11 +55,16 @@ const ProfileComment = ({
     handleDislike,
   } = useLikeComment(commentId, likes, dislikes, queryKey);
 
+  const { data } = useQuery({
+    queryKey: ['post', post._id],
+    queryFn: () => fetchPostById(post._id),
+    enabled: !!post._id,
+  });
+
   const [isMore, setIsMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const commentUrl = `${window.location.href}#comment-${commentId}`;
-  console.log(commentUrl);
+  const commentUrl = `${window.location.origin}/post/${data?.slug}#comment-${commentId}`;
 
   const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -170,7 +182,7 @@ const ProfileComment = ({
   }, [activeCardId, commentId]);
 
   return (
-    <article id={`comment-${commentId}`} className='profile-comment'>
+    <article className='profile-comment'>
       <div className='profile-comment__container'>
         <div className='profile-comment__cover'>
           {author.fromGoogle && author.image?.startsWith('https') ? (
@@ -223,7 +235,9 @@ const ProfileComment = ({
           </div>
           <div className='profile-comment__info'>
             <div className='profile-comment__info--author'>
-              <span className='profile-comment__info--name'>{author.name}</span>
+              <span className='profile-comment__info--name' title={author.name}>
+                {author.name}
+              </span>
               <Badge role={author.role} />
             </div>
             <p

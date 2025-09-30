@@ -10,13 +10,13 @@ import PostContent from '../../components/postContent/PostContent';
 import PostMenuActions from '../../components/postMenuActions/PostMenuActions';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { getPost } from '../../services/postService';
+import { getPostBySlug } from '../../services/postService';
 import { onToggle } from '../../features/postMenuActions/postMenuActionsSlice';
 
 import './PostDetails.scss';
 
 const fetchPost = async (slug: string) => {
-  const { data } = await getPost(slug);
+  const { data } = await getPostBySlug(slug);
   return data;
 };
 

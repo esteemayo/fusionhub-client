@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
-import millify from 'millify';
 import { Link, useNavigate } from 'react-router-dom';
+import millify from 'millify';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import parse from 'html-react-parser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -10,8 +10,10 @@ import GoogleImage from '../GoogleImage';
 import LikeIcon from '../LikeIcon';
 import SaveIcon from '../SaveIcon';
 
-import DislikeIcon from '../DislikeIcon';
 import Badge from '../badge/Badge';
+import DislikeIcon from '../DislikeIcon';
+
+import Tooltip from '../tooltip/Tooltip';
 import ArticleAction from '../articleAction/ArticleAction';
 
 import { useSavedPosts } from '../../hooks/useSavedPosts';
@@ -22,7 +24,7 @@ import * as deleteModal from '../../features/deleteModal/deleteModalSlice';
 import * as postModal from '../../features/postModal/postModalSlice';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
-import { ArticleProps } from '../../types';
+import { ArticleProps, PositionType } from '../../types';
 import { excerpts } from '../../utils';
 import { dislikePost, likePost } from '../../services/postService';
 
@@ -68,7 +70,33 @@ const Article = ({
     },
   });
 
+  const nameRef = useRef<HTMLSpanElement>(null);
+
+  const [showTooltip, setShowTooltip] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [position, setPosition] = useState<PositionType>('top');
+
+  const handleMouseEnter = () => {
+    const el = nameRef.current;
+
+    if (el && el.scrollWidth > el.clientWidth) {
+      const rect = el.getBoundingClientRect();
+      const spaceAbove = rect.top;
+      const spaceBelow = window.innerHeight - rect.bottom;
+
+      if (spaceAbove < 40 && spaceBelow > spaceAbove) {
+        setPosition('bottom');
+      } else {
+        setPosition('top');
+      }
+
+      setShowTooltip(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -215,8 +243,19 @@ const Article = ({
         </Link>
         <div className='article__wrapper'>
           <div className='article__profile'>
-            <Link to={url}>
-              <span className='article__profile--name'>{post.author.name}</span>
+            <Link
+              to={url}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <span ref={nameRef} className='article__profile--name'>
+                {post.author.name}
+              </span>
+              <Tooltip
+                isShow={showTooltip}
+                title={post.author.name}
+                position={position}
+              />
             </Link>
             <Badge role={post.author.role} />
             <div className='article__profile--username'>

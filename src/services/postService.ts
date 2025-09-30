@@ -79,7 +79,9 @@ export const getCountByCategory = () => http.get(postURI('count-by-category'));
 
 export const getTags = () => http.get(postURI('tags'));
 
-export const getPost = (slug: string) =>
+export const getPostById = (postId: string) => http.get(postUrl(postId));
+
+export const getPostBySlug = (slug: string) =>
   http.get(`${apiEndpoint}/${slug}/details`);
 
 export const createPost = <T extends object>(post: T) =>

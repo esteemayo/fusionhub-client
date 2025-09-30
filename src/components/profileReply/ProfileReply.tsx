@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
 
 import Image from '../Image';
@@ -14,10 +15,16 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
-import { excerpts } from '../../utils';
 import { ProfileReplyProps } from '../../types';
+import { excerpts } from '../../utils';
+import { getPostById } from '../../services/postService';
 
 import './ProfileReply.scss';
+
+const fetchPostById = async (postId: string) => {
+  const { data } = await getPostById(postId);
+  return data;
+};
 
 const ProfileReply = ({
   _id: replyId,
@@ -49,10 +56,16 @@ const ProfileReply = ({
     handleDislike,
   } = useLikeReply(replyId, likes, dislikes, queryKey);
 
+  const { data } = useQuery({
+    queryKey: ['post', post._id],
+    queryFn: () => fetchPostById(post._id),
+    enabled: !!post._id,
+  });
+
   const [isMore, setIsMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const replyUrl = `${window.location.href}#reply-${replyId}`;
+  const replyUrl = `${window.location.origin}/post/${data?.slug}#reply-${replyId}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -162,7 +175,7 @@ const ProfileReply = ({
   }, [activeCardId, replyId]);
 
   return (
-    <article id={`reply-${replyId}`} className='profile-reply'>
+    <article className='profile-reply'>
       <div className='profile-reply__container'>
         <div className='profile-reply__cover'>
           {author.fromGoogle && author.image?.startsWith('https') ? (
@@ -191,7 +204,9 @@ const ProfileReply = ({
           </div>
           <div className='profile-reply__info'>
             <div className='profile-reply__info--author'>
-              <span className='profile-reply__info--name'>{author.name}</span>
+              <span className='profile-reply__info--name' title={author.name}>
+                {author.name}
+              </span>
               <Badge role={author.role} />
             </div>
             <p

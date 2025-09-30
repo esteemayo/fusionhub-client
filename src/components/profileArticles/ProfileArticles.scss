@@ -4,6 +4,10 @@
 .profile-articles {
   width: 100%;
 
+  .infinite-scroll-component {
+    overflow: visible !important;
+  }
+
   &__message {
     font-weight: 600;
     font-size: 1.35rem;

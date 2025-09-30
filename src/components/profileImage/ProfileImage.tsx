@@ -3,14 +3,14 @@ import { useMemo, useState } from 'react';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import Badge from '../badge/Badge';
 import Upload from '../upload/Upload';
+import Badge from '../badge/Badge';
+import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 import { excerpts } from '../../utils';
 import { ProfileImageProps } from '../../types';
 
 import './ProfileImage.scss';
-import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 const ProfileImage = ({
   name,
@@ -141,17 +141,21 @@ const ProfileImage = ({
       <div className='profile-image__buttons'>
         <button
           type='button'
-          className='profile-image__buttons--upload'
           onClick={onUpload}
           disabled={isDisabled}
+          aria-label='Upload'
+          aria-disabled={isDisabled}
+          className='profile-image__buttons--upload'
         >
           Upload
         </button>
         <button
           type='button'
-          className='profile-image__buttons--remove'
           onClick={onOpen}
           disabled={isDisabled}
+          aria-label='Remove'
+          aria-disabled={isDisabled}
+          className='profile-image__buttons--remove'
         >
           Remove
         </button>

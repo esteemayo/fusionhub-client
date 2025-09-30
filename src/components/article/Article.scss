@@ -65,6 +65,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    min-width: 0;
 
     &--username {
       display: flex;
@@ -170,6 +171,13 @@
       }
     }
 
+    a {
+      &:link,
+      &:visited {
+        position: relative;
+      }
+    }
+
     &--name {
       text-transform: capitalize;
       text-rendering: optimizeLegibility;
@@ -192,8 +200,7 @@
       @include bp.sm {
         display: block;
         text-overflow: ellipsis;
-        width: max-content;
-        width: 24rem;
+        max-width: 24rem;
         font-size: 1.9rem;
         white-space: nowrap;
         overflow: hidden;
