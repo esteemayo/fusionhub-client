@@ -47,10 +47,21 @@
     border-bottom: 1px solid vars.$clr-tertiary-blue;
   }
 
+  &.delete {
+    button {
+      font-weight: 700;
+      color: vars.$clr-danger;
+
+      svg {
+        color: vars.$clr-danger;
+      }
+    }
+  }
+
   button {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
     border: 0;
     outline: 0;
@@ -110,6 +121,58 @@
     &:disabled {
       opacity: 0.75;
       cursor: not-allowed;
+    }
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      color: currentColor;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+
+      @include bp.sm {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.65rem;
+        height: 1.65rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
     }
   }
 }

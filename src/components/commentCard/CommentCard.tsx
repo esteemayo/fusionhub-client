@@ -98,8 +98,7 @@ const CommentCard = ({
     });
   };
 
-  const handleClose = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
+  const handleClose = () => {
     setIsShow(false);
   };
 
@@ -157,8 +156,8 @@ const CommentCard = ({
     });
   };
 
-  const handleUpdate = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
 
     if (!currentUser) return;
 
@@ -167,16 +166,19 @@ const CommentCard = ({
     setEditId(commentId);
 
     setValue(content);
+    handleClose();
   };
 
-  const handleDelete = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
 
     if (!currentUser) return;
 
     onOpen();
     dispatch(commentModal.setCommentId(commentId));
     dispatch(commentModal.setPostId(post._id));
+
+    handleClose();
   };
 
   const onInput = () => {
@@ -331,7 +333,11 @@ const CommentCard = ({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
+        if (isShow) {
+          handleClose();
+        } else if (isOpen) {
+          setIsOpen(false);
+        }
       }
     };
 
@@ -340,7 +346,7 @@ const CommentCard = ({
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [isOpen, isShow]);
 
   useEffect(() => {
     setIsShow(activeCardId === commentId);
@@ -489,7 +495,6 @@ const CommentCard = ({
           isCommentAuthor={isCommentAuthor}
           isPostAuthor={isPostAuthor}
           isShow={isShow}
-          onClose={handleClose}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
         />

@@ -1,5 +1,9 @@
 import { useMemo } from 'react';
 
+import DeleteIcon from '../DeleteIcon';
+import EditIcon from '../EditIcon';
+import ReportIcon from '../ReportIcon';
+import MuteIcon from '../MuteIcon';
 import ReplyMenuListItem from '../replyMenuListItem/ReplyMenuListItem';
 
 import { ReplyMenuListProps } from '../../types';
@@ -15,36 +19,19 @@ const ReplyMenuList = ({
   isCommentAuthor,
   isPostAuthor,
   isReplyAuthor,
-  onClose,
   onDelete,
   onUpdate,
 }: ReplyMenuListProps) => {
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    onUpdate();
-    onClose();
-  };
-
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    onDelete();
-    onClose();
-  };
-
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     console.log('reported');
-    onClose();
   };
 
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     console.log('muted');
-    onClose();
   };
 
   const actionBtnClasses = useMemo(() => {
@@ -103,12 +90,20 @@ const ReplyMenuList = ({
   return (
     <ul className='reply-menu-list'>
       <div className={actionBtnClasses}>
-        <ReplyMenuListItem label='Edit' onAction={handleUpdate} />
-        <ReplyMenuListItem label='Delete' onAction={handleDelete} />
+        <ReplyMenuListItem label='Edit' onAction={onUpdate}>
+          <EditIcon />
+        </ReplyMenuListItem>
+        <ReplyMenuListItem type='delete' label='Delete' onAction={onDelete}>
+          <DeleteIcon />
+        </ReplyMenuListItem>
       </div>
       <div className={reportClasses}>
-        <ReplyMenuListItem label='Report' onAction={handleReport} />
-        <ReplyMenuListItem label='Mute' onAction={handleMute} />
+        <ReplyMenuListItem label='Mute' onAction={handleMute}>
+          <MuteIcon />
+        </ReplyMenuListItem>
+        <ReplyMenuListItem type='report' label='Report' onAction={handleReport}>
+          <ReportIcon />
+        </ReplyMenuListItem>
       </div>
     </ul>
   );

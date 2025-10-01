@@ -1,9 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import millify from 'millify';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import parse from 'html-react-parser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 
+import ShareIcon from '../ShareIcon';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
@@ -16,16 +18,18 @@ import DislikeIcon from '../DislikeIcon';
 import Tooltip from '../tooltip/Tooltip';
 import ArticleAction from '../articleAction/ArticleAction';
 
-import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useDate } from '../../hooks/useDate';
+import { useWebShare } from '../../hooks/useWebShare';
+
+import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import * as deleteModal from '../../features/deleteModal/deleteModalSlice';
 import * as postModal from '../../features/postModal/postModalSlice';
 import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
 
-import { ArticleProps, PositionType } from '../../types';
-import { excerpts } from '../../utils';
+import { ArticleProps } from '../../types';
+import { excerpts, stripHtml } from '../../utils';
 import { dislikePost, likePost } from '../../services/postService';
 
 import './Article.scss';
@@ -53,8 +57,17 @@ const Article = ({
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
+  const postUrl = `${window.location.origin}/post/${post?.slug}`;
+
+  const parsedText = useMemo(() => {
+    return parse(String(post?.desc)).toString();
+  }, [post?.desc]);
+
+  const text = excerpts(stripHtml(parsedText), 80);
+
+  const { error, handleShare } = useWebShare(post?.title, text, postUrl);
   const { formattedDate } = useDate(post.createdAt);
-  const { isSaved, saveMutation, handleSave } = useSavedPosts(post._id);
+  const { isSaved, saveMutation, handleSave } = useSavedPosts(post?._id);
 
   const likeMutation = useMutation({
     mutationFn: () => createLikePost(post._id),
@@ -70,33 +83,7 @@ const Article = ({
     },
   });
 
-  const nameRef = useRef<HTMLSpanElement>(null);
-
-  const [showTooltip, setShowTooltip] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [position, setPosition] = useState<PositionType>('top');
-
-  const handleMouseEnter = () => {
-    const el = nameRef.current;
-
-    if (el && el.scrollWidth > el.clientWidth) {
-      const rect = el.getBoundingClientRect();
-      const spaceAbove = rect.top;
-      const spaceBelow = window.innerHeight - rect.bottom;
-
-      if (spaceAbove < 40 && spaceBelow > spaceAbove) {
-        setPosition('bottom');
-      } else {
-        setPosition('top');
-      }
-
-      setShowTooltip(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setShowTooltip(false);
-  };
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -166,8 +153,8 @@ const Article = ({
   };
 
   const parsedDesc = useMemo(() => {
-    return parse(excerpts(String(post.desc), 250)).toString();
-  }, [post.desc]);
+    return excerpts(parsedText, 250);
+  }, [parsedText]);
 
   const isLiked = useMemo(() => {
     return !!(post.likes ?? []).some((id) => id === currentUser?.details._id);
@@ -219,6 +206,12 @@ const Article = ({
     setIsOpen(activeCardId === post._id);
   }, [activeCardId, post._id]);
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
   return (
     <article className='article'>
       <div className='article__container'>
@@ -243,19 +236,13 @@ const Article = ({
         </Link>
         <div className='article__wrapper'>
           <div className='article__profile'>
-            <Link
-              to={url}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <span ref={nameRef} className='article__profile--name'>
-                {post.author.name}
-              </span>
+            <Link to={url}>
               <Tooltip
-                isShow={showTooltip}
                 title={post.author.name}
-                position={position}
-              />
+                className='article__profile--name'
+              >
+                {post.author.name}
+              </Tooltip>
             </Link>
             <Badge role={post.author.role} />
             <div className='article__profile--username'>
@@ -291,7 +278,7 @@ const Article = ({
           <div className='article__actions'>
             <div className='article__actions--group'>
               <div className='article__actions--comments'>
-                <button type='button' onClick={handleComment}>
+                <button type='button' title='Comment' onClick={handleComment}>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
@@ -317,6 +304,7 @@ const Article = ({
               <div className='article__actions--likes'>
                 <button
                   type='button'
+                  title='Like Post'
                   onClick={handleLike}
                   disabled={likeMutation.isPending}
                 >
@@ -327,6 +315,7 @@ const Article = ({
               <div className='article__actions--dislikes'>
                 <button
                   type='button'
+                  title='Dislike Post'
                   onClick={handleDislike}
                   disabled={disLikeMutation.isPending}
                 >
@@ -339,6 +328,7 @@ const Article = ({
               <div className='article__actions--saved-post'>
                 <button
                   type='button'
+                  title='Save Post'
                   onClick={handleSave}
                   disabled={saveMutation.isPending || isAdmin}
                 >
@@ -347,6 +337,11 @@ const Article = ({
                     hasSaved={isSaved}
                   />
                   {post.savedCount > 0 && <span>{post.savedCount}</span>}
+                </button>
+              </div>
+              <div className='article__actions--share'>
+                <button type='button' title='Share Post' onClick={handleShare}>
+                  <ShareIcon />
                 </button>
               </div>
             </div>

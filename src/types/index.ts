@@ -627,9 +627,13 @@ export interface TabsProps {
 export type PositionType = 'top' | 'bottom';
 
 export interface TooltipProps {
-  isShow: boolean;
   title: string;
-  position?: PositionType;
+  className: string;
+  maxWidth?: number;
+  delay?: number;
+  hideDelay?: number;
+  alwaysShow?: boolean;
+  children: React.ReactNode;
 }
 
 export interface ProfileArticlesProps {
@@ -681,7 +685,10 @@ export interface ArticleMenuListProps {
 }
 
 export interface ArticleMenuListItemProps {
+  type?: 'delete';
   label: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -768,7 +775,10 @@ export interface ProfileMenuListProps {
 }
 
 export interface ProfileMenuListItemProps {
+  type?: 'delete';
   label: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -909,6 +919,7 @@ export interface CategoryMenuListProps {
 export interface CategoryMenuListItemProps {
   type?: 'delete';
   label: string;
+  disabled?: boolean;
   children?: React.ReactNode;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -1301,9 +1312,8 @@ export interface CommentActionMenuProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isShow: boolean;
-  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListProps {
@@ -1313,13 +1323,15 @@ export interface CommentActionMenuListProps {
   isAdmin: boolean;
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
-  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListItemProps {
+  type?: 'delete' | 'report';
   label: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -1397,9 +1409,8 @@ export interface ReplyMenuProps {
   isShow: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
-  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyMenuListProps {
@@ -1411,14 +1422,15 @@ export interface ReplyMenuListProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
-  onClose(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onDelete(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onUpdate(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
+  onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyMenuListItemProps {
+  type?: 'delete' | 'report';
   label: string;
   disabled?: boolean;
+  children?: React.ReactNode;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

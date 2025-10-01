@@ -1,5 +1,9 @@
 import { useMemo } from 'react';
 
+import DeleteIcon from '../DeleteIcon';
+import EditIcon from '../EditIcon';
+import ReportIcon from '../ReportIcon';
+import MuteIcon from '../MuteIcon';
 import CommentActionMenuListItem from '../commentActionMenuListItem/CommentActionMenuListItem';
 
 import { CommentActionMenuListProps } from '../../types';
@@ -13,36 +17,19 @@ const CommentActionMenuList = ({
   isAdmin,
   isCommentAuthor,
   isPostAuthor,
-  onClose,
   onDelete,
   onUpdate,
 }: CommentActionMenuListProps) => {
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    onUpdate();
-    onClose();
-  };
-
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    onDelete();
-    onClose();
-  };
-
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     console.log('reported');
-    onClose();
   };
 
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     console.log('muted');
-    onClose();
   };
 
   const actionBtnClasses = useMemo(() => {
@@ -96,12 +83,28 @@ const CommentActionMenuList = ({
   return (
     <ul className='comment-action-menu-list'>
       <div className={actionBtnClasses}>
-        <CommentActionMenuListItem label='Edit' onAction={handleUpdate} />
-        <CommentActionMenuListItem label='Delete' onAction={handleDelete} />
+        <CommentActionMenuListItem label='Edit' onAction={onUpdate}>
+          <EditIcon />
+        </CommentActionMenuListItem>
+        <CommentActionMenuListItem
+          type='delete'
+          label='Delete'
+          onAction={onDelete}
+        >
+          <DeleteIcon />
+        </CommentActionMenuListItem>
       </div>
       <div className={reportBtnClasses}>
-        <CommentActionMenuListItem label='Report' onAction={handleReport} />
-        <CommentActionMenuListItem label='Mute' onAction={handleMute} />
+        <CommentActionMenuListItem label='Mute' onAction={handleMute}>
+          <MuteIcon />
+        </CommentActionMenuListItem>
+        <CommentActionMenuListItem
+          type='report'
+          label='Report'
+          onAction={handleReport}
+        >
+          <ReportIcon />
+        </CommentActionMenuListItem>
       </div>
     </ul>
   );

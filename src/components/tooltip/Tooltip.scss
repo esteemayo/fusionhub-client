@@ -2,78 +2,72 @@
 @use '../../styles/variables.scss' as vars;
 
 .tooltip {
-  position: absolute;
-  // top: -3.2rem;
-  // left: 0;
-  font-size: 1.3rem;
-  background-color: #222;
-  color: vars.$clr-white;
-  padding: 0.6rem 1rem;
-  border-radius: 0.6rem;
-  white-space: nowrap;
-  box-shadow: 0 2px 0.6rem rgba(vars.$clr-black, 0.2);
-  transition: display 0.25s ease-in-out, opacity 0.25s ease-in-out,
-    visibility 0.25s ease-in-out, z-index 0.25s ease-in-out;
+  position: relative;
 
-  &.top {
-    top: -3.6rem;
-    left: 0;
-    transform: translateX(-10%);
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 2rem;
-      left: 50%;
-      bottom: -1.2rem;
-      border-width: 0.6rem;
-      border-style: solid;
-      border-color: #222 transparent transparent transparent;
-    }
-  }
-
-  &.bottom {
-    top: 100%;
-    left: 0;
-    margin-top: 0.8rem;
-    transform: translateX(-10%);
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: -0.6rem;
-      top: -1.2rem;
-      left: 2rem;
-      left: 50%;
-      border-width: 0.6rem;
-      border-style: solid;
-      border-color: transparent transparent #222 transparent;
-    }
-  }
-
-  &::after {
-    content: '';
+  &__bubble {
     position: absolute;
-    left: 2rem;
-    left: 50%;
-    bottom: -0.6rem;
-    bottom: -1.2rem;
-    border-width: 0.6rem;
-    border-style: solid;
-    border-color: #222 transparent transparent transparent;
-  }
+    text-align: center;
+    font-size: 1.3rem;
+    background-color: vars.$clr-tertiary-blue;
+    color: vars.$clr-white;
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
+    white-space: nowrap;
+    box-shadow: vars.$box;
+    transition: display 0.25s ease, opacity 0.25s ease, transform 0.25s ease,
+      visibility 0.25s ease, z-index 0.25s ease;
+    backface-visibility: hidden;
 
-  &.show {
-    display: block;
-    visibility: visible;
-    opacity: 1;
-    z-index: 1000;
-  }
+    &.top {
+      top: -3.6rem;
+      left: 0;
+      transform: translateY(-0.8rem);
 
-  &.hide {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-    z-index: -1;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 2rem;
+        left: 50%;
+        bottom: -1.3rem;
+        border-width: 0.6rem;
+        border-style: solid;
+        border-color: vars.$clr-tertiary-blue transparent transparent
+          transparent;
+      }
+    }
+
+    &.bottom {
+      top: 100%;
+      left: 0;
+      margin-top: 0.8rem;
+      transform: translateY(0.8rem);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -1.3rem;
+        left: 2rem;
+        left: 50%;
+        border-width: 0.6rem;
+        border-style: solid;
+        border-color: transparent transparent vars.$clr-tertiary-blue
+          transparent;
+      }
+    }
+
+    &.show {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+      transform: translateY(0);
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
   }
 }

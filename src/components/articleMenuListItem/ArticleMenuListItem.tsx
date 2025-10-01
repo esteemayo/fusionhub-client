@@ -1,12 +1,33 @@
+import { useMemo } from 'react';
+
 import { ArticleMenuListItemProps } from '../../types';
 
 import './ArticleMenuListItem.scss';
 
-const ArticleMenuListItem = ({ label, onClick }: ArticleMenuListItemProps) => {
+const ArticleMenuListItem = ({
+  type,
+  label,
+  disabled,
+  children,
+  onClick,
+}: ArticleMenuListItemProps) => {
+  const listItemClasses = useMemo(() => {
+    return type === 'delete'
+      ? 'article-menu-list-item delete'
+      : 'article-menu-list-item';
+  }, [type]);
+
   return (
-    <li className='article-menu-list-item'>
-      <button type='button' onClick={onClick}>
+    <li className={listItemClasses}>
+      <button
+        type='button'
+        onClick={onClick}
+        disabled={disabled}
+        aria-label={label}
+        aria-disabled={disabled}
+      >
         {label}
+        {children}
       </button>
     </li>
   );

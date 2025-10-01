@@ -127,8 +127,8 @@ const Reply = ({
     setIsShow(false);
   };
 
-  const handleUpdate = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
+  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
 
     if (!currentUser) return;
 
@@ -137,17 +137,19 @@ const Reply = ({
     setEditId(replyId);
     setValue(content);
 
-    setIsShow(false);
+    handleClose();
   };
 
-  const handleDelete = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
 
     if (!currentUser) return;
 
     dispatch(commentModal.onOpen());
     dispatch(commentModal.setPostId(post._id));
     dispatch(commentModal.setReplyId(replyId));
+
+    handleClose();
   };
 
   const handleInput = () => {
@@ -443,7 +445,6 @@ const Reply = ({
             isShow={isShow}
             isPostAuthor={isPostAuthor}
             isReplyAuthor={isReplyAuthor}
-            onClose={handleClose}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
           />
