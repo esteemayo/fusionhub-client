@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Replies from '../replies/Replies';
 import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
@@ -134,11 +134,7 @@ const CommentCard = ({
     });
   };
 
-  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    if (!currentUser) return;
-
+  const onCancelHandler = useCallback(() => {
     setIsOpen(false);
 
     if (isEditing && editId) {
@@ -147,6 +143,13 @@ const CommentCard = ({
     }
 
     if (value.trim() !== '') setValue('');
+  }, [editId, isEditing, value]);
+
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+    onCancelHandler();
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -336,7 +339,7 @@ const CommentCard = ({
         if (isShow) {
           handleClose();
         } else if (isOpen) {
-          setIsOpen(false);
+          onCancelHandler();
         }
       }
     };
@@ -346,7 +349,7 @@ const CommentCard = ({
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, [isOpen, isShow]);
+  }, [isOpen, isShow, onCancelHandler]);
 
   useEffect(() => {
     setIsShow(activeCardId === commentId);

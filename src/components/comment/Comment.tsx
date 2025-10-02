@@ -78,7 +78,10 @@ const Comment = ({
         <h4 className='comment__heading'>{commentHeading}</h4>
         <div className='comment__users'>
           <div className='comment__total'>
-            <CommentUsers total={uniqueCommentUsers?.length} />
+            <CommentUsers
+              total={uniqueCommentUsers?.length}
+              isLoading={isPending}
+            />
           </div>
           <CommentUserImages
             url={url}
@@ -92,6 +95,7 @@ const Comment = ({
       <CommentFilters
         sort={sort}
         isOpen={isOpen}
+        isLoading={isPending}
         totalComments={comments?.length}
         totalCommentUsers={uniqueCommentUsers?.length}
         onClose={onClose}

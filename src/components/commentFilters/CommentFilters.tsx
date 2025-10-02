@@ -10,22 +10,27 @@ import './CommentFilters.scss';
 const CommentFilters = ({
   sort,
   isOpen,
+  isLoading,
   totalComments,
   totalCommentUsers,
   onClose,
   onToggle,
   onSort,
 }: CommentFiltersProps) => {
+  const filterClasses = useMemo(() => {
+    return !isLoading ? 'comment-filters show' : 'comment-filters hide';
+  }, [isLoading]);
+
   const sortType = useMemo(() => {
     return sort.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
   }, [sort]);
 
   return (
-    <div className='comment-filters'>
+    <div className={filterClasses}>
       <div className='comment-filters__container'>
         <span className='comment-filters__count'>{totalComments} comments</span>
         <div className='comment-filters__total'>
-          <CommentUsers total={totalCommentUsers} />
+          <CommentUsers total={totalCommentUsers} isLoading={isLoading} />
         </div>
       </div>
       <div className='comment-filters__wrapper'>

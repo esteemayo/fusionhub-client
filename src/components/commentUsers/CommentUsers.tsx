@@ -1,8 +1,16 @@
+import { useMemo } from 'react';
+
+import { CommentUsersProps } from '../../types';
+
 import './CommentUsers.scss';
 
-const CommentUsers = ({ total }: { total?: number }) => {
+const CommentUsers = ({ total, isLoading }: CommentUsersProps) => {
+  const containerClasses = useMemo(() => {
+    return !isLoading ? 'comment-users show' : 'comment-users hide';
+  }, [isLoading]);
+
   return (
-    <div className='comment-users'>
+    <div className={containerClasses}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'

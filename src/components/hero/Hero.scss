@@ -123,7 +123,6 @@
   &__breadCrumbs {
     display: flex;
     align-items: center;
-    gap: 1rem;
 
     line-height: 2.5;
     position: relative;
@@ -135,6 +134,9 @@
     &--link {
       &:link,
       &:visited {
+        display: flex;
+        align-items: baseline;
+
         text-transform: uppercase;
         text-rendering: optimizeLegibility;
         font-weight: 700;
@@ -178,11 +180,8 @@
         &::after {
           content: '';
           display: inline-block;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
           width: 2px;
-          height: 55%;
+          height: 1.25rem;
           background-color: vars.$clr-white;
           margin-left: 1rem;
         }

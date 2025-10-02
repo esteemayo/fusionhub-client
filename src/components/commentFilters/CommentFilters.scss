@@ -7,10 +7,24 @@
   justify-content: space-between;
 
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid vars.$clr-gray-light-2;
+  border-bottom: 1px solid vars.$clr-tertiary-blue;
+  position: relative;
 
   @media screen and (max-width: 26.875em) {
     margin-top: 1rem;
+  }
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1000;
+  }
+
+  &.hide {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
   }
 
   &__container {

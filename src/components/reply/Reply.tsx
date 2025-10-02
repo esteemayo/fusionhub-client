@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Badge from '../badge/Badge';
 import Image from '../Image';
@@ -166,11 +166,7 @@ const Reply = ({
     setValue(textarea.value);
   };
 
-  const onCancelHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    if (!currentUser) return;
-
+  const handleCancel = useCallback(() => {
     setIsOpen(false);
 
     if (isEditing && editId) {
@@ -179,6 +175,13 @@ const Reply = ({
     }
 
     if (value.trim() !== '') setValue('');
+  }, [editId, isEditing, value]);
+
+  const onCancelHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+    handleCancel();
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
@@ -275,7 +278,11 @@ const Reply = ({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleClose();
+        if (isShow) {
+          handleClose();
+        } else if (isOpen) {
+          handleCancel();
+        }
       }
     };
 
@@ -284,21 +291,7 @@ const Reply = ({
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, []);
+  }, [handleCancel, isOpen, isShow, value]);
 
   useEffect(() => {
     setIsShow(activeCardId === replyId);

@@ -1260,6 +1260,11 @@ export interface CommentProps {
   onSort: React.Dispatch<React.SetStateAction<sortType>>;
 }
 
+export interface CommentUsersProps {
+  total?: number;
+  isLoading: boolean;
+}
+
 export interface CommentUserImagesProps {
   url(user: CommentImageType): string;
   users: CommentImageType[] | undefined;
@@ -1277,6 +1282,7 @@ export interface CommentUserImageProps {
 export interface CommentFiltersProps {
   sort: sortType;
   isOpen: boolean;
+  isLoading: boolean;
   totalComments?: number;
   totalCommentUsers?: number;
   onClose(): void;
