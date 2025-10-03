@@ -1305,7 +1305,6 @@ export interface CommentCardProps {
   slug: string;
   activeCardId: string | null;
   comment: CommentType;
-  maxRows?: number;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onOpen(): void;
 }
@@ -1401,7 +1400,6 @@ export interface ReplyProps {
   slug: string;
   level?: number;
   activeCardId: string | null;
-  maxRows?: number;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -1445,27 +1443,23 @@ export interface ReplyFormProps {
   isEditing: boolean;
   content: string;
   editId: string | null;
+  maxRows?: number;
   isLoading: boolean;
-  onInput(): void;
   onChange: React.Dispatch<React.SetStateAction<string>>;
-  onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
-  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
-  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
+  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface ReplyCommentFormProps {
   content: string;
   editId: string | null;
   isOpen: boolean;
+  maxRows?: number;
   isLoading: boolean;
   isEditing: boolean;
-  onInput(): void;
   onChange: React.Dispatch<React.SetStateAction<string>>;
-  onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
-  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
-  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
+  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface CommentFormProps {

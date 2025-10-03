@@ -1,23 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import ProfileAction from '../profileAction/ProfileAction';
 import Badge from '../badge/Badge';
+import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
+
+import ProfileAction from '../profileAction/ProfileAction';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeComment } from '../../hooks/useLikeComment';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import * as commentModal from '../../features/commentModal/commentModalSlice';
-import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
-
-import { ProfileCommentProps } from '../../types';
-import { excerpts } from '../../utils';
 import { getPostById } from '../../services/postService';
+import * as commentModal from '../../features/commentModal/commentModalSlice';
+
+import { excerpts } from '../../utils';
+import { ProfileCommentProps } from '../../types';
 
 import './ProfileComment.scss';
 
@@ -62,17 +63,13 @@ const ProfileComment = ({
   });
 
   const [isMore, setIsMore] = useState(false);
+  const [value, setValue] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
+  const [isShow, setIsShow] = useState(false);
 
   const commentUrl = `${window.location.origin}/post/${data?.slug}#comment-${commentId}`;
-
-  const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    dispatch(replyCommentModal.setPostId(post._id));
-    dispatch(replyCommentModal.onOpen());
-    dispatch(replyCommentModal.setCommentId(commentId));
-  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -87,10 +84,30 @@ const ProfileComment = ({
     }
   };
 
+  const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+
+    if (isEditing && editId) {
+      setEditId(null);
+      setIsEditing(false);
+    }
+
+    setIsOpen((value) => {
+      if (value) {
+        setValue('');
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    setIsOpen((value) => {
+    setIsShow((value) => {
       if (value) {
         onChangeCardId(null);
         return false;
@@ -102,17 +119,18 @@ const ProfileComment = ({
   };
 
   const handleClose = () => {
-    setIsOpen(false);
+    setIsShow(false);
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(replyCommentModal.setContent(content));
-    dispatch(replyCommentModal.onOpen());
-    dispatch(replyCommentModal.setPostId(post._id));
-    dispatch(replyCommentModal.setIsEditing());
-    dispatch(replyCommentModal.setCommentId(commentId));
+    if (!currentUser) return;
+
+    setIsOpen(true);
+    setIsEditing(true);
+    setEditId(commentId);
+    setValue(content);
 
     handleClose();
   };
@@ -125,6 +143,37 @@ const ProfileComment = ({
     dispatch(commentModal.setCommentId(commentId));
 
     handleClose();
+  };
+
+  const handleCancel = useCallback(() => {
+    setIsOpen(false);
+
+    if (isEditing && editId) {
+      setEditId(null);
+      setIsEditing(false);
+    }
+
+    if (value.trim() !== '') setValue('');
+  }, [editId, isEditing, value]);
+
+  const onCancelHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+    handleCancel();
+  };
+
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+
+    if (isEditing && editId) {
+      console.log('Updated reply: ', value);
+    } else {
+      console.log(value);
+    }
+
+    setValue('');
+    setIsOpen(false);
   };
 
   const replyBtnClasses = useMemo(() => {
@@ -166,7 +215,11 @@ const ProfileComment = ({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleClose();
+        if (isShow) {
+          handleClose();
+        } else if (isOpen) {
+          handleCancel();
+        }
       }
     };
 
@@ -175,10 +228,10 @@ const ProfileComment = ({
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {
-    setIsOpen(activeCardId === commentId);
+    setIsShow(activeCardId === commentId);
   }, [activeCardId, commentId]);
 
   return (
@@ -210,7 +263,7 @@ const ProfileComment = ({
             </time>
             <button
               type='button'
-              onClick={handleReply}
+              onClick={onToggleReply}
               className={replyBtnClasses}
             >
               <svg
@@ -273,7 +326,7 @@ const ProfileComment = ({
               authorRole={author?.role}
               currentUser={currentUser}
               isAdmin={isAdmin}
-              isOpen={isOpen}
+              isOpen={isShow}
               isCommentAuthor={isCommentAuthor}
               isPostAuthor={isPostAuthor}
               onDelete={handleDelete}
@@ -281,6 +334,16 @@ const ProfileComment = ({
               onUpdate={handleUpdate}
             />
           </div>
+          <ReplyCommentForm
+            isOpen={isOpen}
+            isEditing={isEditing}
+            content={value}
+            editId={editId}
+            isLoading={false}
+            onChange={setValue}
+            onCancel={onCancelHandler}
+            onSubmit={handleSubmit}
+          />
         </div>
       </div>
     </article>

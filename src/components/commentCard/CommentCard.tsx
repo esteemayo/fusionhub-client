@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Replies from '../replies/Replies';
 import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
@@ -29,7 +29,6 @@ const CommentCard = ({
   slug,
   activeCardId,
   comment,
-  maxRows,
   onChangeActiveCardId,
   onOpen,
 }: CommentCardProps) => {
@@ -67,10 +66,6 @@ const CommentCard = ({
     likeCommentMutation,
     dislikeCommentMutation,
   } = useLikeComment(commentId, likes, dislikes, queryKey);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [replyToShow, setReplyToShow] = useState(3);
   const [value, setValue] = useState('');
@@ -184,20 +179,6 @@ const CommentCard = ({
     handleClose();
   };
 
-  const onInput = () => {
-    const textarea = textareaRef.current!;
-
-    textarea.style.height = 'auto';
-    const lineHeight = parseInt(
-      getComputedStyle(textarea).lineHeight || '20',
-      10
-    );
-    const maxHeight = lineHeight * (maxRows || 3);
-
-    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
-    setValue(textarea.value);
-  };
-
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
@@ -224,12 +205,6 @@ const CommentCard = ({
           },
         });
       }
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      handleSubmit();
     }
   };
 
@@ -354,24 +329,6 @@ const CommentCard = ({
   useEffect(() => {
     setIsShow(activeCardId === commentId);
   }, [activeCardId, commentId]);
-
-  useEffect(() => {
-    const inner = innerRef.current;
-    const container = containerRef.current;
-
-    if (!container || !inner) return;
-
-    if (isOpen) {
-      const height = inner.scrollHeight;
-
-      container.style.maxHeight = `${height}px`;
-      setTimeout(() => textareaRef.current?.focus(), 120);
-      container.classList.remove('closed');
-    } else {
-      container.style.maxHeight = '0px';
-      container.classList.add('closed');
-    }
-  }, [isOpen, value]);
 
   return (
     <article id={`comment-${commentId}`} className='comment-card'>
@@ -502,26 +459,16 @@ const CommentCard = ({
           onUpdate={handleUpdate}
         />
       </div>
-      <div
-        ref={containerRef}
-        className={`comment-card__collapse ${isOpen ? '' : 'closed'}`}
-      >
-        <div ref={innerRef} className='comment-card__collapse--inner'>
-          <ReplyCommentForm
-            content={value}
-            editId={editId}
-            isOpen={isOpen}
-            isLoading={isPending}
-            isEditing={isEditing}
-            onInput={onInput}
-            onChange={setValue}
-            onKeyDown={handleKeyDown}
-            onCancel={handleCancel}
-            onSubmit={handleSubmit}
-            ref={textareaRef}
-          />
-        </div>
-      </div>
+      <ReplyCommentForm
+        content={value}
+        editId={editId}
+        isOpen={isOpen}
+        isLoading={isPending}
+        isEditing={isEditing}
+        onChange={setValue}
+        onCancel={handleCancel}
+        onSubmit={handleSubmit}
+      />
       <Replies
         slug={slug}
         activeCardId={activeCardId}

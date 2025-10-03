@@ -1,23 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import ProfileAction from '../profileAction/ProfileAction';
 import Badge from '../badge/Badge';
+import ReplyForm from '../replyForm/ReplyForm';
+
+import ProfileAction from '../profileAction/ProfileAction';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import * as commentModal from '../../features/commentModal/commentModalSlice';
-import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
-
-import { ProfileReplyProps } from '../../types';
-import { excerpts } from '../../utils';
 import { getPostById } from '../../services/postService';
+import * as commentModal from '../../features/commentModal/commentModalSlice';
+
+import { excerpts } from '../../utils';
+import { ProfileReplyProps } from '../../types';
 
 import './ProfileReply.scss';
 
@@ -63,18 +64,13 @@ const ProfileReply = ({
   });
 
   const [isMore, setIsMore] = useState(false);
+  const [value, setValue] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
+  const [isShow, setIsShow] = useState(false);
 
   const replyUrl = `${window.location.origin}/post/${data?.slug}#reply-${replyId}`;
-
-  const handleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    dispatch(replyCommentModal.setPostId(post._id));
-    dispatch(replyCommentModal.onOpen());
-    dispatch(replyCommentModal.setCommentId(comment._id));
-    dispatch(replyCommentModal.setReplyId(replyId));
-  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -89,10 +85,30 @@ const ProfileReply = ({
     }
   };
 
+  const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+
+    if (isEditing && editId) {
+      setEditId(null);
+      setIsEditing(false);
+    }
+
+    setIsOpen((value) => {
+      if (value) {
+        setValue('');
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    setIsOpen((value) => {
+    setIsShow((value) => {
       if (value) {
         onChangeCardId(null);
         return false;
@@ -104,18 +120,18 @@ const ProfileReply = ({
   };
 
   const handleClose = () => {
-    setIsOpen(false);
+    setIsShow(false);
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(replyCommentModal.setContent(content));
-    dispatch(replyCommentModal.onOpen());
-    dispatch(replyCommentModal.setReplyId(replyId));
-    dispatch(replyCommentModal.setIsEditing());
-    dispatch(replyCommentModal.setCommentId(comment._id));
-    dispatch(replyCommentModal.setPostId(post._id));
+    if (!currentUser) return;
+
+    setIsOpen(true);
+    setIsEditing(true);
+    setEditId(replyId);
+    setValue(content);
 
     handleClose();
   };
@@ -129,6 +145,37 @@ const ProfileReply = ({
     dispatch(commentModal.setPostId(post._id));
 
     handleClose();
+  };
+
+  const handleCancel = useCallback(() => {
+    setIsOpen(false);
+
+    if (isEditing && editId) {
+      setEditId(null);
+      setIsEditing(false);
+    }
+
+    if (value.trim() !== '') setValue('');
+  }, [editId, isEditing, value]);
+
+  const onCancelHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!currentUser) return;
+    handleCancel();
+  };
+
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+
+    if (isEditing && editId) {
+      console.log('Updated reply: ', value);
+    } else {
+      console.log(value);
+    }
+
+    setValue('');
+    setIsOpen(false);
   };
 
   const replyBtnClasses = useMemo(() => {
@@ -174,7 +221,11 @@ const ProfileReply = ({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsOpen(false);
+        if (isShow) {
+          handleClose();
+        } else if (isOpen) {
+          handleCancel();
+        }
       }
     };
 
@@ -183,10 +234,10 @@ const ProfileReply = ({
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {
-    setIsOpen(activeCardId === replyId);
+    setIsShow(activeCardId === replyId);
   }, [activeCardId, replyId]);
 
   return (
@@ -218,7 +269,7 @@ const ProfileReply = ({
             </time>
             <button
               type='button'
-              onClick={handleReply}
+              onClick={onToggleReply}
               aria-label='Reply'
               className={replyBtnClasses}
             >
@@ -282,7 +333,7 @@ const ProfileReply = ({
               authorRole={author?.role}
               currentUser={currentUser}
               isAdmin={isAdmin}
-              isOpen={isOpen}
+              isOpen={isShow}
               isCommentAuthor={isCommentAuthor}
               isPostAuthor={isPostAuthor}
               isReplyAuthor={isReplyAuthor}
@@ -291,6 +342,16 @@ const ProfileReply = ({
               onUpdate={handleUpdate}
             />
           </div>
+          <ReplyForm
+            isOpen={isOpen}
+            isEditing={isEditing}
+            content={value}
+            editId={editId}
+            isLoading={false}
+            onChange={setValue}
+            onCancel={onCancelHandler}
+            onSubmit={handleSubmit}
+          />
         </div>
       </div>
     </article>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Badge from '../badge/Badge';
 import Image from '../Image';
@@ -24,7 +24,6 @@ const Reply = ({
   slug,
   level,
   activeCardId,
-  maxRows,
   onChangeActiveCardId,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
@@ -62,10 +61,6 @@ const Reply = ({
     handleLike,
     handleDislike,
   } = useLikeReply(replyId, likes, dislikes, queryKey);
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const innerRef = useRef<HTMLDivElement | null>(null);
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const [isMore, setIsMore] = useState(false);
   const [value, setValue] = useState('');
@@ -152,20 +147,6 @@ const Reply = ({
     handleClose();
   };
 
-  const handleInput = () => {
-    const textarea = textareaRef.current!;
-
-    textarea.style.height = 'auto';
-    const lineHeight = parseInt(
-      getComputedStyle(textarea).lineHeight || '20',
-      10
-    );
-    const maxHeight = lineHeight * (maxRows || 2);
-
-    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
-    setValue(textarea.value);
-  };
-
   const handleCancel = useCallback(() => {
     setIsOpen(false);
 
@@ -195,12 +176,6 @@ const Reply = ({
 
     setValue('');
     setIsOpen(false);
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      handleSubmit();
-    }
   };
 
   const replyClasses = useMemo(() => {
@@ -296,24 +271,6 @@ const Reply = ({
   useEffect(() => {
     setIsShow(activeCardId === replyId);
   }, [activeCardId, replyId]);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const inner = innerRef.current;
-
-    if (!container || !inner) return;
-
-    if (isOpen) {
-      const height = inner.scrollHeight;
-
-      container.style.maxHeight = `${height}px`;
-      setTimeout(() => textareaRef.current?.focus(), 120);
-      container.classList.remove('closed');
-    } else {
-      container.style.maxHeight = '0px';
-      container.classList.add('closed');
-    }
-  }, [isOpen, value]);
 
   return (
     <>
@@ -442,26 +399,16 @@ const Reply = ({
             onUpdate={handleUpdate}
           />
         </div>
-        <div
-          ref={containerRef}
-          className={`reply__collapse ${isOpen ? '' : 'closed'}`}
-        >
-          <div ref={innerRef} className='reply__collapse--inner'>
-            <ReplyForm
-              isOpen={isOpen}
-              isEditing={isEditing}
-              content={value}
-              editId={editId}
-              isLoading={false} //TODO: change the loading state to replyMutation.isPending
-              onInput={handleInput}
-              onChange={setValue}
-              onKeyDown={onKeyDown}
-              onCancel={onCancelHandler}
-              onSubmit={handleSubmit}
-              ref={textareaRef}
-            />
-          </div>
-        </div>
+        <ReplyForm
+          isOpen={isOpen}
+          isEditing={isEditing}
+          content={value}
+          editId={editId}
+          isLoading={false} //TODO: change the loading state to replyMutation.isPending
+          onChange={setValue}
+          onCancel={onCancelHandler}
+          onSubmit={handleSubmit}
+        />
       </article>
       {replies?.map((reply) => {
         return (
