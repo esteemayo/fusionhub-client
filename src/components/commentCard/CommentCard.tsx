@@ -189,20 +189,12 @@ const CommentCard = ({
         updateCommentMutation.mutate(
           { content: value, commentId },
           {
-            onSuccess: () => {
-              setValue('');
-              setIsOpen(false);
-              setEditId(null);
-              setIsEditing(false);
-            },
+            onSuccess: onCancelHandler,
           }
         );
       } else {
         replyMutation.mutate(value, {
-          onSuccess: () => {
-            setValue('');
-            setIsOpen(false);
-          },
+          onSuccess: onCancelHandler,
         });
       }
     }

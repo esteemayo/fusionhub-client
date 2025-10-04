@@ -1218,6 +1218,7 @@ export interface IReply {
     error: Error | null;
     data: ReplyType[] | [] | undefined;
     replyMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    replyTreeMutation: UseMutationResult<unknown, unknown, object, unknown>;
     updateReplyMutation: UseMutationResult<
       unknown,
       unknown,

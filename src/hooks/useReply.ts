@@ -16,7 +16,7 @@ const fetchRepliesOnComment = async (commentId: string) => {
 //   return data;
 // };
 
-const createReply = async (
+const createCommentReply = async (
   content: string,
   postId: string,
   commentId: string
@@ -26,6 +26,12 @@ const createReply = async (
     postId,
     commentId
   );
+  return data;
+};
+
+const createBuildReplyTree = async <T extends object>(reply: T) => {
+  const { data } = await replyAPI.createReply(reply);
+  console.log(data);
   return data;
 };
 
@@ -55,7 +61,29 @@ export const useReply: IReply = (postId, commentId) => {
   // });
 
   const replyMutation = useMutation({
-    mutationFn: (content: string) => createReply(content, postId, commentId),
+    mutationFn: (content: string) =>
+      createCommentReply(content, postId, commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
+      toast.success('Your reply has been successfully posted!');
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  const replyTreeMutation = useMutation({
+    mutationFn: (reply: object) => createBuildReplyTree(reply),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
       toast.success('Your reply has been successfully posted!');
@@ -123,6 +151,7 @@ export const useReply: IReply = (postId, commentId) => {
     error,
     data,
     replyMutation,
+    replyTreeMutation,
     updateReplyMutation,
     deleteReplyMutation,
   };

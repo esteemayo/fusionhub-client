@@ -18,6 +18,7 @@ import { excerpts } from '../../utils';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import './Reply.scss';
+import { useReply } from '../../hooks/useReply';
 
 const Reply = ({
   reply,
@@ -52,6 +53,11 @@ const Reply = ({
   }, [comment._id]);
 
   const queryKey = ['replies', commentId];
+
+  const { replyTreeMutation, updateReplyMutation } = useReply(
+    post._id,
+    commentId
+  );
 
   const {
     isLiked,
@@ -169,13 +175,24 @@ const Reply = ({
     e?.preventDefault();
 
     if (isEditing && editId) {
-      console.log('Updated reply: ', value);
+      updateReplyMutation.mutate(
+        { content: value, replyId },
+        {
+          onSuccess: handleCancel,
+        }
+      );
     } else {
-      console.log(value);
-    }
+      const replyObj = {
+        content: value,
+        comment: commentId,
+        post: post._id,
+        parentReplyId: replyId,
+      };
 
-    setValue('');
-    setIsOpen(false);
+      replyTreeMutation.mutate(replyObj, {
+        onSuccess: handleCancel,
+      });
+    }
   };
 
   const replyClasses = useMemo(() => {

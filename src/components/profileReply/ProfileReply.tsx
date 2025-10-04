@@ -13,6 +13,7 @@ import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useReply } from '../../hooks/useReply';
 
 import { getPostById } from '../../services/postService';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
@@ -47,6 +48,11 @@ const ProfileReply = ({
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const queryKey = ['replies'];
+
+  const { replyTreeMutation, updateReplyMutation } = useReply(
+    post._id,
+    comment._id
+  );
 
   const {
     isLiked,
@@ -169,13 +175,24 @@ const ProfileReply = ({
     e?.preventDefault();
 
     if (isEditing && editId) {
-      console.log('Updated reply: ', value);
+      updateReplyMutation.mutate(
+        { content: value, replyId },
+        {
+          onSuccess: handleCancel,
+        }
+      );
     } else {
-      console.log(value);
-    }
+      const replyObj = {
+        content: value,
+        comment: comment._id,
+        post: post._id,
+        parentReplyId: replyId,
+      };
 
-    setValue('');
-    setIsOpen(false);
+      replyTreeMutation.mutate(replyObj, {
+        onSuccess: handleCancel,
+      });
+    }
   };
 
   const replyBtnClasses = useMemo(() => {

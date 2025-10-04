@@ -10,8 +10,10 @@ import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
 import ProfileAction from '../profileAction/ProfileAction';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
-import { useLikeComment } from '../../hooks/useLikeComment';
+import { useComment } from '../../hooks/useComment';
 import { useDate } from '../../hooks/useDate';
+import { useLikeComment } from '../../hooks/useLikeComment';
+import { useReply } from '../../hooks/useReply';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { getPostById } from '../../services/postService';
@@ -47,6 +49,13 @@ const ProfileComment = ({
 
   const queryKey = ['comments'];
 
+  const postId = useMemo(() => {
+    return post._id;
+  }, [post._id]);
+
+  const { updateCommentMutation } = useComment(postId);
+  const { replyMutation } = useReply(postId, commentId);
+
   const {
     isLiked,
     isDisliked,
@@ -57,9 +66,9 @@ const ProfileComment = ({
   } = useLikeComment(commentId, likes, dislikes, queryKey);
 
   const { data } = useQuery({
-    queryKey: ['post', post._id],
-    queryFn: () => fetchPostById(post._id),
-    enabled: !!post._id,
+    queryKey: ['post', postId],
+    queryFn: () => fetchPostById(postId),
+    enabled: !!postId,
   });
 
   const [isMore, setIsMore] = useState(false);
@@ -166,14 +175,20 @@ const ProfileComment = ({
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
-    if (isEditing && editId) {
-      console.log('Updated reply: ', value);
-    } else {
-      console.log(value);
-    }
+    if (!currentUser || !postId) return;
 
-    setValue('');
-    setIsOpen(false);
+    if (isEditing && editId) {
+      updateCommentMutation.mutate(
+        { content: value, commentId },
+        {
+          onSuccess: handleCancel,
+        }
+      );
+    } else {
+      replyMutation.mutate(value, {
+        onSuccess: handleCancel,
+      });
+    }
   };
 
   const replyBtnClasses = useMemo(() => {
