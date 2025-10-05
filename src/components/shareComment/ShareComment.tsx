@@ -20,7 +20,12 @@ const ShareComment = ({ url, size, text, title }: ShareCommentProps) => {
   }, [error]);
 
   return (
-    <button type='button' onClick={handleShare} className={shareBtnClasses}>
+    <button
+      type='button'
+      title='Share'
+      onClick={handleShare}
+      className={shareBtnClasses}
+    >
       Share
     </button>
   );

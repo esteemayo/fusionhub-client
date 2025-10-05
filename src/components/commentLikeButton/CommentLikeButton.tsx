@@ -21,6 +21,7 @@ const CommentLikeButton = ({
   return (
     <button
       type='button'
+      title='Like'
       onClick={onLike}
       className={heartBtnClasses}
       disabled={isLoading}

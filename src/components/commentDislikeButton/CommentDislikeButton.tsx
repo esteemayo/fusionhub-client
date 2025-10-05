@@ -23,6 +23,7 @@ const CommentDislikeButton = ({
   return (
     <button
       type='button'
+      title='Dislike'
       onClick={onDislike}
       className={dislikeBtnClasses}
       disabled={isLoading}

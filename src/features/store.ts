@@ -1,19 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import accountMenuReducer from './accountMenu/accountMenuSlice';
-import authReducer from './auth/authSlice';
-import bannerModalReducer from './bannerModal/bannerModalSlice';
-import sidebarReducer from './sidebar/sidebarSlice';
-import accountModalReducer from './accountModal/accountModalSlice';
-import postsMenuReducer from './postsMenu/postsMenuSlice';
-import commentModalReducer from './commentModal/commentModalSlice';
-import postModalReducer from './postModal/postModalSlice';
-import categoryModalReducer from './categoryModal/categoryModalSlice';
-import imageModalReducer from './imageModal/imageModalSlice';
-import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
-import shareModalReducer from './shareModal/shareModalSlice';
-import replyCommentModalReducer from './replyCommentModal/replyCommentModalSlice';
 import deleteModalReducer from './deleteModal/deleteModalSlice';
+import authReducer from './auth/authSlice';
+import accountMenuReducer from './accountMenu/accountMenuSlice';
+import sidebarReducer from './sidebar/sidebarSlice';
+import bannerModalReducer from './bannerModal/bannerModalSlice';
+import postsMenuReducer from './postsMenu/postsMenuSlice';
+import accountModalReducer from './accountModal/accountModalSlice';
+import postModalReducer from './postModal/postModalSlice';
+import commentModalReducer from './commentModal/commentModalSlice';
+import imageModalReducer from './imageModal/imageModalSlice';
+import categoryModalReducer from './categoryModal/categoryModalSlice';
+import shareModalReducer from './shareModal/shareModalSlice';
+import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -27,7 +26,6 @@ export const store = configureStore({
     commentModal: commentModalReducer,
     bannerModal: bannerModalReducer,
     imageModal: imageModalReducer,
-    replyCommentModal: replyCommentModalReducer,
     categoryModal: categoryModalReducer,
     deleteModal: deleteModalReducer,
     shareModal: shareModalReducer,

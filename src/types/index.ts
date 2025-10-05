@@ -716,6 +716,7 @@ export interface ProfileCommentProps {
   likeCount: number;
   dislikeCount: number;
   createdAt: string;
+  updatedAt: string;
   activeCardId: string | null;
   onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
@@ -745,6 +746,7 @@ export interface ProfileReplyProps {
   likeCount: number;
   dislikeCount: number;
   createdAt: string;
+  updatedAt: string;
   activeCardId: string | null;
   onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }

@@ -237,6 +237,10 @@ const Reply = ({
     return currentUser?.details._id;
   }, [currentUser]);
 
+  const authorId = useMemo(() => {
+    return author._id;
+  }, [author._id]);
+
   const isAdmin = useMemo(() => {
     return currentUser?.role === 'admin';
   }, [currentUser]);
@@ -318,9 +322,9 @@ const Reply = ({
             <div className='reply__wrapper'>
               <div className='reply__wrapper--time'>
                 <time dateTime={createdAt}>{formattedDate}</time>
-                {currentUser && hasUpdated && author._id !== userId && (
-                  <span>(Edited)</span>
-                )}
+                {currentUser &&
+                  hasUpdated &&
+                  authorId !== (userId as string) && <span>(Edited)</span>}
               </div>
               <div>
                 <button

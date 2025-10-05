@@ -24,9 +24,8 @@ import { useWebShare } from '../../hooks/useWebShare';
 import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import * as deleteModal from '../../features/deleteModal/deleteModalSlice';
 import * as postModal from '../../features/postModal/postModalSlice';
-import * as replyCommentModal from '../../features/replyCommentModal/replyCommentModalSlice';
+import * as deleteModal from '../../features/deleteModal/deleteModalSlice';
 
 import { ArticleProps } from '../../types';
 import { excerpts, stripHtml } from '../../utils';
@@ -106,13 +105,6 @@ const Article = ({
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     navigate(`/posts/${post.slug}`);
-  };
-
-  const handleComment = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    dispatch(replyCommentModal.onOpen());
-    dispatch(replyCommentModal.setPostId(post._id));
   };
 
   const handleLike = () => {
@@ -278,7 +270,11 @@ const Article = ({
           <div className='article__actions'>
             <div className='article__actions--group'>
               <div className='article__actions--comments'>
-                <button type='button' title='Comment' onClick={handleComment}>
+                <button
+                  type='button'
+                  title='Comment'
+                  onClick={() => console.log('open')}
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'

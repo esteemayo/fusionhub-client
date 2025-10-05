@@ -6,7 +6,6 @@ import CategoryModal from '../components/CategoryModal';
 import BannerModal from '../components/BannerModal';
 import PostModal from '../components/postModal/PostModal';
 import DeleteModal from '../components/DeleteModal';
-import ReplyCommentModal from '../components/ReplyCommentModal';
 
 const ModalProvider = () => {
   return (
@@ -16,7 +15,6 @@ const ModalProvider = () => {
       <CommentModal />
       <BannerModal />
       <ImageModal />
-      <ReplyCommentModal />
       <ShareModal />
       <CategoryModal />
       <DeleteModal />

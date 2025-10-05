@@ -11,11 +11,6 @@ const fetchRepliesOnComment = async (commentId: string) => {
   return data;
 };
 
-// const fetchPostCommentReplies = async (postId: string, commentId: string) => {
-//   const { data } = await postAPI.getPostCommentReplies(postId, commentId);
-//   return data;
-// };
-
 const createCommentReply = async (
   content: string,
   postId: string,
@@ -31,7 +26,6 @@ const createCommentReply = async (
 
 const createBuildReplyTree = async <T extends object>(reply: T) => {
   const { data } = await replyAPI.createReply(reply);
-  console.log(data);
   return data;
 };
 
@@ -53,12 +47,6 @@ export const useReply: IReply = (postId, commentId) => {
     queryFn: () => fetchRepliesOnComment(commentId),
     enabled: !!commentId,
   });
-
-  // const { isPending, error, data } = useQuery<ReplyType[] | [] | undefined>({
-  //   queryKey: ['replies', commentId],
-  //   queryFn: () => fetchPostCommentReplies(postId, commentId),
-  //   enabled: !!commentId,
-  // });
 
   const replyMutation = useMutation({
     mutationFn: (content: string) =>

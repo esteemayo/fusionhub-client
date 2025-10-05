@@ -298,10 +298,6 @@
       }
     }
 
-    &--time {
-      text-rendering: optimizeLegibility;
-    }
-
     &--reply {
       display: flex;
       align-items: center;
@@ -394,10 +390,21 @@
     align-items: center;
     gap: 1rem;
 
+    &--time {
+      font-weight: 700;
+      color: inherit;
+    }
+
+    &--status {
+      text-transform: capitalize;
+      font-weight: 400;
+      font-style: italic;
+      color: vars.$clr-gray-light-1;
+    }
+
     &--time,
     &--status {
       text-rendering: optimizeLegibility;
-      font-weight: 700;
       font-size: 1.3rem;
 
       @media screen and (max-width: 56.25em) {
@@ -435,17 +442,6 @@
       @media screen and (min-width: 125em) {
         font-size: 1.9rem;
       }
-    }
-
-    &--time {
-      color: inherit;
-    }
-
-    &--status {
-      text-transform: capitalize;
-      font-weight: 400;
-      font-style: italic;
-      color: vars.$clr-gray-light-1;
     }
   }
 

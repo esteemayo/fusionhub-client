@@ -254,10 +254,21 @@
       align-items: center;
       gap: 1rem;
 
+      time {
+        font-weight: 600;
+        color: vars.$clr-gray-light-3;
+      }
+
+      span {
+        text-transform: capitalize;
+        font-weight: 400;
+        font-style: italic;
+        color: vars.$clr-gray-light-1;
+      }
+
       time,
       span {
         text-rendering: optimizeLegibility;
-        font-weight: 600;
         font-size: 1.25rem;
 
         @media screen and (max-width: 56.25em) {
@@ -295,17 +306,6 @@
         @media screen and (min-width: 125em) {
           font-size: 1.85rem;
         }
-      }
-
-      time {
-        color: vars.$clr-gray-light-3;
-      }
-
-      span {
-        text-transform: capitalize;
-        font-weight: 400;
-        font-style: italic;
-        color: vars.$clr-gray-light-1;
       }
     }
 
