@@ -161,10 +161,14 @@ export interface TextareaProps
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
-export interface ReplyCommentTextareaProps {
+export interface ArticleCommentFormProps {
+  isShow: boolean;
   value: string;
-  placeholder: string;
+  maxRows?: number;
+  isLoading: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
+  onCancel(e?: React.MouseEvent<HTMLButtonElement>): void;
+  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface SelectProps

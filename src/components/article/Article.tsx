@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import millify from 'millify';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import parse from 'html-react-parser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
@@ -11,12 +11,13 @@ import GoogleImage from '../GoogleImage';
 
 import LikeIcon from '../LikeIcon';
 import SaveIcon from '../SaveIcon';
-
-import Badge from '../badge/Badge';
 import DislikeIcon from '../DislikeIcon';
 
+import Badge from '../badge/Badge';
 import Tooltip from '../tooltip/Tooltip';
+
 import ArticleAction from '../articleAction/ArticleAction';
+import ArticleCommentForm from '../articleCommentForm/ArticleCommentForm';
 
 import { useDate } from '../../hooks/useDate';
 import { useWebShare } from '../../hooks/useWebShare';
@@ -83,6 +84,8 @@ const Article = ({
   });
 
   const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const [isShow, setIsShow] = useState(false);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -104,7 +107,20 @@ const Article = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    navigate(`/posts/${post.slug}`);
+    navigate(`/post/${post.slug}`);
+  };
+
+  const handleComment = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsShow((value) => {
+      if (value) {
+        setValue('');
+        return false;
+      } else {
+        return true;
+      }
+    });
   };
 
   const handleLike = () => {
@@ -142,6 +158,21 @@ const Article = ({
     dispatch(deleteModal.setDeletePostId(post._id));
 
     handleClose();
+  };
+
+  const handleCancel = useCallback(
+    (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.stopPropagation();
+
+      setIsShow(false);
+      if (value.trim() !== '') setValue('');
+    },
+    [value]
+  );
+
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
+    console.log(value);
   };
 
   const parsedDesc = useMemo(() => {
@@ -183,7 +214,11 @@ const Article = ({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleClose();
+        if (isOpen) {
+          handleClose();
+        } else if (isShow) {
+          handleCancel();
+        }
       }
     };
 
@@ -192,7 +227,7 @@ const Article = ({
     return () => {
       window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {
     setIsOpen(activeCardId === post._id);
@@ -270,11 +305,7 @@ const Article = ({
           <div className='article__actions'>
             <div className='article__actions--group'>
               <div className='article__actions--comments'>
-                <button
-                  type='button'
-                  title='Comment'
-                  onClick={() => console.log('open')}
-                >
+                <button type='button' title='Comment' onClick={handleComment}>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
@@ -352,6 +383,14 @@ const Article = ({
               onUpdate={handleUpdate}
             />
           </div>
+          <ArticleCommentForm
+            isShow={isShow}
+            value={value}
+            isLoading={false}
+            onChange={setValue}
+            onCancel={handleCancel}
+            onSubmit={handleSubmit}
+          />
         </div>
       </div>
     </article>
