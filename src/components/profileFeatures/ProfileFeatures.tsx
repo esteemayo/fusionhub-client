@@ -62,6 +62,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     fetchNextPage: fetchNextPageArticles,
     hasNextPage: hasNextPageArticles,
     data: articlesData,
+    refetch: refetchArticles,
   } = useFeatureQuery('articles');
 
   const {
@@ -78,6 +79,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     fetchNextPage: fetchNextPageLikes,
     hasNextPage: hasNextPageLikes,
     data: likesData,
+    refetch: refetchLikes,
   } = useFeatureQuery('likes');
 
   const {
@@ -94,6 +96,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     fetchNextPage: fetchNextPageDislikes,
     hasNextPage: hasNextPageDislikes,
     data: dislikesData,
+    refetch: refetchDislikes,
   } = useFeatureQuery('dislikes');
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -152,6 +155,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         isLoading={isFetchingArticles}
         hasNextPage={hasNextPageArticles}
         error={articlesError}
+        refetch={refetchArticles}
         onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageArticles}
       />
@@ -178,6 +182,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         isLoading={isFetchingLikes}
         hasNextPage={hasNextPageLikes}
         error={likesError}
+        refetch={refetchLikes}
         onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageLikes}
       />
@@ -204,6 +209,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         isLoading={isFetchingDislikes}
         hasNextPage={hasNextPageDislikes}
         error={dislikesError}
+        refetch={refetchDislikes}
         onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageDislikes}
       />

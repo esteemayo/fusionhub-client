@@ -6,6 +6,7 @@ import './ReplyCommentForm.scss';
 
 const ReplyCommentForm = ({
   content,
+  size = 'md',
   editId,
   isOpen,
   maxRows,
@@ -54,6 +55,18 @@ const ReplyCommentForm = ({
       ? 'reply-comment-form__form show'
       : 'reply-comment-form__form hide';
   }, [isOpen]);
+
+  const textareaClasses = useMemo(() => {
+    return `reply-comment-form__textarea ${
+      size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
+    }`;
+  }, [size]);
+
+  const actionClasses = useMemo(() => {
+    return `reply-comment-form__actions ${
+      size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
+    }`;
+  }, [size]);
 
   const btnLabel = useMemo(() => {
     return isEditing && editId
@@ -113,7 +126,7 @@ const ReplyCommentForm = ({
             name='content'
             value={content || ''}
             placeholder={placeholder}
-            className='reply-comment-form__textarea'
+            className={textareaClasses}
             rows={3}
             onInput={onInput}
             onChange={(e) => onChange(e.target.value)}
@@ -121,7 +134,7 @@ const ReplyCommentForm = ({
             aria-label={placeholder}
             ref={textareaRef}
           />
-          <div className='reply-comment-form__actions'>
+          <div className={actionClasses}>
             <button
               type='button'
               className='reply-comment-form__actions--cancel'

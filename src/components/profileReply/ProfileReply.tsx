@@ -357,6 +357,7 @@ const ProfileReply = ({
           </div>
           <div className='profile-reply__wrap'>
             <CommentReplyAction
+              size='sm'
               url={replyUrl}
               title='Check out this reply'
               text={excerpts(content, 80)}
@@ -384,6 +385,7 @@ const ProfileReply = ({
             />
           </div>
           <ReplyForm
+            size='lg'
             isOpen={isOpen}
             isEditing={isEditing}
             content={value}

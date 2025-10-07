@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Badge from '../badge/Badge';
@@ -88,6 +89,11 @@ const Reply = ({
     if (isMore) {
       setIsMore(false);
     }
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(content);
+    toast.success('Copied to clipboard');
   };
 
   const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -360,7 +366,11 @@ const Reply = ({
               </h6>
               <Badge role={author.role} />
             </div>
-            <p onClick={handleCollapse} className='reply__content--text'>
+            <p
+              onClick={handleCollapse}
+              onDoubleClick={handleCopy}
+              className='reply__content--text'
+            >
               {contentLabel}
               <button
                 type='button'
@@ -425,7 +435,7 @@ const Reply = ({
           isEditing={isEditing}
           content={value}
           editId={editId}
-          isLoading={false} //TODO: change the loading state to replyMutation.isPending
+          isLoading={updateReplyMutation.isPending}
           onChange={setValue}
           onCancel={onCancelHandler}
           onSubmit={handleSubmit}

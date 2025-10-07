@@ -162,8 +162,9 @@ export interface TextareaProps
 }
 
 export interface ArticleCommentFormProps {
-  isShow: boolean;
   value: string;
+  size?: 'sm' | 'md' | 'lg';
+  isShow: boolean;
   maxRows?: number;
   isLoading: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
@@ -650,6 +651,9 @@ export interface ProfileArticlesProps {
   isLoading: boolean;
   hasNextPage: boolean;
   error: Error | null;
+  refetch(
+    options?: RefetchOptions
+  ): Promise<QueryObserverResult<InfiniteData<unknown, unknown>, Error>>;
   onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   fetchNextPage: (
     options?: FetchNextPageOptions
@@ -664,6 +668,9 @@ export interface ArticleProps {
   activeCardId: string | null;
   queryKey: 'articles' | 'likes' | 'dislikes';
   onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
+  refetch(
+    options?: RefetchOptions
+  ): Promise<QueryObserverResult<InfiniteData<unknown, unknown>, Error>>;
 }
 
 export interface ArticleActionProps {
@@ -1446,9 +1453,10 @@ export interface ReplyMenuListItemProps {
 }
 
 export interface ReplyFormProps {
+  content: string;
+  size?: 'sm' | 'md' | 'lg';
   isOpen: boolean;
   isEditing: boolean;
-  content: string;
   editId: string | null;
   maxRows?: number;
   isLoading: boolean;
@@ -1459,6 +1467,7 @@ export interface ReplyFormProps {
 
 export interface ReplyCommentFormProps {
   content: string;
+  size?: 'sm' | 'md' | 'lg';
   editId: string | null;
   isOpen: boolean;
   maxRows?: number;
@@ -1470,12 +1479,13 @@ export interface ReplyCommentFormProps {
 }
 
 export interface CommentFormProps {
+  content: string;
+  maxRows?: number;
   isLoading?: boolean;
   isPending?: boolean;
   comments: CommentType[];
-  onKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>): void;
-  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
-  ref: React.LegacyRef<HTMLTextAreaElement> | undefined;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
 }
 
 export interface PostDetailActionProps {

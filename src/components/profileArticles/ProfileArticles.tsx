@@ -18,6 +18,7 @@ const ProfileArticles = ({
   isLoading,
   hasNextPage,
   error,
+  refetch,
   onChangeCardId,
   fetchNextPage,
 }: ProfileArticlesProps) => {
@@ -53,6 +54,7 @@ const ProfileArticles = ({
                 activeCardId={activeCardId}
                 queryKey={queryKey}
                 onChangeCardId={onChangeCardId}
+                refetch={refetch}
               />
             );
           })}

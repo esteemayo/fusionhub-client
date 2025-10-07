@@ -5,9 +5,10 @@ import { ReplyFormProps } from '../../types';
 import './ReplyForm.scss';
 
 const ReplyForm = ({
+  content,
+  size = 'sm',
   isOpen,
   isEditing,
-  content,
   editId,
   maxRows,
   isLoading,
@@ -52,6 +53,18 @@ const ReplyForm = ({
   const replyFormClasses = useMemo(() => {
     return isOpen ? 'reply-form__form show' : 'reply-form__form hide';
   }, [isOpen]);
+
+  const textareaClasses = useMemo(() => {
+    return `reply-form__textarea ${
+      size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
+    }`;
+  }, [size]);
+
+  const actionClasses = useMemo(() => {
+    return `reply-form__actions ${
+      size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
+    }`;
+  }, [size]);
 
   const placeholder = useMemo(() => {
     return isEditing && editId
@@ -104,7 +117,7 @@ const ReplyForm = ({
             name='content'
             value={content || ''}
             placeholder={placeholder}
-            className='reply-form__textarea'
+            className={textareaClasses}
             rows={2}
             onInput={onInput}
             onChange={(e) => onChange(e.target.value)}
@@ -112,13 +125,13 @@ const ReplyForm = ({
             aria-label={placeholder}
             ref={textareaRef}
           />
-          <div className='reply-form__btn'>
+          <div className={actionClasses}>
             <button
               type='button'
               onClick={onCancel}
               disabled={isLoading}
               aria-disabled={isLoading}
-              className='reply-form__btn--cancel'
+              className='reply-form__actions--cancel'
             >
               Cancel
             </button>
@@ -126,7 +139,7 @@ const ReplyForm = ({
               type='submit'
               disabled={!content.trim() || isLoading}
               aria-disabled={!content.trim() || isLoading}
-              className='reply-form__btn--submit'
+              className='reply-form__actions--submit'
             >
               {btnLabel}
             </button>

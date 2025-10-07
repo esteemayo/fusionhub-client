@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from '../button/Button';
@@ -9,14 +9,37 @@ import { useAppSelector } from '../../hooks/hooks';
 import './CommentForm.scss';
 
 const CommentForm = ({
+  content,
+  maxRows,
   isLoading,
   isPending,
   comments,
-  onKeyDown,
+  onChange,
   onSubmit,
-  ref,
 }: CommentFormProps) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const onInput = () => {
+    const textarea = textareaRef.current!;
+
+    textarea.style.height = 'auto';
+    const lineHeight = parseInt(
+      getComputedStyle(textarea).lineHeight || '20',
+      10
+    );
+    const maxHeight = lineHeight * (maxRows || 5);
+
+    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
+    onChange(textarea.value);
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      onSubmit();
+    }
+  };
 
   const hasCommented = useMemo(() => {
     return (comments ?? [])?.some(
@@ -59,14 +82,17 @@ const CommentForm = ({
           )}
           <form onSubmit={onSubmit} className={formClasses}>
             <textarea
-              ref={ref}
               id='content'
               name='content'
+              value={content}
               placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
-              rows={5}
               className='comment-form__textarea'
+              rows={5}
+              onInput={onInput}
+              onChange={(e) => onChange(e.target.value)}
               onKeyDown={onKeyDown}
               aria-label='Write your thoughts here... Share your opinion or feedback about the post.'
+              ref={textareaRef}
             />
             <div className='comment-form__actions'>
               <Button

@@ -19,6 +19,7 @@ import Tooltip from '../tooltip/Tooltip';
 import ArticleAction from '../articleAction/ArticleAction';
 import ArticleCommentForm from '../articleCommentForm/ArticleCommentForm';
 
+import { useComment } from '../../hooks/useComment';
 import { useDate } from '../../hooks/useDate';
 import { useWebShare } from '../../hooks/useWebShare';
 
@@ -28,8 +29,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import * as postModal from '../../features/postModal/postModalSlice';
 import * as deleteModal from '../../features/deleteModal/deleteModalSlice';
 
-import { ArticleProps } from '../../types';
 import { excerpts, stripHtml } from '../../utils';
+import { ArticleProps } from '../../types';
 import { dislikePost, likePost } from '../../services/postService';
 
 import './Article.scss';
@@ -50,6 +51,7 @@ const Article = ({
   activeCardId,
   queryKey,
   onChangeCardId,
+  refetch,
 }: ArticleProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -59,25 +61,31 @@ const Article = ({
 
   const postUrl = `${window.location.origin}/post/${post?.slug}`;
 
+  const postId = useMemo(() => {
+    return post?._id;
+  }, [post?._id]);
+
   const parsedText = useMemo(() => {
     return parse(String(post?.desc)).toString();
   }, [post?.desc]);
 
   const text = excerpts(stripHtml(parsedText), 80);
 
-  const { error, handleShare } = useWebShare(post?.title, text, postUrl);
+  const { commentMutation } = useComment(postId);
+  const { isSaved, saveMutation, handleSave } = useSavedPosts(postId);
+
   const { formattedDate } = useDate(post.createdAt);
-  const { isSaved, saveMutation, handleSave } = useSavedPosts(post?._id);
+  const { error, handleShare } = useWebShare(post?.title, text, postUrl);
 
   const likeMutation = useMutation({
-    mutationFn: () => createLikePost(post._id),
+    mutationFn: () => createLikePost(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
     },
   });
 
   const disLikeMutation = useMutation({
-    mutationFn: () => createDislikePost(post._id),
+    mutationFn: () => createDislikePost(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKey, userId] });
     },
@@ -95,7 +103,7 @@ const Article = ({
         onChangeCardId(null);
         return false;
       } else {
-        onChangeCardId(post._id);
+        onChangeCardId(postId);
         return true;
       }
     });
@@ -155,24 +163,37 @@ const Article = ({
     if (!currentUser) return;
 
     dispatch(deleteModal.setQueryKey(queryKey));
-    dispatch(deleteModal.setDeletePostId(post._id));
+    dispatch(deleteModal.setDeletePostId(postId));
 
     handleClose();
   };
+
+  const handleClear = useCallback(() => {
+    setIsShow(false);
+    if (value.trim() !== '') setValue('');
+  }, [value]);
 
   const handleCancel = useCallback(
     (e?: React.MouseEvent<HTMLButtonElement>) => {
       e?.stopPropagation();
 
-      setIsShow(false);
-      if (value.trim() !== '') setValue('');
+      if (!currentUser) return;
+      handleClear();
     },
-    [value]
+    [currentUser, handleClear]
   );
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-    console.log(value);
+
+    if (!currentUser) return;
+
+    commentMutation.mutate(value, {
+      onSuccess: () => {
+        handleClear();
+        refetch();
+      },
+    });
   };
 
   const parsedDesc = useMemo(() => {
@@ -230,8 +251,8 @@ const Article = ({
   }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {
-    setIsOpen(activeCardId === post._id);
-  }, [activeCardId, post._id]);
+    setIsOpen(activeCardId === postId);
+  }, [activeCardId, postId]);
 
   useEffect(() => {
     if (error) {
@@ -298,7 +319,7 @@ const Article = ({
           </div>
           <div className='article__desc'>
             {parse(parsedDesc)}
-            <button type='button' onClick={handleClick}>
+            <button type='button' onClick={handleClick} aria-label='more'>
               more
             </button>
           </div>
@@ -386,7 +407,7 @@ const Article = ({
           <ArticleCommentForm
             isShow={isShow}
             value={value}
-            isLoading={false}
+            isLoading={commentMutation.isPending}
             onChange={setValue}
             onCancel={handleCancel}
             onSubmit={handleSubmit}

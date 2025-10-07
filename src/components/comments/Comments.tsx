@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
@@ -29,13 +29,12 @@ const Comments = ({ postId, slug }: CommentsProps) => {
     commentMutation,
   } = useComment(postId);
 
-  const ref = useRef<HTMLTextAreaElement>(null);
-
   const [isLoading, setIsLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [content, setContent] = useState('');
   const [commentToShow, setCommentToShow] = useState(5);
-  const [comments, setComments] = useState(data);
+  const [isOpen, setIsOpen] = useState(false);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  const [comments, setComments] = useState(data);
 
   const { sort, setSort, sortedComments } = useSortedComments(comments);
 
@@ -99,26 +98,14 @@ const Comments = ({ postId, slug }: CommentsProps) => {
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
 
-    const target = e?.target as HTMLFormElement;
-
-    const form = new FormData(target);
-
-    const content = form.get('content') as string;
-
     if (!currentUser) return;
 
     if (content) {
       commentMutation.mutate(content, {
         onSuccess: () => {
-          target.reset();
+          setContent('');
         },
       });
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      handleSubmit();
     }
   };
 
@@ -168,12 +155,12 @@ const Comments = ({ postId, slug }: CommentsProps) => {
           onSort={setSort}
         />
         <CommentForm
+          content={content}
           isLoading={commentMutation.isPending}
           isPending={isPending}
           comments={comments!}
-          onKeyDown={handleKeyDown}
+          onChange={setContent}
           onSubmit={handleSubmit}
-          ref={ref}
         />
       </div>
     </section>

@@ -6,6 +6,7 @@ import './ArticleCommentForm.scss';
 
 const ArticleCommentForm = ({
   isShow,
+  size = 'lg',
   value,
   maxRows,
   isLoading,
@@ -32,7 +33,7 @@ const ArticleCommentForm = ({
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === ' Enter') {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       onSubmit();
     }
   };
@@ -42,6 +43,18 @@ const ArticleCommentForm = ({
       ? 'article-comment-form__form show'
       : 'article-comment-form__form hide';
   }, [isShow]);
+
+  const textareaClasses = useMemo(() => {
+    return `article-comment-form__textarea ${
+      size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
+    }`;
+  }, [size]);
+
+  const actionClasses = useMemo(() => {
+    return `article-comment-form__actions ${
+      size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
+    }`;
+  }, [size]);
 
   useEffect(() => {
     const inner = innerRef.current;
@@ -69,16 +82,16 @@ const ArticleCommentForm = ({
             name='content'
             id='content'
             value={value}
-            placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
-            className='article-comment-form__textarea'
+            placeholder='Write your thoughts here... Share your opinion or feedback about the article.'
+            className={textareaClasses}
             rows={5}
             onInput={onInput}
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={onKeyDown}
-            aria-label='Write your thoughts here... Share your opinion or feedback about the post.'
+            aria-label='Write your thoughts here... Share your opinion or feedback about the article.'
             ref={textareaRef}
           />
-          <div className='article-comment-form__actions'>
+          <div className={actionClasses}>
             <button
               type='button'
               className='article-comment-form__actions--cancel'
