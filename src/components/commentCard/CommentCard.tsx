@@ -326,7 +326,7 @@ const CommentCard = ({
     <article id={`comment-${commentId}`} className='comment-card'>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
-          <Link to={url}>
+          <Link to={url} aria-label={url}>
             {author.fromGoogle && author.image?.startsWith('https') ? (
               <GoogleImage
                 src={author.image ?? '/user-default.jpg'}
@@ -349,11 +349,20 @@ const CommentCard = ({
         <div className='comment-card__details'>
           <div className='comment-card__box'>
             <div className='comment-card__date'>
-              <time dateTime={createdAt} className='comment-card__date--time'>
+              <time
+                dateTime={createdAt}
+                aria-label={formattedDate}
+                className='comment-card__date--time'
+              >
                 {formattedDate}
               </time>
               {currentUser && isUpdated && authorId !== (userId as string) && (
-                <span className='comment-card__date--status'>(Edited)</span>
+                <span
+                  aria-label='Edited'
+                  className='comment-card__date--status'
+                >
+                  (Edited)
+                </span>
               )}
             </div>
             <div>
@@ -386,13 +395,16 @@ const CommentCard = ({
           </div>
           <div className='comment-card__details--info'>
             <h5 className='comment-card__details--username'>
-              <Link to={url}>{author.name}</Link>
+              <Link to={url} aria-label={author.name}>
+                {author.name}
+              </Link>
             </h5>
             <Badge role={author.role} />
           </div>
           <p
             onClick={handleCollapse}
             onDoubleClick={handleCopy}
+            aria-label={contentLabel}
             className='comment-card__details--desc'
           >
             {contentLabel}
@@ -424,6 +436,7 @@ const CommentCard = ({
         <button
           type='button'
           onClick={toggleActionHandler}
+          aria-label={isShow ? 'Open menu' : 'Close menu'}
           className={actionBtnClasses}
         >
           <svg

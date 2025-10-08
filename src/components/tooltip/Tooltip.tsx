@@ -91,6 +91,7 @@ const Tooltip = ({
         {children}
       </span>
       <div
+        aria-label={title}
         className={tooltipClasses}
         style={{ transform: `translateX(${xOffset}px)`, width: tooltipWidth }}
       >

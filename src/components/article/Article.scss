@@ -328,6 +328,35 @@
     }
   }
 
+  &__image {
+    display: none;
+
+    @media screen and (max-width: 34.375em) {
+      display: block;
+      width: 100%;
+      height: 25rem;
+      border-top-left-radius: 1.25rem;
+      border-top-right-radius: 1.25rem;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      height: 23rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 20rem;
+    }
+
+    &--img {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      object-fit: cover;
+    }
+  }
+
   &__desc {
     font-size: 1.4rem;
     color: vars.$clr-gray-light-3;

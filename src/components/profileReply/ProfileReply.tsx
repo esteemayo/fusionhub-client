@@ -301,11 +301,20 @@ const ProfileReply = ({
         <div className='profile-reply__wrapper'>
           <div className='profile-reply__box'>
             <div className='profile-reply__date'>
-              <time dateTime={createdAt} className='profile-reply__date--time'>
+              <time
+                dateTime={createdAt}
+                aria-label={formattedDate}
+                className='profile-reply__date--time'
+              >
                 {formattedDate}
               </time>
               {currentUser && hasUpdated && authorId !== (userId as string) && (
-                <span className='profile-reply__date--status'>(Edited)</span>
+                <span
+                  aria-label='Edited'
+                  className='profile-reply__date--status'
+                >
+                  (Edited)
+                </span>
               )}
             </div>
             <button
@@ -336,19 +345,25 @@ const ProfileReply = ({
           </div>
           <div className='profile-reply__info'>
             <div className='profile-reply__info--author'>
-              <span className='profile-reply__info--name' title={author.name}>
+              <span
+                title={author.name}
+                aria-label={author.name}
+                className='profile-reply__info--name'
+              >
                 {author.name}
               </span>
               <Badge role={author.role} />
             </div>
             <p
-              className='profile-reply__info--content'
               onClick={handleCollapse}
+              aria-label={contentLabel}
+              className='profile-reply__info--content'
             >
               {contentLabel}
               <button
                 type='button'
                 onClick={handleClick}
+                aria-label={btnLabel}
                 className={btnClasses}
               >
                 {btnLabel}

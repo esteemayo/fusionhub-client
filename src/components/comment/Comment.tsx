@@ -53,6 +53,10 @@ const Comment = ({
     return (comments ?? [])?.length > 1 ? 'Comments' : 'Comment';
   }, [comments]);
 
+  const filterBoxClasses = useMemo(() => {
+    return (comments ?? [])?.length < 1 ? 'comment__box mb' : 'comment__box';
+  }, [comments]);
+
   const uniqueCommentUsers = useMemo(() => {
     const seenIds = new Set();
 
@@ -92,16 +96,18 @@ const Comment = ({
           />
         </div>
       </div>
-      <CommentFilters
-        sort={sort}
-        isOpen={isOpen}
-        isLoading={isPending}
-        totalComments={comments?.length}
-        totalCommentUsers={uniqueCommentUsers?.length}
-        onClose={onClose}
-        onToggle={onToggle}
-        onSort={onSort}
-      />
+      <div className={filterBoxClasses}>
+        <CommentFilters
+          sort={sort}
+          isOpen={isOpen}
+          isLoading={isPending}
+          totalComments={comments?.length}
+          totalCommentUsers={uniqueCommentUsers?.length}
+          onClose={onClose}
+          onToggle={onToggle}
+          onSort={onSort}
+        />
+      </div>
       {comments?.length < 1 && !isPending ? (
         <EmptyMessage
           title='No comments yet.'

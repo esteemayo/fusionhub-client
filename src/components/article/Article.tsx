@@ -263,7 +263,7 @@ const Article = ({
   return (
     <article className='article'>
       <div className='article__container'>
-        <Link to={url} className='article__cover'>
+        <Link to={url} aria-label={url} className='article__cover'>
           {post.author.fromGoogle && post.author.image?.startsWith('https') ? (
             <GoogleImage
               src={post.author.image ?? '/user-default.jpg'}
@@ -284,7 +284,7 @@ const Article = ({
         </Link>
         <div className='article__wrapper'>
           <div className='article__profile'>
-            <Link to={url}>
+            <Link to={url} aria-label={url}>
               <Tooltip
                 title={post.author.name}
                 className='article__profile--name'
@@ -294,7 +294,7 @@ const Article = ({
             </Link>
             <Badge role={post.author.role} />
             <div className='article__profile--username'>
-              <Link to={url}>
+              <Link to={url} aria-label={url}>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -309,14 +309,31 @@ const Article = ({
                     d='M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25'
                   />
                 </svg>
-                <span>{post.author.username}</span>
+                <span aria-label={post.author.username}>
+                  {post.author.username}
+                </span>
               </Link>
             </div>
             <span className='article__profile--dot'>•</span>
-            <time dateTime={post.createdAt} className='article__profile--time'>
+            <time
+              dateTime={post.createdAt}
+              aria-label={formattedDate}
+              className='article__profile--time'
+            >
               {formattedDate}
             </time>
           </div>
+          {post.img && (
+            <div className='article__image'>
+              <Image
+                src={post.img}
+                width={300}
+                height={250}
+                alt={post.title}
+                className='article__image--img'
+              />
+            </div>
+          )}
           <div className='article__desc'>
             {parse(parsedDesc)}
             <button type='button' onClick={handleClick} aria-label='more'>
@@ -326,7 +343,12 @@ const Article = ({
           <div className='article__actions'>
             <div className='article__actions--group'>
               <div className='article__actions--comments'>
-                <button type='button' title='Comment' onClick={handleComment}>
+                <button
+                  type='button'
+                  title='Comment'
+                  onClick={handleComment}
+                  aria-label='Comment'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
@@ -345,7 +367,9 @@ const Article = ({
                     />
                   </svg>
                   {post.comments.length > 0 && (
-                    <span>{millify(post.comments.length)}</span>
+                    <span aria-label={millify(post.comments.length)}>
+                      {millify(post.comments.length)}
+                    </span>
                   )}
                 </button>
               </div>
@@ -355,9 +379,15 @@ const Article = ({
                   title='Like Post'
                   onClick={handleLike}
                   disabled={likeMutation.isPending}
+                  aria-label='Like Post'
+                  aria-disabled={likeMutation.isPending}
                 >
                   <LikeIcon liked={isLiked} />
-                  {post.likeCount > 0 && <span>{millify(post.likeCount)}</span>}
+                  {post.likeCount > 0 && (
+                    <span aria-label={millify(post.likeCount)}>
+                      {millify(post.likeCount)}
+                    </span>
+                  )}
                 </button>
               </div>
               <div className='article__actions--dislikes'>
@@ -366,10 +396,14 @@ const Article = ({
                   title='Dislike Post'
                   onClick={handleDislike}
                   disabled={disLikeMutation.isPending}
+                  aria-label='Dislike Post'
+                  aria-disabled={disLikeMutation.isPending}
                 >
                   <DislikeIcon disliked={isDisliked} />
                   {post.dislikeCount > 0 && (
-                    <span>{millify(post.dislikeCount)}</span>
+                    <span aria-label={millify(post.dislikeCount)}>
+                      {millify(post.dislikeCount)}
+                    </span>
                   )}
                 </button>
               </div>
@@ -379,16 +413,27 @@ const Article = ({
                   title='Save Post'
                   onClick={handleSave}
                   disabled={saveMutation.isPending || isAdmin}
+                  aria-label='Save Post'
+                  aria-disabled={saveMutation.isPending || isAdmin}
                 >
                   <SaveIcon
                     isLoading={saveMutation.isPending}
                     hasSaved={isSaved}
                   />
-                  {post.savedCount > 0 && <span>{post.savedCount}</span>}
+                  {post.savedCount > 0 && (
+                    <span aria-label={millify(post.savedCount)}>
+                      {millify(post.savedCount)}
+                    </span>
+                  )}
                 </button>
               </div>
               <div className='article__actions--share'>
-                <button type='button' title='Share Post' onClick={handleShare}>
+                <button
+                  type='button'
+                  title='Share Post'
+                  onClick={handleShare}
+                  aria-label='Share Post'
+                >
                   <ShareIcon />
                 </button>
               </div>

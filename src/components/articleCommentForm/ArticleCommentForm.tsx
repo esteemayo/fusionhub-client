@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ArticleCommentFormProps } from '../../types';
 
@@ -17,6 +17,8 @@ const ArticleCommentForm = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const [showHint, setShowHint] = useState(false);
 
   const onInput = () => {
     const textarea = textareaRef.current!;
@@ -38,6 +40,14 @@ const ArticleCommentForm = ({
     }
   };
 
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setShowHint((value) => {
+      return !value;
+    });
+  };
+
   const formClasses = useMemo(() => {
     return isShow
       ? 'article-comment-form__form show'
@@ -55,6 +65,18 @@ const ArticleCommentForm = ({
       size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
     }`;
   }, [size]);
+
+  const hintClasses = useMemo(() => {
+    return showHint
+      ? 'article-comment-form__hint show'
+      : 'article-comment-form__hint hide';
+  }, [showHint]);
+
+  const toggleBtnClasses = useMemo(() => {
+    return showHint
+      ? 'article-comment-form__toggle show'
+      : 'article-comment-form__toggle hide';
+  }, [showHint]);
 
   useEffect(() => {
     const inner = innerRef.current;
@@ -97,6 +119,7 @@ const ArticleCommentForm = ({
               className='article-comment-form__actions--cancel'
               onClick={onCancel}
               disabled={isLoading}
+              aria-label='Cancel'
               aria-disabled={isLoading}
             >
               Cancel
@@ -109,6 +132,32 @@ const ArticleCommentForm = ({
               aria-disabled={!value.trim() || isLoading}
             >
               {isLoading ? 'Submitting...' : 'Submit Reply'}
+            </button>
+          </div>
+          <div className='reply-comment-form__hint-bar'>
+            <div className={hintClasses}>
+              Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to post
+            </div>
+            <button
+              type='button'
+              onClick={handleToggle}
+              aria-label={showHint ? 'Hide reply hint' : 'Show reply hint'}
+              className={toggleBtnClasses}
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                strokeWidth={1.5}
+                stroke='currentColor'
+                className='size-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z'
+                />
+              </svg>
             </button>
           </div>
         </form>

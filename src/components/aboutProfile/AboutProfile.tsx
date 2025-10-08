@@ -51,7 +51,12 @@ const AboutProfile = ({ about }: { about: string }) => {
         <h4 className='about-profile__container--heading'>About me</h4>
         <div onClick={handleCollapse} className='about-profile__wrapper'>
           {parse(String(parsedText))}
-          <button type='button' className={btnClasses} onClick={handleClick}>
+          <button
+            type='button'
+            onClick={handleClick}
+            aria-label={btnLabel}
+            className={btnClasses}
+          >
             {btnLabel}
           </button>
         </div>

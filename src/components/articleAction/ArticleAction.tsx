@@ -38,7 +38,12 @@ const ArticleAction = ({
 
   return (
     <div className={actionBtnClasses}>
-      <button type='button' onClick={onToggle} className='article-action__btn'>
+      <button
+        type='button'
+        onClick={onToggle}
+        aria-label={isOpen ? 'Open menu' : 'Close menu'}
+        className='article-action__btn'
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'

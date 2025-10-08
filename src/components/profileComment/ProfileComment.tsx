@@ -295,12 +295,18 @@ const ProfileComment = ({
             <div className='profile-comment__date'>
               <time
                 dateTime={createdAt}
+                aria-label={formattedDate}
                 className='profile-comment__date--time'
               >
                 {formattedDate}
               </time>
               {currentUser && isUpdated && authorId !== (userId as string) && (
-                <span className='profile-comment__date--status'>(Edited)</span>
+                <span
+                  aria-label='Edited'
+                  className='profile-comment__date--status'
+                >
+                  (Edited)
+                </span>
               )}
             </div>
             <button
@@ -331,19 +337,25 @@ const ProfileComment = ({
           </div>
           <div className='profile-comment__info'>
             <div className='profile-comment__info--author'>
-              <span className='profile-comment__info--name' title={author.name}>
+              <span
+                title={author.name}
+                aria-label={author.name}
+                className='profile-comment__info--name'
+              >
                 {author.name}
               </span>
               <Badge role={author.role} />
             </div>
             <p
-              className='profile-comment__info--content'
               onClick={handleCollapse}
+              aria-label={contentLabel}
+              className='profile-comment__info--content'
             >
               {contentLabel}
               <button
                 type='button'
                 onClick={handleClick}
+                aria-label={btnLabel}
                 className={btnClasses}
               >
                 {btnLabel}

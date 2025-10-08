@@ -14,7 +14,12 @@ const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
   }, [isOpen, label, type]);
 
   return (
-    <button type='button' className={toggleBtnClasses} onClick={onClick}>
+    <button
+      type='button'
+      onClick={onClick}
+      aria-label={btnLabel}
+      className={toggleBtnClasses}
+    >
       <span>{btnLabel}</span>
       {isOpen ? (
         <svg

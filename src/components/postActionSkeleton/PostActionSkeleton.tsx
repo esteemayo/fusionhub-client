@@ -8,27 +8,29 @@ const PostActionSkeleton = () => {
       <div className='post-action-skeleton__container'>
         <div className='post-action-skeleton__user'>
           <div className='post-action-skeleton__wrapper'>
-            <div className='post-action-skeleton__box'>
-              <Skeleton
-                width={185}
-                height={185}
-                className='post-action-skeleton__box--icon'
-              />
-              <Skeleton
-                width={70}
-                className='post-action-skeleton__box--label'
-              />
-            </div>
-            <div className='post-action-skeleton__box'>
-              <Skeleton
-                width={185}
-                height={185}
-                className='post-action-skeleton__box--icon'
-              />
-              <Skeleton
-                width={70}
-                className='post-action-skeleton__box--label'
-              />
+            <div className='post-action-skeleton__wrap'>
+              <div className='post-action-skeleton__box'>
+                <Skeleton
+                  width={185}
+                  height={185}
+                  className='post-action-skeleton__box--icon'
+                />
+                <Skeleton
+                  width={70}
+                  className='post-action-skeleton__box--label'
+                />
+              </div>
+              <div className='post-action-skeleton__box'>
+                <Skeleton
+                  width={185}
+                  height={185}
+                  className='post-action-skeleton__box--icon'
+                />
+                <Skeleton
+                  width={70}
+                  className='post-action-skeleton__box--label'
+                />
+              </div>
             </div>
             <div className='post-action-skeleton__box'>
               <Skeleton

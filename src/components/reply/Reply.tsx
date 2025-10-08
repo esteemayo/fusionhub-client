@@ -304,7 +304,7 @@ const Reply = ({
       <article id={`reply-${replyId}`} className={replyClasses}>
         <div className='reply__container'>
           <div className='reply__author'>
-            <Link to={url}>
+            <Link to={url} aria-label={url}>
               {author.fromGoogle && author.image?.startsWith('https') ? (
                 <GoogleImage
                   src={author.image ?? '/user-default.jpg'}
@@ -327,10 +327,14 @@ const Reply = ({
           <div className='reply__content'>
             <div className='reply__wrapper'>
               <div className='reply__wrapper--time'>
-                <time dateTime={createdAt}>{formattedDate}</time>
+                <time dateTime={createdAt} aria-label={formattedDate}>
+                  {formattedDate}
+                </time>
                 {currentUser &&
                   hasUpdated &&
-                  authorId !== (userId as string) && <span>(Edited)</span>}
+                  authorId !== (userId as string) && (
+                    <span aria-label='Edited'>(Edited)</span>
+                  )}
               </div>
               <div>
                 <button
@@ -362,13 +366,16 @@ const Reply = ({
             </div>
             <div className='reply__content--user'>
               <h6 className='reply__content--username'>
-                <Link to={url}>{author.name}</Link>
+                <Link to={url} aria-label={author.name}>
+                  {author.name}
+                </Link>
               </h6>
               <Badge role={author.role} />
             </div>
             <p
               onClick={handleCollapse}
               onDoubleClick={handleCopy}
+              aria-label={contentLabel}
               className='reply__content--text'
             >
               {contentLabel}
@@ -401,6 +408,7 @@ const Reply = ({
           <button
             type='button'
             onClick={handleToggle}
+            aria-label={isShow ? 'Open menu' : 'Close menu'}
             className={actionBtnClasses}
           >
             <svg

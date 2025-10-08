@@ -87,6 +87,14 @@
     }
   }
 
+  &__box {
+    margin-bottom: 0;
+
+    &.mb {
+      margin-bottom: 2.5rem;
+    }
+  }
+
   &__no-comments,
   &__error {
     display: flex;

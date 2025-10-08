@@ -91,7 +91,7 @@
       .react-loading-skeleton {
         --base-color: #021124 !important;
 
-        @include bp.sm {
+        @media screen and (max-width: 31.25em) {
           --base-color: #152233 !important;
         }
       }
@@ -141,7 +141,7 @@
         .react-loading-skeleton {
           --base-color: #021124 !important;
 
-          @include bp.sm {
+          @media screen and (max-width: 31.25em) {
             --base-color: #152233 !important;
           }
         }
