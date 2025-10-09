@@ -1,3 +1,4 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
@@ -5,154 +6,182 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.45rem;
 
-  border: 0;
-  outline: 0;
-  background-color: transparent;
-  color: vars.$clr-gray-light-3;
-  cursor: pointer;
+  position: relative;
 
-  &.show {
+  &__wrapper {
     display: flex;
-    visibility: visible;
-    opacity: 1;
-    z-index: 1000;
-  }
+    align-items: center;
 
-  &.hide {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-    z-index: -1;
-  }
+    position: relative;
 
-  &:disabled {
-    opacity: 0.75;
-    cursor: default;
-  }
+    &--btn {
+      display: flex;
+      align-items: center;
 
-  svg {
-    width: 1.75rem;
-    height: 1.75rem;
-    color: currentColor;
-    stroke-width: 2px;
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      color: vars.$clr-inactive;
+      cursor: pointer;
+      transition: transform 0.2s ease, color 0.2s ease;
+      position: relative;
 
-    @media screen and (max-width: 56.25em) {
-      width: 1.85rem;
-      height: 1.85rem;
-    }
+      &.active {
+        color: vars.$clr-inactive;
+        animation: shake 0.4s ease backwards 1s;
+      }
 
-    @media screen and (max-width: 51.25em) {
-      width: 2.25rem;
-      height: 2.25rem;
-    }
+      &.active + .comment-dislike-button__count {
+        animation: popCount 0.4s ease backwards 1s;
+      }
 
-    @media screen and (max-width: 34.375em) {
-      width: 2.3rem;
-      height: 2.3rem;
-    }
+      &:active {
+        transform: scale(0.8);
+      }
 
-    @include bp.sm {
-      width: 2.05rem;
-      height: 2.05rem;
-    }
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
+      }
 
-    @media screen and (max-width: 26.875em) {
-      width: 1.95rem;
-      height: 1.95rem;
-    }
-
-    @media screen and (max-width: 22.5em) {
-      width: 1.85rem;
-      height: 1.85rem;
-    }
-
-    @media screen and (max-width: 21.5em) {
-      width: 1.75rem;
-      height: 1.75rem;
-    }
-
-    @media screen and (max-width: 18.75em) {
-      width: 1.65rem;
-      height: 1.65rem;
-    }
-
-    @media screen and (max-width: 17.5em) {
-      width: 1.55rem;
-      height: 1.55rem;
-    }
-
-    @media screen and (min-width: 106.25em) {
-      width: 2.15rem;
-      height: 2.15rem;
-    }
-
-    @media screen and (min-width: 112.5em) {
-      width: 2.3rem;
-      height: 2.3rem;
-    }
-
-    @media screen and (min-width: 125em) {
-      width: 3.1rem;
-      height: 3.1rem;
-    }
-  }
-
-  &.small {
-    svg {
-      width: 1.65rem;
-      height: 1.65rem;
-      color: currentColor;
-      stroke-width: 2px;
-
-      @media screen and (max-width: 56.25em) {
+      svg {
         width: 1.75rem;
         height: 1.75rem;
+        color: currentColor;
+        stroke-width: 2px;
+
+        @media screen and (max-width: 56.25em) {
+          width: 1.85rem;
+          height: 1.85rem;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (max-width: 34.375em) {
+          width: 2.3rem;
+          height: 2.3rem;
+        }
+
+        @include bp.sm {
+          width: 2.05rem;
+          height: 2.05rem;
+        }
+
+        @media screen and (max-width: 26.875em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          width: 1.85rem;
+          height: 1.85rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 1.55rem;
+          height: 1.55rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 2.15rem;
+          height: 2.15rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.3rem;
+          height: 2.3rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3.1rem;
+          height: 3.1rem;
+        }
       }
 
-      @media screen and (max-width: 51.25em) {
-        width: 1.85rem;
-        height: 1.85rem;
-      }
+      &.small {
+        svg {
+          width: 1.65rem;
+          height: 1.65rem;
+          color: currentColor;
+          stroke-width: 2px;
 
-      @include bp.sm {
-        width: 1.8rem;
-        height: 1.8rem;
-      }
+          @media screen and (max-width: 56.25em) {
+            width: 1.75rem;
+            height: 1.75rem;
+          }
 
-      @media screen and (max-width: 21.5em) {
-        width: 1.75rem;
-        height: 1.75rem;
-      }
+          @media screen and (max-width: 51.25em) {
+            width: 1.85rem;
+            height: 1.85rem;
+          }
 
-      @media screen and (max-width: 18.75em) {
-        width: 1.65rem;
-        height: 1.65rem;
-      }
+          @include bp.sm {
+            width: 1.8rem;
+            height: 1.8rem;
+          }
 
-      @media screen and (min-width: 106.25em) {
-        width: 1.85rem;
-        height: 1.85rem;
-      }
+          @media screen and (max-width: 21.5em) {
+            width: 1.75rem;
+            height: 1.75rem;
+          }
 
-      @media screen and (min-width: 112.5em) {
-        width: 2rem;
-        height: 2rem;
-      }
+          @media screen and (max-width: 18.75em) {
+            width: 1.65rem;
+            height: 1.65rem;
+          }
 
-      @media screen and (min-width: 125em) {
-        width: 2.35rem;
-        height: 2.35rem;
+          @media screen and (min-width: 106.25em) {
+            width: 1.85rem;
+            height: 1.85rem;
+          }
+
+          @media screen and (min-width: 112.5em) {
+            width: 2rem;
+            height: 2rem;
+          }
+
+          @media screen and (min-width: 125em) {
+            width: 2.35rem;
+            height: 2.35rem;
+          }
+        }
       }
+    }
+
+    &--float-icon {
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: floatUp 0.8s ease forwards;
+      font-size: 1.5rem;
+      pointer-events: none;
     }
   }
 
-  span {
+  &__count {
     font-weight: 500;
     font-size: 1.125rem;
     font-variant: tabular-nums;
     color: currentColor;
+    opacity: 0.8;
+    transition: transform 0.3s ease, color 0.3s ease;
+    animation: popCount 0.4s ease backwards;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.225rem;

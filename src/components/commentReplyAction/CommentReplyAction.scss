@@ -6,14 +6,16 @@
   align-items: center;
   gap: 1rem;
 
-  button {
+  div {
+    backface-visibility: hidden;
+
     &:nth-child(2) {
       &::after {
         content: '';
         display: inline-block;
         width: 1px;
         height: 1.25rem;
-        background-color: vars.$clr-gray-light-1;
+        background-color: vars.$clr-inactive;
         margin-left: 0.65rem;
       }
     }

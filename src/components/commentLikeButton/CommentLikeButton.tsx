@@ -14,22 +14,44 @@ const CommentLikeButton = ({
   isLoading,
   onLike,
 }: CommentLikeButtonProps) => {
-  const heartBtnClasses = useMemo(() => {
-    return size === 'sm' ? 'comment-like-button small' : 'comment-like-button';
-  }, [size]);
+  const likeBtnClasses = useMemo(() => {
+    return size === 'sm'
+      ? `comment-like-button__wrapper--btn small ${hasLiked ? 'active' : ''}`
+      : `comment-like-button__wrapper--btn ${hasLiked ? 'active' : ''}`;
+  }, [hasLiked, size]);
 
   return (
-    <button
-      type='button'
-      title='Like'
-      onClick={onLike}
-      className={heartBtnClasses}
-      disabled={isLoading}
-      aria-disabled={isLoading}
-    >
-      <LikeIcon liked={hasLiked} />
-      {count > 0 && <span>{millify(count)}</span>}
-    </button>
+    <div className='comment-like-button'>
+      <div className='comment-like-button__wrapper'>
+        <button
+          type='button'
+          title='Like'
+          onClick={onLike}
+          className={likeBtnClasses}
+          disabled={isLoading}
+          aria-label='Like button'
+          aria-disabled={isLoading}
+        >
+          <LikeIcon liked={hasLiked} />
+          {hasLiked && (
+            <span
+              aria-label='Like float icon'
+              className='comment-like-button__wrapper--float-icon'
+            >
+              ❤
+            </span>
+          )}
+        </button>
+      </div>
+      {count > 0 && (
+        <span
+          aria-label={millify(count)}
+          className='comment-like-button__count'
+        >
+          {millify(count)}
+        </span>
+      )}
+    </div>
   );
 };
 
