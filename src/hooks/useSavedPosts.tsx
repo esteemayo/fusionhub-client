@@ -69,9 +69,7 @@ export const useSavedPosts: ISavedPosts = (postId) => {
     },
   });
 
-  const handleSave = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
+  const handleSave = () => {
     if (!currentUser) {
       return null;
     }

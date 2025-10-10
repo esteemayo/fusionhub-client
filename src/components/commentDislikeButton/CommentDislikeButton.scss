@@ -30,7 +30,7 @@
 
       &.active {
         color: vars.$clr-inactive;
-        animation: shake 0.4s ease backwards 1s;
+        animation: shake 0.4s ease backwards 0.5s;
       }
 
       &.active + .comment-dislike-button__count {

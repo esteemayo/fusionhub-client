@@ -1,102 +1,119 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
 .post-comment {
-  &:link,
-  &:visited {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
+  display: flex;
+  align-items: center;
 
-    border: 0;
-    outline: 0;
-    background-color: transparent;
-    color: vars.$clr-gray-light-1;
-    cursor: pointer;
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
 
-    @media screen and (max-width: 31.25em) {
-      padding: 0.8rem 1.25rem;
-      background-color: vars.$clr-secondary-blue !important;
-      border-radius: 10rem;
-    }
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      color: vars.$clr-gray-light-1;
+      cursor: pointer;
 
-    &:disabled {
-      opacity: 0.75;
-      cursor: default;
-    }
-
-    svg {
-      width: 1.85rem;
-      height: 1.85rem;
-      color: vars.$clr-gray-light-3;
-      stroke-width: 2px;
-
-      @media screen and (max-width: 56.25em) {
-        width: 1.95rem;
-        height: 1.95rem;
+      @media screen and (max-width: 31.25em) {
+        padding: 0.8rem 1.25rem;
+        background-color: vars.$clr-secondary-blue !important;
+        border-radius: 10rem;
       }
 
-      @media screen and (max-width: 51.25em) {
-        width: 2.35rem;
-        height: 2.35rem;
+      &:active {
+        opacity: 0.8;
       }
 
-      @media screen and (max-width: 34.375em) {
-        width: 2.4rem;
-        height: 2.4rem;
+      &:active + .post-comment__link--count {
+        animation: popCount 0.4s ease backwards 1s;
       }
 
-      @include bp.sm {
-        width: 2.15rem;
-        height: 2.15rem;
+      &:disabled {
+        opacity: 0.75;
+        cursor: default;
       }
 
-      @media screen and (max-width: 26.875em) {
-        width: 2.05rem;
-        height: 2.05rem;
-      }
-
-      @media screen and (max-width: 22.5em) {
-        width: 1.95rem;
-        height: 1.95rem;
-      }
-
-      @media screen and (max-width: 21.5em) {
+      svg {
         width: 1.85rem;
         height: 1.85rem;
-      }
+        color: vars.$clr-gray-light-3;
+        stroke-width: 2px;
 
-      @media screen and (max-width: 18.75em) {
-        width: 1.75rem;
-        height: 1.75rem;
-      }
+        @media screen and (max-width: 56.25em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
 
-      @media screen and (max-width: 17.5em) {
-        width: 1.65rem;
-        height: 1.65rem;
-      }
+        @media screen and (max-width: 51.25em) {
+          width: 2.35rem;
+          height: 2.35rem;
+        }
 
-      @media screen and (min-width: 106.25em) {
-        width: 2.25rem;
-        height: 2.25rem;
-      }
+        @media screen and (max-width: 34.375em) {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
 
-      @media screen and (min-width: 112.5em) {
-        width: 2.4rem;
-        height: 2.4rem;
-      }
+        @include bp.sm {
+          width: 2.15rem;
+          height: 2.15rem;
+        }
 
-      @media screen and (min-width: 125em) {
-        width: 3.2rem;
-        height: 3.2rem;
+        @media screen and (max-width: 26.875em) {
+          width: 2.05rem;
+          height: 2.05rem;
+        }
+
+        @media screen and (max-width: 22.5em) {
+          width: 1.95rem;
+          height: 1.95rem;
+        }
+
+        @media screen and (max-width: 21.5em) {
+          width: 1.85rem;
+          height: 1.85rem;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        @media screen and (max-width: 17.5em) {
+          width: 1.65rem;
+          height: 1.65rem;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 2.25rem;
+          height: 2.25rem;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 3.2rem;
+          height: 3.2rem;
+        }
       }
     }
 
-    span {
+    &--count {
       font-weight: 600;
       font-size: 1.3rem;
       font-variant: tabular-nums;
       color: currentColor;
+      opacity: 0.8;
+      transition: transform 0.3s ease, color 0.3s ease;
+      animation: popCount 0.4s ease backwards;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.4rem;

@@ -110,6 +110,7 @@ export interface LabelProps {
   label?: string;
   isShow?: boolean;
   isPassword?: boolean;
+  disabled?: boolean;
   validate?: boolean;
   onClick?(): void;
   onAction?(): void;
@@ -118,6 +119,7 @@ export interface LabelProps {
 export interface PasswordToggleProps {
   isShow?: boolean;
   isPassword?: boolean;
+  disabled?: boolean;
   onClick?(): void;
 }
 
@@ -991,7 +993,7 @@ export interface ISavedPosts {
     savedPosts: PostType[] | undefined;
     savedPostsCount: number | undefined;
     saveMutation: UseMutationResult<unknown, unknown, string, unknown>;
-    handleSave(e: React.MouseEvent<HTMLButtonElement>): null | undefined;
+    handleSave(): null | undefined;
   };
 }
 
@@ -1532,7 +1534,7 @@ export interface ShareProps {
   isSaved: boolean;
   currentUser: CurrentUserType;
   saveMutation: UseMutationResult<unknown, unknown, string, unknown>;
-  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClick(): void;
 }
 
 export interface SavePostProps {
@@ -1540,7 +1542,7 @@ export interface SavePostProps {
   hasSaved: boolean;
   isLoading: boolean;
   currentUser: CurrentUserType;
-  onSave(e: React.MouseEvent<HTMLButtonElement>): void;
+  onSave(): void;
 }
 
 export interface ShareButtonProps {

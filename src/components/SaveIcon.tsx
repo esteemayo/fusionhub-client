@@ -8,7 +8,7 @@ const SaveIcon = ({ isLoading, hasSaved, className }: SaveIconProps) => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
-      className={`size-6 ${className && className}`}
+      className={`size-6 ${className ? className : ''}`}
     >
       <path
         strokeLinecap='round'

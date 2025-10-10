@@ -30,7 +30,7 @@
 
       &.active {
         color: vars.$clr-active;
-        animation: pop 0.3s ease backwards 1s;
+        animation: pop 0.3s ease backwards 0.5s;
       }
 
       &.active + .comment-like-button__count {

@@ -2,11 +2,13 @@ import { toast } from 'react-toastify';
 import parse from 'html-react-parser';
 import { useEffect, useMemo } from 'react';
 
-import ShareIcon from './ShareIcon';
+import ShareIcon from '../ShareIcon';
 
-import { excerpts, stripHtml } from '../utils';
-import { ShareButtonProps } from '../types';
-import { useWebShare } from '../hooks/useWebShare';
+import { excerpts, stripHtml } from '../../utils';
+import { ShareButtonProps } from '../../types';
+import { useWebShare } from '../../hooks/useWebShare';
+
+import './ShareButton.scss';
 
 const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
   const shareUrl = `${window.location.origin}/post/${slug}`;
@@ -26,9 +28,16 @@ const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
   }, [error]);
 
   return (
-    <button type='button' onClick={handleShare}>
-      <ShareIcon />
-    </button>
+    <div className='share-button'>
+      <button
+        type='button'
+        onClick={handleShare}
+        aria-label='Share button'
+        className='share-button__btn'
+      >
+        <ShareIcon />
+      </button>
+    </div>
   );
 };
 

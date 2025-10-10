@@ -1,5 +1,5 @@
-import SavePost from '../SavePost';
-import ShareButton from '../ShareButton';
+import SavePost from '../savePost/SavePost';
+import ShareButton from '../shareButton/ShareButton';
 
 import { ShareProps } from '../../types';
 
