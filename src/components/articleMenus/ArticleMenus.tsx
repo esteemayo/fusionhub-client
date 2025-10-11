@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 
 import ArticleMenu from '../articleMenu/ArticleMenu';
 
-import { ArticleActionProps } from '../../types';
+import { ArticleMenusProps } from '../../types';
 
-import './ArticleAction.scss';
+import './ArticleMenus.scss';
 
 const ArticleAction = ({
   currentUser,
@@ -15,34 +15,34 @@ const ArticleAction = ({
   onDelete,
   onToggle,
   onUpdate,
-}: ArticleActionProps) => {
-  const actionBtnClasses = useMemo(() => {
+}: ArticleMenusProps) => {
+  const articleClasses = useMemo(() => {
     if (!currentUser) {
-      return 'article-action hide';
+      return 'article-menus hide';
     }
 
     if (isAdmin) {
       if (isPostAuthor) {
-        return 'article-action show';
+        return 'article-menus show';
       }
 
       if (postAuthorRole === 'admin') {
-        return 'article-action hide';
+        return 'article-menus hide';
       }
 
-      return 'article-action show';
+      return 'article-menus show';
     }
 
-    return 'article-action hide';
+    return 'article-menus hide';
   }, [currentUser, isAdmin, isPostAuthor, postAuthorRole]);
 
   return (
-    <div className={actionBtnClasses}>
+    <div className={articleClasses}>
       <button
         type='button'
         onClick={onToggle}
         aria-label={isOpen ? 'Open menu' : 'Close menu'}
-        className='article-action__btn'
+        className='article-menus__btn'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'

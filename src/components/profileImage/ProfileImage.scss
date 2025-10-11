@@ -148,6 +148,11 @@
         width: 6rem;
         height: 6rem;
       }
+
+      &:disabled {
+        opacity: 0.75;
+        cursor: not-allowed;
+      }
     }
 
     &--icon {
@@ -574,7 +579,7 @@
 
       &:disabled {
         opacity: 0.75;
-        cursor: default;
+        cursor: not-allowed;
       }
     }
 

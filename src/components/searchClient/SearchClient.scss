@@ -214,7 +214,7 @@
       }
 
       &:disabled {
-        cursor: default;
+        cursor: not-allowed;
       }
 
       &::placeholder {

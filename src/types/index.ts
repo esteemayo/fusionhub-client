@@ -675,7 +675,7 @@ export interface ArticleProps {
   ): Promise<QueryObserverResult<InfiniteData<unknown, unknown>, Error>>;
 }
 
-export interface ArticleActionProps {
+export interface ArticleMenusProps {
   currentUser: CurrentUserType | null;
   isAdmin: boolean;
   isOpen: boolean;
@@ -1373,6 +1373,7 @@ export interface CommentReplyActionProps {
 
 export interface CommentLikeButtonProps {
   size?: 'sm';
+  title?: string;
   count: number;
   hasLiked: boolean;
   isLoading: boolean;
@@ -1381,6 +1382,7 @@ export interface CommentLikeButtonProps {
 
 export interface CommentDislikeButtonProps {
   size?: 'sm';
+  title?: string;
   count: number;
   hasDisliked: boolean;
   isLoading: boolean;

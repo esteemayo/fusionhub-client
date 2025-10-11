@@ -8,6 +8,7 @@ import './Label.scss';
 const Label = ({
   id,
   label,
+  disabled,
   validate,
   isShow,
   isPassword,
@@ -20,12 +21,19 @@ const Label = ({
 
   return (
     <div className='label'>
-      <label htmlFor={id} className={labelClasses} onClick={onClick}>
+      <label
+        htmlFor={id}
+        onClick={onClick}
+        aria-label={label}
+        aria-disabled={disabled}
+        className={labelClasses}
+      >
         {label}
       </label>
       <PasswordToggle
         isShow={isShow}
         isPassword={isPassword}
+        disabled={disabled}
         onClick={onAction}
       />
     </div>

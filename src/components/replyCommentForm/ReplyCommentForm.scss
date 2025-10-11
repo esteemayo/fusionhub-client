@@ -69,6 +69,10 @@
     resize: none;
     transition: all 300ms ease-in-out;
 
+    &:disabled {
+      cursor: not-allowed;
+    }
+
     &.small,
     &.medium,
     &.large {

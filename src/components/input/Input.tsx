@@ -9,6 +9,7 @@ const Input = ({
   name,
   type = 'text',
   label,
+  disabled,
   validate,
   isShow,
   isPassword,
@@ -22,6 +23,7 @@ const Input = ({
       <Label
         id={name}
         label={label}
+        disabled={disabled}
         validate={validate}
         isShow={isShow}
         isPassword={isPassword}
@@ -33,6 +35,7 @@ const Input = ({
         id={name}
         name={name}
         type={type}
+        disabled={disabled}
         className='input__control'
       />
       {errors[name] && (

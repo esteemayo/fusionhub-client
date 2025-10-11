@@ -9,6 +9,7 @@ import './CommentLikeButton.scss';
 
 const CommentLikeButton = ({
   size,
+  title,
   count,
   hasLiked,
   isLoading,
@@ -25,7 +26,7 @@ const CommentLikeButton = ({
       <div className='comment-like-button__wrapper'>
         <button
           type='button'
-          title='Like'
+          title={title ?? 'Like'}
           onClick={onLike}
           className={likeBtnClasses}
           disabled={isLoading}

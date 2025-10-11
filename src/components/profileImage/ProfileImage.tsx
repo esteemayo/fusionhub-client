@@ -82,7 +82,10 @@ const ProfileImage = ({
               />
             )}
             {0 < progress && progress < 100 && (
-              <div className='profile-image__progress'>
+              <div
+                aria-label={`Uploading ${progress}`}
+                className='profile-image__progress'
+              >
                 <UploadProgressCircle progress={progress} />
               </div>
             )}
@@ -93,7 +96,11 @@ const ProfileImage = ({
                 setData={onChangeImage}
                 setProgress={onChangeProgress}
               >
-                <button type='button' className='profile-image__upload--btn'>
+                <button
+                  type='button'
+                  aria-label='Upload image'
+                  className='profile-image__upload--btn'
+                >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     fill='none'
@@ -124,12 +131,14 @@ const ProfileImage = ({
             </div>
             <span
               onClick={handleCollapse}
+              aria-label={formattedTexts}
               className='profile-image__details--bio'
             >
               {formattedTexts}
               <button
                 type='button'
                 onClick={handleClick}
+                aria-label={btnLabel}
                 className={btnClasses}
               >
                 {btnLabel}
@@ -143,7 +152,7 @@ const ProfileImage = ({
           type='button'
           onClick={onUpload}
           disabled={isDisabled}
-          aria-label='Upload'
+          aria-label='Upload image'
           aria-disabled={isDisabled}
           className='profile-image__buttons--upload'
         >
@@ -153,7 +162,7 @@ const ProfileImage = ({
           type='button'
           onClick={onOpen}
           disabled={isDisabled}
-          aria-label='Remove'
+          aria-label='Remove image'
           aria-disabled={isDisabled}
           className='profile-image__buttons--remove'
         >

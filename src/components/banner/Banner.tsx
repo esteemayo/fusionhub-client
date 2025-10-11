@@ -7,7 +7,7 @@ import GoogleImage from '../GoogleImage';
 import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { onOpen } from '../../features/bannerModal/bannerModalSlice';
 
 import { BannerProps } from '../../types';
@@ -32,6 +32,7 @@ const Banner = ({
   onChangeImageProgress,
 }: BannerProps) => {
   const dispatch = useAppDispatch();
+  const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -61,7 +62,7 @@ const Banner = ({
   return (
     <Container cover={coverImg} className='banner'>
       {0 < advancement && advancement < 100 && (
-        <div className='banner__loader'>
+        <div aria-label={`Uploading ${advancement}`} className='banner__loader'>
           <UploadProgressCircle progress={advancement} />
         </div>
       )}
@@ -90,7 +91,10 @@ const Banner = ({
               />
             )}
             {0 < progress && progress < 100 && (
-              <div className='banner__loader avatar'>
+              <div
+                aria-label={`Uploading ${progress}`}
+                className='banner__loader avatar'
+              >
                 <UploadProgressCircle progress={progress} />
               </div>
             )}
@@ -104,7 +108,10 @@ const Banner = ({
           setProgress={onChangeCoverProgress}
         >
           <div className='banner__cover'>
-            <div className='banner__cover--image'>
+            <div
+              aria-label='Image upload button'
+              className='banner__cover--image'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -124,9 +131,11 @@ const Banner = ({
         </Upload>
         <button
           type='button'
-          className={btnClasses}
           onClick={handleClick}
           disabled={isDisabled}
+          aria-label={isOpen ? 'Open modal' : 'Close modal'}
+          aria-disabled={isDisabled}
+          className={btnClasses}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'

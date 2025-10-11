@@ -9,6 +9,7 @@ import './CommentDislikeButton.scss';
 
 const CommentDislikeButton = ({
   size,
+  title,
   count,
   hasDisliked,
   isLoading,
@@ -27,7 +28,7 @@ const CommentDislikeButton = ({
       <div className='comment-dislike-button__wrapper'>
         <button
           type='button'
-          title='Dislike'
+          title={title ?? 'Dislike'}
           onClick={onDislike}
           className={dislikeBtnClasses}
           disabled={isLoading}

@@ -437,5 +437,10 @@
       opacity: 0;
       z-index: -1;
     }
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
+    }
   }
 }

@@ -8,15 +8,15 @@ import { toast } from 'react-toastify';
 import ShareIcon from '../ShareIcon';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
-
-import LikeIcon from '../LikeIcon';
 import SaveIcon from '../SaveIcon';
-import DislikeIcon from '../DislikeIcon';
+
+import CommentLikeButton from '../commentLikeButton/CommentLikeButton';
+import CommentDislikeButton from '../commentDislikeButton/CommentDislikeButton';
 
 import Badge from '../badge/Badge';
 import Tooltip from '../tooltip/Tooltip';
 
-import ArticleAction from '../articleAction/ArticleAction';
+import ArticleMenus from '../articleMenus/ArticleMenus';
 import ArticleCommentForm from '../articleCommentForm/ArticleCommentForm';
 
 import { useComment } from '../../hooks/useComment';
@@ -373,40 +373,22 @@ const Article = ({
                   )}
                 </button>
               </div>
-              <div className='article__actions--likes'>
-                <button
-                  type='button'
-                  title='Like Post'
-                  onClick={handleLike}
-                  disabled={likeMutation.isPending}
-                  aria-label='Like Post'
-                  aria-disabled={likeMutation.isPending}
-                >
-                  <LikeIcon liked={isLiked} />
-                  {post.likeCount > 0 && (
-                    <span aria-label={millify(post.likeCount)}>
-                      {millify(post.likeCount)}
-                    </span>
-                  )}
-                </button>
-              </div>
-              <div className='article__actions--dislikes'>
-                <button
-                  type='button'
-                  title='Dislike Post'
-                  onClick={handleDislike}
-                  disabled={disLikeMutation.isPending}
-                  aria-label='Dislike Post'
-                  aria-disabled={disLikeMutation.isPending}
-                >
-                  <DislikeIcon disliked={isDisliked} />
-                  {post.dislikeCount > 0 && (
-                    <span aria-label={millify(post.dislikeCount)}>
-                      {millify(post.dislikeCount)}
-                    </span>
-                  )}
-                </button>
-              </div>
+              <CommentLikeButton
+                size='sm'
+                title='Like Post'
+                count={post.likeCount}
+                hasLiked={isLiked}
+                isLoading={likeMutation.isPending}
+                onLike={handleLike}
+              />
+              <CommentDislikeButton
+                size='sm'
+                title='Dislike Post'
+                count={post.dislikeCount}
+                hasDisliked={isDisliked}
+                isLoading={disLikeMutation.isPending}
+                onDislike={handleDislike}
+              />
               <div className='article__actions--saved-post'>
                 <button
                   type='button'
@@ -438,7 +420,7 @@ const Article = ({
                 </button>
               </div>
             </div>
-            <ArticleAction
+            <ArticleMenus
               currentUser={currentUser}
               isAdmin={isAdmin}
               isOpen={isOpen}

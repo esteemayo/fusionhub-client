@@ -201,6 +201,10 @@
         font-size: 2.2rem;
       }
 
+      &:disabled {
+        cursor: not-allowed;
+      }
+
       &:focus {
         background-color: rgba(vars.$clr-tertiary-blue, 0.5);
         border-color: vars.$clr-tertiary-blue;
