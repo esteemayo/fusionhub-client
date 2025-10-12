@@ -37,7 +37,7 @@ const CategoryForm = ({
           <Button
             type='button'
             label='Cancel'
-            color='dark'
+            variant='dark'
             onClick={onCancel}
             disabled={updateMutation.isPending}
             className={cancelBtnClasses}
@@ -45,7 +45,7 @@ const CategoryForm = ({
           <Button
             type='submit'
             label={label}
-            color='primary'
+            variant='primary'
             isLoading={isLoading}
             disabled={isLoading}
           />

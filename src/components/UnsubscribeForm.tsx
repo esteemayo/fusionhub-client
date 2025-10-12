@@ -27,7 +27,7 @@ const UnsubscribeForm = ({
         <Button
           type='submit'
           label='Unsubscribe'
-          color='dark'
+          variant='dark'
           isLoading={isLoading}
           disabled={isLoading}
         />

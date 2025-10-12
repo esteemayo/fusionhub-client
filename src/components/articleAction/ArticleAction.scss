@@ -1,0 +1,41 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.article-action {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .comment-like-button,
+  .comment-dislike-button {
+    &__wrapper {
+      &--btn {
+        color: vars.$clr-gray-light-1;
+      }
+    }
+
+    &__count {
+      color: vars.$clr-gray-light-1;
+    }
+  }
+
+  .comment-like-button {
+    &__wrapper {
+      &--btn {
+        &.active {
+          color: vars.$clr-active;
+        }
+      }
+    }
+  }
+
+  .comment-dislike-button {
+    &__wrapper {
+      &--btn {
+        &.active {
+          color: vars.$clr-inactive;
+        }
+      }
+    }
+  }
+}

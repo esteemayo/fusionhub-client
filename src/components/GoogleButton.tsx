@@ -13,7 +13,7 @@ import { googleLoginUser } from '../features/auth/authSlice';
 const GoogleButton = ({
   icon,
   label,
-  color = 'outline',
+  variant = 'outline',
   disabled,
 }: GoogleButtonProps) => {
   const dispatch = useAppDispatch();
@@ -81,7 +81,7 @@ const GoogleButton = ({
     <Button
       icon={icon}
       label={label}
-      color={color}
+      variant={variant}
       onClick={handleClick}
       isLoading={isPending}
       disabled={isPending || disabled}

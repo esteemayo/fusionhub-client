@@ -1,21 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
-import millify from 'millify';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import parse from 'html-react-parser';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import ShareIcon from '../ShareIcon';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
-import SaveIcon from '../SaveIcon';
-
-import CommentLikeButton from '../commentLikeButton/CommentLikeButton';
-import CommentDislikeButton from '../commentDislikeButton/CommentDislikeButton';
 
 import Badge from '../badge/Badge';
 import Tooltip from '../tooltip/Tooltip';
 
+import ArticleAction from '../articleAction/ArticleAction';
 import ArticleMenus from '../articleMenus/ArticleMenus';
 import ArticleCommentForm from '../articleCommentForm/ArticleCommentForm';
 
@@ -341,85 +336,24 @@ const Article = ({
             </button>
           </div>
           <div className='article__actions'>
-            <div className='article__actions--group'>
-              <div className='article__actions--comments'>
-                <button
-                  type='button'
-                  title='Comment'
-                  onClick={handleComment}
-                  aria-label='Comment'
-                >
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    fill='none'
-                    viewBox='0 0 24 24'
-                    aria-label='Comments'
-                    aria-hidden='true'
-                    strokeWidth={1.5}
-                    stroke='currentColor'
-                    role='img'
-                    className='size-6'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      d='M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z'
-                    />
-                  </svg>
-                  {post.comments.length > 0 && (
-                    <span aria-label={millify(post.comments.length)}>
-                      {millify(post.comments.length)}
-                    </span>
-                  )}
-                </button>
-              </div>
-              <CommentLikeButton
-                size='sm'
-                title='Like Post'
-                count={post.likeCount}
-                hasLiked={isLiked}
-                isLoading={likeMutation.isPending}
-                onLike={handleLike}
-              />
-              <CommentDislikeButton
-                size='sm'
-                title='Dislike Post'
-                count={post.dislikeCount}
-                hasDisliked={isDisliked}
-                isLoading={disLikeMutation.isPending}
-                onDislike={handleDislike}
-              />
-              <div className='article__actions--saved-post'>
-                <button
-                  type='button'
-                  title='Save Post'
-                  onClick={handleSave}
-                  disabled={saveMutation.isPending || isAdmin}
-                  aria-label='Save Post'
-                  aria-disabled={saveMutation.isPending || isAdmin}
-                >
-                  <SaveIcon
-                    isLoading={saveMutation.isPending}
-                    hasSaved={isSaved}
-                  />
-                  {post.savedCount > 0 && (
-                    <span aria-label={millify(post.savedCount)}>
-                      {millify(post.savedCount)}
-                    </span>
-                  )}
-                </button>
-              </div>
-              <div className='article__actions--share'>
-                <button
-                  type='button'
-                  title='Share Post'
-                  onClick={handleShare}
-                  aria-label='Share Post'
-                >
-                  <ShareIcon />
-                </button>
-              </div>
-            </div>
+            <ArticleAction
+              comments={post.comments}
+              likeCount={post.likeCount}
+              dislikeCount={post.dislikeCount}
+              savedCount={post.savedCount}
+              isAdmin={isAdmin}
+              isLiked={isLiked}
+              isDisliked={isDisliked}
+              isSaved={isSaved}
+              likeMutation={likeMutation}
+              disLikeMutation={disLikeMutation}
+              saveMutation={saveMutation}
+              onComment={handleComment}
+              onLike={handleLike}
+              onDislike={handleDislike}
+              onSave={handleSave}
+              onShare={handleShare}
+            />
             <ArticleMenus
               currentUser={currentUser}
               isAdmin={isAdmin}

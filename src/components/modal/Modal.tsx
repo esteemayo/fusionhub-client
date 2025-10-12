@@ -103,7 +103,9 @@ const Modal = ({
     <aside className='modal' onClick={onCloseHandler}>
       <div className={containerClasses}>
         <div className='modal__wrapper'>
-          <h1 className='modal__heading'>{title}</h1>
+          <h1 className='modal__heading' aria-label={title}>
+            {title}
+          </h1>
           <div className='modal__body'>{body}</div>
           <hr />
           <div className='modal__footer'>
@@ -111,9 +113,11 @@ const Modal = ({
               {secondaryActionLabel && secondaryAction && (
                 <button
                   type='button'
-                  disabled={disabled}
-                  className='modal__btn--secondary'
                   onClick={handleSecondaryAction}
+                  disabled={disabled}
+                  aria-label={secondaryActionLabel}
+                  aria-disabled={disabled}
+                  className='modal__btn--secondary'
                 >
                   {secondaryActionLabel}
                 </button>
@@ -121,9 +125,11 @@ const Modal = ({
               {actionLabel && (
                 <button
                   type='button'
-                  disabled={disabled}
-                  className='modal__btn--primary'
                   onClick={handleSubmit}
+                  disabled={disabled}
+                  aria-label={isLoading ? 'Spinner' : actionLabel}
+                  aria-disabled={disabled}
+                  className='modal__btn--primary'
                 >
                   {isLoading ? <Spinner /> : actionLabel}
                 </button>
@@ -134,8 +140,9 @@ const Modal = ({
           <div className='modal__close'>
             <button
               type='button'
-              className='modal__close--btn'
               onClick={handleClose}
+              aria-label='Close modal button'
+              className='modal__close--btn'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'

@@ -229,7 +229,7 @@ export interface ButtonProps
   label: string;
   icon?: string;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  color?: 'dark' | 'primary' | 'outline';
+  variant?: 'dark' | 'primary' | 'outline';
   isLoading?: boolean;
   disabled?: boolean;
   className?: string;
@@ -239,7 +239,7 @@ export interface ButtonProps
 export interface GoogleButtonProps {
   icon?: string;
   label: string;
-  color?: 'dark' | 'primary' | 'outline';
+  variant?: 'dark' | 'primary' | 'outline';
   disabled?: boolean;
 }
 
@@ -673,6 +673,36 @@ export interface ArticleProps {
   refetch(
     options?: RefetchOptions
   ): Promise<QueryObserverResult<InfiniteData<unknown, unknown>, Error>>;
+}
+
+export interface ArticleActionProps {
+  comments: CommentType[];
+  likeCount: number;
+  dislikeCount: number;
+  savedCount: number;
+  isAdmin: boolean;
+  isLiked: boolean;
+  isDisliked: boolean;
+  isSaved: boolean;
+  likeMutation: UseMutationResult<unknown, Error, void, unknown>;
+  disLikeMutation: UseMutationResult<unknown, Error, void, unknown>;
+  saveMutation: UseMutationResult<unknown, unknown, string, unknown>;
+  onComment(e: React.MouseEvent<HTMLButtonElement>): void;
+  onLike(): null | undefined;
+  onDislike(): null | undefined;
+  onSave(): null | undefined;
+  onShare(e: React.MouseEvent<HTMLButtonElement>): Promise<void>;
+}
+
+export interface ArticleActionItemProps {
+  count?: number;
+  title?: string;
+  isActive?: boolean;
+  disabled?: boolean;
+  children: React.ReactNode;
+  onAction:
+    | ((e: React.MouseEvent<HTMLButtonElement>) => void)
+    | (() => null | undefined);
 }
 
 export interface ArticleMenusProps {

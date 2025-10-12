@@ -2,10 +2,6 @@
 @use '../../styles/variables.scss' as vars;
 
 .comment-filters {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   padding-bottom: 0.5rem;
   border-bottom: 1px solid vars.$clr-tertiary-blue;
   position: relative;
@@ -15,16 +11,13 @@
   }
 
   &.show {
-    visibility: visible;
-    opacity: 1;
-    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &.hide {
     display: none;
-    visibility: hidden;
-    opacity: 0;
-    z-index: -1;
   }
 
   &__container {

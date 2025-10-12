@@ -82,7 +82,7 @@ const Newsletter = () => {
             <Button
               type='submit'
               label='Submit'
-              color='dark'
+              variant='dark'
               isLoading={newsletterMutation.isPending}
               disabled={newsletterMutation.isPending}
             />

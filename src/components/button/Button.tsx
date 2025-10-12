@@ -9,7 +9,7 @@ const Button = ({
   icon,
   label,
   type = 'button',
-  color = 'primary',
+  variant = 'primary',
   isLoading,
   disabled,
   className,
@@ -22,7 +22,7 @@ const Button = ({
       onClick={onClick}
       aria-label={label}
       aria-disabled={disabled}
-      className={`btn ${color} ${className ?? ''}`}
+      className={`btn ${variant} ${className ?? ''}`}
     >
       {icon && !isLoading && (
         <Image src={icon} width={25} height={25} alt='logo' />
