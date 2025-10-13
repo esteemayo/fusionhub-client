@@ -16,8 +16,10 @@ import { useComment } from '../../hooks/useComment';
 import { useReply } from '../../hooks/useReply';
 import { useLikeComment } from '../../hooks/useLikeComment';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useDate } from '../../hooks/useDate';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+
+import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
@@ -176,6 +178,20 @@ const CommentCard = ({
     dispatch(commentModal.setCommentId(commentId));
     dispatch(commentModal.setPostId(post._id));
 
+    handleClose();
+  };
+
+  const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(reportModal.onOpen());
+    handleClose();
+  };
+
+  const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('muted');
     handleClose();
   };
 
@@ -462,6 +478,8 @@ const CommentCard = ({
           isShow={isShow}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
+          onMute={handleMute}
+          onReport={handleReport}
         />
       </div>
       <ReplyCommentForm

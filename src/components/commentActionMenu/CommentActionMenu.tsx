@@ -14,6 +14,8 @@ const CommentActionMenu = ({
   isCommentAuthor,
   isPostAuthor,
   isShow,
+  onReport,
+  onMute,
   onDelete,
   onUpdate,
 }: CommentActionMenuProps) => {
@@ -30,6 +32,8 @@ const CommentActionMenu = ({
         isAdmin={isAdmin}
         isCommentAuthor={isCommentAuthor}
         isPostAuthor={isPostAuthor}
+        onReport={onReport}
+        onMute={onMute}
         onDelete={onDelete}
         onUpdate={onUpdate}
       />

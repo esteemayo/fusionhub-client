@@ -6,13 +6,14 @@ import accountMenuReducer from './accountMenu/accountMenuSlice';
 import sidebarReducer from './sidebar/sidebarSlice';
 import bannerModalReducer from './bannerModal/bannerModalSlice';
 import postsMenuReducer from './postsMenu/postsMenuSlice';
-import accountModalReducer from './accountModal/accountModalSlice';
+import reportModalReducer from './reportModal/reportModalSlice';
 import postModalReducer from './postModal/postModalSlice';
-import commentModalReducer from './commentModal/commentModalSlice';
+import accountModalReducer from './accountModal/accountModalSlice';
 import imageModalReducer from './imageModal/imageModalSlice';
-import categoryModalReducer from './categoryModal/categoryModalSlice';
+import commentModalReducer from './commentModal/commentModalSlice';
 import shareModalReducer from './shareModal/shareModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
+import categoryModalReducer from './categoryModal/categoryModalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -29,6 +30,7 @@ export const store = configureStore({
     categoryModal: categoryModalReducer,
     deleteModal: deleteModalReducer,
     shareModal: shareModalReducer,
+    reportModal: reportModalReducer,
   },
 });
 

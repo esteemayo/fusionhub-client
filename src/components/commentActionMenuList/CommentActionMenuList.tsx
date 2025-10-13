@@ -17,21 +17,11 @@ const CommentActionMenuList = ({
   isAdmin,
   isCommentAuthor,
   isPostAuthor,
+  onReport,
+  onMute,
   onDelete,
   onUpdate,
 }: CommentActionMenuListProps) => {
-  const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    console.log('reported');
-  };
-
-  const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    console.log('muted');
-  };
-
   const actionBtnClasses = useMemo(() => {
     if (!currentUser) {
       return 'comment-action-menu-list__actions hide';
@@ -95,13 +85,13 @@ const CommentActionMenuList = ({
         </CommentActionMenuListItem>
       </div>
       <div className={reportBtnClasses}>
-        <CommentActionMenuListItem label='Mute' onAction={handleMute}>
+        <CommentActionMenuListItem label='Mute' onAction={onMute}>
           <MuteIcon />
         </CommentActionMenuListItem>
         <CommentActionMenuListItem
           type='report'
           label='Report'
-          onAction={handleReport}
+          onAction={onReport}
         >
           <ReportIcon />
         </CommentActionMenuListItem>

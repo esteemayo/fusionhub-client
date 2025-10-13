@@ -1365,6 +1365,8 @@ export interface CommentActionMenuProps {
   isShow: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onMute(e: React.MouseEvent<HTMLButtonElement>): void;
+  onReport(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListProps {
@@ -1376,6 +1378,8 @@ export interface CommentActionMenuListProps {
   isPostAuthor: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onMute(e: React.MouseEvent<HTMLButtonElement>): void;
+  onReport(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface CommentActionMenuListItemProps {
