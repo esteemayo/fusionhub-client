@@ -29,6 +29,7 @@ const PostImage = ({
       <Select
         name='category'
         label='Category'
+        defaultValue='Category'
         options={options}
         register={register}
         errors={errors}

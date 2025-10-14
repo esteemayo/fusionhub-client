@@ -159,7 +159,8 @@ export interface TextareaProps
   required?: boolean;
   validate?: boolean;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  errors?: FieldErrors;
+  error?: string;
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
@@ -179,12 +180,14 @@ export interface SelectProps
   id?: string;
   name: string;
   label?: string;
+  defaultValue?: string;
   disabled?: boolean;
   required?: boolean;
   validate?: boolean;
-  options: CategoriesType | undefined;
+  options: CategoriesType | ReportOptionType | undefined;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  error?: string;
+  errors?: FieldErrors;
   onChange?(e: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
@@ -430,8 +433,8 @@ export interface FilterItemProps {
 export type CategoryType = {
   _id: string;
   name: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
 
 export type CategoriesType = CategoryType[];
@@ -1390,6 +1393,16 @@ export interface CommentActionMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ReportFormProps {
+  reason: string;
+  username: string;
+  disabled?: boolean;
+  options: CategoriesType | undefined;
+  register: UseFormRegister<FieldValues>;
+  reasonError?: string;
+  customError?: string;
+}
+
 export interface CommentReplyActionProps {
   size?: 'sm';
   url: string;
@@ -2083,4 +2096,9 @@ export type ContactFormError = {
 export type CommentFiltersType = {
   id: sortType;
   label: string;
+}[];
+
+export type ReportOptionType = {
+  _id: string;
+  name: string;
 }[];

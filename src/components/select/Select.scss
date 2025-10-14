@@ -19,7 +19,7 @@
     width: 100%;
     height: 5.6rem;
     padding: 1.6rem;
-    text-transform: capitalize;
+    text-transform: initial;
     font-family: inherit;
     font-weight: 600;
     font-size: 1.45rem;
@@ -83,7 +83,7 @@
     }
 
     option {
-      text-transform: capitalize;
+      text-transform: initial;
       font-size: inherit;
       background-color: vars.$clr-primary-blue;
       color: currentColor;

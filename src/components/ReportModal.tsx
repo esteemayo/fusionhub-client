@@ -1,34 +1,76 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import Modal from './modal/Modal';
+import ReportForm from './reportForm/ReportForm';
 
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { onClose } from '../features/reportModal/reportModalSlice';
 
+import { reportOptions } from '../data/formData';
+import { reportSchema } from '../validations/reportSchema';
+
+type FormData = z.infer<typeof reportSchema>;
+
 const ReportModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.reportModal }));
+  const { isOpen, username } = useAppSelector((state) => ({
+    ...state.reportModal,
+  }));
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(reportSchema),
+    defaultValues: {
+      reason: '',
+      customReason: '',
+      muteUser: false,
+    },
+  });
+
+  const reason = watch('reason');
 
   const handleClose = () => {
     dispatch(onClose());
   };
 
-  const onSubmit = () => {
-    toast.success('submitted');
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    const { reason, customReason } = data;
+    const finalReason =
+      reason === 'Other' ? customReason?.trim() || '' : reason;
+
+    if (!finalReason) return;
+
+    if (data.muteUser) {
+      // TODO: mute user API call
+    }
+
+    console.log({ ...data, reason: finalReason });
+    toast.success('Your report has been submitted successfully');
+    reset();
   };
 
   const bodyContent: JSX.Element | undefined = (
-    <div className='flex flex-col gap-4'>
-      <textarea
-        className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-        placeholder='Describe the issue...'
-        rows={4}
-      />
-      <p className='text-sm text-gray-500'>
-        Please provide as much detail as possible to help us understand the
-        issue.
-      </p>
-    </div>
+    <ReportForm
+      reason={reason}
+      username={username}
+      options={reportOptions}
+      register={register as unknown as UseFormRegister<FieldValues>}
+      reasonError={errors.reason as unknown as string}
+      customError={errors.customReason as unknown as string}
+    />
   );
 
   return (
@@ -42,7 +84,7 @@ const ReportModal = () => {
       secondaryActionLabel='Cancel'
       body={bodyContent}
       onClose={handleClose}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       secondaryAction={handleClose}
     />
   );

@@ -42,7 +42,7 @@ const ImageModal = () => {
     };
   }, [dispatch, handleClose, isError, isSuccess, message, refetch]);
 
-  const bodyContent: React.JSX.Element | undefined = (
+  const bodyContent: JSX.Element | undefined = (
     <DeleteContent text='Are you sure you want to permanently delete your profile image? This action cannot be undone.' />
   );
 

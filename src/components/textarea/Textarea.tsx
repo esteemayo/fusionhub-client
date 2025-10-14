@@ -8,22 +8,27 @@ import './Textarea.scss';
 const Textarea = ({
   name,
   label,
+  disabled,
   validate,
   register,
+  error,
   errors,
   ...rest
 }: TextareaProps) => {
   return (
     <div className='textarea'>
-      <Label id={name} label={label} validate={validate} />
+      <Label id={name} label={label} disabled={disabled} validate={validate} />
       <textarea
         {...rest}
         {...register(name)}
         id={name}
         name={name}
+        disabled={disabled}
+        aria-disabled={disabled}
         className='textarea__control'
       />
-      {errors[name] && (
+      {error && <ErrorMessage message={error} />}
+      {errors?.[name] && (
         <ErrorMessage message={errors[name].message as string | undefined} />
       )}
     </div>

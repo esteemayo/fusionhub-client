@@ -5,6 +5,7 @@ import {
   LoginInputType,
   PasswordInputType,
   RegisterInputType,
+  ReportOptionType,
   ResetInputType,
 } from '../types';
 
@@ -183,5 +184,28 @@ export const commentFilters: CommentFiltersType = [
   {
     id: 'mostControversial',
     label: 'Most controversial',
+  },
+];
+
+export const reportOptions: ReportOptionType = [
+  {
+    _id: 'spam or misleading',
+    name: 'Spam or misleading',
+  },
+  {
+    _id: 'harassment or bullying',
+    name: 'Harassment or bullying',
+  },
+  {
+    _id: 'hate speech or discrimination',
+    name: 'Hate speech or discrimination',
+  },
+  {
+    _id: 'inappropriate or sexual content',
+    name: 'Inappropriate or sexual content',
+  },
+  {
+    _id: 'other',
+    name: 'Other',
   },
 ];

@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface ReportModalState {
   isOpen: boolean;
+  username: string;
 }
 
 const initialState: ReportModalState = {
   isOpen: false,
+  username: '',
 };
 
 const reportModalSlice = createSlice({
@@ -13,8 +15,9 @@ const reportModalSlice = createSlice({
   initialState,
   reducers: {
     resetState: () => initialState,
-    onOpen: (state) => {
+    onOpen: (state, { payload }) => {
       state.isOpen = true;
+      state.username = payload;
     },
     onClose: (state) => {
       state.isOpen = false;

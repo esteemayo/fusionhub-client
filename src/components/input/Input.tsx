@@ -36,6 +36,7 @@ const Input = ({
         name={name}
         type={type}
         disabled={disabled}
+        aria-disabled={disabled}
         className='input__control'
       />
       {errors[name] && (

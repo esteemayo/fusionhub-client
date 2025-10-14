@@ -184,7 +184,7 @@ const CommentCard = ({
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(reportModal.onOpen());
+    dispatch(reportModal.onOpen(author.username));
     handleClose();
   };
 
