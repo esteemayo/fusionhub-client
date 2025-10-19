@@ -972,6 +972,13 @@ export interface CategoryMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface IMute {
+  (): {
+    mutedList: MutedListType | undefined;
+    muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
+  };
+}
+
 export interface ICategory {
   (): {
     isPending: boolean;
@@ -1480,6 +1487,8 @@ export interface ReplyMenuProps {
   isReplyAuthor: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onMute(e: React.MouseEvent<HTMLButtonElement>): void;
+  onReport(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyMenuListProps {
@@ -1493,6 +1502,8 @@ export interface ReplyMenuListProps {
   isReplyAuthor: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
+  onMute(e: React.MouseEvent<HTMLButtonElement>): void;
+  onReport(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface ReplyMenuListItemProps {
@@ -1614,6 +1625,30 @@ export interface PostDescProps {
 export interface RelatedPostsProps {
   postId: string;
   tags: string[];
+}
+
+export type TargetType = 'user' | 'comment' | 'reply';
+export type MuteAction = 'mute' | 'unmute';
+
+export interface MutePayload {
+  targetType: TargetType;
+  targetId: string;
+  action: MuteAction;
+}
+
+export type ReportTargetType = 'comment' | 'reply';
+
+export interface ReportPayload {
+  reporter: string;
+  targetType: ReportTargetType;
+  targetId: string;
+  reason: string;
+}
+
+export interface MutedListType {
+  mutedUsers: string[];
+  mutedComments: string[];
+  mutedReplies: string[];
 }
 
 export interface RegisterInputs {

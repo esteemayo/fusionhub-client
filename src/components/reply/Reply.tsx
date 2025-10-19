@@ -10,16 +10,18 @@ import ReplyForm from '../replyForm/ReplyForm';
 import ReplyMenu from '../replyMenu/ReplyMenu';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
+import { useMute } from '../../hooks/useMute';
+import { useReply } from '../../hooks/useReply';
+
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { ReplyProps } from '../../types';
+import { MutePayload, ReplyProps } from '../../types';
 import { excerpts } from '../../utils';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import './Reply.scss';
-import { useReply } from '../../hooks/useReply';
 
 const Reply = ({
   reply,
@@ -46,8 +48,16 @@ const Reply = ({
     updatedAt,
   } = reply;
 
+  const { mutedList, muteMutation } = useMute();
   const { formattedDate } = useDate(createdAt);
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const isMuted = useMemo(() => {
+    return (
+      !!(mutedList?.mutedReplies ?? []).some((reply) => reply === replyId) ||
+      false
+    );
+  }, [mutedList?.mutedReplies, replyId]);
 
   const commentId = useMemo(() => {
     return comment._id;
@@ -157,6 +167,26 @@ const Reply = ({
     dispatch(commentModal.setReplyId(replyId));
 
     handleClose();
+  };
+
+  const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    const payload: MutePayload = {
+      targetType: 'reply',
+      targetId: replyId,
+      action: isMuted ? 'unmute' : 'mute',
+    };
+
+    muteMutation.mutate(payload, {
+      onSuccess: handleClose,
+    });
+  };
+
+  const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('reported');
   };
 
   const handleCancel = useCallback(() => {
@@ -436,6 +466,8 @@ const Reply = ({
             isReplyAuthor={isReplyAuthor}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
+            onMute={handleMute}
+            onReport={handleReport}
           />
         </div>
         <ReplyForm

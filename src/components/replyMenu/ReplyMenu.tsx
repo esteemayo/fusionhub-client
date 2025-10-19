@@ -18,6 +18,8 @@ const ReplyMenu = ({
   isReplyAuthor,
   onDelete,
   onUpdate,
+  onMute,
+  onReport,
 }: ReplyMenuProps) => {
   const replyMenuClasses = useMemo(() => {
     return isShow ? 'reply-menu show' : 'reply-menu hide';
@@ -36,6 +38,8 @@ const ReplyMenu = ({
         isReplyAuthor={isReplyAuthor}
         onDelete={onDelete}
         onUpdate={onUpdate}
+        onMute={onMute}
+        onReport={onReport}
       />
     </aside>
   );

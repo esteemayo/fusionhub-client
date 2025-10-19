@@ -21,19 +21,9 @@ const ReplyMenuList = ({
   isReplyAuthor,
   onDelete,
   onUpdate,
+  onMute,
+  onReport,
 }: ReplyMenuListProps) => {
-  const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    console.log('reported');
-  };
-
-  const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    console.log('muted');
-  };
-
   const actionBtnClasses = useMemo(() => {
     if (!currentUser) {
       return 'reply-menu-list__actions hide';
@@ -98,10 +88,10 @@ const ReplyMenuList = ({
         </ReplyMenuListItem>
       </div>
       <div className={reportClasses}>
-        <ReplyMenuListItem label='Mute' onAction={handleMute}>
+        <ReplyMenuListItem label='Mute' onAction={onMute}>
           <MuteIcon />
         </ReplyMenuListItem>
-        <ReplyMenuListItem type='report' label='Report' onAction={handleReport}>
+        <ReplyMenuListItem type='report' label='Report' onAction={onReport}>
           <ReportIcon />
         </ReplyMenuListItem>
       </div>

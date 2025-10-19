@@ -12,10 +12,11 @@ import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
 import Badge from '../badge/Badge';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
-import { useComment } from '../../hooks/useComment';
 import { useReply } from '../../hooks/useReply';
-import { useLikeComment } from '../../hooks/useLikeComment';
+import { useMute } from '../../hooks/useMute';
+import { useComment } from '../../hooks/useComment';
 
+import { useLikeComment } from '../../hooks/useLikeComment';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
@@ -23,7 +24,7 @@ import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { CommentCardProps, ReplyType } from '../../types';
+import { CommentCardProps, MutePayload, ReplyType } from '../../types';
 
 import './CommentCard.scss';
 
@@ -49,8 +50,17 @@ const CommentCard = ({
 
   const dispatch = useAppDispatch();
 
+  const { mutedList, muteMutation } = useMute();
   const { formattedDate } = useDate(createdAt);
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const isMuted = useMemo(() => {
+    return (
+      !!(mutedList?.mutedComments ?? []).some(
+        (comment) => comment === commentId
+      ) || false
+    );
+  }, [commentId, mutedList?.mutedComments]);
 
   const postId = useMemo(() => {
     return post._id;
@@ -191,8 +201,15 @@ const CommentCard = ({
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    console.log('muted');
-    handleClose();
+    const payload: MutePayload = {
+      targetType: 'comment',
+      targetId: commentId,
+      action: isMuted ? 'unmute' : 'mute',
+    };
+
+    muteMutation.mutate(payload, {
+      onSuccess: handleClose,
+    });
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
