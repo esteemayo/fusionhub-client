@@ -17,6 +17,8 @@ const CommentActionMenuList = ({
   isAdmin,
   isCommentAuthor,
   isPostAuthor,
+  isMuted,
+  muteMutation,
   onReport,
   onMute,
   onDelete,
@@ -85,7 +87,11 @@ const CommentActionMenuList = ({
         </CommentActionMenuListItem>
       </div>
       <div className={reportBtnClasses}>
-        <CommentActionMenuListItem label='Mute' onAction={onMute}>
+        <CommentActionMenuListItem
+          label={`${isMuted ? 'Unmute' : 'Mute'} comment`}
+          disabled={muteMutation.isPending}
+          onAction={onMute}
+        >
           <MuteIcon />
         </CommentActionMenuListItem>
         <CommentActionMenuListItem

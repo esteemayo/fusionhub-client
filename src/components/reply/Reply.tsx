@@ -17,9 +17,11 @@ import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { MutePayload, ReplyProps } from '../../types';
-import { excerpts } from '../../utils';
+import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
+
+import { excerpts } from '../../utils';
+import { MutePayload, ReplyProps } from '../../types';
 
 import './Reply.scss';
 
@@ -186,7 +188,17 @@ const Reply = ({
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    console.log('reported');
+    const { _id: id, username } = author;
+
+    const payload = {
+      id,
+      username,
+    };
+
+    dispatch(reportModal.onOpen(payload));
+    dispatch(reportModal.setReplyId(replyId));
+
+    handleClose();
   };
 
   const handleCancel = useCallback(() => {
@@ -464,6 +476,8 @@ const Reply = ({
             isShow={isShow}
             isPostAuthor={isPostAuthor}
             isReplyAuthor={isReplyAuthor}
+            isMuted={isMuted}
+            muteMutation={muteMutation}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
             onMute={handleMute}

@@ -194,7 +194,16 @@ const CommentCard = ({
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(reportModal.onOpen(author.username));
+    const { _id: id, username } = author;
+
+    const payload = {
+      id,
+      username,
+    };
+
+    dispatch(reportModal.onOpen(payload));
+    dispatch(reportModal.setCommentId(commentId));
+
     handleClose();
   };
 
@@ -493,6 +502,8 @@ const CommentCard = ({
           isCommentAuthor={isCommentAuthor}
           isPostAuthor={isPostAuthor}
           isShow={isShow}
+          isMuted={isMuted}
+          muteMutation={muteMutation}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
           onMute={handleMute}

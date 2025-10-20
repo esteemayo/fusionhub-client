@@ -979,6 +979,12 @@ export interface IMute {
   };
 }
 
+export interface IReport {
+  (): {
+    reportMutation: UseMutationResult<unknown, unknown, ReportPayload, unknown>;
+  };
+}
+
 export interface ICategory {
   (): {
     isPending: boolean;
@@ -1373,6 +1379,8 @@ export interface CommentActionMenuProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isShow: boolean;
+  isMuted: boolean;
+  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1386,6 +1394,8 @@ export interface CommentActionMenuListProps {
   isAdmin: boolean;
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
+  isMuted: boolean;
+  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1403,6 +1413,7 @@ export interface CommentActionMenuListItemProps {
 export interface ReportFormProps {
   reason: string;
   username: string;
+  targetType: 'comment' | 'reply';
   disabled?: boolean;
   options: CategoriesType | undefined;
   register: UseFormRegister<FieldValues>;
@@ -1485,6 +1496,8 @@ export interface ReplyMenuProps {
   isShow: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
+  isMuted: boolean;
+  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1500,6 +1513,8 @@ export interface ReplyMenuListProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
+  isMuted: boolean;
+  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;

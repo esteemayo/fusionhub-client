@@ -1,18 +1,19 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useMemo } from 'react';
 import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'react-toastify';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { toast } from 'react-toastify';
 
 import Modal from './modal/Modal';
 import ReportForm from './reportForm/ReportForm';
 
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import { onClose } from '../features/reportModal/reportModalSlice';
+import { onClose, resetState } from '../features/reportModal/reportModalSlice';
 
 import { reportOptions } from '../data/formData';
 import { reportSchema } from '../validations/reportSchema';
@@ -21,7 +22,7 @@ type FormData = z.infer<typeof reportSchema>;
 
 const ReportModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, username } = useAppSelector((state) => ({
+  const { isOpen, user, commentId } = useAppSelector((state) => ({
     ...state.reportModal,
   }));
 
@@ -62,10 +63,27 @@ const ReportModal = () => {
     reset();
   };
 
+  const targetType = useMemo(() => {
+    return commentId ? 'comment' : 'reply';
+  }, [commentId]);
+
+  const titleLabel = useMemo(() => {
+    return `Report ${commentId ? 'Comment' : 'Reply'}`;
+  }, [commentId]);
+
+  useEffect(() => {
+    if (isOpen) {
+      return () => {
+        dispatch(resetState());
+      };
+    }
+  }, [dispatch, isOpen]);
+
   const bodyContent: JSX.Element | undefined = (
     <ReportForm
       reason={reason}
-      username={username}
+      username={user.username}
+      targetType={targetType}
       options={reportOptions}
       register={register as unknown as UseFormRegister<FieldValues>}
       reasonError={errors.reason as unknown as string}
@@ -76,7 +94,7 @@ const ReportModal = () => {
   return (
     <Modal
       isOpen={isOpen}
-      title='Report Comment'
+      title={titleLabel}
       type='cancel'
       isLoading={false}
       disabled={false}

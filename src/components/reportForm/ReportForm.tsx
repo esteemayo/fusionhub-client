@@ -8,6 +8,7 @@ import './ReportForm.scss';
 const ReportForm = ({
   reason,
   username,
+  targetType,
   disabled,
   options,
   register,
@@ -18,7 +19,7 @@ const ReportForm = ({
     <div className='report-form'>
       <div className='report-form__container'>
         <p className='report-form__container--label'>
-          You’re reporting a comment made by <strong>{username}</strong>:
+          You’re reporting a {targetType} made by <strong>{username}</strong>:
         </p>
         <Select
           name='reason'

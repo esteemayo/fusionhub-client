@@ -29,7 +29,7 @@ export const useMute: IMute = () => {
     mutationFn: (payload: MutePayload) => createMuteEntity(payload),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['mutedList', currentUser] });
-      toast.success(data.message as string);
+      toast.success(data.message);
     },
     onError: (error: unknown) => {
       if (
