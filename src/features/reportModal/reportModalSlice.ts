@@ -1,23 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { ReportModalPayload } from '../../types';
+
 interface ReportModalState {
   isOpen: boolean;
-  user: {
-    id: string;
-    username: string;
-  };
-  commentId?: string;
-  replyId?: string;
 }
 
-const initialState: ReportModalState = {
+const initialState: ReportModalState & ReportModalPayload = {
   isOpen: false,
   user: {
     id: '',
     username: '',
   },
-  commentId: '',
-  replyId: '',
+  targetType: 'comment',
+  targetId: '',
 };
 
 const reportModalSlice = createSlice({
@@ -27,21 +23,16 @@ const reportModalSlice = createSlice({
     resetState: () => initialState,
     onOpen: (state, { payload }) => {
       state.isOpen = true;
-      state.user = payload;
+      state.user = payload.user;
+      state.targetType = payload.targetType;
+      state.targetId = payload.targetId;
     },
     onClose: (state) => {
       state.isOpen = false;
     },
-    setCommentId: (state, { payload }) => {
-      state.commentId = payload;
-    },
-    setReplyId: (state, { payload }) => {
-      state.replyId = payload;
-    },
   },
 });
 
-export const { onClose, onOpen, resetState, setCommentId, setReplyId } =
-  reportModalSlice.actions;
+export const { onClose, onOpen, resetState } = reportModalSlice.actions;
 
 export default reportModalSlice.reducer;

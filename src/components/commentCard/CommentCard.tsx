@@ -24,7 +24,12 @@ import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { CommentCardProps, MutePayload, ReplyType } from '../../types';
+import {
+  CommentCardProps,
+  MutePayload,
+  ReplyType,
+  ReportModalPayload,
+} from '../../types';
 
 import './CommentCard.scss';
 
@@ -196,14 +201,16 @@ const CommentCard = ({
 
     const { _id: id, username } = author;
 
-    const payload = {
-      id,
-      username,
+    const payload: ReportModalPayload = {
+      user: {
+        id,
+        username,
+      },
+      targetType: 'comment',
+      targetId: commentId,
     };
 
     dispatch(reportModal.onOpen(payload));
-    dispatch(reportModal.setCommentId(commentId));
-
     handleClose();
   };
 

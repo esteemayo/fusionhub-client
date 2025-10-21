@@ -1,20 +1,23 @@
-import { useEffect, useMemo } from 'react';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { toast } from 'react-toastify';
+import { z } from 'zod';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useEffect, useMemo } from 'react';
 
 import Modal from './modal/Modal';
 import ReportForm from './reportForm/ReportForm';
 
+import { useMute } from '../hooks/useMute';
+import { useReport } from '../hooks/useReport';
+
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { onClose, resetState } from '../features/reportModal/reportModalSlice';
 
+import { MutePayload, ReportPayload } from '../types';
 import { reportOptions } from '../data/formData';
 import { reportSchema } from '../validations/reportSchema';
 
@@ -22,9 +25,19 @@ type FormData = z.infer<typeof reportSchema>;
 
 const ReportModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, user, commentId } = useAppSelector((state) => ({
+  const { isOpen, user, targetType, targetId } = useAppSelector((state) => ({
     ...state.reportModal,
   }));
+
+  const { reportMutation } = useReport();
+  const { mutedList, muteMutation } = useMute();
+
+  const isMuted = useMemo(() => {
+    return (
+      !!(mutedList?.mutedUsers ?? []).some((userId) => userId === user.id) ||
+      false
+    );
+  }, [mutedList?.mutedUsers, user.id]);
 
   const {
     register,
@@ -37,6 +50,7 @@ const ReportModal = () => {
     defaultValues: {
       reason: '',
       customReason: '',
+      details: '',
       muteUser: false,
     },
   });
@@ -55,21 +69,35 @@ const ReportModal = () => {
     if (!finalReason) return;
 
     if (data.muteUser) {
-      // TODO: mute user API call
+      const payload: MutePayload = {
+        targetType,
+        targetId,
+        action: isMuted ? 'unmute' : 'mute',
+      };
+
+      muteMutation.mutate(payload);
     }
 
-    console.log({ ...data, reason: finalReason });
-    toast.success('Your report has been submitted successfully');
-    reset();
+    const payload: ReportPayload = {
+      ...data,
+      targetType,
+      targetId,
+    };
+
+    reportMutation.mutate(payload, {
+      onSuccess: () => {
+        reset();
+        handleClose();
+      },
+    });
   };
 
-  const targetType = useMemo(() => {
-    return commentId ? 'comment' : 'reply';
-  }, [commentId]);
-
   const titleLabel = useMemo(() => {
-    return `Report ${commentId ? 'Comment' : 'Reply'}`;
-  }, [commentId]);
+    return `Report ${targetType
+      .charAt(0)
+      .toUpperCase()
+      .concat(targetType.slice(1))}`;
+  }, [targetType]);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,10 +112,12 @@ const ReportModal = () => {
       reason={reason}
       username={user.username}
       targetType={targetType}
+      disabled={reportMutation.isPending || muteMutation.isPending}
       options={reportOptions}
       register={register as unknown as UseFormRegister<FieldValues>}
-      reasonError={errors.reason as unknown as string}
-      customError={errors.customReason as unknown as string}
+      reasonError={errors.reason?.message}
+      detailsError={errors.details?.message}
+      customError={errors.customReason?.message}
     />
   );
 

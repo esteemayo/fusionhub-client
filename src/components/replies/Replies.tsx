@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Reply from '../reply/Reply';
 
 import { RepliesProps } from '../../types';
+import { useMute } from '../../hooks/useMute';
 
 import './Replies.scss';
 
@@ -15,6 +16,8 @@ const Replies = ({
   onChangeActiveCardId,
   onClick,
 }: RepliesProps) => {
+  const { mutedList } = useMute();
+
   const ref = useRef<HTMLDivElement>(null);
   const [isShow, setIsShow] = useState(true);
 
@@ -102,18 +105,26 @@ const Replies = ({
           )}
         </button>
         <div className={wrapperClasses} ref={ref}>
-          {replyLists?.slice(0, replyToShow).map((reply) => {
-            return (
-              <Reply
-                key={reply._id}
-                reply={reply}
-                slug={slug}
-                level={0}
-                activeCardId={activeCardId}
-                onChangeActiveCardId={onChangeActiveCardId}
-              />
-            );
-          })}
+          {replyLists
+            ?.filter(
+              (reply) =>
+                !(mutedList?.mutedReplies ?? []).some(
+                  (replyId) => replyId === reply._id
+                )
+            )
+            .slice(0, replyToShow)
+            .map((reply) => {
+              return (
+                <Reply
+                  key={reply._id}
+                  reply={reply}
+                  slug={slug}
+                  level={0}
+                  activeCardId={activeCardId}
+                  onChangeActiveCardId={onChangeActiveCardId}
+                />
+              );
+            })}
           <div className={boxClasses}>
             <button
               type='button'

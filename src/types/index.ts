@@ -1411,13 +1411,14 @@ export interface CommentActionMenuListItemProps {
 }
 
 export interface ReportFormProps {
-  reason: string;
+  reason: ReportReasonType | string;
   username: string;
-  targetType: 'comment' | 'reply';
+  targetType: ReportTargetType;
   disabled?: boolean;
   options: CategoriesType | undefined;
   register: UseFormRegister<FieldValues>;
   reasonError?: string;
+  detailsError?: string;
   customError?: string;
 }
 
@@ -1653,11 +1654,40 @@ export interface MutePayload {
 
 export type ReportTargetType = 'comment' | 'reply';
 
+type ReportReasonType =
+  | 'Spam or misleading'
+  | 'Harassment or bullying'
+  | 'Hate speech or discrimination'
+  | 'Inappropriate or sexual content'
+  | 'Other';
+
 export interface ReportPayload {
+  reporter?: string;
+  targetType: ReportTargetType;
+  targetId: string;
+  reason: ReportReasonType | string;
+  customReason?: string;
+  details?: string;
+}
+
+export interface ReportResponse {
+  _id: string;
   reporter: string;
   targetType: ReportTargetType;
   targetId: string;
   reason: string;
+  details: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ReportModalPayload {
+  user: {
+    id: string;
+    username: string;
+  };
+  targetType: ReportTargetType;
+  targetId: string;
 }
 
 export interface MutedListType {
@@ -1852,6 +1882,9 @@ export type UserDetailType = {
   image?: string;
   banner?: string;
   savedPosts: string[];
+  mutedComments: string[];
+  mutedReplies: string[];
+  mutedUsers: string[];
   tokenExpiration: number;
   fromGoogle: boolean;
   providerId?: string;

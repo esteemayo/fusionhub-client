@@ -21,7 +21,7 @@ import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { MutePayload, ReplyProps } from '../../types';
+import { MutePayload, ReplyProps, ReportModalPayload } from '../../types';
 
 import './Reply.scss';
 
@@ -190,14 +190,16 @@ const Reply = ({
 
     const { _id: id, username } = author;
 
-    const payload = {
-      id,
-      username,
+    const payload: ReportModalPayload = {
+      user: {
+        id,
+        username,
+      },
+      targetType: 'reply',
+      targetId: replyId,
     };
 
     dispatch(reportModal.onOpen(payload));
-    dispatch(reportModal.setReplyId(replyId));
-
     handleClose();
   };
 

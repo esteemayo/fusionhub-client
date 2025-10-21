@@ -8,7 +8,9 @@ import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 import CommentUserImages from '../commentUserImages/CommentUserImages';
 
+import { useMute } from '../../hooks/useMute';
 import { useAppSelector } from '../../hooks/hooks';
+
 import {
   CommentImageType,
   CommentProps,
@@ -39,6 +41,7 @@ const Comment = ({
   onToggle,
   onSort,
 }: CommentProps) => {
+  const { mutedList } = useMute();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const url = (user: CommentImageType) => {
@@ -152,18 +155,26 @@ const Comment = ({
               onOpen={onOpen}
             />
           )}
-          {comments?.slice(0, commentToShow).map((comment) => {
-            return (
-              <CommentCard
-                key={comment._id}
-                slug={slug}
-                activeCardId={activeCardId}
-                comment={comment}
-                onChangeActiveCardId={onChangeActiveCardId}
-                onOpen={onOpen}
-              />
-            );
-          })}
+          {comments
+            ?.filter(
+              (comment) =>
+                !(mutedList?.mutedComments ?? []).some(
+                  (commentId) => commentId === comment._id
+                )
+            )
+            .slice(0, commentToShow)
+            .map((comment) => {
+              return (
+                <CommentCard
+                  key={comment._id}
+                  slug={slug}
+                  activeCardId={activeCardId}
+                  comment={comment}
+                  onChangeActiveCardId={onChangeActiveCardId}
+                  onOpen={onOpen}
+                />
+              );
+            })}
         </>
       )}
       <div className={wrapperClasses}>

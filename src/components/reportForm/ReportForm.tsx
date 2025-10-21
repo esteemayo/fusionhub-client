@@ -13,6 +13,7 @@ const ReportForm = ({
   options,
   register,
   reasonError,
+  detailsError,
   customError,
 }: ReportFormProps) => {
   return (
@@ -29,7 +30,18 @@ const ReportForm = ({
           options={options}
           register={register}
           error={reasonError}
+          validate
         />
+        {reason !== '' && reason !== 'Other' && (
+          <Textarea
+            name='details'
+            label='Details (optional)'
+            disabled={disabled}
+            register={register}
+            error={detailsError}
+            placeholder='Provide more details...'
+          />
+        )}
       </div>
 
       {reason === 'Other' && (
@@ -52,12 +64,18 @@ const ReportForm = ({
       <div className='report-form__box'>
         <input
           {...register('muteUser')}
-          type='checkbox'
-          name='muteUser'
           id='muteUser'
+          name='muteUser'
+          type='checkbox'
+          disabled={disabled}
+          aria-disabled={disabled}
           className='report-form__box--input'
         />
-        <label htmlFor='muteUser' className='report-form__box--label'>
+        <label
+          htmlFor='muteUser'
+          aria-disabled={disabled}
+          className='report-form__box--label'
+        >
           Also mute {username} (you won’t see their comments again)
         </label>
       </div>
