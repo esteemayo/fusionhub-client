@@ -1,5 +1,3 @@
-import { useMutation } from '@tanstack/react-query';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import {
@@ -8,11 +6,12 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 
 import ForgotPasswordForm from '../../components/forgotPasswordForm/ForgotPasswordForm';
 
 import { forgotPassword } from '../../services/authService';
-import { forgotSchema } from '../../validations/forgotSchema';
+import { ForgotFormData, forgotSchema } from '../../validations/forgotSchema';
 
 import './ForgotPassword.scss';
 
@@ -20,8 +19,6 @@ const forgot = async (email: string) => {
   const { data } = await forgotPassword(email);
   return data;
 };
-
-type FormData = z.infer<typeof forgotSchema>;
 
 const ForgotPassword = () => {
   const mutation = useMutation({
@@ -51,11 +48,11 @@ const ForgotPassword = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<ForgotFormData>({
     resolver: zodResolver(forgotSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<ForgotFormData> = (data) => {
     mutation.mutate(data.email, {
       onSuccess: () => {
         reset();

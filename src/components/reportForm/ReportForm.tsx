@@ -32,7 +32,7 @@ const ReportForm = ({
           error={reasonError}
           validate
         />
-        {reason !== '' && reason !== 'Other' && (
+        {reason && reason !== 'Other' && (
           <Textarea
             name='details'
             label='Details (optional)'
@@ -53,6 +53,7 @@ const ReportForm = ({
             register={register}
             error={customError}
             placeholder='Describe your reason...'
+            validate
           />
           <p className='report-form__wrapper--text'>
             Please provide as much detail as possible to help us understand the

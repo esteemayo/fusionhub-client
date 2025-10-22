@@ -1,16 +1,15 @@
 import { Value } from 'react-phone-number-input';
-import { z } from 'zod';
-import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { zodResolver } from '@hookform/resolvers/zod';
+import ReactQuill from 'react-quill-new';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import ReactQuill from 'react-quill-new';
 
 import TextQuill from '../textQuill/TextQuill';
 import Input from '../input/Input';
@@ -18,8 +17,11 @@ import PhoneNumber from '../phoneNumber/PhoneNumber';
 import Button from '../button/Button';
 import ContactHeading from '../contactHeading/ContactHeading';
 
-import { contactSchema } from '../../validations/contactSchema';
 import { validateContactInputs } from '../../validations/contact';
+import {
+  ContactInputData,
+  contactSchema,
+} from '../../validations/contactSchema';
 
 import { ContactFormError } from '../../types';
 import { createContact } from '../../services/contactService';
@@ -30,8 +32,6 @@ const createNewContact = async <T extends object>(contact: T) => {
   const { data } = await createContact(contact);
   return data;
 };
-
-type FormData = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
   const contactMutation = useMutation({
@@ -67,7 +67,7 @@ const ContactForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<ContactInputData>({
     resolver: zodResolver(contactSchema),
   });
 
@@ -102,7 +102,7 @@ const ContactForm = () => {
     setMessage('');
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<ContactInputData> = (data) => {
     const inputs = { message, phone };
     const contact = { ...data, ...inputs };
 

@@ -1,5 +1,3 @@
-import { useMutation } from '@tanstack/react-query';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import {
@@ -8,13 +6,17 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 
 import Button from '../button/Button';
 import Input from '../input/Input';
 import ContactHeading from '../contactHeading/ContactHeading';
 
-import { newsletterSchema } from '../../validations/newsletterSchema';
 import { subscribeToNewsLetter } from '../../services/newsletterService';
+import {
+  NewsletterFormData,
+  newsletterSchema,
+} from '../../validations/newsletterSchema';
 
 import './Newsletter.scss';
 
@@ -22,8 +24,6 @@ const subscribe = async (email: string) => {
   const { data } = await subscribeToNewsLetter(email);
   return data;
 };
-
-type FormData = z.infer<typeof newsletterSchema>;
 
 const Newsletter = () => {
   const newsletterMutation = useMutation({
@@ -51,11 +51,11 @@ const Newsletter = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<NewsletterFormData>({
     resolver: zodResolver(newsletterSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<NewsletterFormData> = (data) => {
     newsletterMutation.mutate(data.email, {
       onSuccess: () => reset(),
     });

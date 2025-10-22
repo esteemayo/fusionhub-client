@@ -1,12 +1,13 @@
 import BannerModal from '../components/BannerModal';
-import ShareModal from '../components/ShareModal';
+import MuteModal from '../components/MuteModal';
 import AccountModal from '../components/AccountModal';
-import ImageModal from '../components/ImageModal';
+import ShareModal from '../components/ShareModal';
 import CommentModal from '../components/CommentModal';
-import DeleteModal from '../components/DeleteModal';
+import ImageModal from '../components/ImageModal';
 import CategoryModal from '../components/CategoryModal';
-import ReportModal from '../components/ReportModal';
+import DeleteModal from '../components/DeleteModal';
 import PostModal from '../components/postModal/PostModal';
+import ReportModal from '../components/ReportModal';
 
 const ModalProvider = () => {
   return (
@@ -20,6 +21,7 @@ const ModalProvider = () => {
       <CategoryModal />
       <DeleteModal />
       <ReportModal />
+      <MuteModal />
     </>
   );
 };

@@ -15,7 +15,6 @@ const CommentActionMenu = ({
   isPostAuthor,
   isShow,
   isMuted,
-  muteMutation,
   onReport,
   onMute,
   onDelete,
@@ -35,7 +34,6 @@ const CommentActionMenu = ({
         isCommentAuthor={isCommentAuthor}
         isPostAuthor={isPostAuthor}
         isMuted={isMuted}
-        muteMutation={muteMutation}
         onReport={onReport}
         onMute={onMute}
         onDelete={onDelete}

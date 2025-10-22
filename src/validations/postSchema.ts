@@ -10,3 +10,9 @@ export const postSchema = z
     category: z.string().toLowerCase(),
   })
   .required();
+
+export const descStepSchema = postSchema.pick({ title: true });
+export const imageStepSchema = postSchema.pick({ tags: true, category: true });
+
+export type DescStepFormData = z.infer<typeof descStepSchema>;
+export type ImageStepFormData = z.infer<typeof imageStepSchema>;

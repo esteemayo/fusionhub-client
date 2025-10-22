@@ -24,3 +24,5 @@ export const resetSchema = z
       });
     }
   });
+
+export type ResetFormData = z.infer<typeof resetSchema>;

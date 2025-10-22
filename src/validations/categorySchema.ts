@@ -12,3 +12,5 @@ export const categorySchema = z
       }),
   })
   .required();
+
+export type CategoryFormData = z.infer<typeof categorySchema>;

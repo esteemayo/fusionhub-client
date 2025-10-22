@@ -1,6 +1,4 @@
-import { Value } from 'react-phone-number-input';
-import { z } from 'zod';
-import React, { HTMLInputTypeAttribute, Ref } from 'react';
+import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
 import { Action } from 'redux';
 import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 import { IconType } from 'react-icons/lib';
@@ -11,7 +9,7 @@ import {
   UseFormHandleSubmit,
   UseFormRegister,
 } from 'react-hook-form';
-import ReactQuill, { DeltaStatic, EmitterSource } from 'react-quill-new';
+import { Value } from 'react-phone-number-input';
 import {
   FetchNextPageOptions,
   InfiniteData,
@@ -20,9 +18,10 @@ import {
   RefetchOptions,
   UseMutationResult,
 } from '@tanstack/react-query';
+import React, { HTMLInputTypeAttribute, Ref } from 'react';
 
-import { profileSchema } from '../validations/profileSchema';
-import { registerSchema } from '../validations/registerSchema';
+import { RegisterFormData } from '../validations/registerSchema';
+import { ProfileDataFormData } from '../validations/profileSchema';
 
 export interface LogoProps {
   isOpen?: boolean;
@@ -261,8 +260,6 @@ export interface LoginFormProps {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export type RegisterFormData = z.infer<typeof registerSchema>;
-
 export interface RegisterFormProps {
   about: ReactQuill.Value | undefined;
   phone: Value | undefined;
@@ -308,8 +305,6 @@ export interface ResetPasswordFormProps {
   onTogglePasswordConfirm(): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
-
-export type ProfileDataFormData = z.infer<typeof profileSchema>;
 
 export interface ProfileDataFormProps {
   about: ReactQuill.Value | undefined;
@@ -1380,7 +1375,6 @@ export interface CommentActionMenuProps {
   isPostAuthor: boolean;
   isShow: boolean;
   isMuted: boolean;
-  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1395,7 +1389,6 @@ export interface CommentActionMenuListProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isMuted: boolean;
-  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1411,7 +1404,7 @@ export interface CommentActionMenuListItemProps {
 }
 
 export interface ReportFormProps {
-  reason: ReportReasonType | string;
+  reason: ReportReasonType;
   username: string;
   targetType: ReportTargetType;
   disabled?: boolean;
@@ -1498,7 +1491,6 @@ export interface ReplyMenuProps {
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
   isMuted: boolean;
-  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1515,7 +1507,6 @@ export interface ReplyMenuListProps {
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
   isMuted: boolean;
-  muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1665,7 +1656,7 @@ export interface ReportPayload {
   reporter?: string;
   targetType: ReportTargetType;
   targetId: string;
-  reason: ReportReasonType | string;
+  reason: ReportReasonType;
   customReason?: string;
   details?: string;
 }
@@ -1676,7 +1667,9 @@ export interface ReportResponse {
   targetType: ReportTargetType;
   targetId: string;
   reason: string;
+  customReason: string;
   details: string;
+  status: 'pending';
   createdAt: string;
   updatedAt: string;
 }

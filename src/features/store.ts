@@ -7,13 +7,14 @@ import sidebarReducer from './sidebar/sidebarSlice';
 import bannerModalReducer from './bannerModal/bannerModalSlice';
 import postsMenuReducer from './postsMenu/postsMenuSlice';
 import reportModalReducer from './reportModal/reportModalSlice';
-import postModalReducer from './postModal/postModalSlice';
+import muteModalReducer from './muteModal/muteModalSlice';
 import accountModalReducer from './accountModal/accountModalSlice';
-import imageModalReducer from './imageModal/imageModalSlice';
+import postModalReducer from './postModal/postModalSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
+import imageModalReducer from './imageModal/imageModalSlice';
+import categoryModalReducer from './categoryModal/categoryModalSlice';
 import shareModalReducer from './shareModal/shareModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
-import categoryModalReducer from './categoryModal/categoryModalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -31,6 +32,7 @@ export const store = configureStore({
     deleteModal: deleteModalReducer,
     shareModal: shareModalReducer,
     reportModal: reportModalReducer,
+    muteModal: muteModalReducer,
   },
 });
 

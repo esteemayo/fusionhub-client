@@ -20,3 +20,5 @@ export const forgotSchema = z
       ),
   })
   .required();
+
+export type ForgotFormData = z.infer<typeof forgotSchema>;

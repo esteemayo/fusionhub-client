@@ -17,7 +17,6 @@ const ReplyMenu = ({
   isPostAuthor,
   isReplyAuthor,
   isMuted,
-  muteMutation,
   onDelete,
   onUpdate,
   onMute,
@@ -39,7 +38,6 @@ const ReplyMenu = ({
         isPostAuthor={isPostAuthor}
         isReplyAuthor={isReplyAuthor}
         isMuted={isMuted}
-        muteMutation={muteMutation}
         onDelete={onDelete}
         onUpdate={onUpdate}
         onMute={onMute}

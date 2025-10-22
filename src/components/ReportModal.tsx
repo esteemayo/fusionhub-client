@@ -1,12 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useEffect, useMemo } from 'react';
 import {
   FieldValues,
   SubmitHandler,
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
-import { useEffect, useMemo } from 'react';
 
 import Modal from './modal/Modal';
 import ReportForm from './reportForm/ReportForm';
@@ -19,9 +18,7 @@ import { onClose, resetState } from '../features/reportModal/reportModalSlice';
 
 import { MutePayload, ReportPayload } from '../types';
 import { reportOptions } from '../data/formData';
-import { reportSchema } from '../validations/reportSchema';
-
-type FormData = z.infer<typeof reportSchema>;
+import { ReportInputData, reportSchema } from '../validations/reportSchema';
 
 const ReportModal = () => {
   const dispatch = useAppDispatch();
@@ -44,29 +41,42 @@ const ReportModal = () => {
     handleSubmit,
     watch,
     formState: { errors },
+    setValue,
     reset,
-  } = useForm<FormData>({
+  } = useForm<ReportInputData>({
     resolver: zodResolver(reportSchema),
     defaultValues: {
-      reason: '',
+      reason: 'Spam or misleading',
       customReason: '',
       details: '',
       muteUser: false,
     },
   });
 
-  const reason = watch('reason');
+  const selectedReason = watch('reason');
+
+  const setCustomValue = (
+    name: keyof ReportInputData,
+    value: string | boolean
+  ) => {
+    setValue(name, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
 
   const handleClose = () => {
     dispatch(onClose());
+
+    setCustomValue('reason', 'Spam or misleading');
+    setCustomValue('customReason', '');
+    setCustomValue('details', '');
+    setCustomValue('muteUser', false);
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    const { reason, customReason } = data;
-    const finalReason =
-      reason === 'Other' ? customReason?.trim() || '' : reason;
-
-    if (!finalReason) return;
+  const onSubmit: SubmitHandler<ReportInputData> = (data) => {
+    const { reason, customReason, details } = data;
 
     if (data.muteUser) {
       const payload: MutePayload = {
@@ -79,9 +89,11 @@ const ReportModal = () => {
     }
 
     const payload: ReportPayload = {
-      ...data,
       targetType,
       targetId,
+      reason,
+      customReason,
+      details,
     };
 
     reportMutation.mutate(payload, {
@@ -109,7 +121,7 @@ const ReportModal = () => {
 
   const bodyContent: JSX.Element | undefined = (
     <ReportForm
-      reason={reason}
+      reason={selectedReason}
       username={user.username}
       targetType={targetType}
       disabled={reportMutation.isPending || muteMutation.isPending}
@@ -126,8 +138,8 @@ const ReportModal = () => {
       isOpen={isOpen}
       title={titleLabel}
       type='cancel'
-      isLoading={false}
-      disabled={false}
+      isLoading={reportMutation.isPending || muteMutation.isPending}
+      disabled={reportMutation.isPending || muteMutation.isPending}
       actionLabel='Submit Report'
       secondaryActionLabel='Cancel'
       body={bodyContent}

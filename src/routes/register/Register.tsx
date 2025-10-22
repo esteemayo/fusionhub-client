@@ -15,8 +15,11 @@ import { useNavigate } from 'react-router-dom';
 import AuthLink from '../../components/authLink/AuthLink';
 import RegisterForm from '../../components/registerForm/RegisterForm';
 
-import { CountrySelectType, RegisterFormData } from '../../types';
-import { registerSchema } from '../../validations/registerSchema';
+import { CountrySelectType } from '../../types';
+import {
+  RegisterFormData,
+  registerSchema,
+} from '../../validations/registerSchema';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { registerUser, resetState } from '../../features/auth/authSlice';

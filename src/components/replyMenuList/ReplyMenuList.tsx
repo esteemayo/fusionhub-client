@@ -20,7 +20,6 @@ const ReplyMenuList = ({
   isPostAuthor,
   isReplyAuthor,
   isMuted,
-  muteMutation,
   onDelete,
   onUpdate,
   onMute,
@@ -92,7 +91,6 @@ const ReplyMenuList = ({
       <div className={reportClasses}>
         <ReplyMenuListItem
           label={`${isMuted ? 'Unmute' : 'Mute'} reply`}
-          disabled={muteMutation.isPending}
           onAction={onMute}
         >
           <MuteIcon />

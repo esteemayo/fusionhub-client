@@ -18,6 +18,7 @@ import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import * as reportModal from '../../features/reportModal/reportModalSlice';
+import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
@@ -33,6 +34,7 @@ const Reply = ({
   onChangeActiveCardId,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
+  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const {
     _id: replyId,
@@ -50,9 +52,8 @@ const Reply = ({
     updatedAt,
   } = reply;
 
-  const { mutedList, muteMutation } = useMute();
+  const { mutedList } = useMute();
   const { formattedDate } = useDate(createdAt);
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const isMuted = useMemo(() => {
     return (
@@ -180,9 +181,7 @@ const Reply = ({
       action: isMuted ? 'unmute' : 'mute',
     };
 
-    muteMutation.mutate(payload, {
-      onSuccess: handleClose,
-    });
+    dispatch(muteModal.onOpen(payload));
   };
 
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -479,7 +478,6 @@ const Reply = ({
             isPostAuthor={isPostAuthor}
             isReplyAuthor={isReplyAuthor}
             isMuted={isMuted}
-            muteMutation={muteMutation}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
             onMute={handleMute}

@@ -1,5 +1,3 @@
-import { useMutation } from '@tanstack/react-query';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,11 +8,12 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 
 import ResetPasswordForm from '../../components/resetPasswordForm/ResetPasswordForm';
 
 import { resetPassword } from '../../services/authService';
-import { resetSchema } from '../../validations/resetSchema';
+import { ResetFormData, resetSchema } from '../../validations/resetSchema';
 
 import { ResetPasswordType } from '../../types';
 
@@ -27,8 +26,6 @@ const passwordReset = async <T extends ResetPasswordType, U extends string>(
   const { data } = await resetPassword(credentials, token);
   return data;
 };
-
-type FormData = z.infer<typeof resetSchema>;
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -74,11 +71,11 @@ const ResetPassword = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<ResetFormData>({
     resolver: zodResolver(resetSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<ResetFormData> = (data) => {
     mutation.mutate(data, {
       onSuccess: () => {
         reset();

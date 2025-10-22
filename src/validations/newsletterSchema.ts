@@ -20,3 +20,5 @@ export const newsletterSchema = z
       ),
   })
   .required();
+
+export type NewsletterFormData = z.infer<typeof newsletterSchema>;

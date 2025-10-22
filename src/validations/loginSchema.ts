@@ -44,3 +44,5 @@ export const loginSchema = z
       ),
   })
   .required();
+
+export type LoginFormData = z.infer<typeof loginSchema>;

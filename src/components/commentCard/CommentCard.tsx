@@ -21,6 +21,7 @@ import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import * as reportModal from '../../features/reportModal/reportModalSlice';
+import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
@@ -54,10 +55,10 @@ const CommentCard = ({
   } = comment;
 
   const dispatch = useAppDispatch();
-
-  const { mutedList, muteMutation } = useMute();
-  const { formattedDate } = useDate(createdAt);
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const { mutedList } = useMute();
+  const { formattedDate } = useDate(createdAt);
 
   const isMuted = useMemo(() => {
     return (
@@ -223,9 +224,7 @@ const CommentCard = ({
       action: isMuted ? 'unmute' : 'mute',
     };
 
-    muteMutation.mutate(payload, {
-      onSuccess: handleClose,
-    });
+    dispatch(muteModal.onOpen(payload));
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
@@ -510,7 +509,6 @@ const CommentCard = ({
           isPostAuthor={isPostAuthor}
           isShow={isShow}
           isMuted={isMuted}
-          muteMutation={muteMutation}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
           onMute={handleMute}

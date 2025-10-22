@@ -59,3 +59,5 @@ export const profileSchema = z
       }),
   })
   .required();
+
+export type ProfileDataFormData = z.infer<typeof profileSchema>;

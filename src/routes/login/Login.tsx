@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import {
@@ -8,11 +6,12 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 
 import AuthLink from '../../components/authLink/AuthLink';
 import LoginForm from '../../components/loginForm/LoginForm';
 
-import { loginSchema } from '../../validations/loginSchema';
+import { LoginFormData, loginSchema } from '../../validations/loginSchema';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { loginUser, resetState } from '../../features/auth/authSlice';
@@ -20,8 +19,6 @@ import { loginUser, resetState } from '../../features/auth/authSlice';
 import { useQueryParams } from '../../utils';
 
 import './Login.scss';
-
-type FormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -47,11 +44,11 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormData> = (data) => {
     const credentials = { ...data };
 
     dispatch(loginUser(credentials));

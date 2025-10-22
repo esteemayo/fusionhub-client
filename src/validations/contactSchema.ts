@@ -43,3 +43,5 @@ export const contactSchema = z
       }),
   })
   .required();
+
+export type ContactInputData = z.infer<typeof contactSchema>;

@@ -17,12 +17,11 @@ import ProfileDataForm from '../profileDataForm/ProfileDataForm';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { resetState, updateUserData } from '../../features/auth/authSlice';
 
-import { profileSchema } from '../../validations/profileSchema';
+import { CountrySelectType, ProfileDataProps } from '../../types';
 import {
-  CountrySelectType,
   ProfileDataFormData,
-  ProfileDataProps,
-} from '../../types';
+  profileSchema,
+} from '../../validations/profileSchema';
 
 import './ProfileData.scss';
 

@@ -1,18 +1,17 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import parse from 'html-react-parser';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import ReactQuill from 'react-quill-new';
+import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useForm,
   UseFormRegister,
   FieldValues,
   SubmitHandler,
 } from 'react-hook-form';
-import type { UploadResponse } from 'imagekit-javascript/dist/src/interfaces/UploadResponse';
 
 import PostImage from '../PostImage';
 import Modal from '../modal/Modal';
@@ -24,8 +23,13 @@ import { onClose, resetState } from '../../features/postModal/postModalSlice';
 import { getCategories } from '../../services/categoryService';
 import { createPost, updatePost } from '../../services/postService';
 
-import { postSchema } from '../../validations/postSchema';
 import { validateDescInput } from '../../validations/post';
+import {
+  DescStepFormData,
+  descStepSchema,
+  ImageStepFormData,
+  imageStepSchema,
+} from '../../validations/postSchema';
 
 import { CategoriesType, PostErrorType, PostPayloadType } from '../../types';
 
@@ -126,12 +130,6 @@ const PostModal = () => {
   const [video, setVideo] = useState<UploadResponse | undefined>();
   const [videoProgress, setVideoProgress] = useState(0);
   const [desc, setDesc] = useState<ReactQuill.Value | undefined>('');
-
-  const descStepSchema = postSchema.pick({ title: true });
-  const imageStepSchema = postSchema.pick({ tags: true, category: true });
-
-  type DescStepFormData = z.infer<typeof descStepSchema>;
-  type ImageStepFormData = z.infer<typeof imageStepSchema>;
 
   const handleChangeDesc = (value: ReactQuill.Value | undefined) => {
     if (

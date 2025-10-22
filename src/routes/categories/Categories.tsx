@@ -1,5 +1,3 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
@@ -8,6 +6,7 @@ import {
   useForm,
   UseFormRegister,
 } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import CategoryItems from '../../components/categoryItems/CategoryItems';
 import CategoryForm from '../../components/categoryForm/CategoryForm';
@@ -16,12 +15,13 @@ import AccountHeading from '../../components/accountHeading/AccountHeading';
 import { useCategory } from '../../hooks/useCategory';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { categorySchema } from '../../validations/categorySchema';
 import * as categoryModal from '../../features/categoryModal/categoryModalSlice';
+import {
+  CategoryFormData,
+  categorySchema,
+} from '../../validations/categorySchema';
 
 import './Categories.scss';
-
-type FormData = z.infer<typeof categorySchema>;
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ const Categories = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-  } = useForm<FormData>({
+  } = useForm<CategoryFormData>({
     resolver: zodResolver(categorySchema),
   });
 
@@ -50,7 +50,7 @@ const Categories = () => {
   };
 
   const setCustomValue = useCallback(
-    (name: keyof FormData, value: string) => {
+    (name: keyof CategoryFormData, value: string) => {
       setValue(name, value, {
         shouldDirty: true,
         shouldTouch: true,
@@ -94,7 +94,7 @@ const Categories = () => {
     dispatch(categoryModal.updateCategoryId(categoryId));
   };
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<CategoryFormData> = (data) => {
     if (currentUser && currentUser.role !== 'admin') return;
 
     if (isEditing && !categoryId) {
