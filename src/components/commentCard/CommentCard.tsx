@@ -225,6 +225,7 @@ const CommentCard = ({
     };
 
     dispatch(muteModal.onOpen(payload));
+    handleClose();
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {

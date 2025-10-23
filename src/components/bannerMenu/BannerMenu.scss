@@ -1,0 +1,115 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.banner-menu {
+  position: relative;
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    outline: 0;
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    background-color: rgba(vars.$clr-primary-blue, 0.25);
+    color: vars.$clr-white;
+    border-radius: 50%;
+    cursor: pointer;
+
+    transition: all 0.5s ease-in-out;
+
+    @media screen and (max-width: 56.25em) {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    @include bp.sm {
+      width: 4.75rem;
+      height: 4.75rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      width: 4.6rem;
+      height: 4.6rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 6.5rem;
+      height: 6.5rem;
+    }
+
+    &:hover {
+      background-color: rgba(vars.$clr-primary-blue, 0.35);
+    }
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: currentColor;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @include bp.sm {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 1.7rem;
+        height: 1.7rem;
+      }
+
+      @media screen and (max-width: 18.75em) {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 1.85rem;
+        height: 1.85rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+}

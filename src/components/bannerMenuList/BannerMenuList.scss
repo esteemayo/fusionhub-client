@@ -1,0 +1,38 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.banner-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  list-style: none;
+  position: absolute;
+  top: 4.5rem;
+  right: 0;
+  width: 20rem;
+  max-width: 20rem;
+  padding: 0.5rem;
+  background-color: rgba(vars.$clr-secondary-blue, 0.5);
+  background-color: transparent;
+  backdrop-filter: blur(3px);
+  border: 1px solid vars.$clr-tertiary-blue;
+  border: 1px solid rgba(vars.$clr-primary-blue, 0.25);
+  border-radius: 1rem;
+
+  &.show {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+    z-index: 3000;
+    transition: all 0.3s ease-in;
+  }
+
+  &.hide {
+    transform: scale(0);
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.3s ease-out;
+  }
+}

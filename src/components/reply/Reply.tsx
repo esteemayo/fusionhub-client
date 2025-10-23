@@ -182,6 +182,7 @@ const Reply = ({
     };
 
     dispatch(muteModal.onOpen(payload));
+    handleClose();
   };
 
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {

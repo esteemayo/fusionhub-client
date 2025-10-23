@@ -1,13 +1,16 @@
+import { MuteContentProps } from '../../types';
+
 import './MuteContent.scss';
 
-const MuteContent = () => {
+const MuteContent = ({ description }: MuteContentProps) => {
   return (
     <div className='mute-content'>
       <div className='mute-content__container'>
-        <h2>Mute this comment</h2>
-        <p>
-          This comment will be hidden from your view. You won’t get updates or
-          replies related to it, but others can still see and interact with it.
+        <p className='mute-content__container--text'>{description}</p>
+        <p className='mute-content__container--text'>
+          Muting is private — the person won’t know you’ve muted them. You can
+          manage muted items anytime in your{' '}
+          <strong>Settings → Privacy → Muted list</strong>.
         </p>
       </div>
     </div>

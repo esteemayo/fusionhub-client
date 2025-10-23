@@ -4,10 +4,12 @@ import { MutePayload } from '../../types';
 
 interface MuteModalState {
   isOpen: boolean;
+  targetName?: string;
 }
 
 const initialState: MuteModalState & MutePayload = {
   isOpen: false,
+  targetName: '',
   targetId: '',
   targetType: 'comment',
   action: 'mute',
@@ -20,9 +22,10 @@ const muteModalSlice = createSlice({
     resetState: () => initialState,
     onOpen: (state, { payload }) => {
       state.isOpen = true;
-      state.targetId = payload.targetId;
-      state.targetType = payload.targetType;
       state.action = payload.action;
+      state.targetId = payload.targetId;
+      state.targetName = payload.targetName;
+      state.targetType = payload.targetType;
     },
     onClose: (state) => {
       state.isOpen = false;

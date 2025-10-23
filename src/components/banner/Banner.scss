@@ -238,7 +238,7 @@
     }
   }
 
-  &__wrapper {
+  &__box {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -246,20 +246,6 @@
     position: absolute;
     top: 1.5rem;
     right: 3rem;
-
-    &.show {
-      display: flex;
-      visibility: visible;
-      opacity: 1;
-      z-index: 1000;
-    }
-
-    &.hide {
-      display: none;
-      visibility: hidden;
-      opacity: 0;
-      z-index: -1;
-    }
 
     @media screen and (max-width: 76.25em) {
       right: 2.5rem;
@@ -297,6 +283,26 @@
 
     @media screen and (min-width: 125em) {
       top: 3rem;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &.show {
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    &.hide {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
     }
   }
 

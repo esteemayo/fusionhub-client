@@ -7,6 +7,7 @@ import Login from './login/Login';
 import DislikedPosts from './dislikedPosts/DislikedPosts';
 import Posts from './posts/Posts';
 import UnsubscribeConfirmation from './unsubscribeConfirmation/UnsubscribeConfirmation';
+import Privacy from './privacy/Privacy';
 import ProfileSettings from './profileSettings/ProfileSettings';
 
 import SavedPosts from './savedPosts/SavedPosts';
@@ -36,6 +37,7 @@ export {
   PasswordSettings,
   Posts,
   PostDetails,
+  Privacy,
   Profile,
   ProfileSettings,
   Register,

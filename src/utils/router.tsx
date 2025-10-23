@@ -22,6 +22,7 @@ import {
   PasswordSettings,
   Posts,
   PostDetails,
+  Privacy,
   Profile,
   ProfileSettings,
   Register,
@@ -73,6 +74,14 @@ export const router = createBrowserRouter([
             element: (
               <AuthRoute>
                 <PasswordSettings />
+              </AuthRoute>
+            ),
+          },
+          {
+            path: 'privacy',
+            element: (
+              <AuthRoute>
+                <Privacy />
               </AuthRoute>
             ),
           },

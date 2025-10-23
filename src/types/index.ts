@@ -605,6 +605,23 @@ export interface BannerProps {
   onChangeImageProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
+export interface BannerMenuProps {
+  isOpen: boolean;
+  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface BannerMenuListProps {
+  isOpen: boolean;
+}
+
+export interface BannerMenuListItemProps {
+  type?: 'block';
+  label: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
+  onAction(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface ProfileDetailsProps {
   _id: string;
   name: string;
@@ -1681,6 +1698,10 @@ export interface ReportModalPayload {
   };
   targetType: ReportTargetType;
   targetId: string;
+}
+
+export interface MuteContentProps {
+  description: string;
 }
 
 export interface MutedListType {

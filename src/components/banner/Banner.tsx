@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
+import BannerMenu from '../bannerMenu/BannerMenu';
 import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
@@ -34,9 +35,23 @@ const Banner = ({
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
 
+  const [isShow, setIsShow] = useState(false);
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     dispatch(onOpen());
+  };
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsShow((value) => {
+      return !value;
+    });
+  };
+
+  const handleClose = () => {
+    setIsShow(false);
   };
 
   const coverImg = useMemo(() => {
@@ -58,6 +73,20 @@ const Banner = ({
       (0 < progress && progress < 100) || (0 < advancement && advancement < 100)
     );
   }, [advancement, progress]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      return window.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
 
   return (
     <Container cover={coverImg} className='banner'>
@@ -101,57 +130,60 @@ const Banner = ({
           </div>
         </div>
       </Upload>
-      <div className={wrapperClasses}>
-        <Upload
-          disabled={0 < advancement && advancement < 100}
-          setData={onChangeCoverData}
-          setProgress={onChangeCoverProgress}
-        >
-          <div className='banner__cover'>
-            <div
-              aria-label='Image upload button'
-              className='banner__cover--image'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='size-6'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5'
-                />
-              </svg>
-            </div>
-          </div>
-        </Upload>
-        <button
-          type='button'
-          onClick={handleClick}
-          disabled={isDisabled}
-          aria-label={isOpen ? 'Open modal' : 'Close modal'}
-          aria-disabled={isDisabled}
-          className={btnClasses}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='size-6'
+      <div className='banner__box'>
+        <div className={wrapperClasses}>
+          <Upload
+            disabled={0 < advancement && advancement < 100}
+            setData={onChangeCoverData}
+            setProgress={onChangeCoverProgress}
           >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M6 18 18 6M6 6l12 12'
-            />
-          </svg>
-        </button>
+            <div className='banner__cover'>
+              <div
+                aria-label='Image upload button'
+                className='banner__cover--image'
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  strokeWidth={1.5}
+                  stroke='currentColor'
+                  className='size-6'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5'
+                  />
+                </svg>
+              </div>
+            </div>
+          </Upload>
+          <button
+            type='button'
+            onClick={handleClick}
+            disabled={isDisabled}
+            aria-label={isOpen ? 'Open modal' : 'Close modal'}
+            aria-disabled={isDisabled}
+            className={btnClasses}
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              strokeWidth='1.5'
+              stroke='currentColor'
+              className='size-6'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M6 18 18 6M6 6l12 12'
+              />
+            </svg>
+          </button>
+        </div>
+        <BannerMenu isOpen={isShow} onToggle={handleToggle} />
       </div>
     </Container>
   );
