@@ -13,12 +13,58 @@
   width: 20rem;
   max-width: 20rem;
   padding: 0.5rem;
-  background-color: rgba(vars.$clr-secondary-blue, 0.5);
+  padding-bottom: 0;
   background-color: transparent;
   backdrop-filter: blur(3px);
-  border: 1px solid vars.$clr-tertiary-blue;
   border: 1px solid rgba(vars.$clr-primary-blue, 0.25);
+  border-color: vars.$clr-gray-light-1;
+  box-shadow: vars.$box;
   border-radius: 1rem;
+
+  @media screen and (max-width: 56.25em) {
+    width: 21rem;
+    max-width: 21rem;
+  }
+
+  @media screen and (max-width: 51.25em) {
+    width: 22rem;
+    max-width: 22rem;
+  }
+
+  @media screen and (max-width: 34.375em) {
+    width: 23rem;
+    max-width: 23rem;
+  }
+
+  @include bp.sm {
+    width: 24rem;
+    max-width: 24rem;
+  }
+
+  @media screen and (max-width: 22.5em) {
+    width: 22.5rem;
+    max-width: 22.5rem;
+  }
+
+  @media screen and (max-width: 18.75em) {
+    width: 21rem;
+    max-width: 21rem;
+  }
+
+  @media screen and (min-width: 106.25em) {
+    width: 22rem;
+    max-width: 22rem;
+  }
+
+  @media screen and (min-width: 112.5em) {
+    width: 23rem;
+    max-width: 23rem;
+  }
+
+  @media screen and (min-width: 125em) {
+    width: 26rem;
+    max-width: 26rem;
+  }
 
   &.show {
     transform: scale(1);

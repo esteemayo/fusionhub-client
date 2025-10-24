@@ -591,6 +591,7 @@ export interface BannerProps {
   username: string;
   image?: string;
   banner?: string;
+  isShow: boolean;
   isFromGoogle?: boolean;
   query: string | null;
   progress: number;
@@ -603,19 +604,37 @@ export interface BannerProps {
   >;
   onChangeCoverProgress: React.Dispatch<React.SetStateAction<number>>;
   onChangeImageProgress: React.Dispatch<React.SetStateAction<number>>;
+  onClose(): void;
+  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface BannerMenuProps {
   isOpen: boolean;
+  query: string | null;
+  username: string;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+  onMute(e: React.MouseEvent<HTMLButtonElement>): void;
+  onReport(e: React.MouseEvent<HTMLButtonElement>): void;
+  onBlock(e: React.MouseEvent<HTMLButtonElement>): void;
+  onRemoveBanner(e: React.MouseEvent<HTMLButtonElement>): void;
+  onRemoveAvatar(e: React.MouseEvent<HTMLButtonElement>): void;
+  onDeactivate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface BannerMenuListProps {
   isOpen: boolean;
+  query: string | null;
+  username: string;
+  onMute(e: React.MouseEvent<HTMLButtonElement>): void;
+  onReport(e: React.MouseEvent<HTMLButtonElement>): void;
+  onBlock(e: React.MouseEvent<HTMLButtonElement>): void;
+  onRemoveBanner(e: React.MouseEvent<HTMLButtonElement>): void;
+  onRemoveAvatar(e: React.MouseEvent<HTMLButtonElement>): void;
+  onDeactivate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface BannerMenuListItemProps {
-  type?: 'block';
+  type?: 'danger';
   label: string;
   disabled?: boolean;
   children?: React.ReactNode;

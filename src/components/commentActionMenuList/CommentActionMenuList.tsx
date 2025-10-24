@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import DeleteIcon from '../DeleteIcon';
+import DeleteIcon from '../TrashIcon';
 import EditIcon from '../EditIcon';
 import ReportIcon from '../ReportIcon';
 import MuteIcon from '../MuteIcon';

@@ -11,8 +11,8 @@ const BannerMenuListItem = ({
   onAction,
 }: BannerMenuListItemProps) => {
   const listItemClasses = useMemo(() => {
-    return type === 'block'
-      ? 'banner-menu-list-item block'
+    return type === 'danger'
+      ? 'banner-menu-list-item danger'
       : 'banner-menu-list-item';
   }, [type]);
 
@@ -22,10 +22,13 @@ const BannerMenuListItem = ({
         type='button'
         onClick={onAction}
         disabled={disabled}
+        aria-label={label}
         aria-disabled={disabled}
         className='banner-menu-list-item__btn'
       >
-        {label}
+        <span aria-label={label} aria-disabled={disabled}>
+          {label}
+        </span>
         {children}
       </button>
     </li>

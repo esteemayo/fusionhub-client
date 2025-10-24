@@ -27,9 +27,8 @@ export const useMute: IMute = () => {
 
   const muteMutation = useMutation({
     mutationFn: (payload: MutePayload) => createMuteEntity(payload),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['mutedList', currentUser] });
-      toast.success(data.message);
     },
     onError: (error: unknown) => {
       if (

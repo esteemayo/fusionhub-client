@@ -1,4 +1,4 @@
-import DeleteIcon from '../DeleteIcon';
+import DeleteIcon from '../TrashIcon';
 import EditIcon from '../EditIcon';
 import ArticleMenuListItem from '../articleMenuListItem/ArticleMenuListItem';
 

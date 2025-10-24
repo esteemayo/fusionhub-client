@@ -37,10 +37,31 @@ const UserProfile = () => {
   } = useProfile(username!);
 
   const [user, setUser] = useState<UserType | undefined>();
-  const [progress, setProgress] = useState(0);
+  const [isShow, setIsShow] = useState(false);
   const [cover, setCover] = useState<UploadResponse | undefined>();
-  const [advancement, setAdvancement] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [image, setImage] = useState<UploadResponse | undefined>();
+  const [advancement, setAdvancement] = useState(0);
+
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsShow((value) => {
+      return !value;
+    });
+  };
+
+  const handleClose = () => {
+    setIsShow(false);
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as Element;
+
+    if (!target.classList.contains('banner-menu-list-item__btn')) {
+      handleClose();
+    }
+  };
 
   const isLoading = useMemo(() => {
     return username ? isPendingUser : isPending;
@@ -107,7 +128,7 @@ const UserProfile = () => {
   }, [advancement, cover, dispatch, refetch]);
 
   return (
-    <div className='profile'>
+    <div onClick={handleClick} className='profile'>
       <div className='profile__container'>
         <AccountHeading
           title='Profile'
@@ -151,6 +172,7 @@ const UserProfile = () => {
               username={user?.username as string}
               image={user?.image}
               banner={user?.banner}
+              isShow={isShow}
               isFromGoogle={user?.fromGoogle}
               progress={progress}
               advancement={advancement}
@@ -158,6 +180,8 @@ const UserProfile = () => {
               onChangeImageData={setImage}
               onChangeCoverProgress={setAdvancement}
               onChangeImageProgress={setProgress}
+              onClose={handleClose}
+              onToggle={handleToggle}
             />
             <ProfileDetails {...user!} />
             <AboutProfile about={user?.about as string} />

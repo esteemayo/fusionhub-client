@@ -4,10 +4,26 @@ import { BannerMenuProps } from '../../types';
 
 import './BannerMenu.scss';
 
-const BannerMenu = ({ isOpen, onToggle }: BannerMenuProps) => {
+const BannerMenu = ({
+  isOpen,
+  query,
+  username,
+  onToggle,
+  onMute,
+  onReport,
+  onBlock,
+  onRemoveBanner,
+  onRemoveAvatar,
+  onDeactivate,
+}: BannerMenuProps) => {
   return (
     <div className='banner-menu'>
-      <button type='button' onClick={onToggle} className='banner-menu__btn'>
+      <button
+        type='button'
+        onClick={onToggle}
+        aria-label={`${isOpen ? 'Open' : 'Close'} menu`}
+        className='banner-menu__btn'
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -23,7 +39,17 @@ const BannerMenu = ({ isOpen, onToggle }: BannerMenuProps) => {
           />
         </svg>
       </button>
-      <BannerMenuList isOpen={isOpen} />
+      <BannerMenuList
+        isOpen={isOpen}
+        query={query}
+        username={username}
+        onMute={onMute}
+        onReport={onReport}
+        onBlock={onBlock}
+        onRemoveBanner={onRemoveBanner}
+        onRemoveAvatar={onRemoveAvatar}
+        onDeactivate={onDeactivate}
+      />
     </div>
   );
 };

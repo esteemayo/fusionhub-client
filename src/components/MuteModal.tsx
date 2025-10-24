@@ -32,8 +32,9 @@ const MuteModal = () => {
     };
 
     muteMutation.mutate(payload, {
-      onSuccess: () => {
-        toast.success(content.toastMsg);
+      onSuccess: (data) => {
+        const message = (data as { message?: string })?.message;
+        toast.success(message || content.toastMsg);
         handleClose();
       },
     });

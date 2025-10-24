@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
 import Image from '../Image';
@@ -9,7 +9,9 @@ import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { onOpen } from '../../features/bannerModal/bannerModalSlice';
+import * as bannerModal from '../../features/bannerModal/bannerModalSlice';
+import * as accountModal from '../../features/accountModal/accountModalSlice';
+import * as imageModal from '../../features/imageModal/imageModalSlice';
 
 import { BannerProps } from '../../types';
 
@@ -24,6 +26,7 @@ const Banner = ({
   username,
   image,
   banner,
+  isShow,
   isFromGoogle,
   progress,
   advancement,
@@ -31,27 +34,57 @@ const Banner = ({
   onChangeImageData,
   onChangeCoverProgress,
   onChangeImageProgress,
+  onClose,
+  onToggle,
 }: BannerProps) => {
   const dispatch = useAppDispatch();
   const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
 
-  const [isShow, setIsShow] = useState(false);
-
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    dispatch(onOpen());
+    dispatch(bannerModal.onOpen());
   };
 
-  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    setIsShow((value) => {
-      return !value;
-    });
+    console.log('muted');
+    onClose();
   };
 
-  const handleClose = () => {
-    setIsShow(false);
+  const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('reported');
+    onClose();
+  };
+
+  const handleBlock = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    console.log('blocked');
+    onClose();
+  };
+
+  const handleRemoveBanner = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(bannerModal.onOpen());
+    onClose();
+  };
+
+  const handleRemoveAvatar = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(imageModal.onOpen());
+    onClose();
+  };
+
+  const handleDeactivate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    dispatch(accountModal.onOpen());
+    onClose();
   };
 
   const coverImg = useMemo(() => {
@@ -77,7 +110,7 @@ const Banner = ({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        handleClose();
+        onClose();
       }
     };
 
@@ -86,7 +119,7 @@ const Banner = ({
     return () => {
       return window.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [onClose]);
 
   return (
     <Container cover={coverImg} className='banner'>
@@ -163,7 +196,7 @@ const Banner = ({
             type='button'
             onClick={handleClick}
             disabled={isDisabled}
-            aria-label={isOpen ? 'Open modal' : 'Close modal'}
+            aria-label={`${isOpen ? 'Open' : 'Close'} modal`}
             aria-disabled={isDisabled}
             className={btnClasses}
           >
@@ -183,7 +216,18 @@ const Banner = ({
             </svg>
           </button>
         </div>
-        <BannerMenu isOpen={isShow} onToggle={handleToggle} />
+        <BannerMenu
+          isOpen={isShow}
+          query={query}
+          username={username}
+          onToggle={onToggle}
+          onMute={handleMute}
+          onReport={handleReport}
+          onBlock={handleBlock}
+          onRemoveBanner={handleRemoveBanner}
+          onRemoveAvatar={handleRemoveAvatar}
+          onDeactivate={handleDeactivate}
+        />
       </div>
     </Container>
   );

@@ -46,9 +46,10 @@
 
   &:not(:last-child) {
     border-bottom: 1px solid rgba(vars.$clr-tertiary-blue, 0.5);
+    border-color: vars.$clr-gray-light-1;
   }
 
-  &.block {
+  &.danger {
     button {
       font-weight: 700;
       color: vars.$clr-danger;
@@ -68,7 +69,7 @@
     outline: 0;
     width: 100%;
     height: 100%;
-    text-transform: capitalize;
+    text-transform: initial;
     font-weight: 600;
     font-size: 1.4rem;
     padding: 1px 0.5rem;
@@ -115,6 +116,12 @@
       font-size: 1.9rem;
     }
 
+    span {
+      text-transform: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+    }
+
     &:hover {
       background-color: rgba(vars.$clr-tertiary-blue, 0.25);
     }
@@ -125,54 +132,54 @@
     }
 
     svg {
-      width: 1.4rem;
-      height: 1.4rem;
+      width: 1.75rem;
+      height: 1.75rem;
       color: currentColor;
       stroke-width: 2px;
 
       @media screen and (max-width: 56.25em) {
-        width: 1.65rem;
-        height: 1.65rem;
-      }
-
-      @media screen and (max-width: 51.25em) {
-        width: 1.8rem;
-        height: 1.8rem;
-      }
-
-      @media screen and (max-width: 34.375em) {
-        width: 1.9rem;
-        height: 1.9rem;
-      }
-
-      @include bp.sm {
-        width: 2rem;
-        height: 2rem;
-      }
-
-      @media screen and (max-width: 22.5em) {
         width: 1.85rem;
         height: 1.85rem;
       }
 
+      @media screen and (max-width: 51.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (max-width: 34.375em) {
+        width: 2.1rem;
+        height: 2.1rem;
+      }
+
+      @include bp.sm {
+        width: 2.2rem;
+        height: 2.2rem;
+      }
+
+      @media screen and (max-width: 22.5em) {
+        width: 2.05rem;
+        height: 2.05rem;
+      }
+
       @media screen and (max-width: 18.75em) {
-        width: 1.75rem;
-        height: 1.75rem;
+        width: 1.95rem;
+        height: 1.95rem;
       }
 
       @media screen and (min-width: 106.25em) {
-        width: 1.65rem;
-        height: 1.65rem;
+        width: 1.85rem;
+        height: 1.85rem;
       }
 
       @media screen and (min-width: 112.5em) {
-        width: 1.8rem;
-        height: 1.8rem;
+        width: 2rem;
+        height: 2rem;
       }
 
-      @media screen and (min-width: 112.5em) {
-        width: 2.4rem;
-        height: 2.4rem;
+      @media screen and (min-width: 125em) {
+        width: 2.6rem;
+        height: 2.6rem;
       }
     }
   }
