@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import SaveIcon from '../SaveIcon';
+import SaveIcon from '../icons/SaveIcon';
 import ActionMenu from '../actionMenu/ActionMenu';
 
 import * as postModal from '../../features/postModal/postModalSlice';

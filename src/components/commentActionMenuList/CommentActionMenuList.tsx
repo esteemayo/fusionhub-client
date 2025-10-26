@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
-import DeleteIcon from '../TrashIcon';
-import EditIcon from '../EditIcon';
-import ReportIcon from '../ReportIcon';
-import MuteIcon from '../MuteIcon';
+import TrashIcon from '../icons/TrashIcon';
+import EditIcon from '../icons/EditIcon';
+import ReportIcon from '../icons/ReportIcon';
+import MuteIcon from '../icons/MuteIcon';
 import CommentActionMenuListItem from '../commentActionMenuListItem/CommentActionMenuListItem';
 
 import { CommentActionMenuListProps } from '../../types';
@@ -82,7 +82,7 @@ const CommentActionMenuList = ({
           label='Delete'
           onAction={onDelete}
         >
-          <DeleteIcon />
+          <TrashIcon />
         </CommentActionMenuListItem>
       </div>
       <div className={reportBtnClasses}>

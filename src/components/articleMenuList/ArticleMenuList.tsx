@@ -1,5 +1,5 @@
-import DeleteIcon from '../TrashIcon';
-import EditIcon from '../EditIcon';
+import TrashIcon from '../icons/TrashIcon';
+import EditIcon from '../icons/EditIcon';
 import ArticleMenuListItem from '../articleMenuListItem/ArticleMenuListItem';
 
 import { ArticleMenuListProps } from '../../types';
@@ -13,7 +13,7 @@ const ArticleMenuList = ({ onDelete, onUpdate }: ArticleMenuListProps) => {
         <EditIcon />
       </ArticleMenuListItem>
       <ArticleMenuListItem type='delete' label='Delete' onClick={onDelete}>
-        <DeleteIcon />
+        <TrashIcon />
       </ArticleMenuListItem>
     </ul>
   );

@@ -1,5 +1,5 @@
-import DeleteIcon from '../TrashIcon';
-import EditIcon from '../EditIcon';
+import TrashIcon from '../icons/TrashIcon';
+import EditIcon from '../icons/EditIcon';
 import CategoryMenuListItem from '../categoryMenuListItem/CategoryMenuListItem';
 
 import { CategoryMenuListProps } from '../../types';
@@ -13,7 +13,7 @@ const CategoryMenuList = ({ onRemove, onUpdate }: CategoryMenuListProps) => {
         <EditIcon />
       </CategoryMenuListItem>
       <CategoryMenuListItem type='delete' label='Delete' onAction={onRemove}>
-        <DeleteIcon />
+        <TrashIcon />
       </CategoryMenuListItem>
     </ul>
   );

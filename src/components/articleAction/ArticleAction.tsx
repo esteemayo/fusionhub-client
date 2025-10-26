@@ -1,6 +1,6 @@
-import ShareIcon from '../ShareIcon';
-import SaveIcon from '../SaveIcon';
-import CommentIcon from '../CommentIcon';
+import ShareIcon from '../icons/ShareIcon';
+import SaveIcon from '../icons/SaveIcon';
+import CommentIcon from '../icons/CommentIcon';
 
 import CommentLikeButton from '../commentLikeButton/CommentLikeButton';
 import ArticleActionItem from '../articleActionItem/ArticleActionItem';

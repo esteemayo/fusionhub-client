@@ -11,8 +11,8 @@
 
     border: 0;
     outline: 0;
-    width: 4rem;
-    height: 4rem;
+    width: 3.25rem;
+    height: 3.25rem;
     background-color: transparent;
     background-color: rgba(vars.$clr-primary-blue, 0.25);
     color: vars.$clr-white;
@@ -22,47 +22,52 @@
     transition: all 0.5s ease-in-out;
 
     @media screen and (max-width: 56.25em) {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      width: 5rem;
-      height: 5rem;
+      width: 3.75rem;
+      height: 3.75rem;
     }
 
     @include bp.sm {
-      width: 4.75rem;
-      height: 4.75rem;
+      width: 4rem;
+      height: 4rem;
     }
 
     @media screen and (max-width: 22.5em) {
-      width: 4.6rem;
-      height: 4.6rem;
+      width: 3.85rem;
+      height: 3.85rem;
     }
 
     @media screen and (max-width: 18.75em) {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 3.75rem;
+      height: 3.75rem;
     }
 
     @media screen and (min-width: 106.25em) {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     @media screen and (min-width: 112.5em) {
-      width: 5rem;
-      height: 5rem;
+      width: 3.75rem;
+      height: 3.75rem;
     }
 
     @media screen and (min-width: 125em) {
-      width: 6.5rem;
-      height: 6.5rem;
+      width: 4.25rem;
+      height: 4.25rem;
     }
 
     &:hover {
       background-color: rgba(vars.$clr-primary-blue, 0.35);
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      cursor: not-allowed;
     }
 
     svg {
@@ -107,8 +112,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 3rem;
-        height: 3rem;
+        width: 2.5rem;
+        height: 2.5rem;
       }
     }
   }

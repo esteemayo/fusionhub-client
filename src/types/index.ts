@@ -610,8 +610,10 @@ export interface BannerProps {
 
 export interface BannerMenuProps {
   isOpen: boolean;
+  banner: string | undefined;
   query: string | null;
   username: string;
+  disabled: boolean;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
   onReport(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -623,6 +625,7 @@ export interface BannerMenuProps {
 
 export interface BannerMenuListProps {
   isOpen: boolean;
+  banner: string | undefined;
   query: string | null;
   username: string;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;

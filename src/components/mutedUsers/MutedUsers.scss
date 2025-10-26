@@ -1,11 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.privacy {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-
+.muted-users {
   &__container {
     background-color: vars.$clr-secondary-blue;
     padding: 3rem;
@@ -29,9 +25,8 @@
 
     @media screen and (max-width: 31.25em) {
       padding: 0;
-      padding-bottom: 3rem;
+      padding-bottom: 1.5rem;
       background-color: transparent;
-      border-bottom: 1px solid vars.$clr-tertiary-blue;
       border-radius: 0;
     }
   }

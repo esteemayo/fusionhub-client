@@ -306,53 +306,52 @@
     }
   }
 
-  &__cover,
-  &__btn {
-    width: 4rem;
-    height: 4rem;
+  &__cover {
+    width: 3.25rem;
+    height: 3.25rem;
     background-color: rgba(vars.$clr-primary-blue, 0.25);
     color: vars.$clr-white;
     border-radius: 50%;
     transition: all 0.5s ease-in-out;
 
     @media screen and (max-width: 56.25em) {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     @media screen and (max-width: 51.25em) {
-      width: 5rem;
-      height: 5rem;
+      width: 3.75rem;
+      height: 3.75rem;
     }
 
     @include bp.sm {
-      width: 4.75rem;
-      height: 4.75rem;
+      width: 4rem;
+      height: 4rem;
     }
 
     @media screen and (max-width: 22.5em) {
-      width: 4.6rem;
-      height: 4.6rem;
+      width: 3.85rem;
+      height: 3.85rem;
     }
 
     @media screen and (max-width: 18.75em) {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 3.75rem;
+      height: 3.75rem;
     }
 
     @media screen and (min-width: 106.25em) {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     @media screen and (min-width: 112.5em) {
-      width: 5rem;
-      height: 5rem;
+      width: 3.75rem;
+      height: 3.75rem;
     }
 
     @media screen and (min-width: 125em) {
-      width: 6.5rem;
-      height: 6.5rem;
+      width: 4.25rem;
+      height: 4.25rem;
     }
 
     &:hover {
@@ -401,8 +400,8 @@
       }
 
       @media screen and (min-width: 125em) {
-        width: 3rem;
-        height: 3rem;
+        width: 2.5rem;
+        height: 2.5rem;
       }
     }
   }
@@ -419,34 +418,6 @@
       position: relative;
       z-index: 1000;
       cursor: pointer;
-    }
-  }
-
-  &__btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-
-    &.show {
-      visibility: visible;
-      opacity: 1;
-      z-index: 1000;
-    }
-
-    &.hide {
-      display: none;
-      visibility: hidden;
-      opacity: 0;
-      z-index: -1;
-    }
-
-    &:disabled {
-      opacity: 0.75;
-      cursor: not-allowed;
     }
   }
 }

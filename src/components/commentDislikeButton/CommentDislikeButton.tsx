@@ -1,7 +1,7 @@
 import millify from 'millify';
 import { useMemo } from 'react';
 
-import DislikeIcon from '../DislikeIcon';
+import DislikeIcon from '../icons/DislikeIcon';
 
 import { CommentDislikeButtonProps } from '../../types';
 

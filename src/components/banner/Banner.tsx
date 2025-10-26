@@ -8,12 +8,12 @@ import BannerMenu from '../bannerMenu/BannerMenu';
 import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import * as bannerModal from '../../features/bannerModal/bannerModalSlice';
-import * as accountModal from '../../features/accountModal/accountModalSlice';
 import * as imageModal from '../../features/imageModal/imageModalSlice';
+import * as accountModal from '../../features/accountModal/accountModalSlice';
 
 import { BannerProps } from '../../types';
+import { useAppDispatch } from '../../hooks/hooks';
 
 import './Banner.scss';
 
@@ -38,12 +38,6 @@ const Banner = ({
   onToggle,
 }: BannerProps) => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    dispatch(bannerModal.onOpen());
-  };
 
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -96,10 +90,6 @@ const Banner = ({
   const wrapperClasses = useMemo(() => {
     return query ? 'banner__wrapper hide' : 'banner__wrapper show';
   }, [query]);
-
-  const btnClasses = useMemo(() => {
-    return banner ? 'banner__btn show' : 'banner__btn hide';
-  }, [banner]);
 
   const isDisabled = useMemo(() => {
     return (
@@ -192,34 +182,13 @@ const Banner = ({
               </div>
             </div>
           </Upload>
-          <button
-            type='button'
-            onClick={handleClick}
-            disabled={isDisabled}
-            aria-label={`${isOpen ? 'Open' : 'Close'} modal`}
-            aria-disabled={isDisabled}
-            className={btnClasses}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth='1.5'
-              stroke='currentColor'
-              className='size-6'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M6 18 18 6M6 6l12 12'
-              />
-            </svg>
-          </button>
         </div>
         <BannerMenu
           isOpen={isShow}
+          banner={banner}
           query={query}
           username={username}
+          disabled={isDisabled}
           onToggle={onToggle}
           onMute={handleMute}
           onReport={handleReport}

@@ -1,0 +1,15 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.muted-list {
+  box-shadow: vars.$shadow;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

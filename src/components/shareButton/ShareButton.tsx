@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import parse from 'html-react-parser';
 import { useEffect, useMemo } from 'react';
 
-import ShareIcon from '../ShareIcon';
+import ShareIcon from '../icons/ShareIcon';
 
 import { excerpts, stripHtml } from '../../utils';
 import { ShareButtonProps } from '../../types';

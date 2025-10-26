@@ -1,7 +1,7 @@
 import millify from 'millify';
 import { useMemo } from 'react';
 
-import LikeIcon from '../LikeIcon';
+import LikeIcon from '../icons/LikeIcon';
 
 import { LikeButtonProps } from '../../types';
 

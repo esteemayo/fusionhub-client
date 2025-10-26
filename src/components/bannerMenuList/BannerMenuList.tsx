@@ -1,11 +1,11 @@
 import { useCallback, useMemo } from 'react';
 
-import ReportIcon from '../ReportIcon';
-import MuteIcon from '../MuteIcon';
-import DeactivateIcon from '../DeactivateIcon';
-import BlockIcon from '../BlockIcon';
-import RemoveAvatarIcon from '../RemoveAvatarIcon';
-import TrashIcon from '../TrashIcon';
+import ReportIcon from '../icons/ReportIcon';
+import MuteIcon from '../icons/MuteIcon';
+import DeactivateIcon from '../icons/DeactivateIcon';
+import BlockIcon from '../icons/BlockIcon';
+import RemoveAvatarIcon from '../icons/RemoveAvatarIcon';
+import TrashIcon from '../icons/TrashIcon';
 
 import BannerMenuListItem from '../bannerMenuListItem/BannerMenuListItem';
 
@@ -15,6 +15,7 @@ import './BannerMenuList.scss';
 
 const BannerMenuList = ({
   isOpen,
+  banner,
   query,
   username,
   onMute,
@@ -57,9 +58,11 @@ const BannerMenuList = ({
 
       {!query && (
         <>
-          <BannerMenuListItem label='Remove Banner' onAction={onRemoveBanner}>
-            <TrashIcon />
-          </BannerMenuListItem>
+          {banner && (
+            <BannerMenuListItem label='Remove Banner' onAction={onRemoveBanner}>
+              <TrashIcon />
+            </BannerMenuListItem>
+          )}
           <BannerMenuListItem label='Remove Avatar' onAction={onRemoveAvatar}>
             <RemoveAvatarIcon />
           </BannerMenuListItem>

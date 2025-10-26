@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
-import DeleteIcon from '../TrashIcon';
-import EditIcon from '../EditIcon';
-import ReportIcon from '../ReportIcon';
-import MuteIcon from '../MuteIcon';
+import TrashIcon from '../icons/TrashIcon';
+import EditIcon from '../icons/EditIcon';
+import ReportIcon from '../icons/ReportIcon';
+import MuteIcon from '../icons/MuteIcon';
 import ReplyMenuListItem from '../replyMenuListItem/ReplyMenuListItem';
 
 import { ReplyMenuListProps } from '../../types';
@@ -85,7 +85,7 @@ const ReplyMenuList = ({
           <EditIcon />
         </ReplyMenuListItem>
         <ReplyMenuListItem type='delete' label='Delete' onAction={onDelete}>
-          <DeleteIcon />
+          <TrashIcon />
         </ReplyMenuListItem>
       </div>
       <div className={reportClasses}>

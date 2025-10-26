@@ -1,5 +1,5 @@
-import DeleteIcon from '../TrashIcon';
-import EditIcon from '../EditIcon';
+import TrashIcon from '../icons/TrashIcon';
+import EditIcon from '../icons/EditIcon';
 import ProfileMenuListItem from '../profileMenuListItem/ProfileMenuListItem';
 
 import { ProfileMenuListProps } from '../../types';
@@ -13,7 +13,7 @@ const ProfileMenuList = ({ onDelete, onUpdate }: ProfileMenuListProps) => {
         <EditIcon />
       </ProfileMenuListItem>
       <ProfileMenuListItem type='delete' label='Delete' onClick={onDelete}>
-        <DeleteIcon />
+        <TrashIcon />
       </ProfileMenuListItem>
     </ul>
   );

@@ -1,7 +1,7 @@
 import millify from 'millify';
 import { useMemo } from 'react';
 
-import SaveIcon from '../SaveIcon';
+import SaveIcon from '../icons/SaveIcon';
 
 import { SavePostProps } from '../../types';
 

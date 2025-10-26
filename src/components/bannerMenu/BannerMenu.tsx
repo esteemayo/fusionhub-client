@@ -6,8 +6,10 @@ import './BannerMenu.scss';
 
 const BannerMenu = ({
   isOpen,
+  banner,
   query,
   username,
+  disabled,
   onToggle,
   onMute,
   onReport,
@@ -21,7 +23,9 @@ const BannerMenu = ({
       <button
         type='button'
         onClick={onToggle}
+        disabled={disabled}
         aria-label={`${isOpen ? 'Open' : 'Close'} menu`}
+        aria-disabled={disabled}
         className='banner-menu__btn'
       >
         <svg
@@ -41,6 +45,7 @@ const BannerMenu = ({
       </button>
       <BannerMenuList
         isOpen={isOpen}
+        banner={banner}
         query={query}
         username={username}
         onMute={onMute}

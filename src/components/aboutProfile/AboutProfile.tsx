@@ -22,9 +22,9 @@ const AboutProfile = ({ about }: { about: string }) => {
   };
 
   const parsedText = useMemo(() => {
-    return isMore && about?.length > 350
+    return isMore && about?.length > 450
       ? parse(String(about))
-      : parse(excerpts(String(about), 350));
+      : parse(excerpts(String(about), 450));
   }, [about, isMore]);
 
   const aboutClasses = useMemo(() => {
@@ -32,7 +32,7 @@ const AboutProfile = ({ about }: { about: string }) => {
   }, [about]);
 
   const btnClasses = useMemo(() => {
-    return about?.length > 350
+    return about?.length > 450
       ? 'about-profile__wrapper--btn show'
       : 'about-profile__wrapper--btn hide';
   }, [about]);
