@@ -22,7 +22,12 @@ import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { MutePayload, ReplyProps, ReportModalPayload } from '../../types';
+import {
+  MuteModalType,
+  MutePayload,
+  ReplyProps,
+  ReportModalPayload,
+} from '../../types';
 
 import './Reply.scss';
 
@@ -57,7 +62,7 @@ const Reply = ({
 
   const isMuted = useMemo(() => {
     return (
-      !!(mutedList?.mutedReplies ?? []).some((reply) => reply === replyId) ||
+      !!(mutedList?.mutedReplies ?? []).some((reply) => reply.id === replyId) ||
       false
     );
   }, [mutedList?.mutedReplies, replyId]);
@@ -175,10 +180,10 @@ const Reply = ({
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    const payload: MutePayload = {
-      targetType: 'reply',
+    const payload: MutePayload & MuteModalType = {
       targetId: replyId,
-      action: isMuted ? 'unmute' : 'mute',
+      targetType: 'Reply',
+      isMuted,
     };
 
     dispatch(muteModal.onOpen(payload));

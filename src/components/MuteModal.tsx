@@ -1,4 +1,11 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormRegister,
+} from 'react-hook-form';
 import { toast } from 'react-toastify';
 
 import Modal from './modal/Modal';
@@ -7,34 +14,53 @@ import MuteContent from './muteContent/MuteContent';
 import { useMute } from '../hooks/useMute';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
-import { MutePayload } from '../types';
 import { onClose } from '../features/muteModal/muteModalSlice';
+import { MuteFormData, muteSchema } from '../validations/muteSchema';
+
+import { MutePayload } from '../types';
 
 const MuteModal = () => {
   const dispatch = useAppDispatch();
 
   const { muteMutation } = useMute();
-  const { isOpen, action, targetId, targetName, targetType } = useAppSelector(
+  const { isOpen, targetId, targetName, targetType, isMuted } = useAppSelector(
     (state) => ({
       ...state.muteModal,
     })
   );
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<MuteFormData>({
+    resolver: zodResolver(muteSchema),
+    defaultValues: {
+      targetId,
+      targetType,
+      reason: '',
+    },
+  });
+
   const handleClose = () => {
     dispatch(onClose());
   };
 
-  const handleSubmit = () => {
+  const onSubmit: SubmitHandler<MuteFormData> = (data) => {
+    const { reason } = data;
+
     const payload: MutePayload = {
-      targetType,
       targetId,
-      action,
+      targetType,
+      reason,
     };
 
     muteMutation.mutate(payload, {
       onSuccess: (data) => {
         const message = (data as { message?: string })?.message;
         toast.success(message || content.toastMsg);
+        reset();
         handleClose();
       },
     });
@@ -42,7 +68,7 @@ const MuteModal = () => {
 
   const content = useMemo(() => {
     switch (targetType) {
-      case 'user':
+      case 'User':
         return {
           title: `Mute ${targetName ? `@${targetName}` : 'this user'}?`,
           description: `You won’t see new comments or replies from ${
@@ -53,17 +79,21 @@ const MuteModal = () => {
           }.`,
         };
 
-      case 'comment':
+      case 'Comment':
         return {
-          title: 'Mute this comment?',
+          title: isMuted
+            ? `Unmute this ${targetType.toLowerCase()}?`
+            : `Mute this ${targetType.toLowerCase()}?`,
           description:
             'This comment will be hidden from your view. You won’t get updates or replies related to it, but others can still see and interact with it.',
           toastMsg: 'This comment has been muted.',
         };
 
-      case 'reply':
+      case 'Reply':
         return {
-          title: 'Mute this reply?',
+          title: isMuted
+            ? `Unmute this ${targetType.toLowerCase()}?`
+            : `Mute this ${targetType.toLowerCase()}?`,
           description:
             'This reply will be hidden from your view. You won’t receive further replies or notifications from this thread unless you unmute it later.',
           toastMsg: 'Reply muted successfully.',
@@ -72,10 +102,16 @@ const MuteModal = () => {
       default:
         return { title: '', description: '', toastMsg: '' };
     }
-  }, [targetName, targetType]);
+  }, [isMuted, targetName, targetType]);
 
   const bodyContent: JSX.Element | undefined = (
-    <MuteContent description={content.description} />
+    <MuteContent
+      description={content.description}
+      targetType={targetType}
+      isMuted={isMuted}
+      register={register as unknown as UseFormRegister<FieldValues>}
+      errors={errors}
+    />
   );
 
   return (
@@ -89,7 +125,7 @@ const MuteModal = () => {
       secondaryActionLabel='Cancel'
       body={bodyContent}
       onClose={handleClose}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       secondaryAction={handleClose}
     />
   );

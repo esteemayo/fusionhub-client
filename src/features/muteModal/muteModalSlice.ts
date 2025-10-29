@@ -1,18 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { MutePayload } from '../../types';
+import { MuteModalType, MutePayload } from '../../types';
 
 interface MuteModalState {
   isOpen: boolean;
-  targetName?: string;
 }
 
-const initialState: MuteModalState & MutePayload = {
+const initialState: MuteModalState & MutePayload & MuteModalType = {
   isOpen: false,
   targetName: '',
   targetId: '',
-  targetType: 'comment',
-  action: 'mute',
+  targetType: 'Comment',
+  isMuted: false,
 };
 
 const muteModalSlice = createSlice({
@@ -22,10 +21,10 @@ const muteModalSlice = createSlice({
     resetState: () => initialState,
     onOpen: (state, { payload }) => {
       state.isOpen = true;
-      state.action = payload.action;
       state.targetId = payload.targetId;
       state.targetName = payload.targetName;
       state.targetType = payload.targetType;
+      state.isMuted = payload.isMuted;
     },
     onClose: (state) => {
       state.isOpen = false;

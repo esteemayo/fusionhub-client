@@ -1,15 +1,16 @@
 import MutedListItem from '../mutedListItem/MutedListItem';
 
+import { MutedListProps } from '../../types';
+
 import './MutedList.scss';
 
-const MutedList = () => {
+const MutedList = ({ lists }: MutedListProps) => {
   return (
     <div className='muted-list'>
       <div className='muted-list__container'>
-        <MutedListItem />
-        <MutedListItem />
-        <MutedListItem />
-        <MutedListItem />
+        {(lists ?? [])?.map((list) => {
+          return <MutedListItem key={list.id} {...list} />;
+        })}
       </div>
     </div>
   );

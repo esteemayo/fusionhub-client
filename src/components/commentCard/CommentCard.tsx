@@ -27,6 +27,7 @@ import * as commentModal from '../../features/commentModal/commentModalSlice';
 import { excerpts } from '../../utils';
 import {
   CommentCardProps,
+  MuteModalType,
   MutePayload,
   ReplyType,
   ReportModalPayload,
@@ -63,7 +64,7 @@ const CommentCard = ({
   const isMuted = useMemo(() => {
     return (
       !!(mutedList?.mutedComments ?? []).some(
-        (comment) => comment === commentId
+        (comment) => comment.id === commentId
       ) || false
     );
   }, [commentId, mutedList?.mutedComments]);
@@ -218,10 +219,10 @@ const CommentCard = ({
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    const payload: MutePayload = {
-      targetType: 'comment',
+    const payload: MutePayload & MuteModalType = {
       targetId: commentId,
-      action: isMuted ? 'unmute' : 'mute',
+      targetType: 'Comment',
+      isMuted,
     };
 
     dispatch(muteModal.onOpen(payload));

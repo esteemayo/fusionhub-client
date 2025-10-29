@@ -159,7 +159,7 @@ const Comment = ({
             ?.filter(
               (comment) =>
                 !(mutedList?.mutedComments ?? []).some(
-                  (commentId) => commentId === comment._id
+                  (entry) => entry.id === comment._id
                 )
             )
             .slice(0, commentToShow)

@@ -19,6 +19,7 @@ import {
   FeedItemTypes,
   FooterMenuType,
   MenuItemType,
+  MutedEntitiesType,
   PartnerItemType,
   PostDetailType,
   PostItemType,
@@ -897,3 +898,54 @@ export const profileMenus: ProfileMenuItems = [
     label: 'Dislikes',
   },
 ];
+
+export const mutedEntities: MutedEntitiesType = {
+  mutedUsers: [
+    {
+      id: '68a4c132c1d93353af20795f',
+      targetType: 'User',
+      username: 'sam',
+      email: 'sam@gmail.com',
+      image: '/user-1_6ZRdR-Ajo.jpg',
+      reason: 'Spam or misleading',
+      mutedAt: '2025-10-27T17:56:14.825Z',
+    },
+  ],
+  mutedComments: [
+    {
+      id: '68569b59d0658fb08c99f51c',
+      targetType: 'Comment',
+      content:
+        'What more can i say. Thank you for inspiring the newbies with this exquisite article!',
+      author: {
+        _id: '67eea03aaa3db2f8c8f51007',
+        name: 'Sophie Louise Hart',
+        username: 'sophie',
+        email: 'sophie@gmail.com',
+        image: '/user-3.jpeg',
+        fromGoogle: false,
+        role: 'user',
+      },
+      reason: 'No reason provided',
+      mutedAt: '2025-10-27T19:25:40.166Z',
+    },
+  ],
+  mutedReplies: [
+    {
+      id: '68e0a0ba43e20c8cd64d6955',
+      targetType: 'Reply',
+      content: 'Testing recursive reply logic',
+      author: {
+        _id: '6717d41bf085fd00082dbe98',
+        name: 'Emmanuel Ayodeji Adebayo',
+        username: 'devayo',
+        email: 'devayo@gmail.com',
+        image: '/user-5.webp',
+        fromGoogle: false,
+        role: 'admin',
+      },
+      reason: 'Harassment or bullying',
+      mutedAt: '2025-10-28T17:40:42.224Z',
+    },
+  ],
+};

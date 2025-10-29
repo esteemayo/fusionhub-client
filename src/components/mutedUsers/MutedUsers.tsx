@@ -1,9 +1,11 @@
 import MutedList from '../mutedList/MutedList';
 import AcccountHeader from '../accountHeader/AccountHeader';
 
+import { MutedUsersProps } from '../../types';
+
 import './MutedUsers.scss';
 
-const MutedUsers = () => {
+const MutedUsers = ({ mutedUsers }: MutedUsersProps) => {
   return (
     <section className='muted-users'>
       <div className='muted-users__container'>
@@ -12,7 +14,7 @@ const MutedUsers = () => {
           subtitle='Reiew and manage the list of users you’ve muted to maintain a focused and secure environment'
         />
         <div className='muted-users__wrapper'>
-          <MutedList />
+          <MutedList lists={mutedUsers} />
         </div>
       </div>
     </section>

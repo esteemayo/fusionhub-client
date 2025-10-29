@@ -1,17 +1,26 @@
 import { toast } from 'react-toastify';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { IMute, MutedListType, MutePayload } from '../types';
+import { IMute, MutedListType, MutePayload, UnmutePayload } from '../types';
 import { useAppSelector } from './hooks';
-import { getMutedEntity, muteEntity } from '../services/muteService';
+import {
+  getMutedEntities,
+  muteTarget,
+  unmuteTarget,
+} from '../services/muteService';
 
 const fetchMutedEntity = async () => {
-  const { data } = await getMutedEntity();
+  const { data } = await getMutedEntities();
   return data;
 };
 
-const createMuteEntity = async (payload: MutePayload) => {
-  const { data } = await muteEntity(payload);
+const createMuteTarget = async (payload: MutePayload) => {
+  const { data } = await muteTarget(payload);
+  return data;
+};
+
+const createUnmuteTarget = async (payload: UnmutePayload) => {
+  const { data } = await unmuteTarget(payload);
   return data;
 };
 
@@ -26,7 +35,27 @@ export const useMute: IMute = () => {
   });
 
   const muteMutation = useMutation({
-    mutationFn: (payload: MutePayload) => createMuteEntity(payload),
+    mutationFn: (payload: MutePayload) => createMuteTarget(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['mutedList', currentUser] });
+    },
+    onError: (error: unknown) => {
+      if (
+        error instanceof Error &&
+        (error as { response?: { data?: string } })?.response?.data
+      ) {
+        const errorMessage = (
+          error as unknown as { response: { data: string } }
+        ).response.data;
+        toast.error(errorMessage);
+      } else {
+        toast.error('An error occurred');
+      }
+    },
+  });
+
+  const unmuteMutation = useMutation({
+    mutationFn: (payload: UnmutePayload) => createUnmuteTarget(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['mutedList', currentUser] });
     },
@@ -48,5 +77,6 @@ export const useMute: IMute = () => {
   return {
     mutedList,
     muteMutation,
+    unmuteMutation,
   };
 };

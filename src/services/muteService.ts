@@ -1,9 +1,12 @@
 import http from './httpService';
-import { MutePayload } from '../types';
+import { MutePayload, UnmutePayload } from '../types';
 
 const apiEndpoint = '/mutes';
 
-export const getMutedEntity = () => http.get(apiEndpoint);
+export const getMutedEntities = () => http.get(apiEndpoint);
 
-export const muteEntity = (payload: MutePayload) =>
+export const muteTarget = (payload: MutePayload) =>
   http.post(apiEndpoint, payload);
+
+export const unmuteTarget = (payload: UnmutePayload) =>
+  http.post(`${apiEndpoint}/unmute`, payload);

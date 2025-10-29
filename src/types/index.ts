@@ -23,6 +23,15 @@ import React, { HTMLInputTypeAttribute, Ref } from 'react';
 import { RegisterFormData } from '../validations/registerSchema';
 import { ProfileDataFormData } from '../validations/profileSchema';
 
+export interface SeoMetaProps {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  keywords?: string;
+  schema?: Record<string, unknown>;
+}
+
 export interface LogoProps {
   isOpen?: boolean;
   onClose?(e: React.MouseEvent<HTMLAnchorElement>): void;
@@ -339,6 +348,34 @@ export interface UpdatePasswordFormProps {
   onTogglePasswordConfirm(): void;
   onTogglePasswordCurrent(): void;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
+}
+
+export interface MutedUsersProps {
+  mutedUsers: MutedUsersType;
+}
+
+export interface MutedCommentsProps {
+  mutedComments: MutedCommentsType;
+}
+
+export interface MutedRepliesProps {
+  mutedReplies: MutedRepliesType;
+}
+
+export interface MutedListProps {
+  lists: MutedUsersType | MutedCommentsType | MutedRepliesType;
+}
+
+export interface MutedListItemProps {
+  id: string;
+  targetType: TargetType;
+  username?: string;
+  email?: string;
+  image?: string;
+  content?: string;
+  author?: AuthorType;
+  reason?: string;
+  mutedAt: string;
 }
 
 export interface PostClientProps {
@@ -1010,6 +1047,7 @@ export interface IMute {
   (): {
     mutedList: MutedListType | undefined;
     muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
+    unmuteMutation: UseMutationResult<unknown, unknown, UnmutePayload, unknown>;
   };
 }
 
@@ -1673,13 +1711,24 @@ export interface RelatedPostsProps {
   tags: string[];
 }
 
-export type TargetType = 'user' | 'comment' | 'reply';
+export type TargetType = 'User' | 'Comment' | 'Reply';
 export type MuteAction = 'mute' | 'unmute';
 
 export interface MutePayload {
-  targetType: TargetType;
   targetId: string;
-  action: MuteAction;
+  targetType: TargetType;
+  reason?: string;
+}
+
+export interface UnmutePayload {
+  targetId: string;
+  targetType: TargetType;
+  reason?: string;
+}
+
+export interface MuteModalType {
+  targetName?: string;
+  isMuted: boolean;
 }
 
 export type ReportTargetType = 'comment' | 'reply';
@@ -1724,12 +1773,44 @@ export interface ReportModalPayload {
 
 export interface MuteContentProps {
   description: string;
+  targetType: TargetType;
+  isMuted: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
 }
 
+type MutedUsersType = {
+  id: string;
+  targetType: TargetType;
+  username: string;
+  email: string;
+  image?: string;
+  reason?: string;
+  mutedAt: string;
+}[];
+
+type MutedCommentsType = {
+  id: string;
+  targetType: TargetType;
+  content: string;
+  author: AuthorType;
+  reason?: string;
+  mutedAt: string;
+}[];
+
+type MutedRepliesType = {
+  id: string;
+  targetType: TargetType;
+  content: string;
+  author: AuthorType;
+  reason?: string;
+  mutedAt: string;
+}[];
+
 export interface MutedListType {
-  mutedUsers: string[];
-  mutedComments: string[];
-  mutedReplies: string[];
+  mutedUsers: MutedUsersType;
+  mutedComments: MutedCommentsType;
+  mutedReplies: MutedRepliesType;
 }
 
 export interface RegisterInputs {
@@ -1856,6 +1937,7 @@ export type RoleType = 'admin' | 'user';
 type AuthorType = {
   _id: string;
   name: string;
+  email: string;
   username: string;
   image?: string;
   role: RoleType;
@@ -2221,3 +2303,9 @@ export type ReportOptionType = {
   _id: string;
   name: string;
 }[];
+
+export type MutedEntitiesType = {
+  mutedUsers: MutedUsersType;
+  mutedComments: MutedCommentsType;
+  mutedReplies: MutedRepliesType;
+};
