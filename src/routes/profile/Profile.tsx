@@ -170,6 +170,7 @@ const UserProfile = () => {
             <Banner
               query={username}
               username={user?.username as string}
+              userId={user?._id as string}
               image={user?.image}
               banner={user?.banner}
               isShow={isShow}

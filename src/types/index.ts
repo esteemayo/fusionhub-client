@@ -372,6 +372,7 @@ export interface MutedListItemProps {
   username?: string;
   email?: string;
   image?: string;
+  name?: string;
   content?: string;
   author?: AuthorType;
   reason?: string;
@@ -626,6 +627,7 @@ export interface AccountMenuItemProps {
 
 export interface BannerProps {
   username: string;
+  userId: string;
   image?: string;
   banner?: string;
   isShow: boolean;
@@ -650,6 +652,7 @@ export interface BannerMenuProps {
   banner: string | undefined;
   query: string | null;
   username: string;
+  isBlocked: boolean;
   disabled: boolean;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -665,6 +668,7 @@ export interface BannerMenuListProps {
   banner: string | undefined;
   query: string | null;
   username: string;
+  isBlocked: boolean;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
   onReport(e: React.MouseEvent<HTMLButtonElement>): void;
   onBlock(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -679,6 +683,12 @@ export interface BannerMenuListItemProps {
   disabled?: boolean;
   children?: React.ReactNode;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface BlockContentProps {
+  isBlocked: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
 }
 
 export interface ProfileDetailsProps {
@@ -1048,6 +1058,21 @@ export interface IMute {
     mutedList: MutedListType | undefined;
     muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
     unmuteMutation: UseMutationResult<unknown, unknown, UnmutePayload, unknown>;
+  };
+}
+
+export interface IBlockedUsers {
+  (): {
+    blockedUsers: BlockedUsersType | undefined;
+    blockUserMutation: UseMutationResult<
+      unknown,
+      unknown,
+      {
+        targetId: string;
+        data: BlockUserData;
+      },
+      unknown
+    >;
   };
 }
 
@@ -1784,6 +1809,7 @@ type MutedUsersType = {
   targetType: TargetType;
   username: string;
   email: string;
+  name: string;
   image?: string;
   reason?: string;
   mutedAt: string;
@@ -1812,6 +1838,25 @@ export interface MutedListType {
   mutedComments: MutedCommentsType;
   mutedReplies: MutedRepliesType;
 }
+
+export interface BlockPayload {
+  targetId: string;
+  isBlocked: boolean;
+}
+
+export interface BlockUserData {
+  targetId?: string;
+  reason?: string;
+}
+
+export type BlockedUsersType = {
+  id: string;
+  username: string;
+  email: string;
+  name: string;
+  reason: string;
+  blockedAt: string;
+}[];
 
 export interface RegisterInputs {
   name: string;

@@ -2,13 +2,14 @@ import Profile from './profile/Profile';
 import Home from './home/Home';
 import Articles from './articles/Articles';
 import About from './about/About';
-import PostDetails from './postDetails/PostDetails';
+import BlockedUsers from './blockedUsers/BlockedUsers';
 import Login from './login/Login';
 import DislikedPosts from './dislikedPosts/DislikedPosts';
 import Posts from './posts/Posts';
-import UnsubscribeConfirmation from './unsubscribeConfirmation/UnsubscribeConfirmation';
-import Privacy from './privacy/Privacy';
 import ProfileSettings from './profileSettings/ProfileSettings';
+import Privacy from './privacy/Privacy';
+import UnsubscribeConfirmation from './unsubscribeConfirmation/UnsubscribeConfirmation';
+import PostDetails from './postDetails/PostDetails';
 
 import SavedPosts from './savedPosts/SavedPosts';
 import Contact from './contact/Contact';
@@ -25,6 +26,7 @@ import SubscriptionConfirmation from './subscriptionConfirmation/SubscriptionCon
 export {
   About,
   Articles,
+  BlockedUsers,
   Categories,
   Contact,
   DislikedPosts,

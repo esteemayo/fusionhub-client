@@ -18,6 +18,7 @@ const BannerMenuList = ({
   banner,
   query,
   username,
+  isBlocked,
   onMute,
   onReport,
   onBlock,
@@ -48,7 +49,7 @@ const BannerMenuList = ({
           </BannerMenuListItem>
           <BannerMenuListItem
             type='danger'
-            label={itemLabel('Block')}
+            label={itemLabel(isBlocked ? 'Unblock' : 'Block')}
             onAction={onBlock}
           >
             <BlockIcon />

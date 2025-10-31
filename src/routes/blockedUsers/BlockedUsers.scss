@@ -1,0 +1,54 @@
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.blocked-users {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media screen and (max-width: 31.25em) {
+    gap: 3rem;
+  }
+
+  &__container,
+  &__wrapper {
+    background-color: vars.$clr-secondary-blue;
+    padding: 3rem;
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 76.25em) {
+      padding: 2.5rem;
+    }
+
+    @include bp.lg {
+      padding: 3rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      padding: 3rem 2rem;
+    }
+
+    @media screen and (max-width: 31.5em) {
+      padding: 2rem;
+    }
+
+    @media screen and (max-width: 31.25em) {
+      padding: 0;
+      padding-bottom: 3rem;
+      background-color: transparent;
+      border-bottom: 1px solid vars.$clr-tertiary-blue;
+      border-radius: 0;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: vars.$shadow;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}

@@ -37,14 +37,13 @@ const MuteModal = () => {
   } = useForm<MuteFormData>({
     resolver: zodResolver(muteSchema),
     defaultValues: {
-      targetId,
-      targetType,
       reason: '',
     },
   });
 
   const handleClose = () => {
     dispatch(onClose());
+    reset();
   };
 
   const onSubmit: SubmitHandler<MuteFormData> = (data) => {
@@ -59,8 +58,8 @@ const MuteModal = () => {
     muteMutation.mutate(payload, {
       onSuccess: (data) => {
         const message = (data as { message?: string })?.message;
+
         toast.success(message || content.toastMsg);
-        reset();
         handleClose();
       },
     });

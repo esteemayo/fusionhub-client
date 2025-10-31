@@ -13,8 +13,9 @@ import postModalReducer from './postModal/postModalSlice';
 import commentModalReducer from './commentModal/commentModalSlice';
 import imageModalReducer from './imageModal/imageModalSlice';
 import categoryModalReducer from './categoryModal/categoryModalSlice';
-import shareModalReducer from './shareModal/shareModalSlice';
+import blockModalReducer from './blockModal/blockModalSlice';
 import postMenuActionsReducer from './postMenuActions/postMenuActionsSlice';
+import shareModalReducer from './shareModal/shareModalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -33,6 +34,7 @@ export const store = configureStore({
     shareModal: shareModalReducer,
     reportModal: reportModalReducer,
     muteModal: muteModalReducer,
+    blockModal: blockModalReducer,
   },
 });
 

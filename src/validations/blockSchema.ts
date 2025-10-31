@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const muteSchema = z
+export const blockSchema = z
   .object({
     reason: z
       .string()
@@ -10,4 +10,4 @@ export const muteSchema = z
   })
   .required();
 
-export type MuteFormData = z.infer<typeof muteSchema>;
+export type BlockInputData = z.infer<typeof blockSchema>;

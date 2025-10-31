@@ -9,11 +9,14 @@ import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 import * as bannerModal from '../../features/bannerModal/bannerModalSlice';
-import * as imageModal from '../../features/imageModal/imageModalSlice';
+import * as blockModal from '../../features/blockModal/blockModalSlice';
 import * as accountModal from '../../features/accountModal/accountModalSlice';
+import * as imageModal from '../../features/imageModal/imageModalSlice';
 
-import { BannerProps } from '../../types';
 import { useAppDispatch } from '../../hooks/hooks';
+import { useBlockedUsers } from '../../hooks/useBlockedUsers';
+
+import { BannerProps, BlockPayload } from '../../types';
 
 import './Banner.scss';
 
@@ -24,6 +27,7 @@ interface IContainer {
 const Banner = ({
   query,
   username,
+  userId,
   image,
   banner,
   isShow,
@@ -38,6 +42,12 @@ const Banner = ({
   onToggle,
 }: BannerProps) => {
   const dispatch = useAppDispatch();
+
+  const { blockedUsers } = useBlockedUsers();
+
+  const isBlocked = useMemo(() => {
+    return (blockedUsers ?? []).some((user) => user.id === userId) || false;
+  }, [blockedUsers, userId]);
 
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -56,7 +66,12 @@ const Banner = ({
   const handleBlock = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    console.log('blocked');
+    const payload: BlockPayload = {
+      isBlocked,
+      targetId: userId,
+    };
+
+    dispatch(blockModal.onOpen(payload));
     onClose();
   };
 
@@ -188,6 +203,7 @@ const Banner = ({
           banner={banner}
           query={query}
           username={username}
+          isBlocked={isBlocked}
           disabled={isDisabled}
           onToggle={onToggle}
           onMute={handleMute}

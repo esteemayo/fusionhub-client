@@ -51,11 +51,13 @@ const MuteContent = ({
             />
           </div>
         )}
-        <small className='mute-content__container--info'>
-          Muting is private — the person won’t know you’ve muted them. You can
-          manage muted items anytime in your{' '}
-          <strong>Account Settings → Privacy → {mutedList}</strong>.
-        </small>
+        {!isMuted && (
+          <small className='mute-content__container--info'>
+            Muting is private — the person won’t know you’ve muted them. You can
+            manage muted items anytime in your{' '}
+            <strong>Account Settings → Privacy → {mutedList}</strong>.
+          </small>
+        )}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute';
 import {
   About,
   Articles,
+  BlockedUsers,
   Categories,
   Contact,
   DislikedPosts,
@@ -82,6 +83,14 @@ export const router = createBrowserRouter([
             element: (
               <AuthRoute>
                 <Privacy />
+              </AuthRoute>
+            ),
+          },
+          {
+            path: 'blocked-users',
+            element: (
+              <AuthRoute>
+                <BlockedUsers />
               </AuthRoute>
             ),
           },

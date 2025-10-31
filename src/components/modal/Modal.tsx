@@ -102,7 +102,12 @@ const Modal = ({
   }
 
   return (
-    <aside className='modal' onClick={onCloseHandler}>
+    <aside
+      className='modal'
+      onClick={onCloseHandler}
+      role='dialog'
+      aria-modal='true'
+    >
       <div className={containerClasses}>
         <div className='modal__wrapper'>
           <h1 className='modal__heading' aria-label={title}>
