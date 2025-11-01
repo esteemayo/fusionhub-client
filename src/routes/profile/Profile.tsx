@@ -14,8 +14,8 @@ import { useProfile } from '../../hooks/useProfile';
 import { useAppDispatch } from '../../hooks/hooks';
 import { updateUserData } from '../../features/auth/authSlice';
 
-import { UserType } from '../../types';
 import { useQueryParams } from '../../utils';
+import { RoleType, UserType } from '../../types';
 
 import './Profile.scss';
 
@@ -168,6 +168,7 @@ const UserProfile = () => {
         ) : (
           <>
             <Banner
+              role={user?.role as RoleType}
               query={username}
               username={user?.username as string}
               userId={user?._id as string}

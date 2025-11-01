@@ -41,13 +41,10 @@ const BlockModal = () => {
   };
 
   const onSubmit: SubmitHandler<BlockInputData> = (data) => {
-    const payload = {
-      ...data,
-      targetId,
-    };
+    const { reason } = data;
 
     blockUserMutation.mutate(
-      { targetId, data: payload },
+      { targetId, reason },
       {
         onSuccess: handleClose,
       }

@@ -5,6 +5,7 @@ import { BannerMenuProps } from '../../types';
 import './BannerMenu.scss';
 
 const BannerMenu = ({
+  role,
   isOpen,
   banner,
   query,
@@ -45,6 +46,7 @@ const BannerMenu = ({
         </svg>
       </button>
       <BannerMenuList
+        role={role}
         isOpen={isOpen}
         banner={banner}
         query={query}

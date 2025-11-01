@@ -25,6 +25,7 @@ interface IContainer {
 }
 
 const Banner = ({
+  role,
   query,
   username,
   userId,
@@ -199,6 +200,7 @@ const Banner = ({
           </Upload>
         </div>
         <BannerMenu
+          role={role}
           isOpen={isShow}
           banner={banner}
           query={query}

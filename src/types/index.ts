@@ -626,6 +626,7 @@ export interface AccountMenuItemProps {
 }
 
 export interface BannerProps {
+  role: RoleType;
   username: string;
   userId: string;
   image?: string;
@@ -648,6 +649,7 @@ export interface BannerProps {
 }
 
 export interface BannerMenuProps {
+  role: RoleType;
   isOpen: boolean;
   banner: string | undefined;
   query: string | null;
@@ -664,6 +666,7 @@ export interface BannerMenuProps {
 }
 
 export interface BannerMenuListProps {
+  role: RoleType;
   isOpen: boolean;
   banner: string | undefined;
   query: string | null;
@@ -1069,7 +1072,7 @@ export interface IBlockedUsers {
       unknown,
       {
         targetId: string;
-        data: BlockUserData;
+        reason: string;
       },
       unknown
     >;

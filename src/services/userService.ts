@@ -1,5 +1,5 @@
 import http from './httpService';
-import { BlockUserData, UpdateUserDataType } from '../types';
+import { UpdateUserDataType } from '../types';
 
 const apiEndpoint = '/users';
 
@@ -18,10 +18,8 @@ export const getSavedPosts = () => http.get(userURI('saved-posts'));
 
 export const getBlockedUsers = () => http.get(userURI('blocked'));
 
-export const toggleBlockUser = <T extends string, U extends BlockUserData>(
-  userId: T,
-  data: U
-) => http.post(`${userUrl(userId)}/block`, { data });
+export const toggleBlockUser = (userId: string, reason: string) =>
+  http.post(`${userUrl(userId)}/block`, { reason });
 
 export const updateCurrentUser = (userData: UpdateUserDataType) =>
   http.patch(userURI('update-me'), userData);

@@ -9,7 +9,6 @@ const MutedListItem = ({
   id,
   targetType,
   username,
-  email,
   image,
   content,
   author,
@@ -43,8 +42,7 @@ const MutedListItem = ({
           />
           <div className='muted-list-item__details'>
             <span className='muted-list-item__details--username'>
-              {`@${username ? username : author?.username}`}{' '}
-              {`(${email ? email : author?.email})`}
+              {`@${username ? username : author?.username}`}
             </span>
             {content && targetType !== 'User' && (
               <p className='muted-list-item__details--content'>"{content}"</p>

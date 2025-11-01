@@ -4,16 +4,18 @@
 .hero {
   width: 100%;
   height: 30vw;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(vars.$clr-black, 0.85),
-      rgba(vars.$clr-gray-dark-1, 0.15)
-    ),
-    url('https://ik.imagekit.io/devayo/dafault-post.jpg');
+  // background-image: linear-gradient(
+  //     to right bottom,
+  //     rgba(vars.$clr-black, 0.85),
+  //     rgba(vars.$clr-gray-dark-1, 0.15)
+  //   ),
+  //   url('https://ik.imagekit.io/devayo/dafault-post.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+  position: relative;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -120,12 +122,22 @@
     height: 37vw;
   }
 
+  #tsparticles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    // background-color: orangered;
+  }
+
   &__breadCrumbs {
     display: flex;
     align-items: center;
 
     line-height: 2.5;
     position: relative;
+    z-index: 1;
 
     @media screen and (max-width: 34.375em) {
       margin-bottom: 1rem;
@@ -208,6 +220,8 @@
     font-weight: 600;
     font-size: 3.2rem;
     line-height: 1.3;
+    position: relative;
+    z-index: 1;
 
     @media screen and (max-width: 56.25em) {
       font-size: 3.3rem;
@@ -276,6 +290,8 @@
     gap: 1.5rem;
 
     margin-top: 1rem;
+    position: relative;
+    z-index: 1;
 
     @include bp.sm {
       flex-direction: column-reverse;

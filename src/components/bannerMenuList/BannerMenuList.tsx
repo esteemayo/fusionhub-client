@@ -14,6 +14,7 @@ import { BannerMenuListProps } from '../../types';
 import './BannerMenuList.scss';
 
 const BannerMenuList = ({
+  role,
   isOpen,
   banner,
   query,
@@ -41,19 +42,32 @@ const BannerMenuList = ({
     <ul className={menuListClasses}>
       {query && (
         <>
-          <BannerMenuListItem label={itemLabel('Mute')} onAction={onMute}>
+          <BannerMenuListItem
+            label={itemLabel('Share')}
+            onAction={() => console.log('user profile shared')}
+          >
             <MuteIcon />
           </BannerMenuListItem>
-          <BannerMenuListItem label={itemLabel('Report')} onAction={onReport}>
-            <ReportIcon />
-          </BannerMenuListItem>
-          <BannerMenuListItem
-            type='danger'
-            label={itemLabel(isBlocked ? 'Unblock' : 'Block')}
-            onAction={onBlock}
-          >
-            <BlockIcon />
-          </BannerMenuListItem>
+          {role !== 'admin' && (
+            <>
+              <BannerMenuListItem label={itemLabel('Mute')} onAction={onMute}>
+                <MuteIcon />
+              </BannerMenuListItem>
+              <BannerMenuListItem
+                label={itemLabel('Report')}
+                onAction={onReport}
+              >
+                <ReportIcon />
+              </BannerMenuListItem>
+              <BannerMenuListItem
+                type='danger'
+                label={itemLabel(isBlocked ? 'Unblock' : 'Block')}
+                onAction={onBlock}
+              >
+                <BlockIcon />
+              </BannerMenuListItem>
+            </>
+          )}
         </>
       )}
 

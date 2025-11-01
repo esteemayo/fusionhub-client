@@ -4,18 +4,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useAppSelector } from './hooks';
 import { getBlockedUsers, toggleBlockUser } from '../services/userService';
 
-import { BlockedUsersType, BlockUserData, IBlockedUsers } from '../types';
+import { BlockedUsersType, IBlockedUsers } from '../types';
 
 const fetchBlockedUsers = async () => {
   const { data } = await getBlockedUsers();
   return data;
 };
 
-const blockUser = async <T extends string, U extends BlockUserData>(
-  userId: T,
-  userData: U
-) => {
-  const { data } = await toggleBlockUser(userId, userData);
+const blockUser = async (userId: string, reason: string) => {
+  const { data } = await toggleBlockUser(userId, reason);
   return data;
 };
 
@@ -30,13 +27,8 @@ export const useBlockedUsers: IBlockedUsers = () => {
   });
 
   const blockUserMutation = useMutation({
-    mutationFn: ({
-      targetId,
-      data,
-    }: {
-      targetId: string;
-      data: BlockUserData;
-    }) => blockUser(targetId, data),
+    mutationFn: ({ targetId, reason }: { targetId: string; reason: string }) =>
+      blockUser(targetId, reason),
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: ['blocked-users', currentUser],
