@@ -20,7 +20,11 @@ export const useBlockedUsers: IBlockedUsers = () => {
   const queryClient = useQueryClient();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { data: blockedUsers } = useQuery<BlockedUsersType>({
+  const {
+    isPending,
+    error,
+    data: blockedUsers,
+  } = useQuery<BlockedUsersType>({
     queryKey: ['blocked-users', currentUser],
     queryFn: fetchBlockedUsers,
     enabled: !!currentUser,
@@ -51,6 +55,8 @@ export const useBlockedUsers: IBlockedUsers = () => {
   });
 
   return {
+    isPending,
+    error,
     blockedUsers,
     blockUserMutation,
   };

@@ -16,6 +16,7 @@ import './BannerMenuList.scss';
 const BannerMenuList = ({
   role,
   isOpen,
+  image,
   banner,
   query,
   username,
@@ -78,9 +79,11 @@ const BannerMenuList = ({
               <TrashIcon />
             </BannerMenuListItem>
           )}
-          <BannerMenuListItem label='Remove Avatar' onAction={onRemoveAvatar}>
-            <RemoveAvatarIcon />
-          </BannerMenuListItem>
+          {image && (
+            <BannerMenuListItem label='Remove Avatar' onAction={onRemoveAvatar}>
+              <RemoveAvatarIcon />
+            </BannerMenuListItem>
+          )}
           <BannerMenuListItem
             type='danger'
             label='Deactivate'

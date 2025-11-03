@@ -7,6 +7,7 @@ import './BannerMenu.scss';
 const BannerMenu = ({
   role,
   isOpen,
+  image,
   banner,
   query,
   username,
@@ -48,6 +49,7 @@ const BannerMenu = ({
       <BannerMenuList
         role={role}
         isOpen={isOpen}
+        image={image}
         banner={banner}
         query={query}
         username={username}

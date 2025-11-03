@@ -202,6 +202,7 @@ const Banner = ({
         <BannerMenu
           role={role}
           isOpen={isShow}
+          image={image}
           banner={banner}
           query={query}
           username={username}

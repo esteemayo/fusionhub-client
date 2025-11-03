@@ -379,6 +379,16 @@ export interface MutedListItemProps {
   mutedAt: string;
 }
 
+export interface BlockedUserProps {
+  id: string;
+  username: string;
+  email: string;
+  name: string;
+  image?: string;
+  reason: string;
+  blockedAt: string;
+}
+
 export interface PostClientProps {
   isOpen: boolean;
   ref: React.LegacyRef<HTMLInputElement> | undefined;
@@ -651,6 +661,7 @@ export interface BannerProps {
 export interface BannerMenuProps {
   role: RoleType;
   isOpen: boolean;
+  image?: string;
   banner: string | undefined;
   query: string | null;
   username: string;
@@ -668,6 +679,7 @@ export interface BannerMenuProps {
 export interface BannerMenuListProps {
   role: RoleType;
   isOpen: boolean;
+  image?: string;
   banner: string | undefined;
   query: string | null;
   username: string;
@@ -1066,6 +1078,8 @@ export interface IMute {
 
 export interface IBlockedUsers {
   (): {
+    isPending: boolean;
+    error: Error | null;
     blockedUsers: BlockedUsersType | undefined;
     blockUserMutation: UseMutationResult<
       unknown,
