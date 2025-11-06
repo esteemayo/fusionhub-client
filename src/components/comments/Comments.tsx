@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Comment from '../comment/Comment';
 import CommentForm from '../commentForm/CommentForm';
@@ -13,9 +13,11 @@ import { CommentsProps } from '../../types';
 
 import './Comments.scss';
 
-const Comments = ({ postId, slug }: CommentsProps) => {
+const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+
+  const ref = useRef<HTMLTextAreaElement>(null);
 
   const {
     isPending,
@@ -104,6 +106,7 @@ const Comments = ({ postId, slug }: CommentsProps) => {
       commentMutation.mutate(content, {
         onSuccess: () => {
           setContent('');
+          ref.current?.blur();
         },
       });
     }
@@ -156,9 +159,11 @@ const Comments = ({ postId, slug }: CommentsProps) => {
         />
         <CommentForm
           content={content}
+          postAuthorId={postAuthorId}
           isLoading={commentMutation.isPending}
           isPending={isPending}
           comments={comments!}
+          ref={ref}
           onChange={setContent}
           onSubmit={handleSubmit}
         />

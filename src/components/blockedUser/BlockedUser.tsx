@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import Image from '../Image';
+import GoogleImage from '../GoogleImage';
 
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -41,17 +42,37 @@ const BlockedUser = ({
     <article className='blocked-user'>
       <div className='blocked-user__container'>
         <div className='blocked-user__cover'>
-          <Image
-            src={image ?? '/user-default.jpg'}
-            alt='avatar'
-            width={40}
-            height={40}
-            className='blocked-user__cover--img'
-          />
+          {image?.startsWith('https') ? (
+            <GoogleImage
+              src={image ?? '/user-default.jpg'}
+              width={40}
+              height={40}
+              alt={username}
+              className='banner__user--avatar'
+            />
+          ) : (
+            <Image
+              src={image ?? '/user-default.jpg'}
+              width={40}
+              height={40}
+              alt={username}
+              className='blocked-user__cover--img'
+            />
+          )}
           <div className='blocked-user__details'>
-            <span className='blocked-user__details--username'>@{username}</span>
-            <p className='blocked-user__details--content'>{reason}</p>
-            <small className='blocked-user__details--muted-at'>
+            <span
+              className='blocked-user__details--username'
+              aria-label={`@${username}`}
+            >
+              @{username}
+            </span>
+            <p className='blocked-user__details--content' aria-label={reason}>
+              {reason}
+            </p>
+            <small
+              className='blocked-user__details--muted-at'
+              aria-label={`Muted on ${new Date(blockedAt).toLocaleString()}`}
+            >
               Muted on {new Date(blockedAt).toLocaleString()}
             </small>
           </div>
@@ -60,7 +81,7 @@ const BlockedUser = ({
           <button
             type='button'
             onClick={handleUnblock}
-            aria-label={`Unmute ${username} by ${currentUser?.details.username}`}
+            aria-label={`Unblock ${username} by ${currentUser?.details.username}`}
             className='blocked-user__action--btn'
           >
             Unblock

@@ -10,24 +10,25 @@
   position: absolute;
   top: 2.25rem;
   right: 0;
-  width: 17rem;
-  max-width: 17rem;
+  width: 20rem;
+  max-width: 20rem;
   padding: 0.5rem;
+  padding-bottom: 0;
   background-color: rgba(vars.$clr-secondary-blue, 0.5);
   background-color: transparent;
   backdrop-filter: blur(3px);
   border: 1px solid vars.$clr-tertiary-blue;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
 
   @media screen and (max-width: 56.25em) {
     top: 2.575rem;
-    width: 18rem;
-    max-width: 18rem;
+    width: 21rem;
+    max-width: 21rem;
   }
 
   @media screen and (max-width: 51.25em) {
-    width: 19rem;
-    max-width: 19rem;
+    width: 22rem;
+    max-width: 22rem;
   }
 
   @media screen and (max-width: 37.5em) {
@@ -35,44 +36,44 @@
   }
 
   @media screen and (max-width: 34.375em) {
-    width: 20rem;
-    max-width: 20rem;
+    width: 23rem;
+    max-width: 23rem;
   }
 
   @include bp.sm {
     top: 3rem;
-    width: 21rem;
-    max-width: 21rem;
+    width: 24rem;
+    max-width: 24rem;
   }
 
   @media screen and (max-width: 22.5em) {
     top: 2.925rem;
-    width: 19.5rem;
-    max-width: 19.5rem;
+    width: 22.5rem;
+    max-width: 22.5rem;
   }
 
   @media screen and (max-width: 18.75em) {
     top: 2.75rem;
-    width: 18rem;
-    max-width: 18rem;
+    width: 21rem;
+    max-width: 21rem;
   }
 
   @media screen and (min-width: 106.25em) {
     top: 2.625rem;
-    width: 19rem;
-    max-width: 19rem;
+    width: 22rem;
+    max-width: 22rem;
   }
 
   @media screen and (min-width: 112.5em) {
     top: 2.65rem;
-    width: 20rem;
-    max-width: 20rem;
+    width: 23rem;
+    max-width: 23rem;
   }
 
   @media screen and (min-width: 125em) {
     top: 3.1rem;
-    width: 23rem;
-    max-width: 23rem;
+    width: 26rem;
+    max-width: 26rem;
   }
 
   &.show {

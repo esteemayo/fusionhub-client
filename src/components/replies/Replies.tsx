@@ -2,8 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import Reply from '../reply/Reply';
 
-import { RepliesProps } from '../../types';
 import { useMute } from '../../hooks/useMute';
+import { useBlockedUsers } from '../../hooks/useBlockedUsers';
+
+import { RepliesProps } from '../../types';
 
 import './Replies.scss';
 
@@ -17,6 +19,7 @@ const Replies = ({
   onClick,
 }: RepliesProps) => {
   const { mutedList } = useMute();
+  const { blockedUsers } = useBlockedUsers();
 
   const ref = useRef<HTMLDivElement>(null);
   const [isShow, setIsShow] = useState(true);
@@ -39,6 +42,14 @@ const Replies = ({
   const wrapperClasses = useMemo(() => {
     return isShow ? 'replies__wrapper show' : 'replies__wrapper hide';
   }, [isShow]);
+
+  const visibleReplies = useMemo(() => {
+    return replyLists?.filter(
+      (reply) =>
+        !(blockedUsers ?? []).some((user) => user.id === reply.author._id) ||
+        !(mutedList?.mutedReplies ?? []).some((entry) => entry.id === reply._id)
+    );
+  }, [blockedUsers, mutedList?.mutedReplies, replyLists]);
 
   const boxClasses = useMemo(() => {
     return !isLoading && replyToShow < (replyLists ?? [])?.length
@@ -105,26 +116,18 @@ const Replies = ({
           )}
         </button>
         <div className={wrapperClasses} ref={ref}>
-          {replyLists
-            ?.filter(
-              (reply) =>
-                !(mutedList?.mutedReplies ?? []).some(
-                  (replyId) => replyId === reply._id
-                )
-            )
-            .slice(0, replyToShow)
-            .map((reply) => {
-              return (
-                <Reply
-                  key={reply._id}
-                  reply={reply}
-                  slug={slug}
-                  level={0}
-                  activeCardId={activeCardId}
-                  onChangeActiveCardId={onChangeActiveCardId}
-                />
-              );
-            })}
+          {visibleReplies?.slice(0, replyToShow).map((reply) => {
+            return (
+              <Reply
+                key={reply._id}
+                reply={reply}
+                slug={slug}
+                level={0}
+                activeCardId={activeCardId}
+                onChangeActiveCardId={onChangeActiveCardId}
+              />
+            );
+          })}
           <div className={boxClasses}>
             <button
               type='button'

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import ProfileMenu from '../profileMenu/ProfileMenu';
+import ProfileMenu from '../ProfileMenu';
 
 import { ProfileActionProps } from '../../types';
 

@@ -1,21 +1,21 @@
-import TrashIcon from '../icons/TrashIcon';
-import EditIcon from '../icons/EditIcon';
-import ProfileMenuListItem from '../profileMenuListItem/ProfileMenuListItem';
+import EditIcon from './icons/EditIcon';
+import TrashIcon from './icons/TrashIcon';
 
-import { ProfileMenuListProps } from '../../types';
+import ContextMenuList from './contextMenuList/ContextMenuList';
+import ProfileMenuListItem from './profileMenuListItem/ProfileMenuListItem';
 
-import './ProfileMenuList.scss';
+import { ProfileMenuListProps } from '../types';
 
 const ProfileMenuList = ({ onDelete, onUpdate }: ProfileMenuListProps) => {
   return (
-    <ul className='profile-menu-list '>
+    <ContextMenuList>
       <ProfileMenuListItem label='Edit' onClick={onUpdate}>
         <EditIcon />
       </ProfileMenuListItem>
       <ProfileMenuListItem type='delete' label='Delete' onClick={onDelete}>
         <TrashIcon />
       </ProfileMenuListItem>
-    </ul>
+    </ContextMenuList>
   );
 };
 

@@ -8,8 +8,9 @@ import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 import CommentUserImages from '../commentUserImages/CommentUserImages';
 
-import { useMute } from '../../hooks/useMute';
 import { useAppSelector } from '../../hooks/hooks';
+import { useMute } from '../../hooks/useMute';
+import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 
 import {
   CommentImageType,
@@ -42,6 +43,8 @@ const Comment = ({
   onSort,
 }: CommentProps) => {
   const { mutedList } = useMute();
+  const { blockedUsers } = useBlockedUsers();
+
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const url = (user: CommentImageType) => {
@@ -72,6 +75,16 @@ const Comment = ({
       return true;
     });
   }, [commentUsers]);
+
+  const visibleComments = useMemo(() => {
+    return comments?.filter(
+      (comment) =>
+        !(blockedUsers ?? []).some((user) => user.id === comment.author._id) ||
+        !(mutedList?.mutedComments ?? []).some(
+          (entry) => entry.id === comment._id
+        )
+    );
+  }, [blockedUsers, comments, mutedList?.mutedComments]);
 
   const wrapperClasses = useMemo(() => {
     return !isPending && commentToShow < (comments ?? [])?.length
@@ -141,6 +154,7 @@ const Comment = ({
                   _id: currentUser?.details._id as string,
                   name: currentUser?.details.name as string,
                   username: currentUser?.details.username as string,
+                  email: currentUser?.details.email as string,
                   image: currentUser?.details.image as string,
                   role: currentUser?.role as RoleType,
                 },
@@ -155,26 +169,18 @@ const Comment = ({
               onOpen={onOpen}
             />
           )}
-          {comments
-            ?.filter(
-              (comment) =>
-                !(mutedList?.mutedComments ?? []).some(
-                  (entry) => entry.id === comment._id
-                )
-            )
-            .slice(0, commentToShow)
-            .map((comment) => {
-              return (
-                <CommentCard
-                  key={comment._id}
-                  slug={slug}
-                  activeCardId={activeCardId}
-                  comment={comment}
-                  onChangeActiveCardId={onChangeActiveCardId}
-                  onOpen={onOpen}
-                />
-              );
-            })}
+          {visibleComments.slice(0, commentToShow).map((comment) => {
+            return (
+              <CommentCard
+                key={comment._id}
+                slug={slug}
+                activeCardId={activeCardId}
+                comment={comment}
+                onChangeActiveCardId={onChangeActiveCardId}
+                onOpen={onOpen}
+              />
+            );
+          })}
         </>
       )}
       <div className={wrapperClasses}>

@@ -1,5 +1,6 @@
 import { useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { mergeRefs } from 'react-merge-refs';
 
 import Button from '../button/Button';
 
@@ -10,10 +11,12 @@ import './CommentForm.scss';
 
 const CommentForm = ({
   content,
+  postAuthorId,
   maxRows,
   isLoading,
   isPending,
   comments,
+  ref,
   onChange,
   onSubmit,
 }: CommentFormProps) => {
@@ -41,11 +44,14 @@ const CommentForm = ({
     }
   };
 
+  const userId = useMemo(
+    () => currentUser?.details._id,
+    [currentUser?.details._id]
+  );
+
   const hasCommented = useMemo(() => {
-    return (comments ?? [])?.some(
-      (comment) => comment.author._id === currentUser?.details._id
-    );
-  }, [comments, currentUser]);
+    return (comments ?? [])?.some((comment) => comment.author._id === userId);
+  }, [comments, userId]);
 
   const formClasses = useMemo(() => {
     return !hasCommented
@@ -74,10 +80,10 @@ const CommentForm = ({
         </span>
       ) : (
         <>
-          {!hasCommented && (
+          {!hasCommented && postAuthorId !== userId && (
             <span className='comment-form__subtitle'>
               {currentUser.details.username}, share your thoughts about the
-              post.
+              article.
             </span>
           )}
           <form onSubmit={onSubmit} className={formClasses}>
@@ -85,14 +91,14 @@ const CommentForm = ({
               id='content'
               name='content'
               value={content}
-              placeholder='Write your thoughts here... Share your opinion or feedback about the post.'
+              placeholder='Write your thoughts here... Share your opinion or feedback about the article.'
               className='comment-form__textarea'
               rows={5}
               onInput={onInput}
               onChange={(e) => onChange(e.target.value)}
               onKeyDown={onKeyDown}
-              aria-label='Write your thoughts here... Share your opinion or feedback about the post.'
-              ref={textareaRef}
+              aria-label='Write your thoughts here... Share your opinion or feedback about the article.'
+              ref={mergeRefs([textareaRef, ref])}
             />
             <div className='comment-form__actions'>
               <Button

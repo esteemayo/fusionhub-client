@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 
-import TrashIcon from '../icons/TrashIcon';
-import EditIcon from '../icons/EditIcon';
-import ReportIcon from '../icons/ReportIcon';
-import MuteIcon from '../icons/MuteIcon';
-import CommentActionMenuListItem from '../commentActionMenuListItem/CommentActionMenuListItem';
+import TrashIcon from './icons/TrashIcon';
+import EditIcon from './icons/EditIcon';
+import ReportIcon from './icons/ReportIcon';
+import MuteIcon from './icons/MuteIcon';
 
-import { CommentActionMenuListProps } from '../../types';
+import ContextMenuList from './contextMenuList/ContextMenuList';
+import CommentActionMenuListItem from './commentActionMenuListItem/CommentActionMenuListItem';
 
-import './CommentActionMenuList.scss';
+import { CommentActionMenuListProps } from '../types';
 
 const CommentActionMenuList = ({
   authorRole,
@@ -25,19 +25,19 @@ const CommentActionMenuList = ({
 }: CommentActionMenuListProps) => {
   const actionBtnClasses = useMemo(() => {
     if (!currentUser) {
-      return 'comment-action-menu-list__actions hide';
+      return 'context-menu-list__actions hide';
     }
 
     if (isAdmin) {
       if (isCommentAuthor) {
-        return 'comment-action-menu-list__actions show';
+        return 'context-menu-list__actions show';
       }
 
       if (authorRole === 'admin') {
-        return 'comment-action-menu-list__actions hide';
+        return 'context-menu-list__actions hide';
       }
 
-      return 'comment-action-menu-list__actions show';
+      return 'context-menu-list__actions show';
     }
 
     if (
@@ -46,10 +46,10 @@ const CommentActionMenuList = ({
       (postAuthorRole === 'admin' && isCommentAuthor) ||
       (postAuthorRole === 'admin' && isPostAuthor)
     ) {
-      return 'comment-action-menu-list__actions show';
+      return 'context-menu-list__actions show';
     }
 
-    return 'comment-action-menu-list__actions hide';
+    return 'context-menu-list__actions hide';
   }, [
     authorRole,
     currentUser,
@@ -61,18 +61,18 @@ const CommentActionMenuList = ({
 
   const reportBtnClasses = useMemo(() => {
     if (!currentUser) {
-      return 'comment-action-menu-list__reports hide';
+      return 'context-menu-list__reports hide';
     }
 
     if (isCommentAuthor || isAdmin) {
-      return 'comment-action-menu-list__reports hide';
+      return 'context-menu-list__reports hide';
     }
 
-    return 'comment-action-menu-list__reports show';
+    return 'context-menu-list__reports show';
   }, [currentUser, isAdmin, isCommentAuthor]);
 
   return (
-    <ul className='comment-action-menu-list'>
+    <ContextMenuList>
       <div className={actionBtnClasses}>
         <CommentActionMenuListItem label='Edit' onAction={onUpdate}>
           <EditIcon />
@@ -100,7 +100,7 @@ const CommentActionMenuList = ({
           <ReportIcon />
         </CommentActionMenuListItem>
       </div>
-    </ul>
+    </ContextMenuList>
   );
 };
 

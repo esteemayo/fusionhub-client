@@ -58,6 +58,19 @@ export interface SocialMenuItemProps {
   icon: IconType;
 }
 
+export interface ContextMenuProps {
+  isOpen: boolean;
+  children: React.ReactNode;
+}
+
+export interface ContextMenuListItemProps {
+  type?: 'delete' | 'report';
+  label: string;
+  disabled?: boolean;
+  children?: React.ReactNode;
+  onAction(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
 export interface ImageProps {
   alt?: string;
   src: string;
@@ -351,19 +364,25 @@ export interface UpdatePasswordFormProps {
 }
 
 export interface MutedUsersProps {
-  mutedUsers: MutedUsersType;
+  isPending: boolean;
+  error: Error | null;
+  mutedUsers: MutedUsersType | undefined;
 }
 
 export interface MutedCommentsProps {
-  mutedComments: MutedCommentsType;
+  isPending: boolean;
+  error: Error | null;
+  mutedComments: MutedCommentsType | undefined;
 }
 
 export interface MutedRepliesProps {
-  mutedReplies: MutedRepliesType;
+  isPending: boolean;
+  error: Error | null;
+  mutedReplies: MutedRepliesType | undefined;
 }
 
 export interface MutedListProps {
-  lists: MutedUsersType | MutedCommentsType | MutedRepliesType;
+  lists: MutedUsersType | MutedCommentsType | MutedRepliesType | undefined;
 }
 
 export interface MutedListItemProps {
@@ -1070,6 +1089,8 @@ export interface CategoryMenuListItemProps {
 
 export interface IMute {
   (): {
+    isPending: boolean;
+    error: Error | null;
     mutedList: MutedListType | undefined;
     muteMutation: UseMutationResult<unknown, unknown, MutePayload, unknown>;
     unmuteMutation: UseMutationResult<unknown, unknown, UnmutePayload, unknown>;
@@ -1357,6 +1378,7 @@ export interface RelatedTagsProps {
 export interface CommentsProps {
   slug: string;
   postId: string;
+  postAuthorId: string;
 }
 
 export interface IComment {
@@ -1668,10 +1690,12 @@ export interface ReplyCommentFormProps {
 
 export interface CommentFormProps {
   content: string;
+  postAuthorId: string;
   maxRows?: number;
   isLoading?: boolean;
   isPending?: boolean;
   comments: CommentType[];
+  ref: Ref<HTMLTextAreaElement> | undefined;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
 }

@@ -5,11 +5,13 @@ import MutedReplies from '../../components/mutedReplies/MutedReplies';
 
 import SeoMeta from '../../components/SeoMeta';
 
-import { mutedEntities } from '../../data';
+import { useMute } from '../../hooks/useMute';
 
 import './Privacy.scss';
 
 const Privacy = () => {
+  const { isPending, error, mutedList } = useMute();
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -23,8 +25,6 @@ const Privacy = () => {
       logo: 'https://yourapp.com/assets/logo.png',
     },
   };
-
-  const { mutedUsers, mutedComments, mutedReplies } = mutedEntities;
 
   return (
     <section className='privacy'>
@@ -42,9 +42,21 @@ const Privacy = () => {
           type='profile'
         />
       </div>
-      <MutedUsers mutedUsers={mutedUsers} />
-      <MutedComments mutedComments={mutedComments} />
-      <MutedReplies mutedReplies={mutedReplies} />
+      <MutedUsers
+        isPending={isPending}
+        error={error}
+        mutedUsers={mutedList?.mutedUsers}
+      />
+      <MutedComments
+        isPending={isPending}
+        error={error}
+        mutedComments={mutedList?.mutedComments}
+      />
+      <MutedReplies
+        isPending={isPending}
+        error={error}
+        mutedReplies={mutedList?.mutedReplies}
+      />
     </section>
   );
 };

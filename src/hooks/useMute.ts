@@ -1,26 +1,23 @@
 import { toast } from 'react-toastify';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { IMute, MutedListType, MutePayload, UnmutePayload } from '../types';
 import { useAppSelector } from './hooks';
-import {
-  getMutedEntities,
-  muteTarget,
-  unmuteTarget,
-} from '../services/muteService';
+import * as muteAPI from '../services/muteService';
+
+import { IMute, MutedListType, MutePayload, UnmutePayload } from '../types';
 
 const fetchMutedEntity = async () => {
-  const { data } = await getMutedEntities();
+  const { data } = await muteAPI.getMutedEntities();
   return data;
 };
 
 const createMuteTarget = async (payload: MutePayload) => {
-  const { data } = await muteTarget(payload);
+  const { data } = await muteAPI.muteTarget(payload);
   return data;
 };
 
 const createUnmuteTarget = async (payload: UnmutePayload) => {
-  const { data } = await unmuteTarget(payload);
+  const { data } = await muteAPI.unmuteTarget(payload);
   return data;
 };
 
@@ -28,7 +25,11 @@ export const useMute: IMute = () => {
   const queryClient = useQueryClient();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { data: mutedList } = useQuery<MutedListType>({
+  const {
+    isPending,
+    error,
+    data: mutedList,
+  } = useQuery<MutedListType>({
     queryKey: ['mutedList', currentUser],
     queryFn: fetchMutedEntity,
     enabled: !!currentUser,
@@ -75,6 +76,8 @@ export const useMute: IMute = () => {
   });
 
   return {
+    isPending,
+    error,
     mutedList,
     muteMutation,
     unmuteMutation,

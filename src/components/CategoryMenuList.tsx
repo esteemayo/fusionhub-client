@@ -1,21 +1,21 @@
-import TrashIcon from '../icons/TrashIcon';
-import EditIcon from '../icons/EditIcon';
-import CategoryMenuListItem from '../categoryMenuListItem/CategoryMenuListItem';
+import EditIcon from './icons/EditIcon';
+import TrashIcon from './icons/TrashIcon';
 
-import { CategoryMenuListProps } from '../../types';
+import ContextMenuList from './contextMenuList/ContextMenuList';
+import CategoryMenuListItem from './categoryMenuListItem/CategoryMenuListItem';
 
-import './CategoryMenuList.scss';
+import { CategoryMenuListProps } from '../types';
 
 const CategoryMenuList = ({ onRemove, onUpdate }: CategoryMenuListProps) => {
   return (
-    <ul className='category-menu-list'>
+    <ContextMenuList>
       <CategoryMenuListItem label='Edit' onAction={onUpdate}>
         <EditIcon />
       </CategoryMenuListItem>
       <CategoryMenuListItem type='delete' label='Delete' onAction={onRemove}>
         <TrashIcon />
       </CategoryMenuListItem>
-    </ul>
+    </ContextMenuList>
   );
 };
 

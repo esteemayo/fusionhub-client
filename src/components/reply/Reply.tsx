@@ -7,7 +7,7 @@ import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
 import ReplyForm from '../replyForm/ReplyForm';
-import ReplyMenu from '../replyMenu/ReplyMenu';
+import ReplyMenu from '../ReplyMenu';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useMute } from '../../hooks/useMute';

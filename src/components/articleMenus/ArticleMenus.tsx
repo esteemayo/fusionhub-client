@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import ArticleMenu from '../articleMenu/ArticleMenu';
+import ArticleMenu from '../ArticleMenu';
 
 import { ArticleMenusProps } from '../../types';
 

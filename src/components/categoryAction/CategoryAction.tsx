@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import CategoryMenu from '../categoryMenu/CategoryMenu';
+import CategoryMenu from '../CategoryMenu';
 
 import { CategoryActionProps } from '../../types';
 

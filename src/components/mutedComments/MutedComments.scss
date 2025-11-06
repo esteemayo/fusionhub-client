@@ -30,4 +30,51 @@
       border-radius: 0;
     }
   }
+
+  &__wrapper {
+    &--loader {
+      width: 100%;
+      min-height: 10rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media screen and (min-width: 125em) {
+        min-height: 20rem;
+      }
+
+      span {
+        @media screen and (max-width: 56.25em) {
+          width: 3.5rem !important;
+          height: 3.5rem !important;
+        }
+
+        @media screen and (max-width: 51.25em) {
+          width: 4rem !important;
+          height: 4rem !important;
+        }
+
+        @media screen and (max-width: 18.75em) {
+          width: 3.5rem !important;
+          height: 3.5rem !important;
+        }
+
+        @media screen and (min-width: 106.25em) {
+          width: 3.5rem !important;
+          height: 3.5rem !important;
+        }
+
+        @media screen and (min-width: 112.5em) {
+          width: 4.25rem !important;
+          height: 4.25rem !important;
+        }
+
+        @media screen and (min-width: 125em) {
+          width: 5rem !important;
+          height: 5rem !important;
+        }
+      }
+    }
+  }
 }

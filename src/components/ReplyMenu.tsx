@@ -1,10 +1,7 @@
-import { useMemo } from 'react';
+import ContextMenu from './contextMenu/ContextMenu';
+import ReplyMenuList from './ReplyMenuList';
 
-import ReplyMenuList from '../replyMenuList/ReplyMenuList';
-
-import { ReplyMenuProps } from '../../types';
-
-import './ReplyMenu.scss';
+import { ReplyMenuProps } from '../types';
 
 const ReplyMenu = ({
   authorRole,
@@ -22,12 +19,8 @@ const ReplyMenu = ({
   onMute,
   onReport,
 }: ReplyMenuProps) => {
-  const replyMenuClasses = useMemo(() => {
-    return isShow ? 'reply-menu show' : 'reply-menu hide';
-  }, [isShow]);
-
   return (
-    <aside className={replyMenuClasses}>
+    <ContextMenu isOpen={isShow}>
       <ReplyMenuList
         authorRole={authorRole}
         commentAuthorRole={commentAuthorRole}
@@ -43,7 +36,7 @@ const ReplyMenu = ({
         onMute={onMute}
         onReport={onReport}
       />
-    </aside>
+    </ContextMenu>
   );
 };
 

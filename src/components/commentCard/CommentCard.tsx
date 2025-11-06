@@ -8,7 +8,7 @@ import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
-import CommentActionMenu from '../commentActionMenu/CommentActionMenu';
+import CommentActionMenu from '../CommentActionMenu';
 import Badge from '../badge/Badge';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 

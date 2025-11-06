@@ -1,10 +1,7 @@
-import { useMemo } from 'react';
+import ContextMenu from './contextMenu/ContextMenu';
+import CommentActionMenuList from './CommentActionMenuList';
 
-import CommentActionMenuList from '../commentActionMenuList/CommentActionMenuList';
-
-import { CommentActionMenuProps } from '../../types';
-
-import './CommentActionMenu.scss';
+import { CommentActionMenuProps } from '../types';
 
 const CommentActionMenu = ({
   authorRole,
@@ -20,12 +17,8 @@ const CommentActionMenu = ({
   onDelete,
   onUpdate,
 }: CommentActionMenuProps) => {
-  const actionMenuClasses = useMemo(() => {
-    return isShow ? 'comment-action-menu show' : 'comment-action-menu hide';
-  }, [isShow]);
-
   return (
-    <aside className={actionMenuClasses}>
+    <ContextMenu isOpen={isShow}>
       <CommentActionMenuList
         authorRole={authorRole}
         currentUser={currentUser}
@@ -39,7 +32,7 @@ const CommentActionMenu = ({
         onDelete={onDelete}
         onUpdate={onUpdate}
       />
-    </aside>
+    </ContextMenu>
   );
 };
 
