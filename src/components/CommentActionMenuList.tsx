@@ -6,7 +6,7 @@ import ReportIcon from './icons/ReportIcon';
 import MuteIcon from './icons/MuteIcon';
 
 import ContextMenuList from './contextMenuList/ContextMenuList';
-import CommentActionMenuListItem from './commentActionMenuListItem/CommentActionMenuListItem';
+import ContextMenuListItem from './contextMenuListItem/ContextMenuListItem';
 
 import { CommentActionMenuListProps } from '../types';
 
@@ -64,41 +64,37 @@ const CommentActionMenuList = ({
       return 'context-menu-list__reports hide';
     }
 
-    if (isCommentAuthor || isAdmin) {
+    if (isCommentAuthor || isAdmin || isPostAuthor) {
       return 'context-menu-list__reports hide';
     }
 
     return 'context-menu-list__reports show';
-  }, [currentUser, isAdmin, isCommentAuthor]);
+  }, [currentUser, isAdmin, isCommentAuthor, isPostAuthor]);
 
   return (
     <ContextMenuList>
       <div className={actionBtnClasses}>
-        <CommentActionMenuListItem label='Edit' onAction={onUpdate}>
+        <ContextMenuListItem label='Edit' onAction={onUpdate}>
           <EditIcon />
-        </CommentActionMenuListItem>
-        <CommentActionMenuListItem
-          type='delete'
-          label='Delete'
-          onAction={onDelete}
-        >
+        </ContextMenuListItem>
+        <ContextMenuListItem type='danger' label='Delete' onAction={onDelete}>
           <TrashIcon />
-        </CommentActionMenuListItem>
+        </ContextMenuListItem>
       </div>
       <div className={reportBtnClasses}>
-        <CommentActionMenuListItem
-          label={`${isMuted ? 'Unmute' : 'Mute'} comment`}
+        <ContextMenuListItem
+          label={`${isMuted ? 'Unmute' : 'Mute'} Comment`}
           onAction={onMute}
         >
           <MuteIcon />
-        </CommentActionMenuListItem>
-        <CommentActionMenuListItem
+        </ContextMenuListItem>
+        <ContextMenuListItem
           type='report'
-          label='Report'
+          label='Report Comment'
           onAction={onReport}
         >
           <ReportIcon />
-        </CommentActionMenuListItem>
+        </ContextMenuListItem>
       </div>
     </ContextMenuList>
   );

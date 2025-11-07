@@ -10,8 +10,11 @@ const TagItem = ({ label, onClose }: TagItemProps) => {
       to={`/posts?tag=${label}`}
       onClick={() => onClose?.()}
       className='tag-item'
+      aria-label={`/posts?tag=${label}`}
     >
-      <span className='tag-item__label'>{label}</span>
+      <span className='tag-item__label' aria-label={label}>
+        {label}
+      </span>
     </Link>
   );
 };

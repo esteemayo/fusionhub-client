@@ -20,20 +20,29 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
   return (
     <Header img={postImage} className='hero'>
       <div className='hero__breadCrumbs'>
-        <Link to='/' className='hero__breadCrumbs--link'>
-          Home
+        <Link to='/' className='hero__breadCrumbs--link' aria-label='Home'>
+          <span aria-label='Home'>Home</span>
         </Link>
-        <Link to={`/posts/${slug}`} className='hero__breadCrumbs--link'>
-          Post details
+        <Link
+          to={`/post/${slug}`}
+          className='hero__breadCrumbs--link'
+          aria-label={`/post/${slug}`}
+        >
+          <span aria-label='Post details'>Post details</span>
         </Link>
       </div>
-      <h1 className='hero__heading'>{title}</h1>
+      <h1 className='hero__heading' aria-label={title}>
+        {title}
+      </h1>
       <div className='hero__wrapper'>
         <div className='hero__wrapper--time'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24'
             fill='currentColor'
+            aria-label='clock icon'
+            aria-hidden='true'
+            role='img'
             className='size-6'
           >
             <path
@@ -42,7 +51,7 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
               clipRule='evenodd'
             />
           </svg>
-          <time dateTime={createdAt}>
+          <time dateTime={createdAt} aria-label={createdAt}>
             {new Date(createdAt).toLocaleString('de-DE', {
               day: '2-digit',
               month: '2-digit',
@@ -58,6 +67,9 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 24 24'
             fill='currentColor'
+            aria-label='user icon'
+            aria-hidden='true'
+            role='img'
             className='size-6'
           >
             <path
@@ -66,8 +78,11 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
               clipRule='evenodd'
             />
           </svg>
-          <Link to={`/posts?author=${author.username}`}>
-            <span>{author.name}</span>
+          <Link
+            to={`/posts?author=${author.username}`}
+            aria-label={`/posts?author=${author.username}`}
+          >
+            <span aria-label={author.name}>{author.name}</span>
           </Link>
         </div>
       </div>

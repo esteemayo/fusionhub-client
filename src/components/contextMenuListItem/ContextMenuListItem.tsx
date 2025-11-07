@@ -12,7 +12,7 @@ const ContextMenuListItem = ({
   onAction,
 }: ContextMenuListItemProps) => {
   const listItemClasses = useMemo(() => {
-    return type === 'delete' || type === 'report'
+    return type === 'danger' || type === 'report'
       ? 'context-menu-list-item danger'
       : 'context-menu-list-item';
   }, [type]);

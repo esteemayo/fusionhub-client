@@ -64,7 +64,7 @@ export interface ContextMenuProps {
 }
 
 export interface ContextMenuListItemProps {
-  type?: 'delete' | 'report';
+  type?: 'danger' | 'report';
   label: string;
   disabled?: boolean;
   children?: React.ReactNode;
@@ -1087,6 +1087,12 @@ export interface CategoryMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ICanShowMenu {
+  (currentUser: CurrentUserType | null, author: AuthorType):
+    | boolean
+    | undefined;
+}
+
 export interface IMute {
   (): {
     isPending: boolean;
@@ -1244,7 +1250,13 @@ export interface IProfile {
 }
 
 export interface IWebShare {
-  (title: string | undefined, text: string | undefined, url: string): {
+  (
+    title: string | undefined,
+    text: string | undefined,
+    url: string,
+    imageUrl?: string,
+    fileName?: string
+  ): {
     error: string | null;
     handleShare(e: React.MouseEvent<HTMLButtonElement>): Promise<void>;
   };

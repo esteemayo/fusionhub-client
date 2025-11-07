@@ -1,6 +1,5 @@
-import { toast } from 'react-toastify';
+import { useMemo } from 'react';
 import parse from 'html-react-parser';
-import { useEffect, useMemo } from 'react';
 
 import ShareIcon from '../icons/ShareIcon';
 
@@ -19,13 +18,7 @@ const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
 
   const parsedText = excerpts(stripHtml(parsedDesc), 80);
 
-  const { error, handleShare } = useWebShare(title, parsedText, shareUrl);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
+  const { handleShare } = useWebShare(title, parsedText, shareUrl);
 
   return (
     <div className='share-button'>

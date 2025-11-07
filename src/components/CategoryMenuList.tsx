@@ -2,19 +2,19 @@ import EditIcon from './icons/EditIcon';
 import TrashIcon from './icons/TrashIcon';
 
 import ContextMenuList from './contextMenuList/ContextMenuList';
-import CategoryMenuListItem from './categoryMenuListItem/CategoryMenuListItem';
+import ContextMenuListItem from './contextMenuListItem/ContextMenuListItem';
 
 import { CategoryMenuListProps } from '../types';
 
 const CategoryMenuList = ({ onRemove, onUpdate }: CategoryMenuListProps) => {
   return (
     <ContextMenuList>
-      <CategoryMenuListItem label='Edit' onAction={onUpdate}>
+      <ContextMenuListItem label='Edit' onAction={onUpdate}>
         <EditIcon />
-      </CategoryMenuListItem>
-      <CategoryMenuListItem type='delete' label='Delete' onAction={onRemove}>
+      </ContextMenuListItem>
+      <ContextMenuListItem type='danger' label='Delete' onAction={onRemove}>
         <TrashIcon />
-      </CategoryMenuListItem>
+      </ContextMenuListItem>
     </ContextMenuList>
   );
 };

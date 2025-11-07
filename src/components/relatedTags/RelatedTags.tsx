@@ -12,7 +12,9 @@ const RelatedTags = ({ isLoading, tags }: RelatedTagsProps) => {
 
   return (
     <section className='related-tags'>
-      <h3 className='related-tags__heading'>Related tags</h3>
+      <h3 className='related-tags__heading' aria-label='Related tags'>
+        Related tags
+      </h3>
       <div className='related-tags__container'>
         {isLoading
           ? Array.from(Array(3)).map((_, index) => {

@@ -22,6 +22,8 @@ import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
+import { canShowMenu } from '../../utils/canShowMenu';
+
 import {
   MuteModalType,
   MutePayload,
@@ -57,8 +59,9 @@ const Reply = ({
     updatedAt,
   } = reply;
 
-  const { mutedList } = useMute();
   const { formattedDate } = useDate(createdAt);
+  const { mutedList } = useMute();
+  const showMenuButton = canShowMenu(currentUser, author);
 
   const isMuted = useMemo(() => {
     return (
@@ -454,25 +457,27 @@ const Reply = ({
             onLike={handleLike}
             onDislike={handleDislike}
           />
-          <button
-            type='button'
-            onClick={handleToggle}
-            aria-label={isShow ? 'Open menu' : 'Close menu'}
-            className={actionBtnClasses}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-              className='size-6'
+          {showMenuButton && (
+            <button
+              type='button'
+              onClick={handleToggle}
+              aria-label={isShow ? 'Open menu' : 'Close menu'}
+              className={actionBtnClasses}
             >
-              <path
-                fillRule='evenodd'
-                d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
-                clipRule='evenodd'
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 24 24'
+                fill='currentColor'
+                className='size-6'
+              >
+                <path
+                  fillRule='evenodd'
+                  d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
+                  clipRule='evenodd'
+                />
+              </svg>
+            </button>
+          )}
           <ReplyMenu
             authorRole={author.role}
             commentAuthorRole={comment.author.role}

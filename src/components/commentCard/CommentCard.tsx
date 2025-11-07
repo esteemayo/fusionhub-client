@@ -34,6 +34,7 @@ import {
 } from '../../types';
 
 import './CommentCard.scss';
+import { canShowMenu } from '../../utils/canShowMenu';
 
 const CommentCard = ({
   slug,
@@ -58,8 +59,9 @@ const CommentCard = ({
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const { mutedList } = useMute();
   const { formattedDate } = useDate(createdAt);
+  const { mutedList } = useMute();
+  const showMenuButton = canShowMenu(currentUser, author);
 
   const isMuted = useMemo(() => {
     return (
@@ -483,25 +485,27 @@ const CommentCard = ({
           onLike={handleLike}
           onDislike={handleDislike}
         />
-        <button
-          type='button'
-          onClick={toggleActionHandler}
-          aria-label={isShow ? 'Open menu' : 'Close menu'}
-          className={actionBtnClasses}
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 24 24'
-            fill='currentColor'
-            className='size-6'
+        {showMenuButton && (
+          <button
+            type='button'
+            onClick={toggleActionHandler}
+            aria-label={isShow ? 'Open menu' : 'Close menu'}
+            className={actionBtnClasses}
           >
-            <path
-              fillRule='evenodd'
-              d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
-              clipRule='evenodd'
-            />
-          </svg>
-        </button>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 24 24'
+              fill='currentColor'
+              className='size-6'
+            >
+              <path
+                fillRule='evenodd'
+                d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
+                clipRule='evenodd'
+              />
+            </svg>
+          </button>
+        )}
         <CommentActionMenu
           authorRole={author.role}
           currentUser={currentUser}

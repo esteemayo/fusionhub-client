@@ -6,7 +6,7 @@ import ReportIcon from './icons/ReportIcon';
 import MuteIcon from './icons/MuteIcon';
 
 import ContextMenuList from './contextMenuList/ContextMenuList';
-import ReplyMenuListItem from './replyMenuListItem/ReplyMenuListItem';
+import ContextMenuListItem from './contextMenuListItem/ContextMenuListItem';
 
 import { ReplyMenuListProps } from '../types';
 
@@ -71,33 +71,37 @@ const ReplyMenuList = ({
       return 'context-menu-list__reports hide';
     }
 
-    if (isReplyAuthor || isAdmin) {
+    if (isReplyAuthor || isAdmin || isPostAuthor) {
       return 'context-menu-list__reports hide';
     }
 
     return 'context-menu-list__reports show';
-  }, [currentUser, isAdmin, isReplyAuthor]);
+  }, [currentUser, isAdmin, isPostAuthor, isReplyAuthor]);
 
   return (
     <ContextMenuList>
       <div className={actionBtnClasses}>
-        <ReplyMenuListItem label='Edit' onAction={onUpdate}>
+        <ContextMenuListItem label='Edit' onAction={onUpdate}>
           <EditIcon />
-        </ReplyMenuListItem>
-        <ReplyMenuListItem type='delete' label='Delete' onAction={onDelete}>
+        </ContextMenuListItem>
+        <ContextMenuListItem type='danger' label='Delete' onAction={onDelete}>
           <TrashIcon />
-        </ReplyMenuListItem>
+        </ContextMenuListItem>
       </div>
       <div className={reportClasses}>
-        <ReplyMenuListItem
-          label={`${isMuted ? 'Unmute' : 'Mute'} reply`}
+        <ContextMenuListItem
+          label={`${isMuted ? 'Unmute' : 'Mute'} Reply`}
           onAction={onMute}
         >
           <MuteIcon />
-        </ReplyMenuListItem>
-        <ReplyMenuListItem type='report' label='Report' onAction={onReport}>
+        </ContextMenuListItem>
+        <ContextMenuListItem
+          type='report'
+          label='Report Reply'
+          onAction={onReport}
+        >
           <ReportIcon />
-        </ReplyMenuListItem>
+        </ContextMenuListItem>
       </div>
     </ContextMenuList>
   );

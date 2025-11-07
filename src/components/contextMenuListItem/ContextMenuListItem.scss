@@ -45,8 +45,7 @@
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid rgba(vars.$clr-tertiary-blue, 0.5);
-    border-color: vars.$clr-gray-light-1;
+    border-bottom: 1px solid vars.$clr-tertiary-blue;
   }
 
   &.danger {
@@ -123,7 +122,8 @@
     }
 
     &:hover {
-      background-color: rgba(vars.$clr-tertiary-blue, 0.25);
+      background-color: vars.$clr-tertiary-blue;
+      background-color: rgba(vars.$clr-tertiary-blue, 0.35);
     }
 
     &:disabled {
