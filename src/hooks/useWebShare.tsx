@@ -17,8 +17,8 @@ export const useWebShare: IWebShare = (
   const [error, setError] = useState<string | null>(null);
 
   const handleShare = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
+    async (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.stopPropagation();
 
       if (navigator.canShare && navigator.share) {
         if (navigator.canShare && !navigator.canShare({ title, text, url })) {

@@ -655,6 +655,7 @@ export interface AccountMenuItemProps {
 }
 
 export interface BannerProps {
+  bio?: string;
   role: RoleType;
   username: string;
   userId: string;
@@ -687,6 +688,7 @@ export interface BannerMenuProps {
   isBlocked: boolean;
   disabled: boolean;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+  onShare(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
   onReport(e: React.MouseEvent<HTMLButtonElement>): void;
   onBlock(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -703,6 +705,7 @@ export interface BannerMenuListProps {
   query: string | null;
   username: string;
   isBlocked: boolean;
+  onShare(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
   onReport(e: React.MouseEvent<HTMLButtonElement>): void;
   onBlock(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1258,7 +1261,7 @@ export interface IWebShare {
     fileName?: string
   ): {
     error: string | null;
-    handleShare(e: React.MouseEvent<HTMLButtonElement>): Promise<void>;
+    handleShare(e?: React.MouseEvent<HTMLButtonElement>): Promise<void>;
   };
 }
 

@@ -14,6 +14,7 @@ const BannerMenu = ({
   isBlocked,
   disabled,
   onToggle,
+  onShare,
   onMute,
   onReport,
   onBlock,
@@ -54,6 +55,7 @@ const BannerMenu = ({
         query={query}
         username={username}
         isBlocked={isBlocked}
+        onShare={onShare}
         onMute={onMute}
         onReport={onReport}
         onBlock={onBlock}

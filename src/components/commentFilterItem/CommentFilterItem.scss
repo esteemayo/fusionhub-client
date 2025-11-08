@@ -101,7 +101,7 @@
     }
 
     &:hover {
-      background-color: vars.$clr-tertiary-blue;
+      background-color: rgba(vars.$clr-tertiary-blue, 0.35);
     }
   }
 }

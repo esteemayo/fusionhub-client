@@ -27,6 +27,12 @@ const BlockedUser = ({
     return (blockedUsers ?? []).some((user) => user.id === targetId) || false;
   }, [blockedUsers, targetId]);
 
+  const avatarClasses = useMemo(() => {
+    return isBlocked
+      ? 'blocked-user__cover--img blurred'
+      : 'blocked-user__cover--img';
+  }, [isBlocked]);
+
   const handleUnblock = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
@@ -48,7 +54,7 @@ const BlockedUser = ({
               width={40}
               height={40}
               alt={username}
-              className='banner__user--avatar'
+              className={avatarClasses}
             />
           ) : (
             <Image
@@ -56,7 +62,7 @@ const BlockedUser = ({
               width={40}
               height={40}
               alt={username}
-              className='blocked-user__cover--img'
+              className={avatarClasses}
             />
           )}
           <div className='blocked-user__details'>

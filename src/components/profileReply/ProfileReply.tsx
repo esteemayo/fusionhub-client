@@ -12,8 +12,9 @@ import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useLikeReply } from '../../hooks/useLikeReply';
 import { useDate } from '../../hooks/useDate';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 import { useReply } from '../../hooks/useReply';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { getPostById } from '../../services/postService';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
@@ -46,6 +47,7 @@ const ProfileReply = ({
   const dispatch = useAppDispatch();
 
   const { formattedDate } = useDate(createdAt);
+  const { blockedUsers } = useBlockedUsers();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const queryKey = ['replies'];
@@ -254,6 +256,16 @@ const ProfileReply = ({
     return post?.author._id === userId;
   }, [post?.author._id, userId]);
 
+  const isBlocked = useMemo(() => {
+    return (blockedUsers ?? []).some((user) => user.id === authorId) || false;
+  }, [authorId, blockedUsers]);
+
+  const coverClasses = useMemo(() => {
+    return isBlocked
+      ? 'profile-reply__cover--img blurred'
+      : 'profile-reply__cover--img';
+  }, [isBlocked]);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -286,7 +298,7 @@ const ProfileReply = ({
               width={80}
               height={80}
               alt={author.username}
-              className='comment-card__user--img'
+              className={coverClasses}
             />
           ) : (
             <Image
@@ -294,7 +306,7 @@ const ProfileReply = ({
               width={60}
               height={60}
               alt={author.username}
-              className='profile-reply__cover--img'
+              className={coverClasses}
             />
           )}
         </div>

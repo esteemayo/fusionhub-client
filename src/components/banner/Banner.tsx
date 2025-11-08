@@ -13,9 +13,11 @@ import * as blockModal from '../../features/blockModal/blockModalSlice';
 import * as accountModal from '../../features/accountModal/accountModalSlice';
 import * as imageModal from '../../features/imageModal/imageModalSlice';
 
+import { useWebShare } from '../../hooks/useWebShare';
 import { useAppDispatch } from '../../hooks/hooks';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 
+import { excerpts } from '../../utils';
 import { BannerProps, BlockPayload } from '../../types';
 
 import './Banner.scss';
@@ -25,6 +27,7 @@ interface IContainer {
 }
 
 const Banner = ({
+  bio,
   role,
   query,
   username,
@@ -44,11 +47,29 @@ const Banner = ({
 }: BannerProps) => {
   const dispatch = useAppDispatch();
 
+  const shareUrl = `${window.location.href}`;
+
+  const profileText = useMemo(() => {
+    return bio ? excerpts(bio, 80) : `@${username}`;
+  }, [bio, username]);
+
   const { blockedUsers } = useBlockedUsers();
+  const { handleShare } = useWebShare(
+    `Share @${username}'s profile account`,
+    profileText,
+    shareUrl
+  );
 
   const isBlocked = useMemo(() => {
     return (blockedUsers ?? []).some((user) => user.id === userId) || false;
   }, [blockedUsers, userId]);
+
+  const shareHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    handleShare();
+    onClose();
+  };
 
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -103,6 +124,10 @@ const Banner = ({
     return banner ? imageUrl(banner) : imageUrl('/banner-1.jpg');
   }, [banner]);
 
+  const avatarClasses = useMemo(() => {
+    return isBlocked ? 'banner__user--avatar blurred' : 'banner__user--avatar';
+  }, [isBlocked]);
+
   const wrapperClasses = useMemo(() => {
     return query ? 'banner__wrapper hide' : 'banner__wrapper show';
   }, [query]);
@@ -147,7 +172,7 @@ const Banner = ({
                 width={120}
                 height={120}
                 alt={username}
-                className='banner__user--avatar'
+                className={avatarClasses}
               />
             ) : (
               <Image
@@ -155,7 +180,7 @@ const Banner = ({
                 width={120}
                 height={120}
                 alt={username}
-                className='banner__user--avatar'
+                className={avatarClasses}
               />
             )}
             {0 < progress && progress < 100 && (
@@ -209,6 +234,7 @@ const Banner = ({
           isBlocked={isBlocked}
           disabled={isDisabled}
           onToggle={onToggle}
+          onShare={shareHandler}
           onMute={handleMute}
           onReport={handleReport}
           onBlock={handleBlock}

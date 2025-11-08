@@ -11,9 +11,11 @@ import ProfileAction from '../profileAction/ProfileAction';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useComment } from '../../hooks/useComment';
-import { useDate } from '../../hooks/useDate';
-import { useLikeComment } from '../../hooks/useLikeComment';
 import { useReply } from '../../hooks/useReply';
+import { useBlockedUsers } from '../../hooks/useBlockedUsers';
+
+import { useLikeComment } from '../../hooks/useLikeComment';
+import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { getPostById } from '../../services/postService';
@@ -46,6 +48,7 @@ const ProfileComment = ({
   const dispatch = useAppDispatch();
 
   const { formattedDate } = useDate(createdAt);
+  const { blockedUsers } = useBlockedUsers();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const queryKey = ['comments'];
@@ -246,6 +249,16 @@ const ProfileComment = ({
     return post?.author._id === userId;
   }, [post?.author._id, userId]);
 
+  const isBlocked = useMemo(() => {
+    return (blockedUsers ?? []).some((user) => user.id === authorId) || false;
+  }, [authorId, blockedUsers]);
+
+  const coverClasses = useMemo(() => {
+    return isBlocked
+      ? 'profile-comment__cover--img blurred'
+      : 'profile-comment__cover--img';
+  }, [isBlocked]);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -278,7 +291,7 @@ const ProfileComment = ({
               width={80}
               height={80}
               alt={author.username}
-              className='comment-card__user--img'
+              className={coverClasses}
             />
           ) : (
             <Image
@@ -286,7 +299,7 @@ const ProfileComment = ({
               width={60}
               height={60}
               alt={author.username}
-              className='profile-comment__cover--img'
+              className={coverClasses}
             />
           )}
         </div>

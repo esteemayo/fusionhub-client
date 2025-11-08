@@ -18,10 +18,15 @@ const ShareContent = ({ url, text, title, onClick }: ShareContentProps) => {
   return (
     <div className='share-content '>
       <div className='share-content__container'>
-        <h4 className='share-content__container--heading'>
+        <h4
+          className='share-content__container--heading'
+          aria-label={title || 'Check this out'}
+        >
           {title || 'Check this out'}
         </h4>
-        <p className='share-content__container--content'>{text}</p>
+        <p className='share-content__container--content' aria-label={text}>
+          {text}
+        </p>
         <div className='share-content__wrapper'>
           <input
             id='url'

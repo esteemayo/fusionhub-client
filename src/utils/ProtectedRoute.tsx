@@ -5,11 +5,7 @@ import { useAppSelector } from '../hooks/hooks';
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  if (currentUser) {
-    return <Navigate to='/' />;
-  } else {
-    return children;
-  }
+  return currentUser ? <Navigate to='/' /> : children;
 };
 
 export default ProtectedRoute;

@@ -168,6 +168,7 @@ const UserProfile = () => {
         ) : (
           <>
             <Banner
+              bio={user?.bio}
               role={user?.role as RoleType}
               query={username}
               username={user?.username as string}

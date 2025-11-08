@@ -18,6 +18,7 @@ import { useComment } from '../../hooks/useComment';
 import { useDate } from '../../hooks/useDate';
 import { useWebShare } from '../../hooks/useWebShare';
 
+import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 import { useSavedPosts } from '../../hooks/useSavedPosts';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
@@ -52,6 +53,7 @@ const Article = ({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  const { blockedUsers } = useBlockedUsers();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
   const postUrl = `${window.location.origin}/post/${post?.slug}`;
@@ -227,6 +229,16 @@ const Article = ({
       : `/accounts/profile?username=${post.author.username}`;
   }, [currentUserId, post.author.username, postAuthorId]);
 
+  const isBlocked = useMemo(() => {
+    return (
+      (blockedUsers ?? []).some((user) => user.id === post.author._id) || false
+    );
+  }, [blockedUsers, post.author._id]);
+
+  const coverClasses = useMemo(() => {
+    return isBlocked ? 'article__cover--img blurred' : 'article__cover--img';
+  }, [isBlocked]);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -265,7 +277,7 @@ const Article = ({
               width={80}
               height={80}
               alt={post.author.username}
-              className='comment-card__user--img'
+              className={coverClasses}
             />
           ) : (
             <Image
@@ -273,7 +285,7 @@ const Article = ({
               width={60}
               height={60}
               alt={post.author.username}
-              className='article__cover--img'
+              className={coverClasses}
             />
           )}
         </Link>

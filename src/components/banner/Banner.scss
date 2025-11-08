@@ -180,7 +180,8 @@
       position: relative;
 
       &.disabled {
-        cursor: default;
+        pointer-events: none;
+        user-select: none;
       }
 
       @media screen and (max-width: 56.25em) {
@@ -235,6 +236,12 @@
       display: inline-block;
       object-fit: cover;
       border-radius: 50%;
+
+      &.blurred {
+        filter: blur(0.6rem);
+        pointer-events: none;
+        user-select: none;
+      }
     }
   }
 

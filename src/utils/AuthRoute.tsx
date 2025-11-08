@@ -5,11 +5,7 @@ import { useAppSelector } from '../hooks/hooks';
 const AuthRoute = ({ children }: { children: React.ReactNode }) => {
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  if (currentUser) {
-    return children;
-  } else {
-    return <LoadingToRedirect />;
-  }
+  return currentUser ? children : <LoadingToRedirect />;
 };
 
 export default AuthRoute;

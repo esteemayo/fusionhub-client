@@ -1,11 +1,12 @@
 import { useCallback, useMemo } from 'react';
 
-import ReportIcon from '../icons/ReportIcon';
+import ShareIcon from '../icons/ShareIcon';
 import MuteIcon from '../icons/MuteIcon';
-import DeactivateIcon from '../icons/DeactivateIcon';
+import ReportIcon from '../icons/ReportIcon';
 import BlockIcon from '../icons/BlockIcon';
-import RemoveAvatarIcon from '../icons/RemoveAvatarIcon';
+import DeactivateIcon from '../icons/DeactivateIcon';
 import TrashIcon from '../icons/TrashIcon';
+import RemoveAvatarIcon from '../icons/RemoveAvatarIcon';
 
 import BannerMenuListItem from '../bannerMenuListItem/BannerMenuListItem';
 
@@ -21,6 +22,7 @@ const BannerMenuList = ({
   query,
   username,
   isBlocked,
+  onShare,
   onMute,
   onReport,
   onBlock,
@@ -43,11 +45,8 @@ const BannerMenuList = ({
     <ul className={menuListClasses}>
       {query && (
         <>
-          <BannerMenuListItem
-            label={itemLabel('Share')}
-            onAction={() => console.log('user profile shared')}
-          >
-            <MuteIcon />
+          <BannerMenuListItem label={itemLabel('Share')} onAction={onShare}>
+            <ShareIcon />
           </BannerMenuListItem>
           {role !== 'admin' && (
             <>
