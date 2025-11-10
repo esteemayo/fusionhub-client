@@ -6,6 +6,7 @@ import './ReplyForm.scss';
 
 const ReplyForm = ({
   content,
+  username,
   size = 'sm',
   isOpen,
   isEditing,
@@ -69,8 +70,8 @@ const ReplyForm = ({
   const placeholder = useMemo(() => {
     return isEditing && editId
       ? 'Update your reply here...'
-      : 'Write your reply here...';
-  }, [editId, isEditing]);
+      : `Reply to ${username} here...`;
+  }, [editId, isEditing, username]);
 
   const btnLabel = useMemo(() => {
     return isEditing && editId

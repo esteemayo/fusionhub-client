@@ -1,1 +1,1 @@
-# Blog Application
+# FusionHub Blog Application

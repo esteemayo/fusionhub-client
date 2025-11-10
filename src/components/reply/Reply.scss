@@ -1,14 +1,8 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
 .reply {
-  display: flex;
-  flex-direction: column;
-
-  &.nested {
-    margin-left: 2rem;
-  }
-
   &:not(:last-child):not(:has(+ :not(.reply))) {
     padding-bottom: 2rem;
     margin-bottom: 2rem;
@@ -17,6 +11,29 @@
     @include bp.sm {
       border-color: vars.$clr-secondary-blue;
     }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+
+    &.nested {
+      margin-left: 3rem;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.25s ease;
+    }
+
+    // &:not(:last-child):not(:has(+ :not(.reply))) {
+    //   padding-bottom: 2rem;
+    //   margin-bottom: 2rem;
+    //   border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+    //   @include bp.sm {
+    //     border-color: vars.$clr-secondary-blue;
+    //   }
+    // }
   }
 
   &__container {
@@ -513,5 +530,101 @@
         }
       }
     }
+  }
+
+  &__toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    border: 0;
+    outline: 0;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.3rem;
+    background-color: transparent;
+    color: vars.$clr-pink-light;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: var(--default-font-size);
+    }
+
+    @include bp.sm {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.45rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 2rem;
+    }
+
+    svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: currentColor;
+      stroke-width: 2px;
+
+      @media screen and (max-width: 56.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (max-width: 51.25em) {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      @include bp.sm {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 2.25rem;
+        height: 2.25rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+
+  &__children {
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    margin-top: 1rem;
   }
 }

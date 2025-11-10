@@ -1622,10 +1622,15 @@ export interface RepliesProps {
   slug: string;
   activeCardId: string | null;
   replyLists?: ReplyType[];
-  replyToShow: number;
-  isLoading: boolean;
   onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
-  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface ThreadCollapseProps {
+  slug: string;
+  activeCardId: string | null;
+  initialVisible?: number;
+  replies: ReplyType[];
+  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ReplyProps {
@@ -1679,6 +1684,7 @@ export interface ReplyMenuListItemProps {
 
 export interface ReplyFormProps {
   content: string;
+  username: string;
   size?: 'sm' | 'md' | 'lg';
   isOpen: boolean;
   isEditing: boolean;

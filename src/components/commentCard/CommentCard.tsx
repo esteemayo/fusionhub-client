@@ -88,10 +88,8 @@ const CommentCard = ({
     dislikeCommentMutation,
   } = useLikeComment(commentId, likes, dislikes, queryKey);
 
-  const [replyToShow, setReplyToShow] = useState(3);
-  const [value, setValue] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [isMore, setIsMore] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
@@ -250,20 +248,6 @@ const CommentCard = ({
         });
       }
     }
-  };
-
-  const handleMoreReplies = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setReplyToShow((value) => {
-        return value + 3;
-      });
-
-      setIsLoading(false);
-    }, 1000);
   };
 
   const isUpdated = useMemo(() => {
@@ -535,10 +519,7 @@ const CommentCard = ({
         slug={slug}
         activeCardId={activeCardId}
         replyLists={replies}
-        replyToShow={replyToShow}
-        isLoading={isLoading}
         onChangeActiveCardId={onChangeActiveCardId}
-        onClick={handleMoreReplies}
       />
     </article>
   );

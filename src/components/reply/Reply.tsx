@@ -10,6 +10,9 @@ import ReplyForm from '../replyForm/ReplyForm';
 import ReplyMenu from '../ReplyMenu';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
+import ChevronUpIcon from '../icons/ChevronUpIcon';
+import ChevronDownIcon from '../icons/ChevronDownIcon';
+
 import { useMute } from '../../hooks/useMute';
 import { useReply } from '../../hooks/useReply';
 
@@ -96,6 +99,7 @@ const Reply = ({
   const [isOpen, setIsOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
+  const [isChildrenOpen, setIsChildrenOpen] = useState(true);
 
   const replyUrl = `${window.location.origin}/post/${slug}#reply-${replyId}`;
 
@@ -148,6 +152,14 @@ const Reply = ({
         onChangeActiveCardId(replyId);
         return true;
       }
+    });
+  };
+
+  const onToggleChildren = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    setIsChildrenOpen((value) => {
+      return !value;
     });
   };
 
@@ -254,7 +266,7 @@ const Reply = ({
   };
 
   const replyClasses = useMemo(() => {
-    return parentReply || level !== 0 ? 'reply nested' : 'reply';
+    return parentReply || level !== 0 ? 'reply__box nested' : 'reply__box';
   }, [level, parentReply]);
 
   const hasUpdated = useMemo(() => {
@@ -329,22 +341,22 @@ const Reply = ({
       : 'reply__actions--btn show';
   }, [currentUser]);
 
+  const toggleChildrenBtnLabel = useMemo(() => {
+    return isChildrenOpen
+      ? `Hide ${replies.length} repl${replies.length > 1 ? 'ies' : 'y'}`
+      : `View ${replies.length} repl${replies.length > 1 ? 'ies' : 'y'}`;
+  }, [isChildrenOpen, replies.length]);
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (isShow) {
-          handleClose();
-        } else if (isOpen) {
-          handleCancel();
-        }
+        if (isShow) handleClose();
+        else if (isOpen) handleCancel();
       }
     };
 
     window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [handleCancel, isOpen, isShow, value]);
 
   useEffect(() => {
@@ -352,8 +364,8 @@ const Reply = ({
   }, [activeCardId, replyId]);
 
   return (
-    <>
-      <article id={`reply-${replyId}`} className={replyClasses}>
+    <article id={`reply-${replyId}`} className='reply'>
+      <div className={`${replyClasses} fade-in`}>
         <div className='reply__container'>
           <div className='reply__author'>
             <Link to={url} aria-label={url}>
@@ -499,26 +511,46 @@ const Reply = ({
           isOpen={isOpen}
           isEditing={isEditing}
           content={value}
+          username={author.username}
           editId={editId}
           isLoading={updateReplyMutation.isPending}
           onChange={setValue}
           onCancel={onCancelHandler}
           onSubmit={handleSubmit}
         />
-      </article>
-      {replies?.map((reply) => {
-        return (
-          <Reply
-            key={reply._id}
-            reply={reply}
-            slug={slug}
-            level={level! + 1}
-            activeCardId={activeCardId}
-            onChangeActiveCardId={onChangeActiveCardId}
-          />
-        );
-      })}
-    </>
+      </div>
+      {replies && replies.length > 0 && (
+        <button
+          type='button'
+          onClick={onToggleChildren}
+          aria-label={toggleChildrenBtnLabel}
+          className='reply__toggle-btn'
+        >
+          {toggleChildrenBtnLabel}
+          {isChildrenOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        </button>
+      )}
+
+      {replies && replies.length > 0 && (
+        <div
+          className='reply__children'
+          style={{ maxHeight: isChildrenOpen ? '2000px' : '0px' }}
+        >
+          {replies.map((reply) => {
+            return (
+              <Reply
+                key={reply._id}
+                reply={reply}
+                slug={slug}
+                level={level! + 1}
+                activeCardId={activeCardId}
+                onChangeActiveCardId={onChangeActiveCardId}
+              />
+            );
+          })}
+        </div>
+      )}
+    </article>
   );
 };
 
