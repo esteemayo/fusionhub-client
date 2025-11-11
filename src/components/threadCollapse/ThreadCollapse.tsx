@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import ChevronUpIcon from '../icons/ChevronUpIcon';
 import Reply from '../reply/Reply';
 import ChevronDownIcon from '../icons/ChevronDownIcon';
 
 import { ThreadCollapseProps } from '../../types';
+import { useReplyCollapseState } from '../../hooks/useReplyCollapseState';
 
 import './ThreadCollapse.scss';
 
@@ -15,9 +16,11 @@ const ThreadCollapse = ({
   replies,
   onChangeActiveCardId,
 }: ThreadCollapseProps) => {
+  const firstReplyId = replies[0]._id;
+  const { isOpen, setIsOpen } = useReplyCollapseState(firstReplyId);
+
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const [isOpen, setIsOpen] = useState(true);
   const [showAll, setShowAll] = useState(false);
 
   const handleToggle = useCallback(
@@ -30,7 +33,7 @@ const ThreadCollapse = ({
 
       if (!isOpen) setShowAll(false);
     },
-    [isOpen]
+    [isOpen, setIsOpen]
   );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,6 +62,15 @@ const ThreadCollapse = ({
     }`;
   }, [remainingCount]);
 
+  useEffect(() => {
+    if (isOpen && contentRef.current) {
+      contentRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [isOpen]);
+
   return (
     <div className='thread-collapse'>
       <button
@@ -73,7 +85,7 @@ const ThreadCollapse = ({
         ref={contentRef}
         className='thread-collapse__content'
         style={{
-          maxHeight: isOpen ? `${contentRef.current?.scrollHeight}px` : '0px',
+          maxHeight: isOpen ? 'none' : '0',
         }}
       >
         {visible.map((reply) => {

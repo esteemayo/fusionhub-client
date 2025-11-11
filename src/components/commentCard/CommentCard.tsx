@@ -266,7 +266,7 @@ const CommentCard = ({
         ? 'Cancel edit'
         : 'Reply'
       : isOpen
-      ? 'Hide reply'
+      ? 'Hide'
       : 'Reply';
   }, [editId, isEditing, isOpen]);
 
@@ -348,10 +348,7 @@ const CommentCard = ({
     };
 
     window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, isShow, onCancelHandler]);
 
   useEffect(() => {

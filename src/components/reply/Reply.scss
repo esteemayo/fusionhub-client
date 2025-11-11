@@ -3,6 +3,14 @@
 @use '../../styles/variables.scss' as vars;
 
 .reply {
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.25s ease;
+
+  &.nested {
+    margin-left: 3rem;
+  }
+
   &:not(:last-child):not(:has(+ :not(.reply))) {
     padding-bottom: 2rem;
     margin-bottom: 2rem;
@@ -11,29 +19,6 @@
     @include bp.sm {
       border-color: vars.$clr-secondary-blue;
     }
-  }
-
-  &__box {
-    display: flex;
-    flex-direction: column;
-
-    &.nested {
-      margin-left: 3rem;
-    }
-
-    .fade-in {
-      animation: fadeIn 0.25s ease;
-    }
-
-    // &:not(:last-child):not(:has(+ :not(.reply))) {
-    //   padding-bottom: 2rem;
-    //   margin-bottom: 2rem;
-    //   border-bottom: 1px solid vars.$clr-tertiary-blue;
-
-    //   @include bp.sm {
-    //     border-color: vars.$clr-secondary-blue;
-    //   }
-    // }
   }
 
   &__container {
@@ -623,8 +608,50 @@
   }
 
   &__children {
+    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s ease;
+    transition: max-height 0.35s ease, opacity 0.35s ease;
     margin-top: 1rem;
+
+    &.open {
+      max-height: 100rem;
+      opacity: 1;
+
+      & > .reply {
+        opacity: 1;
+        transform: translateY(0);
+
+        &:nth-child(1) {
+          transition-delay: 0.05s;
+        }
+
+        &:nth-child(2) {
+          transition-delay: 0.1s;
+        }
+
+        &:nth-child(3) {
+          transition-delay: 0.15s;
+        }
+
+        &:nth-child(4) {
+          transition-delay: 0.2s;
+        }
+
+        &:nth-child(5) {
+          transition-delay: 0.25s;
+        }
+      }
+    }
+
+    &.closed {
+      max-height: 0;
+      opacity: 0;
+    }
+
+    & > .reply {
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
   }
 }

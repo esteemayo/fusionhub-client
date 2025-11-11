@@ -8,9 +8,10 @@ import CommentSkeleton from '../commentSkeleton/CommentSkeleton';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
 import CommentUserImages from '../commentUserImages/CommentUserImages';
 
-import { useAppSelector } from '../../hooks/hooks';
-import { useMute } from '../../hooks/useMute';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
+import { useMute } from '../../hooks/useMute';
+import { useVisibleComments } from '../../hooks/useVisibleComments';
+import { useAppSelector } from '../../hooks/hooks';
 
 import {
   CommentImageType,
@@ -46,6 +47,11 @@ const Comment = ({
   const { blockedUsers } = useBlockedUsers();
 
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const visibleComments = useVisibleComments(
+    comments,
+    blockedUsers,
+    mutedList?.mutedComments
+  );
 
   const url = (user: CommentImageType) => {
     return currentUser
@@ -56,12 +62,12 @@ const Comment = ({
   };
 
   const commentHeading = useMemo(() => {
-    return (comments ?? [])?.length > 1 ? 'Comments' : 'Comment';
-  }, [comments]);
+    return visibleComments.length > 1 ? 'Comments' : 'Comment';
+  }, [visibleComments.length]);
 
   const filterBoxClasses = useMemo(() => {
-    return (comments ?? [])?.length < 1 ? 'comment__box mb' : 'comment__box';
-  }, [comments]);
+    return visibleComments.length < 1 ? 'comment__box mb' : 'comment__box';
+  }, [visibleComments.length]);
 
   const uniqueCommentUsers = useMemo(() => {
     const seenIds = new Set();
@@ -76,21 +82,11 @@ const Comment = ({
     });
   }, [commentUsers]);
 
-  const visibleComments = useMemo(() => {
-    return comments?.filter(
-      (comment) =>
-        !(blockedUsers ?? []).some((user) => user.id === comment.author._id) ||
-        !(mutedList?.mutedComments ?? []).some(
-          (entry) => entry.id === comment._id
-        )
-    );
-  }, [blockedUsers, comments, mutedList?.mutedComments]);
-
   const wrapperClasses = useMemo(() => {
-    return !isPending && commentToShow < (comments ?? [])?.length
+    return !isPending && commentToShow < visibleComments.length
       ? 'comment__wrapper show'
       : 'comment__wrapper hide';
-  }, [commentToShow, comments, isPending]);
+  }, [commentToShow, isPending, visibleComments.length]);
 
   return (
     <div className='comment'>
@@ -117,14 +113,14 @@ const Comment = ({
           sort={sort}
           isOpen={isOpen}
           isLoading={isPending}
-          totalComments={comments?.length}
+          totalComments={visibleComments.length}
           totalCommentUsers={uniqueCommentUsers?.length}
           onClose={onClose}
           onToggle={onToggle}
           onSort={onSort}
         />
       </div>
-      {comments?.length < 1 && !isPending ? (
+      {visibleComments.length < 1 && !isPending ? (
         <EmptyMessage
           title='No comments yet.'
           subtitle='Be the first to share your thoughts!'

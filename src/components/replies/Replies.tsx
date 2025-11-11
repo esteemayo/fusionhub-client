@@ -1,9 +1,8 @@
-import { useMemo } from 'react';
-
 import ThreadCollapse from '../threadCollapse/ThreadCollapse';
 
-import { useMute } from '../../hooks/useMute';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
+import { useMute } from '../../hooks/useMute';
+import { useVisibleReplies } from '../../hooks/useVisibleReplies';
 
 import { RepliesProps } from '../../types';
 
@@ -18,17 +17,13 @@ const Replies = ({
   const { mutedList } = useMute();
   const { blockedUsers } = useBlockedUsers();
 
-  const visibleReplies = useMemo(() => {
-    return (replyLists ?? []).filter(
-      (reply) =>
-        !(blockedUsers ?? []).some((user) => user.id === reply.author._id) ||
-        !(mutedList?.mutedReplies ?? []).some((entry) => entry.id === reply._id)
-    );
-  }, [blockedUsers, mutedList?.mutedReplies, replyLists]);
+  const visibleReplies = useVisibleReplies(
+    replyLists,
+    blockedUsers,
+    mutedList?.mutedReplies
+  );
 
-  if ((replyLists ?? [])?.length < 1) {
-    return null;
-  }
+  if (visibleReplies.length < 1) return null;
 
   return (
     <div className='replies'>

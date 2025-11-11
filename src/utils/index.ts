@@ -2,6 +2,8 @@ import { useLocation } from 'react-router-dom';
 
 export const authKey = 'access_token';
 
+export const LS_KEY = 'reply-collapse-state';
+
 export const stripHtml = (html: string) => {
   const text = new DOMParser().parseFromString(html, 'text/html');
   return text.body.textContent || '';

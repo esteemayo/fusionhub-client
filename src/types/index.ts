@@ -1165,6 +1165,29 @@ export interface ISortedComments {
   };
 }
 
+export interface IVisibleComments {
+  (
+    comments: CommentType[],
+    blockedUsers: BlockedUsersType | undefined,
+    mutedComments: MutedCommentsType | undefined
+  ): CommentType[];
+}
+
+export interface IVisibleReplies {
+  (
+    replyLists: ReplyType[] | undefined,
+    blockedUsers: BlockedUsersType | undefined,
+    mutedReplies: MutedRepliesType | undefined
+  ): ReplyType[];
+}
+
+export interface IReplyCollapseState {
+  (replyId: string): {
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+}
+
 export interface ILogout {
   (isOpen?: boolean, onClose?: () => Action): {
     btnLabel: string;
