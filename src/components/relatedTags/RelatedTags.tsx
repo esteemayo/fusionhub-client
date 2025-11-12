@@ -6,9 +6,7 @@ import { RelatedTagsProps } from '../../types';
 import './RelatedTags.scss';
 
 const RelatedTags = ({ isLoading, tags }: RelatedTagsProps) => {
-  if (tags?.length < 1) {
-    return null;
-  }
+  if ((tags ?? []).length < 1) return null;
 
   return (
     <section className='related-tags'>

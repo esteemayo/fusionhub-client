@@ -14,8 +14,8 @@ import './Card.scss';
 
 const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
   const { pathname } = useLocation();
-
   const [searchParams, setSearchParams] = useSearchParams();
+
   const { formattedDate } = useDate(createdAt);
 
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -43,46 +43,62 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
 
   useEffect(() => {
     window.addEventListener('resize', handleScreen);
-
-    return () => {
-      window.removeEventListener('resize', handleScreen);
-    };
+    return () => window.removeEventListener('resize', handleScreen);
   }, []);
 
   return (
-    <article className='card'>
-      <div className='card__wrapper'>
+    <article
+      role='article'
+      aria-label={`Post card for ${title}`}
+      className='card'
+    >
+      <figure className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>
         <Image
           src={img ?? '/dafault-post.jpg'}
-          alt='image'
           width={300}
           height={250}
+          alt={`Thumbnail image ${title}`}
           className='card__wrapper--img'
         />
-      </div>
-      <div className='card__footer'>
+      </figure>
+      <footer className='card__footer'>
         <div className='card__box'>
           <h3 className='card__box--title'>
-            <Link to={`/post/${slug}`}>{title}</Link>
+            <Link to={`/post/${slug}`} aria-label={`Read post: ${title}`}>
+              {title}
+            </Link>
           </h3>
-          <div className='card__box--desc'>{parse(parsedDesc)}</div>
+          <div aria-label='Post summary' className='card__box--desc'>
+            {parse(parsedDesc)}
+          </div>
         </div>
         <div className='card__container'>
           {pathname === '/posts' ? (
-            <span className='card__container--category' onClick={handleClick}>
+            <button
+              onClick={handleClick}
+              aria-label={`Filter posts by category: ${category}`}
+              className='card__container--btn'
+            >
               {category}
-            </span>
+            </button>
           ) : (
-            <Link to={`/posts?category=${category}`}>
+            <Link
+              to={`/posts?category=${category}`}
+              aria-label={`View more posts in category: ${category}`}
+            >
               <span className='card__container--category'>{category}</span>
             </Link>
           )}
-          <time dateTime={createdAt} className='card__container--time'>
+          <time
+            dateTime={createdAt}
+            aria-label={`Post published on ${formattedDate}`}
+            className='card__container--time'
+          >
             {formattedTime}
           </time>
         </div>
-      </div>
+      </footer>
     </article>
   );
 };

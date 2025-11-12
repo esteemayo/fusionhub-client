@@ -84,9 +84,7 @@ const ThreadCollapse = ({
       <div
         ref={contentRef}
         className='thread-collapse__content'
-        style={{
-          maxHeight: isOpen ? 'none' : '0',
-        }}
+        style={{ maxHeight: isOpen ? 'none' : '0' }}
       >
         {visible.map((reply) => {
           return (

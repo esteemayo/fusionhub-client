@@ -11,23 +11,27 @@ interface IWrapper {
 }
 
 const Header = ({ posts }: HeaderProps) => {
-  const [firstItem, lastItem] = useMemo(() => (posts ? posts : []), [posts]);
+  const [firstItem, lastItem] = useMemo(() => posts ?? [], [posts]);
 
-  const imageUrl = (url: string) => {
-    return `https://ik.imagekit.io/devayo${url}`;
-  };
+  const imageUrl = (url: string) => `https://ik.imagekit.io/devayo${url}`;
 
   return (
-    <header className='header'>
+    <header
+      role='banner'
+      aria-label='Main featured posts section'
+      className='header'
+    >
       <div className='header__container'>
         <div className='header__wrapper'>
           <ImageWrapper
             img={imageUrl(firstItem.img)}
+            aria-label={`Featured post background image for: ${firstItem.title}`}
             className='header__wrapper--left'
           >
             <div className='header__info'>
               <Link
                 to={`/posts?category=${firstItem.category}`}
+                aria-label={`View more posts in category ${firstItem.category}`}
                 className='header__info--category'
               >
                 <span>{firstItem.category}</span>
@@ -35,6 +39,7 @@ const Header = ({ posts }: HeaderProps) => {
               <h1 className='header__info--heading'>{firstItem.title}</h1>
               <Link
                 to={`/post/${firstItem.slug}`}
+                aria-label={`Read full post: ${firstItem.title}`}
                 className='header__info--link'
               >
                 Read more
@@ -43,11 +48,13 @@ const Header = ({ posts }: HeaderProps) => {
           </ImageWrapper>
           <ImageWrapper
             img={imageUrl(lastItem.img)}
+            aria-label={`Related featured post background image for: ${lastItem.title}`}
             className='header__wrapper--right'
           >
             <div className='header__info small'>
               <Link
                 to={`/posts?category=${lastItem.category}`}
+                aria-label={`View more posts in category ${lastItem.category}`}
                 className='header__info--category small'
               >
                 <span>{lastItem.category}</span>
@@ -55,6 +62,7 @@ const Header = ({ posts }: HeaderProps) => {
               <h2 className='header__info--heading small'>{lastItem.title}</h2>
               <Link
                 to={`/post/${lastItem.slug}`}
+                aria-label={`Read full post: ${lastItem.title}`}
                 className='header__info--link small'
               >
                 Read more

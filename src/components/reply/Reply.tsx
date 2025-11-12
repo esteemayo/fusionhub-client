@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import Badge from '../badge/Badge';
 import ShareIcon from '../icons/ShareIcon';
+import Badge from '../badge/Badge';
+import VerticalEllipsisIcon from '../icons/VerticalEllipsisIcon';
 
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
@@ -447,18 +448,7 @@ const Reply = ({
               aria-label={isShow ? 'Open menu' : 'Close menu'}
               className={actionBtnClasses}
             >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 24 24'
-                fill='currentColor'
-                className='size-6'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
-                  clipRule='evenodd'
-                />
-              </svg>
+              <VerticalEllipsisIcon />
             </button>
           )}
           <ReplyMenu

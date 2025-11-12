@@ -11,24 +11,38 @@ const Feed = ({ img, title, slug, createdAt, onClose }: FeedProps) => {
   const { formattedDate } = useDate(createdAt);
 
   return (
-    <article className='feed'>
-      <div className='feed__wrapper'>
+    <article
+      role='article'
+      aria-label={`Post titled ${title}`}
+      className='feed'
+    >
+      <figure className='feed__wrapper'>
         <Image
           src={img ?? '/dafault-post.jpg'}
-          alt='image'
           width={65}
           height={65}
+          alt={title ? `Thumbnail for ${title}` : 'Post thumbnail'}
           className='feed__wrapper--img'
         />
-      </div>
+      </figure>
       <div className='feed__box'>
         <h3 className='feed__box--title'>
-          <Link to={`/post/${slug}`} onClick={onClose}>
+          <Link
+            to={`/post/${slug}`}
+            onClick={onClose}
+            aria-label={`Read post: ${title}`}
+          >
             {title}
           </Link>
         </h3>
-        <time dateTime={createdAt} className='feed__box--date'>
+        <time
+          dateTime={createdAt}
+          aria-label={`Published on ${formattedDate}`}
+          className='feed__box--date'
+        >
           <svg
+            aria-hidden='true'
+            focusable='false'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             viewBox='0 0 24 24'

@@ -1,4 +1,4 @@
-const ChevronUpIcon = () => {
+const VerticalEllipsisIcon = () => {
   return (
     <svg
       aria-hidden='true'
@@ -10,11 +10,11 @@ const ChevronUpIcon = () => {
     >
       <path
         fillRule='evenodd'
-        d='M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z'
+        d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
         clipRule='evenodd'
       />
     </svg>
   );
 };
 
-export default ChevronUpIcon;
+export default VerticalEllipsisIcon;

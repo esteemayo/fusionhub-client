@@ -1,6 +1,8 @@
 const LikeIcon = ({ liked }: { liked: boolean }) => {
   return liked ? (
     <svg
+      aria-hidden='true'
+      focusable='false'
       xmlns='http://www.w3.org/2000/svg'
       viewBox='0 0 24 24'
       fill='currentColor'
@@ -10,6 +12,8 @@ const LikeIcon = ({ liked }: { liked: boolean }) => {
     </svg>
   ) : (
     <svg
+      aria-hidden='true'
+      focusable='false'
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'

@@ -384,11 +384,20 @@
       gap: 1rem;
     }
 
+    &--btn {
+      display: inline-block;
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+    }
+
+    &--btn,
     &--category,
     &--time {
       text-rendering: optimizeLegibility;
     }
 
+    &--btn,
     &--category {
       text-transform: capitalize;
       font-weight: 500;

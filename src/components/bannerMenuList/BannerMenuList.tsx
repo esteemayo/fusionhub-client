@@ -45,20 +45,29 @@ const BannerMenuList = ({
     <ul className={menuListClasses}>
       {query && (
         <>
-          <BannerMenuListItem label={itemLabel('Share')} onAction={onShare}>
-            <ShareIcon />
-          </BannerMenuListItem>
+          {!isBlocked && (
+            <BannerMenuListItem label={itemLabel('Share')} onAction={onShare}>
+              <ShareIcon />
+            </BannerMenuListItem>
+          )}
           {role !== 'admin' && (
             <>
-              <BannerMenuListItem label={itemLabel('Mute')} onAction={onMute}>
-                <MuteIcon />
-              </BannerMenuListItem>
-              <BannerMenuListItem
-                label={itemLabel('Report')}
-                onAction={onReport}
-              >
-                <ReportIcon />
-              </BannerMenuListItem>
+              {!isBlocked && (
+                <>
+                  <BannerMenuListItem
+                    label={itemLabel('Mute')}
+                    onAction={onMute}
+                  >
+                    <MuteIcon />
+                  </BannerMenuListItem>
+                  <BannerMenuListItem
+                    label={itemLabel('Report')}
+                    onAction={onReport}
+                  >
+                    <ReportIcon />
+                  </BannerMenuListItem>
+                </>
+              )}
               <BannerMenuListItem
                 type='danger'
                 label={itemLabel(isBlocked ? 'Unblock' : 'Block')}

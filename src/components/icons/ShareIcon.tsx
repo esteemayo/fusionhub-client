@@ -1,11 +1,12 @@
 const ShareIcon = ({ label }: { label?: string }) => {
   return (
     <svg
+      aria-hidden='true'
+      focusable='false'
       xmlns='http://www.w3.org/2000/svg'
       fill='currentColor'
       viewBox='0 0 24 24'
       aria-label={label ?? 'Share icon'}
-      aria-hidden='true'
       width='20'
       height='20'
       role='img'

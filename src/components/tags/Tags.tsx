@@ -24,7 +24,7 @@ const Tags = ({ onClose }: TagsProps) => {
     <section className='tags'>
       <div className='tags__container'>
         <h2 className='tags__container--heading'>Tags</h2>
-        {(data ?? [])?.length < 1 && !isPending ? (
+        {(data ?? []).length < 1 && !isPending ? (
           <EmptyMessage
             title='No tags available at the moment.'
             subtitle='Tags help categorize content. Please check back later!'
