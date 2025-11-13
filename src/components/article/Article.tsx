@@ -251,10 +251,7 @@ const Article = ({
     };
 
     window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {

@@ -278,10 +278,7 @@ const ProfileReply = ({
     };
 
     window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {
@@ -416,6 +413,7 @@ const ProfileReply = ({
             isOpen={isOpen}
             isEditing={isEditing}
             content={value}
+            username={author.username}
             editId={editId}
             isLoading={false}
             onChange={setValue}

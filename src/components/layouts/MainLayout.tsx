@@ -4,8 +4,9 @@ import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import Sidebar from '../sidebar/Sidebar';
 
-import AddPost from '../addPost/AddPost';
 import BackToTop from '../backToTop/BackToTop';
+import AddPost from '../addPost/AddPost';
+import ScrollProgressBar from '../scrollProgressBar/ScrollProgressBar';
 
 import ToasterProvider from '../../providers/ToasterProvider';
 import ModalProvider from '../../providers/ModalProvider';
@@ -18,6 +19,7 @@ const MainLayout = () => {
   return (
     <main>
       <SkeletonProvider>
+        <ScrollProgressBar />
         <ScrollToTop />
         <Navbar />
         <Sidebar />
