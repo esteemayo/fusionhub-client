@@ -53,6 +53,12 @@ body {
   transition: scroll-behavior 300ms ease-in-out;
 }
 
+body.no-interact *:not(.modal, .modal *) {
+  pointer-events: none;
+  user-select: none;
+  touch-action: none;
+}
+
 a {
   &:link,
   &:visited {
@@ -122,6 +128,17 @@ img {
   @include bp.sm {
     background-color: rgba(vars.$clr-tertiary-blue, 0.5);
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .fade-wrapper {

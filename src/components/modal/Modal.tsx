@@ -78,10 +78,15 @@ const Modal = ({
     [disabled, handleClose, secondaryAction, type]
   );
 
-  const trapFocus = (e: KeyboardEvent) => {
-    if (e.key !== 'Tab') return;
+  const containerClasses = useMemo(() => {
+    return showModal ? 'modal__container show' : 'modal__container hide';
+  }, [showModal]);
 
-    const focusableElements = dialogRef.current?.querySelectorAll<HTMLElement>(
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const modal = document.querySelector('.modal__wrapper');
+    const focusableElements = modal?.querySelectorAll<HTMLElement>(
       'button, [href], input, select, textarea, [tabIndex]:not([tabIndex="-1"])'
     );
 
@@ -90,33 +95,57 @@ const Modal = ({
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
 
-    if (e.shiftKey && document.activeElement === firstElement) {
-      e.preventDefault();
-      lastElement.focus();
-    } else if (!e.shiftKey && document.activeElement === lastElement) {
-      e.preventDefault();
-      firstElement.focus();
-    }
-  };
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
 
-  const containerClasses = useMemo(() => {
-    return showModal ? 'modal__container show' : 'modal__container hide';
-  }, [showModal]);
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', trapFocus);
+    firstElement.focus();
+
+    return () => document.removeEventListener('keydown', trapFocus);
+  }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen) {
-      setShowModal(isOpen);
-      document.body.setAttribute('aria-hidden', 'true');
-      document.addEventListener('keydown', handleEscape);
-      document.addEventListener('keydown', trapFocus);
+    const appRoot = document.getElementById('root') || document.body;
 
-      setTimeout(() => firstButtonRef.current?.focus(), 100);
+    if (isOpen) {
+      appRoot.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('no-interact');
+
+      window.addEventListener('keydown', handleEscape);
     } else {
-      document.body.removeAttribute('aria-hidden');
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('keydown', trapFocus);
+      appRoot.removeAttribute('aria-hidden');
+      document.body.style.overflow = '';
+      document.body.classList.remove('no-interact');
+
+      window.removeEventListener('keydown', handleEscape);
     }
+
+    return () => {
+      appRoot.removeAttribute('aria-hidden');
+      document.body.style.overflow = '';
+      document.body.classList.remove('no-interact');
+
+      window.removeEventListener('keydown', handleEscape);
+    };
   }, [isOpen, handleEscape]);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
 
   if (!isOpen) return;
 

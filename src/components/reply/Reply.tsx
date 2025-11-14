@@ -99,6 +99,7 @@ const Reply = ({
   const [isOpen, setIsOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const replyUrl = `${window.location.origin}/post/${slug}#reply-${replyId}`;
 
@@ -117,7 +118,9 @@ const Reply = ({
 
   const handleCopy = () => {
     navigator.clipboard.writeText(content);
+    setCopied(true);
     toast.success('Copied to clipboard');
+    setTimeout(() => setCopied(false), 1500);
   };
 
   const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -353,16 +356,25 @@ const Reply = ({
 
   return (
     <>
-      <article id={`reply-${replyId}`} className={replyClasses}>
+      <article
+        id={`reply-${replyId}`}
+        aria-labelledby={`reply-wrapper-${replyId}`}
+        aria-describedby={`reply-content-${replyId}`}
+        className={replyClasses}
+      >
         <div className='reply__container'>
           <div className='reply__author'>
-            <Link to={url} aria-label={url}>
+            <Link
+              to={url}
+              aria-label={`View ${author.username}'s profile`}
+              title={`View ${author.username}'s profile`}
+            >
               {author.fromGoogle && author.image?.startsWith('https') ? (
                 <GoogleImage
                   src={author.image ?? '/user-default.jpg'}
                   width={40}
                   height={40}
-                  alt={author.username}
+                  alt={`${author.username}'s profile picture`}
                   className='reply__author--img'
                 />
               ) : (
@@ -370,16 +382,19 @@ const Reply = ({
                   src={author.image ?? '/user-default.jpg'}
                   width={40}
                   height={40}
-                  alt={author.username}
+                  alt={`${author.username}'s profile picture`}
                   className='reply__author--img'
                 />
               )}
             </Link>
           </div>
           <div className='reply__content'>
-            <div className='reply__wrapper'>
+            <div id={`reply-wrapper-${replyId}`} className='reply__wrapper'>
               <div className='reply__wrapper--time'>
-                <time dateTime={createdAt} aria-label={formattedDate}>
+                <time
+                  dateTime={createdAt}
+                  aria-label={`Posted on ${formattedDate}`}
+                >
                   {formattedDate}
                 </time>
                 {currentUser &&
@@ -392,6 +407,8 @@ const Reply = ({
                 <button
                   type='button'
                   onClick={onToggleReply}
+                  aria-expanded={isOpen}
+                  aria-controls={`reply-form-${replyId}`}
                   aria-label={replyBtnLabel}
                   className={replyBtnClasses}
                 >
@@ -402,22 +419,27 @@ const Reply = ({
             </div>
             <div className='reply__content--user'>
               <h6 className='reply__content--username'>
-                <Link to={url} aria-label={author.name}>
+                <Link to={url} aria-label={`Author: ${author.name}`}>
                   {author.name}
                 </Link>
               </h6>
               <Badge role={author.role} />
             </div>
             <p
+              id={`reply-content-${replyId}`}
               onClick={handleCollapse}
               onDoubleClick={handleCopy}
-              aria-label={contentLabel}
+              role='article'
+              aria-label={`Reply content by ${author.username}`}
+              tabIndex={0}
               className='reply__content--text'
             >
               {contentLabel}
               <button
                 type='button'
                 onClick={handleClick}
+                aria-expanded={isMore}
+                aria-controls={`reply-content-${replyId}`}
                 aria-label={btnLabel}
                 className={btnClasses}
               >
@@ -426,7 +448,7 @@ const Reply = ({
             </p>
           </div>
         </div>
-        <div className='reply__actions'>
+        <div role='group' aria-label='Reply actions' className='reply__actions'>
           <CommentReplyAction
             size='sm'
             url={replyUrl}
@@ -445,12 +467,18 @@ const Reply = ({
             <button
               type='button'
               onClick={handleToggle}
-              aria-label={isShow ? 'Open menu' : 'Close menu'}
+              aria-label={isShow ? 'Close reply menu' : 'Open reply menu'}
+              aria-expanded={isShow}
+              aria-controls={`reply-menu-${replyId}`}
               className={actionBtnClasses}
             >
               <VerticalEllipsisIcon />
+              <span className='sr-only'>Open reply menu</span>
             </button>
           )}
+          <div aria-live='polite' className='sr-only'>
+            {copied && 'Copied to clipboard'}
+          </div>
           <ReplyMenu
             authorRole={author.role}
             commentAuthorRole={comment.author.role}
@@ -468,17 +496,23 @@ const Reply = ({
             onReport={handleReport}
           />
         </div>
-        <ReplyForm
-          isOpen={isOpen}
-          isEditing={isEditing}
-          content={value}
-          username={author.username}
-          editId={editId}
-          isLoading={updateReplyMutation.isPending}
-          onChange={setValue}
-          onCancel={onCancelHandler}
-          onSubmit={handleSubmit}
-        />
+        <section
+          id={`reply-form-${replyId}`}
+          role='region'
+          aria-label={`Reply to ${author.username}'s reply`}
+        >
+          <ReplyForm
+            isOpen={isOpen}
+            isEditing={isEditing}
+            content={value}
+            username={author.username}
+            editId={editId}
+            isLoading={updateReplyMutation.isPending}
+            onChange={setValue}
+            onCancel={onCancelHandler}
+            onSubmit={handleSubmit}
+          />
+        </section>
       </article>
 
       {replies.map((reply) => {

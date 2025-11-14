@@ -26,7 +26,10 @@ const Replies = ({
   if (visibleReplies.length < 1) return null;
 
   return (
-    <div className='replies'>
+    <section aria-labelledby={`replies-heading-${slug}`} className='replies'>
+      <h4 id={`replies-heading-${slug}`} className='sr-only'>
+        Replies section
+      </h4>
       <div className='replies__container'>
         <ThreadCollapse
           slug={slug}
@@ -36,7 +39,7 @@ const Replies = ({
           onChangeActiveCardId={onChangeActiveCardId}
         />
       </div>
-    </div>
+    </section>
   );
 };
 

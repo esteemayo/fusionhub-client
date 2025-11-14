@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import ChevronUpIcon from '../icons/ChevronUpIcon';
 import Reply from '../reply/Reply';
@@ -24,8 +30,8 @@ const ThreadCollapse = ({
   const [showAll, setShowAll] = useState(false);
 
   const handleToggle = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
+    (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.stopPropagation();
 
       setIsOpen((value) => {
         return !value;
@@ -35,6 +41,13 @@ const ThreadCollapse = ({
     },
     [isOpen, setIsOpen]
   );
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      handleToggle();
+    }
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -72,17 +85,24 @@ const ThreadCollapse = ({
   }, [isOpen]);
 
   return (
-    <div className='thread-collapse'>
+    <div role='group' aria-label='Replies thread' className='thread-collapse'>
       <button
         type='button'
-        className='thread-collapse__toggle-btn'
+        id={`thread-toggle-${firstReplyId}`}
         onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+        aria-expanded={isOpen}
+        aria-controls={`thread-content-${firstReplyId}`}
+        className='thread-collapse__toggle-btn'
       >
-        {btnLabel}
+        <span>{btnLabel}</span>
         {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </button>
       <div
+        id={`thread-content-${firstReplyId}`}
         ref={contentRef}
+        role='region'
+        aria-labelledby={`thread-toggle-${firstReplyId}`}
         className='thread-collapse__content'
         style={{ maxHeight: isOpen ? 'none' : '0' }}
       >
@@ -103,10 +123,11 @@ const ThreadCollapse = ({
           <button
             type='button'
             onClick={handleClick}
+            onKeyDown={handleKeyDown}
             aria-label={btnMoreLabel}
             className='thread-collapse__more-btn'
           >
-            {btnMoreLabel}
+            <span>{btnMoreLabel}</span>
             <ChevronDownIcon />
           </button>
         )}

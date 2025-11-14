@@ -58,6 +58,17 @@
       font-size: 2rem;
     }
 
+    &:focus-visible {
+      outline: 2px solid vars.$clr-gray-light-1;
+      outline-offset: 2px;
+    }
+
+    span {
+      font-weight: inherit;
+      font-size: inherit;
+      color: currentColor;
+    }
+
     svg {
       width: 1.75rem;
       height: 1.75rem;

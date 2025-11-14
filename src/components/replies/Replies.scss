@@ -1,7 +1,12 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
 .replies {
+  &:focus-within {
+    border-left-color: vars.$clr-gray-light-1;
+  }
+
   &__container {
     margin-top: 1.5rem;
     margin-left: 4rem;
@@ -12,6 +17,10 @@
 
     @media screen and (max-width: 20em) {
       margin-left: 1.25rem;
+    }
+
+    & > * {
+      animation: fadeInReplies 0.3s ease-in;
     }
   }
 }
