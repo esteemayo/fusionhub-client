@@ -22,9 +22,10 @@ const Feature = ({
   comments,
   createdAt,
 }: FeatureProps) => {
-  const parsedDesc = useMemo(() => {
-    return parse(excerpts(String(desc), 150)).toString();
-  }, [desc]);
+  const parsedDesc = useMemo(
+    () => parse(excerpts(String(desc), 150)).toString(),
+    [desc]
+  );
 
   return (
     <article

@@ -107,14 +107,6 @@ const ScrollProgressBar = () => {
         className='scroll-progress-bar__indicator'
         style={{ width: `${scrollPercent}%`, backgroundColor: progressColor }}
       />
-      <div
-        className='scroll-progress-bar__dot'
-        style={{
-          left: `calc(${scrollPercent}% - 6px)`,
-          backgroundColor: progressColor,
-          boxShadow: `0 0 8px ${progressColor}`,
-        }}
-      />
     </div>
   );
 };

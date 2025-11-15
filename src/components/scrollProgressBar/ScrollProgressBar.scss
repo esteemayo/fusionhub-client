@@ -31,17 +31,4 @@
     border-radius: 1rem;
     transition: width 0.15s ease-out, background-color 0.3s linear;
   }
-
-  &__dot {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.2rem;
-    height: 1.2rem;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1000;
-    transition: left 0.1s linear, background-color 0.3s linear,
-      box-shadow 0.3s linear;
-  }
 }

@@ -102,8 +102,8 @@ const CommentCard = ({
 
   const commentUrl = `${window.location.origin}/post/${slug}#comment-${commentId}`;
 
-  const toggleActionHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const toggleActionHandler = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     setIsShow((value) => {
       if (value) {
@@ -118,6 +118,17 @@ const CommentCard = ({
 
   const handleClose = () => {
     setIsShow(false);
+  };
+
+  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleActionHandler();
+    } else if (e.key === 'Escape') {
+      if (isShow) {
+        handleClose();
+      }
+    }
   };
 
   const handleCollapse = () => {
@@ -243,93 +254,93 @@ const CommentCard = ({
       if (isEditing && editId) {
         updateCommentMutation.mutate(
           { content: value, commentId },
-          {
-            onSuccess: onCancelHandler,
-          }
+          { onSuccess: onCancelHandler }
         );
       } else {
-        replyMutation.mutate(value, {
-          onSuccess: onCancelHandler,
-        });
+        replyMutation.mutate(value, { onSuccess: onCancelHandler });
       }
     }
   };
 
-  const isUpdated = useMemo(() => {
-    return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
-  }, [createdAt, updatedAt]);
+  const isUpdated = useMemo(
+    () => new Date(createdAt).getTime() < new Date(updatedAt).getTime(),
+    [createdAt, updatedAt]
+  );
 
-  const replyBtnClasses = useMemo(() => {
-    return currentUser
-      ? 'comment-card__box--reply show'
-      : 'comment-card__box--reply hide';
-  }, [currentUser]);
+  const replyBtnClasses = useMemo(
+    () =>
+      currentUser
+        ? 'comment-card__box--reply show'
+        : 'comment-card__box--reply hide',
+    [currentUser]
+  );
 
-  const replyBtnLabel = useMemo(() => {
-    return isEditing && editId
-      ? isOpen
-        ? 'Cancel edit'
-        : 'Reply'
-      : isOpen
-      ? 'Hide'
-      : 'Reply';
-  }, [editId, isEditing, isOpen]);
+  const replyBtnLabel = useMemo(
+    () =>
+      isEditing && editId
+        ? isOpen
+          ? 'Cancel edit'
+          : 'Reply'
+        : isOpen
+        ? 'Hide'
+        : 'Reply',
+    [editId, isEditing, isOpen]
+  );
 
-  const contentLabel = useMemo(() => {
-    return isMore && content?.length > 200 ? content : excerpts(content, 200);
-  }, [content, isMore]);
+  const contentLabel = useMemo(
+    () => (isMore && content?.length > 200 ? content : excerpts(content, 200)),
+    [content, isMore]
+  );
 
-  const btnClasses = useMemo(() => {
-    return content?.length > 200
-      ? 'comment-card__details--btn show'
-      : 'comment-card__details--btn hide';
-  }, [content]);
+  const btnClasses = useMemo(
+    () =>
+      content?.length > 200
+        ? 'comment-card__details--btn show'
+        : 'comment-card__details--btn hide',
+    [content]
+  );
 
-  const btnLabel = useMemo(() => {
-    return isMore ? undefined : 'more';
-  }, [isMore]);
+  const btnLabel = useMemo(() => (isMore ? undefined : 'more'), [isMore]);
 
-  const isAdmin = useMemo(() => {
-    return currentUser?.role === 'admin';
-  }, [currentUser]);
+  const isAdmin = useMemo(() => currentUser?.role === 'admin', [currentUser]);
 
-  const userId = useMemo(() => {
-    return currentUser?.details._id;
-  }, [currentUser]);
+  const userId = useMemo(() => currentUser?.details._id, [currentUser]);
 
-  const authorId = useMemo(() => {
-    return author?._id;
-  }, [author?._id]);
+  const authorId = useMemo(() => author?._id, [author?._id]);
 
-  const postAuthorId = useMemo(() => {
-    return post?.author?._id;
-  }, [post?.author?._id]);
+  const postAuthorId = useMemo(() => post?.author?._id, [post?.author?._id]);
 
-  const isCommentAuthor = useMemo(() => {
-    return author?._id === userId;
-  }, [author?._id, userId]);
+  const isCommentAuthor = useMemo(
+    () => author?._id === userId,
+    [author?._id, userId]
+  );
 
   const isPostAuthor = useMemo(() => {
     return postAuthorId === userId;
   }, [postAuthorId, userId]);
 
-  const url = useMemo(() => {
-    return currentUser
-      ? userId === author?._id
-        ? '/accounts/profile'
-        : `/accounts/profile?username=${author?.username}`
-      : `/posts?author=${author?.username}`;
-  }, [author?._id, author?.username, currentUser, userId]);
+  const url = useMemo(
+    () =>
+      currentUser
+        ? userId === author?._id
+          ? '/accounts/profile'
+          : `/accounts/profile?username=${author?.username}`
+        : `/posts?author=${author?.username}`,
+    [author?._id, author?.username, currentUser, userId]
+  );
 
-  const actionBtnClasses = useMemo(() => {
-    return !currentUser
-      ? 'comment-card__actions--btn hide'
-      : 'comment-card__actions--btn show';
-  }, [currentUser]);
+  const actionBtnClasses = useMemo(
+    () =>
+      !currentUser
+        ? 'comment-card__actions--btn hide'
+        : 'comment-card__actions--btn show',
+    [currentUser]
+  );
 
-  const isPending = useMemo(() => {
-    return replyMutation.isPending || updateCommentMutation.isPending;
-  }, [replyMutation.isPending, updateCommentMutation.isPending]);
+  const isPending = useMemo(
+    () => replyMutation.isPending || updateCommentMutation.isPending,
+    [replyMutation.isPending, updateCommentMutation.isPending]
+  );
 
   useEffect(() => {
     if (!data) return;
@@ -414,6 +425,7 @@ const CommentCard = ({
                 aria-expanded={isOpen}
                 aria-controls={`reply-form-${commentId}`}
                 aria-label={replyBtnLabel}
+                title={isOpen ? 'Close reply form' : 'Open reply form'}
                 className={replyBtnClasses}
               >
                 <ShareIcon label='Reply' />
@@ -472,10 +484,12 @@ const CommentCard = ({
           <button
             type='button'
             onClick={toggleActionHandler}
+            onKeyDown={handleMenuKeyDown}
             aria-haspopup='menu'
             aria-expanded={isShow}
             aria-controls={`comment-author-${commentId}`}
             aria-label={isShow ? 'Close comment menu' : 'Open comment menu'}
+            title={isShow ? 'Close comment menu' : 'Open comment menu'}
             className={actionBtnClasses}
           >
             <VerticalEllipsisIcon />
@@ -500,7 +514,7 @@ const CommentCard = ({
           onReport={handleReport}
         />
       </div>
-      <section
+      <div
         id={`reply-form-${commentId}`}
         role='region'
         aria-label={`Reply to ${author.username}'s comment`}
@@ -515,7 +529,7 @@ const CommentCard = ({
           onCancel={handleCancel}
           onSubmit={handleSubmit}
         />
-      </section>
+      </div>
       <Replies
         slug={slug}
         activeCardId={activeCardId}

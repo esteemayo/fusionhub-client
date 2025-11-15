@@ -143,8 +143,8 @@ const Reply = ({
     });
   };
 
-  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleToggle = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     setIsShow((value) => {
       if (value) {
@@ -159,6 +159,17 @@ const Reply = ({
 
   const handleClose = () => {
     setIsShow(false);
+  };
+
+  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleToggle();
+    } else if (e.key === 'Escape') {
+      if (isShow) {
+        handleClose();
+      }
+    }
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -241,9 +252,7 @@ const Reply = ({
     if (isEditing && editId) {
       updateReplyMutation.mutate(
         { content: value, replyId },
-        {
-          onSuccess: handleCancel,
-        }
+        { onSuccess: handleCancel }
       );
     } else {
       const replyObj = {
@@ -253,87 +262,91 @@ const Reply = ({
         parentReplyId: replyId,
       };
 
-      replyTreeMutation.mutate(replyObj, {
-        onSuccess: handleCancel,
-      });
+      replyTreeMutation.mutate(replyObj, { onSuccess: handleCancel });
     }
   };
 
-  const replyClasses = useMemo(() => {
-    return parentReply || level !== 0 ? 'reply nested' : 'reply';
-  }, [level, parentReply]);
+  const replyClasses = useMemo(
+    () => (parentReply || level !== 0 ? 'reply nested' : 'reply'),
+    [level, parentReply]
+  );
 
-  const hasUpdated = useMemo(() => {
-    return new Date(createdAt).getTime() < new Date(updatedAt).getTime();
-  }, [createdAt, updatedAt]);
+  const hasUpdated = useMemo(
+    () => new Date(createdAt).getTime() < new Date(updatedAt).getTime(),
+    [createdAt, updatedAt]
+  );
 
-  const replyBtnClasses = useMemo(() => {
-    return currentUser
-      ? 'reply__wrapper--reply-btn show'
-      : 'reply__wrapper--reply-btn hide';
-  }, [currentUser]);
+  const replyBtnClasses = useMemo(
+    () =>
+      currentUser
+        ? 'reply__wrapper--reply-btn show'
+        : 'reply__wrapper--reply-btn hide',
+    [currentUser]
+  );
 
-  const replyBtnLabel = useMemo(() => {
-    return isEditing && editId
-      ? isOpen
-        ? 'Cancel edit'
-        : 'Reply'
-      : isOpen
-      ? 'Hide'
-      : 'Reply';
-  }, [editId, isEditing, isOpen]);
+  const replyBtnLabel = useMemo(
+    () =>
+      isEditing && editId
+        ? isOpen
+          ? 'Cancel edit'
+          : 'Reply'
+        : isOpen
+        ? 'Hide'
+        : 'Reply',
+    [editId, isEditing, isOpen]
+  );
 
-  const contentLabel = useMemo(() => {
-    return isMore && content.length > 150 ? content : excerpts(content, 150);
-  }, [content, isMore]);
+  const contentLabel = useMemo(
+    () => (isMore && content.length > 150 ? content : excerpts(content, 150)),
+    [content, isMore]
+  );
 
-  const btnClasses = useMemo(() => {
-    return content.length > 150
-      ? 'reply__content--btn show'
-      : 'reply__content--btn hide';
-  }, [content]);
+  const btnClasses = useMemo(
+    () =>
+      content.length > 150
+        ? 'reply__content--btn show'
+        : 'reply__content--btn hide',
+    [content]
+  );
 
-  const btnLabel = useMemo(() => {
-    return isMore ? undefined : 'more';
-  }, [isMore]);
+  const btnLabel = useMemo(() => (isMore ? undefined : 'more'), [isMore]);
 
-  const userId = useMemo(() => {
-    return currentUser?.details._id;
-  }, [currentUser]);
+  const userId = useMemo(() => currentUser?.details._id, [currentUser]);
 
-  const authorId = useMemo(() => {
-    return author._id;
-  }, [author._id]);
+  const authorId = useMemo(() => author._id, [author._id]);
 
-  const isAdmin = useMemo(() => {
-    return currentUser?.role === 'admin';
-  }, [currentUser]);
+  const isAdmin = useMemo(() => currentUser?.role === 'admin', [currentUser]);
 
-  const url = useMemo(() => {
-    return currentUser
-      ? userId === author?._id
-        ? '/accounts/profile'
-        : `/accounts/profile?username=${author?.username}`
-      : `/posts?author=${author?.username}`;
-  }, [author?._id, author?.username, currentUser, userId]);
+  const url = useMemo(
+    () =>
+      currentUser
+        ? userId === author?._id
+          ? '/accounts/profile'
+          : `/accounts/profile?username=${author?.username}`
+        : `/posts?author=${author?.username}`,
+    [author?._id, author?.username, currentUser, userId]
+  );
 
-  const isReplyAuthor = useMemo(() => {
-    return author?._id === userId;
-  }, [author?._id, userId]);
+  const isReplyAuthor = useMemo(
+    () => author?._id === userId,
+    [author?._id, userId]
+  );
 
-  const isCommentAuthor = useMemo(() => {
-    return comment?.author?._id === userId;
-  }, [comment?.author?._id, userId]);
+  const isCommentAuthor = useMemo(
+    () => comment?.author?._id === userId,
+    [comment?.author?._id, userId]
+  );
 
-  const isPostAuthor = useMemo(() => {
-    return post?.author?._id === userId;
-  }, [post?.author?._id, userId]);
+  const isPostAuthor = useMemo(
+    () => post?.author?._id === userId,
+    [post?.author?._id, userId]
+  );
 
-  const actionBtnClasses = useMemo(() => {
-    return !currentUser
-      ? 'reply__actions--btn hide'
-      : 'reply__actions--btn show';
-  }, [currentUser]);
+  const actionBtnClasses = useMemo(
+    () =>
+      !currentUser ? 'reply__actions--btn hide' : 'reply__actions--btn show',
+    [currentUser]
+  );
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -410,9 +423,10 @@ const Reply = ({
                   aria-expanded={isOpen}
                   aria-controls={`reply-form-${replyId}`}
                   aria-label={replyBtnLabel}
+                  title={isOpen ? 'Close reply form' : 'Open reply form'}
                   className={replyBtnClasses}
                 >
-                  <ShareIcon label='Reply icon' />
+                  <ShareIcon label='Reply' />
                   <span>{replyBtnLabel}</span>
                 </button>
               </div>
@@ -467,9 +481,11 @@ const Reply = ({
             <button
               type='button'
               onClick={handleToggle}
+              onKeyDown={handleMenuKeyDown}
               aria-label={isShow ? 'Close reply menu' : 'Open reply menu'}
               aria-expanded={isShow}
               aria-controls={`reply-menu-${replyId}`}
+              title={isShow ? 'Close reply menu' : 'Open reply menu'}
               className={actionBtnClasses}
             >
               <VerticalEllipsisIcon />
@@ -496,7 +512,7 @@ const Reply = ({
             onReport={handleReport}
           />
         </div>
-        <section
+        <div
           id={`reply-form-${replyId}`}
           role='region'
           aria-label={`Reply to ${author.username}'s reply`}
@@ -512,7 +528,7 @@ const Reply = ({
             onCancel={onCancelHandler}
             onSubmit={handleSubmit}
           />
-        </section>
+        </div>
       </article>
 
       {replies.map((reply) => {
