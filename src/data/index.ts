@@ -97,31 +97,37 @@ export const socialMenuItems: SocialMenuType = [
   {
     id: 1,
     url: '/',
+    label: 'Facebook',
     icon: FaFacebookF,
   },
   {
     id: 2,
     url: '/',
+    label: 'Tiktok',
     icon: BiLogoTiktok,
   },
   {
     id: 3,
     url: '/',
+    label: 'Threads',
     icon: FaThreads,
   },
   {
     id: 4,
     url: '/',
+    label: 'Twitter',
     icon: FaXTwitter,
   },
   {
     id: 5,
     url: '/',
+    label: 'Instagram',
     icon: FaInstagram,
   },
   {
     id: 6,
     url: '/',
+    label: 'Youtube',
     icon: FaYoutube,
   },
 ];

@@ -5,24 +5,41 @@ import { ToggleButtonProps } from '../../types';
 import './ToggleButton.scss';
 
 const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
-  const toggleBtnClasses = useMemo(() => {
-    return type === 'nav' ? 'toggle-button nav' : 'toggle-button';
-  }, [type]);
+  const handleToggleKey = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  };
 
-  const btnLabel = useMemo(() => {
-    return type === 'nav' ? label : isOpen ? 'Close' : label;
-  }, [isOpen, label, type]);
+  const toggleBtnClasses = useMemo(
+    () => (type === 'nav' ? 'toggle-button nav' : 'toggle-button'),
+    [type]
+  );
+
+  const btnLabel = useMemo(
+    () => (type === 'nav' ? label : isOpen ? 'Close' : label),
+    [isOpen, label, type]
+  );
 
   return (
     <button
       type='button'
       onClick={onClick}
+      onKeyDown={handleToggleKey}
       aria-label={btnLabel}
+      aria-expanded={isOpen}
+      aria-pressed={isOpen}
+      aria-controls={type === 'nav' ? 'main-navigation' : undefined}
+      aria-haspopup='true'
+      tabIndex={0}
       className={toggleBtnClasses}
     >
-      <span>{btnLabel}</span>
+      <span className='toggle-button__text'>{btnLabel}</span>
       {isOpen ? (
         <svg
+          aria-hidden='true'
+          focusable='false'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'
@@ -38,6 +55,8 @@ const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
         </svg>
       ) : (
         <svg
+          aria-hidden='true'
+          focusable='false'
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 20 20'
           fill='currentColor'

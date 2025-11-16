@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='navbar'>
+    <nav role='navigation' aria-label='Main Navigation' className='navbar'>
       <div className='navbar__container'>
         <div className='navbar__wrapper'>
           <Logo isOpen={isOpen} />
@@ -36,11 +36,23 @@ const Navbar = () => {
             isOpen={isOpen}
             onClick={handleToggle}
           />
-          <ul className='navbar__links'>
+          <ul
+            id='navbar-links'
+            className='navbar__links'
+            role='menubar'
+            aria-labelledby='menu-label'
+          >
+            <span id='menu-label' className='sr-only'>
+              Navigation Links
+            </span>
             {menuItems.map((menu) => {
               return <NavItem key={menu.id} {...menu} />;
             })}
-            <div className='navbar__accounts'>
+            <div
+              className='navbar__accounts'
+              role='region'
+              aria-label='User account menu'
+            >
               <div className='navbar__account'>
                 {currentUser?.details.fromGoogle &&
                 currentUser.details.image?.startsWith('https') ? (
@@ -48,6 +60,9 @@ const Navbar = () => {
                     src={currentUser.details.image ?? '/user-default.jpg'}
                     width={32.5}
                     height={32.5}
+                    alt={`${
+                      currentUser.details.username.concat('’s') ?? 'Google'
+                    } avatar`}
                     className='navbar__account--avatar'
                   />
                 ) : (
@@ -55,7 +70,9 @@ const Navbar = () => {
                     src={currentUser?.details?.image ?? '/user-default.jpg'}
                     width={32.5}
                     height={32.5}
-                    alt='avatar'
+                    alt={`${
+                      currentUser?.details.username ?? 'Default user'
+                    } avatar`}
                     className='navbar__account--avatar'
                   />
                 )}

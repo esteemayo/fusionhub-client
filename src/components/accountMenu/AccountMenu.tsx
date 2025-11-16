@@ -20,20 +20,20 @@ const AccountMenu = ({ query }: { query: string | null }) => {
   const { pathname } = useLocation();
   const path = pathname.split('/').pop();
 
-  const { btnLabel, handleLogout } = useLogout(isOpen, onClose);
+  const { isLoading, btnLabel, handleLogout } = useLogout(isOpen, onClose);
 
   const [isActive, setIsActive] = useState(path);
 
   const handleClick = () => {
     if (isOpen) {
       dispatch(onClose());
-      return;
     }
   };
 
-  const accountMenuClasses = useMemo(() => {
-    return isOpen ? 'account-menu show' : 'account-menu hide';
-  }, [isOpen]);
+  const accountMenuClasses = useMemo(
+    () => (isOpen ? 'account-menu show' : 'account-menu hide'),
+    [isOpen]
+  );
 
   useEffect(() => {
     setIsActive(path);
@@ -42,15 +42,22 @@ const AccountMenu = ({ query }: { query: string | null }) => {
   const menus = accountMenus.slice(0, -1);
   const lastMenu = accountMenus[accountMenus.length - 1];
 
-  if (!currentUser || query) {
-    return null;
-  }
+  if (!currentUser || query) return null;
 
   return (
-    <aside className={accountMenuClasses}>
+    <aside
+      className={accountMenuClasses}
+      role='navigation'
+      aria-label='Account menu'
+      aria-hidden={!isOpen}
+    >
       <div className='account-menu__container'>
         <div className='account-menu__wrapper'>
-          <ul className='account-menu__list'>
+          <ul
+            className='account-menu__list'
+            role='menu'
+            aria-label='Account menu options'
+          >
             {menus.map((menu) => {
               return (
                 <AccountMenuItem
@@ -64,10 +71,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
             })}
             {currentUser && currentUser.role === 'admin' && (
               <AccountMenuItem
-                id={lastMenu.id}
-                url={lastMenu.url}
-                icon={lastMenu.icon}
-                label={lastMenu.label}
+                {...lastMenu}
                 isOpen={isOpen}
                 activeMenu={isActive}
                 onAction={handleClick}
@@ -76,8 +80,15 @@ const AccountMenu = ({ query }: { query: string | null }) => {
           </ul>
         </div>
         <div className='account-menu__box'>
-          <button type='button' onClick={handleLogout}>
+          <button
+            type='button'
+            onClick={handleLogout}
+            aria-label='Log out'
+            aria-busy={isLoading}
+          >
             <svg
+              aria-hidden='true'
+              focusable='false'
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
               viewBox='0 0 24 24'

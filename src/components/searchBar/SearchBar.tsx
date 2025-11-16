@@ -16,14 +16,20 @@ const SearchBar = ({ isOpen, onToggle }: SearchBarProps) => {
     return () => (window.onscroll = null);
   };
 
-  const searchBarClasses = useMemo(() => {
-    return isScrolled && !isOpen ? 'search-bar show' : 'search-bar hide';
-  }, [isOpen, isScrolled]);
+  const searchBarClasses = useMemo(
+    () => (isScrolled && !isOpen ? 'search-bar show' : 'search-bar hide'),
+    [isOpen, isScrolled]
+  );
 
   return (
-    <div className={searchBarClasses}>
+    <div
+      className={searchBarClasses}
+      role='search'
+      aria-expanded={isOpen}
+      aria-label='Floating search bar'
+    >
       <div className='search-bar__container'>
-        <Link to='/'>
+        <Link to='/' aria-label='Go to homepage'>
           <span className='search-bar__wrapper--logo'>fusionHub</span>
         </Link>
         <div className='search-bar__wrapper'>

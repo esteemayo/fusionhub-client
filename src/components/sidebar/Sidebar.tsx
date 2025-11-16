@@ -36,12 +36,18 @@ const Sidebar = () => {
     }
   };
 
-  const sidebarClasses = useMemo(() => {
-    return isOpen ? 'sidebar show' : 'sidebar hide';
-  }, [isOpen]);
+  const sidebarClasses = useMemo(
+    () => (isOpen ? 'sidebar show' : 'sidebar hide'),
+    [isOpen]
+  );
 
   return (
-    <aside className={sidebarClasses}>
+    <aside
+      className={sidebarClasses}
+      role='navigation'
+      aria-hidden={!isOpen}
+      aria-label='Sidebar navigation'
+    >
       <div className='sidebar__container'>
         <div className='sidebar__wrapper'>
           <Logo onClose={handleClick} />
@@ -53,7 +59,12 @@ const Sidebar = () => {
           />
         </div>
         <div className='sidebar__box'>
-          <ul className='sidebar__menu'>
+          <ul
+            id='sidebar-menu'
+            className='sidebar__menu'
+            role='menu'
+            aria-label='Main navigation'
+          >
             {menuItems.map((menu) => {
               const { id, url, label } = menu;
               return (
@@ -80,7 +91,9 @@ const Sidebar = () => {
                       src={currentUser.details.image ?? '/user-default.jpg'}
                       width={70}
                       height={70}
-                      alt={currentUser.details.username}
+                      alt={`${
+                        currentUser.details.username.concat('’s') ?? 'Google'
+                      } avatar`}
                       className='sidebar__account--avatar'
                     />
                   ) : (
@@ -88,21 +101,31 @@ const Sidebar = () => {
                       src={currentUser.details.image ?? '/user-default.jpg'}
                       width={70}
                       height={70}
-                      alt={currentUser.details.username ?? 'avatar'}
+                      alt={`${
+                        currentUser?.details.username ?? 'Default user'
+                      } avatar`}
                       className='sidebar__account--avatar'
                     />
                   )}
-                  <span className='sidebar__account--name'>
+                  <span
+                    className='sidebar__account--name'
+                    aria-label={`Logged in as ${
+                      currentUser?.details.name ?? 'User'
+                    }`}
+                  >
                     {currentUser.details.name}
                   </span>
                 </NavLink>
                 <div className='sidebar__logout'>
                   <button
                     type='button'
-                    className='sidebar__logout--btn'
                     onClick={handleLogout}
+                    className='sidebar__logout--btn'
+                    aria-label='Logout'
                   >
                     <svg
+                      aria-hidden='true'
+                      focusable='false'
                       xmlns='http://www.w3.org/2000/svg'
                       fill='none'
                       viewBox='0 0 24 24'
@@ -124,10 +147,13 @@ const Sidebar = () => {
             {!currentUser && (
               <NavLink
                 to='/login'
-                className='sidebar__login'
                 onClick={handleClose}
+                className='sidebar__login'
+                aria-label='Login'
               >
                 <svg
+                  aria-hidden='true'
+                  focusable='false'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'

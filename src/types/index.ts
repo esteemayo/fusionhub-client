@@ -55,6 +55,7 @@ export interface FooterMenuItemProps {
 
 export interface SocialMenuItemProps {
   url: string;
+  label: string;
   icon: IconType;
 }
 
@@ -989,7 +990,7 @@ export interface ToggleButtonProps {
   type?: 'nav';
   label?: string;
   isOpen: boolean;
-  onClick(e: React.MouseEvent<HTMLButtonElement>): void;
+  onClick(e?: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export interface SearchBarProps {
@@ -2178,6 +2179,7 @@ export type FooterMenuType = {
 export type SocialMenuType = {
   id: number;
   url: string;
+  label: string;
   icon: IconType;
 }[];
 

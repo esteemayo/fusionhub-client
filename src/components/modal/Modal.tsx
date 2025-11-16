@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Spinner from '../Spinner';
@@ -21,7 +22,7 @@ const Modal = ({
   onSubmit,
   secondaryAction,
 }: ModalProps) => {
-  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const firstButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const [showModal, setShowModal] = useState(false);
@@ -33,15 +34,13 @@ const Modal = ({
     setTimeout(() => onClose(), 300);
   }, [disabled, onClose]);
 
-  const onCloseHandler = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as HTMLElement;
-
-    if (target.classList.contains('modal')) {
+  const handleBackdropClick = (e: React.MouseEvent<HTMLElement>) => {
+    if (e.target === e.currentTarget) {
       handleClose();
     }
   };
 
-  const handleEscape = useCallback(
+  const handleEscKey = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClose();
@@ -78,22 +77,27 @@ const Modal = ({
     [disabled, handleClose, secondaryAction, type]
   );
 
-  const containerClasses = useMemo(() => {
-    return showModal ? 'modal__container show' : 'modal__container hide';
-  }, [showModal]);
+  const containerClasses = useMemo(
+    () => (showModal ? 'modal__container show' : 'modal__container hide'),
+    [showModal]
+  );
 
   useEffect(() => {
     if (!isOpen) return;
 
-    const modal = document.querySelector('.modal__wrapper');
-    const focusableElements = modal?.querySelectorAll<HTMLElement>(
+    const modalEl = modalRef.current;
+    if (!modalEl) return;
+
+    const focusable = modalEl.querySelectorAll<HTMLElement>(
       'button, [href], input, select, textarea, [tabIndex]:not([tabIndex="-1"])'
     );
 
-    if (!focusableElements || focusableElements.length === 0) return;
+    if (!focusable || focusable.length === 0) return;
 
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
+    const firstElement = focusable[0];
+    const lastElement = focusable[focusable.length - 1];
+
+    firstElement.focus();
 
     const trapFocus = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
@@ -112,8 +116,6 @@ const Modal = ({
     };
 
     document.addEventListener('keydown', trapFocus);
-    firstElement.focus();
-
     return () => document.removeEventListener('keydown', trapFocus);
   }, [isOpen]);
 
@@ -125,13 +127,13 @@ const Modal = ({
       document.body.style.overflow = 'hidden';
       document.body.classList.add('no-interact');
 
-      window.addEventListener('keydown', handleEscape);
+      window.addEventListener('keydown', handleEscKey);
     } else {
       appRoot.removeAttribute('aria-hidden');
       document.body.style.overflow = '';
       document.body.classList.remove('no-interact');
 
-      window.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('keydown', handleEscKey);
     }
 
     return () => {
@@ -139,26 +141,26 @@ const Modal = ({
       document.body.style.overflow = '';
       document.body.classList.remove('no-interact');
 
-      window.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('keydown', handleEscKey);
     };
-  }, [isOpen, handleEscape]);
+  }, [isOpen, handleEscKey]);
 
   useEffect(() => {
     setShowModal(isOpen);
   }, [isOpen]);
 
-  if (!isOpen) return;
+  if (!isOpen) return null;
 
-  return (
+  const modalContent = (
     <aside
       className='modal'
-      onClick={onCloseHandler}
+      onClick={handleBackdropClick}
       role='dialog'
       aria-modal='true'
       aria-labelledby='modal-title'
       aria-describedby='modal-body'
     >
-      <div ref={dialogRef} className={containerClasses}>
+      <div ref={modalRef} className={containerClasses}>
         <div className='modal__wrapper'>
           <h1 id='modal-title' className='modal__heading' aria-label={title}>
             {title}
@@ -210,6 +212,11 @@ const Modal = ({
         </div>
       </div>
     </aside>
+  );
+
+  return createPortal(
+    modalContent,
+    document.getElementById('modal-root') as HTMLElement
   );
 };
 

@@ -21,11 +21,19 @@ const AccountMenuItem = ({
 
   return (
     <li
-      className={`${menuClasses} ${isOpen ? 'show' : 'hide'}`}
       onClick={onAction}
+      className={`${menuClasses} ${isOpen ? 'show' : 'hide'}`}
+      role='none'
     >
-      <NavLink to={`/accounts/${url}`}>
+      <NavLink
+        to={`/accounts/${url}`}
+        role='menuitem'
+        aria-label={label}
+        tabIndex={0}
+      >
         <svg
+          aria-hidden='true'
+          focusable='false'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'

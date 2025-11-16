@@ -12,22 +12,34 @@ const UserMenu = () => {
   const { isLoading, btnLabel, handleLogout } = useLogout();
   const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
 
-  const userMenuClasses = useMemo(() => {
-    return currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide';
-  }, [currentUser]);
+  const userMenuClasses = useMemo(
+    () => (currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide'),
+    [currentUser]
+  );
 
-  const btnLogoutClasses = useMemo(() => {
-    return isLoading ? 'logout-btn trunc' : 'logout-btn';
-  }, [isLoading]);
+  const btnLogoutClasses = useMemo(
+    () => (isLoading ? 'logout-btn trunc' : 'logout-btn'),
+    [isLoading]
+  );
 
   return (
-    <aside className='user-menu'>
+    <aside
+      className='user-menu'
+      role='region'
+      aria-label='User navigation menu'
+    >
       <div className='user-menu__container'>
-        <ul className='user-menu__list'>
+        <ul
+          className='user-menu__list'
+          role='menu'
+          aria-label='User menu options'
+        >
           {currentUser ? (
-            <li className='user-menu__list--item profile-link'>
-              <Link to='/accounts/profile'>
+            <li className='user-menu__list--item profile-link' role='none'>
+              <Link to='/accounts/profile' role='menuitem' tabIndex={0}>
                 <svg
+                  aria-hidden='true'
+                  focusable='false'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'
@@ -47,9 +59,11 @@ const UserMenu = () => {
           ) : (
             <>
               {pathname !== '/login' && (
-                <li className='user-menu__list--item login-link'>
-                  <Link to='/login'>
+                <li className='user-menu__list--item login-link' role='none'>
+                  <Link to='/login' role='menuitem' tabIndex={0}>
                     <svg
+                      aria-hidden='true'
+                      focusable='false'
                       xmlns='http://www.w3.org/2000/svg'
                       fill='none'
                       viewBox='0 0 24 24'
@@ -68,9 +82,11 @@ const UserMenu = () => {
                 </li>
               )}
               {pathname !== '/register' && (
-                <li className='user-menu__list--item register-link'>
-                  <Link to='/register'>
+                <li className='user-menu__list--item register-link' role='none'>
+                  <Link to='/register' role='menuitem' tabIndex={0}>
                     <svg
+                      aria-hidden='true'
+                      focusable='false'
                       xmlns='http://www.w3.org/2000/svg'
                       fill='none'
                       viewBox='0 0 24 24'
@@ -91,14 +107,21 @@ const UserMenu = () => {
             </>
           )}
         </ul>
-        <div className={userMenuClasses}>
-          <span className='username'>{currentUser?.details.name}</span>
+        <div className={userMenuClasses} aria-hidden={!currentUser}>
+          <span
+            className='username'
+            aria-label={`Logged in as ${currentUser?.details.name ?? 'User'}`}
+          >
+            {currentUser?.details.name}
+          </span>
           <button
             type='button'
-            className={btnLogoutClasses}
             onClick={handleLogout}
+            className={btnLogoutClasses}
+            aria-label='Logout'
+            aria-busy={isLoading}
           >
-            {btnLabel}
+            <span>{btnLabel}</span>
           </button>
         </div>
       </div>

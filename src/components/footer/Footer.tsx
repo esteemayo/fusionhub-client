@@ -15,9 +15,13 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className='footer'>
+    <footer className='footer' role='contentinfo' aria-label='Website footer'>
       <div className='footer__container'>
-        <div className='footer__wrapper'>
+        <div
+          className='footer__wrapper'
+          role='navigation'
+          aria-label='Footer navigation'
+        >
           <FooterMenu />
           <SocialMenu />
         </div>

@@ -6,8 +6,8 @@ import './SocialMenu.scss';
 
 const SocialMenu = () => {
   return (
-    <article className='social-menu'>
-      <ul className='social-menu__list'>
+    <article className='social-menu' aria-label='Social media links'>
+      <ul className='social-menu__list' role='list'>
         {socialMenuItems.map((item) => {
           return <SocialMenuItem key={item.id} {...item} />;
         })}

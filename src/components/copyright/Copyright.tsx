@@ -2,12 +2,22 @@ import './Copyright.scss';
 
 const Copyright = ({ value }: { value: number }) => {
   return (
-    <div className='copyright'>
+    <section
+      className='copyright'
+      aria-label='Copyright information'
+      aria-labelledby='copyright-heading'
+    >
+      <h2 id='copyright-heading' className='sr-only'>
+        Copyright Information
+      </h2>
       <p className='copyright__text'>
-        &copy; 2024 - {value} •&nbsp;All rights reserved •&nbsp;Designed &
-        Developed by <b>Emmanuel Adebayo&trade;</b>
+        &copy; 2024 - {value} •&nbsp;All rights reserved •&nbsp;Designed &amp;
+        Developed by{' '}
+        <strong>
+          Emmanuel Adebayo<span aria-hidden='true'>&trade;</span>
+        </strong>
       </p>
-    </div>
+    </section>
   );
 };
 

@@ -242,7 +242,6 @@
       outline: 0;
       text-transform: initial;
       text-rendering: optimizeLegibility;
-      font-family: inherit;
       font-weight: inherit;
       font-size: inherit;
       background-color: transparent;
@@ -257,7 +256,8 @@
 
       &:disabled {
         opacity: 0.75;
-        cursor: default;
+        pointer-events: none;
+        user-select: none;
       }
     }
   }

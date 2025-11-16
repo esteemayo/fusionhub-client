@@ -59,6 +59,11 @@ body.no-interact *:not(.modal, .modal *) {
   touch-action: none;
 }
 
+body.no-interact *:not(#modal-root):not(#modal-root *) {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
 a {
   &:link,
   &:visited {

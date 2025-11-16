@@ -8,13 +8,19 @@ import './MenuItem.scss';
 const MenuItem = ({ url, label, onClose }: MenuItemProps) => {
   const { pathname } = useLocation();
 
-  const menuItemClasses = useMemo(() => {
-    return url === pathname ? 'menu-item active' : 'menu-item';
-  }, [pathname, url]);
+  const menuItemClasses = useMemo(
+    () => (url === pathname ? 'menu-item active' : 'menu-item'),
+    [pathname, url]
+  );
 
   return (
-    <li className={menuItemClasses} onClick={onClose}>
-      <NavLink to={url} className='menu-item__link'>
+    <li className={menuItemClasses} onClick={onClose} role='none'>
+      <NavLink
+        to={url}
+        className='menu-item__link'
+        role='menuitem'
+        aria-label={label}
+      >
         {label}
       </NavLink>
     </li>
