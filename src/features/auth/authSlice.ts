@@ -21,6 +21,7 @@ const user: CurrentUserType = getStorage(authKey);
 const initialState: AuthState = {
   user: user ?? null,
   name: '',
+  imageVersion: user?.imageVersion ?? Date.now(),
   isLoading: false,
   isPending: false,
   isError: false,
@@ -240,13 +241,16 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+
         state.name = payload.details.name;
         state.isSuccess = true;
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.message = (payload as { message: string }).message;
+
         state.isSuccess = false;
         state.user = null;
       })
@@ -255,15 +259,24 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+
         state.user = payload;
-        setStorage(authKey, payload);
+        state.imageVersion = Date.now();
+
+        setStorage(authKey, {
+          ...payload,
+          imageVersion: state.imageVersion,
+        });
+
         state.isSuccess = true;
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
-        state.isSuccess = false;
         state.message = (payload as { message: string }).message;
+
+        state.isSuccess = false;
         state.user = null;
       })
       .addCase(googleLoginUser.pending, (state) => {
@@ -271,14 +284,23 @@ const authSlice = createSlice({
       })
       .addCase(googleLoginUser.fulfilled, (state, { payload }) => {
         state.isPending = false;
+
         state.user = payload;
-        setStorage(authKey, payload);
+        state.imageVersion = Date.now();
+
+        setStorage(authKey, {
+          ...payload,
+          imageVersion: state.imageVersion,
+        });
+
         state.isSuccess = true;
       })
       .addCase(googleLoginUser.rejected, (state, { payload }) => {
         state.isPending = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       })
       .addCase(logoutUser.pending, (state) => {
@@ -286,14 +308,20 @@ const authSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.isLoading = false;
+
         state.user = null;
+        state.imageVersion = Date.now();
+
         removeStorage(authKey);
+
         state.isSuccess = true;
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       })
       .addCase(updateUserPassword.pending, (state) => {
@@ -308,8 +336,10 @@ const authSlice = createSlice({
       })
       .addCase(updateUserPassword.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       })
       .addCase(updateUserData.pending, (state) => {
@@ -317,14 +347,23 @@ const authSlice = createSlice({
       })
       .addCase(updateUserData.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+
         state.user = payload;
-        setStorage(authKey, payload);
+        state.imageVersion = Date.now();
+
+        setStorage(authKey, {
+          ...payload,
+          imageVersion: state.imageVersion,
+        });
+
         state.isSuccess = true;
       })
       .addCase(updateUserData.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       })
       .addCase(deleteAccount.pending, (state) => {
@@ -332,14 +371,18 @@ const authSlice = createSlice({
       })
       .addCase(deleteAccount.fulfilled, (state) => {
         state.isLoading = false;
+
         state.user = null;
         removeStorage(authKey);
+
         state.isSuccess = true;
       })
       .addCase(deleteAccount.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       })
       .addCase(removeAvatar.pending, (state) => {
@@ -347,14 +390,23 @@ const authSlice = createSlice({
       })
       .addCase(removeAvatar.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+
         state.user = payload;
-        setStorage(authKey, payload);
+        state.imageVersion = Date.now();
+
+        setStorage(authKey, {
+          ...payload,
+          imageVersion: state.imageVersion,
+        });
+
         state.isSuccess = true;
       })
       .addCase(removeAvatar.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       })
       .addCase(removeBanner.pending, (state) => {
@@ -362,14 +414,18 @@ const authSlice = createSlice({
       })
       .addCase(removeBanner.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+
         state.user = payload;
         setStorage(authKey, payload);
+
         state.isSuccess = true;
       })
       .addCase(removeBanner.rejected, (state, { payload }) => {
         state.isLoading = false;
+
         state.isError = true;
         state.isSuccess = false;
+
         state.message = (payload as { message: string }).message;
       });
   },

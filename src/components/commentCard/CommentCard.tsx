@@ -224,7 +224,7 @@ const CommentCard = ({
         id,
         username,
       },
-      targetType: 'comment',
+      targetType: 'Comment',
       targetId: commentId,
     };
 
@@ -371,6 +371,9 @@ const CommentCard = ({
     setIsShow(activeCardId === commentId);
   }, [activeCardId, commentId]);
 
+  const avatarSrc = author.image ?? '/user-default.jpg';
+  const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
+
   return (
     <article
       id={`comment-${commentId}`}
@@ -380,9 +383,10 @@ const CommentCard = ({
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link to={url} aria-label={`View ${author.name}'s profile`}>
-            {author.fromGoogle && author.image?.startsWith('https') ? (
+            {isGoogleImage ? (
               <GoogleImage
-                src={author.image ?? '/user-default.jpg'}
+                key={avatarSrc}
+                src={avatarSrc}
                 width={80}
                 height={80}
                 alt={`${author.username}'s profile picture`}
@@ -390,7 +394,8 @@ const CommentCard = ({
               />
             ) : (
               <Image
-                src={author.image ?? '/user-default.jpg'}
+                key={avatarSrc}
+                src={avatarSrc}
                 width={80}
                 height={80}
                 alt={`${author.username}'s profile picture`}

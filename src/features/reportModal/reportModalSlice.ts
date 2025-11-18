@@ -12,7 +12,7 @@ const initialState: ReportModalState & ReportModalPayload = {
     id: '',
     username: '',
   },
-  targetType: 'comment',
+  targetType: 'Comment',
   targetId: '',
 };
 

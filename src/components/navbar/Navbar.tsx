@@ -11,6 +11,7 @@ import { onToggle } from '../../features/sidebar/sidebarSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { menuItems } from '../../data';
+import { userAvatarAlt } from '../../utils';
 
 import './Navbar.scss';
 
@@ -23,6 +24,15 @@ const Navbar = () => {
   const handleToggle = () => {
     dispatch(onToggle());
   };
+
+  const avatarBase = currentUser?.details?.image;
+  const avatarSrc = avatarBase ? avatarBase : '/user-default.jpg';
+
+  const username = currentUser?.details.username as string;
+
+  const isGoogleImage =
+    currentUser?.details.fromGoogle &&
+    currentUser.details.image?.startsWith('https');
 
   return (
     <nav role='navigation' aria-label='Main Navigation' className='navbar'>
@@ -51,28 +61,25 @@ const Navbar = () => {
             <div
               className='navbar__accounts'
               role='region'
-              aria-label='User account menu'
+              aria-label='User menu'
             >
               <div className='navbar__account'>
-                {currentUser?.details.fromGoogle &&
-                currentUser.details.image?.startsWith('https') ? (
+                {isGoogleImage ? (
                   <GoogleImage
-                    src={currentUser.details.image ?? '/user-default.jpg'}
+                    key={avatarSrc}
+                    src={avatarSrc}
                     width={32.5}
                     height={32.5}
-                    alt={`${
-                      currentUser.details.username.concat('’s') ?? 'Google'
-                    } avatar`}
+                    alt={userAvatarAlt(username, 'Google')}
                     className='navbar__account--avatar'
                   />
                 ) : (
                   <Image
-                    src={currentUser?.details?.image ?? '/user-default.jpg'}
+                    key={avatarSrc}
+                    src={avatarSrc}
                     width={32.5}
                     height={32.5}
-                    alt={`${
-                      currentUser?.details.username ?? 'Default user'
-                    } avatar`}
+                    alt={userAvatarAlt(username, 'Default user')}
                     className='navbar__account--avatar'
                   />
                 )}

@@ -687,6 +687,7 @@ export interface BannerMenuProps {
   query: string | null;
   username: string;
   isBlocked: boolean;
+  isMuted: boolean;
   disabled: boolean;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
   onShare(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -706,6 +707,7 @@ export interface BannerMenuListProps {
   query: string | null;
   username: string;
   isBlocked: boolean;
+  isMuted: boolean;
   onShare(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
   onReport(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1587,6 +1589,7 @@ export interface ReportFormProps {
   reason: ReportReasonType;
   username: string;
   targetType: ReportTargetType;
+  isMuted: boolean;
   disabled?: boolean;
   options: CategoriesType | undefined;
   register: UseFormRegister<FieldValues>;
@@ -1842,7 +1845,7 @@ export interface MuteModalType {
   isMuted: boolean;
 }
 
-export type ReportTargetType = 'comment' | 'reply';
+export type ReportTargetType = 'User' | 'Comment' | 'Reply';
 
 type ReportReasonType =
   | 'Spam or misleading'
@@ -1958,11 +1961,13 @@ export interface RegisterInputs {
 export interface CurrentUserType {
   details: UserDetailType;
   role: RoleType;
+  imageVersion?: Date | number;
 }
 
 export interface AuthState {
   user: CurrentUserType | null;
   name?: string;
+  imageVersion?: Date | number;
   isLoading: boolean;
   isPending: boolean;
   isError: boolean;
@@ -2134,6 +2139,8 @@ export type UserDetailType = {
   mutedComments: string[];
   mutedReplies: string[];
   mutedUsers: string[];
+  isSoftBanned: boolean;
+  softBanExpires: Date | null;
   tokenExpiration: number;
   fromGoogle: boolean;
   providerId?: string;

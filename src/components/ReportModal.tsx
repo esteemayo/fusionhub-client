@@ -31,7 +31,7 @@ const ReportModal = () => {
 
   const isMuted = useMemo(() => {
     return (
-      !!(mutedList?.mutedUsers ?? []).some((userId) => userId === user.id) ||
+      !!(mutedList?.mutedUsers ?? []).some((entry) => entry.id === user.id) ||
       false
     );
   }, [mutedList?.mutedUsers, user.id]);
@@ -82,7 +82,7 @@ const ReportModal = () => {
       const payload: MutePayload = {
         targetType,
         targetId,
-        action: isMuted ? 'unmute' : 'mute',
+        reason,
       };
 
       muteMutation.mutate(payload);
@@ -124,6 +124,7 @@ const ReportModal = () => {
       reason={selectedReason}
       username={user.username}
       targetType={targetType}
+      isMuted={isMuted}
       disabled={reportMutation.isPending || muteMutation.isPending}
       options={reportOptions}
       register={register as unknown as UseFormRegister<FieldValues>}

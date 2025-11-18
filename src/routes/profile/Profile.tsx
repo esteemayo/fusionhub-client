@@ -63,13 +63,15 @@ const UserProfile = () => {
     }
   };
 
-  const isLoading = useMemo(() => {
-    return username ? isPendingUser : isPending;
-  }, [isPending, isPendingUser, username]);
+  const isLoading = useMemo(
+    () => (username ? isPendingUser : isPending),
+    [isPending, isPendingUser, username]
+  );
 
-  const errorObj = useMemo(() => {
-    return username ? errorUser : error;
-  }, [error, errorUser, username]);
+  const errorObj = useMemo(
+    () => (username ? errorUser : error),
+    [error, errorUser, username]
+  );
 
   useEffect(() => {
     if (username) {

@@ -22,6 +22,7 @@ const BannerMenuList = ({
   query,
   username,
   isBlocked,
+  isMuted,
   onShare,
   onMute,
   onReport,
@@ -31,15 +32,14 @@ const BannerMenuList = ({
   onDeactivate,
 }: BannerMenuListProps) => {
   const itemLabel = useCallback(
-    (label: string) => {
-      return `${label} @${username}`;
-    },
+    (label: string) => `${label} @${username}`,
     [username]
   );
 
-  const menuListClasses = useMemo(() => {
-    return isOpen ? 'banner-menu-list show' : 'banner-menu-list hide';
-  }, [isOpen]);
+  const menuListClasses = useMemo(
+    () => (isOpen ? 'banner-menu-list show' : 'banner-menu-list hide'),
+    [isOpen]
+  );
 
   return (
     <ul className={menuListClasses}>
@@ -55,7 +55,7 @@ const BannerMenuList = ({
               {!isBlocked && (
                 <>
                   <BannerMenuListItem
-                    label={itemLabel('Mute')}
+                    label={itemLabel(isMuted ? 'Unmute' : 'Mute')}
                     onAction={onMute}
                   >
                     <MuteIcon />

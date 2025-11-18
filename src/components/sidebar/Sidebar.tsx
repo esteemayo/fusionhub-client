@@ -8,11 +8,12 @@ import ToggleButton from '../toggleButton/ToggleButton';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
+import { onClose } from '../../features/sidebar/sidebarSlice';
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { menuItems } from '../../data';
-import { onClose } from '../../features/sidebar/sidebarSlice';
+import { userAvatarAlt } from '../../utils';
 
 import './Sidebar.scss';
 
@@ -40,6 +41,15 @@ const Sidebar = () => {
     () => (isOpen ? 'sidebar show' : 'sidebar hide'),
     [isOpen]
   );
+
+  const avatarBase = currentUser?.details?.image;
+  const avatarSrc = avatarBase ?? '/user-default.jpg';
+
+  const username = currentUser?.details.username as string;
+
+  const isGoogleImage =
+    currentUser?.details.fromGoogle &&
+    currentUser.details.image?.startsWith('https');
 
   return (
     <aside
@@ -85,25 +95,22 @@ const Sidebar = () => {
                   className='sidebar__account'
                   onClick={handleClose}
                 >
-                  {currentUser.details.fromGoogle &&
-                  currentUser.details.image?.startsWith('https') ? (
+                  {isGoogleImage ? (
                     <GoogleImage
-                      src={currentUser.details.image ?? '/user-default.jpg'}
+                      key={avatarSrc}
+                      src={avatarSrc}
                       width={70}
                       height={70}
-                      alt={`${
-                        currentUser.details.username.concat('’s') ?? 'Google'
-                      } avatar`}
+                      alt={userAvatarAlt(username, 'Google')}
                       className='sidebar__account--avatar'
                     />
                   ) : (
                     <Image
-                      src={currentUser.details.image ?? '/user-default.jpg'}
+                      key={avatarSrc}
+                      src={avatarSrc}
                       width={70}
                       height={70}
-                      alt={`${
-                        currentUser?.details.username ?? 'Default user'
-                      } avatar`}
+                      alt={userAvatarAlt(username, 'Default user')}
                       className='sidebar__account--avatar'
                     />
                   )}

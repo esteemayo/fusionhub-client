@@ -32,3 +32,7 @@ export const removeStorage = (key: string) => {
 export const useQueryParams = () => {
   return new URLSearchParams(useLocation().search);
 };
+
+export const userAvatarAlt = (username: string, text: string) => {
+  return `${username?.concat('’s') ?? text} avatar`;
+};

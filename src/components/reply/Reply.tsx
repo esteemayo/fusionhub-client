@@ -220,7 +220,7 @@ const Reply = ({
         id,
         username,
       },
-      targetType: 'reply',
+      targetType: 'Reply',
       targetId: replyId,
     };
 
@@ -367,6 +367,9 @@ const Reply = ({
     setIsShow(activeCardId === replyId);
   }, [activeCardId, replyId]);
 
+  const avatarSrc = author.image ?? '/user-default.jpg';
+  const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
+
   return (
     <>
       <article
@@ -382,9 +385,10 @@ const Reply = ({
               aria-label={`View ${author.username}'s profile`}
               title={`View ${author.username}'s profile`}
             >
-              {author.fromGoogle && author.image?.startsWith('https') ? (
+              {isGoogleImage ? (
                 <GoogleImage
-                  src={author.image ?? '/user-default.jpg'}
+                  key={avatarSrc}
+                  src={avatarSrc}
                   width={40}
                   height={40}
                   alt={`${author.username}'s profile picture`}
@@ -392,7 +396,8 @@ const Reply = ({
                 />
               ) : (
                 <Image
-                  src={author.image ?? '/user-default.jpg'}
+                  key={avatarSrc}
+                  src={avatarSrc}
                   width={40}
                   height={40}
                   alt={`${author.username}'s profile picture`}

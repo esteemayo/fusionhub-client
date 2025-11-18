@@ -250,6 +250,10 @@
       height: 10rem;
     }
 
+    &:focus-visible {
+      outline: 2px solid vars.$clr-pink-light;
+    }
+
     &:disabled {
       opacity: 0.75;
       cursor: default;

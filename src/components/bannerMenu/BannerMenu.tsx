@@ -13,6 +13,7 @@ const BannerMenu = ({
   query,
   username,
   isBlocked,
+  isMuted,
   disabled,
   onToggle,
   onShare,
@@ -29,7 +30,9 @@ const BannerMenu = ({
         type='button'
         onClick={onToggle}
         disabled={disabled}
-        aria-label={`${isOpen ? 'Open' : 'Close'} menu`}
+        aria-expanded={isOpen}
+        aria-label={`${isOpen ? 'Close' : 'Open'} menu`}
+        aria-pressed={isOpen}
         aria-disabled={disabled}
         className='banner-menu__btn'
       >
@@ -43,6 +46,7 @@ const BannerMenu = ({
         query={query}
         username={username}
         isBlocked={isBlocked}
+        isMuted={isMuted}
         onShare={onShare}
         onMute={onMute}
         onReport={onReport}

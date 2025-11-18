@@ -4,21 +4,32 @@ import styled, { css } from 'styled-components';
 import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
+import UploadIcon from '../icons/UploadIcon';
 import BannerMenu from '../bannerMenu/BannerMenu';
+
 import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
 import * as bannerModal from '../../features/bannerModal/bannerModalSlice';
+import * as muteModal from '../../features/muteModal/muteModalSlice';
+import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as blockModal from '../../features/blockModal/blockModalSlice';
 import * as accountModal from '../../features/accountModal/accountModalSlice';
 import * as imageModal from '../../features/imageModal/imageModalSlice';
 
 import { useWebShare } from '../../hooks/useWebShare';
-import { useAppDispatch } from '../../hooks/hooks';
+import { useMute } from '../../hooks/useMute';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
+import { useAppDispatch } from '../../hooks/hooks';
 
-import { excerpts } from '../../utils';
-import { BannerProps, BlockPayload } from '../../types';
+import { excerpts, userAvatarAlt } from '../../utils';
+import {
+  BannerProps,
+  BlockPayload,
+  MuteModalType,
+  MutePayload,
+  ReportModalPayload,
+} from '../../types';
 
 import './Banner.scss';
 
@@ -54,14 +65,22 @@ const Banner = ({
   }, [bio, username]);
 
   const { blockedUsers } = useBlockedUsers();
+  const { mutedList } = useMute();
   const { handleShare } = useWebShare(
     `Share @${username}'s profile account`,
     profileText,
     shareUrl
   );
 
+  const isMuted = useMemo(() => {
+    return (
+      !!(mutedList?.mutedUsers ?? []).some((user) => user.id === userId) ||
+      false
+    );
+  }, [mutedList?.mutedUsers, userId]);
+
   const isBlocked = useMemo(() => {
-    return (blockedUsers ?? []).some((user) => user.id === userId) || false;
+    return !!(blockedUsers ?? []).some((user) => user.id === userId) || false;
   }, [blockedUsers, userId]);
 
   const shareHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -74,14 +93,29 @@ const Banner = ({
   const handleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    console.log('muted');
+    const payload: MutePayload & MuteModalType = {
+      targetId: userId,
+      targetType: 'User',
+      isMuted,
+    };
+
+    dispatch(muteModal.onOpen(payload));
     onClose();
   };
 
   const handleReport = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    console.log('reported');
+    const payload: ReportModalPayload = {
+      user: {
+        id: userId,
+        username,
+      },
+      targetId: userId,
+      targetType: 'User',
+    };
+
+    dispatch(reportModal.onOpen(payload));
     onClose();
   };
 
@@ -124,19 +158,22 @@ const Banner = ({
     return banner ? imageUrl(banner) : imageUrl('/banner-1.jpg');
   }, [banner]);
 
-  const avatarClasses = useMemo(() => {
-    return isBlocked ? 'banner__user--avatar blurred' : 'banner__user--avatar';
-  }, [isBlocked]);
+  const avatarClasses = useMemo(
+    () => (isBlocked ? 'banner__user--avatar blurred' : 'banner__user--avatar'),
+    [isBlocked]
+  );
 
-  const wrapperClasses = useMemo(() => {
-    return query ? 'banner__wrapper hide' : 'banner__wrapper show';
-  }, [query]);
+  const wrapperClasses = useMemo(
+    () => (query ? 'banner__wrapper hide' : 'banner__wrapper show'),
+    [query]
+  );
 
-  const isDisabled = useMemo(() => {
-    return (
-      (0 < progress && progress < 100) || (0 < advancement && advancement < 100)
-    );
-  }, [advancement, progress]);
+  const isDisabled = useMemo(
+    () =>
+      (0 < progress && progress < 100) ||
+      (0 < advancement && advancement < 100),
+    [advancement, progress]
+  );
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -146,11 +183,11 @@ const Banner = ({
     };
 
     window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      return window.removeEventListener('keydown', handleEscape);
-    };
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [onClose]);
+
+  const avatarSrc = image ?? '/user-default.jpg';
+  const isGoogleImage = isFromGoogle && image?.startsWith('https');
 
   return (
     <Container cover={coverImg} className='banner'>
@@ -166,20 +203,22 @@ const Banner = ({
       >
         <div className='banner__user'>
           <div className={`banner__user--image ${!!query && 'disabled'}`}>
-            {isFromGoogle && image?.startsWith('https') ? (
+            {isGoogleImage ? (
               <GoogleImage
-                src={image ?? '/user-default.jpg'}
+                key={avatarSrc}
+                src={avatarSrc}
                 width={120}
                 height={120}
-                alt={username}
+                alt={userAvatarAlt(username, 'Google')}
                 className={avatarClasses}
               />
             ) : (
               <Image
-                src={image ?? '/user-default.jpg'}
+                key={avatarSrc}
+                src={avatarSrc}
                 width={120}
                 height={120}
-                alt={username}
+                alt={userAvatarAlt(username, 'Default user')}
                 className={avatarClasses}
               />
             )}
@@ -206,20 +245,7 @@ const Banner = ({
                 aria-label='Image upload button'
                 className='banner__cover--image'
               >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5'
-                  />
-                </svg>
+                <UploadIcon />
               </div>
             </div>
           </Upload>
@@ -232,6 +258,7 @@ const Banner = ({
           query={query}
           username={username}
           isBlocked={isBlocked}
+          isMuted={isMuted}
           disabled={isDisabled}
           onToggle={onToggle}
           onShare={shareHandler}

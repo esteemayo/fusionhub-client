@@ -9,6 +9,7 @@ const ReportForm = ({
   reason,
   username,
   targetType,
+  isMuted,
   disabled,
   options,
   register,
@@ -19,9 +20,16 @@ const ReportForm = ({
   return (
     <div className='report-form'>
       <div className='report-form__container'>
-        <p className='report-form__container--label'>
-          You’re reporting a {targetType} made by <strong>{username}</strong>:
-        </p>
+        {targetType === 'User' ? (
+          <p className='report-form__container--label'>
+            You’re reporting @{username}
+          </p>
+        ) : (
+          <p className='report-form__container--label'>
+            You’re reporting a <span>{targetType}</span> made by{' '}
+            <strong>{username}</strong>:
+          </p>
+        )}
         <Select
           name='reason'
           label='Reason'
@@ -62,24 +70,26 @@ const ReportForm = ({
         </div>
       )}
 
-      <div className='report-form__box'>
-        <input
-          {...register('muteUser')}
-          id='muteUser'
-          name='muteUser'
-          type='checkbox'
-          disabled={disabled}
-          aria-disabled={disabled}
-          className='report-form__box--input'
-        />
-        <label
-          htmlFor='muteUser'
-          aria-disabled={disabled}
-          className='report-form__box--label'
-        >
-          Also mute {username} (you won’t see their comments again)
-        </label>
-      </div>
+      {!isMuted && (
+        <div className='report-form__box'>
+          <input
+            {...register('muteUser')}
+            id='muteUser'
+            name='muteUser'
+            type='checkbox'
+            disabled={disabled}
+            aria-disabled={disabled}
+            className='report-form__box--input'
+          />
+          <label
+            htmlFor='muteUser'
+            aria-disabled={disabled}
+            className='report-form__box--label'
+          >
+            Also mute {username} (you won’t see their comments again)
+          </label>
+        </div>
+      )}
     </div>
   );
 };
