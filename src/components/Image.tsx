@@ -11,10 +11,17 @@ const Image = ({
   height,
   className,
 }: ImageProps) => {
+  const [cleanPath, queryString] = src.split('?');
+  const queryParams = queryString
+    ? Object.fromEntries(new URLSearchParams(queryString))
+    : {};
+
   return (
     <IKContext urlEndpoint={urlEndpoint}>
       <IKImage
-        path={src}
+        key={src}
+        path={cleanPath}
+        queryParameters={queryParams}
         width={width}
         height={height}
         loading='lazy'

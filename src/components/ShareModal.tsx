@@ -8,9 +8,9 @@ import { onClose } from '../features/shareModal/shareModalSlice';
 
 const ShareModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, url, text, title } = useAppSelector((state) => ({
-    ...state.shareModal,
-  }));
+  const { isOpen, url, text, title } = useAppSelector(
+    (state) => state.shareModal
+  );
 
   const handleClose = () => {
     dispatch(onClose());

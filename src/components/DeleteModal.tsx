@@ -18,9 +18,9 @@ const DeleteModal = () => {
   const dispatch = useAppDispatch();
   const queryClient = useQueryClient();
 
-  const { isOpen, postId, queryKey } = useAppSelector((state) => ({
-    ...state.deleteModal,
-  }));
+  const { isOpen, postId, queryKey } = useAppSelector(
+    (state) => state.deleteModal
+  );
 
   const deletePostMutation = useMutation({
     mutationFn: removePost,

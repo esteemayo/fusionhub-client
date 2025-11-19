@@ -15,7 +15,7 @@ const fetchUserByUsername = async (username: string) => {
 };
 
 export const useProfile: IProfile = (username) => {
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const { isPending, error, data, refetch } = useQuery<UserType>({
     queryKey: ['currentUser'],

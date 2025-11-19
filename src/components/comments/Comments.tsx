@@ -15,7 +15,7 @@ import './Comments.scss';
 
 const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
   const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const ref = useRef<HTMLTextAreaElement>(null);
 

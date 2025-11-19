@@ -46,7 +46,7 @@ const Comment = ({
   const { mutedList } = useMute();
   const { blockedUsers } = useBlockedUsers();
 
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
   const visibleComments = useVisibleComments(
     comments,
     blockedUsers,

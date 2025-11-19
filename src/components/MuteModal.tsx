@@ -24,9 +24,7 @@ const MuteModal = () => {
 
   const { muteMutation } = useMute();
   const { isOpen, targetId, targetName, targetType, isMuted } = useAppSelector(
-    (state) => ({
-      ...state.muteModal,
-    })
+    (state) => state.muteModal
   );
 
   const {

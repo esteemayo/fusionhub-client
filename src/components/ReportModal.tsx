@@ -22,9 +22,9 @@ import { ReportInputData, reportSchema } from '../validations/reportSchema';
 
 const ReportModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, user, targetType, targetId } = useAppSelector((state) => ({
-    ...state.reportModal,
-  }));
+  const { isOpen, user, targetType, targetId } = useAppSelector(
+    (state) => state.reportModal
+  );
 
   const { reportMutation } = useReport();
   const { mutedList, muteMutation } = useMute();

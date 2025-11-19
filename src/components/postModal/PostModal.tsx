@@ -64,10 +64,10 @@ const PostModal = () => {
   const queryClient = useQueryClient();
   const dispatch = useAppDispatch();
 
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
-  const { isOpen, post, postId, queryKey } = useAppSelector((state) => ({
-    ...state.postModal,
-  }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { isOpen, post, postId, queryKey } = useAppSelector(
+    (state) => state.postModal
+  );
 
   const { data } = useQuery<CategoriesType>({
     queryKey: ['categories'],

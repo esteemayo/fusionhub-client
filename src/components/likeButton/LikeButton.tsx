@@ -13,9 +13,10 @@ const LikeButton = ({
   isLoading,
   onAction,
 }: LikeButtonProps) => {
-  const btnClasses = useMemo(() => {
-    return hasLiked ? 'like-button__btn active' : 'like-button__btn';
-  }, [hasLiked]);
+  const btnClasses = useMemo(
+    () => (hasLiked ? 'like-button__btn active' : 'like-button__btn'),
+    [hasLiked]
+  );
 
   return (
     <div onClick={onAction} className='like-button'>

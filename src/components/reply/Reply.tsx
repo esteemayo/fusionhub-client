@@ -6,11 +6,10 @@ import ShareIcon from '../icons/ShareIcon';
 import Badge from '../badge/Badge';
 import VerticalEllipsisIcon from '../icons/VerticalEllipsisIcon';
 
-import Image from '../Image';
-import GoogleImage from '../GoogleImage';
+import ReplyMenu from '../ReplyMenu';
+import UserAvatar from '../UserAvatar';
 
 import ReplyForm from '../replyForm/ReplyForm';
-import ReplyMenu from '../ReplyMenu';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useReply } from '../../hooks/useReply';
@@ -43,7 +42,7 @@ const Reply = ({
   onChangeActiveCardId,
 }: ReplyProps) => {
   const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const {
     _id: replyId,
@@ -367,7 +366,6 @@ const Reply = ({
     setIsShow(activeCardId === replyId);
   }, [activeCardId, replyId]);
 
-  const avatarSrc = author.image ?? '/user-default.jpg';
   const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
 
   return (
@@ -385,25 +383,13 @@ const Reply = ({
               aria-label={`View ${author.username}'s profile`}
               title={`View ${author.username}'s profile`}
             >
-              {isGoogleImage ? (
-                <GoogleImage
-                  key={avatarSrc}
-                  src={avatarSrc}
-                  width={40}
-                  height={40}
-                  alt={`${author.username}'s profile picture`}
-                  className='reply__author--img'
-                />
-              ) : (
-                <Image
-                  key={avatarSrc}
-                  src={avatarSrc}
-                  width={40}
-                  height={40}
-                  alt={`${author.username}'s profile picture`}
-                  className='reply__author--img'
-                />
-              )}
+              <UserAvatar
+                imgSrc={author.image}
+                size={40}
+                alt={`${author.username}'s profile picture`}
+                className='reply__author--img'
+                isGoogleAvatar={isGoogleImage}
+              />
             </Link>
           </div>
           <div className='reply__content'>

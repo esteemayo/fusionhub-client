@@ -11,12 +11,12 @@ import { removeBanner, resetState } from '../features/auth/authSlice';
 import { useProfile } from '../hooks/useProfile';
 
 const BannerModal = () => {
+  const { refetch } = useProfile();
   const dispatch = useAppDispatch();
 
-  const { isOpen } = useAppSelector((state) => ({ ...state.bannerModal }));
-  const { refetch } = useProfile();
+  const { isOpen } = useAppSelector((state) => state.bannerModal);
   const { isError, isLoading, isSuccess, message } = useAppSelector(
-    (state) => ({ ...state.auth })
+    (state) => state.auth
   );
 
   const handleClose = useCallback(() => {

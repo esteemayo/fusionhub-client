@@ -9,10 +9,8 @@ import ShareIcon from '../icons/ShareIcon';
 import Badge from '../badge/Badge';
 import VerticalEllipsisIcon from '../icons/VerticalEllipsisIcon';
 
-import Image from '../Image';
-import GoogleImage from '../GoogleImage';
-
 import CommentActionMenu from '../CommentActionMenu';
+import UserAvatar from '../UserAvatar';
 import CommentReplyAction from '../commentReplyAction/CommentReplyAction';
 
 import { useReply } from '../../hooks/useReply';
@@ -28,6 +26,8 @@ import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
+import { canShowMenu } from '../../utils/canShowMenu';
+
 import {
   CommentCardProps,
   MuteModalType,
@@ -37,7 +37,6 @@ import {
 } from '../../types';
 
 import './CommentCard.scss';
-import { canShowMenu } from '../../utils/canShowMenu';
 
 const CommentCard = ({
   slug,
@@ -60,7 +59,7 @@ const CommentCard = ({
   } = comment;
 
   const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const { formattedDate } = useDate(createdAt);
   const { mutedList } = useMute();
@@ -371,7 +370,6 @@ const CommentCard = ({
     setIsShow(activeCardId === commentId);
   }, [activeCardId, commentId]);
 
-  const avatarSrc = author.image ?? '/user-default.jpg';
   const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
 
   return (
@@ -383,25 +381,13 @@ const CommentCard = ({
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link to={url} aria-label={`View ${author.name}'s profile`}>
-            {isGoogleImage ? (
-              <GoogleImage
-                key={avatarSrc}
-                src={avatarSrc}
-                width={80}
-                height={80}
-                alt={`${author.username}'s profile picture`}
-                className='comment-card__user--img'
-              />
-            ) : (
-              <Image
-                key={avatarSrc}
-                src={avatarSrc}
-                width={80}
-                height={80}
-                alt={`${author.username}'s profile picture`}
-                className='comment-card__user--img'
-              />
-            )}
+            <UserAvatar
+              imgSrc={author.image}
+              size={80}
+              alt={`${author.username}'s profile picture`}
+              className='comment-card__user--img'
+              isGoogleAvatar={isGoogleImage}
+            />
           </Link>
         </div>
         <div className='comment-card__details'>

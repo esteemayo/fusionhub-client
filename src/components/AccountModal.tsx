@@ -11,9 +11,9 @@ import { deleteAccount, resetState } from '../features/auth/authSlice';
 const AccountModal = () => {
   const dispatch = useAppDispatch();
 
-  const { isOpen } = useAppSelector((state) => ({ ...state.accountModal }));
+  const { isOpen } = useAppSelector((state) => state.accountModal);
   const { isError, isLoading, isSuccess, message } = useAppSelector(
-    (state) => ({ ...state.auth })
+    (state) => state.auth
   );
 
   const handleClose = useCallback(() => {

@@ -8,9 +8,7 @@ import { onClose } from '../features/categoryModal/categoryModalSlice';
 
 const CategoryModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, categoryId } = useAppSelector((state) => ({
-    ...state.categoryModal,
-  }));
+  const { isOpen, categoryId } = useAppSelector((state) => state.categoryModal);
 
   const { deleteMutation } = useCategory();
 

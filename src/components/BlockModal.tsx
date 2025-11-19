@@ -19,9 +19,9 @@ const BlockModal = () => {
   const dispatch = useAppDispatch();
 
   const { blockUserMutation } = useBlockedUsers();
-  const { isOpen, isBlocked, targetId } = useAppSelector((state) => ({
-    ...state.blockModal,
-  }));
+  const { isOpen, isBlocked, targetId } = useAppSelector(
+    (state) => state.blockModal
+  );
 
   const {
     register,

@@ -16,7 +16,7 @@ const ImageModal = () => {
   const { isOpen } = useAppSelector((state) => ({ ...state.imageModal }));
   const { refetch } = useProfile();
   const { isError, isLoading, isSuccess, message } = useAppSelector(
-    (state) => ({ ...state.auth })
+    (state) => state.auth
   );
 
   const handleClose = useCallback(() => {

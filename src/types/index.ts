@@ -42,6 +42,15 @@ export interface NavItemProps {
   label: string;
 }
 
+export interface UserAvatarProps {
+  imgSrc?: string;
+  size?: string | number;
+  className?: string;
+  alt?: string;
+  isGoogleAvatar?: boolean;
+  fallback?: string;
+}
+
 export interface MenuItemProps {
   url: string;
   label: string;
@@ -1091,6 +1100,14 @@ export interface CategoryMenuListItemProps {
   disabled?: boolean;
   children?: React.ReactNode;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
+}
+
+export interface IUserAvatar {
+  (fallback: string): {
+    avatarSrc: string;
+    isGoogleImage: boolean;
+    currentUser: CurrentUserType | null;
+  };
 }
 
 export interface ICanShowMenu {

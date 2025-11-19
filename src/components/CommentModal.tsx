@@ -11,9 +11,9 @@ import { onClose, reset } from '../features/commentModal/commentModalSlice';
 
 const CommentModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, commentId, postId, replyId } = useAppSelector((state) => ({
-    ...state.commentModal,
-  }));
+  const { isOpen, commentId, postId, replyId } = useAppSelector(
+    (state) => state.commentModal
+  );
 
   const { deleteCommentMutation } = useComment(postId);
   const { deleteReplyMutation } = useReply(postId, commentId);
