@@ -25,7 +25,7 @@ import './Categories.scss';
 
 const Categories = () => {
   const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const { isPending, error, data, categoryMutation, updateMutation } =
     useCategory();
@@ -118,17 +118,20 @@ const Categories = () => {
     }
   };
 
-  const btnLabel = useMemo(() => {
-    return `${isEditing && categoryId ? 'Update' : 'Add Category'}`;
-  }, [categoryId, isEditing]);
+  const btnLabel = useMemo(
+    () => `${isEditing && categoryId ? 'Update' : 'Add Category'}`,
+    [categoryId, isEditing]
+  );
 
-  const isLoading = useMemo(() => {
-    return categoryMutation.isPending || updateMutation.isPending;
-  }, [categoryMutation.isPending, updateMutation.isPending]);
+  const isLoading = useMemo(
+    () => categoryMutation.isPending || updateMutation.isPending,
+    [categoryMutation.isPending, updateMutation.isPending]
+  );
 
-  const cancelBtnClasses = useMemo(() => {
-    return isEditing && categoryId ? 'show' : 'hide';
-  }, [categoryId, isEditing]);
+  const cancelBtnClasses = useMemo(
+    () => (isEditing && categoryId ? 'show' : 'hide'),
+    [categoryId, isEditing]
+  );
 
   useEffect(() => {
     if (isEditing && categoryId) {
@@ -137,17 +140,14 @@ const Categories = () => {
   }, [category, categoryId, isEditing, setCustomValue]);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClear();
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
   }, [handleClear]);
 
   return (

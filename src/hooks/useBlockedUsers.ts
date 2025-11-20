@@ -18,7 +18,7 @@ const blockUser = async (userId: string, reason: string) => {
 
 export const useBlockedUsers: IBlockedUsers = () => {
   const queryClient = useQueryClient();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const {
     isPending,

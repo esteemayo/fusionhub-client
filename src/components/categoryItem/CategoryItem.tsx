@@ -57,17 +57,14 @@ const CategoryItem = ({
   }, [category._id, categoryId, isEditing, isLoading]);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         handleClose();
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
   }, []);
 
   useEffect(() => {

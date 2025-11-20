@@ -962,7 +962,6 @@ export interface ProfileMenuListItemProps {
 
 export interface ProfileImageProps {
   name: string;
-  username: string;
   bio: string;
   image?: string;
   isFromGoogle?: boolean;

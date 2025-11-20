@@ -7,6 +7,9 @@ import ToggleButton from '../toggleButton/ToggleButton';
 
 import UserAvatar from '../UserAvatar';
 
+import ArrowLeftStartOnRectIcon from '../icons/ArrowLeftStartOnRectIcon';
+import ArrowRightStartOnRectIcon from '../icons/ArrowRightStartOnRectIcon';
+
 import { onClose } from '../../features/sidebar/sidebarSlice';
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -101,22 +104,7 @@ const Sidebar = () => {
                     className='sidebar__logout--btn'
                     aria-label='Logout'
                   >
-                    <svg
-                      aria-hidden='true'
-                      focusable='false'
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='size-6'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15'
-                      />
-                    </svg>
+                    <ArrowLeftStartOnRectIcon />
                     <span>{btnLabel}</span>
                   </button>
                 </div>
@@ -129,22 +117,7 @@ const Sidebar = () => {
                 className='sidebar__login'
                 aria-label='Login'
               >
-                <svg
-                  aria-hidden='true'
-                  focusable='false'
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9'
-                  />
-                </svg>
+                <ArrowRightStartOnRectIcon />
                 <span>Login</span>
               </NavLink>
             )}

@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 
 import AccountMenuItem from '../accountMenuItem/AccountMenuItem';
+import ArrowLeftEndOnRectIcon from '../icons/ArrowLeftEndOnRectIcon';
 
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -14,8 +15,8 @@ import './AccountMenu.scss';
 const AccountMenu = ({ query }: { query: string | null }) => {
   const dispatch = useAppDispatch();
 
-  const { isOpen } = useAppSelector((state) => ({ ...state.accountMenu }));
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { isOpen } = useAppSelector((state) => state.accountMenu);
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const { pathname } = useLocation();
   const path = pathname.split('/').pop();
@@ -86,22 +87,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
             aria-label='Log out'
             aria-busy={isLoading}
           >
-            <svg
-              aria-hidden='true'
-              focusable='false'
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75'
-              />
-            </svg>
+            <ArrowLeftEndOnRectIcon />
             <span>{btnLabel}</span>
           </button>
         </div>

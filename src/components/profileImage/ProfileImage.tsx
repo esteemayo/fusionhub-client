@@ -1,22 +1,19 @@
 import { useMemo, useState } from 'react';
 
-import Image from '../Image';
-import GoogleImage from '../GoogleImage';
-
+import UserAvatar from '../UserAvatar';
 import Badge from '../badge/Badge';
 import CameraIcon from '../icons/CameraIcon';
 
 import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
+import { excerpts } from '../../utils';
 import { ProfileImageProps } from '../../types';
-import { excerpts, userAvatarAlt } from '../../utils';
 
 import './ProfileImage.scss';
 
 const ProfileImage = ({
   name,
-  username,
   bio,
   image,
   isFromGoogle,
@@ -61,7 +58,6 @@ const ProfileImage = ({
     return isMore ? undefined : 'more';
   }, [isMore]);
 
-  const avatarSrc = image ?? '/user-default.jpg';
   const isGoogleImage = isFromGoogle && image?.startsWith('https');
 
   return (
@@ -69,25 +65,12 @@ const ProfileImage = ({
       <div className='profile-image__container'>
         <div className='profile-image__user'>
           <div className='profile-image__image'>
-            {isGoogleImage ? (
-              <GoogleImage
-                key={avatarSrc}
-                src={avatarSrc}
-                width={120}
-                height={120}
-                alt={userAvatarAlt(username, 'Google')}
-                className='profile-image__image--avatar'
-              />
-            ) : (
-              <Image
-                key={avatarSrc}
-                src={avatarSrc}
-                width={120}
-                height={120}
-                alt={userAvatarAlt(username, 'Default user')}
-                className='profile-image__image--avatar'
-              />
-            )}
+            <UserAvatar
+              imgSrc={image}
+              size={120}
+              isGoogleAvatar={isGoogleImage}
+              className='profile-image__image--avatar'
+            />
             {0 < progress && progress < 100 && (
               <div
                 aria-label={`Uploading ${progress}`}

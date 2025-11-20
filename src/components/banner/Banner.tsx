@@ -1,10 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 
-import Image from '../Image';
-import GoogleImage from '../GoogleImage';
-
 import UploadIcon from '../icons/UploadIcon';
+import UserAvatar from '../UserAvatar';
 import BannerMenu from '../bannerMenu/BannerMenu';
 
 import Upload from '../upload/Upload';
@@ -22,7 +20,7 @@ import { useMute } from '../../hooks/useMute';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 import { useAppDispatch } from '../../hooks/hooks';
 
-import { excerpts, userAvatarAlt } from '../../utils';
+import { excerpts } from '../../utils';
 import {
   BannerProps,
   BlockPayload,
@@ -186,7 +184,6 @@ const Banner = ({
     return () => window.removeEventListener('keydown', handleEscape);
   }, [onClose]);
 
-  const avatarSrc = image ?? '/user-default.jpg';
   const isGoogleImage = isFromGoogle && image?.startsWith('https');
 
   return (
@@ -203,25 +200,13 @@ const Banner = ({
       >
         <div className='banner__user'>
           <div className={`banner__user--image ${!!query && 'disabled'}`}>
-            {isGoogleImage ? (
-              <GoogleImage
-                key={avatarSrc}
-                src={avatarSrc}
-                width={120}
-                height={120}
-                alt={userAvatarAlt(username, 'Google')}
-                className={avatarClasses}
-              />
-            ) : (
-              <Image
-                key={avatarSrc}
-                src={avatarSrc}
-                width={120}
-                height={120}
-                alt={userAvatarAlt(username, 'Default user')}
-                className={avatarClasses}
-              />
-            )}
+            <UserAvatar
+              imgSrc={image}
+              size={120}
+              alt={query! && `${username}'s profile picture`}
+              isGoogleAvatar={isGoogleImage}
+              className={avatarClasses}
+            />
             {0 < progress && progress < 100 && (
               <div
                 aria-label={`Uploading ${progress}`}

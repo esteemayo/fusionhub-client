@@ -1,6 +1,10 @@
 import { useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import ArrowRightCircleIcon from '../icons/ArrowRightCircleIcon';
+import UserCircleIcon from '../icons/UserCircleIcon';
+import ArrowRightStartOnRectIcon from '../icons/ArrowRightStartOnRectIcon';
+
 import { useLogout } from '../../hooks/useLogout';
 import { useAppSelector } from '../../hooks/hooks';
 
@@ -10,7 +14,7 @@ const UserMenu = () => {
   const { pathname } = useLocation();
 
   const { isLoading, btnLabel, handleLogout } = useLogout();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const userMenuClasses = useMemo(
     () => (currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide'),
@@ -37,22 +41,7 @@ const UserMenu = () => {
           {currentUser ? (
             <li className='user-menu__list--item profile-link' role='none'>
               <Link to='/accounts/profile' role='menuitem' tabIndex={0}>
-                <svg
-                  aria-hidden='true'
-                  focusable='false'
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'
-                  />
-                </svg>
+                <UserCircleIcon />
                 <span>Account</span>
               </Link>
             </li>
@@ -61,22 +50,7 @@ const UserMenu = () => {
               {pathname !== '/login' && (
                 <li className='user-menu__list--item login-link' role='none'>
                   <Link to='/login' role='menuitem' tabIndex={0}>
-                    <svg
-                      aria-hidden='true'
-                      focusable='false'
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='size-6'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9'
-                      />
-                    </svg>
+                    <ArrowRightStartOnRectIcon />
                     <span>Login</span>
                   </Link>
                 </li>
@@ -84,22 +58,7 @@ const UserMenu = () => {
               {pathname !== '/register' && (
                 <li className='user-menu__list--item register-link' role='none'>
                   <Link to='/register' role='menuitem' tabIndex={0}>
-                    <svg
-                      aria-hidden='true'
-                      focusable='false'
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      strokeWidth={1.5}
-                      stroke='currentColor'
-                      className='size-6'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
-                      />
-                    </svg>
+                    <ArrowRightCircleIcon />
                     <span>Register</span>
                   </Link>
                 </li>
