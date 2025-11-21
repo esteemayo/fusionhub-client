@@ -64,6 +64,34 @@
     max-width: 26rem;
   }
 
+  &.article {
+    top: -8.25rem;
+
+    @media screen and (max-width: 56.25em) {
+      top: -9rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      top: -9.5rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      top: -10rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      top: -9rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      top: -9.75rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      top: -11.25rem;
+    }
+  }
+
   &.show {
     transform: scale(1);
     visibility: visible;

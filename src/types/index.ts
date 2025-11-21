@@ -44,11 +44,17 @@ export interface NavItemProps {
 
 export interface UserAvatarProps {
   imgSrc?: string;
+  type?: 'navbar' | 'sidebar';
   size?: string | number;
   className?: string;
   alt?: string;
   isGoogleAvatar?: boolean;
   fallback?: string;
+}
+
+export interface UserAvatarSkeletonProps {
+  size?: number;
+  className?: string;
 }
 
 export interface MenuItemProps {
@@ -70,6 +76,7 @@ export interface SocialMenuItemProps {
 
 export interface ContextMenuProps {
   isOpen: boolean;
+  type?: 'article';
   children: React.ReactNode;
 }
 
@@ -1105,6 +1112,7 @@ export interface IUserAvatar {
   (fallback: string): {
     avatarSrc: string;
     isGoogleImage: boolean;
+    isLoading: boolean;
     currentUser: CurrentUserType | null;
   };
 }

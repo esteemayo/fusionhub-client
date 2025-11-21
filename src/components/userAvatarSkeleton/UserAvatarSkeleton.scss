@@ -1,0 +1,15 @@
+@use '../../styles/animation.scss' as anim;
+@use '../../styles/responsive.scss' as bp;
+@use '../../styles/variables.scss' as vars;
+
+.user-avatar-skeleton {
+  border-radius: 100%;
+  background-image: linear-gradient(
+    90deg,
+    #c5c5c5 0%,
+    #f7f7f7 50%,
+    #b9b9b9 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}

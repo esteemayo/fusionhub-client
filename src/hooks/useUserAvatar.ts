@@ -2,14 +2,17 @@ import { IUserAvatar } from '../types';
 import { useAppSelector } from './hooks';
 
 export const useUserAvatar: IUserAvatar = (fallback = '/user-default.jpg') => {
-  const { user: currentUser, imageVersion } = useAppSelector(
-    (state) => state.auth
-  );
+  const {
+    user: currentUser,
+    imageVersion,
+    isLoading,
+  } = useAppSelector((state) => state.auth);
 
   if (!currentUser || !currentUser.details) {
     return {
       avatarSrc: fallback,
       isGoogleImage: false,
+      isLoading: false,
       currentUser: null,
     };
   }
@@ -29,6 +32,7 @@ export const useUserAvatar: IUserAvatar = (fallback = '/user-default.jpg') => {
   return {
     avatarSrc,
     isGoogleImage,
+    isLoading,
     currentUser,
   };
 };

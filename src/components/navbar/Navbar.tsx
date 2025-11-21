@@ -52,7 +52,7 @@ const Navbar = () => {
               aria-label='User account menu'
             >
               <div className='navbar__account'>
-                <UserAvatar size={32.5} className='navbar__account--avatar' />
+                <UserAvatar type='navbar' className='navbar__account--avatar' />
               </div>
               <UserMenu />
             </div>

@@ -1,15 +1,17 @@
 import { useLocation } from 'react-router-dom';
 
+import PlusIcon from '../icons/PlusIcon';
+
 import { onOpen } from '../../features/postModal/postModalSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import './AddPost.scss';
 
 const AddPost = () => {
+  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
 
-  const dispatch = useAppDispatch();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -40,20 +42,7 @@ const AddPost = () => {
         </svg>
       </div>
       <button type='button' className='add-post__btn' onClick={handleOpen}>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className='size-6'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M12 4.5v15m7.5-7.5h-15'
-          />
-        </svg>
+        <PlusIcon />
       </button>
     </div>
   );

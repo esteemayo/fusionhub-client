@@ -22,7 +22,9 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
 
   const { isOpen } = useAppSelector((state) => state.sidebar);
-  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { isLoading, user: currentUser } = useAppSelector(
+    (state) => state.auth
+  );
 
   const { btnLabel, handleLogout } = useLogout(isOpen, onClose);
 
@@ -41,6 +43,12 @@ const Sidebar = () => {
   const sidebarClasses = useMemo(
     () => (isOpen ? 'sidebar show' : 'sidebar hide'),
     [isOpen]
+  );
+
+  const accountNameClasses = useMemo(
+    () =>
+      isLoading ? 'sidebar__account--name truncate' : 'sidebar__account--name',
+    [isLoading]
   );
 
   return (
@@ -87,9 +95,13 @@ const Sidebar = () => {
                   className='sidebar__account'
                   onClick={handleClose}
                 >
-                  <UserAvatar size={70} className='sidebar__account--avatar' />
+                  <UserAvatar
+                    size={!isLoading ? 56 : undefined}
+                    type='sidebar'
+                    className='sidebar__account--avatar'
+                  />
                   <span
-                    className='sidebar__account--name'
+                    className={accountNameClasses}
                     aria-label={`Logged in as ${
                       currentUser?.details.name ?? 'User'
                     }`}

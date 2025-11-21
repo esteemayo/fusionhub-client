@@ -1,3 +1,4 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
@@ -110,6 +111,7 @@
     font-size: 100%;
     letter-spacing: 0.5rem;
     color: vars.$clr-white;
+    // animation: spin 5s linear infinite;
 
     @media screen and (max-width: 56.25em) {
       font-size: 1.7rem;

@@ -150,6 +150,13 @@
       font-weight: 700;
       font-size: 1.5rem;
       white-space: wrap;
+
+      &.truncate {
+        width: 13rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
     }
   }
 
