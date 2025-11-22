@@ -55,6 +55,11 @@ const Upload = ({
 }: UploadProps) => {
   const localRef = useRef<HTMLInputElement | null>(null);
 
+  const updateLiveRegion = (message: string) => {
+    const el = document.getElementById(`${id}-progress`);
+    if (el) el.textContent = message;
+  };
+
   const onError = (err: unknown) => {
     console.log(err);
     toast.error('Image upload failed!');
@@ -69,16 +74,27 @@ const Upload = ({
     progress: ProgressEvent<XMLHttpRequestEventTarget>
   ) => {
     console.log(progress);
-    setProgress(Math.round(progress.loaded / progress.total) * 100);
+    const percent = Math.round(progress.loaded / progress.total) * 100;
+    setProgress(percent);
+
+    updateLiveRegion(`${percent}% uploaded`);
   };
 
   const handleClick = () => {
     localRef.current?.click();
   };
 
-  const uploadClasses = useMemo(() => {
-    return !children ? 'upload show' : 'upload hide';
-  }, [children]);
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  const uploadClasses = useMemo(
+    () => (!children ? 'upload show' : 'upload hide'),
+    [children]
+  );
 
   return (
     <IKContext
@@ -97,10 +113,26 @@ const Upload = ({
           ref={mergeRefs([localRef, ref])}
           accept={`${type}/*`}
           disabled={disabled}
+          aria-disabled={disabled}
+          aria-label={label}
+          aria-describedby={`${id}-progress`}
+          tabIndex={0}
           className='upload__control'
         />
+        <span id={`${id}-progress`} aria-live='polite' className='sr-only' />
       </div>
-      {children && <div onClick={handleClick}>{children}</div>}
+      {children && (
+        <div
+          role='button'
+          tabIndex={0}
+          aria-controls={id}
+          aria-label={`Upload ${type}`}
+          onClick={handleClick}
+          onKeyDown={handleKeyPress}
+        >
+          {children}
+        </div>
+      )}
     </IKContext>
   );
 };

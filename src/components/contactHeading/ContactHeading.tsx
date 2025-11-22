@@ -16,16 +16,23 @@ const ContactHeading = ({
       : 'contact-heading__paragraph';
   }, [text]);
 
+  const headingId = 'contact-heading-title';
+  const subtitleId = 'contact-heading-subtitle';
+
+  const HeadingTag = type === 'lg' ? 'h2' : type === 'md' ? 'h3' : 'h4';
+
   return (
-    <div className='contact-heading'>
-      {type === 'lg' ? (
-        <h2 className='contact-heading__header lg'>{title}</h2>
-      ) : type === 'md' ? (
-        <h3 className='contact-heading__header md'>{title}</h3>
-      ) : (
-        <h4 className='contact-heading__header sm'>{title}</h4>
-      )}
-      <p className={paragraphClasses}>{subtitle}</p>
+    <div
+      className='contact-heading'
+      aria-labelledby={headingId}
+      aria-describedby={subtitleId}
+    >
+      <HeadingTag id={headingId} className={`contact-heading__header ${type}`}>
+        {title}
+      </HeadingTag>
+      <p id={subtitleId} className={paragraphClasses}>
+        {subtitle}
+      </p>
     </div>
   );
 };

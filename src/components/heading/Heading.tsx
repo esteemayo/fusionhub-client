@@ -4,15 +4,29 @@ import { HeadingProps } from '../../types';
 
 import './Heading.scss';
 
-const Heading = ({ title, subtitle, center }: HeadingProps) => {
+const Heading = ({
+  title,
+  subtitle,
+  center,
+  titleId,
+  subtitleId,
+}: HeadingProps) => {
   const headingClasses = useMemo(() => {
     return center ? 'heading center' : 'heading';
   }, [center]);
 
   return (
-    <div className={headingClasses}>
-      <h1 className='heading__main'>{title}</h1>
-      <h2 className='heading__sub'>{subtitle}</h2>
+    <div
+      className={headingClasses}
+      aria-labelledby={titleId}
+      aria-describedby={subtitleId}
+    >
+      <h1 id={titleId} className='heading__main'>
+        {title}
+      </h1>
+      <h2 id={subtitleId} className='heading__sub'>
+        {subtitle}
+      </h2>
     </div>
   );
 };

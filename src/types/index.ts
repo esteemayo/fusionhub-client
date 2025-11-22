@@ -108,6 +108,8 @@ export interface HeadingProps {
   title: string;
   subtitle: string;
   center?: boolean;
+  titleId?: string;
+  subtitleId?: string;
 }
 
 export interface EmptyStateProps {

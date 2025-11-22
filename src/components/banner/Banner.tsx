@@ -194,6 +194,7 @@ const Banner = ({
         </div>
       )}
       <Upload
+        id='avatar'
         disabled={(0 < progress && progress < 100) || !!query}
         setData={onChangeImageData}
         setProgress={onChangeImageProgress}
@@ -221,6 +222,7 @@ const Banner = ({
       <div className='banner__box'>
         <div className={wrapperClasses}>
           <Upload
+            id='banner'
             disabled={0 < advancement && advancement < 100}
             setData={onChangeCoverData}
             setProgress={onChangeCoverProgress}

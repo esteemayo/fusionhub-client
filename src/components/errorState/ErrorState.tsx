@@ -13,7 +13,12 @@ const ErrorState = ({
   alt,
 }: ErrorStateProps) => {
   return (
-    <section className='error-state'>
+    <section
+      className='error-state'
+      role='alert'
+      aria-labelledby='error-title'
+      aria-describedby='error-subtitle'
+    >
       <div className='error-state__container'>
         <div className='error-state__wrapper'>
           <div className='error-state__box'>
@@ -26,7 +31,13 @@ const ErrorState = ({
                 className='error-state__box--img'
               />
             )}
-            <Heading title={title} subtitle={subtitle} center={center} />
+            <Heading
+              title={title}
+              subtitle={subtitle}
+              center={center}
+              titleId='error-title'
+              subtitleId='error-subtitle'
+            />
           </div>
         </div>
       </div>
