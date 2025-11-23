@@ -9,6 +9,7 @@ import './BlockedUsers.scss';
 
 const BlockedUsers = () => {
   const { isPending, error, blockedUsers } = useBlockedUsers();
+  const noBlockedUsers = (blockedUsers ?? []).length < 1;
 
   return (
     <section className='blocked-users'>
@@ -24,7 +25,7 @@ const BlockedUsers = () => {
           <div className='blocked-users__wrapper--loader'>
             <Spinner />
           </div>
-        ) : (blockedUsers ?? []).length < 1 && !isPending ? (
+        ) : noBlockedUsers && !isPending ? (
           <EmptyMessage
             title='No blocked users yet'
             subtitle='This user hasn’t blocked any user.'

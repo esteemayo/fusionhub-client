@@ -17,16 +17,26 @@ const ProfileComments = ({
   onChangeCardId,
   fetchNextPage,
 }: ProfileCommentsProps) => {
+  const noComments = (comments ?? []).length < 1;
+
   return (
-    <div className='profile-comments'>
-      {(comments ?? [])?.length < 1 && !isLoading ? (
+    <div
+      className='profile-comments'
+      role='region'
+      aria-label='User comments'
+      aria-busy={isLoading}
+      aria-live='polite'
+    >
+      {noComments && !isLoading ? (
         <EmptyMessage
           title='No Comments Yet'
           subtitle="It looks like there aren't any comments here yet. Be the first to start the conversation or check back later to see what others are saying."
           center
         />
       ) : isLoading ? (
-        <ProfileSpinner />
+        <div role='status' aria-live='assertive' aria-label='Loading comments'>
+          <ProfileSpinner />
+        </div>
       ) : error ? (
         <EmptyMessage
           title='Unable to Load Comments'
@@ -41,7 +51,15 @@ const ProfileComments = ({
           dataLength={comments.length}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
-          loader={<ProfileSpinner />}
+          loader={
+            <div
+              role='status'
+              aria-live='assertive'
+              aria-label='Loading more comments'
+            >
+              <ProfileSpinner />
+            </div>
+          }
           endMessage={null}
         >
           {comments.map((comment) => {

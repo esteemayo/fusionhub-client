@@ -97,7 +97,12 @@ const ArticleCommentForm = ({
   }, [isShow, value]);
 
   return (
-    <div ref={containerRef} className='article-comment-form'>
+    <div
+      ref={containerRef}
+      className='article-comment-form'
+      aria-expanded={isShow}
+      aria-label='Write a comment'
+    >
       <div ref={innerRef} className='article-comment-form__inner'>
         <form onSubmit={onSubmit} className={formClasses}>
           <textarea

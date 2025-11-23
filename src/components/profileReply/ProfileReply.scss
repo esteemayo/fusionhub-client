@@ -252,11 +252,9 @@
   }
 
   &__info {
-    &--author {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 
     &--name {
       text-transform: capitalize;

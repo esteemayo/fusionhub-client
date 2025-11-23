@@ -13,6 +13,8 @@ const MutedComments = ({
   error,
   mutedComments,
 }: MutedCommentsProps) => {
+  const noMutedComments = (mutedComments ?? []).length < 1;
+
   return (
     <section className='muted-comments'>
       <div className='muted-comments__container'>
@@ -25,7 +27,7 @@ const MutedComments = ({
             <div className='muted-comments__wrapper--loader'>
               <Spinner />
             </div>
-          ) : (mutedComments ?? []).length < 1 && !isPending ? (
+          ) : noMutedComments && !isPending ? (
             <EmptyMessage
               title='No muted comment yet'
               subtitle='This user hasn’t muted any comment.'

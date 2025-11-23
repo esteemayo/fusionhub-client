@@ -8,6 +8,7 @@ import { ArticleMenusProps } from '../../types';
 import './ArticleMenus.scss';
 
 const ArticleAction = ({
+  postId,
   currentUser,
   isAdmin,
   isOpen,
@@ -38,7 +39,11 @@ const ArticleAction = ({
   }, [currentUser, isAdmin, isPostAuthor, postAuthorRole]);
 
   return (
-    <div className={articleClasses}>
+    <div
+      className={articleClasses}
+      aria-expanded={isOpen}
+      aria-controls={`article-menu-${postId}`}
+    >
       <button
         type='button'
         onClick={onToggle}

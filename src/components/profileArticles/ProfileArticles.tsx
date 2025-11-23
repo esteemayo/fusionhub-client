@@ -22,12 +22,22 @@ const ProfileArticles = ({
   onChangeCardId,
   fetchNextPage,
 }: ProfileArticlesProps) => {
+  const noPosts = (posts ?? []).length < 1;
+
   return (
-    <div className='profile-articles'>
-      {(posts ?? [])?.length < 1 && !isLoading ? (
+    <div
+      className='profile-articles'
+      role='region'
+      aria-label='User articles'
+      aria-busy={isLoading}
+      aria-live='polite'
+    >
+      {noPosts && !isLoading ? (
         <EmptyMessage title={title} subtitle={subtitle} center />
       ) : isLoading ? (
-        <ProfileSpinner />
+        <div role='status' aria-live='assertive' aria-label='Loading articles'>
+          <ProfileSpinner />
+        </div>
       ) : error ? (
         <EmptyMessage
           title='Unable to Load Articles'
@@ -42,7 +52,15 @@ const ProfileArticles = ({
           dataLength={posts.length}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
-          loader={<ProfileSpinner />}
+          loader={
+            <div
+              role='status'
+              aria-live='assertive'
+              aria-label='Loading more articles'
+            >
+              <ProfileSpinner />
+            </div>
+          }
           endMessage={null}
         >
           {posts.map((post) => {

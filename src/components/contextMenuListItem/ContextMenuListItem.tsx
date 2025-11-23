@@ -23,14 +23,15 @@ const ContextMenuListItem = ({
         type='button'
         onClick={onAction}
         disabled={disabled}
-        aria-label={label}
         aria-disabled={disabled}
         className='context-menu-list-item__btn'
       >
-        <span aria-label={label} aria-disabled={disabled}>
-          {label}
-        </span>
-        {children}
+        <span>{label}</span>
+        {children && (
+          <span className='context-menu-list-item__addon' aria-hidden='true'>
+            {children}
+          </span>
+        )}
       </button>
     </li>
   );

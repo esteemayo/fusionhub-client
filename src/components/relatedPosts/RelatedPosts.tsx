@@ -21,12 +21,14 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
     enabled: !!tags,
   });
 
+  const noPosts = (data ?? []).length < 1;
+
   return (
     <section className='related-posts'>
       <div className='related-posts__container'>
         <h5 className='related-posts__container--heading'>Related posts</h5>
         <div className='related-posts__container--wrapper'>
-          {(data ?? [])?.length < 1 && !isPending ? (
+          {noPosts && !isPending ? (
             <EmptyMessage
               title='No related posts found.'
               subtitle='It seems there are no posts related to the current topic. Check back later or explore other topics to find more content.'

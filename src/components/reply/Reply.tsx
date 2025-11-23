@@ -65,16 +65,14 @@ const Reply = ({
 
   const { formattedDate } = useDate(createdAt);
 
-  const isMuted = useMemo(() => {
-    return (
+  const isMuted = useMemo(
+    () =>
       !!(mutedList?.mutedReplies ?? []).some((reply) => reply.id === replyId) ||
-      false
-    );
-  }, [mutedList?.mutedReplies, replyId]);
+      false,
+    [mutedList?.mutedReplies, replyId]
+  );
 
-  const commentId = useMemo(() => {
-    return comment._id;
-  }, [comment._id]);
+  const commentId = useMemo(() => comment._id, [comment._id]);
 
   const queryKey = ['replies', commentId];
 
@@ -104,15 +102,11 @@ const Reply = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setIsMore((value) => {
-      return !value;
-    });
+    setIsMore(true);
   };
 
   const handleCollapse = () => {
-    if (isMore) {
-      setIsMore(false);
-    }
+    setIsMore(false);
   };
 
   const handleCopy = () => {
@@ -348,8 +342,10 @@ const Reply = ({
   );
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
+
         if (isShow) {
           handleClose();
         } else if (isOpen) {
@@ -358,8 +354,8 @@ const Reply = ({
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
   }, [handleCancel, isOpen, isShow, value]);
 
   useEffect(() => {
@@ -372,9 +368,9 @@ const Reply = ({
     <>
       <article
         id={`reply-${replyId}`}
+        className={replyClasses}
         aria-labelledby={`reply-wrapper-${replyId}`}
         aria-describedby={`reply-content-${replyId}`}
-        className={replyClasses}
       >
         <div className='reply__container'>
           <div className='reply__author'>
@@ -453,7 +449,7 @@ const Reply = ({
             </p>
           </div>
         </div>
-        <div role='group' aria-label='Reply actions' className='reply__actions'>
+        <div className='reply__actions' role='group' aria-label='Reply actions'>
           <CommentReplyAction
             size='sm'
             url={replyUrl}

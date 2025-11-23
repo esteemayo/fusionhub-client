@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { BannerMenuListItemProps } from '../../types';
 
 import './BannerMenuListItem.scss';

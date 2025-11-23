@@ -9,6 +9,8 @@ import { MutedUsersProps } from '../../types';
 import './MutedUsers.scss';
 
 const MutedUsers = ({ isPending, error, mutedUsers }: MutedUsersProps) => {
+  const noMutedUsers = (mutedUsers ?? []).length < 1;
+
   return (
     <section className='muted-users'>
       <div className='muted-users__container'>
@@ -21,7 +23,7 @@ const MutedUsers = ({ isPending, error, mutedUsers }: MutedUsersProps) => {
             <div className='muted-users__wrapper--loader'>
               <Spinner />
             </div>
-          ) : (mutedUsers ?? []).length < 1 && !isPending ? (
+          ) : noMutedUsers && !isPending ? (
             <EmptyMessage
               title='No muted users yet'
               subtitle='This user hasn’t muted any user.'

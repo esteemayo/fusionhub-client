@@ -8,7 +8,7 @@ const MutedList = ({ lists }: MutedListProps) => {
   return (
     <div className='muted-list'>
       <div className='muted-list__container'>
-        {(lists ?? [])?.map((list) => {
+        {(lists ?? []).map((list) => {
           return <MutedListItem key={list.id} {...list} />;
         })}
       </div>

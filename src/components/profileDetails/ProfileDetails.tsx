@@ -49,47 +49,59 @@ const ProfileDetails = ({
   }, [createdAt]);
 
   return (
-    <section className='profile-details'>
+    <section className='profile-details' aria-label='User profile details'>
       <div className='profile-details__container'>
         <div className='profile-details__user'>
-          <h3 className='profile-details__user--name'>{name}</h3>
+          <h3 className='profile-details__user--name' aria-label={name}>
+            {name}
+          </h3>
           <Badge role={role} />
         </div>
-        <div className='profile-details__wrapper'>
+        <div
+          className='profile-details__wrapper'
+          aria-label='Account information'
+        >
           <div className='profile-details__wrapper--username'>
             <AtSymbolIcon />
-            <span>{username}</span>
+            <span aria-label='username'>{username}</span>
           </div>
-          <span className='profile-details__wrapper--dot'>•</span>
+          <span className='profile-details__wrapper--dot' aria-hidden='true'>
+            •
+          </span>
           <div className='profile-details__wrapper--email'>
             <EnvelopeIcon />
-            <span>{email}</span>
+            <span aria-label='email address'>{email}</span>
           </div>
         </div>
       </div>
       {bio && (
         <div className='profile-details__box'>
-          <span className='profile-details__box--bio'>{bio}</span>
+          <p className='profile-details__box--bio' aria-label='user biography'>
+            {bio}
+          </p>
         </div>
       )}
-      <div className='profile-details__wrap'>
+      <dl className='profile-details__wrap'>
         {country && (
           <div className='profile-details__wrap--box'>
             <MapPinIcon />
-            <span>{country}</span>
+            <dt className='sr-only'>Location</dt>
+            <dd>{country}</dd>
           </div>
         )}
         {dateOfBirth && (
           <div className='profile-details__wrap--box'>
             <BalloonIcon />
-            <span>Born {formattedDateOfBirth}</span>
+            <dt className='sr-only'>Date of Birth</dt>
+            <dd>Born {formattedDateOfBirth}</dd>
           </div>
         )}
         <div className='profile-details__wrap--box'>
           <CalendarDaysIcon />
-          <span>Joined {dateRegistered}</span>
+          <dt className='sr-only'>Account creation date</dt>
+          <dd>Joined {dateRegistered}</dd>
         </div>
-      </div>
+      </dl>
     </section>
   );
 };

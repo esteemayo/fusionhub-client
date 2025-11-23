@@ -13,6 +13,8 @@ const MutedReplies = ({
   error,
   mutedReplies,
 }: MutedRepliesProps) => {
+  const noMutedReplies = (mutedReplies ?? []).length < 1;
+
   return (
     <section className='muted-replies'>
       <div className='muted-replies__container'>
@@ -25,7 +27,7 @@ const MutedReplies = ({
             <div className='muted-replies__wrapper--loader'>
               <Spinner />
             </div>
-          ) : (mutedReplies ?? []).length < 1 && !isPending ? (
+          ) : noMutedReplies && !isPending ? (
             <EmptyMessage
               title='No muted replies yet'
               subtitle='This user hasn’t muted any user.'

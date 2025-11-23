@@ -17,16 +17,26 @@ const ProfileReplies = ({
   onChangeCardId,
   fetchNextPage,
 }: ProfileRepliesProps) => {
+  const noReplies = (replies ?? []).length < 1;
+
   return (
-    <div className='profile-replies'>
-      {(replies ?? [])?.length < 1 && !isLoading ? (
+    <div
+      className='profile-replies'
+      role='region'
+      aria-label='User replies'
+      aria-busy={isLoading}
+      aria-live='polite'
+    >
+      {noReplies && !isLoading ? (
         <EmptyMessage
           title='No Replies Yet'
           subtitle='You haven’t replied to any posts yet. Once you start engaging in conversations, your replies will appear here. Explore posts and join the discussion to see your activity!'
           center
         />
       ) : isLoading ? (
-        <ProfileSpinner />
+        <div role='status' aria-live='assertive' aria-label='Loading replies'>
+          <ProfileSpinner />
+        </div>
       ) : error ? (
         <EmptyMessage
           title='Unable to Load Replies'
@@ -41,7 +51,15 @@ const ProfileReplies = ({
           dataLength={replies.length}
           next={fetchNextPage}
           hasMore={hasNextPage}
-          loader={<ProfileSpinner />}
+          loader={
+            <div
+              role='status'
+              aria-live='assertive'
+              aria-label='Loading more replies'
+            >
+              <ProfileSpinner />
+            </div>
+          }
           endMessage={null}
         >
           {replies.map((reply) => {

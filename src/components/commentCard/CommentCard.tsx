@@ -65,17 +65,15 @@ const CommentCard = ({
   const { mutedList } = useMute();
   const showMenuButton = canShowMenu(currentUser, author);
 
-  const isMuted = useMemo(() => {
-    return (
+  const isMuted = useMemo(
+    () =>
       !!(mutedList?.mutedComments ?? []).some(
         (comment) => comment.id === commentId
-      ) || false
-    );
-  }, [commentId, mutedList?.mutedComments]);
+      ) || false,
+    [commentId, mutedList?.mutedComments]
+  );
 
-  const postId = useMemo(() => {
-    return post._id;
-  }, [post._id]);
+  const postId = useMemo(() => post._id, [post._id]);
 
   const queryKey = ['comments', postId];
 
@@ -100,6 +98,15 @@ const CommentCard = ({
   const [copied, setCopied] = useState(false);
 
   const commentUrl = `${window.location.origin}/post/${slug}#comment-${commentId}`;
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    setIsMore(true);
+  };
+
+  const handleCollapse = () => {
+    setIsMore(false);
+  };
 
   const toggleActionHandler = (e?: React.MouseEvent<HTMLButtonElement>) => {
     e?.stopPropagation();
@@ -127,12 +134,6 @@ const CommentCard = ({
       if (isShow) {
         handleClose();
       }
-    }
-  };
-
-  const handleCollapse = () => {
-    if (isMore) {
-      setIsMore(false);
     }
   };
 
@@ -179,13 +180,6 @@ const CommentCard = ({
 
     if (!currentUser) return;
     onCancelHandler();
-  };
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setIsMore((value) => {
-      return !value;
-    });
   };
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -314,9 +308,10 @@ const CommentCard = ({
     [author?._id, userId]
   );
 
-  const isPostAuthor = useMemo(() => {
-    return postAuthorId === userId;
-  }, [postAuthorId, userId]);
+  const isPostAuthor = useMemo(
+    () => postAuthorId === userId,
+    [postAuthorId, userId]
+  );
 
   const url = useMemo(
     () =>
@@ -352,8 +347,10 @@ const CommentCard = ({
   }, [data]);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
+
         if (isShow) {
           handleClose();
         } else if (isOpen) {
@@ -362,8 +359,8 @@ const CommentCard = ({
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
   }, [isOpen, isShow, onCancelHandler]);
 
   useEffect(() => {
@@ -375,8 +372,9 @@ const CommentCard = ({
   return (
     <article
       id={`comment-${commentId}`}
-      aria-labelledby={`comment-author-${commentId}`}
       className='comment-card'
+      aria-labelledby={`comment-author-${commentId}`}
+      aria-describedby={`comment-content-${commentId}`}
     >
       <div className='comment-card__container'>
         <div className='comment-card__user'>
@@ -395,8 +393,8 @@ const CommentCard = ({
             <div className='comment-card__date'>
               <time
                 dateTime={new Date(createdAt).toISOString()}
-                aria-label={`Posted on ${formattedDate}`}
                 className='comment-card__date--time'
+                aria-label={`Posted on ${formattedDate}`}
               >
                 {formattedDate}
               </time>
@@ -457,7 +455,11 @@ const CommentCard = ({
           </p>
         </div>
       </div>
-      <div className='comment-card__actions'>
+      <div
+        className='comment-card__actions'
+        role='group'
+        aria-label='Reply actions'
+      >
         <CommentReplyAction
           url={commentUrl}
           title='Check out this comment'

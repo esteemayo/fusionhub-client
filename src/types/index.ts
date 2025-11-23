@@ -848,6 +848,7 @@ export interface ArticleActionItemProps {
 }
 
 export interface ArticleMenusProps {
+  postId: string;
   currentUser: CurrentUserType | null;
   isAdmin: boolean;
   isOpen: boolean;

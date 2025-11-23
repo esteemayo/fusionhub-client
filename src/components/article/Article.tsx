@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import Image from '../Image';
-import GoogleImage from '../GoogleImage';
+import UserAvatar from '../UserAvatar';
 
-import Badge from '../badge/Badge';
 import Tooltip from '../tooltip/Tooltip';
+import Badge from '../badge/Badge';
+import AtSymbolIcon from '../icons/AtSymbolIcon';
 
 import ArticleAction from '../articleAction/ArticleAction';
 import ArticleMenus from '../articleMenus/ArticleMenus';
@@ -54,7 +55,7 @@ const Article = ({
   const queryClient = useQueryClient();
 
   const { blockedUsers } = useBlockedUsers();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const postUrl = `${window.location.origin}/post/${post?.slug}`;
 
@@ -129,18 +130,12 @@ const Article = ({
   };
 
   const handleLike = () => {
-    if (!currentUser) {
-      return null;
-    }
-
+    if (!currentUser) return null;
     likeMutation.mutate();
   };
 
   const handleDislike = () => {
-    if (!currentUser) {
-      return null;
-    }
-
+    if (!currentUser) return null;
     disLikeMutation.mutate();
   };
 
@@ -193,55 +188,59 @@ const Article = ({
     });
   };
 
-  const parsedDesc = useMemo(() => {
-    return excerpts(parsedText, 250);
-  }, [parsedText]);
+  const parsedDesc = useMemo(() => excerpts(parsedText, 250), [parsedText]);
 
-  const isLiked = useMemo(() => {
-    return !!(post.likes ?? []).some((id) => id === currentUser?.details._id);
-  }, [post, currentUser?.details._id]);
+  const isLiked = useMemo(
+    () => !!(post.likes ?? []).some((id) => id === currentUser?.details._id),
+    [post, currentUser?.details._id]
+  );
 
-  const isDisliked = useMemo(() => {
-    return !!(post.dislikes ?? []).some(
-      (id) => id === currentUser?.details._id
-    );
-  }, [post, currentUser?.details._id]);
+  const isDisliked = useMemo(
+    () => !!(post.dislikes ?? []).some((id) => id === currentUser?.details._id),
+    [post, currentUser?.details._id]
+  );
 
-  const isAdmin = useMemo(() => {
-    return currentUser?.role === 'admin';
-  }, [currentUser?.role]);
+  const isAdmin = useMemo(
+    () => currentUser?.role === 'admin',
+    [currentUser?.role]
+  );
 
-  const postAuthorId = useMemo(() => {
-    return post?.author._id;
-  }, [post?.author._id]);
+  const postAuthorId = useMemo(() => post?.author._id, [post?.author._id]);
 
-  const currentUserId = useMemo(() => {
-    return currentUser?.details._id;
-  }, [currentUser?.details._id]);
+  const currentUserId = useMemo(
+    () => currentUser?.details._id,
+    [currentUser?.details._id]
+  );
 
-  const isPostAuthor = useMemo(() => {
-    return postAuthorId === currentUserId;
-  }, [postAuthorId, currentUserId]);
+  const isPostAuthor = useMemo(
+    () => postAuthorId === currentUserId,
+    [postAuthorId, currentUserId]
+  );
 
-  const url = useMemo(() => {
-    return postAuthorId === currentUserId
-      ? '#'
-      : `/accounts/profile?username=${post.author.username}`;
-  }, [currentUserId, post.author.username, postAuthorId]);
+  const url = useMemo(
+    () =>
+      postAuthorId === currentUserId
+        ? '#'
+        : `/accounts/profile?username=${post.author.username}`,
+    [currentUserId, post.author.username, postAuthorId]
+  );
 
-  const isBlocked = useMemo(() => {
-    return (
-      (blockedUsers ?? []).some((user) => user.id === post.author._id) || false
-    );
-  }, [blockedUsers, post.author._id]);
+  const isBlocked = useMemo(
+    () =>
+      (blockedUsers ?? []).some((user) => user.id === post.author._id) || false,
+    [blockedUsers, post.author._id]
+  );
 
-  const coverClasses = useMemo(() => {
-    return isBlocked ? 'article__cover--img blurred' : 'article__cover--img';
-  }, [isBlocked]);
+  const coverClasses = useMemo(
+    () => (isBlocked ? 'article__cover--img blurred' : 'article__cover--img'),
+    [isBlocked]
+  );
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
+
         if (isOpen) {
           handleClose();
         } else if (isShow) {
@@ -250,8 +249,8 @@ const Article = ({
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
   }, [handleCancel, isOpen, isShow]);
 
   useEffect(() => {
@@ -264,31 +263,33 @@ const Article = ({
     }
   }, [error]);
 
+  const isGoogleImage =
+    post.author.fromGoogle && post.author.image?.startsWith('https');
+
   return (
-    <article className='article'>
+    <article
+      className='article'
+      role='article'
+      aria-labelledby={`article-title-${postId}`}
+      aria-describedby={`article-desc-${postId}`}
+    >
       <div className='article__container'>
-        <Link to={url} aria-label={url} className='article__cover'>
-          {post.author.fromGoogle && post.author.image?.startsWith('https') ? (
-            <GoogleImage
-              src={post.author.image ?? '/user-default.jpg'}
-              width={80}
-              height={80}
-              alt={post.author.username}
-              className={coverClasses}
-            />
-          ) : (
-            <Image
-              src={post.author.image ?? '/user-default.jpg'}
-              width={60}
-              height={60}
-              alt={post.author.username}
-              className={coverClasses}
-            />
-          )}
+        <Link
+          to={url}
+          className='article__cover'
+          aria-label={`Visit profile of ${post.author.username}`}
+        >
+          <UserAvatar
+            imgSrc={post.author.image}
+            size={80}
+            isGoogleAvatar={isGoogleImage}
+            alt={`${post.author.username}’s profile picture`}
+            className={coverClasses}
+          />
         </Link>
         <div className='article__wrapper'>
-          <div className='article__profile'>
-            <Link to={url} aria-label={url}>
+          <div className='article__profile' role='heading' aria-level={3}>
+            <Link to={url} aria-label={`Profile: ${post.author.name}`}>
               <Tooltip
                 title={post.author.name}
                 className='article__profile--name'
@@ -298,31 +299,18 @@ const Article = ({
             </Link>
             <Badge role={post.author.role} />
             <div className='article__profile--username'>
-              <Link to={url} aria-label={url}>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  strokeWidth={1.5}
-                  stroke='currentColor'
-                  className='size-6'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25'
-                  />
-                </svg>
-                <span aria-label={post.author.username}>
-                  {post.author.username}
-                </span>
+              <Link to={url} aria-label={`Username: ${post.author.username}`}>
+                <AtSymbolIcon />
+                <span>{post.author.username}</span>
               </Link>
             </div>
-            <span className='article__profile--dot'>•</span>
+            <span className='article__profile--dot' aria-hidden='true'>
+              •
+            </span>
             <time
               dateTime={post.createdAt}
-              aria-label={formattedDate}
               className='article__profile--time'
+              aria-label={`Published on ${formattedDate}`}
             >
               {formattedDate}
             </time>
@@ -338,13 +326,21 @@ const Article = ({
               />
             </div>
           )}
-          <div className='article__desc'>
+          <div id={`article-desc-${postId}`} className='article__desc'>
             {parse(parsedDesc)}
-            <button type='button' onClick={handleClick} aria-label='more'>
+            <button
+              type='button'
+              onClick={handleClick}
+              aria-label={`Read more about: ${post.title}`}
+            >
               more
             </button>
           </div>
-          <div className='article__actions'>
+          <div
+            className='article__actions'
+            role='group'
+            aria-label='Post actions'
+          >
             <ArticleAction
               comments={post.comments}
               likeCount={post.likeCount}
@@ -364,6 +360,7 @@ const Article = ({
               onShare={handleShare}
             />
             <ArticleMenus
+              postId={postId}
               currentUser={currentUser}
               isAdmin={isAdmin}
               isOpen={isOpen}

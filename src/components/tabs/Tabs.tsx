@@ -23,6 +23,37 @@ const Tabs = ({ tabs, defaultValue, onChange, renderContent }: TabsProps) => {
     }, 400);
   };
 
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    const lastIndex = tabs.length - 1;
+    let nextIndex = index;
+
+    if (e.key === 'ArrowRight') {
+      nextIndex = index === lastIndex ? 0 : index + 1;
+    } else if (e.key === 'ArrowLeft') {
+      nextIndex = index === 0 ? lastIndex : index - 1;
+    } else if (e.key === 'Home') {
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      nextIndex = lastIndex;
+    } else {
+      return;
+    }
+
+    e.preventDefault();
+
+    const nextTab = tabs[nextIndex];
+    setActiveTab(nextTab);
+    onChange?.(nextTab);
+
+    tabsRef.current[nextIndex]?.focus();
+    setFadeKey((value) => {
+      return value + 1;
+    });
+  };
+
   const btnClasses = useCallback(
     (tab: string) => (activeTab === tab ? 'tabs__btn active' : 'tabs__btn'),
     [activeTab]
@@ -50,24 +81,46 @@ const Tabs = ({ tabs, defaultValue, onChange, renderContent }: TabsProps) => {
   }, [activeTab, tabs]);
 
   return (
-    <div className='tabs'>
-      <div ref={containerRef} className='tabs__container scrollable-tabs'>
-        {tabs.map((tab, index) => (
-          <button
-            key={tab}
-            ref={(el) => (tabsRef.current[index] = el)}
-            type='button'
-            className={btnClasses(tab)}
-            onClick={(e) => handleClick(e, tab)}
-          >
-            {tab}
-          </button>
-        ))}
+    <div className='tabs' role='tab' aria-label='Profile feature tabs'>
+      <div
+        ref={containerRef}
+        className='tabs__container scrollable-tabs'
+        role='tablist'
+      >
+        {tabs.map((tab, index) => {
+          const isSelected = activeTab === tab;
+          const tabId = `tab-${tab}`;
+          const panelId = `panel-${tab}`;
+
+          return (
+            <button
+              key={tab}
+              ref={(el) => (tabsRef.current[index] = el)}
+              id={tabId}
+              type='button'
+              aria-selected={isSelected}
+              aria-controls={panelId}
+              tabIndex={isSelected ? 0 : -1}
+              className={btnClasses(tab)}
+              onClick={(e) => handleClick(e, tab)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+            >
+              {tab}
+            </button>
+          );
+        })}
         <span className='tabs__underline' style={underLineStyle}>
           &nbsp;
         </span>
       </div>
-      <div key={fadeKey} className='tabs__content fade-in-zoom'>
+      <div
+        key={fadeKey}
+        id={`panel-${activeTab}`}
+        role='tabpanel'
+        aria-labelledby={`tab-${activeTab}`}
+        className='tabs__content fade-in-zoom'
+        tabIndex={0}
+      >
         {renderContent ? renderContent(activeTab) : <p>{activeTab} content</p>}
       </div>
     </div>
