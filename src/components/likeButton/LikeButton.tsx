@@ -19,26 +19,34 @@ const LikeButton = ({
   );
 
   return (
-    <div onClick={onAction} className='like-button'>
+    <div
+      onClick={onAction}
+      className='like-button'
+      role='group'
+      aria-label='Like post button'
+    >
       <button
         type='button'
+        title='Like Post'
         disabled={isLoading}
         aria-label='Like button'
         aria-disabled={isLoading}
+        aria-pressed={hasLiked ?? false}
+        aria-busy={isLoading}
         className={btnClasses}
       >
         <LikeIcon liked={hasLiked} />
         {hasLiked && (
-          <span
-            aria-label='Like float icon'
-            className='like-button__btn--float-icon'
-          >
+          <span className='like-button__btn--float-icon' aria-hidden='true'>
             ❤
           </span>
         )}
       </button>
       {count > 0 && (
-        <span aria-label={millify(count)} className='like-button__count'>
+        <span
+          className='like-button__count'
+          aria-label={`${millify(count)} likes`}
+        >
           {millify(count)}
         </span>
       )}

@@ -83,14 +83,17 @@ const ProfileReply = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setIsMore((value) => {
-      return !value;
-    });
+    setIsMore(true);
   };
 
   const handleCollapse = () => {
-    if (isMore) {
-      setIsMore(false);
+    setIsMore(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLParagraphElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCollapse();
     }
   };
 
@@ -114,8 +117,8 @@ const ProfileReply = ({
     });
   };
 
-  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleToggle = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     setIsShow((value) => {
       if (value) {
@@ -312,9 +315,16 @@ const ProfileReply = ({
       aria-labelledby={`reply-title-${replyId}`}
       aria-describedby={`reply-desc-${replyId}`}
     >
+      <h2 id={`reply-title-${replyId}`} className='sr-only'>
+        Reply by {author.name}
+      </h2>
       <div className='profile-reply__container'>
         <div className='profile-reply__cover'>
-          <Link to={url} aria-label={`Visit profile of ${author.username}`}>
+          <Link
+            to={url}
+            aria-label={`Visit profile of ${author.username}`}
+            title={`Visit profile of ${author.username}`}
+          >
             <UserAvatar
               imgSrc={author.image}
               size={80}
@@ -336,7 +346,7 @@ const ProfileReply = ({
               </time>
               {currentUser && hasUpdated && authorId !== (userId as string) && (
                 <span
-                  aria-label='Edited'
+                  aria-label='This reply was edited'
                   className='profile-reply__date--status'
                 >
                   (Edited)
@@ -347,20 +357,24 @@ const ProfileReply = ({
               type='button'
               onClick={onToggleReply}
               aria-expanded={isOpen}
-              aria-label={replyBtnLabel}
-              title={isOpen ? 'Close reply form' : 'Open reply form'}
+              aria-controls={`reply-form-${replyId}`}
+              aria-label={`${isOpen ? 'Close' : 'Open'} reply form`}
+              title={`${isOpen ? 'Close' : 'Open'} reply form`}
               className={replyBtnClasses}
             >
-              <ShareIcon label='Reply' />
+              <ShareIcon label='Reply icon' />
               <span>{replyBtnLabel}</span>
             </button>
           </div>
           <div className='profile-reply__info'>
-            <h5 className='profile-reply__info--name'>
+            <h5
+              id={`comment-author-${replyId}`}
+              className='profile-reply__info--name'
+            >
               <Link
                 to={url}
-                className='profile-reply__info--author'
-                aria-label={`Username: ${author.username}`}
+                aria-label={`Go to ${author.username}’s profile`}
+                title={`Go to ${author.username}’s profile`}
               >
                 {author.name}
               </Link>
@@ -368,10 +382,13 @@ const ProfileReply = ({
             <Badge role={author.role} />
           </div>
           <p
-            id={`article-desc-${replyId}`}
+            id={`reply-desc-${replyId}`}
             onClick={handleCollapse}
-            aria-label={contentLabel}
+            onKeyDown={handleKeyDown}
             tabIndex={0}
+            role='textbox'
+            aria-readonly='true'
+            aria-label='Reply text'
             className='profile-reply__info--content'
           >
             {contentLabel}
@@ -379,7 +396,7 @@ const ProfileReply = ({
               type='button'
               onClick={handleClick}
               aria-expanded={isMore}
-              aria-label={`Read more about: ${content}`}
+              aria-label={`${isMore ? 'Collapse' : 'Expand'} comment text`}
               className={btnClasses}
             >
               {btnLabel}
@@ -421,7 +438,8 @@ const ProfileReply = ({
           <div
             id={`reply-form-${replyId}`}
             role='region'
-            aria-label={`Reply to ${author.username}'s reply`}
+            aria-label={`Reply to ${author.username}’s reply`}
+            aria-live='polite'
           >
             <ReplyForm
               size='lg'

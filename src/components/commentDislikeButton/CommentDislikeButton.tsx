@@ -14,32 +14,41 @@ const CommentDislikeButton = ({
   hasDisliked,
   isLoading,
   onDislike,
+  ...props
 }: CommentDislikeButtonProps) => {
-  const dislikeBtnClasses = useMemo(() => {
-    return size === 'sm'
-      ? `comment-dislike-button__wrapper--btn small ${
-          hasDisliked ? 'active' : ''
-        }`
-      : `comment-dislike-button__wrapper--btn ${hasDisliked ? 'active' : ''}`;
-  }, [hasDisliked, size]);
+  const dislikeBtnClasses = useMemo(
+    () =>
+      size === 'sm'
+        ? `comment-dislike-button__wrapper--btn small ${
+            hasDisliked ? 'active' : ''
+          }`
+        : `comment-dislike-button__wrapper--btn ${hasDisliked ? 'active' : ''}`,
+    [hasDisliked, size]
+  );
 
   return (
-    <div className='comment-dislike-button'>
+    <div
+      className='comment-dislike-button'
+      role='group'
+      aria-label='Dislike button'
+    >
       <div className='comment-dislike-button__wrapper'>
         <button
+          {...props}
           type='button'
           title={title ?? 'Dislike'}
           onClick={onDislike}
           className={dislikeBtnClasses}
           disabled={isLoading}
-          aria-label='Dislike button'
           aria-disabled={isLoading}
+          aria-pressed={hasDisliked ?? false}
+          aria-busy={isLoading}
         >
           <DislikeIcon disliked={hasDisliked} />
           {hasDisliked && (
             <span
-              aria-label='Dislike float icon'
               className='comment-dislike-button__wrapper--float-icon'
+              aria-hidden='true'
             >
               💔
             </span>
@@ -48,8 +57,8 @@ const CommentDislikeButton = ({
       </div>
       {count > 0 && (
         <span
-          aria-label={millify(count)}
           className='comment-dislike-button__count'
+          aria-label={`${millify(count)} dislikes`}
         >
           {millify(count)}
         </span>

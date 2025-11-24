@@ -108,6 +108,20 @@ const CommentCard = ({
     setIsMore(false);
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(content);
+    setCopied(true);
+    toast.success('Copied to clipboard');
+    setTimeout(() => setCopied(false), 1500);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLParagraphElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCollapse();
+    }
+  };
+
   const toggleActionHandler = (e?: React.MouseEvent<HTMLButtonElement>) => {
     e?.stopPropagation();
 
@@ -135,13 +149,6 @@ const CommentCard = ({
         handleClose();
       }
     }
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(content);
-    setCopied(true);
-    toast.success('Copied to clipboard');
-    setTimeout(() => setCopied(false), 1500);
   };
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -373,16 +380,24 @@ const CommentCard = ({
     <article
       id={`comment-${commentId}`}
       className='comment-card'
+      role='article'
       aria-labelledby={`comment-author-${commentId}`}
       aria-describedby={`comment-content-${commentId}`}
     >
+      <h2 id={`comment-title-${commentId}`} className='sr-only'>
+        Comment by {author.name}
+      </h2>
       <div className='comment-card__container'>
         <div className='comment-card__user'>
-          <Link to={url} aria-label={`View ${author.name}'s profile`}>
+          <Link
+            to={url}
+            aria-label={`View ${author.name}’s profile`}
+            title={`View ${author.name}’s profile`}
+          >
             <UserAvatar
               imgSrc={author.image}
               size={80}
-              alt={`${author.username}'s profile picture`}
+              alt={`${author.username}’s profile picture`}
               className='comment-card__user--img'
               isGoogleAvatar={isGoogleImage}
             />
@@ -400,7 +415,7 @@ const CommentCard = ({
               </time>
               {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span
-                  aria-label='Edited'
+                  aria-label='This comment was edited'
                   className='comment-card__date--status'
                 >
                   (Edited)
@@ -413,11 +428,11 @@ const CommentCard = ({
                 onClick={handleToggle}
                 aria-expanded={isOpen}
                 aria-controls={`reply-form-${commentId}`}
-                aria-label={replyBtnLabel}
-                title={isOpen ? 'Close reply form' : 'Open reply form'}
+                aria-label={`${isOpen ? 'Close' : 'Open'} reply form`}
+                title={`${isOpen ? 'Close' : 'Open'} reply form`}
                 className={replyBtnClasses}
               >
-                <ShareIcon label='Reply' />
+                <ShareIcon label='Reply icon' />
                 <span>{replyBtnLabel}</span>
               </button>
             </div>
@@ -427,7 +442,11 @@ const CommentCard = ({
               id={`comment-author-${commentId}`}
               className='comment-card__details--username'
             >
-              <Link to={url} aria-label={`Author ${author.name}'s profile`}>
+              <Link
+                to={url}
+                aria-label={`Author ${author.name}’s profile`}
+                title={`Author ${author.name}’s profile`}
+              >
                 {author.name}
               </Link>
             </h5>
@@ -436,18 +455,21 @@ const CommentCard = ({
           <p
             onClick={handleCollapse}
             onDoubleClick={handleCopy}
-            aria-label={`Comment by ${author.name}: ${contentLabel}`}
-            role='textbox'
+            onKeyDown={handleKeyDown}
             tabIndex={0}
+            role='textbox'
+            aria-readonly='true'
+            aria-label={`Comment by ${author.name}: ${contentLabel}`}
             className='comment-card__details--desc'
           >
             {contentLabel}
             <button
               type='button'
               onClick={handleClick}
-              aria-label={btnLabel}
               aria-expanded={isMore}
               aria-controls={`comment-content-${commentId}`}
+              aria-label={`${isMore ? 'Collapse' : 'Expand'} comment text`}
+              title={`${isMore ? 'Collapse' : 'Expand'} comment text`}
               className={btnClasses}
             >
               {btnLabel}
@@ -458,7 +480,7 @@ const CommentCard = ({
       <div
         className='comment-card__actions'
         role='group'
-        aria-label='Reply actions'
+        aria-label='Comment actions'
       >
         <CommentReplyAction
           url={commentUrl}
@@ -481,8 +503,8 @@ const CommentCard = ({
             aria-haspopup='menu'
             aria-expanded={isShow}
             aria-controls={`comment-author-${commentId}`}
-            aria-label={isShow ? 'Close comment menu' : 'Open comment menu'}
-            title={isShow ? 'Close comment menu' : 'Open comment menu'}
+            aria-label={`${isShow ? 'Close' : 'Open'} comment menu`}
+            title={`${isShow ? 'Close' : 'Open'} comment menu`}
             className={actionBtnClasses}
           >
             <VerticalEllipsisIcon />
@@ -510,7 +532,8 @@ const CommentCard = ({
       <div
         id={`reply-form-${commentId}`}
         role='region'
-        aria-label={`Reply to ${author.username}'s comment`}
+        aria-label={`Reply to ${author.username}’s comment`}
+        aria-live='polite'
       >
         <ReplyCommentForm
           content={value}

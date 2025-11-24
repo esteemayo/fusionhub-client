@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import ProfileMenu from '../ProfileMenu';
+import VerticalEllipsisIcon from '../icons/VerticalEllipsisIcon';
 
 import { ProfileActionProps } from '../../types';
 
@@ -19,6 +20,16 @@ const ProfileAction = ({
   onToggle,
   onUpdate,
 }: ProfileActionProps) => {
+  const handleKeyDown = useCallback(
+    (e?: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e?.key === 'Escape' && isOpen) {
+        e?.preventDefault();
+        onToggle();
+      }
+    },
+    [isOpen, onToggle]
+  );
+
   const actionClasses = useMemo(() => {
     if (type === 'comment') {
       if (!currentUser) {
@@ -69,19 +80,17 @@ const ProfileAction = ({
 
   return (
     <div className={actionClasses}>
-      <button type='button' onClick={onToggle} className='profile-action__btn'>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          viewBox='0 0 24 24'
-          fill='currentColor'
-          className='size-6'
-        >
-          <path
-            fillRule='evenodd'
-            d='M10.5 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Zm0 6a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z'
-            clipRule='evenodd'
-          />
-        </svg>
+      <button
+        type='button'
+        onClick={onToggle}
+        onKeyDown={handleKeyDown}
+        className='profile-action__btn'
+        aria-haspopup='menu'
+        aria-expanded={isOpen}
+        aria-controls='profile-action-menu'
+        aria-label='Open profile action menu'
+      >
+        <VerticalEllipsisIcon />
       </button>
       <ProfileMenu isOpen={isOpen} onDelete={onDelete} onUpdate={onUpdate} />
     </div>

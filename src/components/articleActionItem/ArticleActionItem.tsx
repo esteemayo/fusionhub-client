@@ -12,32 +12,38 @@ const ArticleActionItem = ({
   disabled,
   children,
   onAction,
+  ...props
 }: ArticleActionItemProps) => {
-  const btnClasses = useMemo(() => {
-    return isActive
-      ? 'article-action-item__btn active'
-      : 'article-action-item__btn';
-  }, [isActive]);
+  const btnClasses = useMemo(
+    () =>
+      isActive ? 'article-action-item__btn active' : 'article-action-item__btn',
+    [isActive]
+  );
 
   return (
-    <div className='article-action-item'>
+    <div
+      className='article-action-item'
+      role='group'
+      aria-label={`${title} action`}
+    >
       <button
+        {...props}
         type='button'
         title={title}
         onClick={onAction}
         disabled={disabled}
-        aria-label={title}
         aria-disabled={disabled}
+        aria-pressed={isActive ?? false}
         className={btnClasses}
       >
         {children}
       </button>
-      {(count as number) > 0 && (
+      {typeof count === 'number' && count > 0 && (
         <span
-          aria-label={millify(count as number)}
           className='article-action-item__count'
+          aria-label={`${millify(count)} ${title} count`}
         >
-          {millify(count as number)}
+          {millify(count)}
         </span>
       )}
     </div>

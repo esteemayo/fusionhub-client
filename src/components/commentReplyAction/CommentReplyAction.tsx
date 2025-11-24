@@ -43,20 +43,28 @@ const CommentReplyAction = ({
     onDislike(e);
   };
 
+  const btnTitle = typeof title === 'string' && title.split(' ').pop();
+
   return (
     <div className='comment-reply-action'>
       <CommentLikeButton
         size={size}
         count={likeCount}
+        title={`Like ${btnTitle}`}
         hasLiked={liked || isLiked}
         isLoading={likeMutation.isPending}
+        aria-label={`${isLiked ? 'Unlike' : 'Like'} ${btnTitle}`}
         onLike={handleLike}
       />
       <CommentDislikeButton
         size={size}
         count={dislikeCount}
+        title={`Dislike ${btnTitle}`}
         hasDisliked={disliked || isDisliked}
         isLoading={dislikeMutation.isPending}
+        aria-label={`${
+          isDisliked ? 'Remove dislike from' : 'Dislike'
+        } ${btnTitle}`}
         onDislike={handleDislike}
       />
       <ShareComment url={url} size={size} text={text} title={title} />

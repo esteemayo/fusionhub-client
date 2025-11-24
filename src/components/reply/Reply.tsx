@@ -116,6 +116,13 @@ const Reply = ({
     setTimeout(() => setCopied(false), 1500);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLParagraphElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCollapse();
+    }
+  };
+
   const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
@@ -369,27 +376,31 @@ const Reply = ({
       <article
         id={`reply-${replyId}`}
         className={replyClasses}
-        aria-labelledby={`reply-wrapper-${replyId}`}
+        role='article'
+        aria-labelledby={`reply-author-${replyId}`}
         aria-describedby={`reply-content-${replyId}`}
       >
+        <h2 id={`reply-title-${replyId}`} className='sr-only'>
+          Reply by {author.name}
+        </h2>
         <div className='reply__container'>
           <div className='reply__author'>
             <Link
               to={url}
-              aria-label={`View ${author.username}'s profile`}
-              title={`View ${author.username}'s profile`}
+              aria-label={`View ${author.username}’s profile`}
+              title={`View ${author.username}’s profile`}
             >
               <UserAvatar
                 imgSrc={author.image}
                 size={40}
-                alt={`${author.username}'s profile picture`}
+                alt={`${author.username}’s profile picture`}
                 className='reply__author--img'
                 isGoogleAvatar={isGoogleImage}
               />
             </Link>
           </div>
           <div className='reply__content'>
-            <div id={`reply-wrapper-${replyId}`} className='reply__wrapper'>
+            <div className='reply__wrapper'>
               <div className='reply__wrapper--time'>
                 <time
                   dateTime={createdAt}
@@ -400,7 +411,7 @@ const Reply = ({
                 {currentUser &&
                   hasUpdated &&
                   authorId !== (userId as string) && (
-                    <span aria-label='Edited'>(Edited)</span>
+                    <span aria-label='This reply was edited'>(Edited)</span>
                   )}
               </div>
               <div>
@@ -409,18 +420,25 @@ const Reply = ({
                   onClick={onToggleReply}
                   aria-expanded={isOpen}
                   aria-controls={`reply-form-${replyId}`}
-                  aria-label={replyBtnLabel}
-                  title={isOpen ? 'Close reply form' : 'Open reply form'}
+                  aria-label={`${isOpen ? 'Close' : 'Open'} reply form`}
+                  title={`${isOpen ? 'Close' : 'Open'} reply form`}
                   className={replyBtnClasses}
                 >
-                  <ShareIcon label='Reply' />
+                  <ShareIcon label='Reply icon' />
                   <span>{replyBtnLabel}</span>
                 </button>
               </div>
             </div>
             <div className='reply__content--user'>
-              <h6 className='reply__content--username'>
-                <Link to={url} aria-label={`Author: ${author.name}`}>
+              <h6
+                id={`reply-author-${replyId}`}
+                className='reply__content--username'
+              >
+                <Link
+                  to={url}
+                  aria-label={`Author: ${author.name}`}
+                  title={`Author: ${author.name}`}
+                >
                   {author.name}
                 </Link>
               </h6>
@@ -430,9 +448,11 @@ const Reply = ({
               id={`reply-content-${replyId}`}
               onClick={handleCollapse}
               onDoubleClick={handleCopy}
-              role='article'
-              aria-label={`Reply content by ${author.username}`}
+              onKeyDown={handleKeyDown}
               tabIndex={0}
+              role='textbox'
+              aria-readonly='true'
+              aria-label={`Reply content by ${author.username}`}
               className='reply__content--text'
             >
               {contentLabel}
@@ -441,7 +461,8 @@ const Reply = ({
                 onClick={handleClick}
                 aria-expanded={isMore}
                 aria-controls={`reply-content-${replyId}`}
-                aria-label={btnLabel}
+                aria-label={`${isMore ? 'Collapse' : 'Expand'} comment text`}
+                title={`${isMore ? 'Collapse' : 'Expand'} comment text`}
                 className={btnClasses}
               >
                 {btnLabel}
@@ -469,10 +490,10 @@ const Reply = ({
               type='button'
               onClick={handleToggle}
               onKeyDown={handleMenuKeyDown}
-              aria-label={isShow ? 'Close reply menu' : 'Open reply menu'}
               aria-expanded={isShow}
-              aria-controls={`reply-menu-${replyId}`}
-              title={isShow ? 'Close reply menu' : 'Open reply menu'}
+              aria-controls={`reply-author-${replyId}`}
+              aria-label={`${isShow ? 'Close' : 'Open'} reply menu`}
+              title={`${isShow ? 'Close' : 'Open'} reply menu`}
               className={actionBtnClasses}
             >
               <VerticalEllipsisIcon />
@@ -502,7 +523,8 @@ const Reply = ({
         <div
           id={`reply-form-${replyId}`}
           role='region'
-          aria-label={`Reply to ${author.username}'s reply`}
+          aria-label={`Reply to ${author.username}’s reply`}
+          aria-live='polite'
         >
           <ReplyForm
             isOpen={isOpen}

@@ -947,7 +947,7 @@ export interface ProfileActionProps {
   isPostAuthor: boolean;
   isReplyAuthor?: boolean;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
-  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+  onToggle(e?: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

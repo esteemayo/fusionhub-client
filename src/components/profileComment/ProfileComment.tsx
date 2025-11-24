@@ -86,14 +86,17 @@ const ProfileComment = ({
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    setIsMore((value) => {
-      return !value;
-    });
+    setIsMore(true);
   };
 
   const handleCollapse = () => {
-    if (isMore) {
-      setIsMore(false);
+    setIsMore(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLParagraphElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCollapse();
     }
   };
 
@@ -117,8 +120,8 @@ const ProfileComment = ({
     });
   };
 
-  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const handleToggle = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     setIsShow((value) => {
       if (value) {
@@ -304,9 +307,16 @@ const ProfileComment = ({
       aria-labelledby={`comment-title-${commentId}`}
       aria-describedby={`comment-desc-${commentId}`}
     >
+      <h2 id={`comment-title-${commentId}`} className='sr-only'>
+        Comment by {author.name}
+      </h2>
       <div className='profile-comment__container'>
         <div className='profile-comment__cover'>
-          <Link to={url} aria-label={`Visit profile of ${author.username}`}>
+          <Link
+            to={url}
+            aria-label={`Visit profile of ${author.username}`}
+            title={`Visit profile of ${author.username}`}
+          >
             <UserAvatar
               imgSrc={author.image}
               size={80}
@@ -328,7 +338,7 @@ const ProfileComment = ({
               </time>
               {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span
-                  aria-label='Edited'
+                  aria-label='This comment was edited'
                   className='profile-comment__date--status'
                 >
                   (Edited)
@@ -339,27 +349,38 @@ const ProfileComment = ({
               type='button'
               onClick={onToggleReply}
               aria-expanded={isOpen}
-              aria-label={replyBtnLabel}
-              title={isOpen ? 'Close reply form' : 'Open reply form'}
+              aria-controls={`reply-form-${commentId}`}
+              aria-label={`${isOpen ? 'Close' : 'Open'} reply form`}
+              title={`${isOpen ? 'Close' : 'Open'} reply form`}
               className={replyBtnClasses}
             >
-              <ShareIcon label='Reply' />
+              <ShareIcon label='Reply icon' />
               <span>{replyBtnLabel}</span>
             </button>
           </div>
           <div className='profile-comment__info'>
-            <h5 className='profile-comment__info--name'>
-              <Link to={url} aria-label={`Username: ${author.username}`}>
+            <h5
+              id={`comment-author-${commentId}`}
+              className='profile-comment__info--name'
+            >
+              <Link
+                to={url}
+                aria-label={`Go to ${author.username}’s profile`}
+                title={`Go to ${author.username}’s profile`}
+              >
                 {author.name}
                 <Badge role={author.role} />
               </Link>
             </h5>
           </div>
           <p
-            id={`article-desc-${commentId}`}
+            id={`comment-desc-${commentId}`}
             onClick={handleCollapse}
-            aria-label={contentLabel}
+            onKeyDown={handleKeyDown}
             tabIndex={0}
+            role='textbox'
+            aria-readonly='true'
+            aria-label='Comment text'
             className='profile-comment__info--content'
           >
             {contentLabel}
@@ -367,7 +388,8 @@ const ProfileComment = ({
               type='button'
               onClick={handleClick}
               aria-expanded={isMore}
-              aria-label={`Read more about: ${content}`}
+              aria-controls={`comment-content-${commentId}`}
+              aria-label={`${isMore ? 'Collapse' : 'Expand'} comment text`}
               className={btnClasses}
             >
               {btnLabel}
@@ -408,7 +430,8 @@ const ProfileComment = ({
           <div
             id={`reply-form-${commentId}`}
             role='region'
-            aria-label={`Reply to ${author.username}'s comment`}
+            aria-label={`Reply to ${author.username}’s comment`}
+            aria-live='polite'
           >
             <ReplyCommentForm
               size='lg'

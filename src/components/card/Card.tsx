@@ -20,10 +20,6 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
 
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
-  const handleScreen = () => {
-    setScreenSize(window.innerWidth);
-  };
-
   const handleClick = () => {
     if (searchParams.get('category') !== category) {
       setSearchParams({
@@ -33,15 +29,21 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
     }
   };
 
-  const parsedDesc = useMemo(() => {
-    return parse(String(excerpts(desc, 60))).toString();
-  }, [desc]);
+  const parsedDesc = useMemo(
+    () => parse(String(excerpts(desc, 60))).toString(),
+    [desc]
+  );
 
-  const formattedTime = useMemo(() => {
-    return screenSize <= 480 ? formattedDate : format(createdAt);
-  }, [createdAt, formattedDate, screenSize]);
+  const formattedTime = useMemo(
+    () => (screenSize <= 480 ? formattedDate : format(createdAt)),
+    [createdAt, formattedDate, screenSize]
+  );
 
   useEffect(() => {
+    const handleScreen = () => {
+      setScreenSize(window.innerWidth);
+    };
+
     window.addEventListener('resize', handleScreen);
     return () => window.removeEventListener('resize', handleScreen);
   }, []);
