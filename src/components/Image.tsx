@@ -27,8 +27,9 @@ const Image = ({
         loading='lazy'
         lqip={{ active: true, quality: 20 }}
         transformation={[{ width: width as string, height: height as string }]}
-        alt={alt}
+        alt={alt ?? ''}
         className={className}
+        aria-hidden={alt ? undefined : true}
       />
     </IKContext>
   );

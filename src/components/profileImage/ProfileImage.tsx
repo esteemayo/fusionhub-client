@@ -19,7 +19,7 @@ const ProfileImage = ({
   isFromGoogle,
   progress,
   role,
-  ref,
+  inputRef,
   onChangeImage,
   onChangeProgress,
   onOpen,
@@ -40,24 +40,21 @@ const ProfileImage = ({
     });
   };
 
-  const isDisabled = useMemo(() => {
-    return 0 < progress && progress < 100;
-  }, [progress]);
+  const formattedTexts = useMemo(
+    () => (isMore && bio?.length > 120 ? bio : excerpts(bio, 120)),
+    [bio, isMore]
+  );
 
-  const formattedTexts = useMemo(() => {
-    return isMore && bio?.length > 120 ? bio : excerpts(bio, 120);
-  }, [bio, isMore]);
+  const btnClasses = useMemo(
+    () =>
+      bio?.length > 120
+        ? 'profile-image__details--btn show'
+        : 'profile-image__details--btn hide',
+    [bio]
+  );
 
-  const btnClasses = useMemo(() => {
-    return bio?.length > 120
-      ? 'profile-image__details--btn show'
-      : 'profile-image__details--btn hide';
-  }, [bio]);
-
-  const btnLabel = useMemo(() => {
-    return isMore ? undefined : 'more';
-  }, [isMore]);
-
+  const isDisabled = progress > 0 && progress < 100;
+  const btnLabel = isMore ? undefined : 'more';
   const isGoogleImage = isFromGoogle && image?.startsWith('https');
 
   return (
@@ -68,28 +65,31 @@ const ProfileImage = ({
             <UserAvatar
               imgSrc={image}
               size={120}
-              isGoogleAvatar={isGoogleImage}
+              isGoogleAvatar={!!isGoogleImage}
               className='profile-image__image--avatar'
             />
-            {0 < progress && progress < 100 && (
+            {isDisabled && (
               <div
-                aria-label={`Uploading ${progress}`}
                 className='profile-image__progress'
+                role='status'
+                aria-label={`Uploading image, ${progress}% completed`}
               >
                 <UploadProgressCircle progress={progress} />
               </div>
             )}
             <div className='profile-image__upload'>
               <Upload
-                ref={ref}
+                id='avatar'
+                ref={inputRef}
                 disabled={isDisabled}
                 setData={onChangeImage}
                 setProgress={onChangeProgress}
               >
                 <button
                   type='button'
-                  aria-label='Upload image'
                   className='profile-image__upload--btn'
+                  aria-label='Upload a new profile image'
+                  disabled={isDisabled}
                 >
                   <CameraIcon />
                 </button>
@@ -101,10 +101,10 @@ const ProfileImage = ({
               <span className='profile-image__details--name'>{name}</span>
               <Badge role={role} />
             </div>
-            <span
+            <p
               onClick={handleCollapse}
-              aria-label={formattedTexts}
               className='profile-image__details--bio'
+              aria-label='User biography'
             >
               {formattedTexts}
               <button
@@ -115,7 +115,7 @@ const ProfileImage = ({
               >
                 {btnLabel}
               </button>
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -124,9 +124,9 @@ const ProfileImage = ({
           type='button'
           onClick={onUpload}
           disabled={isDisabled}
-          aria-label='Upload image'
-          aria-disabled={isDisabled}
           className='profile-image__buttons--upload'
+          aria-label='Upload a new profile image'
+          aria-disabled={isDisabled}
         >
           Upload
         </button>
@@ -134,9 +134,9 @@ const ProfileImage = ({
           type='button'
           onClick={onOpen}
           disabled={isDisabled}
-          aria-label='Remove image'
-          aria-disabled={isDisabled}
           className='profile-image__buttons--remove'
+          aria-label='Remove profile image'
+          aria-disabled={isDisabled}
         >
           Remove
         </button>

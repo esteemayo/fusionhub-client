@@ -105,12 +105,7 @@ const Categories = () => {
     const name = data.name;
 
     if (categoryId) {
-      updateMutation.mutate(
-        { name, categoryId },
-        {
-          onSuccess: handleClear,
-        }
-      );
+      updateMutation.mutate({ name, categoryId }, { onSuccess: handleClear });
     } else {
       categoryMutation.mutate(name, {
         onSuccess: () => setValue('name', ''),
@@ -142,6 +137,7 @@ const Categories = () => {
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
         handleClear();
       }
     };

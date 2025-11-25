@@ -20,8 +20,8 @@ const CategoryItem = ({
 }: CategoryItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const onToggleHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  const onToggleHandler = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    e?.stopPropagation();
 
     setIsOpen((value) => {
       if (value) {
@@ -52,13 +52,15 @@ const CategoryItem = ({
     handleClose();
   };
 
-  const isDisabled = useMemo(() => {
-    return (isEditing && categoryId === category._id) || isEditing || isLoading;
-  }, [category._id, categoryId, isEditing, isLoading]);
+  const isDisabled = useMemo(
+    () => (isEditing && categoryId === category._id) || isEditing || isLoading,
+    [category._id, categoryId, isEditing, isLoading]
+  );
 
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
         handleClose();
       }
     };

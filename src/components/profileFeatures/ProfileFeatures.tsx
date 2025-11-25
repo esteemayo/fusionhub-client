@@ -225,8 +225,8 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     <section
       onClick={handleClick}
       className={profileClasses}
-      aria-label='User profile features'
       aria-live='polite'
+      aria-label='User profile features'
     >
       <div className='profile-features__container'>
         <Tabs

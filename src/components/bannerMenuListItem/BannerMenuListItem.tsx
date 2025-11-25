@@ -11,11 +11,13 @@ const BannerMenuListItem = ({
   children,
   onAction,
 }: BannerMenuListItemProps) => {
-  const listItemClasses = useMemo(() => {
-    return type === 'danger'
-      ? 'banner-menu-list-item danger'
-      : 'banner-menu-list-item';
-  }, [type]);
+  const listItemClasses = useMemo(
+    () =>
+      type === 'danger'
+        ? 'banner-menu-list-item danger'
+        : 'banner-menu-list-item',
+    [type]
+  );
 
   return (
     <li className={listItemClasses} role='menuitem'>

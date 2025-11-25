@@ -59,13 +59,12 @@ const Article = ({
 
   const postUrl = `${window.location.origin}/post/${post?.slug}`;
 
-  const postId = useMemo(() => {
-    return post?._id;
-  }, [post?._id]);
+  const postId = useMemo(() => post?._id, [post?._id]);
 
-  const parsedText = useMemo(() => {
-    return parse(String(post?.desc)).toString();
-  }, [post?.desc]);
+  const parsedText = useMemo(
+    () => parse(String(post?.desc)).toString(),
+    [post?.desc]
+  );
 
   const text = excerpts(stripHtml(parsedText), 80);
 
@@ -360,7 +359,6 @@ const Article = ({
               onShare={handleShare}
             />
             <ArticleMenus
-              postId={postId}
               currentUser={currentUser}
               isAdmin={isAdmin}
               isOpen={isOpen}

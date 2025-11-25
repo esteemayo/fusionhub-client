@@ -36,9 +36,7 @@ const ProfileData = ({
   about,
 }: ProfileDataProps) => {
   const dispatch = useAppDispatch();
-  const { isError, isLoading, message } = useAppSelector((state) => ({
-    ...state.auth,
-  }));
+  const { isError, isLoading, message } = useAppSelector((state) => state.auth);
 
   const [telephone, setTelephone] = useState<Value | undefined>();
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -77,7 +75,7 @@ const ProfileData = ({
   };
 
   useEffect(() => {
-    if (isError) {
+    if (isError && message) {
       toast.error(message);
     }
 
@@ -109,12 +107,35 @@ const ProfileData = ({
     username,
   ]);
 
+  const headerId = 'profile-data-heading';
+  const descId = 'profile-data-description';
+  const statusId = 'profile-data-status';
+
   return (
-    <div className='profile-data'>
+    <div
+      className='profile-data'
+      role='form'
+      aria-labelledby={headerId}
+      aria-describedby={descId}
+      aria-live='polite'
+    >
       <AccountHeader
         title='Personal information'
         subtitle='Update your personal information'
       />
+
+      <h2 id={headerId} className='sr-only'>
+        Personal information
+      </h2>
+
+      <p id={descId} className='sr-only'>
+        Update your name, username, contact details, and about information.
+      </p>
+
+      <div id={statusId} className='sr-only' aria-live='polite'>
+        {isError && message ? message : ''}
+      </div>
+
       <ProfileDataForm
         about={aboutMe}
         dateOfBirth={dateOfBirth}

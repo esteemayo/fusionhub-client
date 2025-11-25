@@ -848,7 +848,6 @@ export interface ArticleActionItemProps {
 }
 
 export interface ArticleMenusProps {
-  postId: string;
   currentUser: CurrentUserType | null;
   isAdmin: boolean;
   isOpen: boolean;
@@ -977,7 +976,7 @@ export interface ProfileImageProps {
   isFromGoogle?: boolean;
   progress: number;
   role: RoleType;
-  ref: Ref<HTMLInputElement> | undefined;
+  inputRef: Ref<HTMLInputElement> | undefined;
   onChangeImage: React.Dispatch<
     React.SetStateAction<UploadResponse | undefined>
   >;
@@ -1088,7 +1087,7 @@ export interface CategoryActionProps {
   isDisabled: boolean;
   currentUser: CurrentUserType | null;
   onRemove(e: React.MouseEvent<HTMLButtonElement>): void;
-  onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
+  onToggle(e?: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 

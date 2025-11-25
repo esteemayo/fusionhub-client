@@ -3,51 +3,60 @@
 
 .post-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
+  flex-direction: column;
 
-  @include bp.xxl {
-    row-gap: 4rem;
-  }
+  &__items {
+    list-style: none;
 
-  @media screen and (max-width: 76.25em) {
-    row-gap: 3.5rem;
-  }
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
 
-  @include bp.lg {
-    row-gap: 4.5rem;
-  }
+      @include bp.xxl {
+        row-gap: 4rem;
+      }
 
-  @media screen and (max-width: 59.375em) {
-    row-gap: 3.65rem;
-  }
+      @media screen and (max-width: 76.25em) {
+        row-gap: 3.5rem;
+      }
 
-  @media screen and (max-width: 57.5em) {
-    row-gap: 4rem;
-  }
+      @include bp.lg {
+        row-gap: 4.5rem;
+      }
 
-  @media screen and (max-width: 51.25em) {
-    row-gap: 3.25rem;
-  }
+      @media screen and (max-width: 59.375em) {
+        row-gap: 3.65rem;
+      }
 
-  @media screen and (max-width: 34.375em) {
-    row-gap: 4rem;
-  }
+      @media screen and (max-width: 57.5em) {
+        row-gap: 4rem;
+      }
 
-  @media screen and (min-width: 106.25em) {
-    row-gap: 3.5rem;
-  }
+      @media screen and (max-width: 51.25em) {
+        row-gap: 3.25rem;
+      }
 
-  @media screen and (max-width: 31.5em) {
-    row-gap: 3rem;
-  }
+      @media screen and (max-width: 34.375em) {
+        row-gap: 4rem;
+      }
 
-  @media screen and (min-width: 112.5em) {
-    row-gap: 4rem;
-  }
+      @media screen and (min-width: 106.25em) {
+        row-gap: 3.5rem;
+      }
 
-  @media screen and (min-width: 125em) {
-    row-gap: 3.25rem;
+      @media screen and (max-width: 31.5em) {
+        row-gap: 3rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        row-gap: 4rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        row-gap: 3.25rem;
+      }
+    }
   }
 
   .card {

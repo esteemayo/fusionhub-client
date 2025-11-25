@@ -21,6 +21,8 @@ const CategoryItems = ({
   onChangeCardId,
   onDelete,
 }: CategoryItemsProps) => {
+  const noCategories = (categories ?? []).length < 1;
+
   return (
     <div className='categories-items'>
       <AcccountHeader
@@ -28,7 +30,7 @@ const CategoryItems = ({
         subtitle='View, edit, or remove your existing categories. Keeping your categories organized helps readers find content more easily and improves your blog’s structure.'
       />
       <ul className='categories-items__list'>
-        {(categories ?? [])?.length < 1 && !isPending ? (
+        {noCategories && !isPending ? (
           <div className='categories-items__list--empty'>
             <EmptyMessage
               title='No Categories Found'

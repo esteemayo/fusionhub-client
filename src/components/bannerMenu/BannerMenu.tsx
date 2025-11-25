@@ -30,6 +30,7 @@ const BannerMenu = ({
         type='button'
         onClick={onToggle}
         disabled={disabled}
+        aria-haspopup='menu'
         aria-expanded={isOpen}
         aria-label={`${isOpen ? 'Close' : 'Open'} menu`}
         aria-pressed={isOpen}

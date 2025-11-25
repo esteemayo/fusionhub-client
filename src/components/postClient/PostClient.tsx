@@ -22,9 +22,10 @@ const PostClient = ({ isOpen, ref }: PostClientProps) => {
     }
   };
 
-  const postClientClasses = useMemo(() => {
-    return isOpen ? 'post-client show' : 'post-client hide';
-  }, [isOpen]);
+  const postClientClasses = useMemo(
+    () => (isOpen ? 'post-client show' : 'post-client hide'),
+    [isOpen]
+  );
 
   return (
     <aside className={postClientClasses}>

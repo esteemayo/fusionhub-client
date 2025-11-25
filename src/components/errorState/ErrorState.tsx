@@ -16,15 +16,17 @@ const ErrorState = ({
     <section
       className='error-state'
       role='alert'
-      aria-labelledby='error-title'
-      aria-describedby='error-subtitle'
+      aria-live='assertive'
+      aria-labelledby='error-state-title'
+      aria-describedby='error-state-subtitle'
     >
       <div className='error-state__container'>
         <div className='error-state__wrapper'>
           <div className='error-state__box'>
-            {imgSrc && (
+            {typeof imgSrc === 'string' && imgSrc && (
               <Image
-                src={imgSrc as string}
+                key={imgSrc}
+                src={imgSrc}
                 width={300}
                 height={230}
                 alt={alt}
@@ -35,8 +37,8 @@ const ErrorState = ({
               title={title}
               subtitle={subtitle}
               center={center}
-              titleId='error-title'
-              subtitleId='error-subtitle'
+              titleId='error-state-title'
+              subtitleId='error-state-subtitle'
             />
           </div>
         </div>

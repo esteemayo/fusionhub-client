@@ -8,7 +8,6 @@ import { ArticleMenusProps } from '../../types';
 import './ArticleMenus.scss';
 
 const ArticleAction = ({
-  postId,
   currentUser,
   isAdmin,
   isOpen,
@@ -39,17 +38,16 @@ const ArticleAction = ({
   }, [currentUser, isAdmin, isPostAuthor, postAuthorRole]);
 
   return (
-    <div
-      className={articleClasses}
-      aria-expanded={isOpen}
-      aria-controls={`article-menu-${postId}`}
-    >
+    <div className={articleClasses} aria-expanded={isOpen}>
       <button
         type='button'
         onClick={onToggle}
-        aria-expanded={isOpen}
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
         className='article-menus__btn'
+        aria-haspopup='menu'
+        aria-expanded={isOpen}
+        aria-controls='article-action-menu'
+        aria-label='Open article action menu'
+        title={`${isOpen ? 'Close' : 'Open'} menu`}
       >
         <VerticalEllipsisIcon />
       </button>

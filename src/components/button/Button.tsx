@@ -22,6 +22,7 @@ const Button = ({
       onClick={onClick}
       aria-label={label}
       aria-disabled={disabled}
+      aria-busy={isLoading}
       className={`btn ${variant} ${className ?? ''}`}
     >
       {icon && !isLoading && (

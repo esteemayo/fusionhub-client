@@ -42,7 +42,13 @@ const BannerMenuList = ({
   );
 
   return (
-    <ul className={menuListClasses}>
+    <ul
+      className={menuListClasses}
+      role='menu'
+      aria-hidden={!isOpen}
+      aria-expanded={isOpen}
+      aria-label='Banner menu options'
+    >
       {query && (
         <>
           {!isBlocked && (

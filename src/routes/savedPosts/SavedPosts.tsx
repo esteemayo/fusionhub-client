@@ -8,6 +8,7 @@ import './SavedPosts.scss';
 
 const SavedPosts = () => {
   const { isPending, error, savedPosts } = useSavedPosts();
+  const noSavedPosts = (savedPosts ?? []).length < 1;
 
   return (
     <div className='saved-posts'>
@@ -19,7 +20,7 @@ const SavedPosts = () => {
         />
       </div>
       <div className='saved-posts__wrapper'>
-        {(savedPosts ?? [])?.length < 1 && !isPending ? (
+        {noSavedPosts && !isPending ? (
           <EmptyPosts
             title='No saved posts yet'
             subtitle="You haven't saved any posts yet. Start exploring content and save posts you find interesting to view them here later."

@@ -58,9 +58,10 @@ const Banner = ({
 
   const shareUrl = `${window.location.href}`;
 
-  const profileText = useMemo(() => {
-    return bio ? excerpts(bio, 80) : `@${username}`;
-  }, [bio, username]);
+  const profileText = useMemo(
+    () => (bio ? excerpts(bio, 80) : `@${username}`),
+    [bio, username]
+  );
 
   const { blockedUsers } = useBlockedUsers();
   const { mutedList } = useMute();
@@ -70,16 +71,17 @@ const Banner = ({
     shareUrl
   );
 
-  const isMuted = useMemo(() => {
-    return (
+  const isMuted = useMemo(
+    () =>
       !!(mutedList?.mutedUsers ?? []).some((user) => user.id === userId) ||
-      false
-    );
-  }, [mutedList?.mutedUsers, userId]);
+      false,
+    [mutedList?.mutedUsers, userId]
+  );
 
-  const isBlocked = useMemo(() => {
-    return !!(blockedUsers ?? []).some((user) => user.id === userId) || false;
-  }, [blockedUsers, userId]);
+  const isBlocked = useMemo(
+    () => !!(blockedUsers ?? []).some((user) => user.id === userId) || false,
+    [blockedUsers, userId]
+  );
 
   const shareHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -174,14 +176,15 @@ const Banner = ({
   );
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.preventDefault();
         onClose();
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
   }, [onClose]);
 
   const isGoogleImage = isFromGoogle && image?.startsWith('https');

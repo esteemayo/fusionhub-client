@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ReplyFormProps } from '../../types';
+import InformationCircleIcon from '../icons/InformationCircleIcon';
 
 import './ReplyForm.scss';
 
@@ -39,6 +40,7 @@ const ReplyForm = ({
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
       onSubmit();
     }
   };
@@ -51,45 +53,56 @@ const ReplyForm = ({
     });
   };
 
-  const replyFormClasses = useMemo(() => {
-    return isOpen ? 'reply-form__form show' : 'reply-form__form hide';
-  }, [isOpen]);
+  const replyFormClasses = useMemo(
+    () => (isOpen ? 'reply-form__form show' : 'reply-form__form hide'),
+    [isOpen]
+  );
 
-  const textareaClasses = useMemo(() => {
-    return `reply-form__textarea ${
-      size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
-    }`;
-  }, [size]);
+  const textareaClasses = useMemo(
+    () =>
+      `reply-form__textarea ${
+        size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
+      }`,
+    [size]
+  );
 
-  const actionClasses = useMemo(() => {
-    return `reply-form__actions ${
-      size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
-    }`;
-  }, [size]);
+  const actionClasses = useMemo(
+    () =>
+      `reply-form__actions ${
+        size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
+      }`,
+    [size]
+  );
 
-  const placeholder = useMemo(() => {
-    return isEditing && editId
-      ? 'Update your reply here...'
-      : `Reply to ${username} here...`;
-  }, [editId, isEditing, username]);
+  const placeholder = useMemo(
+    () =>
+      isEditing && editId
+        ? 'Update your reply here...'
+        : `Reply to ${username} here...`,
+    [editId, isEditing, username]
+  );
 
-  const btnLabel = useMemo(() => {
-    return isEditing && editId
-      ? isLoading
-        ? 'Updating...'
-        : 'Update reply'
-      : isLoading
-      ? 'Submitting...'
-      : 'Submit reply';
-  }, [editId, isEditing, isLoading]);
+  const btnLabel = useMemo(
+    () =>
+      isEditing && editId
+        ? isLoading
+          ? 'Updating...'
+          : 'Update reply'
+        : isLoading
+        ? 'Submitting...'
+        : 'Submit reply',
+    [editId, isEditing, isLoading]
+  );
 
-  const hintClasses = useMemo(() => {
-    return showHint ? 'reply-form__hint show' : 'reply-form__hint hide';
-  }, [showHint]);
+  const hintClasses = useMemo(
+    () => (showHint ? 'reply-form__hint show' : 'reply-form__hint hide'),
+    [showHint]
+  );
 
-  const toggleBtnClasses = useMemo(() => {
-    return showHint ? 'reply-form__toggle show' : 'reply-form__toggle hide';
-  }, [showHint]);
+  const toggleBtnClasses = useMemo(
+    () => (showHint ? 'reply-form__toggle show' : 'reply-form__toggle hide'),
+    [showHint]
+  );
 
   useEffect(() => {
     const container = containerRef.current;
@@ -110,7 +123,13 @@ const ReplyForm = ({
   }, [isOpen, content]);
 
   return (
-    <div ref={containerRef} className={`reply-form ${isOpen ? '' : 'closed'}`}>
+    <div
+      ref={containerRef}
+      className={`reply-form ${isOpen ? '' : 'closed'}`}
+      aria-expanded={isOpen}
+      aria-hidden={!isOpen}
+      aria-label='Write a reply'
+    >
       <div ref={innerRef} className='reply-form__inner'>
         <form onSubmit={onSubmit} className={replyFormClasses}>
           <textarea
@@ -123,54 +142,47 @@ const ReplyForm = ({
             onInput={onInput}
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={onKeyDown}
-            aria-label={placeholder}
+            disabled={isLoading}
             ref={textareaRef}
+            aria-label={placeholder}
+            aria-disabled={isLoading}
           />
           <div className={actionClasses}>
             <button
               type='button'
               onClick={onCancel}
               disabled={isLoading}
-              aria-label='Cancel'
-              aria-disabled={isLoading}
               className='reply-form__actions--cancel'
+              aria-label='Cancel reply'
+              aria-disabled={isLoading}
             >
               Cancel
             </button>
             <button
               type='submit'
               disabled={!content.trim() || isLoading}
+              className='reply-form__actions--submit'
               aria-label={btnLabel}
               aria-disabled={!content.trim() || isLoading}
-              className='reply-form__actions--submit'
             >
               {btnLabel}
             </button>
           </div>
           <div className='reply-form__hint-bar'>
-            <div className={hintClasses}>
+            <div className={hintClasses} aria-hidden={!showHint}>
               Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to post
             </div>
             <button
               type='button'
               onClick={handleToggle}
-              aria-label={showHint ? 'Hide reply hint' : 'Show reply hint'}
               className={toggleBtnClasses}
+              aria-label={
+                showHint
+                  ? 'Hide keyboard shortcut hint'
+                  : 'Show keyboard shortcut hint'
+              }
             >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='size-6'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z'
-                />
-              </svg>
+              <InformationCircleIcon />
             </button>
           </div>
         </form>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ArticleCommentFormProps } from '../../types';
+import InformationCircleIcon from '../icons/InformationCircleIcon';
 
 import './ArticleCommentForm.scss';
 
@@ -36,6 +37,7 @@ const ArticleCommentForm = ({
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
       onSubmit();
     }
   };
@@ -48,35 +50,45 @@ const ArticleCommentForm = ({
     });
   };
 
-  const formClasses = useMemo(() => {
-    return isShow
-      ? 'article-comment-form__form show'
-      : 'article-comment-form__form hide';
-  }, [isShow]);
+  const formClasses = useMemo(
+    () =>
+      isShow
+        ? 'article-comment-form__form show'
+        : 'article-comment-form__form hide',
+    [isShow]
+  );
 
-  const textareaClasses = useMemo(() => {
-    return `article-comment-form__textarea ${
-      size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
-    }`;
-  }, [size]);
+  const textareaClasses = useMemo(
+    () =>
+      `article-comment-form__textarea ${
+        size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
+      }`,
+    [size]
+  );
 
-  const actionClasses = useMemo(() => {
-    return `article-comment-form__actions ${
-      size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
-    }`;
-  }, [size]);
+  const actionClasses = useMemo(
+    () =>
+      `article-comment-form__actions ${
+        size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
+      }`,
+    [size]
+  );
 
-  const hintClasses = useMemo(() => {
-    return showHint
-      ? 'article-comment-form__hint show'
-      : 'article-comment-form__hint hide';
-  }, [showHint]);
+  const hintClasses = useMemo(
+    () =>
+      showHint
+        ? 'article-comment-form__hint show'
+        : 'article-comment-form__hint hide',
+    [showHint]
+  );
 
-  const toggleBtnClasses = useMemo(() => {
-    return showHint
-      ? 'article-comment-form__toggle show'
-      : 'article-comment-form__toggle hide';
-  }, [showHint]);
+  const toggleBtnClasses = useMemo(
+    () =>
+      showHint
+        ? 'article-comment-form__toggle show'
+        : 'article-comment-form__toggle hide',
+    [showHint]
+  );
 
   useEffect(() => {
     const inner = innerRef.current;
@@ -101,6 +113,7 @@ const ArticleCommentForm = ({
       ref={containerRef}
       className='article-comment-form'
       aria-expanded={isShow}
+      aria-hidden={!isShow}
       aria-label='Write a comment'
     >
       <div ref={innerRef} className='article-comment-form__inner'>
@@ -115,54 +128,47 @@ const ArticleCommentForm = ({
             onInput={onInput}
             onChange={(e) => onChange(e.target.value)}
             onKeyDown={onKeyDown}
-            aria-label='Write your thoughts here... Share your opinion or feedback about the article.'
+            disabled={isLoading}
             ref={textareaRef}
+            aria-label='Write your thoughts here... Share your opinion or feedback about the article.'
+            aria-disabled={isLoading}
           />
           <div className={actionClasses}>
             <button
               type='button'
-              className='article-comment-form__actions--cancel'
               onClick={onCancel}
               disabled={isLoading}
-              aria-label='Cancel'
+              className='article-comment-form__actions--cancel'
+              aria-label='Cancel comment'
               aria-disabled={isLoading}
             >
               Cancel
             </button>
             <button
               type='submit'
-              className='article-comment-form__actions--submit'
               disabled={!value.trim() || isLoading}
-              aria-label={isLoading ? 'Submitting...' : 'Submit Reply'}
+              className='article-comment-form__actions--submit'
+              aria-label={isLoading ? 'Submitting...' : 'Submit Comment'}
               aria-disabled={!value.trim() || isLoading}
             >
-              {isLoading ? 'Submitting...' : 'Submit Reply'}
+              {isLoading ? 'Submitting...' : 'Submit Comment'}
             </button>
           </div>
           <div className='reply-comment-form__hint-bar'>
-            <div className={hintClasses}>
+            <div className={hintClasses} aria-hidden={!showHint}>
               Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to post
             </div>
             <button
               type='button'
               onClick={handleToggle}
-              aria-label={showHint ? 'Hide reply hint' : 'Show reply hint'}
               className={toggleBtnClasses}
+              aria-label={
+                showHint
+                  ? 'Hide keyboard shortcut hint'
+                  : 'Show keyboard shortcut hint'
+              }
             >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='size-6'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z'
-                />
-              </svg>
+              <InformationCircleIcon />
             </button>
           </div>
         </form>

@@ -8,11 +8,13 @@ import './PostList.scss';
 
 const PostLists = ({ isLoading, error, posts }: PostListProps) => {
   return (
-    <div className='post-list'>
+    <div className='post-list' role='region' aria-label='Posts list'>
       {isLoading ? (
-        Array.from(new Array(3)).map((_, index) => {
-          return <PostListSkeleton key={index} />;
-        })
+        <div role='status' aria-live='polite' aria-busy='true'>
+          {Array.from(new Array({ length: 3 })).map((_, index) => {
+            return <PostListSkeleton key={index} />;
+          })}
+        </div>
       ) : error ? (
         <ErrorState
           title='Unable to load posts'
@@ -24,9 +26,13 @@ const PostLists = ({ isLoading, error, posts }: PostListProps) => {
           imgSrc='/private-files.svg'
         />
       ) : (
-        posts?.map((post) => {
-          return <Card key={post._id} {...post} />;
-        })
+        <ul className='post-list__items' role='list'>
+          <li role='listitem'>
+            {posts?.map((post) => {
+              return <Card key={post._id} {...post} />;
+            })}
+          </li>
+        </ul>
       )}
     </div>
   );

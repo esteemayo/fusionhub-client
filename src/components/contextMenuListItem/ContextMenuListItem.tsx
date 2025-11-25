@@ -11,14 +11,16 @@ const ContextMenuListItem = ({
   children,
   onAction,
 }: ContextMenuListItemProps) => {
-  const listItemClasses = useMemo(() => {
-    return type === 'danger' || type === 'report'
-      ? 'context-menu-list-item danger'
-      : 'context-menu-list-item';
-  }, [type]);
+  const listItemClasses = useMemo(
+    () =>
+      type === 'danger' || type === 'report'
+        ? 'context-menu-list-item danger'
+        : 'context-menu-list-item',
+    [type]
+  );
 
   return (
-    <li className={listItemClasses}>
+    <li className={listItemClasses} role='menuitem'>
       <button
         type='button'
         onClick={onAction}

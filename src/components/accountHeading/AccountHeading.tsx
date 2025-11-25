@@ -5,9 +5,10 @@ import { AccountHeadingProps } from '../../types';
 import './AccountHeading.scss';
 
 const AccountHeading = ({ title, subtitle, type }: AccountHeadingProps) => {
-  const accountHeadingClasses = useMemo(() => {
-    return type !== 'profile' ? 'account-heading mb' : 'account-heading';
-  }, [type]);
+  const accountHeadingClasses = useMemo(
+    () => (type !== 'profile' ? 'account-heading mb' : 'account-heading'),
+    [type]
+  );
 
   return (
     <div

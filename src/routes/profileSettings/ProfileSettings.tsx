@@ -36,33 +36,29 @@ const ProfileSettings = () => {
   const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    if (0 < progress && progress < 100) return;
+    if (progress > 0 && progress < 100) return;
     inputRef?.current?.click();
   };
 
   useEffect(() => {
     if (!image && progress !== 100) return;
 
-    if (image && progress === 100) {
-      const payload = {
-        image: image.filePath,
-      };
+    const payload = {
+      image: image?.filePath,
+    };
 
-      dispatch(updateUserData(payload))
-        .then(() => {
-          toast.success('Profile image updated successfully!');
-          refetch();
-        })
-        .catch(() => {
-          toast.error(
-            'Failed to update profile image. Please try again later.'
-          );
-        })
-        .finally(() => {
-          setProgress(0);
-          setImage(undefined);
-        });
-    }
+    dispatch(updateUserData(payload))
+      .then(() => {
+        toast.success('Profile image updated successfully!');
+        refetch();
+      })
+      .catch(() => {
+        toast.error('Failed to update profile image. Please try again later.');
+      })
+      .finally(() => {
+        setProgress(0);
+        setImage(undefined);
+      });
   }, [dispatch, image, progress, refetch]);
 
   return (
@@ -96,27 +92,29 @@ const ProfileSettings = () => {
         ) : (
           <>
             <ProfileImage
-              name={data?.name as string}
-              bio={data?.bio as string}
+              name={data?.name ?? ''}
+              bio={data?.bio ?? ''}
               image={data?.image}
-              isFromGoogle={data?.fromGoogle}
+              isFromGoogle={!!data?.fromGoogle}
               progress={progress}
               role={data?.role as RoleType}
-              ref={inputRef}
+              inputRef={inputRef}
               onChangeImage={setImage}
               onChangeProgress={setProgress}
               onOpen={handleOpen}
               onUpload={handleUpload}
             />
-            <hr />
+            <hr aria-hidden='true' />
             <ProfileData
-              name={data?.name as string}
-              email={data?.email as string}
-              username={data?.username as string}
+              name={data?.name ?? ''}
+              email={data?.email ?? ''}
+              username={data?.username ?? ''}
               phone={data?.phone as Value}
-              dateOfBirth={data?.dateOfBirth as unknown as Date | null}
+              dateOfBirth={
+                (data?.dateOfBirth as unknown as Date | null) ?? null
+              }
               country={data?.country as unknown as CountrySelectType}
-              bio={data?.bio as string}
+              bio={data?.bio ?? ''}
               about={data?.about}
             />
           </>

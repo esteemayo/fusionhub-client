@@ -89,6 +89,7 @@ const ProfileAction = ({
         aria-expanded={isOpen}
         aria-controls='profile-action-menu'
         aria-label='Open profile action menu'
+        title={`${isOpen ? 'Close' : 'Open'} ${type} menu`}
       >
         <VerticalEllipsisIcon />
       </button>
