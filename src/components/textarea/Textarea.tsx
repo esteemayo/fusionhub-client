@@ -15,6 +15,9 @@ const Textarea = ({
   errors,
   ...rest
 }: TextareaProps) => {
+  const fieldError = error || (errors?.[name]?.message as string | undefined);
+  const errorId = fieldError ? `${name}-error` : undefined;
+
   return (
     <div className='textarea'>
       <Label id={name} label={label} disabled={disabled} validate={validate} />
@@ -25,11 +28,19 @@ const Textarea = ({
         name={name}
         disabled={disabled}
         aria-disabled={disabled}
-        className='textarea__control'
+        aria-invalid={!!fieldError}
+        aria-describedby={errorId}
+        className={`textarea__control ${fieldError ? 'error' : ''}`}
       />
-      {error && <ErrorMessage message={error} />}
+
+      {error && <ErrorMessage id={errorId} role='alert' message={error} />}
+
       {errors?.[name] && (
-        <ErrorMessage message={errors[name].message as string | undefined} />
+        <ErrorMessage
+          id={errorId}
+          role='alert'
+          message={errors[name].message as string | undefined}
+        />
       )}
     </div>
   );

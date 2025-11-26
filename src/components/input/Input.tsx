@@ -18,6 +18,10 @@ const Input = ({
   onAction,
   ...rest
 }: InputProps) => {
+  const errorMessage = errors?.[name]?.message as string | undefined;
+  const hasError = Boolean(errorMessage);
+  const errorId = hasError ? `${name}-error` : undefined;
+
   return (
     <div className='input'>
       <Label
@@ -37,10 +41,13 @@ const Input = ({
         type={type}
         disabled={disabled}
         aria-disabled={disabled}
-        className='input__control'
+        aria-invalid={hasError}
+        aria-describedby={errorId}
+        className={`input__control ${hasError ? 'error' : ''}`}
       />
-      {errors[name] && (
-        <ErrorMessage message={errors[name].message as string | undefined} />
+
+      {hasError && (
+        <ErrorMessage id={errorId} role='alert' message={errorMessage} />
       )}
     </div>
   );

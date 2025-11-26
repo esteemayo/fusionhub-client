@@ -145,6 +145,12 @@ export interface EmptyMessageProps {
   type?: 'comment';
 }
 
+export interface ErrorMessageProps {
+  id?: string;
+  role?: React.AriaRole;
+  message?: string;
+}
+
 export interface LabelProps {
   id?: string;
   label?: string;

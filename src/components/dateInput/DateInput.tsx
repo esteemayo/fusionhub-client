@@ -19,20 +19,30 @@ const DateInput = ({
 }: DateInputProps) => {
   const ref = useRef<DatePicker | null>(null);
 
+  const inputId = `${label?.replace(/\s+/g, '-').toLowerCase()}-date-input`;
+  const errorId = `${inputId}-error`;
+
   const handleClick = () => {
     ref?.current?.onInputClick();
   };
 
   return (
-    <div className='date-input'>
+    <div className='date-input' role='group' aria-labelledby={inputId}>
       <Label label={label} validate={validate} onClick={handleClick} />
-      <DatePicker
-        selected={startDate}
-        placeholderText={placeholder}
-        onChange={(date) => onChange(date)}
-        ref={ref}
-      />
-      {error && <ErrorMessage message={error} />}
+
+      <div className='date-input__wrapper'>
+        <DatePicker
+          id={inputId}
+          ref={ref}
+          selected={startDate}
+          placeholderText={placeholder}
+          onChange={(date) => onChange(date)}
+          ariaInvalid={error}
+          ariaDescribedBy={error ? errorId : undefined}
+        />
+      </div>
+
+      {error && <ErrorMessage id={errorId} role='alert' message={error} />}
     </div>
   );
 };

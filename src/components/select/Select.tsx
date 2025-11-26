@@ -17,6 +17,9 @@ const Select = ({
   options,
   ...rest
 }: SelectProps) => {
+  const fieldError = error || errors?.[name]?.message;
+  const errorId = fieldError ? `${name}-error` : undefined;
+
   return (
     <div className='select'>
       <Label id={name} label={label} disabled={disabled} validate={validate} />
@@ -27,7 +30,9 @@ const Select = ({
         name={name}
         disabled={disabled}
         aria-disabled={disabled}
-        className='select__control'
+        aria-invalid={!!fieldError}
+        aria-describedby={errorId}
+        className={`select__control ${fieldError ? 'error' : ''}`}
       >
         <option value=''>{defaultValue ?? 'Select'}</option>
         {options?.map(({ _id: id, name }) => {
@@ -40,10 +45,16 @@ const Select = ({
           );
         })}
       </select>
+
+      {error && <ErrorMessage id={errorId} role='alert' message={error} />}
+
       {errors?.[name] && (
-        <ErrorMessage message={errors[name].message as string | undefined} />
+        <ErrorMessage
+          id={errorId}
+          role='alert'
+          message={errors[name].message as string | undefined}
+        />
       )}
-      {error && <ErrorMessage message={error} />}
     </div>
   );
 };
