@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useId, useRef } from 'react';
 import PhoneInput from 'react-phone-number-input';
 
 import Label from '../label/Label';
@@ -10,6 +10,7 @@ import 'react-phone-number-input/style.css';
 import './PhoneNumber.scss';
 
 const PhoneNumber = ({
+  name = 'phone-number',
   label,
   value,
   placeholder,
@@ -19,6 +20,9 @@ const PhoneNumber = ({
 }: PhoneNumberProps) => {
   const ref = useRef<HTMLInputElement>(null);
 
+  const inputId = useId();
+  const errorId = `${inputId}-error`;
+
   const handleClick = () => {
     ref.current?.focus();
   };
@@ -27,12 +31,17 @@ const PhoneNumber = ({
     <div className='phone-number'>
       <Label label={label} validate={validate} onClick={handleClick} />
       <PhoneInput
+        id={inputId}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         inputRef={ref}
+        aria-invalid={!!error}
+        aria-describedBy={error ? errorId : undefined}
       />
-      {error && <ErrorMessage message={error} />}
+
+      {error && <ErrorMessage id={errorId} role='alert' message={error} />}
     </div>
   );
 };

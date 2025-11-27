@@ -82,6 +82,25 @@
       background-color: rgba(vars.$clr-secondary-blue, 0.5);
     }
 
+    &.error {
+      border-color: #dc2626;
+      background-color: #fef2f2;
+      color: #b91c1c;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25);
+      animation: inputErrorShake 0.14s ease-in-out;
+
+      &::placeholder {
+        color: #b91c1c;
+        opacity: 0.8;
+      }
+
+      &:focus {
+        border-color: #b91c1c;
+        box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.25);
+        outline: 0;
+      }
+    }
+
     option {
       text-transform: initial;
       font-size: inherit;

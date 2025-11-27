@@ -19,19 +19,23 @@ const PostTextBox = ({
   onChangeImageProgress,
   onChangeVideoProgress,
 }: PostTextBoxProps) => {
-  const isDisabledImg = useMemo(() => {
-    return 0 < imageProgress && imageProgress < 100;
-  }, [imageProgress]);
+  const isDisabledImg = useMemo(
+    () => imageProgress > 0 && imageProgress < 100,
+    [imageProgress]
+  );
 
-  const isDisabledVideo = useMemo(() => {
-    return 0 < videoProgress && videoProgress < 100;
-  }, [videoProgress]);
+  const isDisabledVideo = useMemo(
+    () => videoProgress > 0 && videoProgress < 100,
+    [videoProgress]
+  );
 
   return (
     <div className='post-text-box'>
       <TextQuill
+        id='description'
         label={label}
         value={value}
+        placeholder='Post description'
         onChange={(value) => onChangeDesc(value)}
         error={error}
         validate

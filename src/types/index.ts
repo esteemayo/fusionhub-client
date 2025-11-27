@@ -1003,6 +1003,7 @@ export interface ProfileDataProps {
 }
 
 export interface PhoneNumberProps {
+  name?: string;
   label?: string;
   value: Value | undefined;
   placeholder?: string;

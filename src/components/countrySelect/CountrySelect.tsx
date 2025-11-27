@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Select from 'react-select';
+import Select, { SelectInstance } from 'react-select';
 
 import Label from '../label/Label';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -19,18 +19,29 @@ const CountrySelect = ({
   onChange,
 }: CountrySelectProps) => {
   const { getAll } = useCountries();
-
-  const ref = useRef<Select<CountrySelectType, false>>(null);
+  const ref = useRef<SelectInstance<CountrySelectType>>(null);
 
   const handleClick = () => {
     ref.current?.focus();
   };
 
+  const inputId = `${name}-country-select`;
+  const errorId = `${inputId}-error`;
+  const hasError = !!errors?.[name];
+
   return (
-    <div className='country-select'>
+    <div
+      className='country-select'
+      role='group'
+      aria-labelledby={inputId}
+      aria-describedby={hasError ? errorId : undefined}
+    >
       <Label label={label} validate={validate} onClick={handleClick} />
       <Select
         {...(register ? register(name) : {})}
+        inputId={inputId}
+        aria-invalid={hasError}
+        aria-describedBy={hasError ? errorId : undefined}
         name={name}
         placeholder={placeholder}
         isClearable
@@ -47,10 +58,10 @@ const CountrySelect = ({
         styles={{
           control: (base) => ({
             ...base,
-            borderColor: '#d1d5db',
+            borderColor: hasError ? '#dc2626' : '#d1d5db',
             boxShadow: 'none',
             '&:hover': {
-              borderColor: '#9ca3af',
+              borderColor: hasError ? '#dc2626' : '#9ca3af',
             },
           }),
           input: (base) => ({
@@ -75,7 +86,7 @@ const CountrySelect = ({
           }),
         }}
         classNames={{
-          control: () => 'country-select__control',
+          control: () => `country-select__control ${hasError ? 'error' : ''}`,
           input: () => 'country-select__input',
           option: () => 'country-select__option',
         }}
@@ -90,8 +101,13 @@ const CountrySelect = ({
         })}
         ref={ref}
       />
-      {errors?.[name] && (
-        <ErrorMessage message={errors[name].message as string | undefined} />
+
+      {hasError && (
+        <ErrorMessage
+          id={errorId}
+          role='alert'
+          message={errors[name]?.message as string | undefined}
+        />
       )}
     </div>
   );
