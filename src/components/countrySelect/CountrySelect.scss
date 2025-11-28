@@ -1,3 +1,4 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
@@ -68,6 +69,10 @@
 
     @media screen and (min-width: 125em) {
       height: 8rem;
+    }
+
+    &.error {
+      animation: inputErrorShake 0.14s ease-in-out;
     }
   }
 

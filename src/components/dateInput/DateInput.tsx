@@ -39,6 +39,7 @@ const DateInput = ({
           onChange={(date) => onChange(date)}
           ariaInvalid={error}
           ariaDescribedBy={error ? errorId : undefined}
+          className={`date-input__wrapper--input ${error ? 'error' : ''}`}
         />
       </div>
 

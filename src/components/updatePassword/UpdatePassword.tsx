@@ -25,7 +25,7 @@ type FormData = z.infer<typeof passwordSchema>;
 const UpdatePassword = () => {
   const dispatch = useAppDispatch();
   const { isError, isLoading, isSuccess, message, user } = useAppSelector(
-    (state) => ({ ...state.auth })
+    (state) => state.auth
   );
 
   const [showPasswordCurrent, setShowPasswordCurrent] = useState(false);
@@ -57,14 +57,16 @@ const UpdatePassword = () => {
     dispatch(updateUserPassword(data));
   };
 
-  const updatePasswordClasses = useMemo(() => {
-    return user?.details.fromGoogle && user.details.providerId
-      ? 'update-password hide'
-      : 'update-password show';
-  }, [user]);
+  const updatePasswordClasses = useMemo(
+    () =>
+      user?.details.fromGoogle && user.details.providerId
+        ? 'update-password hide'
+        : 'update-password show',
+    [user]
+  );
 
   useEffect(() => {
-    if (isError) {
+    if (isError && message) {
       toast.error(message);
     }
 
@@ -81,7 +83,11 @@ const UpdatePassword = () => {
   const input = passwordInputs[passwordInputs.length - 1];
 
   return (
-    <section className={updatePasswordClasses}>
+    <section
+      className={updatePasswordClasses}
+      role='region'
+      aria-labelledby='updatePasswordTitle'
+    >
       <div className='update-password__container'>
         <AccountHeader
           title='Change password'

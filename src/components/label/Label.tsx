@@ -15,9 +15,10 @@ const Label = ({
   onClick,
   onAction,
 }: LabelProps) => {
-  const labelClasses = useMemo(() => {
-    return !validate ? 'label__text' : 'label__text star';
-  }, [validate]);
+  const labelClasses = useMemo(
+    () => (!validate ? 'label__text' : 'label__text star'),
+    [validate]
+  );
 
   return (
     <div className='label'>
@@ -31,6 +32,8 @@ const Label = ({
         {label}
       </label>
       <PasswordToggle
+        label={label}
+        inputId={id}
         isShow={isShow}
         isPassword={isPassword}
         disabled={disabled}

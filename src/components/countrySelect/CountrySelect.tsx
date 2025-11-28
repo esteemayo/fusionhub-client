@@ -58,10 +58,10 @@ const CountrySelect = ({
         styles={{
           control: (base) => ({
             ...base,
-            borderColor: hasError ? '#dc2626' : '#d1d5db',
+            borderColor: '#d1d5db',
             boxShadow: 'none',
             '&:hover': {
-              borderColor: hasError ? '#dc2626' : '#9ca3af',
+              borderColor: '#9ca3af',
             },
           }),
           input: (base) => ({

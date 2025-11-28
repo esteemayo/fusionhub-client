@@ -24,8 +24,8 @@ const DeactivateAccount = () => {
           <button
             type='button'
             onClick={handleClick}
-            aria-label='De-activate my Account'
             className='deactivate-account__wrapper--btn'
+            aria-label='De-activate my Account'
           >
             De-activate my Account
           </button>

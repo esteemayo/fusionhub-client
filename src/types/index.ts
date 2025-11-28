@@ -163,6 +163,8 @@ export interface LabelProps {
 }
 
 export interface PasswordToggleProps {
+  label?: string;
+  inputId?: string;
   isShow?: boolean;
   isPassword?: boolean;
   disabled?: boolean;

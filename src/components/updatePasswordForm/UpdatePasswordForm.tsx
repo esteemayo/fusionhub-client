@@ -20,39 +20,48 @@ const UpdatePasswordForm = ({
   onSubmit,
 }: UpdatePasswordFormProps) => {
   return (
-    <form className='update-password-form' onSubmit={onSubmit}>
+    <form
+      className='update-password-form'
+      onSubmit={onSubmit}
+      role='form'
+      aria-labelledby='updatePasswordFormTitle'
+    >
+      <h2 id='updatePasswordFormTitle' className='sr-only'>
+        Update your account password
+      </h2>
+
       <div className='update-password-form__inputs'>
+        <span className='sr-only'>Current and new password fields</span>
+
         {inputs.map((input) => {
           const { id, name, type, label, placeholder } = input;
+
+          const isCurrent = name === 'passwordCurrent';
+          const isNew = name === 'password';
+
+          const isVisible = isCurrent
+            ? showPasswordCurrent
+            : isNew
+            ? showPassword
+            : false;
+
+          const handleToggle = isCurrent
+            ? onTogglePasswordCurrent
+            : onTogglePassword;
+
           return (
             <Input
               key={id}
-              type={
-                name === 'passwordCurrent'
-                  ? showPasswordCurrent
-                    ? 'text'
-                    : type
-                  : name === 'password'
-                  ? showPassword
-                    ? 'text'
-                    : type
-                  : type
-              }
+              type={isVisible ? 'text' : type}
               name={name}
               label={label}
               placeholder={placeholder}
               register={register}
               errors={errors}
-              onAction={
-                name === 'passwordCurrent'
-                  ? onTogglePasswordCurrent
-                  : onTogglePassword
-              }
+              onAction={handleToggle}
               disabled={isLoading}
               autoFocus={name === 'passwordCurrent'}
-              isShow={
-                name === 'passwordCurrent' ? showPasswordCurrent : showPassword
-              }
+              isShow={isVisible}
               isPassword
               validate
             />
@@ -60,6 +69,8 @@ const UpdatePasswordForm = ({
         })}
       </div>
       <div className='update-password-form__confirm'>
+        <span className='sr-only'>Confirm password field</span>
+
         <Input
           type={showPasswordConfirm ? 'text' : input.type}
           name={input.name}
