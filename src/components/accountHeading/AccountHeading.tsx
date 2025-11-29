@@ -4,7 +4,13 @@ import { AccountHeadingProps } from '../../types';
 
 import './AccountHeading.scss';
 
-const AccountHeading = ({ title, subtitle, type }: AccountHeadingProps) => {
+const AccountHeading = ({
+  title,
+  subtitle,
+  type,
+  titleId,
+  descriptionId,
+}: AccountHeadingProps) => {
   const accountHeadingClasses = useMemo(
     () => (type !== 'profile' ? 'account-heading mb' : 'account-heading'),
     [type]
@@ -13,13 +19,19 @@ const AccountHeading = ({ title, subtitle, type }: AccountHeadingProps) => {
   return (
     <div
       className={accountHeadingClasses}
-      aria-labelledby='account-heading-title'
-      aria-describedby='account-heading-subtitle'
+      aria-labelledby={titleId ?? 'account-heading-title'}
+      aria-describedby={descriptionId ?? 'account-heading-subtitle'}
     >
-      <h1 id='account-heading-title' className='account-heading--header'>
+      <h1
+        id={titleId ?? 'account-heading-title'}
+        className='account-heading--header'
+      >
         {title}
       </h1>
-      <p id='account-heading-subtitle' className='account-heading--text'>
+      <p
+        id={descriptionId ?? 'account-heading-subtitle'}
+        className='account-heading--text'
+      >
         {subtitle}
       </p>
     </div>

@@ -143,6 +143,7 @@ export interface EmptyMessageProps {
   subtitle?: string;
   center?: boolean;
   type?: 'comment';
+  role?: React.AriaRole;
 }
 
 export interface ErrorMessageProps {
@@ -409,6 +410,7 @@ export interface MutedRepliesProps {
 }
 
 export interface MutedListProps {
+  type: 'users' | 'comments' | 'replies';
   lists: MutedUsersType | MutedCommentsType | MutedRepliesType | undefined;
 }
 
@@ -423,6 +425,7 @@ export interface MutedListItemProps {
   author?: AuthorType;
   reason?: string;
   mutedAt: string;
+  type: 'users' | 'comments' | 'replies';
 }
 
 export interface BlockedUserProps {
@@ -664,11 +667,15 @@ export interface AccountHeadingProps {
   title: string;
   subtitle: string;
   type?: 'profile';
+  titleId?: string;
+  descriptionId?: string;
 }
 
 export interface AccountHeaderProps {
   title: string;
   subtitle: string;
+  titleId?: string;
+  descriptionId?: string;
 }
 
 export interface AccountMenuItemProps {

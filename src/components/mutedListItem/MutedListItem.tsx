@@ -4,7 +4,7 @@ import Image from '../Image';
 import GoogleImage from '../GoogleImage';
 
 import { useMute } from '../../hooks/useMute';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch } from '../../hooks/hooks';
 
 import { onOpen } from '../../features/muteModal/muteModalSlice';
 import { MutedListItemProps, MuteModalType, MutePayload } from '../../types';
@@ -20,19 +20,20 @@ const MutedListItem = ({
   author,
   reason,
   mutedAt,
+  type,
 }: MutedListItemProps) => {
+  const { mutedList } = useMute();
   const dispatch = useAppDispatch();
 
-  const { mutedList } = useMute();
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
-
   const isMuted = useMemo(() => {
+    const mutedReplies = mutedList?.mutedReplies ?? [];
+    const mutedUsers = mutedList?.mutedUsers ?? [];
+    const mutedComments = mutedList?.mutedComments ?? [];
+
     return (
-      (mutedList?.mutedUsers ?? []).some((user) => user.id === targetId) ||
-      (mutedList?.mutedComments ?? []).some(
-        (comment) => comment.id === targetId
-      ) ||
-      (mutedList?.mutedReplies ?? []).some((reply) => reply.id === targetId) ||
+      mutedUsers.some((user) => user.id === targetId) ||
+      mutedComments.some((comment) => comment.id === targetId) ||
+      mutedReplies.some((reply) => reply.id === targetId) ||
       false
     );
   }, [mutedList, targetId]);
@@ -49,8 +50,16 @@ const MutedListItem = ({
     dispatch(onOpen(payload));
   };
 
+  const displayName = username ?? author?.username ?? 'Unknown user';
+
   return (
-    <article className='muted-list-item'>
+    <article
+      className='muted-list-item'
+      role='group'
+      aria-labelledby={`muted-${type}-${targetId}`}
+      aria-describedby={`muted-meta-${targetId}`}
+      tabIndex={0}
+    >
       <div className='muted-list-item__container'>
         <div className='muted-list-item__user'>
           {image?.startsWith('https') ? (
@@ -58,7 +67,7 @@ const MutedListItem = ({
               src={image ?? '/user-default.jpg'}
               width={40}
               height={40}
-              alt={username ?? author?.username}
+              alt={`${displayName}’s profile avatar`}
               className='banner__user--avatar'
             />
           ) : (
@@ -72,36 +81,43 @@ const MutedListItem = ({
                   ? author.image
                   : '/user-default.jpg') as string
               }
-              alt={username ?? author?.username}
+              alt={`${displayName}’s profile avatar`}
               className='muted-list-item__user--img'
             />
           )}
           <div className='muted-list-item__details'>
             <span
+              id={`muted-${type}-${targetId}`}
               className='muted-list-item__details--username'
-              aria-label={`@${username ? username : author?.username}`}
             >
-              {`@${username ? username : author?.username}`}
+              @{displayName}
             </span>
+
             {content && targetType !== 'User' && (
               <p
                 className='muted-list-item__details--content'
-                aria-label={`"${content}"`}
+                aria-label={`Muted content: ${content}`}
               >
                 "{content}"
               </p>
             )}
+
             <p
               className='muted-list-item__details--content'
-              aria-label={reason}
+              aria-label={`Reason: ${reason}`}
             >
               {reason}
             </p>
+
             <small
+              id={`muted-meta-${targetId}`}
               className='muted-list-item__details--muted-at'
               aria-label={`Muted on ${new Date(mutedAt).toLocaleString()}`}
             >
-              Muted on {new Date(mutedAt).toLocaleString()}
+              Muted on{' '}
+              <time dateTime={new Date(mutedAt).toISOString()}>
+                {new Date(mutedAt).toLocaleString()}
+              </time>
             </small>
           </div>
         </div>
@@ -109,10 +125,9 @@ const MutedListItem = ({
           <button
             type='button'
             onClick={handleUnmute}
-            aria-label={`Unmute ${username ?? author?.username} by ${
-              currentUser?.details.username
-            }`}
             className='muted-list-item__action--btn'
+            aria-label={`Unmute ${displayName}`}
+            aria-describedby={`muted-meta-${targetId}`}
           >
             Unmute
           </button>

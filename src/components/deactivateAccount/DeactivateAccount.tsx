@@ -14,18 +14,26 @@ const DeactivateAccount = () => {
   };
 
   return (
-    <section className='deactivate-account'>
+    <section
+      className='deactivate-account'
+      role='region'
+      aria-labelledby='deactivate-count-title'
+      aria-describedby='deactivate-count-description'
+    >
       <div className='deactivate-account__container'>
         <AccountHeader
           title='De-activate account'
           subtitle='De-activating your account will remove all of your information from our database. This cannot be undone.'
+          titleId='deactivate-count-title'
+          descriptionId='deactivate-count-description'
         />
         <div className='deactivate-account__wrapper'>
           <button
             type='button'
             onClick={handleClick}
             className='deactivate-account__wrapper--btn'
-            aria-label='De-activate my Account'
+            aria-haspopup='dialog'
+            aria-label='Open confirmation dialog to de-activate mu account permanently'
           >
             De-activate my Account
           </button>

@@ -16,26 +16,48 @@ const MutedReplies = ({
   const noMutedReplies = (mutedReplies ?? []).length < 1;
 
   return (
-    <section className='muted-replies'>
+    <section
+      className='muted-replies'
+      role='region'
+      aria-labelledby='muted-replies-heading'
+      aria-describedby='muted-replies-description'
+    >
       <div className='muted-replies__container'>
         <AcccountHeader
           title='Muted Replies'
           subtitle='Manage muted replies to ensure your discussions stay on-topic and aligned with your preferences'
+          titleId='muted-replies-heading'
+          descriptionId='muted-replies-description'
         />
+
+        <div className='sr-only' aria-live='polite'>
+          {isPending && 'Loading muted replies...'}
+          {error && 'An error occurred while loading muted replies.'}
+          {noMutedReplies && !isPending && 'No muted replies found.'}
+        </div>
+
         <div className='muted-replies__wrapper'>
           {isPending ? (
-            <div className='muted-replies__wrapper--loader'>
+            <div
+              className='muted-replies__wrapper--loader'
+              role='status'
+              aria-busy='true'
+            >
               <Spinner />
             </div>
+          ) : error ? (
+            <EmptyMessage
+              title='Error loading data'
+              subtitle={error.message || 'Something went wrong.'}
+              role='alert'
+            />
           ) : noMutedReplies && !isPending ? (
             <EmptyMessage
               title='No muted replies yet'
-              subtitle='This user hasn’t muted any user.'
+              subtitle='You have not muted any replies.'
             />
-          ) : error ? (
-            <EmptyMessage title='' subtitle={error.message || ''} />
           ) : (
-            <MutedList lists={mutedReplies} />
+            <MutedList type='replies' lists={mutedReplies} />
           )}
         </div>
       </div>

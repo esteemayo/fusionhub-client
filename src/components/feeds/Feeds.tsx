@@ -20,17 +20,19 @@ const Feeds = ({ postId, onClose }: FeedsProps) => {
     queryFn: fetchTrendingPosts,
   });
 
+  const noFeeds = (data ?? []).length < 1;
+
   return (
     <section className='feeds'>
       <div className='feeds__container'>
         <h2 className='feeds__container-heading'>Feeds</h2>
-        {(data ?? []).length < 1 && !isPending ? (
+        {noFeeds && !isPending ? (
           <EmptyMessage
             title='No trending posts available at the moment.'
             subtitle='Check back later or explore other sections!'
           />
         ) : isPending ? (
-          Array.from(Array(3)).map((_, index) => {
+          Array.from(Array({ length: 3 })).map((_, index) => {
             return <FeedSkeleton key={index} />;
           })
         ) : error ? (
