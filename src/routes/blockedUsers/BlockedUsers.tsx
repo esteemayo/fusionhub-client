@@ -12,17 +12,35 @@ const BlockedUsers = () => {
   const noBlockedUsers = (blockedUsers ?? []).length < 1;
 
   return (
-    <section className='blocked-users'>
+    <section
+      className='blocked-users'
+      role='region'
+      aria-labelledby='blocked-users-heading'
+      aria-describedby='blocked-users-description'
+    >
       <div className='blocked-users__container'>
         <AccountHeading
           title='Blocked User Accounts'
           subtitle='Manage your blocked users to keep your experience secure and distraction-free'
           type='profile'
+          titleId='blocked-users-heading'
+          descriptionId='blocked-users-description'
         />
+
+        <div className='sr-only' aria-live='polite'>
+          {isPending && 'Loading blocked users...'}
+          {error && 'An error occurred while loading blocked users.'}
+          {noBlockedUsers && !isPending && 'No muted users found.'}
+        </div>
       </div>
       <div className='blocked-users__wrapper'>
         {isPending ? (
-          <div className='blocked-users__wrapper--loader'>
+          <div
+            className='blocked-users__wrapper--loader'
+            role='status'
+            aria-busy='true'
+            aria-live='polite'
+          >
             <Spinner />
           </div>
         ) : noBlockedUsers && !isPending ? (
@@ -37,11 +55,21 @@ const BlockedUsers = () => {
               error.message ||
               'There was a problem fetching blocked users. Please try refreshing the page or check your internet connection.'
             }
+            role='alert'
+            aria-live='assertive'
           />
         ) : (
-          <div className='blocked-users__box'>
+          <div className='blocked-users__box' role='list'>
             {blockedUsers?.map((blocked) => {
-              return <BlockedUser key={blocked.id} {...blocked} />;
+              return (
+                <div
+                  key={blocked.id}
+                  className='blocked-users__box--item'
+                  role='listitem'
+                >
+                  <BlockedUser {...blocked} />
+                </div>
+              );
             })}
           </div>
         )}

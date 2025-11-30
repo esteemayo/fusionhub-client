@@ -100,5 +100,9 @@
     box-shadow: vars.$shadow;
     border-radius: 1rem;
     overflow: hidden;
+
+    &--item {
+      width: 100%;
+    }
   }
 }

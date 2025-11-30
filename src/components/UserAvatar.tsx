@@ -24,7 +24,7 @@ const UserAvatar = ({
     }
   }
 
-  const src = imgSrc || avatarSrc;
+  const src = imgSrc || avatarSrc || '';
   const username = currentUser?.details.username as string;
 
   const altText = alt

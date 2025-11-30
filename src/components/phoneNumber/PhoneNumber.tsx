@@ -38,7 +38,7 @@ const PhoneNumber = ({
         onChange={onChange}
         inputRef={ref}
         aria-invalid={!!error}
-        aria-describedBy={error ? errorId : undefined}
+        aria-describedby={error ? errorId : undefined}
       />
 
       {error && <ErrorMessage id={errorId} role='alert' message={error} />}

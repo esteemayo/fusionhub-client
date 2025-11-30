@@ -147,12 +147,20 @@ const Categories = () => {
   }, [handleClear]);
 
   return (
-    <div onClick={onClickHandler} className='categories'>
+    <div
+      onClick={onClickHandler}
+      className='categories'
+      role='main'
+      aria-labelledby='categories-title'
+      aria-describedby='categories-description'
+    >
       <div className='categories__container'>
         <AccountHeading
           title='Categories'
           subtitle='Manage and organize your blog categories. Create new categories to group your posts, and easily edit or delete existing ones for better content structure and discoverability.'
           type='profile'
+          titleId='categories-title'
+          descriptionId='categories-description'
         />
       </div>
       <div className='categories__wrapper'>
@@ -180,6 +188,18 @@ const Categories = () => {
           onDelete={handleDelete}
         />
       </div>
+
+      {isPending && (
+        <span className='sr-only' role='status' aria-live='polite'>
+          Loading categories
+        </span>
+      )}
+
+      {error && (
+        <span className='sr-only' role='alert' aria-live='assertive'>
+          Error loading categories: {error.message}
+        </span>
+      )}
     </div>
   );
 };

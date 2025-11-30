@@ -14,13 +14,15 @@ const Button = ({
   disabled,
   className,
   onClick,
+  ...rest
 }: ButtonProps) => {
   return (
     <button
+      {...rest}
       type={type}
       disabled={disabled}
       onClick={onClick}
-      aria-label={label}
+      aria-label={rest['aria-label'] ?? label}
       aria-disabled={disabled}
       aria-busy={isLoading}
       className={`btn ${variant} ${className ?? ''}`}

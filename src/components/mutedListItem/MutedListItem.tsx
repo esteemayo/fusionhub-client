@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-import Image from '../Image';
-import GoogleImage from '../GoogleImage';
+import UserAvatar from '../UserAvatar';
 
 import { useMute } from '../../hooks/useMute';
 import { useAppDispatch } from '../../hooks/hooks';
@@ -31,9 +30,9 @@ const MutedListItem = ({
     const mutedComments = mutedList?.mutedComments ?? [];
 
     return (
-      mutedUsers.some((user) => user.id === targetId) ||
-      mutedComments.some((comment) => comment.id === targetId) ||
-      mutedReplies.some((reply) => reply.id === targetId) ||
+      !!mutedUsers.some((user) => user.id === targetId) ||
+      !!mutedComments.some((comment) => comment.id === targetId) ||
+      !!mutedReplies.some((reply) => reply.id === targetId) ||
       false
     );
   }, [mutedList, targetId]);
@@ -50,6 +49,8 @@ const MutedListItem = ({
     dispatch(onOpen(payload));
   };
 
+  const src = image ? image : author ? author.image : undefined;
+  const isGoogleImage = image?.startsWith('https') || false;
   const displayName = username ?? author?.username ?? 'Unknown user';
 
   return (
@@ -62,29 +63,13 @@ const MutedListItem = ({
     >
       <div className='muted-list-item__container'>
         <div className='muted-list-item__user'>
-          {image?.startsWith('https') ? (
-            <GoogleImage
-              src={image ?? '/user-default.jpg'}
-              width={40}
-              height={40}
-              alt={`${displayName}’s profile avatar`}
-              className='banner__user--avatar'
-            />
-          ) : (
-            <Image
-              width={40}
-              height={40}
-              src={
-                (image
-                  ? image
-                  : author
-                  ? author.image
-                  : '/user-default.jpg') as string
-              }
-              alt={`${displayName}’s profile avatar`}
-              className='muted-list-item__user--img'
-            />
-          )}
+          <UserAvatar
+            imgSrc={src}
+            size={40}
+            isGoogleAvatar={isGoogleImage}
+            alt={`${displayName}’s profile avatar`}
+            className='muted-list-item__user--img'
+          />
           <div className='muted-list-item__details'>
             <span
               id={`muted-${type}-${targetId}`}
@@ -121,6 +106,7 @@ const MutedListItem = ({
             </small>
           </div>
         </div>
+
         <div className='muted-list-item__action'>
           <button
             type='button'

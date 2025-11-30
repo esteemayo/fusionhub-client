@@ -38,14 +38,19 @@ const MutedUsers = ({ isPending, error, mutedUsers }: MutedUsersProps) => {
               className='muted-users__wrapper--loader'
               role='status'
               aria-busy='true'
+              aria-live='polite'
             >
               <Spinner />
             </div>
           ) : error ? (
             <EmptyMessage
               title='Error loading data'
-              subtitle={error.message || 'Something went wrong.'}
+              subtitle={
+                error.message ||
+                'There was a problem fetching muted users. Please try refreshing the page or check your internet connection.'
+              }
               role='alert'
+              aria-live='assertive'
             />
           ) : noMutedUsers ? (
             <EmptyMessage

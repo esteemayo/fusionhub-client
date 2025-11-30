@@ -9,6 +9,7 @@ const EmptyMessage = ({
   center,
   type,
   role,
+  ...rest
 }: EmptyMessageProps) => {
   const titleId = useId();
   const subtitleId = useId();
@@ -27,8 +28,10 @@ const EmptyMessage = ({
 
   return (
     <div
+      {...rest}
       className={emptyMsgClasses}
       role={role}
+      aria-live='polite'
       aria-labelledby={titleId}
       aria-describedby={subtitleId}
     >

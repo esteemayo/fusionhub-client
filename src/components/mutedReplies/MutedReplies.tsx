@@ -48,8 +48,12 @@ const MutedReplies = ({
           ) : error ? (
             <EmptyMessage
               title='Error loading data'
-              subtitle={error.message || 'Something went wrong.'}
+              subtitle={
+                error.message ||
+                'There was a problem fetching muted replies. Please try refreshing the page or check your internet connection.'
+              }
               role='alert'
+              aria-live='assertive'
             />
           ) : noMutedReplies && !isPending ? (
             <EmptyMessage
