@@ -14,11 +14,22 @@ const CategoryAction = ({
   onRemove,
   onToggle,
   onUpdate,
+  ...rest
 }: CategoryActionProps) => {
   const handleKeyDown = useCallback(
     (e?: React.KeyboardEvent<HTMLButtonElement>) => {
-      if (e?.key === 'Escape' && isOpen) {
-        e?.preventDefault();
+      if (!e) return;
+
+      if (e.key === 'Escape' && isOpen) {
+        e.preventDefault();
+        onToggle();
+      }
+
+      if (
+        (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') &&
+        !isOpen
+      ) {
+        e.preventDefault();
         onToggle();
       }
     },
@@ -36,6 +47,7 @@ const CategoryAction = ({
   return (
     <div className={categoryActionClasses}>
       <button
+        {...rest}
         type='button'
         onClick={onToggle}
         onKeyDown={handleKeyDown}
@@ -44,7 +56,7 @@ const CategoryAction = ({
         aria-haspopup='menu'
         aria-expanded={isOpen}
         aria-controls='profile-action-menu'
-        aria-label='Open profile action menu'
+        aria-label={rest['aria-label'] ?? 'Open profile action menu'}
         aria-disabled={isOpen}
         title={`${isOpen ? 'Close' : 'Open'} category menu`}
       >

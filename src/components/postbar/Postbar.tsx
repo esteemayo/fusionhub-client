@@ -8,23 +8,25 @@ import './Postbar.scss';
 
 const Postbar = ({ onClick }: { onClick?: () => void }) => {
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.postsMenu }));
+  const { isOpen } = useAppSelector((state) => state.postsMenu);
 
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   const handleClick = (e: React.MouseEvent<HTMLLIElement> | undefined) => {
-    e?.stopPropagation();
+    if (!e) return;
+
+    e.stopPropagation();
 
     if (!isOpen && screenSize <= 768) {
       dispatch(onOpen());
     }
   };
 
-  const handleResize = () => {
-    setScreenSize(window.innerWidth);
-  };
-
   useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);

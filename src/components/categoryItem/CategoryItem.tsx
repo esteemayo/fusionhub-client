@@ -74,10 +74,22 @@ const CategoryItem = ({
   }, [activeCardId, category._id]);
 
   return (
-    <li className='category-item'>
+    <li
+      className='category-item'
+      role='listitem'
+      aria-expanded={activeCardId === category._id}
+      aria-selected={categoryId === category._id}
+      aria-label={`Category: ${category.name}`}
+      aria-disabled={isDisabled}
+    >
       <div className='category-item__wrapper'>
         <span className='category-item__wrapper--name'>
-          <Link to={`/posts?category=${category.name}`}>{category.name}</Link>
+          <Link
+            to={`/posts?category=${category.name}`}
+            aria-label={`View posts in the ${category.name} category`}
+          >
+            {category.name}
+          </Link>
         </span>
         <CategoryAction
           isOpen={isOpen}
@@ -86,6 +98,7 @@ const CategoryItem = ({
           onRemove={handleRemove}
           onToggle={onToggleHandler}
           onUpdate={handleUpdate}
+          aria-label={`Actions for category ${category.name}`}
         />
       </div>
     </li>

@@ -1,4 +1,4 @@
-const CloseIcon = () => {
+const XmarkIcon = () => {
   return (
     <svg
       aria-hidden='true'
@@ -19,4 +19,4 @@ const CloseIcon = () => {
   );
 };
 
-export default CloseIcon;
+export default XmarkIcon;

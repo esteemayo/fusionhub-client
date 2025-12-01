@@ -166,7 +166,9 @@ const Article = ({
 
   const handleCancel = useCallback(
     (e?: React.MouseEvent<HTMLButtonElement>) => {
-      e?.stopPropagation();
+      if (!e) return;
+
+      e.stopPropagation();
 
       if (!currentUser) return;
       handleClear();
@@ -320,7 +322,7 @@ const Article = ({
                 src={post.img}
                 width={300}
                 height={250}
-                alt={post.title}
+                alt={post.title || ''}
                 className='article__image--img'
               />
             </div>

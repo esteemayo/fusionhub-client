@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Spinner from '../Spinner';
-import CloseIcon from '../icons/CloseIcon';
+import XmarkIcon from '../icons/XmarkIcon';
 
 import { ModalProps } from '../../types';
 
@@ -206,7 +206,7 @@ const Modal = ({
               aria-label='Close modal'
               className='modal__close--btn'
             >
-              <CloseIcon />
+              <XmarkIcon />
             </button>
           </div>
         </div>

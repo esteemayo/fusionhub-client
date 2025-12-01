@@ -19,9 +19,11 @@ const PostItems = ({
   const query = useQueryParams();
   const searchQuery = query.get('search');
 
+  const noPosts = (posts ?? []).length < 1;
+
   return (
     <section className='post-items'>
-      {(posts ?? [])?.length < 1 && !isLoading ? (
+      {noPosts && !isLoading ? (
         searchQuery ? (
           <ErrorState
             title='No posts found'

@@ -40,7 +40,8 @@ const Posts = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
-    ref.current?.focus();
+    if (!ref.current) return;
+    ref.current.focus();
   };
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,9 +49,10 @@ const Posts = () => {
     dispatch(onToggle());
   };
 
-  const allPosts = useMemo(() => {
-    return data?.pages.flatMap((page) => page.posts) || [];
-  }, [data]);
+  const allPosts = useMemo(
+    () => data?.pages.flatMap((page) => page.posts) || [],
+    [data]
+  );
 
   return (
     <div className='posts'>

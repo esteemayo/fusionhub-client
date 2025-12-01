@@ -3,20 +3,20 @@ import { useMemo } from 'react';
 import EyeIcon from '../icons/EyeIcon';
 import EyeSlashIcon from '../icons/EyeSlashIcon';
 
-import { PasswordToggleProps } from '../../types';
+import { TogglePasswordProps } from '../../types';
 
-import './PasswordToggle.scss';
+import './TogglePassword.scss';
 
-const PasswordToggle = ({
+const TogglePassword = ({
   label,
   inputId,
   isShow,
   isPassword,
   disabled,
   onClick,
-}: PasswordToggleProps) => {
+}: TogglePasswordProps) => {
   const containerClasses = useMemo(
-    () => (isPassword ? 'password-toggle active' : 'password-toggle hide'),
+    () => (isPassword ? 'toggle-password active' : 'toggle-password hide'),
     [isPassword]
   );
 
@@ -28,7 +28,7 @@ const PasswordToggle = ({
         type='button'
         onClick={onClick}
         disabled={disabled}
-        className='password-toggle__btn'
+        className='toggle-password__btn'
         aria-label={labelText}
         aria-pressed={isShow}
         aria-controls={inputId}
@@ -36,7 +36,7 @@ const PasswordToggle = ({
         title={labelText}
       >
         {isShow ? <EyeSlashIcon /> : <EyeIcon />}
-        <span className='password-toggle__btn--text'>
+        <span className='toggle-password__btn--text'>
           {isShow ? 'Hide' : 'Show'}
         </span>
       </button>
@@ -44,4 +44,4 @@ const PasswordToggle = ({
   );
 };
 
-export default PasswordToggle;
+export default TogglePassword;

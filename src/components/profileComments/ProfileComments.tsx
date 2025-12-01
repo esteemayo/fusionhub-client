@@ -27,13 +27,7 @@ const ProfileComments = ({
       aria-busy={isLoading}
       aria-live='polite'
     >
-      {noComments && !isLoading ? (
-        <EmptyMessage
-          title='No Comments Yet'
-          subtitle="It looks like there aren't any comments here yet. Be the first to start the conversation or check back later to see what others are saying."
-          center
-        />
-      ) : isLoading ? (
+      {isLoading ? (
         <div role='status' aria-live='assertive' aria-label='Loading comments'>
           <ProfileSpinner />
         </div>
@@ -44,6 +38,12 @@ const ProfileComments = ({
             error.message ||
             'We encountered a problem while fetching comments. Please check your internet connection or try refreshing the page.'
           }
+          center
+        />
+      ) : noComments ? (
+        <EmptyMessage
+          title='No Comments Yet'
+          subtitle="It looks like there aren't any comments here yet. Be the first to start the conversation or check back later to see what others are saying."
           center
         />
       ) : (

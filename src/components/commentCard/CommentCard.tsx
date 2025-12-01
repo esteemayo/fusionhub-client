@@ -141,13 +141,19 @@ const CommentCard = ({
   };
 
   const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (!e) return;
+
+    if (e.key === 'Escape' && isShow) {
+      e.preventDefault();
+      handleClose();
+    }
+
+    if (
+      (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') &&
+      !isShow
+    ) {
       e.preventDefault();
       toggleActionHandler();
-    } else if (e.key === 'Escape') {
-      if (isShow) {
-        handleClose();
-      }
     }
   };
 

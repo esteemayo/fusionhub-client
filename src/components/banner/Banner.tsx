@@ -207,7 +207,7 @@ const Banner = ({
             <UserAvatar
               imgSrc={image}
               size={120}
-              alt={query! && `${username}'s profile picture`}
+              alt={(query! && `${username}'s profile picture`) || ''}
               isGoogleAvatar={isGoogleImage}
               className={avatarClasses}
             />

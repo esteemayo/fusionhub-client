@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { ContextMenuListItemProps } from '../../types';
 
 import './ContextMenuListItem.scss';

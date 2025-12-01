@@ -32,9 +32,7 @@ const ProfileArticles = ({
       aria-busy={isLoading}
       aria-live='polite'
     >
-      {noPosts && !isLoading ? (
-        <EmptyMessage title={title} subtitle={subtitle} center />
-      ) : isLoading ? (
+      {isLoading ? (
         <div role='status' aria-live='assertive' aria-label='Loading articles'>
           <ProfileSpinner />
         </div>
@@ -47,6 +45,8 @@ const ProfileArticles = ({
           }
           center
         />
+      ) : noPosts ? (
+        <EmptyMessage title={title} subtitle={subtitle} center />
       ) : (
         <InfiniteScroll
           dataLength={posts.length}

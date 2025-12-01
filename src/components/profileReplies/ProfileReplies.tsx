@@ -27,13 +27,7 @@ const ProfileReplies = ({
       aria-busy={isLoading}
       aria-live='polite'
     >
-      {noReplies && !isLoading ? (
-        <EmptyMessage
-          title='No Replies Yet'
-          subtitle='You haven’t replied to any posts yet. Once you start engaging in conversations, your replies will appear here. Explore posts and join the discussion to see your activity!'
-          center
-        />
-      ) : isLoading ? (
+      {isLoading ? (
         <div role='status' aria-live='assertive' aria-label='Loading replies'>
           <ProfileSpinner />
         </div>
@@ -44,6 +38,12 @@ const ProfileReplies = ({
             error.message ||
             'There was a problem fetching replies. Please try refreshing the page or check your internet connection.'
           }
+          center
+        />
+      ) : noReplies ? (
+        <EmptyMessage
+          title='No Replies Yet'
+          subtitle='You haven’t replied to any posts yet. Once you start engaging in conversations, your replies will appear here. Explore posts and join the discussion to see your activity!'
           center
         />
       ) : (

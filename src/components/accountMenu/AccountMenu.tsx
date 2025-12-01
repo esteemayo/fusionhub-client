@@ -50,7 +50,6 @@ const AccountMenu = ({ query }: { query: string | null }) => {
       className={accountMenuClasses}
       role='navigation'
       aria-label='Account menu'
-      aria-hidden={!isOpen}
     >
       <div className='account-menu__container'>
         <div className='account-menu__wrapper'>

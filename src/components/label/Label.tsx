@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import { LabelProps } from '../../types';
-import PasswordToggle from '../passwordToggle/PasswordToggle';
+import TogglePassword from '../togglePassword/TogglePassword';
 
 import './Label.scss';
 
@@ -31,7 +31,7 @@ const Label = ({
       >
         {label}
       </label>
-      <PasswordToggle
+      <TogglePassword
         label={label}
         inputId={id}
         isShow={isShow}

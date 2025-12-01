@@ -163,7 +163,7 @@ export interface LabelProps {
   onAction?(): void;
 }
 
-export interface PasswordToggleProps {
+export interface TogglePasswordProps {
   label?: string;
   inputId?: string;
   isShow?: boolean;
@@ -1098,7 +1098,8 @@ export interface CategoryItemProps {
   onRemove(e: React.MouseEvent<HTMLButtonElement>, categoryId: string): void;
 }
 
-export interface CategoryActionProps {
+export interface CategoryActionProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isOpen: boolean;
   isDisabled: boolean;
   currentUser: CurrentUserType | null;
