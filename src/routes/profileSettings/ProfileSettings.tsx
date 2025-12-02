@@ -71,14 +71,7 @@ const ProfileSettings = () => {
         />
       </div>
       <div className='profile-settings__wrapper'>
-        {!data && !isPending ? (
-          <ErrorState
-            title='No profile data available'
-            subtitle='It seems we couldn’t find any profile information to display. Please ensure your account is set up correctly or try refreshing the page. If the issue persists, contact support for assistance.'
-            imgSrc='/towing.svg'
-            center
-          />
-        ) : isPending ? (
+        {isPending ? (
           <div className='profile-settings__wrapper--loader'>
             <Spinner size={40} />
           </div>
@@ -87,6 +80,13 @@ const ProfileSettings = () => {
             title='Unable to load profile settings'
             subtitle={`We encountered an error while fetching your profile data. Please try refreshing the page or contact support if the issue persists. Error details: ${error.message}`}
             imgSrc='/private-files.svg'
+            center
+          />
+        ) : !data ? (
+          <ErrorState
+            title='No profile data available'
+            subtitle='It seems we couldn’t find any profile information to display. Please ensure your account is set up correctly or try refreshing the page. If the issue persists, contact support for assistance.'
+            imgSrc='/towing.svg'
             center
           />
         ) : (

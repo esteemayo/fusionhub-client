@@ -7,7 +7,13 @@ import { ToggleButtonProps } from '../../types';
 
 import './ToggleButton.scss';
 
-const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
+const ToggleButton = ({
+  type,
+  label,
+  isOpen,
+  onClick,
+  ...rest
+}: ToggleButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
   const handleToggleKey = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -27,16 +33,19 @@ const ToggleButton = ({ type, label, isOpen, onClick }: ToggleButtonProps) => {
 
   return (
     <button
+      {...rest}
       type='button'
       onClick={onClick}
       onKeyDown={handleToggleKey}
-      aria-label={btnLabel}
+      className={toggleBtnClasses}
+      aria-label={rest['aria-label'] ?? btnLabel}
       aria-expanded={isOpen}
       aria-pressed={isOpen}
-      aria-controls={type === 'nav' ? 'main-navigation' : undefined}
+      aria-controls={
+        rest['aria-controls'] ?? type === 'nav' ? 'main-navigation' : undefined
+      }
       aria-haspopup='true'
       tabIndex={0}
-      className={toggleBtnClasses}
     >
       <span className='toggle-button__text'>{btnLabel}</span>
       {isOpen ? <XmarkIcon /> : <BarsIcon />}

@@ -37,7 +37,7 @@ const UserAvatar = ({
     src,
     width: size,
     height: size,
-    alt: altText || '',
+    alt: altText,
     className,
   };
 

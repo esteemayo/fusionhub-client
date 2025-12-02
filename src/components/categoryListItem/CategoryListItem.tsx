@@ -24,6 +24,13 @@ const CategoryListItem = ({
     onClose?.();
   };
 
+  const handleKeyActivate = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCategory();
+    }
+  };
+
   const formattedCount = useMemo(() => {
     if (count < 10) {
       const formattedNumber = count.toString().padStart(2, '0');
@@ -34,17 +41,35 @@ const CategoryListItem = ({
   }, [count]);
 
   return (
-    <article className='category-list-item'>
+    <article className='category-list-item' role='article'>
       {pathname === '/posts' ? (
-        <span className='category-list-item__label' onClick={handleCategory}>
+        <span
+          onClick={handleCategory}
+          onKeyDown={handleKeyActivate}
+          className='category-list-item__label'
+          role='button'
+          tabIndex={0}
+          aria-pressed={searchParams.get('category') === category}
+        >
           {category}
         </span>
       ) : (
-        <Link to={`/posts?category=${category}`} onClick={onClose}>
-          <span className='category-list-item__label'>{category}</span>
+        <Link
+          to={`/posts?category=${category}`}
+          onClick={onClose}
+          className='category-list-item__label'
+          aria-label={`View posts in ${category}`}
+        >
+          {category}
         </Link>
       )}
-      <span className='category-list-item__total'>({formattedCount})</span>
+
+      <span
+        className='category-list-item__total'
+        aria-label={`${formattedCount} posts`}
+      >
+        ({formattedCount})
+      </span>
     </article>
   );
 };

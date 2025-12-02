@@ -76,4 +76,25 @@
       }
     }
   }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+    width: 100%;
+
+    &--item {
+      width: 100%;
+      padding: 1rem 0.5rem;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+        @include bp.md {
+          border-color: vars.$clr-secondary-blue;
+        }
+      }
+    }
+  }
 }

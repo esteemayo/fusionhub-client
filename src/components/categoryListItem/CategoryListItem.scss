@@ -9,17 +9,8 @@
   width: 100%;
   font-weight: 500;
   font-size: 1.25rem;
-  padding: 1rem 0.5rem;
   color: vars.$clr-gray-light-1;
   line-height: 1.2;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid vars.$clr-tertiary-blue;
-
-    @include bp.md {
-      border-color: vars.$clr-secondary-blue;
-    }
-  }
 
   &__label {
     text-transform: capitalize;

@@ -4,7 +4,12 @@ import './CardSkeleton.scss';
 
 const CardSkeleton = () => {
   return (
-    <article className='card-skeleton'>
+    <article
+      className='card-skeleton'
+      role='status'
+      aria-hidden='true'
+      aria-label='Loading posts'
+    >
       <div className='card-skeleton__cover'>
         <Skeleton
           width={300}

@@ -440,7 +440,8 @@ export interface BlockedUserProps {
 
 export interface PostClientProps {
   isOpen: boolean;
-  ref: React.LegacyRef<HTMLInputElement> | undefined;
+  inputRef: React.LegacyRef<HTMLInputElement> | undefined;
+  onFocus(): void;
 }
 
 export interface PostItemsProps {

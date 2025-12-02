@@ -4,7 +4,8 @@
 .post-items {
   flex: 5;
 
-  &__container {
+  &__container,
+  &__list {
     width: 100%;
 
     display: flex;
@@ -249,5 +250,9 @@
         font-size: 1.85rem;
       }
     }
+  }
+
+  &__list {
+    list-style: none;
   }
 }

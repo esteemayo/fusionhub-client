@@ -12,13 +12,22 @@ const Postbar = ({ onClick }: { onClick?: () => void }) => {
 
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
-  const handleClick = (e: React.MouseEvent<HTMLLIElement> | undefined) => {
+  const handleClick = (e?: React.MouseEvent<HTMLLIElement> | undefined) => {
     if (!e) return;
 
     e.stopPropagation();
 
     if (!isOpen && screenSize <= 768) {
       dispatch(onOpen());
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLLIElement> | undefined) => {
+    if (!e) return;
+
+    if (e.key === 'Enter' || e.key === '') {
+      e.preventDefault();
+      handleClick();
     }
   };
 
@@ -32,31 +41,50 @@ const Postbar = ({ onClick }: { onClick?: () => void }) => {
   }, []);
 
   return (
-    <div className='postbar'>
+    <div className='postbar' role='banner'>
       <div className='postbar__container'>
         <div className='postbar__wrapper'>
-          <h1 className='postbar__wrapper--heading'>Posts</h1>
-          <div className='postbar__wrapper--breadcrumbs'>
-            <ul className='postbar__lists'>
-              <li className='postbar__lists--item'>
-                <Link to='/' className='postbar__lists--item'>
+          <h1 id='posts-heading' className='postbar__wrapper--heading'>
+            Posts
+          </h1>
+          <nav className='postbar__wrapper--breadcrumbs'>
+            <ul className='postbar__lists' role='list'>
+              <li className='postbar__lists--item' role='listitem'>
+                <Link
+                  to='/'
+                  className='postbar__lists--item'
+                  aria-label='Go to Home page'
+                >
                   Home
                 </Link>
               </li>
               <span>|</span>
-              <li className='postbar__lists--item'>
-                <Link to='/posts' className='postbar__lists--item'>
+              <li className='postbar__lists--item' role='listitem'>
+                <Link
+                  to='/posts'
+                  className='postbar__lists--item'
+                  aria-label='Go to Posts page'
+                >
                   Posts
                 </Link>
               </li>
-              <span>|</span>
-              <li className='postbar__lists--item' onClick={handleClick}>
+              <span aria-hidden='true'>|</span>
+              <li
+                onClick={handleClick}
+                onKeyDown={handleKeyDown}
+                className='postbar__lists--item'
+                role='button'
+                tabIndex={0}
+                aria-haspopup='true'
+                aria-expanded={isOpen}
+                aria-label='Open left sidebar filter panel'
+              >
                 <Link to='#' className='postbar__lists--item' onClick={onClick}>
                   Left sidebar
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
       </div>
     </div>

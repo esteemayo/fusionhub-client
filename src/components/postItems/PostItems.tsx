@@ -20,9 +20,18 @@ const PostItems = ({
   const searchQuery = query.get('search');
 
   const noPosts = (posts ?? []).length < 1;
+  const hasPosts = Array.isArray(posts) && posts.length > 0;
 
   return (
-    <section className='post-items'>
+    <section
+      className='post-items'
+      role='region'
+      aria-labelledby='posts-section-title'
+    >
+      <h2 id='posts-section-title' className='sr-only'>
+        Posts list
+      </h2>
+
       {noPosts && !isLoading ? (
         searchQuery ? (
           <ErrorState
@@ -60,20 +69,40 @@ const PostItems = ({
               dataLength={posts.length}
               next={fetchNextPage}
               hasMore={!!hasNextPage}
-              loader={Array.from(Array(3)).map((_, index) => {
-                return <CardSkeleton key={index} />;
-              })}
+              loader={
+                !!hasNextPage &&
+                Array.from(Array(3)).map((_, index) => {
+                  return <CardSkeleton key={index} />;
+                })
+              }
               endMessage={
-                <span className='post-items__container--message'>
+                <span
+                  className='post-items__container--message'
+                  role='status'
+                  aria-live='polite'
+                  tabIndex={0}
+                >
                   You've reached the end! <br />
                   You've seen all available posts. Check back later for new
                   content.
                 </span>
               }
             >
-              {posts?.map((post) => {
-                return <Card key={post._id} {...post} />;
-              })}
+              {hasPosts && (
+                <ul className='post-items__list' role='list'>
+                  {posts.map((post) => {
+                    return (
+                      <li
+                        key={post._id}
+                        className='post-items__list-item'
+                        role='listitem'
+                      >
+                        <Card {...post} />
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </InfiniteScroll>
           )}
         </div>

@@ -20,6 +20,8 @@ const LikedPosts = () => {
     queryFn: () => fetchLikedPosts(),
   });
 
+  const emptyPosts = (data ?? []).length < 1;
+
   return (
     <div className='liked-posts'>
       <div className='liked-posts__container'>
@@ -30,7 +32,7 @@ const LikedPosts = () => {
         />
       </div>
       <div className='liked-posts__wrapper'>
-        {(data ?? [])?.length < 1 && !isPending ? (
+        {emptyPosts && !isPending ? (
           <EmptyPosts
             title='No liked posts found'
             subtitle="You haven't liked any posts yet. Explore stories and articles that resonate with you, and click the like button to save them here!"

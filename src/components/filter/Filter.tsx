@@ -7,7 +7,7 @@ import './Filter.scss';
 
 const Filter = ({ onClose }: FilterProps) => {
   return (
-    <section className='filter'>
+    <section className='filter' role='region' aria-labelledby='filter-heading'>
       <div className='filter__container'>
         <h2 className='filter__container--heading'>Filter</h2>
         {filters.map((filter) => {

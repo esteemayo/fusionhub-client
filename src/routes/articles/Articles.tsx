@@ -20,6 +20,8 @@ const Articles = () => {
     queryFn: () => fetchUserPosts(),
   });
 
+  const emptyArticles = (data ?? []).length < 1;
+
   return (
     <div className='articles'>
       <div className='articles__container'>
@@ -30,7 +32,7 @@ const Articles = () => {
         />
       </div>
       <div className='articles__wrapper'>
-        {(data ?? [])?.length < 1 && !isPending ? (
+        {emptyArticles && !isPending ? (
           <EmptyPosts
             title='No posts yet'
             subtitle="It looks like you haven't written any posts yet. Start sharing your stories with the world!"

@@ -20,6 +20,8 @@ const DislikedPosts = () => {
     queryFn: () => fetchDislikedPosts(),
   });
 
+  const emptyPosts = (data ?? []).length < 1;
+
   return (
     <div className='disliked-posts'>
       <div className='disliked-posts__container'>
@@ -30,7 +32,7 @@ const DislikedPosts = () => {
         />
       </div>
       <div className='disliked-posts__wrapper'>
-        {(data ?? [])?.length < 1 && !isPending ? (
+        {emptyPosts && !isPending ? (
           <EmptyPosts
             title='No disliked posts found'
             subtitle="You haven't disliked any posts yet. Explore content and mark posts you don't prefer to see them here."

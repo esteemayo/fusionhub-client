@@ -20,16 +20,13 @@ const TopPosts = ({ onClose }: TopPostsProps) => {
     queryFn: fetchTopPosts,
   });
 
+  const emptyPosts = (data ?? []).length < 1;
+
   return (
     <section className='top-posts'>
       <div className='top-posts__container'>
         <h2 className='top-posts__container--heading'>Top posts</h2>
-        {(data ?? [])?.length < 1 && !isPending ? (
-          <EmptyMessage
-            title='No top posts available'
-            subtitle='Currently, there are no top posts to display. Please check back later for the latest updates.'
-          />
-        ) : isPending ? (
+        {isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <TopPostSkeleton key={index} />;
           })
@@ -40,6 +37,11 @@ const TopPosts = ({ onClose }: TopPostsProps) => {
               error.message ||
               'An error occurred while fetching the top posts. Please try again later or contact support if the issue persists.'
             }
+          />
+        ) : emptyPosts ? (
+          <EmptyMessage
+            title='No top posts available'
+            subtitle='Currently, there are no top posts to display. Please check back later for the latest updates.'
           />
         ) : (
           data?.map((post, index: number) => {

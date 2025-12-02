@@ -24,7 +24,7 @@ const Posts = () => {
   const [searchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.postsMenu }));
+  const { isOpen } = useAppSelector((state) => state.postsMenu);
 
   const { isFetching, error, fetchNextPage, hasNextPage, data } =
     useInfiniteQuery<PostsType>({
@@ -37,11 +37,11 @@ const Posts = () => {
       enabled: !!searchParams,
     });
 
-  const ref = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
-    if (!ref.current) return;
-    ref.current.focus();
+    if (!inputRef.current) return;
+    inputRef.current.focus();
   };
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,24 +55,52 @@ const Posts = () => {
   );
 
   return (
-    <div className='posts'>
+    <div
+      className='posts'
+      role='region'
+      aria-labelledby='posts-heading'
+      tabIndex={-1}
+    >
+      <h1 id='posts-heading' className='sr-only'>
+        Blog posts
+      </h1>
+
       <div className='posts__container'>
         <Postbar onClick={handleClick} />
         <div className='posts__wrapper'>
           <div className='posts__box'>
-            <PostClient isOpen={isOpen} ref={ref} />
-            <PostItems
-              posts={allPosts}
-              isLoading={isFetching}
-              error={error}
-              fetchNextPage={fetchNextPage}
-              hasNextPage={hasNextPage}
+            <PostClient
+              isOpen={isOpen}
+              inputRef={inputRef}
+              onFocus={handleClick}
             />
+            <section
+              aria-busy={isFetching}
+              aria-live='polite'
+              aria-atomic='true'
+            >
+              <PostItems
+                posts={allPosts}
+                isLoading={isFetching}
+                error={error}
+                fetchNextPage={fetchNextPage}
+                hasNextPage={hasNextPage}
+              />
+
+              {!hasNextPage && !isFetching && (
+                <div className='sr-only' role='status' aria-live='polite'>
+                  End of post list
+                </div>
+              )}
+            </section>
             <div className='posts__box--btn'>
               <ToggleButton
                 label='Filter'
                 isOpen={isOpen}
                 onClick={handleToggle}
+                aria-expanded={isOpen}
+                aria-controls='filters-panel'
+                aria-label={`${isOpen ? 'Close' : 'Open'} filter options`}
               />
             </div>
           </div>
