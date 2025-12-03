@@ -25,6 +25,7 @@ const UpdatePasswordForm = ({
       onSubmit={onSubmit}
       role='form'
       aria-labelledby='updatePasswordFormTitle'
+      noValidate
     >
       <h2 id='updatePasswordFormTitle' className='sr-only'>
         Update your account password

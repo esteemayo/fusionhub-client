@@ -23,9 +23,7 @@ import './Login.scss';
 const Login = () => {
   const dispatch = useAppDispatch();
   const { isError, isLoading, isSuccess, message, user } = useAppSelector(
-    (state) => ({
-      ...state.auth,
-    })
+    (state) => state.auth
   );
 
   const query = useQueryParams();
@@ -49,14 +47,14 @@ const Login = () => {
   });
 
   const onSubmit: SubmitHandler<LoginFormData> = (data) => {
-    const credentials = { ...data };
-
-    dispatch(loginUser(credentials));
+    dispatch(loginUser({ ...data }));
   };
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
+    if (isError && message) {
+      toast.error(message, {
+        role: 'alert',
+      });
     }
 
     if (isSuccess && user) {
@@ -70,16 +68,23 @@ const Login = () => {
   }, [dispatch, isError, isSuccess, message, reset, user]);
 
   return (
-    <section className='login'>
+    <section
+      className='login'
+      role='region'
+      aria-labelledby='login-title'
+      aria-describedby='login-description'
+    >
       <div className='login__container'>
         <div className='login__wrapper'>
-          <h1 className='login__wrapper--heading'>
+          <h1 id='login-title' className='login__wrapper--heading'>
             Welcome {!name && 'back'}
             {name && <span>{name}</span>}
           </h1>
-          <p className='login__wrapper--text'>
+
+          <p id='login-description' className='login__wrapper--text'>
             Welcome {!name && 'back'}! Please enter your details.
           </p>
+
           <LoginForm
             isLoading={isLoading}
             showPassword={showPassword}
@@ -87,7 +92,10 @@ const Login = () => {
             errors={errors}
             onToggle={handleToggle}
             onSubmit={handleSubmit(onSubmit)}
+            aria-labelledby='login-title'
+            aria-describedby='login-description'
           />
+
           <AuthLink
             url='register'
             label="Don't have an account?"

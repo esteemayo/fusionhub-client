@@ -50,9 +50,9 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
 
   return (
     <article
+      className='card'
       role='article'
       aria-label={`Post card for ${title}`}
-      className='card'
     >
       <figure className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>

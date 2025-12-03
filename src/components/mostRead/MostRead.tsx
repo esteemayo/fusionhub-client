@@ -20,16 +20,23 @@ const MostRead = ({ onClose }: MostReadProps) => {
     queryFn: fetchMostReadPosts,
   });
 
+  const hasData = Array.isArray(data) ?? (data ?? []).length > 0;
+
   return (
-    <section className='most-read'>
+    <section
+      className='most-read'
+      role='region'
+      aria-labelledby='most-read-heading'
+    >
       <div className='most-read__container'>
-        <h2 className='most-read__container--heading'>Most read posts</h2>
-        {(data ?? [])?.length < 1 && !isPending ? (
-          <EmptyMessage
-            title='No most read posts available'
-            subtitle='Currently, there are no most read posts to display. Please check back later for the latest updates.'
-          />
-        ) : isPending ? (
+        <h2
+          id='most-read-heading'
+          className='most-read__container--heading'
+          tabIndex={-1}
+        >
+          Most read posts
+        </h2>
+        {isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <MostReadSkeleton key={index} />;
           })
@@ -40,11 +47,30 @@ const MostRead = ({ onClose }: MostReadProps) => {
               error.message ||
               'An error occurred while fetching most read posts. Please try again later or contact support if the issue persists.'
             }
+            role='alert'
+          />
+        ) : !hasData ? (
+          <EmptyMessage
+            title='No most read posts available'
+            subtitle='Currently, there are no most read posts to display. Please check back later for the latest updates.'
+            role='alert'
           />
         ) : (
-          data?.map((post) => {
-            return <MostReadItem key={post._id} {...post} onClose={onClose} />;
-          })
+          hasData && (
+            <ul className='most-read__list' role='list'>
+              {data?.map((post) => {
+                return (
+                  <li
+                    key={post._id}
+                    className='most-read__list--item'
+                    role='listitem'
+                  >
+                    <MostReadItem {...post} onClose={onClose} />
+                  </li>
+                );
+              })}
+            </ul>
+          )
         )}
       </div>
     </section>

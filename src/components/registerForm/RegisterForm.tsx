@@ -36,16 +36,29 @@ const RegisterForm = ({
   onTogglePassword,
   onTogglePasswordConfirm,
   onSubmit,
+  ...ariaProps
 }: RegisterFormProps) => {
-  const isDisabled = useMemo(() => {
-    return isLoading || (0 < progress && progress < 100);
-  }, [isLoading, progress]);
+  const isDisabled = useMemo(
+    () => isLoading || (progress > 0 && progress < 100),
+    [isLoading, progress]
+  );
 
   const inputs = registerInputs.slice(0, -2);
   const passwordInputs = registerInputs.slice(-2);
 
   return (
-    <form className='register-form' onSubmit={onSubmit}>
+    <form
+      className='register-form'
+      onSubmit={onSubmit}
+      role='form'
+      aria-busy={isLoading ? 'true' : 'false'}
+      noValidate
+      {...ariaProps}
+    >
+      <p id='register-form-description' className='sr-only'>
+        Register form with fields for user's details
+      </p>
+
       <div className='register-form__container'>
         {inputs.map((input) => {
           const { id, name, type, label, placeholder } = input;
@@ -61,52 +74,75 @@ const RegisterForm = ({
               disabled={isLoading}
               autoFocus={name === 'name'}
               validate
+              aria-invalid={Boolean(errors?.[name])}
+              aria-describedby={errors?.[name] ? `${name}-error` : undefined}
             />
           );
         })}
+
         {passwordInputs.map((input) => {
           const { id, name, type, label, placeholder } = input;
+
+          const isPassword = name === 'password';
+          const isConfirm = name === 'passwordConfirm';
+
+          const isVisible = isPassword
+            ? showPassword
+            : isConfirm
+            ? showPasswordConfirm
+            : false;
+
+          const handleToggle = isPassword
+            ? onTogglePassword
+            : onTogglePasswordConfirm;
+
+          const actionAriaLabel = (label: string) => {
+            return isPassword
+              ? `${showPassword ? 'Hide' : 'Show'} ${label.toLowerCase()}`
+              : `${
+                  showPasswordConfirm ? 'Hide' : 'Show'
+                } ${label.toLowerCase()}`;
+          };
+
           return (
             <Input
               key={id}
               name={name}
-              type={
-                name === 'password'
-                  ? showPassword
-                    ? 'text'
-                    : type
-                  : name === 'passwordConfirm'
-                  ? showPasswordConfirm
-                    ? 'text'
-                    : type
-                  : type
-              }
+              type={isVisible ? 'text' : type}
               label={label}
               register={register}
               placeholder={placeholder}
               errors={errors}
-              onAction={
-                name === 'password' ? onTogglePassword : onTogglePasswordConfirm
-              }
+              onAction={handleToggle}
               disabled={isLoading}
-              isShow={name === 'password' ? showPassword : showPasswordConfirm}
+              isShow={isVisible}
               isPassword
               validate
+              aria-invalid={Boolean(errors?.[name])}
+              aria-describedby={errors?.[name] ? `${name}-error` : undefined}
+              aria-label={actionAriaLabel(label)}
+              aria-pressed={isPassword ? showPassword : showPasswordConfirm}
             />
           );
         })}
+
         <DateInput
           label='Date of Birth'
           startDate={startDate}
           placeholder='Select your date of birth'
           onChange={onChangeStartDate}
+          aria-label='Date of birth'
         />
+
         <PhoneNumber
           label='Mobile Number'
           value={phone}
           placeholder='e.g. +1 234 567 8900'
           onChange={onChangePhone}
+          aria-label='mobile phone number'
+          aria-invalid={Boolean(errors?.[phone!])}
         />
+
         <CountrySelect
           name='country'
           label='Country'
@@ -115,7 +151,11 @@ const RegisterForm = ({
           register={register}
           errors={errors}
           validate
+          aria-autocomplete='list'
+          aria-expnded='false'
+          aria-label='Select your country'
         />
+
         <Textarea
           name='bio'
           label='Biography'
@@ -125,6 +165,7 @@ const RegisterForm = ({
           disabled={isLoading}
           validate
         />
+
         <TextQuill
           id='about'
           label='About Me'
@@ -132,16 +173,21 @@ const RegisterForm = ({
           placeholder='Write something about yourself'
           onChange={onChangeAbout}
           readOnly={isLoading}
+          aria-label='About me rich text editor'
+          aria-multiline='true'
         />
+
         <Upload
           id='image'
           label='Image'
           disabled={isDisabled}
           setData={onChangeImage}
           setProgress={onChangeProgress}
+          aria-label='Upload your profile image'
         />
-        {0 < progress && progress < 100 && <ProgressBar progress={progress} />}
+        {progress > 0 && progress < 100 && <ProgressBar progress={progress} />}
       </div>
+
       <FormButton label='Register' loading={isLoading} disabled={isDisabled} />
     </form>
   );

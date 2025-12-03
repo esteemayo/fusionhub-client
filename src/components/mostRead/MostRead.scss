@@ -2,15 +2,17 @@
 @use '../../styles/variables.scss' as vars;
 
 .most-read {
-  &__container {
+  &__container,
+  &__list {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;
-
-    background-color: vars.$clr-secondary-blue;
+  }
+  &__container {
     padding: 3rem;
+    background-color: vars.$clr-secondary-blue;
     border-radius: 3px;
 
     @media screen and (max-width: 81.25em) {
@@ -73,6 +75,14 @@
       @media screen and (min-width: 125em) {
         font-size: 2.2rem;
       }
+    }
+  }
+
+  &__list {
+    list-style: none;
+
+    &--item {
+      width: 100%;
     }
   }
 }

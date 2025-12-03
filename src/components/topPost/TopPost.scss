@@ -271,10 +271,13 @@
       text-transform: uppercase;
     }
 
-    &--link {
+    &--btn {
+      display: inline-block;
+      border: 0;
       text-transform: capitalize;
       font-weight: 500;
       font-size: 1.2rem;
+      background-color: transparent;
       color: vars.$clr-gray-light-1;
       cursor: pointer;
       transition: all 300s ease-in-out;
@@ -313,6 +316,12 @@
 
       @media screen and (min-width: 125em) {
         font-size: 1.65rem;
+      }
+
+      &:disabled {
+        opacity: 0.75;
+        pointer-events: none;
+        user-select: none;
       }
     }
   }

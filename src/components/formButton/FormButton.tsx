@@ -7,7 +7,11 @@ import './FormButton.scss';
 
 const FormButton = ({ label, loading, disabled }: FormButtonProps) => {
   return (
-    <div className='form-button'>
+    <div
+      className='form-button'
+      role='group'
+      aria-label='Authentication buttons'
+    >
       <Button
         type='submit'
         label={label}

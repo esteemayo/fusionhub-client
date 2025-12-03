@@ -301,7 +301,7 @@ export interface FormButtonProps {
   disabled?: boolean;
 }
 
-export interface LoginFormProps {
+export interface LoginFormProps extends React.AriaAttributes {
   isLoading?: boolean;
   showPassword: boolean;
   register: UseFormRegister<FieldValues>;
@@ -310,7 +310,7 @@ export interface LoginFormProps {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export interface RegisterFormProps {
+export interface RegisterFormProps extends React.AriaAttributes {
   about: ReactQuill.Value | undefined;
   phone: Value | undefined;
   progress: number;
@@ -338,14 +338,14 @@ export interface RegisterFormProps {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export interface ForgotPasswordFormProps {
+export interface ForgotPasswordFormProps extends React.AriaAttributes {
   isLoading?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export interface ResetPasswordFormProps {
+export interface ResetPasswordFormProps extends React.AriaAttributes {
   isLoading?: boolean;
   showPassword: boolean;
   showPasswordConfirm: boolean;
@@ -1362,7 +1362,8 @@ export interface FeatureCardProps {
   createdAt: string;
 }
 
-export interface UploadProps {
+export interface UploadProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   type?: string;
   label?: string;

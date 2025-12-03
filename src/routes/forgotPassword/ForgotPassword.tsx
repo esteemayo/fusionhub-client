@@ -25,7 +25,8 @@ const ForgotPassword = () => {
     mutationFn: (email: string) => forgot(email),
     onSuccess: () => {
       toast.success(
-        'A password reset link has been sent to your email address.'
+        'A password reset link has been sent to your email address.',
+        { role: 'alert' }
       );
     },
     onError: (error: unknown) => {
@@ -36,9 +37,9 @@ const ForgotPassword = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -61,18 +62,35 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className='forgot-password'>
+    <div
+      className='forgot-password'
+      role='main'
+      aria-labelledby='forgot-password-heading'
+      aria-describedby='forgot-password-description'
+    >
       <div className='forgot-password__container'>
         <div className='forgot-password__wrapper'>
-          <h1 className='forgot-password__wrapper--heading'>Forgot password</h1>
-          <p className='forgot-password__wrapper--text'>
+          <h1
+            id='forgot-password-heading'
+            className='forgot-password__wrapper--heading'
+          >
+            Forgot password
+          </h1>
+
+          <p
+            id='forgot-password-description'
+            className='forgot-password__wrapper--text'
+          >
             Please enter your email address.
           </p>
+
           <ForgotPasswordForm
             isLoading={mutation.isPending}
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             onSubmit={handleSubmit(onSubmit)}
+            aria-labelledby='forgot-password-heading'
+            aria-describedby='forgot-password-description'
           />
         </div>
       </div>

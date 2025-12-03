@@ -4,7 +4,7 @@ import './TopPostSkeleton.scss';
 
 const TopPostSkeleton = () => {
   return (
-    <article className='top-post-skeleton'>
+    <article className='top-post-skeleton' aria-hidden='true'>
       <div className='top-post-skeleton__container'>
         <Skeleton
           width={20}

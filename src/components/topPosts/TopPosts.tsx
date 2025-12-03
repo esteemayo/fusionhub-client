@@ -20,12 +20,18 @@ const TopPosts = ({ onClose }: TopPostsProps) => {
     queryFn: fetchTopPosts,
   });
 
-  const emptyPosts = (data ?? []).length < 1;
+  const hasData = Array.isArray(data) && data.length > 0;
 
   return (
-    <section className='top-posts'>
+    <section
+      className='top-posts'
+      role='region'
+      aria-labelledby='top-posts-heading'
+    >
       <div className='top-posts__container'>
-        <h2 className='top-posts__container--heading'>Top posts</h2>
+        <h2 id='top-posts-heading' className='top-posts__container--heading'>
+          Top posts
+        </h2>
         {isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <TopPostSkeleton key={index} />;
@@ -38,22 +44,29 @@ const TopPosts = ({ onClose }: TopPostsProps) => {
               'An error occurred while fetching the top posts. Please try again later or contact support if the issue persists.'
             }
           />
-        ) : emptyPosts ? (
+        ) : !hasData ? (
           <EmptyMessage
             title='No top posts available'
             subtitle='Currently, there are no top posts to display. Please check back later for the latest updates.'
+            role='alert'
           />
         ) : (
-          data?.map((post, index: number) => {
-            return (
-              <TopPost
-                key={post._id}
-                index={index}
-                {...post}
-                onClose={onClose}
-              />
-            );
-          })
+          hasData && (
+            <ul className='top-posts__list' role='list'>
+              {data.map((post, index: number) => {
+                return (
+                  <li
+                    key={post._id}
+                    className='top-posts__list--item'
+                    role='listitem'
+                    aria-label={`Top post #${index + 1}: ${post.title}`}
+                  >
+                    <TopPost index={index} {...post} onClose={onClose} />
+                  </li>
+                );
+              })}
+            </ul>
+          )
         )}
       </div>
     </section>

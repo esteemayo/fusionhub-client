@@ -4,7 +4,11 @@ import './MostReadSkeleton.scss';
 
 const MostReadSkeleton = () => {
   return (
-    <article className='most-read-skeleton'>
+    <article
+      className='most-read-skeleton'
+      role='presentation'
+      aria-hidden='true'
+    >
       <div className='most-read-skeleton__container'>
         <Skeleton
           width={265}

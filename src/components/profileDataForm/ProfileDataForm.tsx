@@ -31,6 +31,7 @@ const ProfileDataForm = ({
       onSubmit={onSubmit}
       className='profile-data-form'
       aria-describedby='profile-form-errors'
+      noValidate
     >
       <div id='profile-form-errors' className='sr-only' aria-live='polite'>
         {Object.keys(errors).length > 0 && 'There are errors in the form.'}

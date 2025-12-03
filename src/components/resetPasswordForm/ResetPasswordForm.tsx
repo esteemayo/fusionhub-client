@@ -15,38 +15,58 @@ const ResetPasswordForm = ({
   onTogglePassword,
   onTogglePasswordConfirm,
   onSubmit,
+  ...ariaProps
 }: ResetPasswordFormProps) => {
   return (
-    <form onSubmit={onSubmit} className='reset-password-form'>
+    <form
+      onSubmit={onSubmit}
+      className='reset-password-form'
+      role='form'
+      aria-busy={isLoading ? 'true' : 'false'}
+      noValidate
+      {...ariaProps}
+    >
       {resetInputs.map((input) => {
         const { id, name, type, label, placeholder } = input;
+
+        const isPassword = name === 'password';
+        const isConfirm = name === 'passwordConfirm';
+
+        const isVisible = isPassword
+          ? showPassword
+          : isConfirm
+          ? showPasswordConfirm
+          : false;
+
+        const handleToggle = isPassword
+          ? onTogglePassword
+          : onTogglePasswordConfirm;
+
+        const actionAriaLabel = (label: string) => {
+          return isPassword
+            ? `${showPassword ? 'Hide' : 'Show'} ${label.toLowerCase()}`
+            : `${showPasswordConfirm ? 'Hide' : 'Show'} ${label.toLowerCase()}`;
+        };
+
         return (
           <Input
             key={id}
-            type={
-              name === 'password'
-                ? showPassword
-                  ? 'text'
-                  : type
-                : name === 'passwordConfirm'
-                ? showPasswordConfirm
-                  ? 'text'
-                  : type
-                : type
-            }
+            type={isVisible ? 'text' : type}
             name={name}
             label={label}
             placeholder={placeholder}
             register={register}
             errors={errors}
-            onAction={
-              name === 'password' ? onTogglePassword : onTogglePasswordConfirm
-            }
+            onAction={handleToggle}
             disabled={isLoading}
-            isShow={name === 'password' ? showPassword : showPasswordConfirm}
+            isShow={isPassword ? showPassword : showPasswordConfirm}
             autoFocus={name === 'password'}
             isPassword
             validate
+            aria-invalid={!!errors[name]}
+            aria-describedby={errors[name] ? `${name}-error` : undefined}
+            aria-label={actionAriaLabel(label)}
+            aria-pressed={isPassword ? showPassword : showPasswordConfirm}
           />
         );
       })}

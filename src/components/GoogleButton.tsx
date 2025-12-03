@@ -17,7 +17,7 @@ const GoogleButton = ({
   disabled,
 }: GoogleButtonProps) => {
   const dispatch = useAppDispatch();
-  const { isPending } = useAppSelector((state) => ({ ...state.auth }));
+  const { isPending } = useAppSelector((state) => state.auth);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -73,7 +73,10 @@ const GoogleButton = ({
           credential,
         });
 
-        toast.error(errorMessage || 'Google sign-in failed. Please try again.');
+        toast.error(
+          errorMessage || 'Google sign-in failed. Please try again.',
+          { role: 'alert' }
+        );
       });
   };
 
@@ -85,6 +88,7 @@ const GoogleButton = ({
       onClick={handleClick}
       isLoading={isPending}
       disabled={isPending || disabled}
+      aria-label='Sign in with Google account'
     />
   );
 };

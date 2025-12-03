@@ -75,4 +75,12 @@
       }
     }
   }
+
+  &__list {
+    list-style: none;
+
+    &--item {
+      width: 100%;
+    }
+  }
 }

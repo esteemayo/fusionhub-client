@@ -31,7 +31,7 @@ const Register = () => {
 
   const dispatch = useAppDispatch();
   const { isError, isLoading, isSuccess, message, name, user } = useAppSelector(
-    (state) => ({ ...state.auth })
+    (state) => state.auth
   );
 
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -101,17 +101,21 @@ const Register = () => {
       await dispatch(registerUser(userData));
     } catch (err: unknown) {
       console.log(err);
-      toast.error('Failed to register user. Please try again.');
+      toast.error('Failed to register user. Please try again.', {
+        role: 'alert',
+      });
     }
   };
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
+    if (isError && message) {
+      toast.error(message, {
+        role: 'alert',
+      });
     }
 
     if (image && progress === 100) {
-      toast.success('Image uploaded successfully!');
+      toast.success('Image uploaded successfully!', { role: 'alert' });
       setProgress(0);
       setImage(undefined);
     }
@@ -143,13 +147,22 @@ const Register = () => {
   ]);
 
   return (
-    <section className='register'>
+    <section
+      className='register'
+      role='region'
+      aria-labelledby='register-heading'
+      aria-describedby='register-description'
+    >
       <div className='register__container'>
         <div className='register__wrapper'>
-          <h1 className='register__wrapper--heading'>Welcome</h1>
-          <p className='register__wrapper--text'>
+          <h1 id='register-heading' className='register__wrapper--heading'>
+            Welcome
+          </h1>
+
+          <p id='register-description' className='register__wrapper--text'>
             Welcome! Please enter your details.
           </p>
+
           <RegisterForm
             about={about}
             phone={phone}
@@ -169,7 +182,10 @@ const Register = () => {
             onTogglePassword={handleTogglePassword}
             onTogglePasswordConfirm={handleTogglePasswordConfirm}
             onSubmit={handleSubmit(onSubmit)}
+            aria-labelledby='register-heading'
+            aria-describedby='register-description'
           />
+
           <AuthLink
             url='login'
             label='Already have an account?'

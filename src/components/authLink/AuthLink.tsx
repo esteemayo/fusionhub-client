@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-
 import { AuthLinkProps } from '../../types';
 
 import './AuthLink.scss';
@@ -9,7 +8,11 @@ const AuthLink = ({ url, label, urlLabel }: AuthLinkProps) => {
     <div className='auth-link'>
       <div className='auth-link__text'>
         <span className='auth-link__text--label'>{label}</span>
-        <Link to={`/${url}`} className='auth-link__text--link'>
+        <Link
+          to={`/${url}`}
+          className='auth-link__text--link'
+          aria-label={`${urlLabel} - navigate to ${url} page`}
+        >
           {urlLabel}
         </Link>
       </div>

@@ -25,45 +25,64 @@ const TopPost = ({
     }
   };
 
-  const filteredTags = useMemo(() => {
-    return tags.filter((tag) => tag.length < 10).slice(0, 2);
-  }, [tags]);
+  const filteredTags = useMemo(
+    () => tags.filter((tag) => tag.length < 10).slice(0, 2),
+    [tags]
+  );
 
-  const lastIndex = useMemo(() => {
-    return filteredTags.length - 1;
-  }, [filteredTags.length]);
+  const lastIndex = filteredTags.length - 1;
 
   return (
-    <article className='top-post'>
+    <article
+      className='top-post'
+      role='article'
+      aria-labelledby={`top-post-title-${index}`}
+    >
       <div className='top-post__container'>
-        <span className='top-post__container--number'>{index + 1}</span>
+        <span
+          className='top-post__container--number'
+          aria-label={`Rank ${index + 1}`}
+        >
+          {index + 1}
+        </span>
+
         <div className='top-post__wrapper'>
           <Link
+            id={`top-post-title-${index}`}
             to={`/post/${slug}`}
             onClick={onClose}
             className='top-post__wrapper--title'
+            aria-describedby={`top-post-meta-${index}`}
           >
             <span>{title}</span>
           </Link>
-          <div className='top-post__box'>
+
+          <div id={`top-post-meta-${index}`} className='top-post__box'>
             <div className='top-post__box--tags'>
-              {filteredTags.map((tag, index) => {
+              {filteredTags.map((tag, tagIndex) => {
                 return (
-                  <a
-                    key={index}
+                  <button
+                    key={tagIndex}
+                    type='button'
                     onClick={() => handleTagChange(tag)}
-                    className='top-post__box--link'
+                    className='top-post__box--btn'
+                    aria-label={`Filter posts by tag ${tag}`}
                   >
-                    <span>
-                      {tag}
-                      {index < lastIndex ? ',' : ''}
-                    </span>
-                  </a>
+                    {tag}
+                    {tagIndex < lastIndex ? ',' : ''}
+                  </button>
                 );
               })}
             </div>
-            <span>-</span>
-            <time dateTime={createdAt}>{formatDate(createdAt)}</time>
+
+            <span aria-hidden='true'>-</span>
+
+            <time
+              dateTime={createdAt}
+              aria-label={`Published on ${formatDate(createdAt)}`}
+            >
+              {formatDate(createdAt)}
+            </time>
           </div>
         </div>
       </div>

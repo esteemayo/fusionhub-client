@@ -37,7 +37,10 @@ const ResetPassword = () => {
       passwordReset(credentials, token),
     onSuccess: () => {
       toast.success(
-        'Your password has been reset successfully. You can now log in with your new password.'
+        'Your password has been reset successfully. You can now log in with your new password.',
+        {
+          role: 'alert',
+        }
       );
     },
     onError: (error: unknown) => {
@@ -48,9 +51,9 @@ const ResetPassword = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -85,13 +88,31 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className='reset-password'>
-      <div className='reset-password__container'>
+    <main
+      className='reset-password'
+      role='main'
+      aria-labelledby='reset-password-heading'
+      aria-describedby='reset-password-description'
+    >
+      <div
+        className='reset-password__container'
+        aria-busy={mutation.isPending ? 'true' : 'false'}
+      >
         <div className='reset-password__wrapper'>
-          <h1 className='reset-password__wrapper--heading'>Reset password</h1>
-          <p className='reset-password__wrapper--text'>
+          <h1
+            id='reset-password-heading'
+            className='reset-password__wrapper--heading'
+          >
+            Reset password
+          </h1>
+
+          <p
+            id='reset-password-description'
+            className='reset-password__wrapper--text'
+          >
             Please enter your new password.
           </p>
+
           <ResetPasswordForm
             isLoading={mutation.isPending}
             showPassword={showPassword}
@@ -101,10 +122,12 @@ const ResetPassword = () => {
             onTogglePassword={handlePasswordToggle}
             onTogglePasswordConfirm={handlePasswordConfirmToggle}
             onSubmit={handleSubmit(onSubmit)}
+            aria-labelledby='reset-password-heading'
+            aria-describedby='reset-password-description'
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

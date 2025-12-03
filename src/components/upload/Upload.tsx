@@ -52,6 +52,7 @@ const Upload = ({
   setData,
   setProgress,
   children,
+  ...rest
 }: UploadProps) => {
   const localRef = useRef<HTMLInputElement | null>(null);
 
@@ -105,6 +106,7 @@ const Upload = ({
       <div className={uploadClasses}>
         <Label id={id} label={label} />
         <IKUpload
+          {...rest}
           id={id}
           useUniqueFileName
           onError={onError}
@@ -113,14 +115,15 @@ const Upload = ({
           ref={mergeRefs([localRef, ref])}
           accept={`${type}/*`}
           disabled={disabled}
+          className='upload__control'
           aria-disabled={disabled}
-          aria-label={label}
+          aria-label={rest['aria-label'] ?? label}
           aria-describedby={`${id}-progress`}
           tabIndex={0}
-          className='upload__control'
         />
         <span id={`${id}-progress`} aria-live='polite' className='sr-only' />
       </div>
+
       {children && (
         <div
           role='button'

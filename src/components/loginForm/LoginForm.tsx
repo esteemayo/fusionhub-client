@@ -15,18 +15,36 @@ const LoginForm = ({
   errors,
   onToggle,
   onSubmit,
+  ...ariaProps
 }: LoginFormProps) => {
   return (
-    <form className='login-form' onSubmit={onSubmit}>
+    <form
+      className='login-form'
+      onSubmit={onSubmit}
+      role='form'
+      aria-busy={isLoading ? 'true' : 'false'}
+      noValidate
+      {...ariaProps}
+    >
+      <p id='login-form-description' className='sr-only'>
+        Login form with fields for email or username and password
+      </p>
+
       {loginInputs.map((input) => {
         const { id, name, type, label, placeholder } = input;
+
+        const isPassword = type === 'password';
+        const inputType = isPassword
+          ? showPassword
+            ? 'text'
+            : 'password'
+          : type;
+
         return (
           <Input
             key={id}
             name={name}
-            type={
-              type === 'password' ? (showPassword ? 'text' : 'password') : type
-            }
+            type={inputType}
             label={label}
             placeholder={placeholder}
             register={register}
@@ -34,15 +52,26 @@ const LoginForm = ({
             onAction={onToggle}
             disabled={isLoading}
             isShow={showPassword}
-            isPassword={type === 'password'}
+            isPassword={isPassword}
             autoFocus={name === 'identifier'}
             validate
+            aria-invalid={Boolean(errors?.[name])}
+            aria-describedby={errors?.[name] ? `${id}-error` : undefined}
+            aria-label={`${showPassword ? 'Hide' : 'Show'} password`}
+            aria-pressed={isPassword ? showPassword : 'false'}
           />
         );
       })}
+
       <div className='login-form__forgot'>
-        <Link to='/forgot-password'>Forgot password?</Link>
+        <Link
+          to='/forgot-password'
+          aria-label='Forgot password - navigate to password recovery page'
+        >
+          Forgot password?
+        </Link>
       </div>
+
       <FormButton label='Login' loading={isLoading} disabled={isLoading} />
     </form>
   );
