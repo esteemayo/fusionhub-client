@@ -26,11 +26,14 @@ const LoginForm = ({
       noValidate
       {...ariaProps}
     >
-      <p id='login-form-description' className='sr-only'>
+      <p
+        id={ariaProps['aria-labelledby'] ?? 'login-form-description'}
+        className='sr-only'
+      >
         Login form with fields for email or username and password
       </p>
 
-      {loginInputs.map((input) => {
+      {loginInputs.map((input, index) => {
         const { id, name, type, label, placeholder } = input;
 
         const isPassword = type === 'password';
@@ -53,7 +56,7 @@ const LoginForm = ({
             disabled={isLoading}
             isShow={showPassword}
             isPassword={isPassword}
-            autoFocus={name === 'identifier'}
+            autoFocus={index === 0}
             validate
             aria-invalid={Boolean(errors?.[name])}
             aria-describedby={errors?.[name] ? `${id}-error` : undefined}

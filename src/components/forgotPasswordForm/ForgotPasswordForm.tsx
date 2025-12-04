@@ -23,7 +23,10 @@ const ForgotPasswordForm = ({
       noValidate
       {...ariaProps}
     >
-      <p id='forgot-password-form-description' className='sr-only'>
+      <p
+        id={ariaProps['aria-labelledby'] ?? 'forgot-password-form-description'}
+        className='sr-only'
+      >
         Forgot password form with email field
       </p>
 

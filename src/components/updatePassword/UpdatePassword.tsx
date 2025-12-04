@@ -67,7 +67,7 @@ const UpdatePassword = () => {
 
   useEffect(() => {
     if (isError && message) {
-      toast.error(message);
+      toast.error(message, { role: 'alert' });
     }
 
     if (isSuccess && user) {
@@ -82,17 +82,24 @@ const UpdatePassword = () => {
   const inputs = passwordInputs.slice(0, -1);
   const input = passwordInputs[passwordInputs.length - 1];
 
+  const titleId = 'update-password-title';
+  const describeId = 'update-password-description';
+
   return (
     <section
       className={updatePasswordClasses}
       role='region'
-      aria-labelledby='updatePasswordTitle'
+      aria-labelledby={titleId}
+      aria-describedby={describeId}
     >
       <div className='update-password__container'>
         <AccountHeader
           title='Change password'
           subtitle='Your new password must be different from the previous used passwords'
+          titleId={titleId}
+          descriptionId={describeId}
         />
+
         <div className='update-password__wrapper'>
           <UpdatePasswordForm
             input={input}
@@ -107,6 +114,8 @@ const UpdatePassword = () => {
             onTogglePasswordConfirm={handleTogglePasswordConfirm}
             onTogglePasswordCurrent={handleTogglePasswordCurrent}
             onSubmit={handleSubmit(onSubmit)}
+            aria-labelledby={titleId}
+            aria-describedby={describeId}
           />
         </div>
       </div>

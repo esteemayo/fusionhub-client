@@ -356,7 +356,7 @@ export interface ResetPasswordFormProps extends React.AriaAttributes {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export interface ProfileDataFormProps {
+export interface ProfileDataFormProps extends React.AriaAttributes {
   about: ReactQuill.Value | undefined;
   dateOfBirth: Date | null | undefined;
   startDate: Date | null;
@@ -376,7 +376,7 @@ export interface ProfileDataFormProps {
   onSubmit(e: React.FormEvent<HTMLFormElement>): void;
 }
 
-export interface UpdatePasswordFormProps {
+export interface UpdatePasswordFormProps extends React.AriaAttributes {
   input: PasswordInput;
   inputs: PasswordInput[];
   showPassword: boolean;
@@ -1385,6 +1385,8 @@ export interface ContactInfoItemProps {
 export interface ContactHeadingProps {
   title: string;
   subtitle: string;
+  titleId?: string;
+  subtitleId?: string;
   text?: 'sm';
   type: 'lg' | 'md' | 'sm';
 }

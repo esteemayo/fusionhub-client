@@ -6,13 +6,22 @@ import './Contact.scss';
 
 const Contact = () => {
   return (
-    <div className='contact'>
+    <main
+      className='contact'
+      role='main'
+      tabIndex={-1}
+      aria-labelledby='contact-page-title'
+    >
       <div className='contact__container'>
+        <h1 id='contact-page-title' className='sr-only'>
+          Contact Us
+        </h1>
+
         <ContactHero />
         <ContactInfo />
         <Requests />
       </div>
-    </div>
+    </main>
   );
 };
 

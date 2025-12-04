@@ -7,14 +7,23 @@ import './About.scss';
 
 const About = () => {
   return (
-    <div className='about'>
+    <main
+      className='about'
+      role='main'
+      tabIndex={-1}
+      aria-labelledby='about-page-title'
+    >
       <div className='about__container'>
+        <h1 id='about-page-title' className='sr-only'>
+          About Us
+        </h1>
+
         <AboutHero />
         <AboutItems />
         <Team />
         <Partners />
       </div>
-    </div>
+    </main>
   );
 };
 

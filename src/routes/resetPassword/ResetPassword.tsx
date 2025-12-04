@@ -87,29 +87,26 @@ const ResetPassword = () => {
     });
   };
 
+  const headingId = 'reset-password-heading';
+  const describeId = 'reset-password-description';
+
   return (
     <main
       className='reset-password'
       role='main'
-      aria-labelledby='reset-password-heading'
-      aria-describedby='reset-password-description'
+      aria-labelledby={headingId}
+      aria-describedby={describeId}
     >
       <div
         className='reset-password__container'
         aria-busy={mutation.isPending ? 'true' : 'false'}
       >
         <div className='reset-password__wrapper'>
-          <h1
-            id='reset-password-heading'
-            className='reset-password__wrapper--heading'
-          >
+          <h1 id={headingId} className='reset-password__wrapper--heading'>
             Reset password
           </h1>
 
-          <p
-            id='reset-password-description'
-            className='reset-password__wrapper--text'
-          >
+          <p id={describeId} className='reset-password__wrapper--text'>
             Please enter your new password.
           </p>
 
@@ -122,8 +119,8 @@ const ResetPassword = () => {
             onTogglePassword={handlePasswordToggle}
             onTogglePasswordConfirm={handlePasswordConfirmToggle}
             onSubmit={handleSubmit(onSubmit)}
-            aria-labelledby='reset-password-heading'
-            aria-describedby='reset-password-description'
+            aria-labelledby={headingId}
+            aria-describedby={describeId}
           />
         </div>
       </div>

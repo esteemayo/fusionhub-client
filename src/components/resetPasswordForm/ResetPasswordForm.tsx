@@ -26,24 +26,31 @@ const ResetPasswordForm = ({
       noValidate
       {...ariaProps}
     >
-      {resetInputs.map((input) => {
+      <p
+        id={ariaProps['aria-labelledby'] ?? 'forgot-password-form-description'}
+        className='sr-only'
+      >
+        Reset password form with fields for password and confirm password
+      </p>
+
+      {resetInputs.map((input, index) => {
         const { id, name, type, label, placeholder } = input;
 
-        const isPassword = name === 'password';
-        const isConfirm = name === 'passwordConfirm';
+        const isPasswordField = name === 'password';
+        const isPasswordConfirmField = name === 'passwordConfirm';
 
-        const isVisible = isPassword
+        const isVisible = isPasswordField
           ? showPassword
-          : isConfirm
+          : isPasswordConfirmField
           ? showPasswordConfirm
           : false;
 
-        const handleToggle = isPassword
+        const handleToggle = isPasswordField
           ? onTogglePassword
           : onTogglePasswordConfirm;
 
         const actionAriaLabel = (label: string) => {
-          return isPassword
+          return isPasswordField
             ? `${showPassword ? 'Hide' : 'Show'} ${label.toLowerCase()}`
             : `${showPasswordConfirm ? 'Hide' : 'Show'} ${label.toLowerCase()}`;
         };
@@ -59,17 +66,18 @@ const ResetPasswordForm = ({
             errors={errors}
             onAction={handleToggle}
             disabled={isLoading}
-            isShow={isPassword ? showPassword : showPasswordConfirm}
-            autoFocus={name === 'password'}
-            isPassword
+            isShow={isVisible}
+            autoFocus={index === 0}
+            isPassword={isPasswordField || isPasswordConfirmField}
             validate
             aria-invalid={!!errors[name]}
             aria-describedby={errors[name] ? `${name}-error` : undefined}
             aria-label={actionAriaLabel(label)}
-            aria-pressed={isPassword ? showPassword : showPasswordConfirm}
+            aria-pressed={isPasswordField ? showPassword : showPasswordConfirm}
           />
         );
       })}
+
       <div className='reset-password-form__button'>
         <Button
           type='submit'

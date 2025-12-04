@@ -18,35 +18,43 @@ const UpdatePasswordForm = ({
   onTogglePasswordConfirm,
   onTogglePasswordCurrent,
   onSubmit,
+  ...ariaProps
 }: UpdatePasswordFormProps) => {
   return (
     <form
       className='update-password-form'
       onSubmit={onSubmit}
       role='form'
-      aria-labelledby='updatePasswordFormTitle'
+      aria-labelledby={
+        ariaProps['aria-labelledby'] ?? 'update-password-form-title'
+      }
+      aria-busy={isLoading ? 'true' : 'false'}
       noValidate
+      {...ariaProps}
     >
-      <h2 id='updatePasswordFormTitle' className='sr-only'>
+      <h2
+        id={ariaProps['aria-labelledby'] ?? 'update-password-form-title'}
+        className='sr-only'
+      >
         Update your account password
       </h2>
 
       <div className='update-password-form__inputs'>
         <span className='sr-only'>Current and new password fields</span>
 
-        {inputs.map((input) => {
+        {inputs.map((input, index) => {
           const { id, name, type, label, placeholder } = input;
 
-          const isCurrent = name === 'passwordCurrent';
-          const isNew = name === 'password';
+          const isPasswordCurrentField = name === 'passwordCurrent';
+          const isNewPasswordField = name === 'password';
 
-          const isVisible = isCurrent
+          const isVisible = isPasswordCurrentField
             ? showPasswordCurrent
-            : isNew
+            : isNewPasswordField
             ? showPassword
             : false;
 
-          const handleToggle = isCurrent
+          const handleToggle = isPasswordCurrentField
             ? onTogglePasswordCurrent
             : onTogglePassword;
 
@@ -61,14 +69,15 @@ const UpdatePasswordForm = ({
               errors={errors}
               onAction={handleToggle}
               disabled={isLoading}
-              autoFocus={name === 'passwordCurrent'}
+              autoFocus={index === 0}
               isShow={isVisible}
-              isPassword
+              isPassword={isPasswordCurrentField || isNewPasswordField}
               validate
             />
           );
         })}
       </div>
+
       <div className='update-password-form__confirm'>
         <span className='sr-only'>Confirm password field</span>
 
@@ -82,10 +91,11 @@ const UpdatePasswordForm = ({
           onAction={onTogglePasswordConfirm}
           disabled={isLoading}
           isShow={showPasswordConfirm}
-          isPassword
+          isPassword={input.name === 'passwordConfirm'}
           validate
         />
       </div>
+
       <Button
         type='submit'
         label='Update Changes'

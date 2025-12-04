@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { HeadingProps } from '../../types';
 
 import './Heading.scss';

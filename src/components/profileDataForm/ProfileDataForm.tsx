@@ -25,15 +25,30 @@ const ProfileDataForm = ({
   onChangePhone,
   onChangeCustom,
   onSubmit,
+  ...ariaProps
 }: ProfileDataFormProps) => {
   return (
     <form
       onSubmit={onSubmit}
       className='profile-data-form'
-      aria-describedby='profile-form-errors'
+      role='form'
+      aria-busy={isLoading ? 'true' : 'false'}
+      aria-describedby={ariaProps['aria-describedby'] ?? 'profile-form-errors'}
       noValidate
+      {...ariaProps}
     >
-      <div id='profile-form-errors' className='sr-only' aria-live='polite'>
+      <p
+        id={ariaProps['aria-labelledby'] ?? 'profile-data-heading'}
+        className='sr-only'
+      >
+        Update user data form with fields for user's details
+      </p>
+
+      <div
+        id={ariaProps['aria-describedby'] ?? 'profile-form-errors'}
+        className='sr-only'
+        aria-live='polite'
+      >
         {Object.keys(errors).length > 0 && 'There are errors in the form.'}
       </div>
 
@@ -48,6 +63,7 @@ const ProfileDataForm = ({
           autoFocus
           validate
         />
+
         <Input
           name='username'
           label='Username'
@@ -58,6 +74,7 @@ const ProfileDataForm = ({
           validate
         />
       </div>
+
       <div className='profile-data-form__data'>
         <Input
           type='email'
@@ -69,6 +86,7 @@ const ProfileDataForm = ({
           disabled={isLoading}
           validate
         />
+
         <PhoneNumber
           label='Mobile Number'
           value={phone}
@@ -76,6 +94,7 @@ const ProfileDataForm = ({
           onChange={onChangePhone}
         />
       </div>
+
       <div className='profile-data-form__data'>
         <DateInput
           label='Date of Birth'
@@ -83,6 +102,7 @@ const ProfileDataForm = ({
           placeholder='Select your date of birth'
           onChange={onChangeDate}
         />
+
         <CountrySelect
           name='country'
           label='Country'
@@ -93,6 +113,7 @@ const ProfileDataForm = ({
           validate
         />
       </div>
+
       <div className='profile-data-form__info'>
         <Textarea
           name='bio'
@@ -103,6 +124,7 @@ const ProfileDataForm = ({
           disabled={isLoading}
           validate
         />
+
         <TextQuill
           id='about'
           label='About Me'
@@ -112,6 +134,7 @@ const ProfileDataForm = ({
           readOnly={isLoading}
         />
       </div>
+
       <Button
         type='submit'
         label='Save Changes'

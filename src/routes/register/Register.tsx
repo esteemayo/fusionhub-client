@@ -127,7 +127,7 @@ const Register = () => {
     }
 
     if (isSuccess && user) {
-      window.location.reload();
+      navigate('/');
     }
 
     return () => {
@@ -146,20 +146,26 @@ const Register = () => {
     user,
   ]);
 
+  const headingId = 'register-heading';
+  const describeId = 'register-description';
+
   return (
     <section
       className='register'
       role='region'
-      aria-labelledby='register-heading'
-      aria-describedby='register-description'
+      aria-labelledby={headingId}
+      aria-describedby={describeId}
     >
-      <div className='register__container'>
+      <div
+        className='register__container'
+        aria-busy={isLoading ? 'true' : 'false'}
+      >
         <div className='register__wrapper'>
-          <h1 id='register-heading' className='register__wrapper--heading'>
+          <h1 id={headingId} className='register__wrapper--heading'>
             Welcome
           </h1>
 
-          <p id='register-description' className='register__wrapper--text'>
+          <p id={describeId} className='register__wrapper--text'>
             Welcome! Please enter your details.
           </p>
 
@@ -182,8 +188,8 @@ const Register = () => {
             onTogglePassword={handleTogglePassword}
             onTogglePasswordConfirm={handleTogglePasswordConfirm}
             onSubmit={handleSubmit(onSubmit)}
-            aria-labelledby='register-heading'
-            aria-describedby='register-description'
+            aria-labelledby={headingId}
+            aria-describedby={describeId}
           />
 
           <AuthLink

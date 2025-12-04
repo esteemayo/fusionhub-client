@@ -76,7 +76,7 @@ const ProfileData = ({
 
   useEffect(() => {
     if (isError && message) {
-      toast.error(message);
+      toast.error(message, { role: 'alert' });
     }
 
     return () => {
@@ -122,6 +122,8 @@ const ProfileData = ({
       <AccountHeader
         title='Personal information'
         subtitle='Update your personal information'
+        titleId={headerId}
+        descriptionId={descId}
       />
 
       <h2 id={headerId} className='sr-only'>
@@ -149,6 +151,8 @@ const ProfileData = ({
         onChangeDate={setStartDate}
         onChangePhone={setTelephone}
         onSubmit={handleSubmit(onSubmit)}
+        aria-labelledby={headerId}
+        aria-describedby={descId}
       />
     </div>
   );

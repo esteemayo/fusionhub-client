@@ -55,12 +55,15 @@ const RegisterForm = ({
       noValidate
       {...ariaProps}
     >
-      <p id='register-form-description' className='sr-only'>
+      <p
+        id={ariaProps['aria-labelledby'] ?? 'register-form-description'}
+        className='sr-only'
+      >
         Register form with fields for user's details
       </p>
 
       <div className='register-form__container'>
-        {inputs.map((input) => {
+        {inputs.map((input, index) => {
           const { id, name, type, label, placeholder } = input;
           return (
             <Input
@@ -72,7 +75,7 @@ const RegisterForm = ({
               placeholder={placeholder}
               errors={errors}
               disabled={isLoading}
-              autoFocus={name === 'name'}
+              autoFocus={index === 0}
               validate
               aria-invalid={Boolean(errors?.[name])}
               aria-describedby={errors?.[name] ? `${name}-error` : undefined}
@@ -83,21 +86,21 @@ const RegisterForm = ({
         {passwordInputs.map((input) => {
           const { id, name, type, label, placeholder } = input;
 
-          const isPassword = name === 'password';
-          const isConfirm = name === 'passwordConfirm';
+          const isPasswordField = name === 'password';
+          const isPasswordConfirmField = name === 'passwordConfirm';
 
-          const isVisible = isPassword
+          const isShow = isPasswordField
             ? showPassword
-            : isConfirm
+            : isPasswordConfirmField
             ? showPasswordConfirm
             : false;
 
-          const handleToggle = isPassword
+          const handleToggle = isPasswordField
             ? onTogglePassword
             : onTogglePasswordConfirm;
 
           const actionAriaLabel = (label: string) => {
-            return isPassword
+            return isPasswordField
               ? `${showPassword ? 'Hide' : 'Show'} ${label.toLowerCase()}`
               : `${
                   showPasswordConfirm ? 'Hide' : 'Show'
@@ -108,20 +111,22 @@ const RegisterForm = ({
             <Input
               key={id}
               name={name}
-              type={isVisible ? 'text' : type}
+              type={isShow ? 'text' : type}
               label={label}
               register={register}
               placeholder={placeholder}
               errors={errors}
               onAction={handleToggle}
               disabled={isLoading}
-              isShow={isVisible}
-              isPassword
+              isShow={isShow}
+              isPassword={isPasswordField || isPasswordConfirmField}
               validate
               aria-invalid={Boolean(errors?.[name])}
               aria-describedby={errors?.[name] ? `${name}-error` : undefined}
               aria-label={actionAriaLabel(label)}
-              aria-pressed={isPassword ? showPassword : showPasswordConfirm}
+              aria-pressed={
+                isPasswordField ? showPassword : showPasswordConfirm
+              }
             />
           );
         })}
