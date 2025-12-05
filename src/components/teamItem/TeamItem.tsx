@@ -34,14 +34,14 @@ const TeamItem = ({ img, name, role, socials }: TeamItemProps) => {
           role='group'
           aria-label={`Social links for ${name}`}
         >
-          {socials.map((SocialIcon, index) => {
-            const label = `Visit ${name}'s ${
-              SocialIcon.name || 'social'
-            } profile`;
+          {socials.map((social, index) => {
+            const { icon: Icon, platform } = social;
+
+            const label = `Visit ${name}'s ${platform || 'social'} profile`;
 
             return (
               <Link key={index} to='#' aria-label={label} title={label}>
-                <SocialIcon aria-hidden='true' focusable='false' />
+                <Icon aria-hidden='true' focusable='false' />
               </Link>
             );
           })}

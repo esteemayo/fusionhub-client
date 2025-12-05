@@ -5,6 +5,7 @@ const AboutHero = () => {
     <header
       className='about-hero'
       role='banner'
+      aria-label='About page hero section'
       aria-labelledby='about-hero-title'
       aria-describedby='about-hero-description'
     >

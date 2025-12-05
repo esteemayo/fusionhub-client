@@ -1,8 +1,6 @@
 const ShareIcon = ({ label }: { label?: string }) => {
   return (
     <svg
-      aria-hidden='true'
-      focusable='false'
       xmlns='http://www.w3.org/2000/svg'
       fill='currentColor'
       viewBox='0 0 24 24'
@@ -10,6 +8,8 @@ const ShareIcon = ({ label }: { label?: string }) => {
       width='20'
       height='20'
       role='img'
+      aria-hidden='true'
+      focusable='false'
       className='size-6'
     >
       <path

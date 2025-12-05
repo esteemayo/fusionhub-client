@@ -35,7 +35,12 @@ const TogglePassword = ({
         aria-disabled={disabled}
         title={labelText}
       >
-        {isShow ? <EyeSlashIcon /> : <EyeIcon />}
+        {isShow ? (
+          <EyeSlashIcon className='password-toggle__btn--icon' />
+        ) : (
+          <EyeIcon className='password-toggle__btn--icon' />
+        )}
+
         <span className='toggle-password__btn--text'>
           {isShow ? 'Hide' : 'Show'}
         </span>

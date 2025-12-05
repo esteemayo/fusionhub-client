@@ -797,21 +797,33 @@ export const teamItems: TeamType = [
     img: '/img/team-1.png',
     name: 'Tim kamerer',
     role: 'Technical director',
-    socials: [FaGooglePlusG, FaInstagram, FaLinkedinIn],
+    socials: [
+      { icon: FaGooglePlusG, platform: 'GooglePlus' },
+      { icon: FaInstagram, platform: 'Instagram' },
+      { icon: FaLinkedinIn, platform: 'LinkedIn' },
+    ],
   },
   {
     id: 2,
     img: '/img/team-2.png',
     name: 'Lindsay perlen',
     role: 'Senior producer',
-    socials: [FaFacebookF, FaXTwitter, FaYoutube],
+    socials: [
+      { icon: FaFacebookF, platform: 'Facebook' },
+      { icon: FaXTwitter, platform: 'Twitter' },
+      { icon: FaYoutube, platform: 'Youtube' },
+    ],
   },
   {
     id: 3,
     img: '/img/team-3.png',
     name: 'John brown',
     role: 'Software developer',
-    socials: [FaGithub, FaXTwitter, FaTiktok],
+    socials: [
+      { icon: FaGithub, platform: 'Github' },
+      { icon: FaXTwitter, platform: 'Twitter' },
+      { icon: FaTiktok, platform: 'Tiktok' },
+    ],
   },
 ];
 

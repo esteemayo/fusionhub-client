@@ -1,14 +1,14 @@
-const EyeSlashIcon = () => {
+const EyeSlashIcon = ({ className }: { className?: string }) => {
   return (
     <svg
-      aria-hidden='true'
-      focusable='false'
       width='800px'
       height='800px'
       viewBox='0 0 16 16'
       xmlns='http://www.w3.org/2000/svg'
       fill='currentColor'
-      className='password-toggle__btn--icon'
+      aria-hidden='true'
+      focusable='false'
+      className={className}
     >
       <path
         fillRule='evenodd'

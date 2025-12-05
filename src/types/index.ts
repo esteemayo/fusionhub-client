@@ -1417,7 +1417,10 @@ export interface TeamItemProps {
   img: string;
   name: string;
   role: string;
-  socials: IconType[];
+  socials: {
+    icon: IconType;
+    platform: string;
+  }[];
 }
 
 export interface HeroProps {
@@ -2401,7 +2404,10 @@ export type TeamType = {
   img: string;
   name: string;
   role: string;
-  socials: IconType[];
+  socials: {
+    icon: IconType;
+    platform: string;
+  }[];
 }[];
 
 export type PartnerItemType = {

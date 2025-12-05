@@ -38,7 +38,8 @@ const ContactForm = () => {
     mutationFn: (contact: object) => createNewContact(contact),
     onSuccess: () => {
       toast.success(
-        'Thank you for reaching out! Your message has been sent successfully. We will get back to you soon.'
+        'Thank you for reaching out! Your message has been sent successfully. We will get back to you soon.',
+        { role: 'alert' }
       );
     },
     onError: (error: unknown) => {
@@ -49,10 +50,11 @@ const ContactForm = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
         toast.error(
-          'An error occurred while sending your message. Please try again.'
+          'An error occurred while sending your message. Please try again.',
+          { role: 'alert' }
         );
       }
     },
@@ -109,23 +111,33 @@ const ContactForm = () => {
     const errors = validateContactInputs(inputs);
     if (Object.keys(errors).length > 0) setError(errors);
 
-    contactMutation.mutate(contact, {
-      onSuccess: handleClear,
-    });
+    contactMutation.mutate(contact, { onSuccess: handleClear });
   };
 
+  const titleId = 'contact-form-title';
+  const describeId = 'contact-form-description';
+
   return (
-    <section className='contact-form'>
+    <div
+      className='contact-form'
+      role='form'
+      aria-labelledby={titleId}
+      aria-describedby={describeId}
+    >
       <div className='contact-form__container'>
         <ContactHeading
           title='Get in touch !'
           subtitle="Feel free to reach out to us with any questions or inquiries. We're here to help and look forward to hearing from you!"
+          titleId={titleId}
+          subtitleId={describeId}
           text='sm'
           type='md'
         />
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className='contact-form__wrapper'
+          noValidate
         >
           <div className='contact-form__wrapper--email'>
             <Input
@@ -135,28 +147,48 @@ const ContactForm = () => {
               register={register as unknown as UseFormRegister<FieldValues>}
               errors={errors}
               disabled={contactMutation.isPending}
+              aria-label='Email address'
+              aria-required='true'
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? 'email-error' : undefined}
             />
+
             <PhoneNumber
               value={phone}
               placeholder='Phone number'
               onChange={(value) => handlePhoneChange(value)}
               error={error.phone}
+              aria-label='Phone number'
+              aria-required='true'
+              aria-invalid={!!error.phone}
+              aria-describedby={error.phone ? 'phone-error' : undefined}
             />
           </div>
+
           <Input
             name='name'
             placeholder='Name'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             disabled={contactMutation.isPending}
+            aria-label='Your full name'
+            aria-required='true'
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? 'name-error' : undefined}
           />
+
           <Input
             name='subject'
             placeholder='Subject'
             register={register as unknown as UseFormRegister<FieldValues>}
             errors={errors}
             disabled={contactMutation.isPending}
+            aria-label='Subject'
+            aria-required='true'
+            aria-invalid={!!errors.subject}
+            aria-describedby={errors.subject ? 'subject-error' : undefined}
           />
+
           <TextQuill
             id='message'
             value={message}
@@ -164,18 +196,24 @@ const ContactForm = () => {
             onChange={(value) => handleChangeMessage(value)}
             error={error.message}
             readOnly={contactMutation.isPending}
+            aria-label='Message'
+            aria-required='true'
+            aria-invalid={!!error.message}
+            aria-describedby={error.message ? 'message-error' : undefined}
           />
+
           <div className='contact-form__wrapper--btn'>
             <Button
               type='submit'
               label='Send Message'
               isLoading={contactMutation.isPending}
               disabled={contactMutation.isPending}
+              aria-label='Send message from button'
             />
           </div>
         </form>
       </div>
-    </section>
+    </div>
   );
 };
 

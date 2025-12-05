@@ -149,6 +149,14 @@
     }
   }
 
+  &__contact-form {
+    flex: 1.5;
+
+    @include bp.lg {
+      width: 100%;
+    }
+  }
+
   &__wrapper {
     flex: 1;
 
