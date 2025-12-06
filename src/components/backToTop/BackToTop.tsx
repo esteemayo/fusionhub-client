@@ -1,22 +1,30 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
+import ChevronUp from '../icons/ChevronUp';
 
 import './BackToTop.scss';
 
 const BackToTop = () => {
+  const tooltipRef = useRef<HTMLSpanElement | null>(null);
+
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleScroll = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
+  const handleScrollToTop = useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-  };
 
-  const scrollClasses = useMemo(() => {
-    return isVisible ? 'scroll show' : 'scroll hide';
-  }, [isVisible]);
+    const liveRegion = document.getElementById('back-to-top-live');
+    if (liveRegion) {
+      liveRegion.textContent = 'Scrolled back to top';
+      setTimeout(() => (liveRegion.textContent = ''), 1000);
+    }
+  }, []);
+
+  const scrollClasses = useMemo(
+    () => (isVisible ? 'scroll show' : 'scroll hide'),
+    [isVisible]
+  );
 
   useEffect(() => {
     const handleWindowScroll = () => {
@@ -27,25 +35,66 @@ const BackToTop = () => {
     return () => window.removeEventListener('scroll', handleWindowScroll);
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+
+      const isTyping =
+        target.tagName === 'INPUT' ||
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable;
+
+      if (isTyping) return;
+
+      if (e.key.toLowerCase() === 't') {
+        handleScrollToTop();
+        tooltipRef.current?.classList.add('show-tooltip');
+
+        setTimeout(() => {
+          tooltipRef.current?.classList.remove('show-tooltip');
+        }, 1200);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleScrollToTop]);
+
   return (
-    <div className={scrollClasses}>
-      <button type='button' className='scroll__btn' onClick={handleScroll}>
-        <svg
-          aria-hidden='true'
-          focusable='false'
-          xmlns='http://www.w3.org/2000/svg'
-          viewBox='0 0 24 24'
-          fill='currentColor'
-          className='size-6'
+    <>
+      <div
+        id='back-to-top-live'
+        className='sr-only'
+        aria-live='polite'
+        aria-atomic='true'
+      ></div>
+
+      <div
+        className={scrollClasses}
+        role='complementary'
+        aria-label='Back to top button container'
+      >
+        <button
+          type='button'
+          className='scroll__btn'
+          onClick={handleScrollToTop}
+          aria-label='Scroll back to top'
+          aria-describedby='scroll-tool-tip'
+          title='Scroll back to top'
         >
-          <path
-            fillRule='evenodd'
-            d='M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z'
-            clipRule='evenodd'
-          />
-        </svg>
-      </button>
-    </div>
+          <ChevronUp />
+        </button>
+
+        <span
+          id='show-tooltip'
+          ref={tooltipRef}
+          className='scroll__tooltip'
+          role='tooltip'
+        >
+          Press <kbd>T</kbd> to scroll up
+        </span>
+      </div>
+    </>
   );
 };
 

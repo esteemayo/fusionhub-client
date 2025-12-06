@@ -1,52 +1,14 @@
+@use '../../styles/animation.scss' as anim;
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
-
-@use '../../styles/animation.scss';
 
 .scroll {
   position: fixed;
   right: 3rem;
-  width: 4rem;
-  height: 4rem;
   -webkit-animation: moveInTop 0.5s ease-in-out 1s backwards;
   -moz-animation: moveInTop 0.5s ease-in-out 1s backwards;
   -o-animation: moveInTop 0.5s ease-in-out 1s backwards;
   animation: moveInTop 0.5s ease-in-out 1s backwards;
-
-  @media screen and (max-width: 56.25em) {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  @media screen and (max-width: 51.25em) {
-    width: 5.5rem;
-    height: 5.5rem;
-  }
-
-  @include bp.sm {
-    width: 5.25rem;
-    height: 5.25rem;
-  }
-
-  @media screen and (max-width: 18.75em) {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  @media screen and (min-width: 106.25em) {
-    width: 5rem;
-    height: 5rem;
-  }
-
-  @media screen and (min-width: 112.5em) {
-    width: 5.5rem;
-    height: 5.5rem;
-  }
-
-  @media screen and (min-width: 125em) {
-    width: 6rem;
-    height: 6rem;
-  }
 
   &.show {
     bottom: 5rem;
@@ -69,15 +31,60 @@
     align-items: center;
     justify-content: center;
 
+    position: relative;
     border: 0;
-    outline: 0;
-    width: 100%;
-    height: 100%;
+    width: 4rem;
+    height: 4rem;
     background-color: rgba(vars.$clr-pink-dark-1, 0.75);
     color: vars.$clr-white;
     backdrop-filter: blur(1px);
     border-radius: 50%;
     cursor: pointer;
+
+    @media screen and (max-width: 56.25em) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      width: 5.5rem;
+      height: 5.5rem;
+    }
+
+    @include bp.sm {
+      width: 5.25rem;
+      height: 5.25rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      width: 5rem;
+      height: 5rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      width: 5.5rem;
+      height: 5.5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      width: 6rem;
+      height: 6rem;
+    }
+
+    &:focus-visible {
+      outline: 2px solid vars.$clr-pink-light;
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      pointer-events: none;
+      user-select: none;
+    }
 
     svg {
       width: 2rem;
@@ -118,6 +125,62 @@
         width: 3.5rem;
         height: 3.5rem;
       }
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    bottom: 140%;
+    right: 0;
+    font-size: 1.45rem;
+    padding: 0.6rem 1rem;
+    background-color: rgba(vars.$clr-black, 0.75);
+    color: vars.$clr-white;
+    box-shadow: vars.$box;
+    border-radius: 1rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+
+    &.show-tooltip {
+      opacity: 1;
+    }
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.65rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: 1.75rem;
+    }
+
+    @include bp.sm {
+      font-size: 1.85rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: var(--default-font-size);
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.65rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.95rem;
     }
   }
 }

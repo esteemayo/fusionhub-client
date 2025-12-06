@@ -4,7 +4,7 @@ import './FeedSkeleton.scss';
 
 const FeedSkeleton = () => {
   return (
-    <article className='feed-skeleton'>
+    <article className='feed-skeleton' role='presentation' aria-hidden='true'>
       <div className='feed-skeleton__wrapper'>
         <Skeleton
           width={65}

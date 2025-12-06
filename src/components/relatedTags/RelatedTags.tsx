@@ -13,6 +13,7 @@ const RelatedTags = ({ isLoading, tags }: RelatedTagsProps) => {
       <h3 className='related-tags__heading' aria-label='Related tags'>
         Related tags
       </h3>
+
       <div className='related-tags__container'>
         {isLoading
           ? Array.from(Array(3)).map((_, index) => {

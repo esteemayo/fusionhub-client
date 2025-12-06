@@ -20,19 +20,26 @@ const Feeds = ({ postId, onClose }: FeedsProps) => {
     queryFn: fetchTrendingPosts,
   });
 
-  const noFeeds = (data ?? []).length < 1;
+  const hasData = Array.isArray(data) ?? (data ?? []).length > 0;
 
   return (
-    <section className='feeds'>
+    <section
+      className='feeds'
+      role='region'
+      aria-labelledby='feeds-heading'
+      aria-busy={isPending}
+    >
       <div className='feeds__container'>
-        <h2 className='feeds__container-heading'>Feeds</h2>
-        {noFeeds && !isPending ? (
-          <EmptyMessage
-            title='No trending posts available at the moment.'
-            subtitle='Check back later or explore other sections!'
-          />
-        ) : isPending ? (
-          Array.from(Array({ length: 3 })).map((_, index) => {
+        <h2
+          id='feeds-heading'
+          className='feeds__container-heading'
+          tabIndex={-1}
+        >
+          Feeds
+        </h2>
+
+        {isPending ? (
+          Array.from(Array(3)).map((_, index) => {
             return <FeedSkeleton key={index} />;
           })
         ) : error ? (
@@ -42,13 +49,32 @@ const Feeds = ({ postId, onClose }: FeedsProps) => {
               error.message ||
               'Please try refreshing the page or check your internet connection.'
             }
+            role='alert'
+          />
+        ) : !hasData ? (
+          <EmptyMessage
+            title='No trending posts available at the moment.'
+            subtitle='Check back later or explore other sections!'
+            role='status'
           />
         ) : (
-          data
-            ?.filter((item) => item._id !== postId)
-            .map((feed) => {
-              return <Feed key={feed._id} {...feed} onClose={onClose} />;
-            })
+          hasData && (
+            <ul className='feeds__list' role='list'>
+              {data
+                ?.filter((item) => item._id !== postId)
+                .map((feed) => {
+                  return (
+                    <li
+                      key={feed._id}
+                      className='feeds__list--item'
+                      role='listitem'
+                    >
+                      <Feed {...feed} onClose={onClose} />
+                    </li>
+                  );
+                })}
+            </ul>
+          )
         )}
       </div>
     </section>

@@ -11,16 +11,33 @@ const ScrollProgressBar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isScrollable, setIsScrollable] = useState(false);
 
+  const parseColor = (color: string): [number, number, number] => {
+    if (color.startsWith('#')) {
+      const hex = color.slice(1);
+
+      return [
+        parseInt(hex.substring(0, 2), 16),
+        parseInt(hex.substring(2, 4), 16),
+        parseInt(hex.substring(4, 6), 16),
+      ];
+    }
+
+    if (color.startsWith('rgb')) {
+      const nums = color.match(/\d+/g);
+      if (!nums) return [0, 0, 0];
+
+      return [Number(nums[0]), Number(nums[1]), Number(nums[2])];
+    }
+
+    return [0, 0, 0];
+  };
+
   const interpolateColor = (color1: string, color2: string, factor: number) => {
-    const c1 = color1.match(/\w\w/g)?.map((hex) => parseInt(hex, 16)) ?? [
-      0, 0, 0,
-    ];
-    const c2 = color2.match(/\w\w/g)?.map((hex) => parseInt(hex, 16)) ?? [
-      0, 0, 0,
-    ];
+    const c1 = parseColor(color1);
+    const c2 = parseColor(color2);
 
     const result = c1.map((v, i) => Math.round(v + factor * (c2[i] - v)));
-    return `rgb(${result.join(',')})`;
+    return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
   };
 
   const getScrollColor = (percent: number) => {
@@ -100,8 +117,8 @@ const ScrollProgressBar = () => {
 
   return (
     <div
-      aria-hidden={!isVisible}
       className={`scroll-progress-bar ${isVisible ? 'show' : 'hide'}`}
+      aria-hidden={!isVisible}
     >
       <div
         className='scroll-progress-bar__indicator'

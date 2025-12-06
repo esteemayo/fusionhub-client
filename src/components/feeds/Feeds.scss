@@ -3,12 +3,6 @@
 
 .feeds {
   &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 2rem;
-
     background-color: vars.$clr-secondary-blue;
     padding: 3rem;
     border-radius: 3px;
@@ -29,6 +23,15 @@
     @media screen and (max-width: 18.75em) {
       padding: 1.5rem;
     }
+  }
+
+  &__container,
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
 
     &-heading {
       text-transform: capitalize;
@@ -74,5 +77,9 @@
         font-size: 2.2rem;
       }
     }
+  }
+
+  &__list {
+    list-style: none;
   }
 }

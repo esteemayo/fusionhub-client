@@ -8,6 +8,7 @@ const SaveIcon = ({ isLoading, hasSaved, className }: SaveIconProps) => {
       viewBox='0 0 24 24'
       strokeWidth={1.5}
       stroke='currentColor'
+      role='img'
       aria-hidden='true'
       focusable='false'
       className={`size-6 ${className ? className : ''}`}
