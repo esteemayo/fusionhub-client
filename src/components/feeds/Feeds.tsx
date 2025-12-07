@@ -32,50 +32,49 @@ const Feeds = ({ postId, onClose }: FeedsProps) => {
       <div className='feeds__container'>
         <h2
           id='feeds-heading'
-          className='feeds__container-heading'
+          className='feeds__container--heading'
           tabIndex={-1}
         >
           Feeds
         </h2>
 
-        {isPending ? (
-          Array.from(Array(3)).map((_, index) => {
-            return <FeedSkeleton key={index} />;
-          })
-        ) : error ? (
-          <EmptyMessage
-            title='Oops! We encountered an issue while loading the trending posts.'
-            subtitle={
-              error.message ||
-              'Please try refreshing the page or check your internet connection.'
-            }
-            role='alert'
-          />
-        ) : !hasData ? (
-          <EmptyMessage
-            title='No trending posts available at the moment.'
-            subtitle='Check back later or explore other sections!'
-            role='status'
-          />
-        ) : (
-          hasData && (
-            <ul className='feeds__list' role='list'>
-              {data
-                ?.filter((item) => item._id !== postId)
-                .map((feed) => {
-                  return (
-                    <li
-                      key={feed._id}
-                      className='feeds__list--item'
-                      role='listitem'
-                    >
-                      <Feed {...feed} onClose={onClose} />
-                    </li>
-                  );
-                })}
-            </ul>
-          )
-        )}
+        <ul className='feeds__list' role='list'>
+          {isPending ? (
+            Array.from(Array(3)).map((_, index) => {
+              return (
+                <li key={index} role='listitem'>
+                  <FeedSkeleton key={index} />
+                </li>
+              );
+            })
+          ) : error ? (
+            <EmptyMessage
+              title='Oops! We encountered an issue while loading the trending posts.'
+              subtitle={
+                error.message ||
+                'Please try refreshing the page or check your internet connection.'
+              }
+              role='alert'
+            />
+          ) : !hasData ? (
+            <EmptyMessage
+              title='No trending posts available at the moment.'
+              subtitle='Check back later or explore other sections!'
+              role='status'
+            />
+          ) : (
+            hasData &&
+            data
+              ?.filter((item) => item._id !== postId)
+              .map((feed) => {
+                return (
+                  <li key={feed._id} role='listitem'>
+                    <Feed {...feed} onClose={onClose} />
+                  </li>
+                );
+              })
+          )}
+        </ul>
       </div>
     </section>
   );

@@ -34,42 +34,41 @@ const Tags = ({ onClose }: TagsProps) => {
           Tags
         </h2>
 
-        {isPending ? (
-          <div className='tags__wrapper'>
-            {Array.from(new Array(3)).map((_, index) => {
-              return <TagSkeleton key={index} />;
-            })}
-          </div>
-        ) : error ? (
-          <EmptyMessage
-            title='Oops! We encountered an issue while loading tags.'
-            subtitle={
-              error.message ||
-              'Please try refreshing the page or check back later.'
-            }
-            role='alert'
-          />
-        ) : noTags ? (
-          <EmptyMessage
-            title='No tags available at the moment.'
-            subtitle='Tags help categorize content. Please check back later!'
-            role='status'
-          />
-        ) : (
-          <div className='tags__wrapper'>
-            {data?.map((item) => {
+        <ul className='tags__wrapper' role='list'>
+          {isPending ? (
+            Array.from(new Array(3)).map((_, index) => {
+              return (
+                <li key={index} role='listitem'>
+                  <TagSkeleton />
+                </li>
+              );
+            })
+          ) : error ? (
+            <EmptyMessage
+              title='Oops! We encountered an issue while loading tags.'
+              subtitle={
+                error.message ||
+                'Please try refreshing the page or check back later.'
+              }
+              role='alert'
+            />
+          ) : noTags ? (
+            <EmptyMessage
+              title='No tags available at the moment.'
+              subtitle='Tags help categorize content. Please check back later!'
+              role='status'
+            />
+          ) : (
+            data?.map((item) => {
               const { tag, count } = item;
               return (
-                <TagItem
-                  key={tag}
-                  label={tag}
-                  count={count}
-                  onClose={onClose}
-                />
+                <li key={tag} role='listitem'>
+                  <TagItem label={tag} count={count} onClose={onClose} />
+                </li>
               );
-            })}
-          </div>
-        )}
+            })
+          )}
+        </ul>
       </div>
     </section>
   );

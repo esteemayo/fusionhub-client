@@ -16,7 +16,7 @@ const Share = ({
   onClick,
 }: ShareProps) => {
   return (
-    <div className='share'>
+    <div className='share' role='region' aria-label='Save and share actions'>
       <SavePost
         count={savedCount}
         hasSaved={isSaved}

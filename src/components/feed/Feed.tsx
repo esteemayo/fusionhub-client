@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Image from '../Image';
+import ClockOutlinedIcon from '../icons/ClockOutlinedIcon';
 
 import { FeedProps } from '../../types';
 import { useDate } from '../../hooks/useDate';
@@ -12,9 +13,11 @@ const Feed = ({ img, title, slug, createdAt, onClose }: FeedProps) => {
 
   return (
     <article
-      role='article'
-      aria-label={`Post titled ${title}`}
       className='feed'
+      role='article'
+      aria-label={`Trending post: ${title}`}
+      aria-labelledby={`feed-title-${slug}`}
+      tabIndex={0}
     >
       <figure className='feed__wrapper'>
         <Image
@@ -26,36 +29,21 @@ const Feed = ({ img, title, slug, createdAt, onClose }: FeedProps) => {
         />
       </figure>
       <div className='feed__box'>
-        <h3 className='feed__box--title'>
+        <h3 id={`feed-title-${slug}`} className='feed__box--title'>
           <Link
             to={`/post/${slug}`}
             onClick={onClose}
-            aria-label={`Read post: ${title}`}
+            aria-label={`Read full post titled: ${title}`}
           >
             {title}
           </Link>
         </h3>
         <time
           dateTime={createdAt}
-          aria-label={`Published on ${formattedDate}`}
           className='feed__box--date'
+          aria-label={`Published on ${formattedDate}`}
         >
-          <svg
-            aria-hidden='true'
-            focusable='false'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='size-6'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
-            />
-          </svg>
+          <ClockOutlinedIcon />
           <span>{formattedDate}</span>
         </time>
       </div>

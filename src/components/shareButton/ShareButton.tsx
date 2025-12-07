@@ -12,10 +12,7 @@ import './ShareButton.scss';
 const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
   const shareUrl = `${window.location.origin}/post/${slug}`;
 
-  const parsedDesc = useMemo(() => {
-    return parse(String(desc)).toString();
-  }, [desc]);
-
+  const parsedDesc = useMemo(() => parse(String(desc)).toString(), [desc]);
   const parsedText = excerpts(stripHtml(parsedDesc), 80);
 
   const { handleShare } = useWebShare(title, parsedText, shareUrl);
@@ -25,10 +22,11 @@ const ShareButton = ({ title, desc, slug }: ShareButtonProps) => {
       <button
         type='button'
         onClick={handleShare}
-        aria-label='Share button'
         className='share-button__btn'
+        aria-label='Share this post'
       >
         <ShareIcon />
+        <span className='sr-only'>Share this post</span>
       </button>
     </div>
   );

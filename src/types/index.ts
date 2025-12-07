@@ -1653,6 +1653,7 @@ export interface CommentReplyActionProps {
   url: string;
   title?: string;
   text?: string;
+  type?: 'comment' | 'reply';
   likeCount: number;
   dislikeCount: number;
   isLiked: boolean;
@@ -1686,6 +1687,7 @@ export interface ShareCommentProps {
   url: string;
   title?: string;
   text?: string;
+  type?: 'comment' | 'reply';
 }
 
 export interface ShareContentProps {

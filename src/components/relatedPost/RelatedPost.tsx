@@ -14,42 +14,48 @@ const RelatedPost = ({
   category,
   createdAt,
 }: RelatedPostProps) => {
+  const readableDate = format(createdAt);
+
   return (
-    <article aria-label={`Related post: ${title}`} className='related-post'>
+    <article
+      className='related-post'
+      role='article'
+      aria-label={`Related post: ${title}`}
+    >
       <div className='related-post__container'>
-        <div aria-hidden='true' className='related-post__container--overlay'>
+        <div className='related-post__container--overlay' aria-hidden='true'>
           &nbsp;
         </div>
         <Image
           src={img ?? '/dafault-post.jpg'}
           width={250}
           height={150}
-          alt={`Thumbnail image for ${title}`}
+          alt={title ? `Thumbnail for "${title}"` : 'Post thumbnail'}
           className='related-post__container--img'
         />
-        <div className='related-post__footer'>
+        <footer className='related-post__footer'>
           <Link
             to={`/post/${slug}`}
-            aria-label={`Read full post: ${title}`}
             className='related-post__footer--link'
+            aria-label={`Read full post: ${title}`}
           >
             {title}
           </Link>
           <div className='related-post__footer--category'>
             <Link
               to={`/posts?category=${category}`}
-              aria-label={`View more posts in category: ${category}`}
+              aria-label={`View more posts in ${category}`}
             >
               <span>{category}</span>
             </Link>
             <time
-              dateTime={createdAt}
-              aria-label={`Published ${format(createdAt)}`}
+              dateTime={new Date(createdAt).toISOString()}
+              aria-label={`Published ${readableDate}`}
             >
-              {format(createdAt)}
+              {readableDate}
             </time>
           </div>
-        </div>
+        </footer>
       </div>
     </article>
   );

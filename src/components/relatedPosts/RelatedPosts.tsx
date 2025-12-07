@@ -27,20 +27,26 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
     <section className='related-posts'>
       <div className='related-posts__container'>
         <h5 className='related-posts__container--heading'>Related posts</h5>
-        <div className='related-posts__container--wrapper'>
-          {noPosts && !isPending ? (
-            <EmptyMessage
-              title='No related posts found.'
-              subtitle='It seems there are no posts related to the current topic. Check back later or explore other topics to find more content.'
-            />
-          ) : isPending ? (
+
+        <ul className='related-posts__container--wrapper' role='list'>
+          {isPending ? (
             Array.from(Array(4)).map((_, index) => {
-              return <RelatedSkeleton key={index} />;
+              return (
+                <li key={index} role='listitem'>
+                  <RelatedSkeleton />
+                </li>
+              );
             })
           ) : error ? (
             <EmptyMessage
               title='Oops! Something went wrong while fetching related posts.'
               subtitle={`We encountered an error: ${error.message}. Please try refreshing the page or come back later. If the issue persists, feel free to contact support for assistance.`}
+              role='alert'
+            />
+          ) : noPosts && !isPending ? (
+            <EmptyMessage
+              title='No related posts found.'
+              subtitle='It seems there are no posts related to the current topic. Check back later or explore other topics to find more content.'
             />
           ) : data?.filter((post) => post._id !== postId).length < 1 ? (
             <EmptyMessage
@@ -52,10 +58,14 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
               ?.filter((post) => post._id !== postId)
               .slice(0, 4)
               .map((post) => {
-                return <RelatedPost key={post._id} {...post} />;
+                return (
+                  <li key={post._id} role='listitem'>
+                    <RelatedPost {...post} />
+                  </li>
+                );
               })
           )}
-        </div>
+        </ul>
       </div>
     </section>
   );

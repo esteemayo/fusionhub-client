@@ -82,6 +82,8 @@
     align-items: center;
     gap: 2rem;
 
+    list-style: none;
+
     @media screen and (min-width: 125em) {
       row-gap: 3rem;
     }

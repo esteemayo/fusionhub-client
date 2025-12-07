@@ -24,9 +24,11 @@ const ShareContent = ({ url, text, title, onClick }: ShareContentProps) => {
         >
           {title || 'Check this out'}
         </h4>
+
         <p className='share-content__container--content' aria-label={text}>
           {text}
         </p>
+
         <div className='share-content__wrapper'>
           <input
             id='url'
@@ -50,6 +52,9 @@ const ShareContent = ({ url, text, title, onClick }: ShareContentProps) => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
+              role='img'
+              aria-hidden='true'
+              focusable='false'
               className='size-6'
             >
               <path

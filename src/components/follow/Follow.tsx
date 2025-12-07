@@ -7,16 +7,29 @@ import './Follow.scss';
 
 const Follow = ({ onClose }: FollowProps) => {
   return (
-    <section className='follow'>
+    <section className='follow' role='region' aria-labelledby='follow-heading'>
       <div className='follow__container'>
-        <h2 className='follow__container--heading'>Follow us</h2>
-        <ul className='follow__container--list'>
+        <h2 id='follow-heading' className='follow__container--heading'>
+          Follow us
+        </h2>
+
+        <ul className='follow__container--list' role='list'>
           {socialMenuItems.map((social) => {
-            const { id, url, icon: Icon } = social;
+            const { id, url, label, icon: Icon } = social;
             return (
-              <li key={id} className='follow__container--list-item'>
-                <Link to={url} onClick={onClose}>
-                  <Icon />
+              <li
+                key={id}
+                className='follow__container--list-item'
+                role='listitem'
+              >
+                <Link
+                  to={url}
+                  onClick={onClose}
+                  aria-label={`Visit our ${label} page`}
+                >
+                  <Icon role='img' aria-hidden='true' focusable='false' />
+
+                  <span className='sr-only'>{label}</span>
                 </Link>
               </li>
             );

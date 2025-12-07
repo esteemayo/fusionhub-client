@@ -482,6 +482,7 @@ const Reply = ({
             url={replyUrl}
             title='Check out this reply'
             text={excerpts(content, 80)}
+            type='reply'
             likeCount={likeCount}
             dislikeCount={dislikeCount}
             isLiked={isLiked}

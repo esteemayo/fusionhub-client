@@ -12,6 +12,7 @@ const CommentReplyAction = ({
   url,
   size,
   text,
+  type,
   title,
   likeCount,
   dislikeCount,
@@ -67,7 +68,13 @@ const CommentReplyAction = ({
         } ${btnTitle}`}
         onDislike={handleDislike}
       />
-      <ShareComment url={url} size={size} text={text} title={title} />
+      <ShareComment
+        url={url}
+        size={size}
+        text={text}
+        type={type}
+        title={title}
+      />
     </div>
   );
 };
