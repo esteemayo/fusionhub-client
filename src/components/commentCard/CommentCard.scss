@@ -5,16 +5,6 @@
   display: flex;
   flex-direction: column;
 
-  padding: 2.5rem 0;
-
-  &:not(:last-of-type) {
-    border-bottom: 1px solid vars.$clr-tertiary-blue;
-
-    @include bp.sm {
-      border-color: vars.$clr-secondary-blue;
-    }
-  }
-
   button:focus-visible {
     outline: 2px solid vars.$clr-gray-light-1;
     outline-offset: 2px;

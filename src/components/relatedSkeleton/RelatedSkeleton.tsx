@@ -4,7 +4,11 @@ import './RelatedSkeleton.scss';
 
 const RelatedSkeleton = () => {
   return (
-    <article className='related-skeleton'>
+    <article
+      className='related-skeleton'
+      role='presentation'
+      aria-hidden='true'
+    >
       <div className='related-skeleton__container'>
         <Skeleton
           width={250}

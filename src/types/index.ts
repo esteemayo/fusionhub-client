@@ -146,7 +146,7 @@ export interface EmptyMessageProps {
   role?: React.AriaRole;
 }
 
-export interface ErrorMessageProps {
+export interface ErrorMessageProps extends React.AriaAttributes {
   id?: string;
   role?: React.AriaRole;
   message?: string;
@@ -1563,9 +1563,9 @@ export interface CommentUserImagesProps {
 }
 
 export interface CommentUserImageProps {
-  id: string;
   url: string;
   src: string;
+  username: string;
 }
 
 export interface CommentFiltersProps {
@@ -1575,7 +1575,7 @@ export interface CommentFiltersProps {
   totalComments?: number;
   totalCommentUsers?: number;
   onClose(): void;
-  onToggle(e: React.MouseEvent<HTMLSpanElement>): void;
+  onToggle(e?: React.MouseEvent<HTMLSpanElement>): void;
   onSort: React.Dispatch<React.SetStateAction<sortType>>;
 }
 

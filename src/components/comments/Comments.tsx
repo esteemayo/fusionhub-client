@@ -52,43 +52,25 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
     setIsOpen(false);
   }, []);
 
-  const handleEscape = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleClose();
-      }
-    },
-    [handleClose]
-  );
-
-  const closeFilterHandler = (e: React.MouseEvent<HTMLElement>) => {
+  const onOutsideClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as Element;
 
-    if (!target.classList.contains('comment-filter')) {
+    if (
+      !target.closest('comment-filter') &&
+      !target.closest('[data-filter-toggle]')
+    ) {
       handleClose();
     }
-  };
 
-  const handleActiveCard = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
     setActiveCardId(null);
   };
 
-  const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
-    closeFilterHandler(e);
-    handleActiveCard(e);
-  };
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLoadMore = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-
     setIsLoading(true);
 
     setTimeout(() => {
-      setCommentToShow((value) => {
-        return value + 5;
-      });
-
+      setCommentToShow((value) => value + 5);
       setIsLoading(false);
     }, 1000);
   };
@@ -98,7 +80,8 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
-    e?.preventDefault();
+    if (!e) return;
+    e.preventDefault();
 
     if (!currentUser) return;
 
@@ -126,15 +109,26 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
   }, [postId, refetch, refetchCommentUsers]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        handleClose();
+      }
     };
-  }, [handleEscape]);
+
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
+  }, [handleClose]);
 
   return (
-    <section onClick={onClickHandler} className='comments' id='comments'>
+    <section
+      onClick={onOutsideClick}
+      id='comments'
+      className='comments'
+      role='region'
+      aria-label='Comments section'
+      aria-live='polite'
+    >
       <div className='comments__container'>
         <Comment
           sort={sort}
@@ -151,7 +145,7 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
           commentToShow={commentToShow}
           mutation={commentMutation}
           onChangeActiveCardId={setActiveCardId}
-          onClick={handleClick}
+          onClick={handleLoadMore}
           onOpen={handleOpen}
           onClose={handleClose}
           onToggle={handleToggle}

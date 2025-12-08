@@ -7,14 +7,27 @@ const Client = () => {
   const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
 
   return (
-    <section className='search-client'>
+    <section
+      className='search-client'
+      role='search'
+      aria-labelledby='search-client-heading'
+    >
+      <h2 id='search-client-heading' className='sr-only'>
+        Search posts
+      </h2>
+
       <div className='search-client__container'>
         <form
           onSubmit={handleSubmit}
           className='search-client__form'
-          role='form'
+          role='search'
+          aria-label='Search posts form'
           noValidate
         >
+          <label htmlFor='search' className='sr-only'>
+            Search posts
+          </label>
+
           <input
             type='text'
             id='search'
@@ -23,6 +36,8 @@ const Client = () => {
             placeholder='Search posts...'
             className='search-client__form--input'
             onChange={(e) => setSearchQuery(e.target.value)}
+            aria-required='false'
+            aria-label='Search posts'
           />
           <MagnifyingGlassIcon />
         </form>

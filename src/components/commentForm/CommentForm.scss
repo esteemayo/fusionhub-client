@@ -134,126 +134,219 @@
     &.hide {
       transition: all 300ms ease-in;
     }
+  }
 
-    textarea {
-      display: inline-block;
-      outline: 0;
-      width: 100%;
-      height: 11.2rem;
-      padding: 1.6rem;
-      font-family: inherit;
+  &__textarea {
+    display: inline-block;
+    outline: 0;
+    width: 100%;
+    height: 11.2rem;
+    padding: 1.6rem;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.45rem;
+    background-color: vars.$clr-primary-blue;
+    color: vars.$clr-white;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    resize: none;
+    transition: all 300ms ease-in-out;
+
+    @media screen and (max-width: 56.25em) {
+      height: 11.4rem;
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      height: 11.6rem;
+      font-size: 1.65rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      height: 12rem;
+      font-size: 1.85rem;
+    }
+
+    @media screen and (max-width: 31.25em) {
+      background-color: transparent;
+      border-color: vars.$clr-tertiary-blue;
+    }
+
+    @include bp.sm {
+      height: 13rem;
+      font-size: 1.95rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      height: 12.7rem;
+      font-size: 1.8rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      height: 12.5rem;
+      font-size: 1.7rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      height: 11.6rem;
+      font-size: 1.65rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      height: 12rem;
+      font-size: 1.85rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      height: 15rem;
+      font-size: 2.2rem;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      background-color: rgba(vars.$clr-tertiary-blue, 0.5);
+      border-color: vars.$clr-tertiary-blue;
+
+      @include bp.sm {
+        background-color: rgba(vars.$clr-secondary-blue, 0.5);
+      }
+    }
+
+    &::placeholder {
       font-weight: 600;
       font-size: 1.45rem;
-      background-color: vars.$clr-primary-blue;
       color: vars.$clr-white;
-      border: 2px solid transparent;
-      border-radius: 0.5rem;
-      resize: none;
-      transition: all 300ms ease-in-out;
 
       @media screen and (max-width: 56.25em) {
-        height: 11.4rem;
         font-size: 1.55rem;
       }
 
       @media screen and (max-width: 51.25em) {
-        height: 11.6rem;
         font-size: 1.65rem;
       }
 
       @media screen and (max-width: 34.375em) {
-        height: 12rem;
         font-size: 1.85rem;
       }
 
-      @media screen and (max-width: 31.25em) {
-        background-color: transparent;
-        border-color: vars.$clr-tertiary-blue;
-      }
-
       @include bp.sm {
-        height: 13rem;
         font-size: 1.95rem;
       }
 
       @media screen and (max-width: 22.5em) {
-        height: 12.7rem;
         font-size: 1.8rem;
       }
 
       @media screen and (max-width: 18.75em) {
-        height: 12.5rem;
         font-size: 1.7rem;
       }
 
       @media screen and (min-width: 106.25em) {
-        height: 11.6rem;
         font-size: 1.65rem;
       }
 
       @media screen and (min-width: 112.5em) {
-        height: 12rem;
         font-size: 1.85rem;
       }
 
       @media screen and (min-width: 125em) {
-        height: 15rem;
         font-size: 2.2rem;
       }
+    }
+  }
 
-      &:disabled {
-        cursor: not-allowed;
+  &__shortcut {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: vars.$clr-gray-light-1;
+    line-height: 1.4;
+
+    @media screen and (max-width: 56.25em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (max-width: 51.25em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (max-width: 34.375em) {
+      font-size: var(--default-font-size);
+    }
+
+    @include bp.sm {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 22.5em) {
+      font-size: 1.55rem;
+    }
+
+    @media screen and (max-width: 18.75em) {
+      font-size: 1.45rem;
+    }
+
+    @media screen and (min-width: 106.25em) {
+      font-size: 1.4rem;
+    }
+
+    @media screen and (min-width: 112.5em) {
+      font-size: 1.5rem;
+    }
+
+    @media screen and (min-width: 125em) {
+      font-size: 1.8rem;
+    }
+
+    kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+      font-size: 1.25rem;
+      padding: 2px 0.5rem;
+      background-color: vars.$clr-tertiary-blue;
+      color: vars.$clr-gray-light-3;
+      border-radius: 4px;
+
+      @media screen and (max-width: 56.25em) {
+        font-size: 1.35rem;
       }
 
-      &:focus {
-        background-color: rgba(vars.$clr-tertiary-blue, 0.5);
-        border-color: vars.$clr-tertiary-blue;
-
-        @include bp.sm {
-          background-color: rgba(vars.$clr-secondary-blue, 0.5);
-        }
-      }
-
-      &::placeholder {
-        font-weight: 600;
+      @media screen and (max-width: 51.25em) {
         font-size: 1.45rem;
-        color: vars.$clr-white;
+      }
 
-        @media screen and (max-width: 56.25em) {
-          font-size: 1.55rem;
-        }
+      @media screen and (max-width: 34.375em) {
+        font-size: 1.55rem;
+      }
 
-        @media screen and (max-width: 51.25em) {
-          font-size: 1.65rem;
-        }
+      @include bp.sm {
+        font-size: 1.65rem;
+      }
 
-        @media screen and (max-width: 34.375em) {
-          font-size: 1.85rem;
-        }
+      @media screen and (max-width: 22.5em) {
+        font-size: 1.5rem;
+      }
 
-        @include bp.sm {
-          font-size: 1.95rem;
-        }
+      @media screen and (max-width: 18.75em) {
+        font-size: 1.4rem;
+      }
 
-        @media screen and (max-width: 22.5em) {
-          font-size: 1.8rem;
-        }
+      @media screen and (min-width: 106.25em) {
+        font-size: 1.35rem;
+      }
 
-        @media screen and (max-width: 18.75em) {
-          font-size: 1.7rem;
-        }
+      @media screen and (min-width: 112.5em) {
+        font-size: 1.45rem;
+      }
 
-        @media screen and (min-width: 106.25em) {
-          font-size: 1.65rem;
-        }
-
-        @media screen and (min-width: 112.5em) {
-          font-size: 1.85rem;
-        }
-
-        @media screen and (min-width: 125em) {
-          font-size: 2.2rem;
-        }
+      @media screen and (min-width: 125em) {
+        font-size: 1.75rem;
       }
     }
   }

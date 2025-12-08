@@ -7,7 +7,24 @@
 
     @media screen and (max-width: 26.875em) {
       display: flex;
-      align-items: center;
+    }
+
+    &.loader {
+      margin-top: -1rem;
+    }
+  }
+
+  &__wrapper {
+    &:not(:last-child) {
+      margin-right: -1rem;
+
+      @media screen and (max-width: 22.5em) {
+        margin-right: -0.75rem;
+      }
+
+      @media screen and (max-width: 17.5em) {
+        margin-right: -0.65rem;
+      }
     }
   }
 

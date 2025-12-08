@@ -25,6 +25,7 @@ const Image = ({
         width={width}
         height={height}
         loading='lazy'
+        decoding='async'
         lqip={{ active: true, quality: 20 }}
         transformation={[{ width: width as string, height: height as string }]}
         alt={alt ?? ''}

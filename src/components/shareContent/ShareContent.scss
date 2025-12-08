@@ -189,6 +189,10 @@
         font-size: 2.2rem;
       }
 
+      &:focus-within {
+        outline: 0;
+      }
+
       &:focus {
         background-color: rgba(vars.$clr-secondary-blue, 0.5);
       }

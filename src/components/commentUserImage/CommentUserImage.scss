@@ -2,18 +2,6 @@
 @use '../../styles/variables.scss' as vars;
 
 .comment-user-image {
-  &:not(:last-child) {
-    margin-right: -1rem;
-
-    @media screen and (max-width: 22.5em) {
-      margin-right: -0.75rem;
-    }
-
-    @media screen and (max-width: 17.5em) {
-      margin-right: -0.65rem;
-    }
-  }
-
   &__img {
     width: 3.25rem;
     height: 3.25rem;

@@ -1,15 +1,14 @@
 import { useRef } from 'react';
 
 import { ShareContentProps } from '../../types';
+import ClipboardDocumentIcon from '../icons/ClipboardDocumentIcon';
 
 import './ShareContent.scss';
 
 const ShareContent = ({ url, text, title, onClick }: ShareContentProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleHoverClipboard = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
+  const handleFocusClipboard = () => {
     if (inputRef.current) {
       inputRef.current.select();
     }
@@ -17,52 +16,58 @@ const ShareContent = ({ url, text, title, onClick }: ShareContentProps) => {
 
   return (
     <div className='share-content '>
-      <div className='share-content__container'>
+      <div
+        className='share-content__container'
+        role='region'
+        aria-labelledby='share-content-heading'
+        aria-describedby='share-content-description'
+      >
         <h4
+          id='share-content-heading'
           className='share-content__container--heading'
           aria-label={title || 'Check this out'}
         >
           {title || 'Check this out'}
         </h4>
 
-        <p className='share-content__container--content' aria-label={text}>
+        <p
+          id='share-content-description'
+          className='share-content__container--content'
+        >
           {text}
         </p>
 
-        <div className='share-content__wrapper'>
+        <div
+          className='share-content__wrapper'
+          role='group'
+          aria-label='Copy share URL'
+        >
+          <label htmlFor='share-url' className='sr-only'>
+            Shareable link
+          </label>
+
           <input
-            id='url'
-            name='url'
+            id='share-url'
+            name='share-url'
             type='url'
             value={url}
             readOnly
-            onClick={(e) => (e.target as HTMLInputElement).select()}
+            onClick={handleFocusClipboard}
+            onFocus={handleFocusClipboard}
             className='share-content__wrapper--input'
             ref={inputRef}
+            aria-describedby='share-text'
+            aria-readonly='true'
           />
           <button
             type='button'
             onClick={onClick}
-            onMouseOver={handleHoverClipboard}
+            onFocus={handleFocusClipboard}
+            onMouseOver={handleFocusClipboard}
             className='share-content__wrapper--btn'
+            aria-label='Copy link to clipboard'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              role='img'
-              aria-hidden='true'
-              focusable='false'
-              className='size-6'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z'
-              />
-            </svg>
+            <ClipboardDocumentIcon />
           </button>
         </div>
       </div>

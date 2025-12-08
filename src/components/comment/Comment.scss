@@ -95,6 +95,22 @@
     }
   }
 
+  &__list {
+    list-style: none;
+
+    &--item {
+      padding: 2.5rem 0;
+
+      &:not(:last-of-type) {
+        border-bottom: 1px solid vars.$clr-tertiary-blue;
+
+        @include bp.sm {
+          border-color: vars.$clr-secondary-blue;
+        }
+      }
+    }
+  }
+
   &__no-comments,
   &__error {
     display: flex;

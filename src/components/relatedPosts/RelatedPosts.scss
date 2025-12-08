@@ -51,26 +51,27 @@
         font-size: 2rem;
       }
     }
+  }
 
-    &--wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 5rem;
+  &__wrapper,
+  &__loader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5rem;
 
-      list-style: none;
+    list-style: none;
 
-      @media screen and (max-width: 59.375em) {
-        gap: 2rem;
-      }
+    @media screen and (max-width: 59.375em) {
+      gap: 2rem;
+    }
 
-      @media screen and (max-width: 37.5em) {
-        row-gap: 3rem;
-      }
+    @media screen and (max-width: 37.5em) {
+      row-gap: 3rem;
+    }
 
-      @media screen and (max-width: 34.375em) {
-        gap: 3rem;
-      }
+    @media screen and (max-width: 34.375em) {
+      gap: 3rem;
     }
   }
 }

@@ -20,7 +20,7 @@ const CommentForm = ({
   onChange,
   onSubmit,
 }: CommentFormProps) => {
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -49,44 +49,72 @@ const CommentForm = ({
     [currentUser?.details._id]
   );
 
-  const hasCommented = useMemo(() => {
-    return (comments ?? [])?.some((comment) => comment.author._id === userId);
-  }, [comments, userId]);
+  const hasCommented = useMemo(
+    () => (comments ?? [])?.some((comment) => comment.author._id === userId),
+    [comments, userId]
+  );
 
-  const formClasses = useMemo(() => {
-    return !hasCommented
-      ? 'comment-form__form show'
-      : 'comment-form__form hide';
-  }, [hasCommented]);
+  const formClasses = useMemo(
+    () =>
+      !hasCommented ? 'comment-form__form show' : 'comment-form__form hide',
+    [hasCommented]
+  );
 
-  if (isPending) {
-    return null;
-  }
+  if (isPending) return null;
 
   return (
-    <div className='comment-form'>
-      <h4 className='comment-form__heading'>Post comment</h4>
+    <div className='comment-form' aria-labelledby='comment-form-title'>
+      <h4 id='comment-form-title' className='comment-form__heading'>
+        Post comment
+      </h4>
+
       {!currentUser ? (
-        <span className='comment-form__subtitle'>
+        <span
+          className='comment-form__subtitle'
+          role='alert'
+          aria-live='polite'
+        >
           Please{' '}
-          <Link to='/login' className='comment-form__link'>
+          <Link
+            to='/login'
+            className='comment-form__link'
+            aria-label='Login to your account to post a comment'
+          >
             login
           </Link>{' '}
           to post a comment.
         </span>
       ) : currentUser.details.isActive === false ? (
-        <span className='comment-form__subtitle'>
+        <span
+          className='comment-form__subtitle'
+          role='alert'
+          aria-live='assertive'
+        >
           You are blocked from commenting.
         </span>
       ) : (
         <>
           {!hasCommented && postAuthorId !== userId && (
-            <span className='comment-form__subtitle'>
+            <span
+              id='comment-helper-text'
+              className='comment-form__subtitle'
+              aria-live='polite'
+            >
               {currentUser.details.username}, share your thoughts about the
               article.
             </span>
           )}
-          <form onSubmit={onSubmit} className={formClasses}>
+
+          <form
+            onSubmit={onSubmit}
+            className={formClasses}
+            aria-labelledby='comment-form-title'
+            aria-describedby='comment-helper-text'
+          >
+            <label htmlFor='content' className='sr-only'>
+              Your comment
+            </label>
+
             <textarea
               id='content'
               name='content'
@@ -97,9 +125,14 @@ const CommentForm = ({
               onInput={onInput}
               onChange={(e) => onChange(e.target.value)}
               onKeyDown={onKeyDown}
-              aria-label='Write your thoughts here... Share your opinion or feedback about the article.'
               ref={mergeRefs([textareaRef, ref])}
+              aria-required='true'
             />
+
+            <small id='submit-shorcut' className='comment-form__shortcut'>
+              Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to submit
+            </small>
+
             <div className='comment-form__actions'>
               <Button
                 type='submit'

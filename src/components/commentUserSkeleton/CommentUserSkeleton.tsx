@@ -4,7 +4,11 @@ import './CommentUserSkeleton.scss';
 
 const CommentUserSkeleton = () => {
   return (
-    <div className='coment-user-skeleton'>
+    <div
+      className='coment-user-skeleton'
+      role='presentation'
+      aria-hidden='true'
+    >
       <Skeleton
         width={40}
         height={40}
