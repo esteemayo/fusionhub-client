@@ -26,7 +26,7 @@ const DeleteModal = () => {
     mutationFn: removePost,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKey] });
-      toast.success('Post deleted successfully');
+      toast.success('Post deleted successfully', { role: 'alert' });
     },
     onError: (error: unknown) => {
       if (
@@ -36,9 +36,9 @@ const DeleteModal = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -48,9 +48,7 @@ const DeleteModal = () => {
   };
 
   const handleSubmit = () => {
-    deletePostMutation.mutate(postId!, {
-      onSuccess: handleClose,
-    });
+    deletePostMutation.mutate(postId!, { onSuccess: handleClose });
   };
 
   const bodyContent: JSX.Element | undefined = (

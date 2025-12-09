@@ -29,19 +29,22 @@ const DislikeButton = ({
         type='button'
         title='Dislike Post'
         disabled={isLoading}
+        className={btnClasses}
         aria-label='Dislike button'
         aria-disabled={isLoading}
         aria-pressed={hasDisliked ?? false}
         aria-busy={isLoading}
-        className={btnClasses}
+        tabIndex={0}
       >
         <DislikeIcon disliked={hasDisliked} />
+
         {hasDisliked && (
           <span className='dislike-button__btn--float-icon' aria-hidden='true'>
             💔
           </span>
         )}
       </button>
+
       {count > 0 && (
         <span
           className='dislike-button__count'

@@ -7,9 +7,8 @@ import { useSortedComments } from '../../hooks/useSortedComments';
 import { useComment } from '../../hooks/useComment';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
-import { onOpen } from '../../features/commentModal/commentModalSlice';
-
 import { CommentsProps } from '../../types';
+import { onOpen } from '../../features/commentModal/commentModalSlice';
 
 import './Comments.scss';
 
@@ -151,6 +150,7 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
           onToggle={handleToggle}
           onSort={setSort}
         />
+
         <CommentForm
           content={content}
           postAuthorId={postAuthorId}

@@ -10,6 +10,7 @@ const Filter = ({ onClose }: FilterProps) => {
     <section className='filter' role='region' aria-labelledby='filter-heading'>
       <div className='filter__container'>
         <h2 className='filter__container--heading'>Filter</h2>
+
         {filters.map((filter) => {
           return <FilterItem key={filter.id} {...filter} onClose={onClose} />;
         })}

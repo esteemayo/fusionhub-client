@@ -132,7 +132,11 @@ const Comment = ({
       <ul className='comment__list' role='list'>
         {isPending ? (
           Array.from(new Array(3)).map((_, index) => {
-            return <CommentSkeleton key={index} />;
+            return (
+              <li key={index} role='listitem'>
+                <CommentSkeleton />
+              </li>
+            );
           })
         ) : error ? (
           <EmptyMessage

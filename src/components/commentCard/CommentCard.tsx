@@ -393,6 +393,7 @@ const CommentCard = ({
       <h2 id={`comment-title-${commentId}`} className='sr-only'>
         Comment by {author.name}
       </h2>
+
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link
@@ -409,6 +410,7 @@ const CommentCard = ({
             />
           </Link>
         </div>
+
         <div className='comment-card__details'>
           <div className='comment-card__box'>
             <div className='comment-card__date'>
@@ -419,6 +421,7 @@ const CommentCard = ({
               >
                 {formattedDate}
               </time>
+
               {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span
                   aria-label='This comment was edited'
@@ -428,6 +431,7 @@ const CommentCard = ({
                 </span>
               )}
             </div>
+
             <div>
               <button
                 type='button'
@@ -443,6 +447,7 @@ const CommentCard = ({
               </button>
             </div>
           </div>
+
           <div className='comment-card__details--info'>
             <h5
               id={`comment-author-${commentId}`}
@@ -458,6 +463,7 @@ const CommentCard = ({
             </h5>
             <Badge role={author.role} />
           </div>
+
           <p
             onClick={handleCollapse}
             onDoubleClick={handleCopy}
@@ -483,6 +489,7 @@ const CommentCard = ({
           </p>
         </div>
       </div>
+
       <div
         className='comment-card__actions'
         role='group'
@@ -501,6 +508,7 @@ const CommentCard = ({
           onLike={handleLike}
           onDislike={handleDislike}
         />
+
         {showMenuButton && (
           <button
             type='button'
@@ -517,9 +525,11 @@ const CommentCard = ({
             <span className='sr-only'>Open comment menu</span>
           </button>
         )}
+
         <div aria-live='polite' className='sr-only'>
           {copied && 'Copied to clipboard'}
         </div>
+
         <CommentActionMenu
           authorRole={author.role}
           currentUser={currentUser}
@@ -529,12 +539,14 @@ const CommentCard = ({
           isPostAuthor={isPostAuthor}
           isShow={isShow}
           isMuted={isMuted}
+          onClose={handleClose}
           onDelete={handleDelete}
           onUpdate={handleUpdate}
           onMute={handleMute}
           onReport={handleReport}
         />
       </div>
+
       <div
         id={`reply-form-${commentId}`}
         role='region'
@@ -552,6 +564,7 @@ const CommentCard = ({
           onSubmit={handleSubmit}
         />
       </div>
+
       <Replies
         slug={slug}
         activeCardId={activeCardId}

@@ -77,6 +77,7 @@ export interface SocialMenuItemProps {
 export interface ContextMenuProps {
   isOpen: boolean;
   type?: 'article';
+  onClose(): void;
   children: React.ReactNode;
 }
 
@@ -1449,11 +1450,17 @@ export interface ActionMenusProps {
   post: PostType;
 }
 
-export interface ActionMenuProps {
+export interface ActionMenuProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   isLoading?: boolean;
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
   children: React.ReactNode;
+}
+
+export interface FeatureIconProps {
+  isLoading: boolean;
+  isFeatured: boolean;
 }
 
 export interface PostDetailProps {
@@ -1607,6 +1614,7 @@ export interface CommentActionMenuProps {
   isPostAuthor: boolean;
   isShow: boolean;
   isMuted: boolean;
+  onClose(): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1731,6 +1739,7 @@ export interface ReplyMenuProps {
   isPostAuthor: boolean;
   isReplyAuthor: boolean;
   isMuted: boolean;
+  onClose(): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;

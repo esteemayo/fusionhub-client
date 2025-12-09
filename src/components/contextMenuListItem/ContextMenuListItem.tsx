@@ -19,15 +19,17 @@ const ContextMenuListItem = ({
   );
 
   return (
-    <li className={listItemClasses} role='menuitem'>
+    <li className={listItemClasses} role='none'>
       <button
         type='button'
+        role='menuitem'
         onClick={onAction}
         disabled={disabled}
-        aria-disabled={disabled}
         className='context-menu-list-item__btn'
+        aria-disabled={disabled}
       >
         <span>{label}</span>
+
         {children && (
           <span className='context-menu-list-item__addon' aria-hidden='true'>
             {children}

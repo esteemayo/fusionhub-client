@@ -1,5 +1,5 @@
-import ContextMenu from './contextMenu/ContextMenu';
 import ReplyMenuList from './ReplyMenuList';
+import ContextMenu from './contextMenu/ContextMenu';
 
 import { ReplyMenuProps } from '../types';
 
@@ -14,13 +14,14 @@ const ReplyMenu = ({
   isPostAuthor,
   isReplyAuthor,
   isMuted,
+  onClose,
   onDelete,
   onUpdate,
   onMute,
   onReport,
 }: ReplyMenuProps) => {
   return (
-    <ContextMenu isOpen={isShow}>
+    <ContextMenu isOpen={isShow} onClose={onClose}>
       <ReplyMenuList
         authorRole={authorRole}
         commentAuthorRole={commentAuthorRole}

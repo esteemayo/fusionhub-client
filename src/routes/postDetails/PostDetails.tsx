@@ -25,7 +25,7 @@ const PostDetails = () => {
   const slug = pathname.split('/').pop() as string;
 
   const dispatch = useAppDispatch();
-  const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
+  const { isOpen } = useAppSelector((state) => state.postMenuActions);
 
   const { isPending, error, data } = useQuery({
     queryKey: ['post', slug],
@@ -81,13 +81,16 @@ const PostDetails = () => {
           createdAt={data?.createdAt}
         />
       )}
+
       <div className='post-details__container'>
         <PostContent isLoading={isPending} post={data} />
         <PostMenuActions isOpen={isOpen} post={data} />
+
         <div className='post-details__container--btn'>
           <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
         </div>
       </div>
+
       <div className='post-details__wrapper'>
         <RelatedPosts postId={data?._id} tags={data?.tags} />
       </div>

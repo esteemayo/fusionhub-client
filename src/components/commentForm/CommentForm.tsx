@@ -130,7 +130,7 @@ const CommentForm = ({
             />
 
             <small id='submit-shorcut' className='comment-form__shortcut'>
-              Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to submit
+              Press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Enter</kbd> to submit
             </small>
 
             <div className='comment-form__actions'>

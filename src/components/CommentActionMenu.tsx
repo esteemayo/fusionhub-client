@@ -12,13 +12,14 @@ const CommentActionMenu = ({
   isPostAuthor,
   isShow,
   isMuted,
+  onClose,
   onReport,
   onMute,
   onDelete,
   onUpdate,
 }: CommentActionMenuProps) => {
   return (
-    <ContextMenu isOpen={isShow}>
+    <ContextMenu isOpen={isShow} onClose={onClose}>
       <CommentActionMenuList
         authorRole={authorRole}
         currentUser={currentUser}

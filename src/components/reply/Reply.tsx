@@ -389,6 +389,7 @@ const Reply = ({
         <h2 id={`reply-title-${replyId}`} className='sr-only'>
           Reply by {author.name}
         </h2>
+
         <div className='reply__container'>
           <div className='reply__author'>
             <Link
@@ -405,6 +406,7 @@ const Reply = ({
               />
             </Link>
           </div>
+
           <div className='reply__content'>
             <div className='reply__wrapper'>
               <div className='reply__wrapper--time'>
@@ -414,12 +416,14 @@ const Reply = ({
                 >
                   {formattedDate}
                 </time>
+
                 {currentUser &&
                   hasUpdated &&
                   authorId !== (userId as string) && (
                     <span aria-label='This reply was edited'>(Edited)</span>
                   )}
               </div>
+
               <div>
                 <button
                   type='button'
@@ -435,6 +439,7 @@ const Reply = ({
                 </button>
               </div>
             </div>
+
             <div className='reply__content--user'>
               <h6
                 id={`reply-author-${replyId}`}
@@ -450,6 +455,7 @@ const Reply = ({
               </h6>
               <Badge role={author.role} />
             </div>
+
             <p
               id={`reply-content-${replyId}`}
               onClick={handleCollapse}
@@ -492,6 +498,7 @@ const Reply = ({
             onLike={handleLike}
             onDislike={handleDislike}
           />
+
           {showMenuButton && (
             <button
               type='button'
@@ -507,9 +514,11 @@ const Reply = ({
               <span className='sr-only'>Open reply menu</span>
             </button>
           )}
+
           <div aria-live='polite' className='sr-only'>
             {copied && 'Copied to clipboard'}
           </div>
+
           <ReplyMenu
             authorRole={author.role}
             commentAuthorRole={comment.author.role}
@@ -521,12 +530,14 @@ const Reply = ({
             isPostAuthor={isPostAuthor}
             isReplyAuthor={isReplyAuthor}
             isMuted={isMuted}
+            onClose={handleClose}
             onDelete={handleDelete}
             onUpdate={handleUpdate}
             onMute={handleMute}
             onReport={handleReport}
           />
         </div>
+
         <div
           id={`reply-form-${replyId}`}
           role='region'

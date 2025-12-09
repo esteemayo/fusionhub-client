@@ -4,8 +4,16 @@ import './CommentFilterItem.scss';
 
 const CommentFilterItem = ({ value, onAction }: CommentFilterItemProps) => {
   return (
-    <li onClick={onAction} className='comment-filter-item'>
-      <span className='comment-filter-item__label'>{value}</span>
+    <li className='comment-filter-item' role='none'>
+      <button
+        type='button'
+        role='menuitem'
+        onClick={onAction}
+        className='comment-filter-item__button'
+        aria-label={`Sort comments by ${value}`}
+      >
+        <span className='comment-filter-item__button--label'>{value}</span>
+      </button>
     </li>
   );
 };

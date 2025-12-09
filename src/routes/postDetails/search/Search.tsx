@@ -16,10 +16,22 @@ const Search = ({ onClose }: SearchProps) => {
   };
 
   return (
-    <section className='search' role='search'>
+    <section className='search' role='search' aria-labelledby='search-heading'>
       <div className='search__container'>
-        <h2 className='search__container--heading'>Search</h2>
-        <form className='search__container--form' onSubmit={onSubmitHandler}>
+        <h2 id='search-heading' className='search__container--heading'>
+          Search
+        </h2>
+
+        <form
+          className='search__container--form'
+          onSubmit={onSubmitHandler}
+          role='search'
+          aria-describedby='search-help-text'
+        >
+          <label htmlFor='search' className='sr-only'>
+            Search posts
+          </label>
+
           <input
             type='text'
             name='search'
@@ -28,12 +40,16 @@ const Search = ({ onClose }: SearchProps) => {
             placeholder='Search posts...'
             onChange={(e) => setSearchQuery(e.target.value)}
             autoComplete='search'
-            aria-label='Search posts'
-            aria-describedby='search-help-text'
+            aria-required='true'
           />
-          <button type='submit'>
+
+          <button type='submit' aria-label='Submit search'>
             <MagnifyingGlassIcon />
           </button>
+
+          <p id='search-help-text' className='sr-only'>
+            Type your search query and press enter to search posts
+          </p>
         </form>
       </div>
     </section>

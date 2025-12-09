@@ -1,7 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-
+import { useEffect, useMemo, useRef } from 'react';
 import { ReplyCommentFormProps } from '../../types';
-import InformationCircleIcon from '../icons/InformationCircleIcon';
 
 import './ReplyCommentForm.scss';
 
@@ -20,8 +18,6 @@ const ReplyCommentForm = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const [showHint, setShowHint] = useState(false);
 
   const onInput = () => {
     const textarea = textareaRef.current!;
@@ -42,14 +38,6 @@ const ReplyCommentForm = ({
       e.preventDefault();
       onSubmit();
     }
-  };
-
-  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    setShowHint((value) => {
-      return !value;
-    });
   };
 
   const formClasses = useMemo(
@@ -96,22 +84,6 @@ const ReplyCommentForm = ({
     [editId, isEditing]
   );
 
-  const hintClasses = useMemo(
-    () =>
-      showHint
-        ? 'reply-comment-form__hint show'
-        : 'reply-comment-form__hint hide',
-    [showHint]
-  );
-
-  const toggleBtnClasses = useMemo(
-    () =>
-      showHint
-        ? 'reply-comment-form__toggle show'
-        : 'reply-comment-form__toggle hide',
-    [showHint]
-  );
-
   useEffect(() => {
     const inner = innerRef.current;
     const container = containerRef.current;
@@ -155,6 +127,7 @@ const ReplyCommentForm = ({
             aria-label={placeholder}
             aria-disabled={isLoading}
           />
+
           <div className={actionClasses}>
             <button
               type='button'
@@ -166,6 +139,7 @@ const ReplyCommentForm = ({
             >
               Cancel
             </button>
+
             <button
               type='submit'
               disabled={!content.trim() || isLoading}
@@ -176,23 +150,10 @@ const ReplyCommentForm = ({
               {btnLabel}
             </button>
           </div>
-          <div className='reply-comment-form__hint-bar'>
-            <div className={hintClasses} aria-hidden={!showHint}>
-              Press <kbd>Ctrl</kbd>/<kbd>⌘</kbd> + <kbd>Enter</kbd> to post
-            </div>
-            <button
-              type='button'
-              onClick={handleToggle}
-              className={toggleBtnClasses}
-              aria-label={
-                showHint
-                  ? 'Hide keyboard shortcut hint'
-                  : 'Show keyboard shortcut hint'
-              }
-            >
-              <InformationCircleIcon />
-            </button>
-          </div>
+
+          <small className='reply-comment-form__shortcut'>
+            Press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Enter</kbd> to submit
+          </small>
         </form>
       </div>
     </div>

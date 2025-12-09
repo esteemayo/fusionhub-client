@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
-
+import { useEffect, useMemo, useRef } from 'react';
 import { ContextMenuProps } from '../../types';
 
 import './ContextMenu.scss';
 
-const ContextMenu = ({ isOpen, type, children }: ContextMenuProps) => {
+const ContextMenu = ({ isOpen, type, onClose, children }: ContextMenuProps) => {
+  const menuRef = useRef<HTMLElement>(null);
+
   const contextMenuClasses = useMemo(
     () =>
       isOpen
@@ -13,11 +14,22 @@ const ContextMenu = ({ isOpen, type, children }: ContextMenuProps) => {
     [isOpen, type]
   );
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => window.removeEventListener('mousedown', handleClickOutside);
+  }, [onClose]);
+
   return (
     <aside
+      ref={menuRef}
       className={contextMenuClasses}
       role='menu'
-      aria-hidden={!isOpen}
       aria-expanded={isOpen}
       aria-label={`${type === 'article' ? 'Article actions' : 'Context'} menu`}
     >

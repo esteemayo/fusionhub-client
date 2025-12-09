@@ -1,11 +1,15 @@
-import { useEffect, useMemo } from 'react';
-import parse from 'html-react-parser';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import PencilIcon from '../icons/PencilIcon';
 import SaveIcon from '../icons/SaveIcon';
+import FeatureIcon from '../icons/FeatureIcon';
+import TrashIcon from '../icons/TrashIcon';
 import ActionMenu from '../actionMenu/ActionMenu';
+import ShareIcon from '../icons/ShareIcon';
 
 import * as postModal from '../../features/postModal/postModalSlice';
 import { onClose } from '../../features/postMenuActions/postMenuActionsSlice';
@@ -35,24 +39,23 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
-  const { isOpen } = useAppSelector((state) => ({ ...state.postMenuActions }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { isOpen } = useAppSelector((state) => state.postMenuActions);
 
-  const parsedDesc = useMemo(() => {
-    return parse(String(post?.desc)).toString();
-  }, [post?.desc]);
+  const parsedDesc = useMemo(
+    () => parse(String(post?.desc)).toString(),
+    [post?.desc]
+  );
 
   const text = excerpts(stripHtml(parsedDesc), 80);
 
-  const { error: shareError, handleShare } = useWebShare(
+  const { handleShare } = useWebShare(
     post?.title || '',
     text || '',
     window.location.href
   );
 
-  const postId = useMemo(() => {
-    return post?._id;
-  }, [post]);
+  const postId = useMemo(() => post?._id, [post]);
 
   const { isPending, isSaved, error, saveMutation, handleSave } =
     useSavedPosts(postId);
@@ -70,9 +73,9 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -81,7 +84,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
     mutationFn: () => removePost(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
-      toast.success('Post deleted!');
+      toast.success('Post deleted!', { role: 'alert' });
       navigate('/posts');
     },
     onError: (error: unknown) => {
@@ -92,9 +95,9 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -102,10 +105,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const handleFeature = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    if (!currentUser) {
-      return null;
-    }
-
+    if (!currentUser) return;
     featureMutation.mutate();
   };
 
@@ -117,13 +117,8 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    if (isOpen) {
-      dispatch(onClose());
-    }
-
-    if (!currentUser) {
-      return null;
-    }
+    if (!currentUser) return;
+    if (isOpen) dispatch(onClose());
 
     dispatch(postModal.setPost(post));
     dispatch(postModal.onOpen());
@@ -133,98 +128,66 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    if (!currentUser) {
-      return null;
-    }
-
+    if (!currentUser) return;
     deleteMutation.mutate();
   };
 
-  const isAdmin = useMemo(() => {
-    return currentUser?.role === 'admin';
-  }, [currentUser]);
+  const isAdmin = useMemo(() => currentUser?.role === 'admin', [currentUser]);
 
-  const userId = useMemo(() => {
-    return currentUser?.details._id;
-  }, [currentUser]);
-
-  const authorId = useMemo(() => {
-    return post?.author._id;
-  }, [post]);
-
-  const isFeatured = useMemo(() => {
-    return !!post?.isFeatured;
-  }, [post]);
+  const authorId = useMemo(() => post?.author._id, [post]);
+  const userId = useMemo(() => currentUser?.details._id, [currentUser]);
 
   const authorizationCheck = useMemo(() => {
-    if (!currentUser) {
-      return false;
-    }
+    if (!currentUser) return false;
 
     if (isAdmin) {
-      if (authorId === userId) {
-        return true;
-      }
-
-      if (post?.author.role === 'admin') {
-        return false;
-      }
-
+      if (authorId === userId) return true;
+      if (post?.author.role === 'admin') return false;
       return true;
     }
 
-    if (authorId === userId) {
-      return true;
-    }
-
-    return false;
+    return authorId === userId;
   }, [authorId, currentUser, isAdmin, post?.author.role, userId]);
 
-  useEffect(() => {
-    if (shareError) {
-      toast.error(shareError);
-    }
-  }, [shareError]);
+  const isFeatured = !!post?.isFeatured;
 
   return (
-    <section className='action-menus'>
-      <div className='action-menus__container'>
+    <section
+      className='action-menus'
+      role='region'
+      aria-label='Post action menus'
+    >
+      <div
+        className='action-menus__container'
+        role='menu'
+        aria-label='Available actions for this post'
+      >
         {currentUser && isAdmin && (
           <ActionMenu
             label='Feature post'
             isLoading={featureMutation.isPending}
             onAction={handleFeature}
+            aria-label='Feature post'
+            aria-expanded='false'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6 action-menus__btn--svg'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z'
-                fill={
-                  featureMutation.isPending
-                    ? isFeatured
-                      ? 'none'
-                      : '#dddcdc'
-                    : isFeatured
-                    ? '#dddcdc'
-                    : 'none'
-                }
-              />
-            </svg>
+            <FeatureIcon
+              isFeatured={isFeatured}
+              isLoading={featureMutation.isPending}
+            />
           </ActionMenu>
         )}
+
         {isPending ? (
-          <span className='action-menus__container--loader'>loading...</span>
+          <span
+            className='action-menus__container--loader'
+            aria-live='polite'
+            aria-busy={isPending}
+          >
+            loading...
+          </span>
         ) : error ? (
-          <span className='action-menus__container--message'>
-            {error.message || 'Saved post fetching failed'}
+          <span className='action-menus__container--message' role='alert'>
+            {error.message || 'Saved post fetching failed.'}
           </span>
         ) : (
           currentUser?.role !== 'admin' && (
@@ -232,6 +195,7 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
               label='Save post'
               isLoading={saveMutation.isPending}
               onAction={handleSave}
+              aria-label='Save post'
             >
               <SaveIcon
                 isLoading={saveMutation.isPending}
@@ -241,63 +205,33 @@ const ActionMenus = ({ post }: ActionMenusProps) => {
             </ActionMenu>
           )
         )}
-        <ActionMenu label='Share post' onAction={onShareHandler}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='currentColor'
-            viewBox='0 0 24 24'
-            aria-label='Reply'
-            aria-hidden='true'
-            width='20'
-            height='20'
-            role='img'
-            className='size-6'
-          >
-            <path
-              fillRule='evenodd'
-              clipRule='evenodd'
-              d='M14.4826 0.710819L23.3186 8.30424L23.3453 8.33094C24.1851 9.17074 24.2698 10.5407 23.29 11.3814M23.289 11.3823L14.4683 18.9625C13.8701 19.4753 12.968 19.8927 12.0942 19.4328C11.2639 18.9958 11.0258 18.0483 11.0258 17.2385V15.2064H9.84349C6.58352 15.8322 4.45041 18.793 3.04135 22.3389C2.96776 22.5522 2.86116 22.7801 2.70055 22.9761C2.54223 23.1693 2.21975 23.4586 1.73218 23.4586C1.22248 23.4586 0.893783 23.1456 0.734191 22.9203C0.577052 22.6985 0.491014 22.4466 0.440439 22.2244C0.146878 21.0463 0 19.8659 0 18.6167C0 11.8688 4.3852 6.2531 11.0258 4.76886V2.35363C11.0258 1.56469 11.2714 0.626894 12.0942 0.193849C12.9756 -0.270092 13.8781 0.156293 14.4826 0.710819M13.0426 2.10923C13.0327 2.17428 13.0258 2.2552 13.0258 2.35363V6.4396L12.1902 6.57886C6.06514 7.59972 2 12.5506 2 18.6167C2 18.9793 2.01414 19.3342 2.04243 19.6841C3.58264 16.6438 5.93899 13.8714 9.57597 13.222L9.66318 13.2064H13.0258V17.2385C13.0258 17.3631 13.0353 17.4613 13.0482 17.5365C13.0829 17.5123 13.1223 17.4821 13.1663 17.4444L21.9864 9.86459L21.9874 9.86375C21.9934 9.85865 21.9972 9.85464 21.9995 9.85188L21.9991 9.84963C21.9982 9.84534 21.9923 9.82926 21.9923 9.82926C21.9859 9.81454 17.024 5.52745 17 5.5L13.1512 2.20366L13.1371 2.19057C13.103 2.15892 13.0714 2.13201 13.0426 2.10923ZM2.40429 21.8297L2.40356 21.8278L2.40429 21.8297Z'
-            />
-          </svg>
+
+        <ActionMenu
+          label='Share post'
+          onAction={onShareHandler}
+          aria-label='Share post'
+        >
+          <ShareIcon />
         </ActionMenu>
+
         {authorizationCheck && (
-          <ActionMenu label='Update post' onAction={handleUpdate}>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6 action-menus__btn--svg'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125'
-              />
-            </svg>
+          <ActionMenu
+            label='Update post'
+            onAction={handleUpdate}
+            aria-label='Update post'
+          >
+            <PencilIcon />
           </ActionMenu>
         )}
+
         {authorizationCheck && (
           <ActionMenu
             label='Delete post'
             isLoading={deleteMutation.isPending}
             onAction={handleDelete}
+            aria-label='Delete post'
           >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              fill='none'
-              viewBox='0 0 24 24'
-              strokeWidth={1.5}
-              stroke='currentColor'
-              className='size-6 action-menus__btn--svg'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0'
-              />
-            </svg>
+            <TrashIcon className='action-menus__btn--svg' />
           </ActionMenu>
         )}
       </div>

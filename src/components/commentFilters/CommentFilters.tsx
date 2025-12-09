@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
-import CommentUsers from '../commentUsers/CommentUsers';
 import CommentFilter from '../commentFilter/CommentFilter';
+import CommentUsers from '../commentUsers/CommentUsers';
+import ChevronUpDownIcon from '../icons/ChevronUpDownIcon';
 
 import { CommentFiltersProps } from '../../types';
 
@@ -38,7 +39,7 @@ const CommentFilters = ({
     <div className={filterClasses} aria-label='Comment filtering controls'>
       <div className='comment-filters__container'>
         <span className='comment-filters__count' aria-live='polite'>
-          {totalComments} comments
+          {totalComments} comment{totalComments && totalComments > 1 ? 's' : ''}
         </span>
 
         <div className='comment-filters__total'>
@@ -67,21 +68,7 @@ const CommentFilters = ({
           >
             <span className='comment-filters__wrap--value'>{sortType}</span>
 
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-              fill='currentColor'
-              role='img'
-              aria-hidden='true'
-              focusable='false'
-              className='size-6 comment-filters__wrap--icon'
-            >
-              <path
-                fillRule='evenodd'
-                d='M11.47 4.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1-1.06 1.06L12 6.31 8.78 9.53a.75.75 0 0 1-1.06-1.06l3.75-3.75Zm-3.75 9.75a.75.75 0 0 1 1.06 0L12 17.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0l-3.75-3.75a.75.75 0 0 1 0-1.06Z'
-                clipRule='evenodd'
-              />
-            </svg>
+            <ChevronUpDownIcon />
           </div>
 
           <CommentFilter isOpen={isOpen} onClose={onClose} onSort={onSort} />

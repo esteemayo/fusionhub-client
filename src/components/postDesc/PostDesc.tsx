@@ -28,19 +28,21 @@ const PostDesc = ({ post, isLoading }: PostDescProps) => {
     }
 
     navigator.clipboard.writeText(children as string);
-    toast.success('Copied to clipboard');
+    toast.success('Copied to clipboard', { role: 'alert' });
     return;
   };
 
-  const parsedDesc = useMemo(() => {
-    return parse(String(post?.desc)).toString();
-  }, [post?.desc]);
+  const parsedDesc = useMemo(
+    () => parse(String(post?.desc)).toString(),
+    [post?.desc]
+  );
 
   return (
     <div className='post-desc__box'>
       <h2 className='post-desc__box--heading'>
         {isLoading ? <Skeleton /> : post?.title}
       </h2>
+
       <div className='post-desc__box--desc'>
         <div onDoubleClick={handleCopy}>
           {isLoading ? <Skeleton count={15} /> : parse(parsedDesc)}

@@ -15,11 +15,9 @@ import { PostDetailActionProps } from '../../types';
 import './PostDetailAction.scss';
 
 const PostDetailAction = ({ post }: PostDetailActionProps) => {
-  const postId = useMemo(() => {
-    return post._id;
-  }, [post]);
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const postId = useMemo(() => post._id, [post]);
 
   const { isSaved, savedPostsCount, saveMutation, handleSave } =
     useSavedPosts(postId);
@@ -33,9 +31,13 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
   } = useFavorite(post, currentUser!);
 
   return (
-    <div className='post-detail-action'>
+    <div className='post-detail-action' aria-label='Post interaction section'>
       <div className='post-detail-action__container'>
-        <div className='post-detail-action__wrapper'>
+        <div
+          className='post-detail-action__wrapper'
+          role='group'
+          aria-label='Post information'
+        >
           <PostInfo
             username={post?.author.username}
             authorId={post?.author._id}
@@ -44,8 +46,17 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
           />
           <PostViews views={post?.views} />
         </div>
-        <div className='post-detail-action__box'>
-          <div className='post-detail-action__box--actions'>
+
+        <div
+          className='post-detail-action__box'
+          role='region'
+          aria-label='User interactions'
+        >
+          <div
+            className='post-detail-action__box--actions'
+            role='group'
+            aria-label='Like, dislike and comments'
+          >
             <FavoriteButton
               likeCount={post?.likeCount}
               dislikeCount={post?.dislikeCount}
@@ -58,6 +69,7 @@ const PostDetailAction = ({ post }: PostDetailActionProps) => {
             />
             <PostComment comments={post?.comments} />
           </div>
+
           <Share
             title={post?.title}
             desc={post?.desc}

@@ -24,30 +24,41 @@ const FavoriteButton = ({
     setLiked((prev) => !prev);
     if (disliked) setDisliked(false);
 
-    onLike();
+    if (likeMutation.isPending) onLike();
   };
 
   const handleDislike = () => {
     setDisliked((prev) => !prev);
     if (liked) setLiked(false);
 
-    onDislike();
+    if (!disLikeMutation.isPending) onDislike();
   };
 
   return (
-    <div className='favorite-button'>
+    <div
+      className='favorite-button'
+      role='group'
+      aria-label='Reaction buttons: like and dislike'
+    >
       <LikeButton
         count={likeCount}
         hasLiked={liked || isLiked}
         isLoading={likeMutation.isPending}
         onAction={handleLike}
       />
+
       <DislikeButton
         count={dislikeCount}
         hasDisliked={disliked || isDisliked}
         isLoading={disLikeMutation.isPending}
         onAction={handleDislike}
       />
+
+      {(likeMutation.isPending || disLikeMutation.isPending) && (
+        <span className='sr-only' role='status' aria-live='polite'>
+          Updating reaction...
+        </span>
+      )}
     </div>
   );
 };

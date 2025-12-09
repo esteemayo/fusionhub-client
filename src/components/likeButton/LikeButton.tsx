@@ -29,19 +29,22 @@ const LikeButton = ({
         type='button'
         title='Like Post'
         disabled={isLoading}
+        className={btnClasses}
         aria-label='Like button'
         aria-disabled={isLoading}
         aria-pressed={hasLiked ?? false}
         aria-busy={isLoading}
-        className={btnClasses}
+        tabIndex={0}
       >
         <LikeIcon liked={hasLiked} />
+
         {hasLiked && (
           <span className='like-button__btn--float-icon' aria-hidden='true'>
             ❤
           </span>
         )}
       </button>
+
       {count > 0 && (
         <span
           className='like-button__count'
