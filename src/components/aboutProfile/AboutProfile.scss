@@ -133,6 +133,11 @@
   }
 
   &__wrapper {
+    &.interactive {
+      outline: 0;
+      cursor: pointer;
+    }
+
     &--btn {
       position: relative;
       border: 0;

@@ -178,8 +178,14 @@
     }
 
     &--text {
+      outline: 0;
       color: vars.$clr-gray-light-1;
       line-height: inherit;
+      cursor: pointer;
+
+      &:focus {
+        outline: 0;
+      }
     }
 
     &--btn {

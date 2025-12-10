@@ -300,9 +300,11 @@
     }
 
     &--content {
+      outline: 0;
       font-size: 1.4rem;
       color: vars.$clr-gray-light-3;
       line-height: 1.3;
+      cursor: pointer;
 
       @media screen and (max-width: 56.25em) {
         font-size: 1.5rem;
@@ -338,6 +340,10 @@
 
       @media screen and (min-width: 125em) {
         font-size: 2rem;
+      }
+
+      &:focus {
+        outline: 0;
       }
     }
 

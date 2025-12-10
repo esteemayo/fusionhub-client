@@ -8,7 +8,15 @@ import './PostContent.scss';
 
 const PostContent = ({ post, isLoading }: PostContentProps) => {
   return (
-    <div className='post-content'>
+    <main
+      className='post-content'
+      role='main'
+      aria-labelledby='post-content-heading'
+    >
+      <h1 id='post-content-heading' className='sr-only'>
+        Post Content
+      </h1>
+
       <PostDetail isLoading={isLoading} post={post} />
       <RelatedTags isLoading={isLoading} tags={post?.tags} />
       <Comments
@@ -16,7 +24,7 @@ const PostContent = ({ post, isLoading }: PostContentProps) => {
         slug={post?.slug}
         postAuthorId={post?.author._id}
       />
-    </div>
+    </main>
   );
 };
 

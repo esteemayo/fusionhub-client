@@ -26,6 +26,7 @@ const PostImage = ({
         disabled={isLoading}
         validate
       />
+
       <Select
         name='category'
         label='Category'
@@ -36,6 +37,7 @@ const PostImage = ({
         disabled={isLoading}
         validate
       />
+
       <Upload
         id='image'
         label='Image'

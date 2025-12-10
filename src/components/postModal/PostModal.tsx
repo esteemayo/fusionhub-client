@@ -286,35 +286,43 @@ const PostModal = () => {
     return data;
   }, [data]);
 
-  const handleModalSubmit = useMemo(() => {
-    return step === STEPS.IMAGE
-      ? handleSubmitImage(onSubmitImage)
-      : handleSubmitDesc(onSubmitDesc);
-  }, [handleSubmitDesc, handleSubmitImage, onSubmitDesc, onSubmitImage, step]);
+  const handleModalSubmit = useMemo(
+    () =>
+      step === STEPS.IMAGE
+        ? handleSubmitImage(onSubmitImage)
+        : handleSubmitDesc(onSubmitDesc),
+    [handleSubmitDesc, handleSubmitImage, onSubmitDesc, onSubmitImage, step]
+  );
 
-  const actionLabel = useMemo(() => {
-    return step === STEPS.IMAGE ? (postId ? 'Update' : 'Submit') : 'Next';
-  }, [postId, step]);
+  const actionLabel = useMemo(
+    () => (step === STEPS.IMAGE ? (postId ? 'Update' : 'Submit') : 'Next'),
+    [postId, step]
+  );
 
-  const secondaryActionLabel = useMemo(() => {
-    return step === STEPS.IMAGE ? 'Prev' : undefined;
-  }, [step]);
+  const secondaryActionLabel = useMemo(
+    () => (step === STEPS.IMAGE ? 'Prev' : undefined),
+    [step]
+  );
 
-  const secondaryAction = useMemo(() => {
-    return step !== STEPS.DESC ? onBack : undefined;
-  }, [onBack, step]);
+  const secondaryAction = useMemo(
+    () => (step !== STEPS.DESC ? onBack : undefined),
+    [onBack, step]
+  );
 
-  const titleLabel = useMemo(() => {
-    return postId ? 'Update Post Details' : 'Tell Us Your Story';
-  }, [postId]);
+  const titleLabel = useMemo(
+    () => (postId ? 'Update Post Details' : 'Tell Us Your Story'),
+    [postId]
+  );
 
-  const isLoading = useMemo(() => {
-    return createMutation.isPending || updateMutation.isPending;
-  }, [createMutation.isPending, updateMutation.isPending]);
+  const isLoading = useMemo(
+    () => createMutation.isPending || updateMutation.isPending,
+    [createMutation.isPending, updateMutation.isPending]
+  );
 
-  const isDisabled = useMemo(() => {
-    return isLoading || (0 < progress && progress < 100);
-  }, [isLoading, progress]);
+  const isDisabled = useMemo(
+    () => isLoading || (progress > 0 && progress < 100),
+    [isLoading, progress]
+  );
 
   useEffect(() => {
     if (post) {

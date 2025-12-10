@@ -18,7 +18,15 @@ const PostDescription = ({
   onChangeVideoProgress,
 }: PostDescriptionProps) => {
   return (
-    <>
+    <section
+      className='post-description'
+      role='region'
+      aria-labelledby='post-description-heading'
+    >
+      <h2 id='post-description-heading' className='sr-only'>
+        Post Description Section
+      </h2>
+
       <Input
         name='title'
         label='Title'
@@ -27,7 +35,16 @@ const PostDescription = ({
         errors={errors}
         disabled={isLoading}
         validate
+        aria-required='true'
+        aria-describedby={errors?.title ? 'title-error' : undefined}
       />
+
+      {errors?.title && (
+        <p id='title-error' className='sr-only' role='alert'>
+          {errors.title?.message as React.ReactNode}
+        </p>
+      )}
+
       <PostTextBox
         label='Description'
         value={value}
@@ -39,8 +56,17 @@ const PostDescription = ({
         onChangeVideoData={onChangeVideoData}
         onChangeImageProgress={onChangeImageProgress}
         onChangeVideoProgress={onChangeVideoProgress}
+        aria-required='true'
+        aria-invalid={!!error}
+        aria-describedby={error ? 'description-error' : undefined}
       />
-    </>
+
+      {error && (
+        <p id='description-error' className='sr-only' role='alert'>
+          {error}
+        </p>
+      )}
+    </section>
   );
 };
 

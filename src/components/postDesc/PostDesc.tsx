@@ -8,11 +8,14 @@ import { PostDescProps } from '../../types';
 import './PostDesc.scss';
 
 const PostDesc = ({ post, isLoading }: PostDescProps) => {
-  const handleCopy = () => {
-    const parsedText = parse(String(post?.desc)).toString();
-    const parsedElement = parse(parsedText);
+  const parsedDesc = useMemo(
+    () => parse(String(post?.desc)).toString(),
+    [post?.desc]
+  );
 
+  const handleCopy = () => {
     let children = null;
+    const parsedElement = parse(parsedDesc);
 
     if (Array.isArray(parsedElement)) {
       children = parsedElement.map(
@@ -29,26 +32,40 @@ const PostDesc = ({ post, isLoading }: PostDescProps) => {
 
     navigator.clipboard.writeText(children as string);
     toast.success('Copied to clipboard', { role: 'alert' });
-    return;
   };
 
-  const parsedDesc = useMemo(
-    () => parse(String(post?.desc)).toString(),
-    [post?.desc]
-  );
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleCopy();
+    }
+  };
 
   return (
-    <div className='post-desc__box'>
-      <h2 className='post-desc__box--heading'>
+    <article
+      className='post-desc__box'
+      aria-label='Post description section'
+      aria-labelledby='post-desc-title'
+    >
+      <h2 id='post-desc-title' className='post-desc__box--heading'>
         {isLoading ? <Skeleton /> : post?.title}
       </h2>
 
-      <div className='post-desc__box--desc'>
-        <div onDoubleClick={handleCopy}>
+      <section className='post-desc__box--desc' aria-label='Post content'>
+        <div
+          onDoubleClick={handleCopy}
+          onKeyDown={handleKeyDown}
+          className='post-desc__box--interactive'
+          role='button'
+          tabIndex={0}
+          aria-label='Double tap or press Enter to copy content'
+        >
           {isLoading ? <Skeleton count={15} /> : parse(parsedDesc)}
         </div>
-      </div>
-    </div>
+
+        <div className='sr-only' aria-live='polite' aria-atomic='true' />
+      </section>
+    </article>
   );
 };
 

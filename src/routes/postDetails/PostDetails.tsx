@@ -40,36 +40,42 @@ const PostDetails = () => {
 
   if (!data && !isPending) {
     return (
-      <div className='post-details'>
+      <main className='post-details' aria-live='polite'>
         <div className='post-details__container'>
           <ErrorState
             title='Post not found'
             subtitle='The post you are looking for does not exist or may have been removed.'
             imgSrc='/empty.svg'
-            alt='not-found'
+            alt='Not found image'
             center
           />
         </div>
-      </div>
+      </main>
     );
   }
 
   if (error) {
     return (
-      <div className='post-details'>
+      <main className='post-details' aria-live='polite'>
         <div className='post-details__container'>
           <ErrorState
             title='Something went wrong!'
             subtitle={error.message}
             imgSrc='/book-writer.svg'
+            alt='Error illustration'
           />
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className='post-details'>
+    <main
+      className='post-details'
+      role='main'
+      aria-busy={isPending ? 'true' : 'false'}
+      aria-live='polite'
+    >
       {isPending ? (
         <HeroSkeleton />
       ) : (
@@ -87,14 +93,21 @@ const PostDetails = () => {
         <PostMenuActions isOpen={isOpen} post={data} />
 
         <div className='post-details__container--btn'>
-          <ToggleButton label='Filter' isOpen={isOpen} onClick={handleToggle} />
+          <ToggleButton
+            label='Filter menu'
+            isOpen={isOpen}
+            onClick={handleToggle}
+            aria-expanded={isOpen}
+            aria-controls='post-menu-panel'
+            aria-label={`${isOpen ? 'Close' : 'Open'} filter options`}
+          />
         </div>
       </div>
 
-      <div className='post-details__wrapper'>
+      <div className='post-details__wrapper' aria-label='Related posts'>
         <RelatedPosts postId={data?._id} tags={data?.tags} />
       </div>
-    </div>
+    </main>
   );
 };
 

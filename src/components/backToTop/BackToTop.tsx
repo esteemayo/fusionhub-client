@@ -67,7 +67,7 @@ const BackToTop = () => {
         className='sr-only'
         aria-live='polite'
         aria-atomic='true'
-      ></div>
+      />
 
       <div
         className={scrollClasses}

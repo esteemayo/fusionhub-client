@@ -147,5 +147,14 @@
         }
       }
     }
+
+    &--interactive {
+      outline: 0;
+      cursor: pointer;
+
+      &:focus {
+        outline: 0;
+      }
+    }
   }
 }

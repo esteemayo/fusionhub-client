@@ -95,7 +95,7 @@ const Posts = () => {
             </section>
             <div className='posts__box--btn'>
               <ToggleButton
-                label='Filter'
+                label='Filter menu'
                 isOpen={isOpen}
                 onClick={handleToggle}
                 aria-expanded={isOpen}

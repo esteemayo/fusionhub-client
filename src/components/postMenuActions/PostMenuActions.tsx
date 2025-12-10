@@ -24,13 +24,23 @@ const PostMenuActions = ({ isOpen, post }: PostMenuActionsProps) => {
     }
   };
 
-  const postMenuActionsClasses = useMemo(() => {
-    return isOpen ? 'post-menu-actions show' : 'post-menu-actions hide';
-  }, [isOpen]);
+  const postMenuActionsClasses = useMemo(
+    () => (isOpen ? 'post-menu-actions show' : 'post-menu-actions hide'),
+    [isOpen]
+  );
 
   return (
-    <aside className={postMenuActionsClasses}>
-      <div className='post-menu-actions__container'>
+    <aside
+      className={postMenuActionsClasses}
+      role='complementary'
+      aria-label='Post menu actions'
+      aria-hidden={!isOpen}
+    >
+      <div
+        className='post-menu-actions__container'
+        tabIndex={isOpen ? 0 : 1}
+        aria-expanded={isOpen}
+      >
         <Search onClose={handleClose} />
         <ActionMenus post={post} />
         <Categories onClose={handleClose} />
