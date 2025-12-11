@@ -43,17 +43,20 @@ const CommentModal = () => {
       : '';
   }, [postId, replyId]);
 
-  const textLabel = useMemo(() => {
-    return postId
-      ? replyId
-        ? 'Are you sure you want to permanently delete this reply? This action cannot be undone and will remove the reply from the conversation.'
-        : 'Are you sure you want to permanently delete this comment? This action cannot be undone.'
-      : '';
-  }, [postId, replyId]);
+  const textLabel = useMemo(
+    () =>
+      postId
+        ? replyId
+          ? 'Are you sure you want to permanently delete this reply? This action cannot be undone and will remove the reply from the conversation.'
+          : 'Are you sure you want to permanently delete this comment? This action cannot be undone.'
+        : '',
+    [postId, replyId]
+  );
 
-  const isLoading = useMemo(() => {
-    return deleteCommentMutation.isPending || deleteReplyMutation.isPending;
-  }, [deleteCommentMutation.isPending, deleteReplyMutation.isPending]);
+  const isLoading = useMemo(
+    () => deleteCommentMutation.isPending || deleteReplyMutation.isPending,
+    [deleteCommentMutation.isPending, deleteReplyMutation.isPending]
+  );
 
   useEffect(() => {
     if (isOpen) {

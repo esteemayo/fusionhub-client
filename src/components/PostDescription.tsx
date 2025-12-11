@@ -18,14 +18,14 @@ const PostDescription = ({
   onChangeVideoProgress,
 }: PostDescriptionProps) => {
   return (
-    <section
+    <fieldset
       className='post-description'
       role='region'
       aria-labelledby='post-description-heading'
     >
-      <h2 id='post-description-heading' className='sr-only'>
+      <legend id='post-description-heading' className='sr-only'>
         Post Description Section
-      </h2>
+      </legend>
 
       <Input
         name='title'
@@ -66,7 +66,7 @@ const PostDescription = ({
           {error}
         </p>
       )}
-    </section>
+    </fieldset>
   );
 };
 

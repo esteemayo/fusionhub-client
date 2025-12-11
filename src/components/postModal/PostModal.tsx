@@ -81,7 +81,7 @@ const PostModal = () => {
       queryClient.invalidateQueries({
         queryKey: [queryKey],
       });
-      toast.success('Post created!');
+      toast.success('Post created!', { role: 'alert' });
     },
     onError: (error: unknown) => {
       if (
@@ -91,9 +91,9 @@ const PostModal = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -104,7 +104,7 @@ const PostModal = () => {
       queryClient.invalidateQueries({
         queryKey: [queryKey],
       });
-      toast.success('Post updated!');
+      toast.success('Post updated!', { role: 'alert' });
     },
     onError: (error: unknown) => {
       if (
@@ -114,9 +114,9 @@ const PostModal = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -223,12 +223,12 @@ const PostModal = () => {
 
   const onSubmitDesc: SubmitHandler<DescStepFormData> = useCallback(
     (data) => {
+      if (!currentUser) return;
+
       if (step !== STEPS.IMAGE) {
         onNext();
         return;
       }
-
-      if (!currentUser) return;
 
       setCustomDescValue('title', data.title);
       onNext();
@@ -259,9 +259,7 @@ const PostModal = () => {
       };
 
       const mutation = postId ? updateMutation : createMutation;
-      mutation.mutate(postPayload, {
-        onSuccess: handleReset,
-      });
+      mutation.mutate(postPayload, { onSuccess: handleReset });
     },
     [
       createMutation,

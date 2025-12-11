@@ -11,9 +11,13 @@ const ScrollProgressBar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isScrollable, setIsScrollable] = useState(false);
 
-  const parseColor = (color: string): [number, number, number] => {
+  const parseColor = (
+    color: string | undefined | null
+  ): [number, number, number] => {
+    if (!color || typeof color !== 'string') return [0, 0, 0];
+
     if (color.startsWith('#')) {
-      const hex = color.slice(1);
+      const hex = color.slice(1).padEnd(6, '0');
 
       return [
         parseInt(hex.substring(0, 2), 16),
@@ -32,7 +36,11 @@ const ScrollProgressBar = () => {
     return [0, 0, 0];
   };
 
-  const interpolateColor = (color1: string, color2: string, factor: number) => {
+  const interpolateColor = (
+    color1: string | undefined,
+    color2: string | undefined,
+    factor: number
+  ) => {
     const c1 = parseColor(color1);
     const c2 = parseColor(color2);
 
@@ -85,7 +93,7 @@ const ScrollProgressBar = () => {
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
 
-      const scrolled = (scrollTop / docHeight) * 100;
+      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setScrollPercent(scrolled);
 
       if (isScrollable) {

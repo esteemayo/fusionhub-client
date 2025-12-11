@@ -11,10 +11,10 @@ import { removeAvatar, resetState } from '../features/auth/authSlice';
 import { useProfile } from '../hooks/useProfile';
 
 const ImageModal = () => {
+  const { refetch } = useProfile();
   const dispatch = useAppDispatch();
 
-  const { isOpen } = useAppSelector((state) => ({ ...state.imageModal }));
-  const { refetch } = useProfile();
+  const { isOpen } = useAppSelector((state) => state.imageModal);
   const { isError, isLoading, isSuccess, message } = useAppSelector(
     (state) => state.auth
   );
@@ -28,8 +28,8 @@ const ImageModal = () => {
   };
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
+    if (isError && message) {
+      toast.error(message, { role: 'alert' });
     }
 
     if (isSuccess) {

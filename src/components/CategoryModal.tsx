@@ -17,9 +17,7 @@ const CategoryModal = () => {
   };
 
   const handleSubmit = () => {
-    deleteMutation.mutate(categoryId as string, {
-      onSuccess: handleClose,
-    });
+    deleteMutation.mutate(categoryId as string, { onSuccess: handleClose });
   };
 
   const bodyContent: JSX.Element | undefined = (

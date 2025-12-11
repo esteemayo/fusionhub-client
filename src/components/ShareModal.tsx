@@ -22,7 +22,7 @@ const ShareModal = () => {
       toast.success('Link copied to clipboard!');
     } catch (error: unknown) {
       console.log('Clipboard copy failed:', error);
-      toast.error('Could not copy this link.');
+      toast.error('Could not copy this link.', { role: 'alert' });
     } finally {
       handleClose();
     }

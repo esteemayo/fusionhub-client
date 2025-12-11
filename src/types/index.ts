@@ -153,6 +153,10 @@ export interface ErrorMessageProps extends React.AriaAttributes {
   message?: string;
 }
 
+export interface ProgressBarProps extends React.AriaAttributes {
+  progress: number;
+}
+
 export interface LabelProps {
   id?: string;
   label?: string;

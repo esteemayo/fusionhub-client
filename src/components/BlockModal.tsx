@@ -42,13 +42,7 @@ const BlockModal = () => {
 
   const onSubmit: SubmitHandler<BlockInputData> = (data) => {
     const { reason } = data;
-
-    blockUserMutation.mutate(
-      { targetId, reason },
-      {
-        onSuccess: handleClose,
-      }
-    );
+    blockUserMutation.mutate({ targetId, reason }, { onSuccess: handleClose });
   };
 
   const bodyContent: JSX.Element | undefined = (
