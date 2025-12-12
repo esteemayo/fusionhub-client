@@ -39,8 +39,8 @@ const UpdatePasswordForm = ({
         Update your account password
       </h2>
 
-      <div className='update-password-form__inputs'>
-        <span className='sr-only'>Current and new password fields</span>
+      <fieldset className='update-password-form__inputs'>
+        <legend className='sr-only'>Current and new password fields</legend>
 
         {inputs.map((input, index) => {
           const { id, name, type, label, placeholder } = input;
@@ -76,10 +76,10 @@ const UpdatePasswordForm = ({
             />
           );
         })}
-      </div>
+      </fieldset>
 
-      <div className='update-password-form__confirm'>
-        <span className='sr-only'>Confirm password field</span>
+      <fieldset className='update-password-form__confirm'>
+        <legend className='sr-only'>Confirm password field</legend>
 
         <Input
           type={showPasswordConfirm ? 'text' : input.type}
@@ -94,7 +94,7 @@ const UpdatePasswordForm = ({
           isPassword={input.name === 'passwordConfirm'}
           validate
         />
-      </div>
+      </fieldset>
 
       <Button
         type='submit'

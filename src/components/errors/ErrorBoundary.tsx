@@ -9,16 +9,19 @@ interface ErrorBoundaryProps {
 
 interface ErrorBoundaryState {
   hasError: boolean;
+  errorMessage?: string;
 }
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state = {
     hasError: false,
+    errorMessage: '',
   };
 
   static getDerivedStateFromError(error: Error) {
     return {
-      hasError: error,
+      hasError: true,
+      errorMessage: error.message,
     };
   }
 
@@ -29,18 +32,29 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   render() {
     const { children } = this.props;
-    const { hasError } = this.state;
+    const { hasError, errorMessage } = this.state;
 
     if (hasError) {
       return (
-        <EmptyState
-          alt='error'
-          imgSrc='/towing.svg'
-          title='Uh oh!'
-          subtitle='It looks like something went wrong on our end. Please try again.'
-          formatImg
-          showReload
-        />
+        <section
+          className='error-boundary'
+          role='alert'
+          aria-live='assertive'
+          aria-labelledby='error-title'
+        >
+          <span className='sr-only'>
+            An unexpected error occurred: {errorMessage}
+          </span>
+
+          <EmptyState
+            alt='Application error'
+            imgSrc='/towing.svg'
+            title='Uh oh!'
+            subtitle='It looks like something went wrong on our end. Please try again.'
+            formatImg
+            showReload
+          />
+        </section>
       );
     }
 

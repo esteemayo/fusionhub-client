@@ -1,4 +1,4 @@
-const CalendarDaysIcon = () => {
+const CalendarDaysIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -9,7 +9,7 @@ const CalendarDaysIcon = () => {
       role='img'
       aria-hidden='true'
       focusable='false'
-      className='size-6'
+      className={`size-6 ${className}`}
     >
       <path
         strokeLinecap='round'

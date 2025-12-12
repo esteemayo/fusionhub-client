@@ -9,6 +9,15 @@
 
   text-align: center;
 
+  &__heading,
+  &__texts {
+    outline: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
   &__heading {
     display: inline-block;
     text-transform: initial;

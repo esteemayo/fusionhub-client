@@ -113,7 +113,7 @@ export interface HeadingProps {
   subtitleId?: string;
 }
 
-export interface EmptyStateProps {
+export interface EmptyStateProps extends React.AriaAttributes {
   url?: string;
   title: string;
   subtitle: string;
@@ -139,7 +139,7 @@ export interface EmptyPostsProps {
   subtitle: string;
 }
 
-export interface EmptyMessageProps {
+export interface EmptyMessageProps extends React.AriaAttributes {
   title: string;
   subtitle?: string;
   center?: boolean;

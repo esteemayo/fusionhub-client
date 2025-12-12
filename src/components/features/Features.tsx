@@ -26,17 +26,24 @@ const Features = () => {
 
   const [firstPost, ...otherPosts] = useMemo(() => (data ? data : []), [data]);
 
+  const noData = (data ?? []).length < 1;
+
   return (
-    <section className='features'>
+    <section
+      className='features'
+      role='region'
+      aria-labelledby='featured-articles-heading'
+      aria-busy={isPending}
+    >
       <div className='features__container'>
-        <h3 className='features__container--heading'>Featured articles</h3>
-        {(data ?? [])?.length < 1 && !isPending ? (
-          <EmptyMessage
-            title="Oops! It seems we don't have any featured articles to display right now."
-            subtitle="Don't worry, we're constantly updating our content. Please check back soon for the latest featured articles, or explore other sections of our blog to discover more interesting reads."
-            center
-          />
-        ) : error ? (
+        <h3
+          id='featured-articles-heading'
+          className='features__container--heading'
+        >
+          Featured articles
+        </h3>
+
+        {error ? (
           <EmptyMessage
             title='Unable to Load Featured Articles'
             subtitle={
@@ -44,6 +51,14 @@ const Features = () => {
               'We encountered an issue while trying to load the featured articles. Please check your internet connection or try refreshing the page. If the problem persists, feel free to contact our support team for assistance.'
             }
             center
+            role='alert'
+          />
+        ) : noData && !isPending ? (
+          <EmptyMessage
+            title="Oops! It seems we don't have any featured articles to display right now."
+            subtitle="Don't worry, we're constantly updating our content. Please check back soon for the latest featured articles, or explore other sections of our blog to discover more interesting reads."
+            center
+            role='status'
           />
         ) : (
           <div className='features__wrapper'>
@@ -59,23 +74,29 @@ const Features = () => {
                 />
               )}
             </div>
-            <div className='features__box'>
+
+            <ul className='features__box' role='list'>
               {isPending
                 ? Array.from(new Array(4)).map((_, index) => {
-                    return <FeatureCardSkeleton key={index} />;
+                    return (
+                      <li key={index} role='listitem'>
+                        <FeatureCardSkeleton />
+                      </li>
+                    );
                   })
                 : otherPosts?.map((post) => {
                     return (
-                      <FeatureCard
-                        key={post._id}
-                        {...post}
-                        comments={
-                          Array.isArray(post.comments) ? post.comments : []
-                        }
-                      />
+                      <li key={post._id} role='listitem'>
+                        <FeatureCard
+                          {...post}
+                          comments={
+                            Array.isArray(post.comments) ? post.comments : []
+                          }
+                        />
+                      </li>
                     );
                   })}
-            </div>
+            </ul>
           </div>
         )}
       </div>

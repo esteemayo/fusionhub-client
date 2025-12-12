@@ -171,6 +171,7 @@
     }
 
     &--title {
+      outline: 0;
       font-weight: 600;
       font-size: 2rem;
       color: vars.$clr-gray-light-3;
@@ -209,6 +210,10 @@
 
       @media screen and (min-width: 125em) {
         font-size: 2.5rem;
+      }
+
+      &:focus {
+        outline: 0;
       }
     }
 

@@ -35,9 +35,11 @@ const NewsletterUnsubscribe = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error(`Unsubscribe failed: ${(error as Error).message}`);
+        toast.error(`Unsubscribe failed: ${(error as Error).message}`, {
+          role: 'alert',
+        });
       }
     },
   });
@@ -53,29 +55,41 @@ const NewsletterUnsubscribe = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     const { email } = data;
-
-    mutation.mutate(email, {
-      onSuccess: () => reset(),
-    });
+    mutation.mutate(email, { onSuccess: () => reset() });
   };
 
-  const successClasses = useMemo(() => {
-    return mutation.isSuccess
-      ? 'newsletter-unsubscribe__success show'
-      : 'newsletter-unsubscribe__success hide';
-  }, [mutation.isSuccess]);
+  const successClasses = useMemo(
+    () =>
+      mutation.isSuccess
+        ? 'newsletter-unsubscribe__success show'
+        : 'newsletter-unsubscribe__success hide',
+    [mutation.isSuccess]
+  );
 
   return (
-    <section className='newsletter-unsubscribe'>
+    <main
+      className='newsletter-unsubscribe'
+      role='main'
+      aria-labelledby='unsubscribe-title'
+    >
       <div className='newsletter-unsubscribe__container'>
         <div className='newsletter-unsubscribe__wrapper'>
-          <h1 className='newsletter-unsubscribe__title'>
+          <h1
+            id='unsubscribe-title'
+            className='newsletter-unsubscribe__title'
+            tabIndex={-1}
+          >
             Unsubscribe from Newsletter
           </h1>
-          <p className={successClasses}>
+
+          <p className={successClasses} role='status' aria-live='polite'>
             Unsubscribe confirmation email sent. Please check your inbox!
           </p>
-          <div className='newsletter-unsubscribe__form'>
+
+          <div
+            className='newsletter-unsubscribe__form'
+            aria-labelledby='unsubscribe-title'
+          >
             <UnsubscribeForm
               register={register as unknown as UseFormRegister<FieldValues>}
               errors={errors}
@@ -86,7 +100,7 @@ const NewsletterUnsubscribe = () => {
           </div>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 
