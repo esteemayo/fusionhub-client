@@ -15,7 +15,6 @@ import './Navbar.scss';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-
   const { isOpen } = useAppSelector((state) => state.sidebar);
 
   const handleToggle = () => {
@@ -23,17 +22,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav role='navigation' aria-label='Main Navigation' className='navbar'>
+    <nav className='navbar' role='navigation' aria-label='Main Navigation'>
       <div className='navbar__container'>
         <div className='navbar__wrapper'>
           <Logo isOpen={isOpen} />
+
           <span>&nbsp;</span>
+
           <ToggleButton
             type='nav'
             label='Menu'
             isOpen={isOpen}
             onClick={handleToggle}
           />
+
           <ul
             id='navbar-links'
             className='navbar__links'
@@ -43,9 +45,11 @@ const Navbar = () => {
             <span id='menu-label' className='sr-only'>
               Navigation Links
             </span>
+
             {menuItems.map((menu) => {
               return <NavItem key={menu.id} {...menu} />;
             })}
+
             <div
               className='navbar__accounts'
               role='region'
@@ -54,11 +58,13 @@ const Navbar = () => {
               <div className='navbar__account'>
                 <UserAvatar type='navbar' className='navbar__account--avatar' />
               </div>
+
               <UserMenu />
             </div>
           </ul>
         </div>
       </div>
+
       <SearchBar isOpen={isOpen} onToggle={handleToggle} />
     </nav>
   );

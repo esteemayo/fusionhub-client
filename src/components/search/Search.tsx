@@ -14,9 +14,9 @@ const Search = ({
     <div className='search-form' role='search'>
       <div className='search-form__container'>
         <input
-          type='text'
-          name='search'
+          type='search'
           id='search'
+          name='search'
           placeholder='Search posts...'
           className='search-form__container--input'
           ref={inputRef}

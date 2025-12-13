@@ -143,5 +143,12 @@
   &__box {
     flex: 1;
     list-style: none;
+
+    &--item,
+    & > li {
+      &:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+    }
   }
 }

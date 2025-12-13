@@ -12,8 +12,8 @@ const ToggleButton = ({
   label,
   isOpen,
   onClick,
-  ...rest
-}: ToggleButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+  ...ariaProps
+}: ToggleButtonProps) => {
   const handleToggleKey = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -33,16 +33,18 @@ const ToggleButton = ({
 
   return (
     <button
-      {...rest}
+      {...ariaProps}
       type='button'
       onClick={onClick}
       onKeyDown={handleToggleKey}
       className={toggleBtnClasses}
-      aria-label={rest['aria-label'] ?? btnLabel}
+      aria-label={ariaProps['aria-label'] ?? btnLabel}
       aria-expanded={isOpen}
       aria-pressed={isOpen}
       aria-controls={
-        rest['aria-controls'] ?? type === 'nav' ? 'main-navigation' : undefined
+        ariaProps['aria-controls'] ?? type === 'nav'
+          ? 'main-navigation'
+          : undefined
       }
       aria-haspopup='true'
       tabIndex={0}

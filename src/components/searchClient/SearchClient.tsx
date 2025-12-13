@@ -29,7 +29,7 @@ const Client = () => {
           </label>
 
           <input
-            type='text'
+            type='search'
             id='search'
             name='search'
             value={searchQuery}

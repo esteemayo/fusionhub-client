@@ -82,6 +82,19 @@ fieldset {
   padding: 0;
 }
 
+input[type='search'] {
+  -moz-appearance: none;
+  appearance: none;
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+    -webkit-appearance: none;
+  }
+}
+
 input,
 select,
 textarea {

@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useSearch } from '../../hooks/useSearch';
+import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 
 import './SearchBarForm.scss';
 
@@ -9,34 +10,42 @@ const SearchBarForm = () => {
   const { pathname } = useLocation();
   const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
 
-  const searchBarFormClasses = useMemo(() => {
-    return pathname === '/' ? 'search-bar-form show' : 'search-bar-form hide';
-  }, [pathname]);
+  const isVisible = pathname === '/';
+
+  const searchBarFormClasses = useMemo(
+    () => (isVisible ? 'search-bar-form show' : 'search-bar-form hide'),
+    [isVisible]
+  );
 
   return (
-    <form className={searchBarFormClasses} onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className={searchBarFormClasses}
+      role='search'
+      aria-label='Search posts'
+      aria-hidden={!isVisible}
+      noValidate
+    >
+      <label htmlFor='search-input' className='sr-only'>
+        Search posts
+      </label>
+
       <input
-        type='text'
+        type='search'
         name='search'
         value={searchQuery}
         placeholder='Search posts...'
         className='search-bar-form__input'
         onChange={(e) => setSearchQuery(e.target.value)}
+        autoComplete='off'
+        aria-describedby='search-hint'
       />
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        fill='none'
-        viewBox='0 0 24 24'
-        strokeWidth={1.5}
-        stroke='currentColor'
-        className='size-6'
-      >
-        <path
-          strokeLinecap='round'
-          strokeLinejoin='round'
-          d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'
-        />
-      </svg>
+
+      <span id='search-hint' className='sr-only'>
+        Type keywords and press Enter to search posts
+      </span>
+
+      <MagnifyingGlassIcon />
     </form>
   );
 };

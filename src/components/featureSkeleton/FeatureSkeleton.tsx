@@ -4,7 +4,12 @@ import './FeatureSkeleton.scss';
 
 const FeatureSkeleton = () => {
   return (
-    <article className='feature-skeleton'>
+    <article
+      className='feature-skeleton'
+      role='status'
+      aria-hidden='true'
+      aria-label='Loading featured post'
+    >
       <div className='feature-skeleton__container'>
         <Skeleton
           width={450}

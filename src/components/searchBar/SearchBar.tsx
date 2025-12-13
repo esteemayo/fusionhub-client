@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import ToggleButton from '../toggleButton/ToggleButton';
 import SearchBarForm from '../searchBarForm/SearchBarForm';
@@ -11,15 +11,19 @@ import './SearchBar.scss';
 const SearchBar = ({ isOpen, onToggle }: SearchBarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  window.onscroll = () => {
-    setIsScrolled(window.scrollY > 80 ? true : false);
-    return () => (window.onscroll = null);
-  };
-
   const searchBarClasses = useMemo(
     () => (isScrolled && !isOpen ? 'search-bar show' : 'search-bar hide'),
     [isOpen, isScrolled]
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div
@@ -27,13 +31,16 @@ const SearchBar = ({ isOpen, onToggle }: SearchBarProps) => {
       role='search'
       aria-expanded={isOpen}
       aria-label='Floating search bar'
+      aria-hidden={!isScrolled && !isOpen}
     >
       <div className='search-bar__container'>
-        <Link to='/' aria-label='Go to homepage'>
+        <Link to='/' aria-label='Go to home page'>
           <span className='search-bar__wrapper--logo'>fusionHub</span>
         </Link>
+
         <div className='search-bar__wrapper'>
           <SearchBarForm />
+
           <ToggleButton
             type='nav'
             label='Menu'

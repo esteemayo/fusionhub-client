@@ -1027,7 +1027,7 @@ export interface PhoneNumberProps {
   onChange(value?: Value): void;
 }
 
-export interface ToggleButtonProps {
+export interface ToggleButtonProps extends React.AriaAttributes {
   type?: 'nav';
   label?: string;
   isOpen: boolean;

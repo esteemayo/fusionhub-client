@@ -4,7 +4,12 @@ import './FeatureCardSkeleton.scss';
 
 const FeatureCardSkeleton = () => {
   return (
-    <article className='feature-card-skeleton'>
+    <article
+      className='feature-card-skeleton'
+      role='status'
+      aria-hidden='true'
+      aria-label='Loading featured posts'
+    >
       <div className='feature-card-skeleton__container'>
         <div className='feature-card-skeleton__cover'>
           <Skeleton

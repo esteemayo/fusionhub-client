@@ -33,7 +33,7 @@ const Search = ({ onClose }: SearchProps) => {
           </label>
 
           <input
-            type='text'
+            type='search'
             name='search'
             id='search'
             value={searchQuery}

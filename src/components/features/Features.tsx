@@ -27,6 +27,8 @@ const Features = () => {
   const [firstPost, ...otherPosts] = useMemo(() => (data ? data : []), [data]);
 
   const noData = (data ?? []).length < 1;
+  const hasOtherPosts =
+    Array.isArray(otherPosts) ?? ((otherPosts as FeatureType) ?? []).length > 0;
 
   return (
     <section
@@ -43,7 +45,27 @@ const Features = () => {
           Featured articles
         </h3>
 
-        {error ? (
+        {isPending ? (
+          <div className='features__wrapper'>
+            <div className='features__wrap'>
+              <FeatureSkeleton />
+            </div>
+
+            <ul className='features__box' role='list'>
+              {Array.from(new Array(4)).map((_, index) => {
+                return (
+                  <li
+                    key={index}
+                    className='features__box--item'
+                    role='listitem'
+                  >
+                    <FeatureCardSkeleton />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : error ? (
           <EmptyMessage
             title='Unable to Load Featured Articles'
             subtitle={
@@ -53,7 +75,7 @@ const Features = () => {
             center
             role='alert'
           />
-        ) : noData && !isPending ? (
+        ) : noData ? (
           <EmptyMessage
             title="Oops! It seems we don't have any featured articles to display right now."
             subtitle="Don't worry, we're constantly updating our content. Please check back soon for the latest featured articles, or explore other sections of our blog to discover more interesting reads."
@@ -63,9 +85,7 @@ const Features = () => {
         ) : (
           <div className='features__wrapper'>
             <div className='features__wrap'>
-              {isPending ? (
-                <FeatureSkeleton />
-              ) : (
+              {!!firstPost && (
                 <Feature
                   {...firstPost}
                   comments={
@@ -76,26 +96,23 @@ const Features = () => {
             </div>
 
             <ul className='features__box' role='list'>
-              {isPending
-                ? Array.from(new Array(4)).map((_, index) => {
-                    return (
-                      <li key={index} role='listitem'>
-                        <FeatureCardSkeleton />
-                      </li>
-                    );
-                  })
-                : otherPosts?.map((post) => {
-                    return (
-                      <li key={post._id} role='listitem'>
-                        <FeatureCard
-                          {...post}
-                          comments={
-                            Array.isArray(post.comments) ? post.comments : []
-                          }
-                        />
-                      </li>
-                    );
-                  })}
+              {hasOtherPosts &&
+                otherPosts?.map((post) => {
+                  return (
+                    <li
+                      key={post._id}
+                      className='features__box--item'
+                      role='listitem'
+                    >
+                      <FeatureCard
+                        {...post}
+                        comments={
+                          Array.isArray(post.comments) ? post.comments : []
+                        }
+                      />
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         )}
