@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.article-comment-form {
+.reply-base-form {
   overflow: hidden;
   will-change: max-height;
   background-color: rgba(vars.$clr-tertiary-blue, 0.15);
@@ -18,7 +18,7 @@
     border: 0;
     box-shadow: none;
 
-    .comment-card__collapse--inner {
+    .reply-base-form__collapse {
       opacity: 0;
       transform: translateY(-0.6rem);
     }
@@ -28,7 +28,7 @@
     padding: 1.4rem;
     transform: translateY(-0.6rem);
     opacity: 1;
-    transition: transform 260ms cubic-bezier(0.2, 0.85, 0.25, 0.1),
+    transition: transform 260ms cubic-bezier(0.2, 0.85, 0.25, 1),
       opacity 240ms ease;
   }
 
@@ -37,7 +37,7 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
 
     position: relative;
 

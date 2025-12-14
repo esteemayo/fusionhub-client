@@ -42,6 +42,7 @@ const ArticleAction = ({
       >
         <CommentIcon />
       </ArticleActionItem>
+
       <CommentLikeButton
         size='sm'
         title='Like Post'
@@ -51,6 +52,7 @@ const ArticleAction = ({
         aria-label={`${isLiked ? 'Unlike' : 'Like'} post`}
         onLike={onLike}
       />
+
       <CommentDislikeButton
         size='sm'
         title='Dislike Post'
@@ -60,6 +62,7 @@ const ArticleAction = ({
         aria-label={`${isDisliked ? 'Remove dislike from' : 'Dislike'} post`}
         onDislike={onDislike}
       />
+
       <ArticleActionItem
         count={savedCount}
         title='Save Post'
@@ -72,6 +75,7 @@ const ArticleAction = ({
       >
         <SaveIcon isLoading={saveMutation.isPending} hasSaved={isSaved} />
       </ArticleActionItem>
+
       <ArticleActionItem
         title='Share Post'
         aria-label='Share this post'

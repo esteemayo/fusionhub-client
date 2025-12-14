@@ -21,7 +21,8 @@ const CategoryItem = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const onToggleHandler = (e?: React.MouseEvent<HTMLButtonElement>) => {
-    e?.stopPropagation();
+    if (!e) return;
+    e.stopPropagation();
 
     setIsOpen((value) => {
       if (value) {
@@ -91,6 +92,7 @@ const CategoryItem = ({
             {category.name}
           </Link>
         </span>
+
         <CategoryAction
           isOpen={isOpen}
           isDisabled={isDisabled}

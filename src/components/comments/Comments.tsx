@@ -79,8 +79,7 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
-    if (!e) return;
-    e.preventDefault();
+    e?.preventDefault();
 
     if (!currentUser) return;
 

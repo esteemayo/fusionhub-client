@@ -214,8 +214,13 @@
         padding-left: 6rem;
       }
 
+      &:focus {
+        border-radius: 1rem;
+      }
+
       &:disabled {
-        cursor: not-allowed;
+        pointer-events: none;
+        user-select: none;
       }
 
       &::placeholder {

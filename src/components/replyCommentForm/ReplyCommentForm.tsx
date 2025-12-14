@@ -1,162 +1,17 @@
-import { useEffect, useMemo, useRef } from 'react';
+import ReplyBaseForm from '../replyBaseForm/ReplyBaseForm';
 import { ReplyCommentFormProps } from '../../types';
 
 import './ReplyCommentForm.scss';
 
-const ReplyCommentForm = ({
-  content,
-  size = 'md',
-  editId,
-  isOpen,
-  maxRows,
-  isLoading,
-  isEditing,
-  onChange,
-  onCancel,
-  onSubmit,
-}: ReplyCommentFormProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const onInput = () => {
-    const textarea = textareaRef.current!;
-
-    textarea.style.height = 'auto';
-    const lineHeight = parseInt(
-      getComputedStyle(textarea).lineHeight || '20',
-      10
-    );
-    const maxHeight = lineHeight * (maxRows || 3);
-
-    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
-    onChange(textarea.value);
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      e.preventDefault();
-      onSubmit();
-    }
-  };
-
-  const formClasses = useMemo(
-    () =>
-      isOpen
-        ? 'reply-comment-form__form show'
-        : 'reply-comment-form__form hide',
-    [isOpen]
-  );
-
-  const textareaClasses = useMemo(
-    () =>
-      `reply-comment-form__textarea ${
-        size === 'sm' ? 'small' : size === 'md' ? 'medium' : 'large'
-      }`,
-    [size]
-  );
-
-  const actionClasses = useMemo(
-    () =>
-      `reply-comment-form__actions ${
-        size === 'sm' ? 'small' : size == 'md' ? 'medium' : 'large'
-      }`,
-    [size]
-  );
-
-  const btnLabel = useMemo(
-    () =>
-      isEditing && editId
-        ? isLoading
-          ? 'Updating...'
-          : 'Update Comment'
-        : isLoading
-        ? 'Submitting...'
-        : 'Submit Reply',
-    [editId, isEditing, isLoading]
-  );
-
-  const placeholder = useMemo(
-    () =>
-      isEditing && editId
-        ? 'Update your reply here...'
-        : 'Write your reply here...',
-    [editId, isEditing]
-  );
-
-  useEffect(() => {
-    const inner = innerRef.current;
-    const container = containerRef.current;
-
-    if (!container || !inner) return;
-
-    if (isOpen) {
-      const height = inner.scrollHeight;
-
-      container.style.maxHeight = `${height}px`;
-      setTimeout(() => textareaRef.current?.focus(), 120);
-      container.classList.remove('closed');
-    } else {
-      container.style.maxHeight = '0px';
-      container.classList.add('closed');
-    }
-  }, [isOpen, content]);
-
+const ReplyCommentForm = (props: ReplyCommentFormProps) => {
   return (
-    <div
-      ref={containerRef}
-      className={`reply-comment-form ${isOpen ? '' : 'closed'}`}
-      aria-expanded={isOpen}
-      aria-hidden={!isOpen}
-      aria-label='Write a reply'
-    >
-      <div ref={innerRef} className='reply-comment-form__inner'>
-        <form onSubmit={onSubmit} className={formClasses}>
-          <textarea
-            id='content'
-            name='content'
-            value={content || ''}
-            placeholder={placeholder}
-            className={textareaClasses}
-            rows={3}
-            onInput={onInput}
-            onChange={(e) => onChange(e.target.value)}
-            onKeyDown={onKeyDown}
-            disabled={isLoading}
-            ref={textareaRef}
-            aria-label={placeholder}
-            aria-disabled={isLoading}
-          />
-
-          <div className={actionClasses}>
-            <button
-              type='button'
-              onClick={onCancel}
-              disabled={isLoading}
-              className='reply-comment-form__actions--cancel'
-              aria-label='Cancel reply'
-              aria-disabled={isLoading}
-            >
-              Cancel
-            </button>
-
-            <button
-              type='submit'
-              disabled={!content.trim() || isLoading}
-              className='reply-comment-form__actions--submit'
-              aria-label={btnLabel}
-              aria-disabled={!content.trim() || isLoading}
-            >
-              {btnLabel}
-            </button>
-          </div>
-
-          <small className='reply-comment-form__shortcut'>
-            Press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>Enter</kbd> to submit
-          </small>
-        </form>
-      </div>
-    </div>
+    <ReplyBaseForm
+      {...props}
+      size={props.size ?? 'md'}
+      classPrefix='reply-comment-form'
+      submitLabel='Submit reply'
+      updateLabel='Update comment'
+    />
   );
 };
 

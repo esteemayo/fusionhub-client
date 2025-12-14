@@ -1,18 +1,21 @@
-import { useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
 import { mergeRefs } from 'react-merge-refs';
 
 import Button from '../button/Button';
 
-import { CommentFormProps } from '../../types';
+import { useSubmitShortcut } from '../../hooks/useSubmitShortcut';
 import { useAppSelector } from '../../hooks/hooks';
+import { useAutosizeTextarea } from '../../hooks/useAutosizeTextarea';
+
+import { CommentFormProps } from '../../types';
 
 import './CommentForm.scss';
 
 const CommentForm = ({
   content,
   postAuthorId,
-  maxRows,
+  maxRows = 5,
   isLoading,
   isPending,
   comments,
@@ -21,28 +24,8 @@ const CommentForm = ({
   onSubmit,
 }: CommentFormProps) => {
   const { user: currentUser } = useAppSelector((state) => state.auth);
-
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const onInput = () => {
-    const textarea = textareaRef.current!;
-
-    textarea.style.height = 'auto';
-    const lineHeight = parseInt(
-      getComputedStyle(textarea).lineHeight || '20',
-      10
-    );
-    const maxHeight = lineHeight * (maxRows || 5);
-
-    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
-    onChange(textarea.value);
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      onSubmit();
-    }
-  };
+  const { handleKeyDown } = useSubmitShortcut(onSubmit, !isLoading);
+  const { textareaRef, handleInput } = useAutosizeTextarea(content, maxRows);
 
   const userId = useMemo(
     () => currentUser?.details._id,
@@ -50,7 +33,7 @@ const CommentForm = ({
   );
 
   const hasCommented = useMemo(
-    () => (comments ?? [])?.some((comment) => comment.author._id === userId),
+    () => !!(comments ?? [])?.some((comment) => comment.author._id === userId),
     [comments, userId]
   );
 
@@ -122,9 +105,9 @@ const CommentForm = ({
               placeholder='Write your thoughts here... Share your opinion or feedback about the article.'
               className='comment-form__textarea'
               rows={5}
-              onInput={onInput}
+              onInput={handleInput}
               onChange={(e) => onChange(e.target.value)}
-              onKeyDown={onKeyDown}
+              onKeyDown={handleKeyDown}
               ref={mergeRefs([textareaRef, ref])}
               aria-required='true'
             />

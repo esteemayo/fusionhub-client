@@ -29,7 +29,7 @@ const Search = ({
       </div>
 
       <p id='search-help-text' className='sr-only'>
-        Type your search terma nd press Enter to search posts.
+        Type your search term and press Enter to search posts.
       </p>
     </div>
   );

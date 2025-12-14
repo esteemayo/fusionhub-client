@@ -167,10 +167,9 @@ const Article = ({
   const handleCancel = useCallback(
     (e?: React.MouseEvent<HTMLButtonElement>) => {
       if (!e) return;
+      if (!currentUser) return;
 
       e.stopPropagation();
-
-      if (!currentUser) return;
       handleClear();
     },
     [currentUser, handleClear]
@@ -228,7 +227,8 @@ const Article = ({
 
   const isBlocked = useMemo(
     () =>
-      (blockedUsers ?? []).some((user) => user.id === post.author._id) || false,
+      !!(blockedUsers ?? []).some((user) => user.id === post.author._id) ||
+      false,
     [blockedUsers, post.author._id]
   );
 
@@ -260,7 +260,7 @@ const Article = ({
 
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      toast.error(error, { role: 'alert' });
     }
   }, [error]);
 
@@ -288,6 +288,7 @@ const Article = ({
             className={coverClasses}
           />
         </Link>
+
         <div className='article__wrapper'>
           <div className='article__profile' role='heading' aria-level={3}>
             <Link to={url} aria-label={`Profile: ${post.author.name}`}>
@@ -298,16 +299,20 @@ const Article = ({
                 {post.author.name}
               </Tooltip>
             </Link>
+
             <Badge role={post.author.role} />
+
             <div className='article__profile--username'>
               <Link to={url} aria-label={`Username: ${post.author.username}`}>
                 <AtSymbolIcon />
                 <span>{post.author.username}</span>
               </Link>
             </div>
+
             <span className='article__profile--dot' aria-hidden='true'>
               •
             </span>
+
             <time
               dateTime={post.createdAt}
               className='article__profile--time'
@@ -316,6 +321,7 @@ const Article = ({
               {formattedDate}
             </time>
           </div>
+
           {post.img && (
             <div className='article__image'>
               <Image
@@ -327,6 +333,7 @@ const Article = ({
               />
             </div>
           )}
+
           <div id={`article-desc-${postId}`} className='article__desc'>
             {parse(parsedDesc)}
             <button
@@ -337,6 +344,7 @@ const Article = ({
               more
             </button>
           </div>
+
           <div
             className='article__actions'
             role='group'
@@ -360,6 +368,7 @@ const Article = ({
               onSave={handleSave}
               onShare={handleShare}
             />
+
             <ArticleMenus
               currentUser={currentUser}
               isAdmin={isAdmin}
@@ -371,8 +380,9 @@ const Article = ({
               onUpdate={handleUpdate}
             />
           </div>
+
           <ArticleCommentForm
-            isShow={isShow}
+            isOpen={isShow}
             value={value}
             isLoading={commentMutation.isPending}
             onChange={setValue}

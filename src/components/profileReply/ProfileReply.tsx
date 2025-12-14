@@ -318,6 +318,7 @@ const ProfileReply = ({
       <h2 id={`reply-title-${replyId}`} className='sr-only'>
         Reply by {author.name}
       </h2>
+
       <div className='profile-reply__container'>
         <div className='profile-reply__cover'>
           <Link
@@ -334,6 +335,7 @@ const ProfileReply = ({
             />
           </Link>
         </div>
+
         <div className='profile-reply__wrapper'>
           <div className='profile-reply__box'>
             <div className='profile-reply__date'>
@@ -344,6 +346,7 @@ const ProfileReply = ({
               >
                 {formattedDate}
               </time>
+
               {currentUser && hasUpdated && authorId !== (userId as string) && (
                 <span
                   aria-label='This reply was edited'
@@ -353,6 +356,7 @@ const ProfileReply = ({
                 </span>
               )}
             </div>
+
             <button
               type='button'
               onClick={onToggleReply}
@@ -366,6 +370,7 @@ const ProfileReply = ({
               <span>{replyBtnLabel}</span>
             </button>
           </div>
+
           <div className='profile-reply__info'>
             <h5
               id={`comment-author-${replyId}`}
@@ -379,8 +384,10 @@ const ProfileReply = ({
                 {author.name}
               </Link>
             </h5>
+
             <Badge role={author.role} />
           </div>
+
           <p
             id={`reply-desc-${replyId}`}
             onClick={handleCollapse}
@@ -402,6 +409,7 @@ const ProfileReply = ({
               {btnLabel}
             </button>
           </p>
+
           <div
             className='profile-reply__wrap'
             role='group'
@@ -422,6 +430,7 @@ const ProfileReply = ({
               onLike={handleLike}
               onDislike={handleDislike}
             />
+
             <ProfileAction
               type='reply'
               authorRole={author?.role}
@@ -436,6 +445,7 @@ const ProfileReply = ({
               onUpdate={handleUpdate}
             />
           </div>
+
           <div
             id={`reply-form-${replyId}`}
             role='region'
@@ -446,9 +456,10 @@ const ProfileReply = ({
               size='lg'
               isOpen={isOpen}
               isEditing={isEditing}
-              content={value}
+              value={value}
               username={author.username}
               editId={editId}
+              maxRows={5}
               isLoading={false}
               onChange={setValue}
               onCancel={onCancelHandler}

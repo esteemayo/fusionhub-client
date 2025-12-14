@@ -554,7 +554,7 @@ const CommentCard = ({
         aria-live='polite'
       >
         <ReplyCommentForm
-          content={value}
+          value={value}
           editId={editId}
           isOpen={isOpen}
           isLoading={isPending}

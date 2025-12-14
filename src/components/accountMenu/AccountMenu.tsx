@@ -14,14 +14,13 @@ import './AccountMenu.scss';
 
 const AccountMenu = ({ query }: { query: string | null }) => {
   const dispatch = useAppDispatch();
-
-  const { isOpen } = useAppSelector((state) => state.accountMenu);
-  const { user: currentUser } = useAppSelector((state) => state.auth);
-
   const { pathname } = useLocation();
-  const path = pathname.split('/').pop();
 
+  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { isOpen } = useAppSelector((state) => state.accountMenu);
   const { isLoading, btnLabel, handleLogout } = useLogout(isOpen, onClose);
+
+  const path = pathname.split('/').pop();
 
   const [isActive, setIsActive] = useState(path);
 
@@ -41,7 +40,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
   }, [path]);
 
   const menus = accountMenus.slice(0, -1);
-  const lastMenu = accountMenus[accountMenus.length - 1];
+  const lastMenu = accountMenus.at(-1);
 
   if (!currentUser || query) return null;
 
@@ -69,7 +68,8 @@ const AccountMenu = ({ query }: { query: string | null }) => {
                 />
               );
             })}
-            {currentUser && currentUser.role === 'admin' && (
+
+            {!!lastMenu && currentUser && currentUser.role === 'admin' && (
               <AccountMenuItem
                 {...lastMenu}
                 isOpen={isOpen}
@@ -79,6 +79,7 @@ const AccountMenu = ({ query }: { query: string | null }) => {
             )}
           </ul>
         </div>
+
         <div className='account-menu__box'>
           <button
             type='button'

@@ -61,6 +61,7 @@ const Sidebar = () => {
       <div className='sidebar__container'>
         <div className='sidebar__wrapper'>
           <Logo onClose={handleClick} />
+
           <ToggleButton
             isOpen={isOpen}
             onClick={handleClose}
@@ -68,6 +69,7 @@ const Sidebar = () => {
             type='nav'
           />
         </div>
+
         <div className='sidebar__box'>
           <ul
             id='sidebar-menu'
@@ -87,6 +89,7 @@ const Sidebar = () => {
               );
             })}
           </ul>
+
           <div className='sidebar__accountWrap'>
             {!!currentUser && (
               <div className='sidebar__accounts'>
@@ -100,6 +103,7 @@ const Sidebar = () => {
                     type='sidebar'
                     className='sidebar__account--avatar'
                   />
+
                   <span
                     className={accountNameClasses}
                     aria-label={`Logged in as ${
@@ -109,6 +113,7 @@ const Sidebar = () => {
                     {currentUser.details.name}
                   </span>
                 </NavLink>
+
                 <div className='sidebar__logout'>
                   <button
                     type='button'
@@ -122,6 +127,7 @@ const Sidebar = () => {
                 </div>
               </div>
             )}
+
             {!currentUser && (
               <NavLink
                 to='/login'

@@ -482,6 +482,7 @@ const Reply = ({
             </p>
           </div>
         </div>
+
         <div className='reply__actions' role='group' aria-label='Reply actions'>
           <CommentReplyAction
             size='sm'
@@ -547,7 +548,7 @@ const Reply = ({
           <ReplyForm
             isOpen={isOpen}
             isEditing={isEditing}
-            content={value}
+            value={value}
             username={author.username}
             editId={editId}
             isLoading={updateReplyMutation.isPending}

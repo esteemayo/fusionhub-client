@@ -310,6 +310,7 @@ const ProfileComment = ({
       <h2 id={`comment-title-${commentId}`} className='sr-only'>
         Comment by {author.name}
       </h2>
+
       <div className='profile-comment__container'>
         <div className='profile-comment__cover'>
           <Link
@@ -326,6 +327,7 @@ const ProfileComment = ({
             />
           </Link>
         </div>
+
         <div className='profile-comment__wrapper'>
           <div className='profile-comment__box'>
             <div className='profile-comment__date'>
@@ -336,6 +338,7 @@ const ProfileComment = ({
               >
                 {formattedDate}
               </time>
+
               {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span
                   aria-label='This comment was edited'
@@ -345,6 +348,7 @@ const ProfileComment = ({
                 </span>
               )}
             </div>
+
             <button
               type='button'
               onClick={onToggleReply}
@@ -358,6 +362,7 @@ const ProfileComment = ({
               <span>{replyBtnLabel}</span>
             </button>
           </div>
+
           <div className='profile-comment__info'>
             <h5
               id={`comment-author-${commentId}`}
@@ -373,6 +378,7 @@ const ProfileComment = ({
               </Link>
             </h5>
           </div>
+
           <p
             id={`comment-desc-${commentId}`}
             onClick={handleCollapse}
@@ -395,6 +401,7 @@ const ProfileComment = ({
               {btnLabel}
             </button>
           </p>
+
           <div
             className='profile-comment__wrap'
             role='group'
@@ -414,6 +421,7 @@ const ProfileComment = ({
               onLike={handleLike}
               onDislike={handleDislike}
             />
+
             <ProfileAction
               type='comment'
               authorRole={author?.role}
@@ -427,6 +435,7 @@ const ProfileComment = ({
               onUpdate={handleUpdate}
             />
           </div>
+
           <div
             id={`reply-form-${commentId}`}
             role='region'
@@ -437,8 +446,9 @@ const ProfileComment = ({
               size='lg'
               isOpen={isOpen}
               isEditing={isEditing}
-              content={value}
+              value={value}
               editId={editId}
+              maxRows={5}
               isLoading={false}
               onChange={setValue}
               onCancel={onCancelHandler}

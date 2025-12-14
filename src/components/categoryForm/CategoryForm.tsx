@@ -68,6 +68,7 @@ const CategoryForm = ({
             className={cancelBtnClasses}
             aria-label='Cancel updating category'
           />
+
           <Button
             type='submit'
             label={label}

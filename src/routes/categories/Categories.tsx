@@ -98,7 +98,7 @@ const Categories = () => {
     if (currentUser && currentUser.role !== 'admin') return;
 
     if (isEditing && !categoryId) {
-      toast.error('Category ID is required for updating.');
+      toast.error('Category ID is required for updating.', { role: 'alert' });
       return;
     }
 
@@ -163,6 +163,7 @@ const Categories = () => {
           descriptionId='categories-description'
         />
       </div>
+
       <div className='categories__wrapper'>
         <CategoryForm
           label={btnLabel}
@@ -174,6 +175,7 @@ const Categories = () => {
           onSubmit={handleSubmit(onSubmit)}
           onCancel={handleCancel}
         />
+
         <CategoryItems
           categories={data}
           isPending={isPending}

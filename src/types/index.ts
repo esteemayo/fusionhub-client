@@ -221,7 +221,7 @@ export interface TextareaProps
 export interface ArticleCommentFormProps {
   value: string;
   size?: 'sm' | 'md' | 'lg';
-  isShow: boolean;
+  isOpen: boolean;
   maxRows?: number;
   isLoading: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
@@ -1133,6 +1133,19 @@ export interface CategoryMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface IAutosizeTextarea {
+  (value: string, maxRows?: number): {
+    textareaRef: React.RefObject<HTMLTextAreaElement>;
+    handleInput(): void;
+  };
+}
+
+export interface ISubmitShortcut {
+  (onSubmit: () => void, enabled?: boolean): {
+    handleKeyDown(e: React.KeyboardEvent<HTMLElement>): void;
+  };
+}
+
 export interface IUserAvatar {
   (fallback: string): {
     avatarSrc: string;
@@ -1774,8 +1787,26 @@ export interface ReplyMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ReplyBaseFormProps {
+  value: string;
+  isOpen: boolean;
+  isEditing?: boolean;
+  editId?: string | null;
+  isLoading: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  maxRows?: number;
+  username?: string;
+  placeholder?: string;
+  submitLabel?: string;
+  updateLabel?: string;
+  classPrefix: string;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
+  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
+}
+
 export interface ReplyFormProps {
-  content: string;
+  value: string;
   username: string;
   size?: 'sm' | 'md' | 'lg';
   isOpen: boolean;
@@ -1789,7 +1820,8 @@ export interface ReplyFormProps {
 }
 
 export interface ReplyCommentFormProps {
-  content: string;
+  value: string;
+  username?: string;
   size?: 'sm' | 'md' | 'lg';
   editId: string | null;
   isOpen: boolean;
