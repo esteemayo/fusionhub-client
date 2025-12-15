@@ -132,8 +132,13 @@
   }
 
   &__content {
+    outline: 0;
     width: 100%;
     min-height: 10vw;
     padding-top: 3rem;
+
+    &:focus {
+      outline: 0;
+    }
   }
 }

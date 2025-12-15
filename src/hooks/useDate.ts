@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { IDate } from '../types';
 
 export const useDate: IDate = (dateTime) => {

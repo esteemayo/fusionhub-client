@@ -546,12 +546,15 @@ const Reply = ({
           aria-live='polite'
         >
           <ReplyForm
+            size='sm'
             isOpen={isOpen}
             isEditing={isEditing}
             value={value}
             username={author.username}
             editId={editId}
             isLoading={updateReplyMutation.isPending}
+            submitLabel='Submit reply'
+            updateLabel='Update reply'
             onChange={setValue}
             onCancel={onCancelHandler}
             onSubmit={handleSubmit}

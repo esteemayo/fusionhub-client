@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Replies from '../replies/Replies';
-import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
+import ReplyForm from '../replyForm/ReplyForm';
 
 import ShareIcon from '../icons/ShareIcon';
 import Badge from '../badge/Badge';
@@ -553,12 +553,14 @@ const CommentCard = ({
         aria-label={`Reply to ${author.username}’s comment`}
         aria-live='polite'
       >
-        <ReplyCommentForm
+        <ReplyForm
           value={value}
           editId={editId}
           isOpen={isOpen}
           isLoading={isPending}
           isEditing={isEditing}
+          submitLabel='Submit reply'
+          updateLabel='Update comment'
           onChange={setValue}
           onCancel={handleCancel}
           onSubmit={handleSubmit}

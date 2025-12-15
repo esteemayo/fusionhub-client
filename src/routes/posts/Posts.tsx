@@ -37,7 +37,7 @@ const Posts = () => {
       enabled: !!searchParams,
     });
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleClick = () => {
     if (!inputRef.current) return;
@@ -67,6 +67,7 @@ const Posts = () => {
 
       <div className='posts__container'>
         <Postbar onClick={handleClick} />
+
         <div className='posts__wrapper'>
           <div className='posts__box'>
             <PostClient
@@ -74,6 +75,7 @@ const Posts = () => {
               inputRef={inputRef}
               onFocus={handleClick}
             />
+
             <section
               aria-busy={isFetching}
               aria-live='polite'
@@ -93,6 +95,7 @@ const Posts = () => {
                 </div>
               )}
             </section>
+
             <div className='posts__box--btn'>
               <ToggleButton
                 label='Filter menu'

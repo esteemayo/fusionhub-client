@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-
 import { TabsProps } from '../../types';
 
 import './Tabs.scss';
@@ -109,10 +108,12 @@ const Tabs = ({ tabs, defaultValue, onChange, renderContent }: TabsProps) => {
             </button>
           );
         })}
+
         <span className='tabs__underline' style={underLineStyle}>
           &nbsp;
         </span>
       </div>
+
       <div
         key={fadeKey}
         id={`panel-${activeTab}`}

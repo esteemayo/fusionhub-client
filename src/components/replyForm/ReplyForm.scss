@@ -18,7 +18,7 @@
     border: 0;
     box-shadow: none;
 
-    .reply__collapse--inner {
+    .reply-form__collapse {
       opacity: 0;
       transform: translateY(-0.6rem);
     }
@@ -70,7 +70,8 @@
     transition: all 300ms ease-in-out;
 
     &:disabled {
-      cursor: not-allowed;
+      pointer-events: none;
+      user-select: none;
     }
 
     &.small,
@@ -510,7 +511,8 @@
 
       &:disabled {
         opacity: 0.75;
-        cursor: not-allowed;
+        pointer-events: none;
+        user-select: none;
       }
     }
 

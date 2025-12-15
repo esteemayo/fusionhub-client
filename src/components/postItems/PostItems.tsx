@@ -51,7 +51,7 @@ const PostItems = ({
       ) : (
         <div className='post-items__container'>
           {isLoading ? (
-            Array.from(Array(3)).map((_, index) => {
+            Array.from({ length: 3 }).map((_, index) => {
               return <CardSkeleton key={index} />;
             })
           ) : error ? (
@@ -71,7 +71,8 @@ const PostItems = ({
               hasMore={!!hasNextPage}
               loader={
                 !!hasNextPage &&
-                Array.from(Array(3)).map((_, index) => {
+                isLoading &&
+                Array.from({ length: 3 }).map((_, index) => {
                   return <CardSkeleton key={index} />;
                 })
               }

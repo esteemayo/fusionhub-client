@@ -10,32 +10,38 @@ export const useSearch: ISearch = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    const query = target.value.trim();
+  const executeSearch = (query: string) => {
+    const trimmed = query.trim();
+    if (!trimmed) return;
 
     if (pathname === '/posts') {
       setSearchParams({
         ...Object.fromEntries(searchParams),
-        search: query,
+        search: trimmed,
       });
     } else {
-      navigate(`/posts?search=${query}`);
+      navigate(`/posts?search=${trimmed}`);
     }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return;
+
+    const target = e.target as HTMLInputElement;
+    executeSearch(target.value);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (searchQuery) {
-      navigate(`/posts?search=${searchQuery}`);
-      setSearchQuery('');
-    }
+    executeSearch(searchQuery);
+    setSearchQuery('');
   };
 
   return {
     searchQuery,
     setSearchQuery,
+    executeSearch,
     handleSubmit,
     handleKeyPress,
   };

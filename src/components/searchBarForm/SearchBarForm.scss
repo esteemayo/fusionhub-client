@@ -57,16 +57,41 @@
     }
   }
 
-  svg {
+  &__search-icon,
+  &__voice-btn {
     position: absolute;
-    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
 
-    width: 2.5rem;
-    height: 2.5rem;
-    color: currentColor;
-    stroke-width: 2px;
+    display: inline-flex;
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: currentColor;
+      stroke-width: 2px;
+    }
+  }
+
+  &__search-icon {
+    left: 1rem;
     z-index: 10;
+  }
+
+  &__voice-btn {
+    right: 1rem;
+
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: inherit;
+    z-index: 1000;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.75;
+      pointer-events: none;
+      user-select: none;
+    }
   }
 }

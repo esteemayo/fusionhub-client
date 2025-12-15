@@ -11,9 +11,9 @@ import Tooltip from '../tooltip/Tooltip';
 import Badge from '../badge/Badge';
 import AtSymbolIcon from '../icons/AtSymbolIcon';
 
-import ArticleAction from '../articleAction/ArticleAction';
 import ArticleMenus from '../articleMenus/ArticleMenus';
-import ArticleCommentForm from '../articleCommentForm/ArticleCommentForm';
+import ReplyForm from '../replyForm/ReplyForm';
+import ArticleAction from '../articleAction/ArticleAction';
 
 import { useComment } from '../../hooks/useComment';
 import { useDate } from '../../hooks/useDate';
@@ -381,10 +381,14 @@ const Article = ({
             />
           </div>
 
-          <ArticleCommentForm
+          <ReplyForm
+            size='lg'
+            maxRows={5}
             isOpen={isShow}
             value={value}
             isLoading={commentMutation.isPending}
+            submitLabel='Submit comment'
+            placeholder='Write your thoughts here... Share your opinion or feedback about the article.'
             onChange={setValue}
             onCancel={handleCancel}
             onSubmit={handleSubmit}

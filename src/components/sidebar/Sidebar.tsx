@@ -55,7 +55,6 @@ const Sidebar = () => {
     <aside
       className={sidebarClasses}
       role='navigation'
-      aria-hidden={!isOpen}
       aria-label='Sidebar navigation'
     >
       <div className='sidebar__container'>

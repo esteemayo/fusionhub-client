@@ -53,7 +53,6 @@ const PostClient = ({ isOpen, inputRef, onFocus }: PostClientProps) => {
       className={postClientClasses}
       role='complementary'
       aria-label='Posts filter and navigation sidebar'
-      aria-hidden={!isOpen}
       tabIndex={isOpen ? -1 : undefined}
     >
       <div ref={containerRef} className='post-client__container'>

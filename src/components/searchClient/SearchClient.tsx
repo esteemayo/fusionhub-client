@@ -1,10 +1,30 @@
-import { useSearch } from '../../hooks/useSearch';
+import { useEffect } from 'react';
+
+import MicrophoneIcon from '../icons/MicrophoneIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
+
+import { useSearch } from '../../hooks/useSearch';
+import { useVoiceSearch } from '../../hooks/useVoiceSearch';
 
 import './SearchClient.scss';
 
 const Client = () => {
-  const { searchQuery, setSearchQuery, handleSubmit } = useSearch();
+  const { searchQuery, setSearchQuery, executeSearch, handleSubmit } =
+    useSearch();
+  const { isListening, transcript, startListening, stopListening } =
+    useVoiceSearch();
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    return isListening ? stopListening() : startListening();
+  };
+
+  useEffect(() => {
+    if (!transcript) return;
+
+    setSearchQuery(transcript);
+    executeSearch(transcript);
+  }, [executeSearch, setSearchQuery, transcript]);
 
   return (
     <section
@@ -39,7 +59,20 @@ const Client = () => {
             aria-required='false'
             aria-label='Search posts'
           />
-          <MagnifyingGlassIcon />
+
+          <div className='search-client__form--search-icon'>
+            <MagnifyingGlassIcon />
+          </div>
+
+          <button
+            type='button'
+            onClick={handleClick}
+            className='search-client__form--voice-btn'
+            aria-pressed={isListening}
+            aria-label='Search using voice'
+          >
+            <MicrophoneIcon />
+          </button>
         </form>
       </div>
     </section>

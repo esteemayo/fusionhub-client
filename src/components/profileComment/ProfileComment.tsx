@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import UserAvatar from '../UserAvatar';
 import Badge from '../badge/Badge';
-import ReplyCommentForm from '../replyCommentForm/ReplyCommentForm';
+import ReplyForm from '../replyForm/ReplyForm';
 
 import ProfileAction from '../profileAction/ProfileAction';
 import ShareIcon from '../icons/ShareIcon';
@@ -442,7 +442,7 @@ const ProfileComment = ({
             aria-label={`Reply to ${author.username}’s comment`}
             aria-live='polite'
           >
-            <ReplyCommentForm
+            <ReplyForm
               size='lg'
               isOpen={isOpen}
               isEditing={isEditing}
@@ -450,6 +450,8 @@ const ProfileComment = ({
               editId={editId}
               maxRows={5}
               isLoading={false}
+              submitLabel='Submit reply'
+              updateLabel='Update comment'
               onChange={setValue}
               onCancel={onCancelHandler}
               onSubmit={handleSubmit}

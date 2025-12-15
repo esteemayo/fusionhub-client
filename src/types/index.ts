@@ -218,17 +218,6 @@ export interface TextareaProps
   onChange?(e: React.ChangeEvent<HTMLTextAreaElement>): void;
 }
 
-export interface ArticleCommentFormProps {
-  value: string;
-  size?: 'sm' | 'md' | 'lg';
-  isOpen: boolean;
-  maxRows?: number;
-  isLoading: boolean;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
-  onCancel(e?: React.MouseEvent<HTMLButtonElement>): void;
-  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
-}
-
 export interface SelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   id?: string;
@@ -1155,6 +1144,16 @@ export interface IUserAvatar {
   };
 }
 
+export interface IVoiceSearch {
+  (lang?: string, continuous?: boolean): {
+    isListening: boolean;
+    error: string | null;
+    transcript: string;
+    startListening(): void | undefined;
+    stopListening(): void | undefined;
+  };
+}
+
 export interface ICanShowMenu {
   (currentUser: CurrentUserType | null, author: AuthorType):
     | boolean
@@ -1217,6 +1216,7 @@ export interface ISearch {
   (): {
     searchQuery: string;
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+    executeSearch(query: string): void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   };
@@ -1787,7 +1787,7 @@ export interface ReplyMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-export interface ReplyBaseFormProps {
+export interface ReplyFormProps {
   value: string;
   isOpen: boolean;
   isEditing?: boolean;
@@ -1799,35 +1799,6 @@ export interface ReplyBaseFormProps {
   placeholder?: string;
   submitLabel?: string;
   updateLabel?: string;
-  classPrefix: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
-  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
-  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
-}
-
-export interface ReplyFormProps {
-  value: string;
-  username: string;
-  size?: 'sm' | 'md' | 'lg';
-  isOpen: boolean;
-  isEditing: boolean;
-  editId: string | null;
-  maxRows?: number;
-  isLoading: boolean;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
-  onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
-  onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
-}
-
-export interface ReplyCommentFormProps {
-  value: string;
-  username?: string;
-  size?: 'sm' | 'md' | 'lg';
-  editId: string | null;
-  isOpen: boolean;
-  maxRows?: number;
-  isLoading: boolean;
-  isEditing: boolean;
   onChange: React.Dispatch<React.SetStateAction<string>>;
   onCancel(e: React.MouseEvent<HTMLButtonElement>): void;
   onSubmit(e?: React.FormEvent<HTMLFormElement>): void;
