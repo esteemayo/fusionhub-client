@@ -48,9 +48,9 @@ export const useMute: IMute = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -68,9 +68,9 @@ export const useMute: IMute = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });

@@ -40,7 +40,8 @@ export const useCategory: ICategory = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast.success(
-        'New category added! Your category has been created successfully.'
+        'New category added! Your category has been created successfully.',
+        { role: 'alert' }
       );
     },
     onError: (error: unknown) => {
@@ -51,9 +52,9 @@ export const useCategory: ICategory = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -64,7 +65,8 @@ export const useCategory: ICategory = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
       toast.success(
-        'Category updated! Your changes have been saved successfully.'
+        'Category updated! Your changes have been saved successfully.',
+        { role: 'alert' }
       );
     },
     onError: (error: unknown) => {
@@ -75,9 +77,9 @@ export const useCategory: ICategory = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -86,7 +88,9 @@ export const useCategory: ICategory = () => {
     mutationFn: (categoryId: string) => removeCategory(categoryId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
-      toast.success('Category has been successfully deleted.');
+      toast.success('Category has been successfully deleted.', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -96,9 +100,9 @@ export const useCategory: ICategory = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });

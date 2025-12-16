@@ -25,8 +25,6 @@ export const useSearch: ISearch = () => {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key !== 'Enter') return;
-
     const target = e.target as HTMLInputElement;
     executeSearch(target.value);
   };

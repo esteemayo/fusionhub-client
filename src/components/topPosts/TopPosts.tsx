@@ -32,6 +32,7 @@ const TopPosts = ({ onClose }: TopPostsProps) => {
         <h2 id='top-posts-heading' className='top-posts__container--heading'>
           Top posts
         </h2>
+
         {isPending ? (
           Array.from(new Array(3)).map((_, index) => {
             return <TopPostSkeleton key={index} />;

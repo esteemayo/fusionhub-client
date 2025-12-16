@@ -25,10 +25,16 @@ const TopPost = ({
     }
   };
 
-  const filteredTags = useMemo(
-    () => tags.filter((tag) => tag.length < 10).slice(0, 2),
-    [tags]
-  );
+  const filteredTags = useMemo(() => {
+    const shortTags = tags.filter((tag) => tag.length <= 10).slice(0, 2);
+
+    if (shortTags.length > 0) {
+      return shortTags;
+    }
+
+    const longTag = tags.find((tag) => tag.length > 10);
+    return longTag ? [longTag] : [];
+  }, [tags]);
 
   const lastIndex = filteredTags.length - 1;
 
@@ -68,8 +74,7 @@ const TopPost = ({
                     className='top-post__box--btn'
                     aria-label={`Filter posts by tag ${tag}`}
                   >
-                    {tag}
-                    {tagIndex < lastIndex ? ',' : ''}
+                    {tag.concat(tagIndex < lastIndex ? ',' : '')}
                   </button>
                 );
               })}

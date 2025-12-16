@@ -13,7 +13,9 @@ export const useReport: IReport = () => {
   const reportMutation = useMutation({
     mutationFn: (payload: ReportPayload) => createNewReport(payload),
     onSuccess: () => {
-      toast.success('Your report has been submitted successfully');
+      toast.success('Your report has been submitted successfully', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -23,9 +25,9 @@ export const useReport: IReport = () => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });

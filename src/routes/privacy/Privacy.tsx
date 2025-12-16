@@ -3,28 +3,12 @@ import MutedUsers from '../../components/mutedUsers/MutedUsers';
 import AccountHeading from '../../components/accountHeading/AccountHeading';
 import MutedReplies from '../../components/mutedReplies/MutedReplies';
 
-import SeoMeta from '../../components/SeoMeta';
-
 import { useMute } from '../../hooks/useMute';
 
 import './Privacy.scss';
 
 const Privacy = () => {
   const { isPending, error, mutedList } = useMute();
-
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Account Privacy Settings',
-    description:
-      'Manage your privacy preferences, muted users, comments, and replies all in one place.',
-    url: 'https://yourapp.com/settings/privacy',
-    publisher: {
-      '@type': 'Organization',
-      name: 'FinSmart',
-      logo: 'https://yourapp.com/assets/logo.png',
-    },
-  };
 
   return (
     <main
@@ -33,13 +17,6 @@ const Privacy = () => {
       aria-labelledby='privacy-heading'
       aria-describedby='privacy-description'
     >
-      <SeoMeta
-        title='Account Privacy Settings | fusionHub'
-        description='Manage your privacy preferences, muted users, comments, and replies all in one place. Take full control of your account visibility and communication settings.'
-        url='https://fuzionhub.netlify.app/accounts/privacy'
-        image='https://yourapp.com/assets/privacy-banner.png'
-        schema={schema}
-      />
       <div className='privacy__container'>
         <AccountHeading
           title='Account Privacy Settings'

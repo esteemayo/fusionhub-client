@@ -20,7 +20,7 @@ const PostItems = ({
   const searchQuery = query.get('search');
 
   const noPosts = (posts ?? []).length < 1;
-  const hasPosts = Array.isArray(posts) && posts.length > 0;
+  const hasPosts = Array.isArray(posts) ?? posts.length > 0;
 
   return (
     <section
@@ -70,8 +70,8 @@ const PostItems = ({
               next={fetchNextPage}
               hasMore={!!hasNextPage}
               loader={
-                !!hasNextPage &&
                 isLoading &&
+                !!hasNextPage &&
                 Array.from({ length: 3 }).map((_, index) => {
                   return <CardSkeleton key={index} />;
                 })

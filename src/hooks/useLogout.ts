@@ -8,9 +8,9 @@ import { ILogout } from '../types';
 
 export const useLogout: ILogout = (isOpen, onClose) => {
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector((state) => ({ ...state.auth }));
+
+  const { isLoading } = useAppSelector((state) => state.auth);
 
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -25,9 +25,10 @@ export const useLogout: ILogout = (isOpen, onClose) => {
     }
   };
 
-  const btnLabel = useMemo(() => {
-    return isLoading ? 'Logging out...' : 'Logout';
-  }, [isLoading]);
+  const btnLabel = useMemo(
+    () => (isLoading ? 'Logging out...' : 'Logout'),
+    [isLoading]
+  );
 
   return {
     btnLabel,

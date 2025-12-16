@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { IVisibleComments } from '../types';
 
 export const useVisibleComments: IVisibleComments = (

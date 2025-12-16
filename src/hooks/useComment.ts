@@ -55,7 +55,9 @@ export const useComment: IComment = (postId) => {
     mutationFn: (comment: string) => createComment(comment, postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-      toast.success('Your comment has been successfully posted!');
+      toast.success('Your comment has been successfully posted!', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -65,9 +67,9 @@ export const useComment: IComment = (postId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -82,7 +84,9 @@ export const useComment: IComment = (postId) => {
     }) => editComment(content, commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-      toast.success('Your comment has been successfully updated!');
+      toast.success('Your comment has been successfully updated!', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -92,9 +96,9 @@ export const useComment: IComment = (postId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -103,7 +107,7 @@ export const useComment: IComment = (postId) => {
     mutationFn: (commentId: string) => removeComment(commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['comments', postId] });
-      toast.success('Comment removed!');
+      toast.success('Comment removed!', { role: 'alert' });
     },
     onError: (error: unknown) => {
       if (
@@ -113,9 +117,9 @@ export const useComment: IComment = (postId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });

@@ -24,8 +24,7 @@ export const useLikeReply: ILikeReply = (
   queryKey
 ) => {
   const queryClient = useQueryClient();
-
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const likeReplyMutation = useMutation({
     mutationFn: createLikeReply,
@@ -40,9 +39,9 @@ export const useLikeReply: ILikeReply = (
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -60,9 +59,9 @@ export const useLikeReply: ILikeReply = (
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });

@@ -36,8 +36,9 @@ const MostRead = ({ onClose }: MostReadProps) => {
         >
           Most read posts
         </h2>
+
         {isPending ? (
-          Array.from(new Array(3)).map((_, index) => {
+          Array.from({ length: 3 }).map((_, index) => {
             return <MostReadSkeleton key={index} />;
           })
         ) : error ? (

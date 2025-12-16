@@ -7,7 +7,7 @@ import './Home.scss';
 
 const Home = () => {
   return (
-    <main className='home' role='main' aria-label='Homepage'>
+    <main className='home' role='main' aria-label='Home page'>
       <a href='#main-content' className='sr-only'>
         Skip to main content
       </a>

@@ -25,8 +25,7 @@ const createSavePost = async (postId: string) => {
 
 export const useSavedPosts: ISavedPosts = (postId) => {
   const queryClient = useQueryClient();
-
-  const { user: currentUser } = useAppSelector((state) => ({ ...state.auth }));
+  const { user: currentUser } = useAppSelector((state) => state.auth);
 
   const {
     isPending,
@@ -62,21 +61,16 @@ export const useSavedPosts: ISavedPosts = (postId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
 
   const handleSave = () => {
-    if (!currentUser) {
-      return null;
-    }
-
-    saveMutation.mutate(postId as string, {
-      onSuccess: refetch,
-    });
+    if (!currentUser) return null;
+    saveMutation.mutate(postId as string, { onSuccess: refetch });
   };
 
   const isSaved = useMemo(() => {

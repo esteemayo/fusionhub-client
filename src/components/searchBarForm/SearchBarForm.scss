@@ -88,6 +88,13 @@
     z-index: 1000;
     cursor: pointer;
 
+    &:active,
+    &.active {
+      svg {
+        color: vars.$clr-pink-light;
+      }
+    }
+
     &:disabled {
       opacity: 0.75;
       pointer-events: none;

@@ -45,7 +45,7 @@ const RelatedPosts = ({ postId, tags }: RelatedPostsProps) => {
               aria-live='polite'
               aria-busy='true'
             >
-              {Array.from(Array(4)).map((_, index) => {
+              {Array.from({ length: 4 }).map((_, index) => {
                 return (
                   <li key={index} role='listitem'>
                     <RelatedSkeleton />

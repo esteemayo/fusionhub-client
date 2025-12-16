@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-
 import { ISortedComments, sortType } from '../types';
 
 export const useSortedComments: ISortedComments = (comments) => {
@@ -20,7 +19,7 @@ export const useSortedComments: ISortedComments = (comments) => {
         );
 
       if (sort === 'mostReplies')
-        return (b.replies ?? [])?.length - (a.replies ?? [])?.length;
+        return (b.replies ?? []).length - (a.replies ?? []).length;
 
       if (sort === 'mostControversial') {
         const scoreA = Math.min(a.likeCount, a.dislikeCount);

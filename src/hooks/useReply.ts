@@ -53,7 +53,9 @@ export const useReply: IReply = (postId, commentId) => {
       createCommentReply(content, postId, commentId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
-      toast.success('Your reply has been successfully posted!');
+      toast.success('Your reply has been successfully posted!', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -63,9 +65,9 @@ export const useReply: IReply = (postId, commentId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -74,7 +76,9 @@ export const useReply: IReply = (postId, commentId) => {
     mutationFn: (reply: object) => createBuildReplyTree(reply),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
-      toast.success('Your reply has been successfully posted!');
+      toast.success('Your reply has been successfully posted!', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -84,9 +88,9 @@ export const useReply: IReply = (postId, commentId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -96,7 +100,9 @@ export const useReply: IReply = (postId, commentId) => {
       editReply(content, replyId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
-      toast.success('Your reply has been successfully updated!');
+      toast.success('Your reply has been successfully updated!', {
+        role: 'alert',
+      });
     },
     onError: (error: unknown) => {
       if (
@@ -106,9 +112,9 @@ export const useReply: IReply = (postId, commentId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });
@@ -117,7 +123,7 @@ export const useReply: IReply = (postId, commentId) => {
     mutationFn: (replyId: string) => removeReply(replyId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['replies', commentId] });
-      toast.success('Reply successfully deleted!');
+      toast.success('Reply successfully deleted!', { role: 'alert' });
     },
     onError: (error: unknown) => {
       if (
@@ -127,9 +133,9 @@ export const useReply: IReply = (postId, commentId) => {
         const errorMessage = (
           error as unknown as { response: { data: string } }
         ).response.data;
-        toast.error(errorMessage);
+        toast.error(errorMessage, { role: 'alert' });
       } else {
-        toast.error('An error occurred');
+        toast.error('An error occurred', { role: 'alert' });
       }
     },
   });

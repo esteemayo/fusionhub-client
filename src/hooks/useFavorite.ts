@@ -78,18 +78,12 @@ export const useFavorite: IFavourite = (post, currentUser) => {
   });
 
   const handleLike = () => {
-    if (!currentUser) {
-      return null;
-    }
-
+    if (!currentUser) return null;
     likeMutation.mutate();
   };
 
   const handleDislike = () => {
-    if (!currentUser) {
-      return null;
-    }
-
+    if (!currentUser) return null;
     disLikeMutation.mutate();
   };
 

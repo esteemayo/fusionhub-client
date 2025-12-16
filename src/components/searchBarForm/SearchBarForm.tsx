@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import MicrophoneIcon from '../icons/MicrophoneIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
@@ -14,15 +14,19 @@ const SearchBarForm = () => {
 
   const { searchQuery, setSearchQuery, executeSearch, handleSubmit } =
     useSearch();
+
   const { isListening, transcript, startListening, stopListening } =
     useVoiceSearch();
 
   const isVisible = pathname === '/';
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    return isListening ? stopListening : startListening;
-  };
+  const toggleVoiceSearch = useCallback(
+    (e?: React.MouseEvent<HTMLButtonElement>) => {
+      e?.preventDefault();
+      return isListening ? stopListening() : startListening();
+    },
+    [isListening, startListening, stopListening]
+  );
 
   const searchBarFormClasses = useMemo(
     () => (isVisible ? 'search-bar-form show' : 'search-bar-form hide'),
@@ -35,6 +39,18 @@ const SearchBarForm = () => {
     setSearchQuery(transcript);
     executeSearch(transcript);
   }, [executeSearch, setSearchQuery, transcript]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v') {
+        e.preventDefault();
+        toggleVoiceSearch();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isListening, toggleVoiceSearch]);
 
   return (
     <form
@@ -57,26 +73,32 @@ const SearchBarForm = () => {
         className='search-bar-form__input'
         onChange={(e) => setSearchQuery(e.target.value)}
         autoComplete='off'
-        aria-describedby='search-hint'
+        aria-describedby='search-hint voice-status'
       />
 
       <span id='search-hint' className='sr-only'>
-        Type keywords and press Enter to search posts
+        Type keywords and press Enter to search posts.
       </span>
 
-      <div className='search-bar-form__search-icon'>
+      <span className='search-bar-form__search-icon' aria-hidden='true'>
         <MagnifyingGlassIcon />
-      </div>
+      </span>
 
       <button
         type='button'
-        onClick={handleClick}
-        className='search-bar-form__voice-btn'
+        onClick={toggleVoiceSearch}
+        className={`search-bar-form__voice-btn ${isListening ? 'active' : ''}`}
         aria-pressed={isListening}
-        aria-label='Search using voice'
+        aria-label={isListening ? 'Stop voice search' : 'Start voice search'}
       >
         <MicrophoneIcon />
       </button>
+
+      <span id='voice-status' className='sr-only' aria-live='polite'>
+        {isListening
+          ? 'Voice search active. Listening...'
+          : 'Voice search inactive.'}
+      </span>
     </form>
   );
 };

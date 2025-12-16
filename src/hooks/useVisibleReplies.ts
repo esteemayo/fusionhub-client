@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { IVisibleReplies } from '../types';
 
 export const useVisibleReplies: IVisibleReplies = (

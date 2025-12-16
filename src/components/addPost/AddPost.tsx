@@ -18,14 +18,19 @@ const AddPost = () => {
     dispatch(onOpen());
   };
 
-  if (!currentUser || (pathname !== '/' && pathname !== '/posts')) {
-    return null;
-  }
+  if (!currentUser || (pathname !== '/' && pathname !== '/posts')) return null;
 
   return (
-    <div className='add-post'>
-      <div className='add-post__container'>
-        <svg viewBox='0 0 200 200' width='200' height='200'>
+    <div className='add-post' aria-label='Create a new post'>
+      <div className='add-post__container' aria-hidden='true'>
+        <svg
+          viewBox='0 0 200 200'
+          width='200'
+          height='200'
+          role='img'
+          aria-hidden='true'
+          focusable='false'
+        >
           <path
             id='circlePath'
             fill='none'
@@ -41,7 +46,14 @@ const AddPost = () => {
           </text>
         </svg>
       </div>
-      <button type='button' className='add-post__btn' onClick={handleOpen}>
+
+      <button
+        type='button'
+        onClick={handleOpen}
+        className='add-post__btn'
+        aria-label='Create a new post'
+        aria-haspopup='dialog'
+      >
         <PlusIcon />
       </button>
     </div>

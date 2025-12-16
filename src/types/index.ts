@@ -23,15 +23,6 @@ import React, { HTMLInputTypeAttribute, Ref } from 'react';
 import { RegisterFormData } from '../validations/registerSchema';
 import { ProfileDataFormData } from '../validations/profileSchema';
 
-export interface SeoMetaProps {
-  title?: string;
-  description?: string;
-  image?: string;
-  url?: string;
-  keywords?: string;
-  schema?: Record<string, unknown>;
-}
-
 export interface LogoProps {
   isOpen?: boolean;
   onClose?(e: React.MouseEvent<HTMLAnchorElement>): void;
