@@ -1,27 +1,35 @@
-import { useCallback, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useEffect, useRef } from 'react';
 
 import MicrophoneIcon from '../icons/MicrophoneIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 
-import { useSearch } from '../../hooks/useSearch';
 import { useVoiceSearch } from '../../hooks/useVoiceSearch';
+import { useSearch } from '../../hooks/useSearch';
+import { useKeyboardShortcut } from '../../hooks/useKeyboardShortcut';
 
 import './SearchClient.scss';
 
 const Client = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const { isListening, error, transcript, toggleListening } = useVoiceSearch();
   const { searchQuery, setSearchQuery, executeSearch, handleSubmit } =
     useSearch();
 
-  const { isListening, transcript, startListening, stopListening } =
-    useVoiceSearch();
+  const handleVoiceButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    toggleListening();
+  };
 
-  const toggleVoiceSearch = useCallback(
-    (e?: React.MouseEvent<HTMLButtonElement>) => {
-      e?.stopPropagation();
-      return isListening ? stopListening() : startListening();
+  useKeyboardShortcut({
+    key: 'v',
+    mod: true,
+    callback: () => {
+      if (document.activeElement === inputRef.current) return;
+      toggleListening();
     },
-    [isListening, startListening, stopListening]
-  );
+  });
 
   useEffect(() => {
     if (!transcript) return;
@@ -31,16 +39,10 @@ const Client = () => {
   }, [executeSearch, setSearchQuery, transcript]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v') {
-        e.preventDefault();
-        toggleVoiceSearch();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isListening, toggleVoiceSearch]);
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   return (
     <section
@@ -70,6 +72,7 @@ const Client = () => {
           </label>
 
           <input
+            ref={inputRef}
             type='search'
             id='search'
             name='search'
@@ -77,6 +80,8 @@ const Client = () => {
             placeholder='Search posts...'
             className='search-client__form--input'
             onChange={(e) => setSearchQuery(e.target.value)}
+            readOnly={isListening}
+            aria-readonly={isListening}
             aria-required='false'
             aria-label='Search posts'
             aria-describedby='voice-search-status'
@@ -84,13 +89,13 @@ const Client = () => {
             spellCheck={false}
           />
 
-          <div className='search-client__form--search-icon' aria-hidden='true'>
+          <span className='search-client__form--search-icon' aria-hidden='true'>
             <MagnifyingGlassIcon />
-          </div>
+          </span>
 
           <button
             type='button'
-            onClick={toggleVoiceSearch}
+            onClick={handleVoiceButtonClick}
             className={`search-client__form--voice-btn ${
               isListening ? 'active' : ''
             }`}
@@ -101,6 +106,8 @@ const Client = () => {
                 : 'Start voice search (Ctrl or Cmd + V)'
             }
             aria-live='polite'
+            aria-keyshortcuts='Control+V Meta+V'
+            title='Search by voice'
           >
             <MicrophoneIcon />
           </button>

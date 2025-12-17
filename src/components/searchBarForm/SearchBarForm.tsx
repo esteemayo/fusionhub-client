@@ -1,32 +1,39 @@
 import { useLocation } from 'react-router-dom';
-import { useCallback, useEffect, useMemo } from 'react';
+import { toast } from 'react-toastify';
+import { useEffect, useMemo, useRef } from 'react';
 
 import MicrophoneIcon from '../icons/MicrophoneIcon';
 import MagnifyingGlassIcon from '../icons/MagnifyingGlassIcon';
 
-import { useSearch } from '../../hooks/useSearch';
 import { useVoiceSearch } from '../../hooks/useVoiceSearch';
+import { useSearch } from '../../hooks/useSearch';
+import { useKeyboardShortcut } from '../../hooks/useKeyboardShortcut';
 
 import './SearchBarForm.scss';
 
 const SearchBarForm = () => {
   const { pathname } = useLocation();
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  const { isListening, error, transcript, toggleListening } = useVoiceSearch();
   const { searchQuery, setSearchQuery, executeSearch, handleSubmit } =
     useSearch();
 
-  const { isListening, transcript, startListening, stopListening } =
-    useVoiceSearch();
-
   const isVisible = pathname === '/';
 
-  const toggleVoiceSearch = useCallback(
-    (e?: React.MouseEvent<HTMLButtonElement>) => {
-      e?.preventDefault();
-      return isListening ? stopListening() : startListening();
+  const handleVoiceButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    toggleListening();
+  };
+
+  useKeyboardShortcut({
+    key: 'v',
+    mod: true,
+    callback: () => {
+      if (document.activeElement === inputRef.current) return;
+      toggleListening();
     },
-    [isListening, startListening, stopListening]
-  );
+  });
 
   const searchBarFormClasses = useMemo(
     () => (isVisible ? 'search-bar-form show' : 'search-bar-form hide'),
@@ -41,16 +48,10 @@ const SearchBarForm = () => {
   }, [executeSearch, setSearchQuery, transcript]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v') {
-        e.preventDefault();
-        toggleVoiceSearch();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isListening, toggleVoiceSearch]);
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
 
   return (
     <form
@@ -66,13 +67,16 @@ const SearchBarForm = () => {
       </label>
 
       <input
+        ref={inputRef}
         type='search'
         name='search'
         value={searchQuery}
         placeholder='Search posts...'
         className='search-bar-form__input'
         onChange={(e) => setSearchQuery(e.target.value)}
+        readOnly={isListening}
         autoComplete='off'
+        aria-readonly={isListening}
         aria-describedby='search-hint voice-status'
       />
 
@@ -86,10 +90,13 @@ const SearchBarForm = () => {
 
       <button
         type='button'
-        onClick={toggleVoiceSearch}
+        onClick={handleVoiceButtonClick}
         className={`search-bar-form__voice-btn ${isListening ? 'active' : ''}`}
         aria-pressed={isListening}
         aria-label={isListening ? 'Stop voice search' : 'Start voice search'}
+        aria-live='polite'
+        aria-keyshortcuts='Control+V Meta+V'
+        title='Search by voice'
       >
         <MicrophoneIcon />
       </button>

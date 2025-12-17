@@ -1113,6 +1113,15 @@ export interface CategoryMenuListItemProps {
   onAction(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
+export interface ShortCutOptions {
+  key: string;
+  mod?: boolean;
+  shift?: boolean;
+  alt?: boolean;
+  enabled?: boolean;
+  callback(): void;
+}
+
 export interface IAutosizeTextarea {
   (value: string, maxRows?: number): {
     textareaRef: React.RefObject<HTMLTextAreaElement>;
@@ -1142,6 +1151,7 @@ export interface IVoiceSearch {
     transcript: string;
     startListening(): void | undefined;
     stopListening(): void | undefined;
+    toggleListening(): void
   };
 }
 

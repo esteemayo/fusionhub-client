@@ -16,6 +16,8 @@ const Image = ({
     ? Object.fromEntries(new URLSearchParams(queryString))
     : {};
 
+  if (!src) return null;
+
   return (
     <IKContext urlEndpoint={urlEndpoint}>
       <IKImage
