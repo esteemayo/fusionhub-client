@@ -1,5 +1,4 @@
 import { IKContext, IKImage } from 'imagekitio-react';
-
 import { ImageProps } from '../types';
 
 const urlEndpoint = import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT;
@@ -11,28 +10,39 @@ const Image = ({
   height,
   className,
 }: ImageProps) => {
-  const [cleanPath, queryString] = src.split('?');
+  if (typeof src !== 'string' || src.trim() === '') {
+    return null;
+  }
+
+  const [path, queryString] = src.split('?');
+
+  if (!path || path.trim() === '') {
+    return null;
+  }
+
   const queryParams = queryString
     ? Object.fromEntries(new URLSearchParams(queryString))
     : {};
 
-  if (!src) return null;
-
   return (
     <IKContext urlEndpoint={urlEndpoint}>
       <IKImage
-        key={src}
-        path={cleanPath}
+        key={path}
+        path={path}
         queryParameters={queryParams}
         width={width}
         height={height}
         loading='lazy'
         decoding='async'
         lqip={{ active: true, quality: 20 }}
-        transformation={[{ width: width as string, height: height as string }]}
-        alt={alt ?? ''}
+        transformation={
+          width || height
+            ? [{ width: String(width), height: String(height) }]
+            : undefined
+        }
+        alt={alt}
         className={className}
-        aria-hidden={alt ? undefined : true}
+        aria-hidden={!alt}
       />
     </IKContext>
   );

@@ -5,10 +5,9 @@ import parse from 'html-react-parser';
 
 import Image from '../Image';
 
-import { excerpts } from '../../utils';
 import { useDate } from '../../hooks/useDate';
-
 import { CardProps } from '../../types';
+import { excerpts, imageSrc } from '../../utils';
 
 import './Card.scss';
 
@@ -57,13 +56,14 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
       <figure className='card__wrapper'>
         <div className='card__wrapper--overlay'>&nbsp;</div>
         <Image
-          src={img ?? '/dafault-post.jpg'}
+          src={imageSrc(img)}
           width={300}
           height={250}
           alt={`Thumbnail image ${title}`}
           className='card__wrapper--img'
         />
       </figure>
+
       <footer className='card__footer'>
         <div className='card__box'>
           <h3 className='card__box--title'>
@@ -71,10 +71,12 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
               {title}
             </Link>
           </h3>
+
           <div aria-label='Post summary' className='card__box--desc'>
             {parse(parsedDesc)}
           </div>
         </div>
+
         <div className='card__container'>
           {pathname === '/posts' ? (
             <button
@@ -92,6 +94,7 @@ const Card = ({ img, desc, slug, title, category, createdAt }: CardProps) => {
               <span className='card__container--category'>{category}</span>
             </Link>
           )}
+
           <time
             dateTime={createdAt}
             aria-label={`Post published on ${formattedDate}`}

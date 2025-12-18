@@ -37,5 +37,5 @@ export const useKeyboardShortcut = ({
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [alt, callback, key, mod, shift]);
+  }, [alt, callback, enabled, key, mod, shift]);
 };

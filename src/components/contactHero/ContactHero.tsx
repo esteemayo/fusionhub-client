@@ -12,7 +12,7 @@ const ContactHero = () => {
     >
       <div className='contact-hero__wrapper'>
         <div className='contact-hero__icon left' aria-hidden='true'>
-          {Array.from(Array(5)).map((_, index) => {
+          {Array.from({ length: 5 }).map((_, index) => {
             return <ChevronRightIcon key={index} />;
           })}
         </div>
@@ -33,7 +33,7 @@ const ContactHero = () => {
         </div>
 
         <div className='contact-hero__icon right' aria-hidden='true'>
-          {Array.from(Array(5)).map((_, index) => {
+          {Array.from({ length: 5 }).map((_, index) => {
             return <ChevronRightIcon key={index} />;
           })}
         </div>

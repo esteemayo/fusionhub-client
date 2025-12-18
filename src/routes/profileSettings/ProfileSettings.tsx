@@ -70,6 +70,7 @@ const ProfileSettings = () => {
           type='profile'
         />
       </div>
+
       <div className='profile-settings__wrapper'>
         {isPending ? (
           <div className='profile-settings__wrapper--loader'>
@@ -104,7 +105,9 @@ const ProfileSettings = () => {
               onOpen={handleOpen}
               onUpload={handleUpload}
             />
+
             <hr aria-hidden='true' />
+
             <ProfileData
               name={data?.name ?? ''}
               email={data?.email ?? ''}

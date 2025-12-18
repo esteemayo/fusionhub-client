@@ -13,6 +13,7 @@ const ArticleAction = ({
   isOpen,
   isPostAuthor,
   postAuthorRole,
+  onClose,
   onDelete,
   onToggle,
   onUpdate,
@@ -51,7 +52,13 @@ const ArticleAction = ({
       >
         <VerticalEllipsisIcon />
       </button>
-      <ArticleMenu isOpen={isOpen} onDelete={onDelete} onUpdate={onUpdate} />
+
+      <ArticleMenu
+        isOpen={isOpen}
+        onClose={onClose}
+        onDelete={onDelete}
+        onUpdate={onUpdate}
+      />
     </div>
   );
 };

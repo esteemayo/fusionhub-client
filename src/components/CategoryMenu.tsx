@@ -3,9 +3,14 @@ import CategoryMenuList from './CategoryMenuList';
 
 import { CategoryMenuProps } from '../types';
 
-const CategoryMenu = ({ isOpen, onRemove, onUpdate }: CategoryMenuProps) => {
+const CategoryMenu = ({
+  isOpen,
+  onClose,
+  onRemove,
+  onUpdate,
+}: CategoryMenuProps) => {
   return (
-    <ContextMenu isOpen={isOpen}>
+    <ContextMenu isOpen={isOpen} onClose={onClose}>
       <CategoryMenuList onRemove={onRemove} onUpdate={onUpdate} />
     </ContextMenu>
   );

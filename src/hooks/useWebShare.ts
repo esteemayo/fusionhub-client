@@ -38,7 +38,7 @@ export const useWebShare: IWebShare = (
             const blob = await response.blob();
             const file = new File(
               [blob],
-              fileName! ?? '/img/dafault-post.jpg',
+              fileName! ?? '/img/default-post.jpg',
               { type: blob.type }
             );
             shareData = { ...shareData, files: [file] };

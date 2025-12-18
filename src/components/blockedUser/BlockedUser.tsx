@@ -2,11 +2,12 @@ import { useMemo } from 'react';
 
 import UserAvatar from '../UserAvatar';
 
-import { useAppDispatch } from '../../hooks/hooks';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
-
-import { BlockedUserProps, BlockPayload } from '../../types';
+import { useAppDispatch } from '../../hooks/hooks';
 import { onOpen } from '../../features/blockModal/blockModalSlice';
+
+import { imageSrc } from '../../utils';
+import { BlockedUserProps, BlockPayload } from '../../types';
 
 import './BlockedUser.scss';
 
@@ -57,7 +58,7 @@ const BlockedUser = ({
       <div className='blocked-user__container'>
         <div className='blocked-user__cover'>
           <UserAvatar
-            imgSrc={image}
+            imgSrc={imageSrc(image)}
             size={40}
             isGoogleAvatar={isGoogleImage}
             alt={`${username}’s profile avatar`}

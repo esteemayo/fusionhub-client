@@ -18,7 +18,7 @@ const Hero = ({ img, slug, title, author, createdAt }: HeroProps) => {
     () =>
       img
         ? `https://ik.imagekit.io/devayo${img}`
-        : 'https://ik.imagekit.io/devayo/dafault-post.jpg',
+        : 'https://ik.imagekit.io/devayo/default-post.jpg',
     [img]
   );
 

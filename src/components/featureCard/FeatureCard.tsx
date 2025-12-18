@@ -17,6 +17,11 @@ const FeatureCard = ({
   comments,
   createdAt,
 }: FeatureCardProps) => {
+  const imageSrc =
+    typeof img === 'string' && img.trim().length > 0
+      ? img
+      : '/default-post.jpg';
+
   return (
     <article
       role='article'
@@ -27,7 +32,7 @@ const FeatureCard = ({
       <div className='feature-card__container'>
         <figure className='feature-card__cover'>
           <Image
-            src={img ?? '/dafault-post.jpg'}
+            src={imageSrc}
             width={110}
             height={110}
             alt={`Thumbnail image for ${title}`}

@@ -4,6 +4,7 @@ import Image from '../Image';
 import ClockOutlinedIcon from '../icons/ClockOutlinedIcon';
 
 import { FeedProps } from '../../types';
+import { imageSrc } from '../../utils';
 import { useDate } from '../../hooks/useDate';
 
 import './Feed.scss';
@@ -21,13 +22,14 @@ const Feed = ({ img, title, slug, createdAt, onClose }: FeedProps) => {
     >
       <figure className='feed__wrapper'>
         <Image
-          src={img ?? '/dafault-post.jpg'}
+          src={imageSrc(img)}
           width={65}
           height={65}
           alt={title ? `Thumbnail for ${title}` : 'Post thumbnail'}
           className='feed__wrapper--img'
         />
       </figure>
+
       <div className='feed__box'>
         <h3 id={`feed-title-${slug}`} className='feed__box--title'>
           <Link
@@ -38,6 +40,7 @@ const Feed = ({ img, title, slug, createdAt, onClose }: FeedProps) => {
             {title}
           </Link>
         </h3>
+
         <time
           dateTime={createdAt}
           className='feed__box--date'

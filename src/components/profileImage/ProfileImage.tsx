@@ -7,8 +7,8 @@ import CameraIcon from '../icons/CameraIcon';
 import Upload from '../upload/Upload';
 import UploadProgressCircle from '../uploadProgressCircle/UploadProgressCircle';
 
-import { excerpts } from '../../utils';
 import { ProfileImageProps } from '../../types';
+import { excerpts, imageSrc } from '../../utils';
 
 import './ProfileImage.scss';
 
@@ -63,11 +63,12 @@ const ProfileImage = ({
         <div className='profile-image__user'>
           <div className='profile-image__image'>
             <UserAvatar
-              imgSrc={image}
+              imgSrc={imageSrc(image)}
               size={120}
               isGoogleAvatar={!!isGoogleImage}
               className='profile-image__image--avatar'
             />
+
             {isDisabled && (
               <div
                 className='profile-image__progress'
@@ -77,6 +78,7 @@ const ProfileImage = ({
                 <UploadProgressCircle progress={progress} />
               </div>
             )}
+
             <div className='profile-image__upload'>
               <Upload
                 id='avatar'
@@ -96,11 +98,13 @@ const ProfileImage = ({
               </Upload>
             </div>
           </div>
+
           <div className='profile-image__details'>
             <div className='profile-image__details--info'>
               <span className='profile-image__details--name'>{name}</span>
               <Badge role={role} />
             </div>
+
             <p
               onClick={handleCollapse}
               className='profile-image__details--bio'
@@ -119,6 +123,7 @@ const ProfileImage = ({
           </div>
         </div>
       </div>
+
       <div className='profile-image__buttons'>
         <button
           type='button'
@@ -127,9 +132,11 @@ const ProfileImage = ({
           className='profile-image__buttons--upload'
           aria-label='Upload a new profile image'
           aria-disabled={isDisabled}
+          aria-haspopup='true'
         >
           Upload
         </button>
+
         <button
           type='button'
           onClick={onOpen}
@@ -137,6 +144,7 @@ const ProfileImage = ({
           className='profile-image__buttons--remove'
           aria-label='Remove profile image'
           aria-disabled={isDisabled}
+          aria-haspopup='dialog'
         >
           Remove
         </button>

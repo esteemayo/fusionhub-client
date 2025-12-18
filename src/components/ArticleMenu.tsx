@@ -3,9 +3,14 @@ import ArticleMenuList from './ArticleMenuList';
 
 import { ArticleMenuProps } from '../types';
 
-const ArticleMenu = ({ isOpen, onDelete, onUpdate }: ArticleMenuProps) => {
+const ArticleMenu = ({
+  isOpen,
+  onClose,
+  onDelete,
+  onUpdate,
+}: ArticleMenuProps) => {
   return (
-    <ContextMenu isOpen={isOpen} type='article'>
+    <ContextMenu isOpen={isOpen} onClose={onClose} type='article'>
       <ArticleMenuList onDelete={onDelete} onUpdate={onUpdate} />
     </ContextMenu>
   );

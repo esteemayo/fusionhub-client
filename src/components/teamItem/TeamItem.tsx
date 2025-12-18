@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-
 import { TeamItemProps } from '../../types';
 
 import './TeamItem.scss';

@@ -2,8 +2,8 @@ import GoogleImage from './GoogleImage';
 import Image from './Image';
 import UserAvatarSkeleton from './userAvatarSkeleton/UserAvatarSkeleton';
 
+import { imageSrc, userAvatarAlt } from '../utils';
 import { UserAvatarProps } from '../types';
-import { userAvatarAlt } from '../utils';
 import { useUserAvatar } from '../hooks/useUserAvatar';
 
 const UserAvatar = ({
@@ -24,7 +24,7 @@ const UserAvatar = ({
     }
   }
 
-  const src = imgSrc || avatarSrc || '';
+  const src = imgSrc || avatarSrc;
   const username = currentUser?.details.username as string;
 
   const altText = alt
@@ -34,7 +34,7 @@ const UserAvatar = ({
     : userAvatarAlt(username, 'Default user');
 
   const commonProps = {
-    src,
+    src: imageSrc(src),
     width: size,
     height: size,
     alt: altText,

@@ -24,6 +24,11 @@ const Feature = ({
   comments,
   createdAt,
 }: FeatureProps) => {
+  const imageSrc =
+    typeof img === 'string' && img.trim().length > 0
+      ? img
+      : '/default-post.jpg';
+
   const parsedDesc = useMemo(
     () => parse(excerpts(String(desc), 150)).toString(),
     [desc]
@@ -38,7 +43,7 @@ const Feature = ({
     >
       <figure className='feature__cover'>
         <Image
-          src={img ?? 'dafault-post.jpg'}
+          src={imageSrc}
           width={450}
           height={300}
           alt={`Thumbnail image for ${title}`}

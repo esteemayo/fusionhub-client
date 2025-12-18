@@ -25,7 +25,7 @@ import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
-import { excerpts } from '../../utils';
+import { excerpts, imageSrc } from '../../utils';
 import { canShowMenu } from '../../utils/canShowMenu';
 
 import {
@@ -402,7 +402,7 @@ const CommentCard = ({
             title={`View ${author.name}’s profile`}
           >
             <UserAvatar
-              imgSrc={author.image}
+              imgSrc={imageSrc(author.image)}
               size={80}
               alt={`${author.username}’s profile picture`}
               className='comment-card__user--img'

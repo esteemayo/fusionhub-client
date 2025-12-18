@@ -3,7 +3,6 @@ import EmptyMessage from '../emptyMessage/EmptyMessage';
 import AcccountHeader from '../accountHeader/AccountHeader';
 
 import Spinner from '../Spinner';
-
 import { CategoryItemsProps } from '../../types';
 
 import './CategoryItems.scss';

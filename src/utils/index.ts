@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
 export const authKey = 'access_token';
-
 export const LS_KEY = 'reply-collapse-state';
 
 export const stripHtml = (html: string) => {
@@ -35,4 +34,10 @@ export const useQueryParams = () => {
 
 export const userAvatarAlt = (username: string, text: string) => {
   return `${username?.concat('’s') ?? text} avatar`;
+};
+
+export const imageSrc = (img?: string) => {
+  return typeof img === 'string' && img.trim().length > 0
+    ? img
+    : '/default-post.jpg';
 };

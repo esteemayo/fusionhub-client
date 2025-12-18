@@ -20,7 +20,7 @@ import { useMute } from '../../hooks/useMute';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 import { useAppDispatch } from '../../hooks/hooks';
 
-import { excerpts } from '../../utils';
+import { excerpts, imageSrc } from '../../utils';
 import {
   BannerProps,
   BlockPayload,
@@ -154,7 +154,6 @@ const Banner = ({
 
   const coverImg = useMemo(() => {
     const imageUrl = (image: string) => `https://ik.imagekit.io/devayo${image}`;
-
     return banner ? imageUrl(banner) : imageUrl('/banner-1.jpg');
   }, [banner]);
 
@@ -170,8 +169,8 @@ const Banner = ({
 
   const isDisabled = useMemo(
     () =>
-      (0 < progress && progress < 100) ||
-      (0 < advancement && advancement < 100),
+      (progress > 0 && progress < 100) ||
+      (advancement > 0 && advancement < 100),
     [advancement, progress]
   );
 
@@ -191,27 +190,29 @@ const Banner = ({
 
   return (
     <Container cover={coverImg} className='banner'>
-      {0 < advancement && advancement < 100 && (
+      {advancement > 0 && advancement < 100 && (
         <div aria-label={`Uploading ${advancement}`} className='banner__loader'>
           <UploadProgressCircle progress={advancement} />
         </div>
       )}
+
       <Upload
         id='avatar'
-        disabled={(0 < progress && progress < 100) || !!query}
+        disabled={(progress > 0 && progress < 100) || !!query}
         setData={onChangeImageData}
         setProgress={onChangeImageProgress}
       >
         <div className='banner__user'>
           <div className={`banner__user--image ${!!query && 'disabled'}`}>
             <UserAvatar
-              imgSrc={image}
+              imgSrc={imageSrc(image)}
               size={120}
               alt={(query! && `${username}'s profile picture`) || ''}
               isGoogleAvatar={isGoogleImage}
               className={avatarClasses}
             />
-            {0 < progress && progress < 100 && (
+
+            {progress > 0 && progress < 100 && (
               <div
                 aria-label={`Uploading ${progress}`}
                 className='banner__loader avatar'
@@ -222,11 +223,12 @@ const Banner = ({
           </div>
         </div>
       </Upload>
+
       <div className='banner__box'>
         <div className={wrapperClasses}>
           <Upload
             id='banner'
-            disabled={0 < advancement && advancement < 100}
+            disabled={advancement > 0 && advancement < 100}
             setData={onChangeCoverData}
             setProgress={onChangeCoverProgress}
           >
@@ -240,6 +242,7 @@ const Banner = ({
             </div>
           </Upload>
         </div>
+
         <BannerMenu
           role={role}
           isOpen={isShow}

@@ -328,7 +328,7 @@ const Article = ({
                 src={post.img}
                 width={300}
                 height={250}
-                alt={post.title || ''}
+                alt={post.title}
                 className='article__image--img'
               />
             </div>
@@ -375,6 +375,7 @@ const Article = ({
               isOpen={isOpen}
               isPostAuthor={isPostAuthor}
               postAuthorRole={post.author.role}
+              onClose={handleClose}
               onDelete={handleDelete}
               onToggle={handleToggle}
               onUpdate={handleUpdate}

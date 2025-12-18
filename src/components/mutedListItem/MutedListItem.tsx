@@ -2,10 +2,11 @@ import { useMemo } from 'react';
 
 import UserAvatar from '../UserAvatar';
 
-import { useMute } from '../../hooks/useMute';
 import { useAppDispatch } from '../../hooks/hooks';
-
+import { useMute } from '../../hooks/useMute';
 import { onOpen } from '../../features/muteModal/muteModalSlice';
+
+import { imageSrc } from '../../utils';
 import { MutedListItemProps, MuteModalType, MutePayload } from '../../types';
 
 import './MutedListItem.scss';
@@ -64,7 +65,7 @@ const MutedListItem = ({
       <div className='muted-list-item__container'>
         <div className='muted-list-item__user'>
           <UserAvatar
-            imgSrc={src}
+            imgSrc={imageSrc(src)}
             size={40}
             isGoogleAvatar={isGoogleImage}
             alt={`${displayName}’s profile avatar`}

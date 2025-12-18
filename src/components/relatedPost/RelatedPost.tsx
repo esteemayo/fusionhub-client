@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Image from '../Image';
 
+import { imageSrc } from '../../utils';
 import { RelatedPostProps } from '../../types';
 
 import './RelatedPost.scss';
@@ -26,13 +27,15 @@ const RelatedPost = ({
         <div className='related-post__container--overlay' aria-hidden='true'>
           &nbsp;
         </div>
+
         <Image
-          src={img ?? '/dafault-post.jpg'}
+          src={imageSrc(img)}
           width={250}
           height={150}
           alt={title ? `Thumbnail for "${title}"` : 'Post thumbnail'}
           className='related-post__container--img'
         />
+
         <footer className='related-post__footer'>
           <Link
             to={`/post/${slug}`}
@@ -41,6 +44,7 @@ const RelatedPost = ({
           >
             {title}
           </Link>
+
           <div className='related-post__footer--category'>
             <Link
               to={`/posts?category=${category}`}
@@ -48,6 +52,7 @@ const RelatedPost = ({
             >
               <span>{category}</span>
             </Link>
+
             <time
               dateTime={new Date(createdAt).toISOString()}
               aria-label={`Published ${readableDate}`}

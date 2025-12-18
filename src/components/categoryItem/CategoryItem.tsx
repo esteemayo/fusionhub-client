@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 
-import CategoryAction from '../categoryAction/CategoryAction';
-
 import { CategoryItemProps } from '../../types';
+import CategoryAction from '../categoryAction/CategoryAction';
 
 import './CategoryItem.scss';
 
@@ -97,6 +96,7 @@ const CategoryItem = ({
           isOpen={isOpen}
           isDisabled={isDisabled}
           currentUser={currentUser}
+          onClose={handleClose}
           onRemove={handleRemove}
           onToggle={onToggleHandler}
           onUpdate={handleUpdate}

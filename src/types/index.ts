@@ -854,6 +854,7 @@ export interface ArticleMenusProps {
   isOpen: boolean;
   isPostAuthor: boolean;
   postAuthorRole: RoleType;
+  onClose(): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -861,6 +862,7 @@ export interface ArticleMenusProps {
 
 export interface ArticleMenuProps {
   isOpen: boolean;
+  onClose(): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -1089,6 +1091,7 @@ export interface CategoryActionProps
   isOpen: boolean;
   isDisabled: boolean;
   currentUser: CurrentUserType | null;
+  onClose(): void;
   onRemove(e: React.MouseEvent<HTMLButtonElement>): void;
   onToggle(e?: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -1096,6 +1099,7 @@ export interface CategoryActionProps
 
 export interface CategoryMenuProps {
   isOpen: boolean;
+  onClose(): void;
   onRemove(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }
@@ -1151,7 +1155,7 @@ export interface IVoiceSearch {
     transcript: string;
     startListening(): void | undefined;
     stopListening(): void | undefined;
-    toggleListening(): void
+    toggleListening(): void;
   };
 }
 

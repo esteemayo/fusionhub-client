@@ -22,7 +22,7 @@ import * as reportModal from '../../features/reportModal/reportModalSlice';
 import * as muteModal from '../../features/muteModal/muteModalSlice';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
-import { excerpts } from '../../utils';
+import { excerpts, imageSrc } from '../../utils';
 import { canShowMenu } from '../../utils/canShowMenu';
 
 import {
@@ -398,7 +398,7 @@ const Reply = ({
               title={`View ${author.username}’s profile`}
             >
               <UserAvatar
-                imgSrc={author.image}
+                imgSrc={imageSrc(author.image)}
                 size={40}
                 alt={`${author.username}’s profile picture`}
                 className='reply__author--img'

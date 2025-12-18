@@ -23,13 +23,18 @@ const Partners = () => {
         <ul className='partners__icons' role='list'>
           {partnerItems.map((item) => {
             const { id, alt, imgSrc } = item;
+            const img =
+              typeof imgSrc === 'string' && imgSrc.trim().length > 0
+                ? imgSrc
+                : '/user-default.jpg';
+
             return (
               <li key={id} role='listitem'>
                 <Image
-                  src={imgSrc}
+                  src={img}
                   width={100}
                   height={100}
-                  alt={alt || ''}
+                  alt={alt}
                   className='partners__icons--logo'
                 />
               </li>

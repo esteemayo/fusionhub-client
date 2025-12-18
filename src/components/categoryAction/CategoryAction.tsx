@@ -11,6 +11,7 @@ const CategoryAction = ({
   isOpen,
   isDisabled,
   currentUser,
+  onClose,
   onRemove,
   onToggle,
   onUpdate,
@@ -62,7 +63,13 @@ const CategoryAction = ({
       >
         <HorizontalEllipsisIcon />
       </button>
-      <CategoryMenu isOpen={isOpen} onRemove={onRemove} onUpdate={onUpdate} />
+
+      <CategoryMenu
+        isOpen={isOpen}
+        onClose={onClose}
+        onRemove={onRemove}
+        onUpdate={onUpdate}
+      />
     </div>
   );
 };
