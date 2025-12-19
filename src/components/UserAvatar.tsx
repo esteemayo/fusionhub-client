@@ -24,7 +24,7 @@ const UserAvatar = ({
     }
   }
 
-  const src = imgSrc || avatarSrc;
+  const src = imageSrc(imgSrc || avatarSrc);
   const username = currentUser?.details.username as string;
 
   const altText = alt
@@ -34,7 +34,7 @@ const UserAvatar = ({
     : userAvatarAlt(username, 'Default user');
 
   const commonProps = {
-    src: imageSrc(src),
+    src,
     width: size,
     height: size,
     alt: altText,

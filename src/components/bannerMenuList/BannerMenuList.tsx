@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import ShareIcon from '../icons/ShareIcon';
 import MuteIcon from '../icons/MuteIcon';
@@ -8,9 +8,8 @@ import DeactivateIcon from '../icons/DeactivateIcon';
 import TrashIcon from '../icons/TrashIcon';
 import RemoveAvatarIcon from '../icons/RemoveAvatarIcon';
 
-import BannerMenuListItem from '../bannerMenuListItem/BannerMenuListItem';
-
 import { BannerMenuListProps } from '../../types';
+import BannerMenuListItem from '../bannerMenuListItem/BannerMenuListItem';
 
 import './BannerMenuList.scss';
 
@@ -23,6 +22,7 @@ const BannerMenuList = ({
   username,
   isBlocked,
   isMuted,
+  onClose,
   onShare,
   onMute,
   onReport,
@@ -31,6 +31,8 @@ const BannerMenuList = ({
   onRemoveAvatar,
   onDeactivate,
 }: BannerMenuListProps) => {
+  const menuRef = useRef<HTMLUListElement>(null);
+
   const itemLabel = useCallback(
     (label: string) => `${label} @${username}`,
     [username]
@@ -41,8 +43,21 @@ const BannerMenuList = ({
     [isOpen]
   );
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        e.preventDefault();
+        onClose();
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+    return () => window.removeEventListener('mousedown', handleClickOutside);
+  }, [onClose]);
+
   return (
     <ul
+      ref={menuRef}
       className={menuListClasses}
       role='menu'
       aria-hidden={!isOpen}
@@ -56,6 +71,7 @@ const BannerMenuList = ({
               <ShareIcon />
             </BannerMenuListItem>
           )}
+
           {role !== 'admin' && (
             <>
               {!isBlocked && (
@@ -66,6 +82,7 @@ const BannerMenuList = ({
                   >
                     <MuteIcon />
                   </BannerMenuListItem>
+
                   <BannerMenuListItem
                     label={itemLabel('Report')}
                     onAction={onReport}
@@ -74,6 +91,7 @@ const BannerMenuList = ({
                   </BannerMenuListItem>
                 </>
               )}
+
               <BannerMenuListItem
                 type='danger'
                 label={itemLabel(isBlocked ? 'Unblock' : 'Block')}
@@ -93,11 +111,13 @@ const BannerMenuList = ({
               <TrashIcon />
             </BannerMenuListItem>
           )}
+
           {image && (
             <BannerMenuListItem label='Remove Avatar' onAction={onRemoveAvatar}>
               <RemoveAvatarIcon />
             </BannerMenuListItem>
           )}
+
           <BannerMenuListItem
             type='danger'
             label='Deactivate'

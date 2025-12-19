@@ -99,11 +99,6 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
     refetch: refetchDislikes,
   } = useFeatureQuery('dislikes');
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    setActiveCardId(null);
-  };
-
   const profileClasses = useMemo(
     () => (query ? 'profile-features show' : 'profile-features hide'),
     [query]
@@ -148,7 +143,6 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
       <ProfileArticles
         posts={allArticles as PostType[]}
         userId={userId}
-        activeCardId={activeCardId}
         queryKey='articles'
         title='No Articles Yet'
         subtitle="This user hasn't published any articles. Check back later or explore other profiles!"
@@ -156,7 +150,6 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         hasNextPage={hasNextPageArticles}
         error={articlesError}
         refetch={refetchArticles}
-        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageArticles}
       />
     ),
@@ -175,7 +168,6 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
       <ProfileArticles
         posts={allLikes as PostType[]}
         userId={userId}
-        activeCardId={activeCardId}
         queryKey='likes'
         title='No Liked Articles Yet'
         subtitle="This user hasn't liked any articles. Check back later or explore other profiles!"
@@ -183,18 +175,15 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         hasNextPage={hasNextPageLikes}
         error={likesError}
         refetch={refetchLikes}
-        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageLikes}
       />
     ),
     replies: (
       <ProfileReplies
-        activeCardId={activeCardId}
         replies={allReplies as ReplyType[]}
         isLoading={isFetchingReplies}
         hasNextPage={hasNextPageReplies}
         error={repliesError}
-        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageReplies}
       />
     ),
@@ -202,7 +191,6 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
       <ProfileArticles
         posts={allDislikes as PostType[]}
         userId={userId}
-        activeCardId={activeCardId}
         queryKey='dislikes'
         title='No Dislike Articles Yet'
         subtitle="This user hasn't disliked any articles. Check back later or explore other profiles!"
@@ -210,20 +198,13 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         hasNextPage={hasNextPageDislikes}
         error={dislikesError}
         refetch={refetchDislikes}
-        onChangeCardId={setActiveCardId}
         fetchNextPage={fetchNextPageDislikes}
       />
     ),
   };
 
-  const onRenderContent = (tab: string) => {
-    setActiveCardId(null);
-    return featureContent[tab];
-  };
-
   return (
     <section
-      onClick={handleClick}
       className={profileClasses}
       aria-live='polite'
       aria-label='User profile features'
@@ -232,7 +213,7 @@ const ProfileFeatures = ({ query, userId }: ProfileFeaturesProps) => {
         <Tabs
           tabs={tabs}
           defaultValue='articles'
-          renderContent={(tab) => onRenderContent(tab)}
+          renderContent={(tab) => featureContent[tab]}
         />
       </div>
     </section>

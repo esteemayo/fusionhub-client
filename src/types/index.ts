@@ -67,7 +67,7 @@ export interface SocialMenuItemProps {
 
 export interface ContextMenuProps {
   isOpen: boolean;
-  type?: 'article';
+  type?: 'article' | 'feature';
   onClose(): void;
   children: React.ReactNode;
 }
@@ -708,6 +708,7 @@ export interface BannerMenuProps {
   isBlocked: boolean;
   isMuted: boolean;
   disabled: boolean;
+  onClose(): void;
   onToggle(e: React.MouseEvent<HTMLButtonElement>): void;
   onShare(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -727,6 +728,7 @@ export interface BannerMenuListProps {
   username: string;
   isBlocked: boolean;
   isMuted: boolean;
+  onClose(): void;
   onShare(e: React.MouseEvent<HTMLButtonElement>): void;
   onMute(e: React.MouseEvent<HTMLButtonElement>): void;
   onReport(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -789,7 +791,6 @@ export interface TooltipProps {
 export interface ProfileArticlesProps {
   posts: PostType[];
   userId: string;
-  activeCardId: string | null;
   queryKey: 'articles' | 'likes' | 'dislikes';
   title: string;
   subtitle: string;
@@ -799,7 +800,6 @@ export interface ProfileArticlesProps {
   refetch(
     options?: RefetchOptions
   ): Promise<QueryObserverResult<InfiniteData<unknown, unknown>, Error>>;
-  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   fetchNextPage: (
     options?: FetchNextPageOptions
   ) => Promise<
@@ -810,9 +810,7 @@ export interface ProfileArticlesProps {
 export interface ArticleProps {
   post: PostType;
   userId: string;
-  activeCardId: string | null;
   queryKey: 'articles' | 'likes' | 'dislikes';
-  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   refetch(
     options?: RefetchOptions
   ): Promise<QueryObserverResult<InfiniteData<unknown, unknown>, Error>>;
@@ -905,17 +903,13 @@ export interface ProfileCommentProps {
   dislikeCount: number;
   createdAt: string;
   updatedAt: string;
-  activeCardId: string | null;
-  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ProfileRepliesProps {
-  activeCardId: string | null;
   replies: ReplyType[];
   isLoading: boolean;
   hasNextPage: boolean;
   error: Error | null;
-  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
   fetchNextPage: (
     options?: FetchNextPageOptions
   ) => Promise<
@@ -935,8 +929,6 @@ export interface ProfileReplyProps {
   dislikeCount: number;
   createdAt: string;
   updatedAt: string;
-  activeCardId: string | null;
-  onChangeCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ProfileActionProps {
@@ -948,6 +940,7 @@ export interface ProfileActionProps {
   isCommentAuthor: boolean;
   isPostAuthor: boolean;
   isReplyAuthor?: boolean;
+  onClose(): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onToggle(e?: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
@@ -955,6 +948,7 @@ export interface ProfileActionProps {
 
 export interface ProfileMenuProps {
   isOpen: boolean;
+  onClose(): void;
   onDelete(e: React.MouseEvent<HTMLButtonElement>): void;
   onUpdate(e: React.MouseEvent<HTMLButtonElement>): void;
 }

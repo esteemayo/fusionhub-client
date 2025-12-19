@@ -41,8 +41,6 @@ const ProfileReply = ({
   dislikeCount,
   createdAt,
   updatedAt,
-  activeCardId,
-  onChangeCardId,
 }: ProfileReplyProps) => {
   const dispatch = useAppDispatch();
 
@@ -121,13 +119,7 @@ const ProfileReply = ({
     e?.stopPropagation();
 
     setIsShow((value) => {
-      if (value) {
-        onChangeCardId(null);
-        return false;
-      } else {
-        onChangeCardId(replyId);
-        return true;
-      }
+      return !value;
     });
   };
 
@@ -302,10 +294,6 @@ const ProfileReply = ({
     return () => window.removeEventListener('keydown', handleEscKey);
   }, [handleCancel, isOpen, isShow]);
 
-  useEffect(() => {
-    setIsShow(activeCardId === replyId);
-  }, [activeCardId, replyId]);
-
   const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
 
   return (
@@ -440,6 +428,7 @@ const ProfileReply = ({
               isCommentAuthor={isCommentAuthor}
               isPostAuthor={isPostAuthor}
               isReplyAuthor={isReplyAuthor}
+              onClose={handleClose}
               onDelete={handleDelete}
               onToggle={handleToggle}
               onUpdate={handleUpdate}

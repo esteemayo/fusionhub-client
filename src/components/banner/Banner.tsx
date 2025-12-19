@@ -253,6 +253,7 @@ const Banner = ({
           isBlocked={isBlocked}
           isMuted={isMuted}
           disabled={isDisabled}
+          onClose={onClose}
           onToggle={onToggle}
           onShare={shareHandler}
           onMute={handleMute}

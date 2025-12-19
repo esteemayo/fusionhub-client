@@ -11,7 +11,6 @@ import './ProfileArticles.scss';
 const ProfileArticles = ({
   posts,
   userId,
-  activeCardId,
   queryKey,
   title,
   subtitle,
@@ -19,7 +18,6 @@ const ProfileArticles = ({
   hasNextPage,
   error,
   refetch,
-  onChangeCardId,
   fetchNextPage,
 }: ProfileArticlesProps) => {
   const noPosts = (posts ?? []).length < 1;
@@ -69,9 +67,7 @@ const ProfileArticles = ({
                 key={post._id}
                 post={post}
                 userId={userId}
-                activeCardId={activeCardId}
                 queryKey={queryKey}
-                onChangeCardId={onChangeCardId}
                 refetch={refetch}
               />
             );

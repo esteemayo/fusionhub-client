@@ -15,6 +15,7 @@ const BannerMenu = ({
   isBlocked,
   isMuted,
   disabled,
+  onClose,
   onToggle,
   onShare,
   onMute,
@@ -39,6 +40,7 @@ const BannerMenu = ({
       >
         <HorizontalEllipsisIcon />
       </button>
+
       <BannerMenuList
         role={role}
         isOpen={isOpen}
@@ -48,6 +50,7 @@ const BannerMenu = ({
         username={username}
         isBlocked={isBlocked}
         isMuted={isMuted}
+        onClose={onClose}
         onShare={onShare}
         onMute={onMute}
         onReport={onReport}

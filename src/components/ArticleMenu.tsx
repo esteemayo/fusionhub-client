@@ -1,5 +1,5 @@
-import ContextMenu from './contextMenu/ContextMenu';
 import ArticleMenuList from './ArticleMenuList';
+import ContextMenu from './contextMenu/ContextMenu';
 
 import { ArticleMenuProps } from '../types';
 

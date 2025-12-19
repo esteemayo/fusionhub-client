@@ -60,7 +60,11 @@ const LoginForm = ({
             validate
             aria-invalid={Boolean(errors?.[name])}
             aria-describedby={errors?.[name] ? `${id}-error` : undefined}
-            aria-label={`${showPassword ? 'Hide' : 'Show'} password`}
+            aria-label={
+              isPassword
+                ? `${showPassword ? 'Hide' : 'Show'} password`
+                : 'identifier'
+            }
             aria-pressed={isPassword ? showPassword : 'false'}
           />
         );

@@ -9,7 +9,9 @@ const ContextMenu = ({ isOpen, type, onClose, children }: ContextMenuProps) => {
   const contextMenuClasses = useMemo(
     () =>
       isOpen
-        ? `context-menu ${type === 'article' ? 'article' : ''} show`
+        ? `context-menu ${type === 'article' ? 'article' : ''} ${
+            type === 'feature' ? 'feature' : ''
+          } show`
         : 'context-menu hide',
     [isOpen, type]
   );

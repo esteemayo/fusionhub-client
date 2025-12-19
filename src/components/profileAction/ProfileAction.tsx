@@ -16,6 +16,7 @@ const ProfileAction = ({
   isCommentAuthor,
   isPostAuthor,
   isReplyAuthor,
+  onClose,
   onDelete,
   onToggle,
   onUpdate,
@@ -93,7 +94,13 @@ const ProfileAction = ({
       >
         <VerticalEllipsisIcon />
       </button>
-      <ProfileMenu isOpen={isOpen} onDelete={onDelete} onUpdate={onUpdate} />
+
+      <ProfileMenu
+        isOpen={isOpen}
+        onClose={onClose}
+        onDelete={onDelete}
+        onUpdate={onUpdate}
+      />
     </div>
   );
 };

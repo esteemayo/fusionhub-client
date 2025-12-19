@@ -33,6 +33,7 @@ const Input = ({
         isPassword={isPassword}
         onAction={onAction}
       />
+
       <input
         {...rest}
         {...register(name)}

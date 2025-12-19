@@ -55,14 +55,6 @@ const UserProfile = () => {
     setIsShow(false);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as Element;
-
-    if (!target.classList.contains('banner-menu-list-item__btn')) {
-      handleClose();
-    }
-  };
-
   const isLoading = useMemo(
     () => (username ? isPendingUser : isPending),
     [isPending, isPendingUser, username]
@@ -93,11 +85,15 @@ const UserProfile = () => {
 
       dispatch(updateUserData(payload))
         .then(() => {
-          toast.success('Profile image updated successfully!');
+          toast.success('Profile image updated successfully!', {
+            role: 'alert',
+          });
           refetch();
         })
         .catch(() => {
-          toast.error('Failed to update profile image. Please try again.');
+          toast.error('Failed to update profile image. Please try again.', {
+            role: 'alert',
+          });
         })
         .finally(() => {
           setProgress(0);
@@ -116,11 +112,13 @@ const UserProfile = () => {
 
       dispatch(updateUserData(payload))
         .then(() => {
-          toast.success('Banner updated successfully!');
+          toast.success('Banner updated successfully!', { role: 'alert' });
           refetch();
         })
         .catch(() => {
-          toast.error('Failed to update banner. Please try again.');
+          toast.error('Failed to update banner. Please try again.', {
+            role: 'alert',
+          });
         })
         .finally(() => {
           setAdvancement(0);
@@ -130,7 +128,7 @@ const UserProfile = () => {
   }, [advancement, cover, dispatch, refetch]);
 
   return (
-    <div onClick={handleClick} className='profile'>
+    <div className='profile'>
       <div className='profile__container'>
         <AccountHeading
           title='Profile'
@@ -142,6 +140,7 @@ const UserProfile = () => {
           type='profile'
         />
       </div>
+
       <div className='profile__wrapper'>
         {!user && !isLoading ? (
           <ErrorState
@@ -188,8 +187,11 @@ const UserProfile = () => {
               onClose={handleClose}
               onToggle={handleToggle}
             />
+
             <ProfileDetails {...user!} />
+
             <AboutProfile about={user?.about as string} />
+
             <ProfileFeatures
               query={username}
               userId={userData?._id as string}

@@ -190,6 +190,7 @@ const RegisterForm = ({
           setProgress={onChangeProgress}
           aria-label='Upload your profile image'
         />
+
         {progress > 0 && progress < 100 && <ProgressBar progress={progress} />}
       </div>
 

@@ -42,14 +42,7 @@ const createDislikePost = async (postId: string) => {
   return data;
 };
 
-const Article = ({
-  post,
-  userId,
-  activeCardId,
-  queryKey,
-  onChangeCardId,
-  refetch,
-}: ArticleProps) => {
+const Article = ({ post, userId, queryKey, refetch }: ArticleProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -96,13 +89,7 @@ const Article = ({
     e.stopPropagation();
 
     setIsOpen((value) => {
-      if (value) {
-        onChangeCardId(null);
-        return false;
-      } else {
-        onChangeCardId(postId);
-        return true;
-      }
+      return !value;
     });
   };
 
@@ -253,10 +240,6 @@ const Article = ({
     window.addEventListener('keydown', handleEscKey);
     return () => window.removeEventListener('keydown', handleEscKey);
   }, [handleCancel, isOpen, isShow]);
-
-  useEffect(() => {
-    setIsOpen(activeCardId === postId);
-  }, [activeCardId, postId]);
 
   useEffect(() => {
     if (error) {

@@ -2,6 +2,8 @@
 @use '../../styles/variables.scss' as vars;
 
 .profile-reply {
+  overflow: hidden;
+
   &:not(:last-child) {
     padding-bottom: 1.25rem;
     margin-bottom: 1.25rem;
