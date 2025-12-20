@@ -34,13 +34,7 @@ import {
 
 import './Reply.scss';
 
-const Reply = ({
-  reply,
-  slug,
-  level,
-  activeCardId,
-  onChangeActiveCardId,
-}: ReplyProps) => {
+const Reply = ({ reply, slug, level }: ReplyProps) => {
   const dispatch = useAppDispatch();
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
@@ -147,13 +141,7 @@ const Reply = ({
     e?.stopPropagation();
 
     setIsShow((value) => {
-      if (value) {
-        onChangeActiveCardId(null);
-        return false;
-      } else {
-        onChangeActiveCardId(replyId);
-        return true;
-      }
+      return !value;
     });
   };
 
@@ -371,10 +359,6 @@ const Reply = ({
     return () => window.removeEventListener('keydown', handleEscKey);
   }, [handleCancel, isOpen, isShow, value]);
 
-  useEffect(() => {
-    setIsShow(activeCardId === replyId);
-  }, [activeCardId, replyId]);
-
   const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
 
   return (
@@ -564,14 +548,7 @@ const Reply = ({
 
       {replies.map((reply) => {
         return (
-          <Reply
-            key={reply._id}
-            reply={reply}
-            slug={slug}
-            level={level! + 1}
-            activeCardId={activeCardId}
-            onChangeActiveCardId={onChangeActiveCardId}
-          />
+          <Reply key={reply._id} reply={reply} slug={slug} level={level! + 1} />
         );
       })}
     </>

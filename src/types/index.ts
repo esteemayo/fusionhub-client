@@ -1553,7 +1553,6 @@ export type sortType =
 export interface CommentProps {
   sort: sortType;
   slug: string;
-  activeCardId: string | null;
   isPending: boolean;
   isPendingUser: boolean;
   isOpen: boolean;
@@ -1564,7 +1563,6 @@ export interface CommentProps {
   commentUsers: CommentImageType[] | undefined;
   commentToShow: number;
   mutation: UseMutationResult<unknown, unknown, string, unknown>;
-  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
   onOpen(): void;
   onClose(): void;
@@ -1615,9 +1613,7 @@ export interface CommentFilterItemProps {
 
 export interface CommentCardProps {
   slug: string;
-  activeCardId: string | null;
   comment: CommentType;
-  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
   onOpen(): void;
 }
 
@@ -1723,25 +1719,20 @@ export interface ShareContentProps {
 
 export interface RepliesProps {
   slug: string;
-  activeCardId: string | null;
+  isLoading: boolean;
   replyLists?: ReplyType[];
-  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ThreadCollapseProps {
   slug: string;
-  activeCardId: string | null;
   initialVisible?: number;
   replies: ReplyType[];
-  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ReplyProps {
   reply: ReplyType;
   slug: string;
   level?: number;
-  activeCardId: string | null;
-  onChangeActiveCardId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export interface ReplyMenuProps {

@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import ChevronUpIcon from '../icons/ChevronUpIcon';
 import Reply from '../reply/Reply';
@@ -17,10 +11,8 @@ import './ThreadCollapse.scss';
 
 const ThreadCollapse = ({
   slug,
-  activeCardId,
   initialVisible = 1,
   replies,
-  onChangeActiveCardId,
 }: ThreadCollapseProps) => {
   const firstReplyId = replies[0]._id;
   const { isOpen, setIsOpen } = useReplyCollapseState(firstReplyId);
@@ -54,38 +46,31 @@ const ThreadCollapse = ({
     setShowAll(true);
   };
 
-  const visible = useMemo(() => {
-    return showAll ? replies : replies.slice(0, initialVisible);
-  }, [initialVisible, replies, showAll]);
+  const visible = useMemo(
+    () => (showAll ? replies : replies.slice(0, initialVisible)),
+    [initialVisible, replies, showAll]
+  );
 
   const remainingCount = useMemo(
     () => replies.length - visible.length,
     [replies.length, visible.length]
   );
 
-  const btnLabel = useMemo(() => {
-    return isOpen
-      ? 'Collapse thread'
-      : `View ${replies?.length} repl${replies?.length > 1 ? 'ies' : 'y'}`;
-  }, [isOpen, replies]);
+  const btnLabel = useMemo(
+    () =>
+      isOpen
+        ? 'Collapse thread'
+        : `View ${replies?.length} repl${replies?.length > 1 ? 'ies' : 'y'}`,
+    [isOpen, replies]
+  );
 
-  const btnMoreLabel = useMemo(() => {
-    return `View ${remainingCount} more repl${
-      remainingCount > 1 ? 'ies' : 'y'
-    }`;
-  }, [remainingCount]);
-
-  useEffect(() => {
-    if (isOpen && contentRef.current) {
-      contentRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  }, [isOpen]);
+  const btnMoreLabel = useMemo(
+    () => `View ${remainingCount} more repl${remainingCount > 1 ? 'ies' : 'y'}`,
+    [remainingCount]
+  );
 
   return (
-    <div role='group' aria-label='Replies thread' className='thread-collapse'>
+    <div role='group' className='thread-collapse' aria-label='Replies thread'>
       <button
         type='button'
         id={`thread-toggle-${firstReplyId}`}
@@ -98,25 +83,19 @@ const ThreadCollapse = ({
         <span>{btnLabel}</span>
         {isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </button>
+
       <div
         id={`thread-content-${firstReplyId}`}
         ref={contentRef}
         role='region'
         aria-labelledby={`thread-toggle-${firstReplyId}`}
         className='thread-collapse__content'
-        style={{ maxHeight: isOpen ? 'none' : '0' }}
+        style={{
+          maxHeight: isOpen ? `${contentRef.current?.scrollHeight}px` : '0',
+        }}
       >
         {visible.map((reply) => {
-          return (
-            <Reply
-              key={reply._id}
-              reply={reply}
-              slug={slug}
-              level={0}
-              activeCardId={activeCardId}
-              onChangeActiveCardId={onChangeActiveCardId}
-            />
-          );
+          return <Reply key={reply._id} reply={reply} slug={slug} level={0} />;
         })}
 
         {isOpen && remainingCount > 0 && (

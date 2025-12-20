@@ -8,12 +8,7 @@ import { RepliesProps } from '../../types';
 
 import './Replies.scss';
 
-const Replies = ({
-  slug,
-  activeCardId,
-  replyLists,
-  onChangeActiveCardId,
-}: RepliesProps) => {
+const Replies = ({ slug, isLoading, replyLists }: RepliesProps) => {
   const { mutedList } = useMute();
   const { blockedUsers } = useBlockedUsers();
 
@@ -30,15 +25,18 @@ const Replies = ({
       <h4 id={`replies-heading-${slug}`} className='sr-only'>
         Replies section
       </h4>
-      <div className='replies__container'>
-        <ThreadCollapse
-          slug={slug}
-          activeCardId={activeCardId}
-          initialVisible={1}
-          replies={visibleReplies}
-          onChangeActiveCardId={onChangeActiveCardId}
-        />
-      </div>
+
+      {isLoading ? (
+        <span className='replies__loader'>loading...</span>
+      ) : (
+        <div className='replies__container'>
+          <ThreadCollapse
+            slug={slug}
+            initialVisible={1}
+            replies={visibleReplies}
+          />
+        </div>
+      )}
     </section>
   );
 };

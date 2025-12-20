@@ -294,6 +294,8 @@
     }
 
     &--time {
+      flex-shrink: 0;
+      max-width: 100%;
       font-size: 1.4rem;
 
       @media screen and (max-width: 56.25em) {
@@ -309,6 +311,10 @@
       }
 
       @include bp.sm {
+        flex-shrink: 1;
+
+        text-align: right;
+        word-break: keep-all;
         font-size: 1.8rem;
       }
 

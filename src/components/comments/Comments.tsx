@@ -30,12 +30,11 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
     commentMutation,
   } = useComment(postId);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [content, setContent] = useState('');
-  const [commentToShow, setCommentToShow] = useState(5);
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const [comments, setComments] = useState(data);
+  const [content, setContent] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [commentToShow, setCommentToShow] = useState(5);
 
   const { sort, setSort, sortedComments } = useSortedComments(comments);
 
@@ -50,19 +49,6 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
   const handleClose = useCallback(() => {
     setIsOpen(false);
   }, []);
-
-  const onOutsideClick = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as Element;
-
-    if (
-      !target.closest('comment-filter') &&
-      !target.closest('[data-filter-toggle]')
-    ) {
-      handleClose();
-    }
-
-    setActiveCardId(null);
-  };
 
   const handleLoadMore = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -120,7 +106,6 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
 
   return (
     <section
-      onClick={onOutsideClick}
       id='comments'
       className='comments'
       role='region'
@@ -131,7 +116,6 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
         <Comment
           sort={sort}
           slug={slug}
-          activeCardId={activeCardId}
           isPending={isPending}
           isPendingUser={isPendingUser}
           isOpen={isOpen}
@@ -142,7 +126,6 @@ const Comments = ({ postId, slug, postAuthorId }: CommentsProps) => {
           commentUsers={commentUsers}
           commentToShow={commentToShow}
           mutation={commentMutation}
-          onChangeActiveCardId={setActiveCardId}
           onClick={handleLoadMore}
           onOpen={handleOpen}
           onClose={handleClose}

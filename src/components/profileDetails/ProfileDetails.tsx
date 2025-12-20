@@ -57,6 +57,7 @@ const ProfileDetails = ({
           </h3>
           <Badge role={role} />
         </div>
+
         <div
           className='profile-details__wrapper'
           aria-label='Account information'
@@ -65,12 +66,16 @@ const ProfileDetails = ({
             <AtSymbolIcon />
             <span aria-label='username'>{username}</span>
           </div>
+
           <span className='profile-details__wrapper--dot' aria-hidden='true'>
             •
           </span>
+
           <div className='profile-details__wrapper--email'>
             <EnvelopeIcon />
-            <span aria-label='email address'>{email}</span>
+            <a href={`mailto:${email}`} aria-label='email address'>
+              {email}
+            </a>
           </div>
         </div>
       </div>
@@ -81,6 +86,7 @@ const ProfileDetails = ({
           </p>
         </div>
       )}
+
       <dl className='profile-details__wrap'>
         {country && (
           <div className='profile-details__wrap--box'>
@@ -89,6 +95,7 @@ const ProfileDetails = ({
             <dd>{country}</dd>
           </div>
         )}
+
         {dateOfBirth && (
           <div className='profile-details__wrap--box'>
             <BalloonIcon />
@@ -96,6 +103,7 @@ const ProfileDetails = ({
             <dd>Born {formattedDateOfBirth}</dd>
           </div>
         )}
+
         <div className='profile-details__wrap--box'>
           <CalendarDaysIcon />
           <dt className='sr-only'>Account creation date</dt>

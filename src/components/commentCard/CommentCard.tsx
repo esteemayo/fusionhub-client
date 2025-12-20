@@ -38,13 +38,7 @@ import {
 
 import './CommentCard.scss';
 
-const CommentCard = ({
-  slug,
-  activeCardId,
-  comment,
-  onChangeActiveCardId,
-  onOpen,
-}: CommentCardProps) => {
+const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
   const {
     _id: commentId,
     author,
@@ -77,7 +71,11 @@ const CommentCard = ({
 
   const queryKey = ['comments', postId];
 
-  const { data, replyMutation } = useReply(postId, commentId);
+  const {
+    isPending: isLoading,
+    data,
+    replyMutation,
+  } = useReply(postId, commentId);
   const { updateCommentMutation } = useComment(postId);
   const {
     isLiked,
@@ -126,13 +124,7 @@ const CommentCard = ({
     e?.stopPropagation();
 
     setIsShow((value) => {
-      if (value) {
-        onChangeActiveCardId(null);
-        return false;
-      } else {
-        onChangeActiveCardId(commentId);
-        return true;
-      }
+      return !value;
     });
   };
 
@@ -376,10 +368,6 @@ const CommentCard = ({
     return () => window.removeEventListener('keydown', handleEscKey);
   }, [isOpen, isShow, onCancelHandler]);
 
-  useEffect(() => {
-    setIsShow(activeCardId === commentId);
-  }, [activeCardId, commentId]);
-
   const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
 
   return (
@@ -567,12 +555,7 @@ const CommentCard = ({
         />
       </div>
 
-      <Replies
-        slug={slug}
-        activeCardId={activeCardId}
-        replyLists={replies}
-        onChangeActiveCardId={onChangeActiveCardId}
-      />
+      <Replies slug={slug} isLoading={isLoading} replyLists={replies} />
     </article>
   );
 };

@@ -25,7 +25,6 @@ import './Comment.scss';
 const Comment = ({
   sort,
   slug,
-  activeCardId,
   isPending,
   isPendingUser,
   isOpen,
@@ -36,7 +35,6 @@ const Comment = ({
   commentUsers,
   commentToShow,
   mutation,
-  onChangeActiveCardId,
   onClick,
   onOpen,
   onClose,
@@ -153,7 +151,6 @@ const Comment = ({
             {mutation.isPending && (
               <CommentCard
                 slug={slug}
-                activeCardId={activeCardId}
                 comment={{
                   _id: new Date().getTime().toString(),
                   content: `${
@@ -176,7 +173,6 @@ const Comment = ({
                   createdAt: new Date().toString(),
                   updatedAt: new Date().toString(),
                 }}
-                onChangeActiveCardId={onChangeActiveCardId}
                 onOpen={onOpen}
               />
             )}
@@ -187,9 +183,7 @@ const Comment = ({
                   <CommentCard
                     key={comment._id}
                     slug={slug}
-                    activeCardId={activeCardId}
                     comment={comment}
-                    onChangeActiveCardId={onChangeActiveCardId}
                     onOpen={onOpen}
                   />
                 </li>
