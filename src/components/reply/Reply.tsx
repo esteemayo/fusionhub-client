@@ -78,8 +78,8 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
   const {
     isLiked,
     isDisliked,
-    likeReplyMutation,
-    dislikeReplyMutation,
+    likeMutation,
+    dislikeMutation,
     handleLike,
     handleDislike,
   } = useLikeReply(replyId, likes, dislikes, queryKey);
@@ -478,8 +478,8 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
             dislikeCount={dislikeCount}
             isLiked={isLiked}
             isDisliked={isDisliked}
-            likeMutation={likeReplyMutation}
-            dislikeMutation={dislikeReplyMutation}
+            likeMutation={likeMutation}
+            dislikeMutation={dislikeMutation}
             onLike={handleLike}
             onDislike={handleDislike}
           />

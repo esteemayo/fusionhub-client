@@ -82,8 +82,8 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
     isDisliked,
     handleLike,
     handleDislike,
-    likeCommentMutation,
-    dislikeCommentMutation,
+    likeMutation,
+    dislikeMutation,
   } = useLikeComment(commentId, likes, dislikes, queryKey);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -491,8 +491,8 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
           dislikeCount={dislikeCount}
           isLiked={isLiked}
           isDisliked={isDisliked}
-          likeMutation={likeCommentMutation}
-          dislikeMutation={dislikeCommentMutation}
+          likeMutation={likeMutation}
+          dislikeMutation={dislikeMutation}
           onLike={handleLike}
           onDislike={handleDislike}
         />

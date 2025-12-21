@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import UserAvatar from '../UserAvatar';
 import Badge from '../badge/Badge';
@@ -15,6 +15,9 @@ import { useReply } from '../../hooks/useReply';
 import { useBlockedUsers } from '../../hooks/useBlockedUsers';
 
 import { useLikeComment } from '../../hooks/useLikeComment';
+import { useLikeReply } from '../../hooks/useLikeReply';
+import { useEditableItem } from '../../hooks/useEditableItem';
+
 import { useDate } from '../../hooks/useDate';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
@@ -22,100 +25,87 @@ import { getPostById } from '../../services/postService';
 import * as commentModal from '../../features/commentModal/commentModalSlice';
 
 import { excerpts } from '../../utils';
-import { ProfileCommentProps } from '../../types';
+import { ProfileItemProps } from '../../types';
 
-import './ProfileComment.scss';
+import './ProfileItem.scss';
 
 const fetchPostById = async (postId: string) => {
   const { data } = await getPostById(postId);
   return data;
 };
 
-const ProfileComment = ({
-  _id: commentId,
+const ProfileItem = ({
+  _id: id,
   author,
   content,
-  post,
-  likes,
+  createdAt,
+  comment,
+  dislikeCount,
   dislikes,
   likeCount,
-  dislikeCount,
-  createdAt,
+  likes,
+  post,
+  type,
   updatedAt,
-}: ProfileCommentProps) => {
+}: ProfileItemProps) => {
   const dispatch = useAppDispatch();
 
   const { formattedDate } = useDate(createdAt);
   const { blockedUsers } = useBlockedUsers();
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
-  const queryKey = ['comments'];
-
-  const postId = useMemo(() => {
-    return post._id;
-  }, [post._id]);
-
-  const { updateCommentMutation } = useComment(postId);
-  const { replyMutation } = useReply(postId, commentId);
-
   const {
-    isLiked,
-    isDisliked,
-    likeCommentMutation,
-    dislikeCommentMutation,
-    handleLike,
-    handleDislike,
-  } = useLikeComment(commentId, likes, dislikes, queryKey);
+    isMore,
+    isOpen,
+    isEditing,
+    editId,
+    value,
+    setValue,
+    openReply,
+    openEdit,
+    closeAll,
+    openMore,
+    closeMore,
+  } = useEditableItem();
+
+  const isReply = type === 'reply';
+  const limit = isReply ? 150 : 200;
+  const queryKey = [isReply ? 'replies' : 'comments'];
+
+  const commentApi = useComment(post._id);
+  const replyApi = useReply(post._id, isReply ? comment!._id : id);
+
+  const replyLikeApi = useLikeReply(id, likes, dislikes, queryKey);
+  const commentLikeApi = useLikeComment(id, likes, dislikes, queryKey);
+
+  const likeApi = isReply ? replyLikeApi : commentLikeApi;
 
   const { data } = useQuery({
-    queryKey: ['post', postId],
-    queryFn: () => fetchPostById(postId),
-    enabled: !!postId,
+    queryKey: ['post', post._id],
+    queryFn: () => fetchPostById(post._id),
+    enabled: !!post._id,
   });
 
-  const [isMore, setIsMore] = useState(false);
-  const [value, setValue] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [editId, setEditId] = useState<string | null>(null);
   const [isShow, setIsShow] = useState(false);
 
-  const commentUrl = `${window.location.origin}/post/${data?.slug}#comment-${commentId}`;
+  const userId = currentUser?.details._id;
+  const authorId = author._id;
+  const isAdmin = currentUser?.role === 'admin';
+  const isCommentAuthor = authorId === userId;
+  const isPostAuthor = post?.author._id === userId;
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setIsMore(true);
-  };
+  const profileUrl =
+    authorId === userId ? '#' : `/accounts/profile?username=${author.username}`;
 
-  const handleCollapse = () => {
-    setIsMore(false);
-  };
+  const shareUrl = `${window.location.origin}/post/${data?.slug}#${
+    isReply ? `reply-${id}` : `comment-${id}`
+  }`;
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLParagraphElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      handleCollapse();
+      closeMore();
     }
-  };
-
-  const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-
-    if (!currentUser) return;
-
-    if (isEditing && editId) {
-      setEditId(null);
-      setIsEditing(false);
-    }
-
-    setIsOpen((value) => {
-      if (value) {
-        setValue('');
-        return false;
-      } else {
-        return true;
-      }
-    });
   };
 
   const handleToggle = (e?: React.MouseEvent<HTMLButtonElement>) => {
@@ -132,59 +122,88 @@ const ProfileComment = ({
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-
     if (!currentUser) return;
 
-    setIsOpen(true);
-    setIsEditing(true);
-    setEditId(commentId);
-    setValue(content);
-
+    openEdit(id, content);
     handleClose();
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    dispatch(commentModal.setPostId(post._id));
     dispatch(commentModal.onOpen());
-    dispatch(commentModal.setCommentId(commentId));
+    dispatch(commentModal.setPostId(post._id));
+
+    if (isReply) {
+      dispatch(commentModal.setReplyId(id));
+      dispatch(commentModal.setCommentId(comment?._id));
+    } else {
+      dispatch(commentModal.setCommentId(id));
+    }
 
     handleClose();
   };
-
-  const handleCancel = useCallback(() => {
-    setIsOpen(false);
-
-    if (isEditing && editId) {
-      setEditId(null);
-      setIsEditing(false);
-    }
-
-    if (value.trim() !== '') setValue('');
-  }, [editId, isEditing, value]);
 
   const onCancelHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     if (!currentUser) return;
-    handleCancel();
+    closeAll();
+  };
+
+  const onToggleReply = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (!currentUser) return;
+
+    return isOpen ? closeAll() : openReply();
   };
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-
-    if (!currentUser || !postId) return;
+    if (!currentUser) return;
 
     if (isEditing && editId) {
-      updateCommentMutation.mutate(
-        { content: value, commentId },
-        { onSuccess: handleCancel }
-      );
+      if (isReply) {
+        replyApi.updateReplyMutation.mutate(
+          { content: value, replyId: id },
+          { onSuccess: closeAll }
+        );
+      } else {
+        commentApi.updateCommentMutation.mutate(
+          { content: value, commentId: id },
+          { onSuccess: closeAll }
+        );
+      }
     } else {
-      replyMutation.mutate(value, { onSuccess: handleCancel });
+      if (isReply) {
+        const replyObj = {
+          content: value,
+          comment: comment?._id,
+          post: post._id,
+          parentReplyId: id,
+        };
+
+        replyApi.replyTreeMutation.mutate(replyObj, {
+          onSuccess: closeAll,
+        });
+      } else {
+        replyApi.replyMutation.mutate(value, { onSuccess: closeAll });
+      }
     }
   };
+
+  const isBlocked = useMemo(
+    () => !!(blockedUsers ?? []).some((user) => user.id === authorId) || false,
+    [authorId, blockedUsers]
+  );
+
+  const coverClasses = useMemo(
+    () =>
+      isBlocked
+        ? 'profile-item__cover--img blurred'
+        : 'profile-item__cover--img',
+    [isBlocked]
+  );
 
   const isUpdated = useMemo(
     () => new Date(createdAt).getTime() < new Date(updatedAt).getTime(),
@@ -194,8 +213,8 @@ const ProfileComment = ({
   const replyBtnClasses = useMemo(
     () =>
       currentUser
-        ? 'profile-comment__box--reply-btn show'
-        : 'profile-comment__box--reply-btn hide',
+        ? 'profile-item__box--reply-btn show'
+        : 'profile-item__box--reply-btn hide',
     [currentUser]
   );
 
@@ -212,97 +231,51 @@ const ProfileComment = ({
   );
 
   const contentLabel = useMemo(
-    () => (isMore && content.length > 200 ? content : excerpts(content, 200)),
-    [content, isMore]
+    () =>
+      isMore && content.length > limit ? content : excerpts(content, limit),
+    [content, isMore, limit]
   );
 
   const btnClasses = useMemo(
     () =>
-      content.length > 200
-        ? 'profile-comment__info--btn show'
-        : 'profile-comment__info--btn hide',
-    [content]
+      content.length > limit
+        ? 'profile-item__info--btn show'
+        : 'profile-item__info--btn hide',
+    [content, limit]
   );
 
   const btnLabel = useMemo(() => (isMore ? undefined : 'more'), [isMore]);
-
-  const userId = useMemo(
-    () => currentUser?.details._id,
-    [currentUser?.details._id]
-  );
-
-  const authorId = useMemo(() => author._id, [author._id]);
-
-  const isAdmin = useMemo(
-    () => currentUser?.role === 'admin',
-    [currentUser?.role]
-  );
-
-  const isCommentAuthor = useMemo(
-    () => author?._id === userId,
-    [author?._id, userId]
-  );
-
-  const isPostAuthor = useMemo(
-    () => post?.author._id === userId,
-    [post?.author._id, userId]
-  );
-
-  const url = useMemo(
-    () =>
-      authorId === userId
-        ? '#'
-        : `/accounts/profile?username=${author.username}`,
-    [author.username, authorId, userId]
-  );
-
-  const isBlocked = useMemo(
-    () => (blockedUsers ?? []).some((user) => user.id === authorId) || false,
-    [authorId, blockedUsers]
-  );
-
-  const coverClasses = useMemo(
-    () =>
-      isBlocked
-        ? 'profile-comment__cover--img blurred'
-        : 'profile-comment__cover--img',
-    [isBlocked]
-  );
 
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault();
-
-        if (isShow) {
-          handleClose();
-        } else if (isOpen) {
-          handleCancel();
-        }
+        return isShow ? handleClose() : closeAll();
       }
     };
 
     window.addEventListener('keydown', handleEscKey);
     return () => window.removeEventListener('keydown', handleEscKey);
-  }, [handleCancel, isOpen, isShow]);
+  }, [closeAll, isShow]);
 
+  const capitalizedType = type.charAt(0).toUpperCase().concat(type.slice(1));
   const isGoogleImage = author.fromGoogle && author.image?.startsWith('https');
 
   return (
     <article
-      className='profile-comment'
+      className='profile-item'
       role='article'
-      aria-labelledby={`comment-title-${commentId}`}
-      aria-describedby={`comment-desc-${commentId}`}
+      aria-labelledby={`${type}-title-${id}`}
+      aria-describedby={`${type}-desc-${id}`}
     >
-      <h2 id={`comment-title-${commentId}`} className='sr-only'>
-        Comment by {author.name}
+      <h2 id={`${type}-title-${id}`} className='sr-only'>
+        {`${capitalizedType} by ${author.name}`}
       </h2>
 
-      <div className='profile-comment__container'>
-        <div className='profile-comment__cover'>
+      <div className='profile-item__container'>
+        <div className='profile-item__cover'>
           <Link
-            to={url}
+            to={profileUrl}
             aria-label={`Visit profile of ${author.username}`}
             title={`Visit profile of ${author.username}`}
           >
@@ -316,12 +289,12 @@ const ProfileComment = ({
           </Link>
         </div>
 
-        <div className='profile-comment__wrapper'>
-          <div className='profile-comment__box'>
-            <div className='profile-comment__date'>
+        <div className='profile-item__wrapper'>
+          <div className='profile-item__box'>
+            <div className='profile-item__date'>
               <time
                 dateTime={createdAt}
-                className='profile-comment__date--time'
+                className='profile-item__date--time'
                 aria-label={`Published on ${formattedDate}`}
               >
                 {formattedDate}
@@ -330,7 +303,7 @@ const ProfileComment = ({
               {currentUser && isUpdated && authorId !== (userId as string) && (
                 <span
                   aria-label='This comment was edited'
-                  className='profile-comment__date--status'
+                  className='profile-item__date--status'
                 >
                   (Edited)
                 </span>
@@ -341,7 +314,7 @@ const ProfileComment = ({
               type='button'
               onClick={onToggleReply}
               aria-expanded={isOpen}
-              aria-controls={`reply-form-${commentId}`}
+              aria-controls={`reply-form-${id}`}
               aria-label={`${isOpen ? 'Close' : 'Open'} reply form`}
               title={`${isOpen ? 'Close' : 'Open'} reply form`}
               className={replyBtnClasses}
@@ -351,13 +324,13 @@ const ProfileComment = ({
             </button>
           </div>
 
-          <div className='profile-comment__info'>
+          <div className='profile-item__info'>
             <h5
-              id={`comment-author-${commentId}`}
-              className='profile-comment__info--name'
+              id={`${type}-author-${id}`}
+              className='profile-item__info--name'
             >
               <Link
-                to={url}
+                to={profileUrl}
                 aria-label={`Go to ${author.username}’s profile`}
                 title={`Go to ${author.username}’s profile`}
               >
@@ -368,22 +341,22 @@ const ProfileComment = ({
           </div>
 
           <p
-            id={`comment-desc-${commentId}`}
-            onClick={handleCollapse}
+            id={`${type}-desc-${id}`}
+            onClick={closeMore}
             onKeyDown={handleKeyDown}
             tabIndex={0}
             role='textbox'
             aria-readonly='true'
-            aria-label='Comment text'
-            className='profile-comment__info--content'
+            aria-label={`${type} text`}
+            className='profile-item__info--content'
           >
             {contentLabel}
             <button
               type='button'
-              onClick={handleClick}
+              onClick={openMore}
               aria-expanded={isMore}
-              aria-controls={`comment-content-${commentId}`}
-              aria-label={`${isMore ? 'Collapse' : 'Expand'} comment text`}
+              aria-controls={`${type}-content-${id}`}
+              aria-label={`${isMore ? 'Collapse' : 'Expand'} ${type} text`}
               className={btnClasses}
             >
               {btnLabel}
@@ -391,27 +364,27 @@ const ProfileComment = ({
           </p>
 
           <div
-            className='profile-comment__wrap'
+            className='profile-item__wrap'
             role='group'
-            aria-label='Comment actions'
+            aria-label={`${capitalizedType} actions`}
           >
             <CommentReplyAction
               size='sm'
-              url={commentUrl}
-              title='Check out this comment'
+              url={shareUrl}
+              title={`Check out this ${type}`}
               text={excerpts(content, 80)}
               likeCount={likeCount}
               dislikeCount={dislikeCount}
-              isLiked={isLiked}
-              isDisliked={isDisliked}
-              likeMutation={likeCommentMutation}
-              dislikeMutation={dislikeCommentMutation}
-              onLike={handleLike}
-              onDislike={handleDislike}
+              isLiked={likeApi.isLiked}
+              isDisliked={likeApi.isDisliked}
+              likeMutation={likeApi.likeMutation}
+              dislikeMutation={likeApi.dislikeMutation}
+              onLike={likeApi.handleLike}
+              onDislike={likeApi.handleDislike}
             />
 
             <ProfileAction
-              type='comment'
+              type={type}
               authorRole={author?.role}
               currentUser={currentUser}
               isAdmin={isAdmin}
@@ -426,9 +399,9 @@ const ProfileComment = ({
           </div>
 
           <div
-            id={`reply-form-${commentId}`}
+            id={`reply-form-${id}`}
             role='region'
-            aria-label={`Reply to ${author.username}’s comment`}
+            aria-label={`Reply to ${author.username}’s ${type}`}
             aria-live='polite'
           >
             <ReplyForm
@@ -436,11 +409,12 @@ const ProfileComment = ({
               isOpen={isOpen}
               isEditing={isEditing}
               value={value}
+              username={isReply ? author.username : undefined}
               editId={editId}
               maxRows={5}
               isLoading={false}
               submitLabel='Submit reply'
-              updateLabel='Update comment'
+              updateLabel={`Update ${isReply ? 'reply' : 'comment'}`}
               onChange={setValue}
               onCancel={onCancelHandler}
               onSubmit={handleSubmit}
@@ -452,4 +426,4 @@ const ProfileComment = ({
   );
 };
 
-export default ProfileComment;
+export default ProfileItem;

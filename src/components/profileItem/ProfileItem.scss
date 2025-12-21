@@ -1,7 +1,7 @@
 @use '../../styles/responsive.scss' as bp;
 @use '../../styles/variables.scss' as vars;
 
-.profile-reply {
+.profile-item {
   overflow: hidden;
 
   &:not(:last-child) {
@@ -197,7 +197,7 @@
     align-items: center;
     gap: 1rem;
 
-    &--time {
+    &-time {
       font-variant: tabular-nums;
       font-weight: 700;
       color: vars.$clr-gray-light-1;

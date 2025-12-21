@@ -26,7 +26,7 @@ export const useLikeComment: ILikeComment = (
   const queryClient = useQueryClient();
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
-  const likeCommentMutation = useMutation({
+  const likeMutation = useMutation({
     mutationFn: createLikeComment,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
@@ -46,7 +46,7 @@ export const useLikeComment: ILikeComment = (
     },
   });
 
-  const dislikeCommentMutation = useMutation({
+  const dislikeMutation = useMutation({
     mutationFn: createDislikeComment,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
@@ -70,14 +70,14 @@ export const useLikeComment: ILikeComment = (
     e.stopPropagation();
 
     if (!currentUser) return;
-    likeCommentMutation.mutate(commentId);
+    likeMutation.mutate(commentId);
   };
 
   const handleDislike = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     if (!currentUser) return;
-    dislikeCommentMutation.mutate(commentId);
+    dislikeMutation.mutate(commentId);
   };
 
   const userId = useMemo(() => {
@@ -97,7 +97,7 @@ export const useLikeComment: ILikeComment = (
     isDisliked,
     handleLike,
     handleDislike,
-    likeCommentMutation,
-    dislikeCommentMutation,
+    likeMutation,
+    dislikeMutation,
   };
 };

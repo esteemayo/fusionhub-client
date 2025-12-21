@@ -26,7 +26,7 @@ export const useLikeReply: ILikeReply = (
   const queryClient = useQueryClient();
   const { user: currentUser } = useAppSelector((state) => state.auth);
 
-  const likeReplyMutation = useMutation({
+  const likeMutation = useMutation({
     mutationFn: createLikeReply,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
@@ -46,7 +46,7 @@ export const useLikeReply: ILikeReply = (
     },
   });
 
-  const dislikeReplyMutation = useMutation({
+  const dislikeMutation = useMutation({
     mutationFn: createDislikeReply,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey });
@@ -70,14 +70,14 @@ export const useLikeReply: ILikeReply = (
     e.stopPropagation();
 
     if (!currentUser) return;
-    likeReplyMutation.mutate(replyId);
+    likeMutation.mutate(replyId);
   };
 
   const handleDislike = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
     if (!currentUser) return;
-    dislikeReplyMutation.mutate(replyId);
+    dislikeMutation.mutate(replyId);
   };
 
   const userId = useMemo(() => {
@@ -97,7 +97,7 @@ export const useLikeReply: ILikeReply = (
     isDisliked,
     handleLike,
     handleDislike,
-    likeReplyMutation,
-    dislikeReplyMutation,
+    likeMutation,
+    dislikeMutation,
   };
 };

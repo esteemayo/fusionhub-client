@@ -57,6 +57,7 @@ const CommentReplyAction = ({
         aria-label={`${isLiked ? 'Unlike' : 'Like'} ${btnTitle}`}
         onLike={handleLike}
       />
+
       <CommentDislikeButton
         size={size}
         count={dislikeCount}
@@ -68,6 +69,7 @@ const CommentReplyAction = ({
         } ${btnTitle}`}
         onDislike={handleDislike}
       />
+
       <ShareComment
         url={url}
         size={size}

@@ -892,6 +892,29 @@ export interface ProfileCommentsProps {
   >;
 }
 
+type BaseProfileItemProps = {
+  content: string;
+  author: AuthorType;
+  likes: string[];
+  dislikes: string[];
+  likeCount: number;
+  dislikeCount: number;
+  post: PostTypeWithAuthor;
+  comment?: CommentType;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ProfileItemProps =
+  | ({
+      type: 'comment';
+      _id: string;
+    } & BaseProfileItemProps)
+  | ({
+      type: 'reply';
+      _id: string;
+    } & BaseProfileItemProps);
+
 export interface ProfileCommentProps {
   _id: string;
   content: string;
@@ -1294,13 +1317,8 @@ export interface ILikeComment {
   ): {
     isLiked: boolean;
     isDisliked: boolean;
-    likeCommentMutation: UseMutationResult<unknown, unknown, string, unknown>;
-    dislikeCommentMutation: UseMutationResult<
-      unknown,
-      unknown,
-      string,
-      unknown
-    >;
+    likeMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    dislikeMutation: UseMutationResult<unknown, unknown, string, unknown>;
     handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
     handleDislike(e: React.MouseEvent<HTMLButtonElement>): void;
   };
@@ -1315,8 +1333,8 @@ export interface ILikeReply {
   ): {
     isLiked: boolean;
     isDisliked: boolean;
-    likeReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
-    dislikeReplyMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    likeMutation: UseMutationResult<unknown, unknown, string, unknown>;
+    dislikeMutation: UseMutationResult<unknown, unknown, string, unknown>;
     handleLike(e: React.MouseEvent<HTMLButtonElement>): void;
     handleDislike(e: React.MouseEvent<HTMLButtonElement>): void;
   };

@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import EmptyMessage from '../emptyMessage/EmptyMessage';
-import ProfileReply from '../profileReply/ProfileReply';
+import ProfileItem from '../profileItem/ProfileItem';
 import ProfileSpinner from '../profileSpinner/ProfileSpinner';
 
 import { ProfileRepliesProps } from '../../types';
@@ -9,12 +9,10 @@ import { ProfileRepliesProps } from '../../types';
 import './ProfileReplies.scss';
 
 const ProfileReplies = ({
-  activeCardId,
   replies,
   isLoading,
   hasNextPage,
   error,
-  onChangeCardId,
   fetchNextPage,
 }: ProfileRepliesProps) => {
   const noReplies = (replies ?? []).length < 1;
@@ -63,14 +61,7 @@ const ProfileReplies = ({
           endMessage={null}
         >
           {replies.map((reply) => {
-            return (
-              <ProfileReply
-                key={reply._id}
-                {...reply}
-                activeCardId={activeCardId}
-                onChangeCardId={onChangeCardId}
-              />
-            );
+            return <ProfileItem key={reply._id} type='reply' {...reply} />;
           })}
         </InfiniteScroll>
       )}

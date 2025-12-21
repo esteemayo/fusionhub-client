@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import ProfileComment from '../profileComment/ProfileComment';
 import EmptyMessage from '../emptyMessage/EmptyMessage';
+import ProfileItem from '../profileItem/ProfileItem';
 import ProfileSpinner from '../profileSpinner/ProfileSpinner';
 
 import { ProfileCommentsProps } from '../../types';
@@ -61,7 +61,9 @@ const ProfileComments = ({
           endMessage={null}
         >
           {comments.map((comment) => {
-            return <ProfileComment key={comment._id} {...comment} />;
+            return (
+              <ProfileItem key={comment._id} type='comment' {...comment} />
+            );
           })}
         </InfiniteScroll>
       )}
