@@ -67,16 +67,14 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
     [commentId, mutedList?.mutedComments]
   );
 
-  const postId = useMemo(() => post._id, [post._id]);
-
-  const queryKey = ['comments', postId];
+  const queryKey = ['comments', post._id];
 
   const {
     isPending: isLoading,
     data,
     replyMutation,
-  } = useReply(postId, commentId);
-  const { updateCommentMutation } = useComment(postId);
+  } = useReply(post._id, commentId);
+  const { updateCommentMutation } = useComment(post._id);
   const {
     isLiked,
     isDisliked,
@@ -95,7 +93,20 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
   const [replies, setReplies] = useState<ReplyType[] | [] | undefined>();
   const [copied, setCopied] = useState(false);
 
-  const commentUrl = `${window.location.origin}/post/${slug}#comment-${commentId}`;
+  const userId = currentUser?.details._id;
+  const authorId = author?._id;
+  const isAdmin = currentUser?.role === 'admin';
+  const postAuthorId = post?.author?._id;
+  const isCommentAuthor = author?._id === userId;
+  const isPostAuthor = postAuthorId === userId;
+
+  const profileUrl = currentUser
+    ? userId === author?._id
+      ? '/accounts/profile'
+      : `/accounts/profile?username=${author?.username}`
+    : `/posts?author=${author?.username}`;
+
+  const shareUrl = `${window.location.origin}/post/${slug}#comment-${commentId}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -300,34 +311,6 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
 
   const btnLabel = useMemo(() => (isMore ? undefined : 'more'), [isMore]);
 
-  const isAdmin = useMemo(() => currentUser?.role === 'admin', [currentUser]);
-
-  const userId = useMemo(() => currentUser?.details._id, [currentUser]);
-
-  const authorId = useMemo(() => author?._id, [author?._id]);
-
-  const postAuthorId = useMemo(() => post?.author?._id, [post?.author?._id]);
-
-  const isCommentAuthor = useMemo(
-    () => author?._id === userId,
-    [author?._id, userId]
-  );
-
-  const isPostAuthor = useMemo(
-    () => postAuthorId === userId,
-    [postAuthorId, userId]
-  );
-
-  const url = useMemo(
-    () =>
-      currentUser
-        ? userId === author?._id
-          ? '/accounts/profile'
-          : `/accounts/profile?username=${author?.username}`
-        : `/posts?author=${author?.username}`,
-    [author?._id, author?.username, currentUser, userId]
-  );
-
   const actionBtnClasses = useMemo(
     () =>
       !currentUser
@@ -385,7 +368,7 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
       <div className='comment-card__container'>
         <div className='comment-card__user'>
           <Link
-            to={url}
+            to={profileUrl}
             aria-label={`View ${author.name}’s profile`}
             title={`View ${author.name}’s profile`}
           >
@@ -442,7 +425,7 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
               className='comment-card__details--username'
             >
               <Link
-                to={url}
+                to={profileUrl}
                 aria-label={`Author ${author.name}’s profile`}
                 title={`Author ${author.name}’s profile`}
               >
@@ -484,7 +467,7 @@ const CommentCard = ({ slug, comment, onOpen }: CommentCardProps) => {
         aria-label='Comment actions'
       >
         <CommentReplyAction
-          url={commentUrl}
+          url={shareUrl}
           title='Check out this comment'
           text={excerpts(content, 80)}
           likeCount={likeCount}

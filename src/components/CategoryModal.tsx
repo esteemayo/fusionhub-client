@@ -8,16 +8,16 @@ import { onClose } from '../features/categoryModal/categoryModalSlice';
 
 const CategoryModal = () => {
   const dispatch = useAppDispatch();
-  const { isOpen, categoryId } = useAppSelector((state) => state.categoryModal);
 
   const { deleteMutation } = useCategory();
+  const { isOpen, categoryId } = useAppSelector((state) => state.categoryModal);
 
   const handleClose = () => {
     dispatch(onClose());
   };
 
   const handleSubmit = () => {
-    deleteMutation.mutate(categoryId as string, { onSuccess: handleClose });
+    deleteMutation.mutate(String(categoryId), { onSuccess: handleClose });
   };
 
   const bodyContent: JSX.Element | undefined = (

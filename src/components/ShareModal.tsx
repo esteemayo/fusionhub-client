@@ -19,7 +19,7 @@ const ShareModal = () => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      toast.success('Link copied to clipboard!');
+      toast.success('Link copied to clipboard!', { role: 'alert' });
     } catch (error: unknown) {
       console.log('Clipboard copy failed:', error);
       toast.error('Could not copy this link.', { role: 'alert' });

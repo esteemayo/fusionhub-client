@@ -892,6 +892,18 @@ export interface ProfileCommentsProps {
   >;
 }
 
+export interface ProfileRepliesProps {
+  replies: ReplyType[];
+  isLoading: boolean;
+  hasNextPage: boolean;
+  error: Error | null;
+  fetchNextPage: (
+    options?: FetchNextPageOptions
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
+  >;
+}
+
 type BaseProfileItemProps = {
   content: string;
   author: AuthorType;
@@ -914,45 +926,6 @@ export type ProfileItemProps =
       type: 'reply';
       _id: string;
     } & BaseProfileItemProps);
-
-export interface ProfileCommentProps {
-  _id: string;
-  content: string;
-  post: PostTypeWithAuthor;
-  author: AuthorType;
-  likes: string[];
-  dislikes: string[];
-  likeCount: number;
-  dislikeCount: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface ProfileRepliesProps {
-  replies: ReplyType[];
-  isLoading: boolean;
-  hasNextPage: boolean;
-  error: Error | null;
-  fetchNextPage: (
-    options?: FetchNextPageOptions
-  ) => Promise<
-    InfiniteQueryObserverResult<InfiniteData<unknown, unknown>, Error>
-  >;
-}
-
-export interface ProfileReplyProps {
-  _id: string;
-  content: string;
-  comment: CommentType;
-  post: PostTypeWithAuthor;
-  author: AuthorType;
-  likes: string[];
-  dislikes: string[];
-  likeCount: number;
-  dislikeCount: number;
-  createdAt: string;
-  updatedAt: string;
-}
 
 export interface ProfileActionProps {
   type?: 'comment' | 'reply';
@@ -1173,6 +1146,22 @@ export interface IVoiceSearch {
     startListening(): void | undefined;
     stopListening(): void | undefined;
     toggleListening(): void;
+  };
+}
+
+export interface IEditableItem {
+  (): {
+    isMore: boolean;
+    isOpen: boolean;
+    isEditing: boolean;
+    editId: string | null;
+    value: string;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
+    openReply(): void;
+    openEdit(id: string, content: string): void;
+    closeAll(): void;
+    openMore(e: React.MouseEvent<HTMLButtonElement>): void;
+    closeMore(): void;
   };
 }
 
@@ -1546,6 +1535,9 @@ export interface IReply {
     isPending: boolean;
     error: Error | null;
     data: ReplyType[] | [] | undefined;
+    refetch: (
+      options?: RefetchOptions
+    ) => Promise<QueryObserverResult<[] | ReplyType[] | undefined, Error>>;
     replyMutation: UseMutationResult<unknown, unknown, string, unknown>;
     replyTreeMutation: UseMutationResult<unknown, unknown, object, unknown>;
     updateReplyMutation: UseMutationResult<

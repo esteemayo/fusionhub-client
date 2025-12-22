@@ -28,20 +28,18 @@ const CommentModal = () => {
     const mutation = replyId ? deleteReplyMutation : deleteCommentMutation;
     const id = replyId || commentId;
 
-    mutation.mutate(id, {
-      onSuccess: () => {
-        handleClose();
-      },
-    });
+    mutation.mutate(id, { onSuccess: handleClose });
   };
 
-  const titleLabel = useMemo(() => {
-    return postId
-      ? replyId
-        ? 'Confirm Reply Deletion'
-        : 'Confirm Comment Deletion'
-      : '';
-  }, [postId, replyId]);
+  const titleLabel = useMemo(
+    () =>
+      postId
+        ? replyId
+          ? 'Confirm Reply Deletion'
+          : 'Confirm Comment Deletion'
+        : '',
+    [postId, replyId]
+  );
 
   const textLabel = useMemo(
     () =>

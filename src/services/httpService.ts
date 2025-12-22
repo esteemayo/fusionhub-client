@@ -23,7 +23,7 @@ authFetch.interceptors.response.use(null, (error) => {
     error.response.status < 500;
 
   if (!expectedError) {
-    toast.error('An unexpected error occurred');
+    toast.error('An unexpected error occurred', { role: 'alert' });
     logger.log(error);
   }
 

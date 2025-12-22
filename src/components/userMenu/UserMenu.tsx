@@ -14,7 +14,9 @@ const UserMenu = () => {
   const { pathname } = useLocation();
 
   const { isLoading, btnLabel, handleLogout } = useLogout();
-  const { user: currentUser } = useAppSelector((state) => state.auth);
+  const { isLoading: isAuthLoading, user: currentUser } = useAppSelector(
+    (state) => state.auth
+  );
 
   const userMenuClasses = useMemo(
     () => (currentUser ? 'user-menu__wrapper show' : 'user-menu__wrapper hide'),
@@ -25,6 +27,8 @@ const UserMenu = () => {
     () => (isLoading ? 'logout-btn trunc' : 'logout-btn'),
     [isLoading]
   );
+
+  if (isAuthLoading) return null;
 
   return (
     <aside
@@ -49,15 +53,26 @@ const UserMenu = () => {
             <>
               {pathname !== '/login' && (
                 <li className='user-menu__list--item login-link' role='none'>
-                  <Link to='/login' role='menuitem' tabIndex={0}>
+                  <Link
+                    to='/login'
+                    role='menuitem'
+                    tabIndex={0}
+                    aria-disabled={isAuthLoading}
+                  >
                     <ArrowRightStartOnRectIcon />
                     <span>Login</span>
                   </Link>
                 </li>
               )}
+
               {pathname !== '/register' && (
                 <li className='user-menu__list--item register-link' role='none'>
-                  <Link to='/register' role='menuitem' tabIndex={0}>
+                  <Link
+                    to='/register'
+                    role='menuitem'
+                    tabIndex={0}
+                    aria-disabled={isAuthLoading}
+                  >
                     <ArrowRightCircleIcon />
                     <span>Register</span>
                   </Link>
@@ -66,6 +81,7 @@ const UserMenu = () => {
             </>
           )}
         </ul>
+
         <div className={userMenuClasses} aria-hidden={!currentUser}>
           <span
             className='username'
@@ -73,6 +89,7 @@ const UserMenu = () => {
           >
             {currentUser?.details.name}
           </span>
+
           <button
             type='button'
             onClick={handleLogout}

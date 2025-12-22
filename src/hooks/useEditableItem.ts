@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { IEditableItem } from '../types';
 
-export const useEditableItem = () => {
+export const useEditableItem: IEditableItem = () => {
   const [isMore, setIsMore] = useState(false);
   const [value, setValue] = useState('');
   const [isEditing, setIsEditing] = useState(false);

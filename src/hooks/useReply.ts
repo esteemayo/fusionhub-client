@@ -42,7 +42,9 @@ const removeReply = async (replyId: string) => {
 export const useReply: IReply = (postId, commentId) => {
   const queryClient = useQueryClient();
 
-  const { isPending, error, data } = useQuery<ReplyType[] | [] | undefined>({
+  const { isPending, error, data, refetch } = useQuery<
+    ReplyType[] | [] | undefined
+  >({
     queryKey: ['replies', commentId],
     queryFn: () => fetchRepliesOnComment(commentId),
     enabled: !!commentId,
@@ -144,6 +146,7 @@ export const useReply: IReply = (postId, commentId) => {
     isPending,
     error,
     data,
+    refetch,
     replyMutation,
     replyTreeMutation,
     updateReplyMutation,

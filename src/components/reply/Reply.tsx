@@ -66,13 +66,11 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
     [mutedList?.mutedReplies, replyId]
   );
 
-  const commentId = useMemo(() => comment._id, [comment._id]);
-
-  const queryKey = ['replies', commentId];
+  const queryKey = ['replies', comment._id];
 
   const { replyTreeMutation, updateReplyMutation } = useReply(
     post._id,
-    commentId
+    comment._id
   );
 
   const {
@@ -92,7 +90,20 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
   const [isShow, setIsShow] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const replyUrl = `${window.location.origin}/post/${slug}#reply-${replyId}`;
+  const userId = currentUser?.details._id;
+  const authorId = author._id;
+  const isPostAuthor = post?.author?._id === userId;
+  const isReplyAuthor = author?._id === userId;
+  const isCommentAuthor = comment?.author?._id === userId;
+  const isAdmin = currentUser?.role === 'admin';
+
+  const profileUrl = currentUser
+    ? userId === author?._id
+      ? '/accounts/profile'
+      : `/accounts/profile?username=${author?.username}`
+    : `/posts?author=${author?.username}`;
+
+  const shareUrl = `${window.location.origin}/post/${slug}#reply-${replyId}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -251,7 +262,7 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
     } else {
       const replyObj = {
         content: value,
-        comment: commentId,
+        comment: comment._id,
         post: post._id,
         parentReplyId: replyId,
       };
@@ -305,37 +316,6 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
 
   const btnLabel = useMemo(() => (isMore ? undefined : 'more'), [isMore]);
 
-  const userId = useMemo(() => currentUser?.details._id, [currentUser]);
-
-  const authorId = useMemo(() => author._id, [author._id]);
-
-  const isAdmin = useMemo(() => currentUser?.role === 'admin', [currentUser]);
-
-  const url = useMemo(
-    () =>
-      currentUser
-        ? userId === author?._id
-          ? '/accounts/profile'
-          : `/accounts/profile?username=${author?.username}`
-        : `/posts?author=${author?.username}`,
-    [author?._id, author?.username, currentUser, userId]
-  );
-
-  const isReplyAuthor = useMemo(
-    () => author?._id === userId,
-    [author?._id, userId]
-  );
-
-  const isCommentAuthor = useMemo(
-    () => comment?.author?._id === userId,
-    [comment?.author?._id, userId]
-  );
-
-  const isPostAuthor = useMemo(
-    () => post?.author?._id === userId,
-    [post?.author?._id, userId]
-  );
-
   const actionBtnClasses = useMemo(
     () =>
       !currentUser ? 'reply__actions--btn hide' : 'reply__actions--btn show',
@@ -377,7 +357,7 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
         <div className='reply__container'>
           <div className='reply__author'>
             <Link
-              to={url}
+              to={profileUrl}
               aria-label={`View ${author.username}’s profile`}
               title={`View ${author.username}’s profile`}
             >
@@ -430,7 +410,7 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
                 className='reply__content--username'
               >
                 <Link
-                  to={url}
+                  to={profileUrl}
                   aria-label={`Author: ${author.name}`}
                   title={`Author: ${author.name}`}
                 >
@@ -470,7 +450,7 @@ const Reply = ({ reply, slug, level }: ReplyProps) => {
         <div className='reply__actions' role='group' aria-label='Reply actions'>
           <CommentReplyAction
             size='sm'
-            url={replyUrl}
+            url={shareUrl}
             title='Check out this reply'
             text={excerpts(content, 80)}
             type='reply'
