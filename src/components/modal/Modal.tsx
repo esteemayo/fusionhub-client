@@ -4,7 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Spinner from '../Spinner';
 import XmarkIcon from '../icons/XmarkIcon';
 
+import { usePortal } from '../../hooks/usePortal';
 import { ModalProps } from '../../types';
+import { useOverlay } from '../../hooks/useOverlay';
 
 import './Modal.scss';
 
@@ -22,6 +24,8 @@ const Modal = ({
   onSubmit,
   secondaryAction,
 }: ModalProps) => {
+  const { portalId } = usePortal('modal-root');
+
   const modalRef = useRef<HTMLDivElement | null>(null);
   const firstButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -40,15 +44,6 @@ const Modal = ({
     }
   };
 
-  const handleEscKey = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleClose();
-      }
-    },
-    [handleClose]
-  );
-
   const handleSubmit = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
@@ -57,7 +52,7 @@ const Modal = ({
         onSubmit();
       }
     },
-    [disabled, onSubmit]
+    [disabled, onSubmit],
   );
 
   const handleSecondaryAction = useCallback(
@@ -74,76 +69,15 @@ const Modal = ({
         secondaryAction();
       }
     },
-    [disabled, handleClose, secondaryAction, type]
+    [disabled, handleClose, secondaryAction, type],
   );
 
   const containerClasses = useMemo(
     () => (showModal ? 'modal__container show' : 'modal__container hide'),
-    [showModal]
+    [showModal],
   );
 
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const modalEl = modalRef.current;
-    if (!modalEl) return;
-
-    const focusable = modalEl.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabIndex]:not([tabIndex="-1"])'
-    );
-
-    if (!focusable || focusable.length === 0) return;
-
-    const firstElement = focusable[0];
-    const lastElement = focusable[focusable.length - 1];
-
-    firstElement.focus();
-
-    const trapFocus = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-
-      if (e.shiftKey) {
-        if (document.activeElement === firstElement) {
-          e.preventDefault();
-          lastElement.focus();
-        }
-      } else {
-        if (document.activeElement === lastElement) {
-          e.preventDefault();
-          firstElement.focus();
-        }
-      }
-    };
-
-    document.addEventListener('keydown', trapFocus);
-    return () => document.removeEventListener('keydown', trapFocus);
-  }, [isOpen]);
-
-  useEffect(() => {
-    const appRoot = document.getElementById('root') || document.body;
-
-    if (isOpen) {
-      appRoot.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = 'hidden';
-      document.body.classList.add('no-interact');
-
-      window.addEventListener('keydown', handleEscKey);
-    } else {
-      appRoot.removeAttribute('aria-hidden');
-      document.body.style.overflow = '';
-      document.body.classList.remove('no-interact');
-
-      window.removeEventListener('keydown', handleEscKey);
-    }
-
-    return () => {
-      appRoot.removeAttribute('aria-hidden');
-      document.body.style.overflow = '';
-      document.body.classList.remove('no-interact');
-
-      window.removeEventListener('keydown', handleEscKey);
-    };
-  }, [isOpen, handleEscKey]);
+  useOverlay(modalRef, { isOpen, onClose: handleClose });
 
   useEffect(() => {
     setShowModal(isOpen);
@@ -165,10 +99,13 @@ const Modal = ({
           <h1 id='modal-title' className='modal__heading' aria-label={title}>
             {title}
           </h1>
+
           <div id='modal-body' className='modal__body'>
             {body}
           </div>
+
           <hr aria-hidden='true' />
+
           <footer className='modal__footer'>
             <div className='modal__btn'>
               {secondaryActionLabel && secondaryAction && (
@@ -184,6 +121,7 @@ const Modal = ({
                   {secondaryActionLabel}
                 </button>
               )}
+
               {actionLabel && (
                 <button
                   type='button'
@@ -197,8 +135,10 @@ const Modal = ({
                 </button>
               )}
             </div>
+
             {footer}
           </footer>
+
           <div className='modal__close'>
             <button
               type='button'
@@ -214,10 +154,7 @@ const Modal = ({
     </aside>
   );
 
-  return createPortal(
-    modalContent,
-    document.getElementById('modal-root') as HTMLElement
-  );
+  return portalId ? createPortal(modalContent, portalId) : null;
 };
 
 export default Modal;

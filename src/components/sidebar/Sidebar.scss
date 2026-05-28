@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 40rem;
+  width: min(40rem, 75vw);
   height: 100%;
   background-color: vars.$clr-secondary-blue;
   color: vars.$clr-white;
@@ -198,9 +198,19 @@
         stroke-width: 2px;
       }
 
+      &:focus {
+        outline: none;
+      }
+
+      &:focus-visible {
+        outline: 1px solid vars.$clr-tertiary-blue;
+        outline-offset: 3px;
+      }
+
       &:disabled {
         opacity: 0.75;
-        cursor: default;
+        user-select: none;
+        pointer-events: none;
       }
     }
   }
@@ -266,7 +276,8 @@
 
     &:disabled {
       opacity: 0.75;
-      cursor: not-allowed;
+      user-select: none;
+      pointer-events: none;
     }
   }
 }

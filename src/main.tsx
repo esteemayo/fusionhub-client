@@ -1,7 +1,6 @@
-import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import App from './App.tsx';
 
@@ -12,12 +11,10 @@ import './global.scss';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HelmetProvider>
-      <QueryProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </QueryProvider>
-    </HelmetProvider>
-  </StrictMode>
+    <QueryProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </QueryProvider>
+  </StrictMode>,
 );

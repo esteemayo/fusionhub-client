@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { useCallback, useMemo, useRef } from 'react';
 
 import MenuItem from '../menuItem/MenuItem';
 import Logo from '../logo/Logo';
@@ -10,11 +11,14 @@ import UserAvatar from '../UserAvatar';
 import ArrowLeftStartOnRectIcon from '../icons/ArrowLeftStartOnRectIcon';
 import ArrowRightStartOnRectIcon from '../icons/ArrowRightStartOnRectIcon';
 
-import { onClose } from '../../features/sidebar/sidebarSlice';
+import { usePortal } from '../../hooks/usePortal';
+import { useOverlay } from '../../hooks/useOverlay';
+
 import { useLogout } from '../../hooks/useLogout';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 import { menuItems } from '../../data';
+import { onClose } from '../../features/sidebar/sidebarSlice';
 
 import './Sidebar.scss';
 
@@ -23,18 +27,19 @@ const Sidebar = () => {
 
   const { isOpen } = useAppSelector((state) => state.sidebar);
   const { isLoading, user: currentUser } = useAppSelector(
-    (state) => state.auth
+    (state) => state.auth,
   );
 
+  const { portalId } = usePortal('overlay-root');
   const { btnLabel, handleLogout } = useLogout(isOpen, onClose);
 
-  const handleClose = () => {
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClose = useCallback(() => {
     dispatch(onClose());
-  };
+  }, [dispatch]);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.stopPropagation();
-
+  const handleClick = () => {
     if (isOpen) {
       handleClose();
     }
@@ -42,22 +47,24 @@ const Sidebar = () => {
 
   const sidebarClasses = useMemo(
     () => (isOpen ? 'sidebar show' : 'sidebar hide'),
-    [isOpen]
+    [isOpen],
   );
 
   const accountNameClasses = useMemo(
     () =>
       isLoading ? 'sidebar__account--name truncate' : 'sidebar__account--name',
-    [isLoading]
+    [isLoading],
   );
 
-  return (
+  useOverlay(sidebarRef, { isOpen, onClose: handleClose });
+
+  const sidebarContent = (
     <aside
       className={sidebarClasses}
       role='navigation'
       aria-label='Sidebar navigation'
     >
-      <div className='sidebar__container'>
+      <div ref={sidebarRef} className='sidebar__container' tabIndex={-1}>
         <div className='sidebar__wrapper'>
           <Logo onClose={handleClick} />
 
@@ -78,6 +85,7 @@ const Sidebar = () => {
           >
             {menuItems.map((menu) => {
               const { id, url, label } = menu;
+
               return (
                 <MenuItem
                   key={id}
@@ -143,6 +151,8 @@ const Sidebar = () => {
       </div>
     </aside>
   );
+
+  return portalId ? createPortal(sidebarContent, portalId) : null;
 };
 
 export default Sidebar;
